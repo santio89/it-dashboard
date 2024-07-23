@@ -11,8 +11,8 @@
   --main-black: rgb(30, 30, 30);
   --main-white: rgb(240, 240, 240);
   --main-gray: rgb(180, 180, 180);
-  --main-gray-op: rgba(180, 180, 180, .8);
-  --main-gray-op-dark: rgba(120, 120, 120, .8);
+  --main-gray-op: rgba(180, 180, 180, 0.8);
+  --main-gray-op-dark: rgba(120, 120, 120, 0.8);
   --main-color: rgb(228, 76, 76);
   --main-color-dark: var(--main-black);
   --main-color-light: var(--main-white);
@@ -65,7 +65,9 @@ li {
 button,
 a,
 input,
-textarea {
+textarea,
+select,
+option {
   border: none;
   outline: none;
   background: none;
@@ -88,14 +90,19 @@ a:focus-visible,
 input:hover,
 input:focus-visible,
 textarea:hover,
-textarea:focus-visible {
+textarea:focus-visible,
+select:hover,
+select:focus-visible,
+option:hover,
+option:focus-visible {
   color: var(--main-color);
   background: var(--main-color-light);
 }
 
 input,
 textarea,
-select {
+select,
+option {
   border: none;
   outline: none;
   background: none;
@@ -115,7 +122,8 @@ select {
 }
 input::placeholder,
 textarea::placeholder,
-select::placeholder {
+select::placeholder,
+option::placeholder {
   color: var(--main-color-light);
 }
 input:hover::placeholder, input:focus::placeholder, input:focus-visible::placeholder,
@@ -124,8 +132,15 @@ textarea:focus::placeholder,
 textarea:focus-visible::placeholder,
 select:hover::placeholder,
 select:focus::placeholder,
-select:focus-visible::placeholder {
+select:focus-visible::placeholder,
+option:hover::placeholder,
+option:focus::placeholder,
+option:focus-visible::placeholder {
   color: var(--main-color);
+}
+
+select:disabled {
+  opacity: 1;
 }
 
 .root-theme {
@@ -282,7 +297,7 @@ select:focus-visible::placeholder {
   display: grid;
   grid-template-columns: 1fr 1fr;
   place-content: start;
-  place-items: center;
+  place-items: stretch;
   gap: 0.5rem;
   flex: 1;
 }
@@ -290,6 +305,10 @@ select:focus-visible::placeholder {
   display: flex;
   justify-content: center;
   align-items: stretch;
+}
+.users__list > ul li > button {
+  width: clamp(120px, 120px + 2vw, 180px);
+  word-break: break-all;
 }
 .users__chart {
   flex: 2;
@@ -341,7 +360,7 @@ select:focus-visible::placeholder {
   align-items: center;
   flex-direction: column;
   gap: 0.5rem;
-  width: clamp(200px, 200px + 2vw, 80%);
+  width: clamp(250px, 250px + 2vw, 80%);
 }
 .mainModal__data > p {
   text-transform: uppercase;
@@ -373,6 +392,16 @@ select:focus-visible::placeholder {
 }
 .mainModal__data__inputs input[type=number] {
   -moz-appearance: textfield;
+}
+.mainModal__btnContainer, .mainModal__btnContainer--edit {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+.mainModal__btnContainer--edit {
+  justify-content: space-between;
 }
 .mainModal__btns {
   width: 100%;
