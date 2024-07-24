@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
-import { useGetUsersQuery, useAddUserMutation } from '../store/slices/apiSlice';
+import { useGetUsersQuery } from '../store/slices/apiSlice';
 import { useEffect } from "react";
 
 export default function Users() {

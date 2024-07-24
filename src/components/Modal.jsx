@@ -53,6 +53,16 @@ export default function Modal() {
     dispatch(setModal({ active: false, data: {} }))
   }
 
+  const editModeFN = () => {
+    setNewUserName(modalData?.name)
+    setNewUserArea(modalData?.area)
+    setNewUserLocation(modalData?.location)
+    setNewUserComment(modalData?.comment)
+    setNewUserEmail(modalData?.email)
+    setNewUserIntern(modalData?.intern)
+    setEditMode(true)
+  }
+
   const editUserFn = async (id) => {
     const user = {
       name: newUserName,
@@ -67,16 +77,6 @@ export default function Modal() {
     const editRes = await editUser(user)
     console.log(editRes)
     dispatch(setModal({ active: false, data: {} }))
-  }
-
-  const editModeFN = () => {
-    setNewUserName(modalData?.name)
-    setNewUserArea(modalData?.area)
-    setNewUserLocation(modalData?.location)
-    setNewUserComment(modalData?.comment)
-    setNewUserEmail(modalData?.email)
-    setNewUserIntern(modalData?.intern)
-    setEditMode(true)
   }
 
 
@@ -142,32 +142,21 @@ export default function Modal() {
     <dialog className='mainModalWrapper' ref={modal}>
       <div className="mainModal">
         <div className="mainModal__data">
-          {/*      <>
-              {
-                Object.entries(modalData).map(([key, value]) => {
-                  return <p key={key}>{key}: {value}</p>
-                })
-              }
-              <div className="mainModal__btns">
-                <button className='mainModal__delete' onClick={() => deleteUserFn(modalData.id)}>Delete</button>
-                <button className='mainModal__edit' onClick={() => setEditMode(true)}>Edit</button>
-              </div>
-            </> */}
           {!modalData?.newUser && !modalData?.newDevice && !editMode &&
             <form className='mainModal__data__inputs'>
               <h2>USER</h2>
-              <input readOnly spellCheck={false} type="text" placeholder='User' value={modalData?.name} />
-              <input readOnly spellCheck={false} type="text" placeholder='E-Mail' value={modalData?.email} />
-              <input readOnly spellCheck={false} type="text" placeholder='Area' value={modalData?.area} />
-              <select readOnly disabled >
-                <option readOnly value="Location" disabled >Location</option>
+              <input readOnly spellCheck={false} type="text" title="User" placeholder='User' value={modalData?.name} />
+              <input readOnly spellCheck={false} type="text" title="E-Mail" placeholder='E-Mail' value={modalData?.email} />
+              <input readOnly spellCheck={false} type="text" title="Area" placeholder='Area' value={modalData?.area} />
+              <select readOnly disabled title="Location" >
+                <option readOnly value="Location" disabled selected={modalData?.location === ""} >Location</option>
                 <option readOnly value="SS" selected={modalData?.location === "SS"}>SS</option>
                 <option readOnly value="PB" selected={modalData?.location === "PB"}>PB</option>
                 <option readOnly value="1P" selected={modalData?.location === "1P"}>1P</option>
                 <option readOnly value="4P" selected={modalData?.location === "4P"}>4P</option>
               </select>
-              <input readOnly spellCheck={false} type="number" placeholder='Intern' value={modalData?.intern} />
-              <textarea readOnly spellCheck={false} rows="2" placeholder='Comment' value={modalData?.comment} />
+              <input readOnly spellCheck={false} type="number" title="Intern" placeholder='Intern' value={modalData?.intern} />
+              <textarea readOnly spellCheck={false} rows="2" title="Comment" placeholder='Comment' value={modalData?.comment} />
               <div className='mainModal__btnContainer--edit'>
                 <button type='button' className='mainModal__send' onClick={() => deleteUserFn(modalData?.id)}>Delete</button>
                 <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
@@ -176,21 +165,25 @@ export default function Modal() {
             </form>
           }
 
-          {!modalData?.newUser && !modalData?.newDevice && editMode &&
-            <form className='mainModal__data__inputs'>
+          {editMode &&
+            <form className='mainModal__data__inputs editMode'>
               <h2>EDIT USER</h2>
-              <input spellCheck={false} type="text" placeholder='User' value={newUserName} onChange={e => setNewUserName(e.target.value)} />
-              <input spellCheck={false} type="text" placeholder='E-Mail' value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} />
-              <input spellCheck={false} type="text" placeholder='Area' value={newUserArea} onChange={e => setNewUserArea(e.target.value)} />
-              <select onChange={e => setNewUserLocation(e.target.value)}>
-                <option value="Location" disabled>Location</option>
+              <input spellCheck={false} type="text" title="User" placeholder='User' value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" required />
+              <input spellCheck={false} type="text" title="E-Mail" placeholder='E-Mail' value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
+              <input spellCheck={false} type="text" title="Area" placeholder='Area' value={newUserArea} onChange={e => setNewUserArea(e.target.value)} maxLength={200} />
+              <select onChange={e => setNewUserLocation(e.target.value)} title="Location">
+                <option value="Location" disabled selected={modalData?.location === ""} >Location</option>
                 <option value="SS" selected={modalData?.location === "SS"}>SS</option>
                 <option value="PB" selected={modalData?.location === "PB"}>PB</option>
                 <option value="1P" selected={modalData?.location === "1P"}>1P</option>
                 <option value="4P" selected={modalData?.location === "4P"}>4P</option>
               </select>
-              <input spellCheck={false} type="number" placeholder='Intern' value={newUserIntern} onChange={e => setNewUserIntern(e.target.value)} />
-              <textarea spellCheck={false} rows="2" placeholder='Comment' value={newUserComment} onChange={e => setNewUserComment(e.target.value)} />
+              <input spellCheck={false} type="tel" title="Intern" placeholder='Intern' value={newUserIntern} onChange={e => {
+                const value = e.target.value.replace(/\D/g, '');
+                setNewUserIntern(value)
+              }}
+                pattern="/[0-9]/" maxLength={20} />
+              <textarea spellCheck={false} rows="2" title="Comment" placeholder='Comment' value={newUserComment} onChange={e => setNewUserComment(e.target.value)} maxLength={500} />
               <div className='mainModal__btnContainer--edit'>
                 <button type='button' className='mainModal__send' onClick={() => editUserFn(modalData.id)}>Send</button>
                 <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
@@ -201,18 +194,22 @@ export default function Modal() {
           {modalData?.newUser &&
             <form className='mainModal__data__inputs' onSubmit={(e) => addUserFn(e)}>
               <h2>ADD USER</h2>
-              <input spellCheck={false} type="text" placeholder='User' value={newUserName} onChange={e => setNewUserName(e.target.value)} />
-              <input spellCheck={false} type="text" placeholder='E-Mail' value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} />
-              <input spellCheck={false} type="text" placeholder='Area' value={newUserArea} onChange={e => setNewUserArea(e.target.value)} />
-              <select onChange={e => setNewUserLocation(e.target.value)}>
+              <input spellCheck={false} type="text" title="User" placeholder='User' value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" required />
+              <input spellCheck={false} type="text" title="E-Mail" placeholder='E-Mail' value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
+              <input spellCheck={false} type="text" title="Area" placeholder='Area' value={newUserArea} onChange={e => setNewUserArea(e.target.value)} maxLength={200} />
+              <select onChange={e => setNewUserLocation(e.target.value)} title="Location">
                 <option value="Location" disabled selected>Location</option>
                 <option value="SS">SS</option>
                 <option value="PB">PB</option>
                 <option value="1P">1P</option>
                 <option value="4P">4P</option>
               </select>
-              <input spellCheck={false} type="number" placeholder='Intern' value={newUserIntern} onChange={e => setNewUserIntern(e.target.value)} />
-              <textarea spellCheck={false} rows="2" placeholder='Comment' value={newUserComment} onChange={e => setNewUserComment(e.target.value)} />
+              <input spellCheck={false} type="tel" title="Intern" placeholder='Intern' value={newUserIntern} onChange={e => {
+                const value = e.target.value.replace(/\D/g, '');
+                setNewUserIntern(value)
+              }}
+                pattern="/[0-9]/" maxLength={20} />
+              <textarea spellCheck={false} rows="2" title="Comment" placeholder='Comment' value={newUserComment} onChange={e => setNewUserComment(e.target.value)} maxLength={500} />
               <div className='mainModal__btnContainer'>
                 <button className='mainModal__send'>Send</button>
               </div>
@@ -222,18 +219,18 @@ export default function Modal() {
           {modalData?.newDevice &&
             <form className='mainModal__data__inputs' onSubmit={() => dispatch(setModal({ active: false, data: {} }))}>
               <h2>ADD DEVICE</h2>
-              <input spellCheck={false} type="text" placeholder='Type' value={newDeviceType} onChange={e => setNewDeviceType(e.target.value)} />
-              <input spellCheck={false} type="text" placeholder='Model' value={newDeviceModel} onChange={e => setNewDeviceModel(e.target.value)} />
-              <input spellCheck={false} type="text" placeholder='Serial' value={newDeviceSn} onChange={e => setNewDeviceSn(e.target.value)} />
-              <input spellCheck={false} type="text" placeholder='Area' value={newDeviceArea} onChange={e => setNewDeviceArea(e.target.value)} />
-              <select onChange={e => setNewDeviceLocation(e.target.value)}>
+              <input spellCheck={false} type="text" title="Type" placeholder='Type' value={newDeviceType} onChange={e => setNewDeviceType(e.target.value)} />
+              <input spellCheck={false} type="text" title="Model" placeholder='Model' value={newDeviceModel} onChange={e => setNewDeviceModel(e.target.value)} />
+              <input spellCheck={false} type="text" title="Seria" placeholder='Serial' value={newDeviceSn} onChange={e => setNewDeviceSn(e.target.value)} />
+              <input spellCheck={false} type="text" title="Area" placeholder='Area' value={newDeviceArea} onChange={e => setNewDeviceArea(e.target.value)} />
+              <select onChange={e => setNewDeviceLocation(e.target.value)} title="Location">
                 <option value="Location" disabled selected>Location</option>
                 <option value="SS">SS</option>
                 <option value="PB">PB</option>
                 <option value="1P">1P</option>
                 <option value="4P">4P</option>
               </select>
-              <textarea spellCheck={false} rows="2" placeholder='Comment' value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value)} />
+              <textarea spellCheck={false} rows="2" title="Comment" placeholder='Comment' value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value)} />
               <div className='mainModal__btnContainer'>
                 <button className='mainModal__send'>Send</button>
               </div>

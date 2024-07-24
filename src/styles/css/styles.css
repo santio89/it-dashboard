@@ -233,7 +233,8 @@ select:disabled {
 }
 @media (max-width: 599px) {
   .home .side-panel.expanded {
-    flex-basis: clamp(150px, 150px + 2vw, 30%);
+    /* flex-basis: clamp(150px, 150px + 2vw, 30%); */
+    flex-basis: clamp(80px, 80px + 2vw, 10%);
   }
 }
 .home .side-panel button.side-toggle,
@@ -255,6 +256,12 @@ select:disabled {
   color: var(--main-color-light);
   background: var(--main-color);
 }
+@media (max-width: 599px) {
+  .home .side-panel button.side-toggle,
+  .home .side-panel a.side-toggle {
+    display: none;
+  }
+}
 .home .main-content {
   flex: 1;
   display: flex;
@@ -265,9 +272,10 @@ select:disabled {
 }
 
 .site-section {
-  padding: 2rem clamp(1rem, 1rem + 2vw, 2rem);
+  padding: clamp(0.5rem, 0.5rem + 2vw, 2rem);
   flex: 1;
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -307,11 +315,12 @@ select:disabled {
   align-items: stretch;
 }
 .users__list > ul li > button {
-  width: clamp(120px, 120px + 2vw, 180px);
+  width: clamp(100px, 100px + 2vw, 180px);
   word-break: break-all;
 }
 .users__chart {
   flex: 2;
+  min-width: 200px;
 }
 
 /* start modal */
@@ -384,14 +393,27 @@ select:disabled {
   outline: none;
   min-width: 150px;
   width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 .mainModal__data__inputs input::-webkit-outer-spin-button,
 .mainModal__data__inputs input::-webkit-inner-spin-button {
+  appearance: none;
   -webkit-appearance: none;
   margin: 0;
 }
 .mainModal__data__inputs input[type=number] {
+  appearance: textfield;
   -moz-appearance: textfield;
+}
+.mainModal__data__inputs.editMode input,
+.mainModal__data__inputs.editMode textarea,
+.mainModal__data__inputs.editMode select {
+  outline: 1px dashed darkgray;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 .mainModal__btnContainer, .mainModal__btnContainer--edit {
   display: flex;

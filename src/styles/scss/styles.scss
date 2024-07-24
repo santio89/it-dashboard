@@ -228,7 +228,8 @@ select:disabled {
       flex-basis: clamp(300px, 300px + 2vw, 30%);
 
       @media (max-width: 599px) {
-        flex-basis: clamp(150px, 150px + 2vw, 30%);
+        /* flex-basis: clamp(150px, 150px + 2vw, 30%); */
+        flex-basis: clamp(80px, 80px + 2vw, 10%);
       }
     }
 
@@ -250,6 +251,10 @@ select:disabled {
         color: var(--main-color-light);
         background: var(--main-color);
       }
+
+      @media (max-width: 599px) {
+        display: none;
+      }
     }
   }
 
@@ -264,9 +269,10 @@ select:disabled {
 }
 
 .site-section {
-  padding: 2rem clamp(1rem, 1rem + 2vw, 2rem);
+  padding: clamp(0.5rem, 0.5rem + 2vw, 2rem);
   flex: 1;
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -307,7 +313,7 @@ select:disabled {
         align-items: stretch;
 
         > button {
-          width: clamp(120px, 120px + 2vw, 180px);
+          width: clamp(100px, 100px + 2vw, 180px);
           word-break: break-all;
         }
       }
@@ -316,6 +322,7 @@ select:disabled {
 
   &__chart {
     flex: 2;
+    min-width: 200px;
   }
 }
 
@@ -389,17 +396,33 @@ select:disabled {
         outline: none;
         min-width: 150px;
         width: 100%;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
       }
 
       input::-webkit-outer-spin-button,
       input::-webkit-inner-spin-button {
+        appearance: none;
         -webkit-appearance: none;
         margin: 0;
       }
 
       /* Firefox */
       input[type="number"] {
+        appearance: textfield;
         -moz-appearance: textfield;
+      }
+
+      &.editMode {
+        input,
+        textarea,
+        select {
+          outline: 1px dashed darkgray;
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+        }
       }
     }
   }

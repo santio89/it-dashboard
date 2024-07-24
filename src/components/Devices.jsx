@@ -10,12 +10,12 @@ export default function Users() {
       <div className="users__list">
         {/* add user option (for admins) - with modal .  edit/delete user option /for admins) - options in modal*/}
         <button onClick={() => dispatch(setModal({ active: true, data: { newDevice: true } }))}>Add device</button>
-        <ul>
+       {/*  <ul>
           {
             devicesData.devices.map(device =>
               <li key={device.id}><button onClick={() => { dispatch(setModal({ active: true, data: device })) }}>{device.type} - {device.model}</button></li>)
           }
-        </ul>
+        </ul> */}
       </div>
       <div className="users__chart">
         CUADRO
