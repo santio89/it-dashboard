@@ -78,7 +78,7 @@ export default function UsersDataModal() {
       setNewUserComment("")
       setNewUserEmail("")
       setNewUserIntern("")
-      /*       setNewDeviceType("")
+      /*    setNewDeviceType("")
             setNewDeviceModel("")
             setNewDeviceSn("")
             setNewDeviceArea("")
@@ -92,7 +92,7 @@ export default function UsersDataModal() {
 
   return (
     <>
-      {!modalData?.newUser && !modalData?.newDevice && !editMode &&
+      {modalData?.userData && !editMode &&
         <form className='mainModal__data__inputs'>
           <h2>USER</h2>
           <input readOnly spellCheck={false} type="text" title="User" placeholder='User' value={modalData?.name} />
@@ -115,7 +115,7 @@ export default function UsersDataModal() {
         </form>
       }
 
-      {editMode &&
+      {modalData?.userData && editMode &&
         <form className='mainModal__data__inputs editMode'>
           <h2>EDIT USER</h2>
           <input spellCheck={false} type="text" title="User" placeholder='User' value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" required />
