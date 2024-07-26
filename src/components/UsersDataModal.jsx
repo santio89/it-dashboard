@@ -53,7 +53,8 @@ export default function UsersDataModal() {
     setEditMode(true)
   }
 
-  const editUserFn = async (id) => {
+  const editUserFn = async (e, id) => {
+    e.preventDefault()
     const user = {
       name: newUserName,
       email: newUserEmail,
@@ -116,7 +117,7 @@ export default function UsersDataModal() {
       }
 
       {modalData?.userData && editMode &&
-        <form className='mainModal__data__inputs editMode'>
+        <form className='mainModal__data__inputs editMode' onSubmit={(e) => editUserFn(e, modalData.id)}>
           <h2>EDIT USER</h2>
           <input spellCheck={false} type="text" title="User" placeholder='User' value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" required />
           <input spellCheck={false} type="text" title="E-Mail" placeholder='E-Mail' value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
@@ -135,7 +136,7 @@ export default function UsersDataModal() {
             pattern="/[0-9]/" maxLength={20} />
           <textarea spellCheck={false} rows="2" title="Comment" placeholder='Comment' value={newUserComment} onChange={e => setNewUserComment(e.target.value)} maxLength={500} />
           <div className='mainModal__btnContainer--edit'>
-            <button type='button' className='mainModal__send' onClick={() => editUserFn(modalData.id)}>Send</button>
+            <button className='mainModal__send' >Send</button>
             <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
           </div>
         </form>

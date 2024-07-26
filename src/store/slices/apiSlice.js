@@ -79,9 +79,83 @@ export const apiSlice = createApi({
         }
       },
       invalidatesTags: ['users'],
-    })
+    }),
+    getDevices: builder.query({
+      async queryFn() {
+        try {
+          // retrieve documents
+          const ref = collection(db, 'devices');
+          const querySnapshot = await getDocs(ref);
+          let devices = [];
+          querySnapshot?.forEach((doc) => {
+            devices.push({ id: doc.id, ...doc.data() });
+          });
+
+          return { data: devices };
+        } catch (error) {
+          console.log(error);
+          return { error: error };
+        }
+      },
+      providesTags: ['devices'],
+    }),
+    addDevice: builder.mutation({
+      async queryFn(device) {
+        try {
+          // add a new document with a generated id
+          const res = await addDoc(collection(db, "devices"), device);
+
+          return {
+            data: {
+              ...device,
+              id: res.id
+            }
+          };
+        } catch (error) {
+          console.log(error);
+          return { error: error };
+        }
+      },
+      invalidatesTags: ['devices'],
+    }),
+    deleteDevice: builder.mutation({
+      async queryFn(id) {
+        try {
+          const docRef = doc(collection(db, "devices"), id)
+          await deleteDoc(docRef)
+
+          return {
+            data: {
+              id,
+              res: `eliminated`
+            }
+          }
+        } catch (error) {
+          console.log(error);
+          return { error: error };
+        }
+
+      },
+      invalidatesTags: ['devices'],
+    }),
+    editDevice: builder.mutation({
+      async queryFn(device) {
+        try {
+          const docRef = doc(db, "devices", device.id)
+          await setDoc(docRef, device)
+
+          return {
+            data: device
+          }
+        } catch (error) {
+          console.log(error)
+          return { error: error }
+        }
+      },
+      invalidatesTags: ['devices'],
+    }),
   })
 })
 
 export default apiSlice.reducer
-export const { useGetUsersQuery, useAddUserMutation, useDeleteUserMutation, useEditUserMutation } = apiSlice
+export const { useGetUsersQuery, useAddUserMutation, useDeleteUserMutation, useEditUserMutation, useGetDevicesQuery, useAddDeviceMutation, useDeleteDeviceMutation, useEditDeviceMutation } = apiSlice

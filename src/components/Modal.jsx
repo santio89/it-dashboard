@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { setModal } from '../store/slices/modalSlice';
 import UsersDataModal from './UsersDataModal';
+import DevicesDataModal from './DevicesDataModal';
 
 export default function Modal() {
   const dispatch = useDispatch()
@@ -60,27 +61,8 @@ export default function Modal() {
       <div className="mainModal">
         <div className="mainModal__data">
           <UsersDataModal />
+          <DevicesDataModal />
 
-          {/*  {modalData?.newDevice &&
-            <form className='mainModal__data__inputs' onSubmit={() => dispatch(setModal({ active: false, data: {} }))}>
-              <h2>ADD DEVICE</h2>
-              <input spellCheck={false} type="text" title="Type" placeholder='Type' value={newDeviceType} onChange={e => setNewDeviceType(e.target.value)} />
-              <input spellCheck={false} type="text" title="Model" placeholder='Model' value={newDeviceModel} onChange={e => setNewDeviceModel(e.target.value)} />
-              <input spellCheck={false} type="text" title="Seria" placeholder='Serial' value={newDeviceSn} onChange={e => setNewDeviceSn(e.target.value)} />
-              <input spellCheck={false} type="text" title="Area" placeholder='Area' value={newDeviceArea} onChange={e => setNewDeviceArea(e.target.value)} />
-              <select onChange={e => setNewDeviceLocation(e.target.value)} title="Location">
-                <option value="Location" disabled selected>Location</option>
-                <option value="SS">SS</option>
-                <option value="PB">PB</option>
-                <option value="1P">1P</option>
-                <option value="4P">4P</option>
-              </select>
-              <textarea spellCheck={false} rows="2" title="Comment" placeholder='Comment' value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value)} />
-              <div className='mainModal__btnContainer'>
-                <button className='mainModal__send'>Send</button>
-              </div>
-            </form>
-          } */}
         </div>
 
         <button className='mainModal__close' onClick={() => dispatch(setModal({ active: false, data: {} }))}>Close</button>
