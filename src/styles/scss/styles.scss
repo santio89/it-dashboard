@@ -330,12 +330,13 @@ select:disabled {
 .mainModalWrapper {
   z-index: 9;
   position: fixed;
-  top: 50%;
+  /*  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+  margin: auto;
   width: clamp(300px, 100%, 600px);
   min-width: 300px;
-  aspect-ratio: 5/4;
+  aspect-ratio: 7/6;
   border: none;
   outline: none;
   color: rgb(240, 240, 240);
@@ -373,6 +374,11 @@ select:disabled {
     flex-direction: column;
     gap: 0.5rem;
     width: clamp(250px, 250px + 2vw, 80%);
+
+    h2 {
+      text-align: center;
+      text-wrap: balance;
+    }
 
     > p {
       text-transform: uppercase;

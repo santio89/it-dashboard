@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setModal } from '../store/slices/modalSlice';
 import UsersDataModal from './UsersDataModal';
 import DevicesDataModal from './DevicesDataModal';
+import Draggable from 'react-draggable';
 
 export default function Modal() {
   const dispatch = useDispatch()
@@ -57,16 +58,17 @@ export default function Modal() {
 
 
   return (
-    <dialog className='mainModalWrapper' ref={modal}>
-      <div className="mainModal">
-        <div className="mainModal__data">
-          <UsersDataModal />
-          <DevicesDataModal />
+    <Draggable position={{ x: 0, y: 0 }}>
+      <dialog className='mainModalWrapper' ref={modal}>
+        <div className="mainModal">
+          <div className="mainModal__data">
+            <UsersDataModal />
+            <DevicesDataModal />
 
+          </div>
+          <button className='mainModal__close' onClick={() => dispatch(setModal({ active: false, data: {} }))}>Close</button>
         </div>
-
-        <button className='mainModal__close' onClick={() => dispatch(setModal({ active: false, data: {} }))}>Close</button>
-      </div>
-    </dialog >
+      </dialog >
+    </Draggable>
   )
 }
