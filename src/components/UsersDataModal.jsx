@@ -106,7 +106,7 @@ export default function UsersDataModal() {
             <option readOnly value="1P" selected={modalData?.location === "1P"}>1P</option>
             <option readOnly value="4P" selected={modalData?.location === "4P"}>4P</option>
           </select>
-          <input readOnly spellCheck={false} type="number" title="Intern" placeholder='Intern' value={modalData?.intern} />
+          <input readOnly spellCheck={false} type="text" title="Intern" placeholder='Intern' value={modalData?.intern} />
           <textarea readOnly spellCheck={false} rows="2" title="Comment" placeholder='Comment' value={modalData?.comment} />
           <div className='mainModal__btnContainer--edit'>
             <button type='button' className='mainModal__send' onClick={() => deleteUserFn(modalData?.id)}>Delete</button>
@@ -132,8 +132,7 @@ export default function UsersDataModal() {
           <input spellCheck={false} type="tel" title="Intern" placeholder='Intern' value={newUserIntern} onChange={e => {
             const value = e.target.value.replace(/\D/g, '');
             setNewUserIntern(value)
-          }}
-            pattern="/[0-9]/" maxLength={20} />
+          }} maxLength={20} />
           <textarea spellCheck={false} rows="2" title="Comment" placeholder='Comment' value={newUserComment} onChange={e => setNewUserComment(e.target.value)} maxLength={500} />
           <div className='mainModal__btnContainer--edit'>
             <button className='mainModal__send' >Send</button>
@@ -158,8 +157,7 @@ export default function UsersDataModal() {
           <input spellCheck={false} type="tel" title="Intern" placeholder='Intern' value={newUserIntern} onChange={e => {
             const value = e.target.value.replace(/\D/g, '');
             setNewUserIntern(value)
-          }}
-            pattern="/[0-9]/" maxLength={20} />
+          }} maxLength={20} />
           <textarea spellCheck={false} rows="2" title="Comment" placeholder='Comment' value={newUserComment} onChange={e => setNewUserComment(e.target.value)} maxLength={500} />
           <div className='mainModal__btnContainer'>
             <button className='mainModal__send'>Send</button>
