@@ -318,9 +318,9 @@ select:disabled {
   word-break: break-all;
 }
 .users__chart {
-  min-width: 250px;
+  min-width: max(250px, 60%);
   flex: 3;
-  background: rgb(150, 150, 150);
+  background: rgba(150, 150, 150, 0.5);
   /* chart */
 }
 .users__chart > div {

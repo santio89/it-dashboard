@@ -40,8 +40,7 @@ export default function UserChart({ data }) {
         options={{
           title: "Users chart",
           backgroundColor: {
-            'fill': 'rgb(150,150,150)',
-            'fillOpacity': 0.5
+            'fill': 'transparent',
           },
           fontSize: 12,
           titleTextStyle: {

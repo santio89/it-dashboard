@@ -320,9 +320,9 @@ select:disabled {
   }
 
   &__chart {
-    min-width: 250px;
+    min-width: max(250px, 60%);
     flex: 3;
-    background: rgba(150, 150, 150);
+    background: rgba(150, 150, 150, 0.5);
 
     /* chart */
     & > div {
