@@ -347,7 +347,7 @@ select:disabled {
   margin: auto;
   width: clamp(300px, 100%, 600px);
   min-width: 300px;
-  aspect-ratio: 7/6;
+  aspect-ratio: 1;
   border: none;
   outline: none;
   color: rgb(240, 240, 240);
