@@ -13,7 +13,7 @@ export default function UserChart({ data }) {
 
       const areaUserCount = data && data?.reduce((result, user) => {
         if (!result.some(item => item.area === user.area)) {
-          result.push({ area: user.area, users: 1 });
+          result.push({ area: user.area.toUpperCase(), users: 1 });
         } else {
           const areaIndex = result.findIndex(item => item.area === user.area);
           result[areaIndex].users++;
@@ -39,8 +39,11 @@ export default function UserChart({ data }) {
             'fill': 'transparent',
           },
           fontSize: 8,
+          pieSliceTextStyle: {
+            color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
+          },
           titleTextStyle: {
-            color: "rgb(250,250,250)",
+            color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
             bold: true,
             fontSize: 8
           },
@@ -54,6 +57,7 @@ export default function UserChart({ data }) {
             },
             maxLines: 2,
           },
+          pieSliceBorderColor: "transparent"
         }}
         data={usersArray}
         width="100%"

@@ -13,7 +13,7 @@ export default function DeviceChart({ data }) {
 
       const areaDeviceCount = data && data?.reduce((result, device) => {
         if (!result.some(item => item.area === device.area)) {
-          result.push({ area: device.area, devices: 1 });
+          result.push({ area: device.area.toUpperCase(), devices: 1 });
         } else {
           const areaIndex = result.findIndex(item => item.area === device.area);
           result[areaIndex].devices++;
@@ -39,8 +39,11 @@ export default function DeviceChart({ data }) {
             'fill': 'transparent',
           },
           fontSize: 8,
+          pieSliceTextStyle: {
+            color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
+          },
           titleTextStyle: {
-            color: "rgb(250,250,250)",
+            color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
             bold: true,
             fontSize: 8
           },
@@ -54,6 +57,7 @@ export default function DeviceChart({ data }) {
             },
             maxLines: 2,
           },
+          pieSliceBorderColor: "transparent"
         }}
         data={devicesArray}
         width="100%"
