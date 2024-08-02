@@ -34,27 +34,20 @@
 }
 
 html {
-  /* INICIO SCROLLBAR */
-  scrollbar-width: thin;
-  scrollbar-color: var(--main-color-dark) var(--main-gray);
-
-  /* width */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  /* track */
   ::-webkit-scrollbar-track {
     background: var(--main-gray);
   }
 
-  /* handle */
-  ::-webkit-scrollbar-thumb {
-    background: var(--main-color-dark);
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
   }
 
-  /* FIN SCROLLBAR */
+  ::-webkit-scrollbar-thumb {
+    background: var(--main-color-dark);
+    border-radius: 8px;
+  }
 
   ::selection {
     color: var(--main-color-dark);
@@ -87,6 +80,7 @@ option {
   align-items: center;
   text-align: center;
   text-wrap: balance;
+  border-radius: 0.5em;
 
   &:hover,
   &:focus-visible {
@@ -211,7 +205,7 @@ select:disabled {
     overflow-x: hidden;
     overflow-y: auto;
 
-    /* @media(max-width: 619px) {
+    /* @media(max-width: 938px) {
       display: none;
     } */
 
@@ -227,7 +221,7 @@ select:disabled {
     &.expanded {
       flex-basis: clamp(300px, 300px + 2vw, 30%);
 
-      @media (max-width: 619px) {
+      @media (max-width: 938px) {
         flex-basis: clamp(80px, 80px + 2vw, 10%);
       }
     }
@@ -244,6 +238,7 @@ select:disabled {
       padding: 0.5rem 1rem;
       cursor: pointer;
       width: 100%;
+      border-radius: 0;
 
       &:hover,
       &:focus-visible {
@@ -251,7 +246,7 @@ select:disabled {
         background: var(--main-color);
       }
 
-      @media (max-width: 619px) {
+      @media (max-width: 938px) {
         display: none;
       }
     }
@@ -276,8 +271,8 @@ select:disabled {
   align-items: center;
   text-align: center;
   text-wrap: balance;
+  overflow-x: hidden;
   overflow-y: auto;
-  overflow: hidden;
 }
 
 .users {
@@ -291,6 +286,10 @@ select:disabled {
     justify-content: start;
     align-items: center;
     gap: 2rem;
+    background-color: rgba(120, 120, 120, 0.5);
+    border-radius: 1rem;
+    min-height: 100%;
+    padding: clamp(1rem, 1rem + 1vw, 1.5rem);
 
     > button {
       align-self: start;
@@ -317,17 +316,29 @@ select:disabled {
         }
       }
     }
+
+    @media (max-width: 938px) {
+      min-height: auto;
+    }
   }
 
   &__chart {
     min-width: max(250px, 60%);
     flex: 3;
-    background: rgba(150, 150, 150, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(120, 120, 120, 0.5);
+    border-radius: 1rem;
+    min-height: 100%;
+    padding: clamp(1rem, 1rem + 1vw, 1.5rem);
 
     /* chart */
     & > div {
       max-width: fit-content;
       margin: auto;
+      scale: 2;
+      text-transform: uppercase;
     }
   }
 }
@@ -336,9 +347,6 @@ select:disabled {
 .mainModalWrapper {
   z-index: 9;
   position: fixed;
-  /*  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
   margin: auto;
   width: clamp(300px, 100%, 600px);
   min-width: 300px;
@@ -351,13 +359,23 @@ select:disabled {
   box-shadow: 0 0 2rem -1rem var(--main-color-dark);
   border: 4px solid var(--main-color);
   padding: clamp(0.5rem, 0.5rem + 2vw, 1rem);
+  border-radius: 1rem;
+
+  &::-webkit-scrollbar-track {
+    background: var(--main-color);
+  }
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+  }
 
   &::backdrop {
     background-color: dimgray;
     opacity: 0.5;
   }
 
-  @media (max-width: 619px) {
+  @media (max-width: 938px) {
     min-height: 80%;
   }
 }
@@ -384,6 +402,7 @@ select:disabled {
     h2 {
       text-align: center;
       text-wrap: balance;
+      font-size: 1.8em;
     }
 
     > p {

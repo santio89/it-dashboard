@@ -58,7 +58,7 @@ export default function Modal() {
 
 
   return (
-    <Draggable position={{ x: 0, y: 0 }}>
+    <Draggable position={{ x: 0, y: 0 }} cancel={"button, input, textarea, select, option"}>
       <dialog className='mainModalWrapper' ref={modal}>
         <div className="mainModal">
           <div className="mainModal__data">

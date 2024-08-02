@@ -3,29 +3,29 @@ import { Chart } from 'react-google-charts';
 import { useSelector } from 'react-redux';
 
 
-export default function UserChart({ data }) {
-  const [usersArray, setUsersArray] = useState()
+export default function DeviceChart({ data }) {
+  const [devicesArray, setDevicesArray] = useState()
   const lightTheme = useSelector(state => state.theme.light)
 
   useEffect(() => {
     if (data) {
-      const users = [["Area", "Users"]]
+      const devices = [["Area", "Devices"]]
 
-      const areaUserCount = data && data?.reduce((result, user) => {
-        if (!result.some(item => item.area === user.area)) {
-          result.push({ area: user.area, users: 1 });
+      const areaDeviceCount = data && data?.reduce((result, device) => {
+        if (!result.some(item => item.area === device.area)) {
+          result.push({ area: device.area, devices: 1 });
         } else {
-          const areaIndex = result.findIndex(item => item.area === user.area);
-          result[areaIndex].users++;
+          const areaIndex = result.findIndex(item => item.area === device.area);
+          result[areaIndex].devices++;
         }
         return result;
       }, []);
 
-      areaUserCount.forEach(area => {
-        users.push([area.area, area.users])
+      areaDeviceCount.forEach(area => {
+        devices.push([area.area, area.devices])
       })
 
-      setUsersArray(users)
+      setDevicesArray(devices)
     }
   }, [data])
 
@@ -55,7 +55,7 @@ export default function UserChart({ data }) {
             maxLines: 2,
           },
         }}
-        data={usersArray}
+        data={devicesArray}
         width="100%"
         height="100%"
       />
