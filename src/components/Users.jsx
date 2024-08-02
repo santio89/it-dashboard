@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
 import { useGetUsersQuery } from '../store/slices/apiSlice';
 import { useEffect } from "react";
-import UserChart from "./UserChart";
+import UsersChart from "./UsersChart";
 
 export default function Users() {
   const dispatch = useDispatch()
@@ -31,7 +31,7 @@ export default function Users() {
         }
       </div>
       <div className="users__chart">
-        <UserChart data={data} />
+        <UsersChart data={data} isLoading={isLoading} />
       </div>
     </div>
   )

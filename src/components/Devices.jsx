@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
 import { useGetDevicesQuery } from '../store/slices/apiSlice';
-import DeviceChart from "./DeviceChart";
+import DevicesChart from "./DevicesChart";
 
 export default function Users() {
   const dispatch = useDispatch()
@@ -29,7 +29,7 @@ export default function Users() {
         }
       </div>
       <div className="users__chart">
-        <DeviceChart data={data} />
+        <DevicesChart data={data} isLoading={isLoading} />
       </div>
     </div>
   )
