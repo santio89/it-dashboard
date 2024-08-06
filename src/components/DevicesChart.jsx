@@ -13,7 +13,7 @@ export default function DevicesChart({ data, isLoading }) {
 
       const areaDeviceCount = data && data?.reduce((result, device) => {
         if (!result.some(item => item.area === device.area)) {
-          result.push({ area: device.area.toUpperCase(), devices: 1 });
+          result.push({ area: device.area.toUpperCase().trim(), devices: 1 });
         } else {
           const areaIndex = result.findIndex(item => item.area === device.area);
           result[areaIndex].devices++;

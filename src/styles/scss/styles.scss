@@ -14,6 +14,7 @@
   --main-gray-op: rgba(180, 180, 180, 0.8);
   --main-gray-op-dark: rgba(120, 120, 120, 0.8);
   --main-color: rgb(228, 76, 76);
+  --main-color: rgb(10, 10, 10);
   --main-color-dark: var(--main-black);
   --main-color-light: var(--main-white);
   --main-container-size: 1200px;
@@ -50,7 +51,7 @@ html {
   }
 
   ::selection {
-    color: var(--main-color-dark);
+    color: var(--main-color-light);
     background: var(--main-color);
   }
 }
@@ -109,9 +110,11 @@ option {
   text-align: center;
   text-wrap: balance;
   resize: none;
+  font-style: normal;
 
   &::placeholder {
     color: var(--main-color-light);
+    font-style: italic;
   }
 
   &:hover::placeholder,
@@ -123,6 +126,10 @@ option {
 
 select:disabled {
   opacity: 1;
+}
+
+.empty-select {
+  font-style: italic;
 }
 
 .root-theme {
@@ -175,10 +182,10 @@ select:disabled {
     align-items: center;
 
     button {
-      color: rgb(30, 30, 30);
+      color: rgb(240, 240, 240);
 
-      &.light-on {
-        color: rgb(240, 240, 240);
+      svg {
+        filter: drop-shadow(0 0 4px rgb(240, 240, 240));
       }
     }
   }
@@ -201,7 +208,7 @@ select:disabled {
     justify-content: space-between;
     align-items: center;
     background: var(--main-color-side);
-    transition: flex-basis 200ms;
+    transition: flex-basis 200ms ease-out;
     overflow-x: hidden;
     overflow-y: auto;
 
@@ -397,12 +404,17 @@ select:disabled {
     align-items: center;
     flex-direction: column;
     gap: 0.5rem;
-    width: clamp(250px, 250px + 2vw, 80%);
+    width: 100%;
 
     h2 {
       text-align: center;
       text-wrap: balance;
       font-size: 2em;
+      color: var(--main-black);
+      background: var(--main-color-light);
+      width: 100%;
+      font-weight: bold;
+      margin-bottom: 1rem;
     }
 
     > p {
@@ -412,20 +424,51 @@ select:disabled {
       border-bottom: 1px solid var(--main-gray-op-dark);
     }
 
-    &__inputs {
+    &__form {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      gap: 0.5rem;
+      width: fit-content;
+
+      .form-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10%;
+        width: 100%;
+      }
+
+      fieldset {
+        border: 1px solid var(--main-color);
+        background: none;
+        width: clamp(150px, 100%, 200px);
+        margin-bottom: 0.5rem;
+
+        legend {
+          margin: 0 8px;
+          padding: 0 4px;
+          color: var(--main-white);
+        }
+
+        &:hover,
+        &:focus,
+        &:focus-within {
+          border: 1px solid var(--main-color-light);
+        }
+
+        &:has(textarea) {
+          width: 100%;
+        }
+      }
 
       input,
       textarea,
       select {
         border: none;
         outline: none;
-        min-width: 150px;
         width: 100%;
         appearance: none;
         -webkit-appearance: none;
@@ -449,7 +492,7 @@ select:disabled {
         input,
         textarea,
         select {
-          outline: 1px dashed darkgray;
+          outline: 1px dashed var(--main-color-light);
           appearance: none;
           -webkit-appearance: none;
           -moz-appearance: none;
