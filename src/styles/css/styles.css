@@ -140,7 +140,7 @@ option:focus-visible::placeholder {
 
 option:checked, option:hover {
   color: var(--main-color-light);
-  background-color: var(--main-black);
+  background-color: var(--main-color-mid);
 }
 
 select:disabled {
