@@ -12,6 +12,7 @@ export default function UsersChart({ data, isLoading }) {
       const users = [["Area", "Users"]]
 
       const areaUserCount = data && data?.reduce((result, user) => {
+        if (!user.area) return result
         if (!result.some(item => item.area === user.area)) {
           result.push({ area: user.area.toUpperCase().trim(), users: 1 });
         } else {
@@ -58,8 +59,15 @@ export default function UsersChart({ data, isLoading }) {
                   bold: true,
                 },
                 maxLines: 2,
+                pagingTextStyle: {
+                  color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`
+                },
+                scrollArrows: {
+                  activeColor: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
+                  inactiveColor: `rgb(100,100,100)`
+                }
               },
-              pieSliceBorderColor: "transparent"
+              pieSliceBorderColor: "transparent",
             }}
             data={usersArray}
             width="100%"

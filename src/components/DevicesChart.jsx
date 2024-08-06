@@ -12,6 +12,7 @@ export default function DevicesChart({ data, isLoading }) {
       const devices = [["Area", "Devices"]]
 
       const areaDeviceCount = data && data?.reduce((result, device) => {
+        if (!device.area) return result
         if (!result.some(item => item.area === device.area)) {
           result.push({ area: device.area.toUpperCase().trim(), devices: 1 });
         } else {
@@ -58,6 +59,13 @@ export default function DevicesChart({ data, isLoading }) {
                   bold: true,
                 },
                 maxLines: 2,
+                pagingTextStyle: {
+                  color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`
+                },
+                scrollArrows: {
+                  activeColor: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
+                  inactiveColor: `rgb(100,100,100)`
+                }
               },
               pieSliceBorderColor: "transparent"
             }}
