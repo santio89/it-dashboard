@@ -41,24 +41,24 @@ export default function UsersChart({ data, isLoading }) {
               backgroundColor: {
                 'fill': 'transparent',
               },
-              fontSize: 8,
+              fontSize: 16,
               pieSliceTextStyle: {
                 color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
               },
               titleTextStyle: {
                 color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
                 bold: true,
-                fontSize: 8
+                fontSize: 16
               },
               legend: {
-                position: "top",
-                alignment: "center",
+                /* position: "top",
+                alignment: "center", */
                 textStyle: {
                   color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
-                  fontSize: 8,
+                  fontSize: 16,
                   bold: true,
                 },
-                maxLines: 2,
+                maxLines: 1,
                 pagingTextStyle: {
                   color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`
                 },
@@ -67,11 +67,13 @@ export default function UsersChart({ data, isLoading }) {
                   inactiveColor: `rgb(100,100,100)`
                 }
               },
-              pieSliceBorderColor: "transparent",
+              pieSliceBorderColor: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
+              pieSliceText: 'none',
+              chartArea: { width: "100%", height: "100%" },
             }}
             data={usersArray}
-            width="100%"
-            height="100%"
+            width="90%"
+            height="90%"
           />
       }
     </>

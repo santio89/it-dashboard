@@ -346,10 +346,11 @@ select:disabled {
   /* chart */
 }
 .users__chart > div {
-  max-width: fit-content;
   margin: auto;
-  scale: 2;
   text-transform: uppercase;
+  /* max-width: fit-content;
+  scale: 2; */
+  scale: 1.2;
 }
 
 /* start modal */
