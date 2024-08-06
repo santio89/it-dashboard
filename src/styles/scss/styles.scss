@@ -124,6 +124,14 @@ option {
   }
 }
 
+option {
+  &:checked,
+  &:hover {
+    color: var(--main-color-light);
+    background-color: var(--main-black);
+  }
+}
+
 select:disabled {
   opacity: 1;
 }
