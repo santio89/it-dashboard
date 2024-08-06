@@ -31,7 +31,10 @@ export default function Users() {
         }
       </div>
       <div className="users__chart">
-        <UsersChart data={data} isLoading={isLoading} />
+        <button>Users per area</button>
+        <div className="chartWrapper">
+          <UsersChart data={data} isLoading={isLoading} />
+        </div>
       </div>
     </div>
   )

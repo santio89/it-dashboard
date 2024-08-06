@@ -13,8 +13,8 @@
   --main-gray: rgb(180, 180, 180);
   --main-gray-op: rgba(180, 180, 180, 0.8);
   --main-gray-op-dark: rgba(120, 120, 120, 0.8);
-  --main-color: rgb(228, 76, 76);
-  --main-color: rgb(10, 10, 10);
+  /* --main-color: rgb(228, 76, 76); */
+  --main-color: rgb(50, 57, 90);
   --main-color-dark: var(--main-black);
   --main-color-light: var(--main-white);
   --main-container-size: 1200px;
@@ -42,12 +42,12 @@ html {
   ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
-    /* border-radius: 12px; */
+    border-radius: 12px;
   }
 
   ::-webkit-scrollbar-thumb {
     background: var(--main-color-dark);
-    /* border-radius: 8px; */
+    border-radius: 8px;
   }
 
   ::selection {
@@ -81,7 +81,7 @@ option {
   align-items: center;
   text-align: center;
   text-wrap: balance;
-  /* border-radius: 0.5em; */
+  border-radius: 0.5em;
 
   &:hover,
   &:focus-visible {
@@ -302,7 +302,7 @@ select:disabled {
     align-items: center;
     gap: 2rem;
     background-color: rgba(120, 120, 120, 0.5);
-    /* border-radius: 1rem; */
+    border-radius: 1rem;
     min-height: 100%;
     padding: clamp(1rem, 1rem + 1vw, 1.5rem);
 
@@ -310,6 +310,12 @@ select:disabled {
       align-self: start;
       color: var(--main-color);
       background: var(--main-color-light);
+
+      &:hover,
+      &:focus-visible {
+        color: var(--main-color-light);
+        background: var(--main-color);
+      }
     }
 
     > ul {
@@ -341,20 +347,42 @@ select:disabled {
     min-width: max(250px, 60%);
     flex: 3;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: start;
     align-items: center;
     background-color: rgba(120, 120, 120, 0.5);
-    /* border-radius: 1rem; */
+    border-radius: 1rem;
     min-height: 100%;
     padding: clamp(1rem, 1rem + 1vw, 1.5rem);
 
-    /* chart */
-    & > div {
-      margin: auto;
-      text-transform: uppercase;
-      /* max-width: fit-content;
-      scale: 2; */
-      scale: 1.2;
+    .chartWrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      border: 2px solid var(--main-color-light);
+      border-radius: 0 1rem 1rem 1rem;
+
+      /* chart */
+      & > div {
+        margin-inline: auto;
+        text-transform: uppercase;
+      }
+    }
+
+    > button {
+      align-self: start;
+      color: var(--main-color);
+      background: var(--main-color-light);
+      border-radius: 0.5em 0.5em 0 0;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--main-color-light);
+        background: var(--main-color);
+      }
     }
   }
 }
@@ -375,7 +403,7 @@ select:disabled {
   box-shadow: 0 0 2rem -1rem var(--main-color-dark);
   border: 4px solid var(--main-color);
   padding: clamp(0.5rem, 0.5rem + 2vw, 1rem);
-  /* border-radius: 1rem; */
+  border-radius: 1rem;
 
   &::-webkit-scrollbar-track {
     background: var(--main-color);
@@ -383,7 +411,7 @@ select:disabled {
   &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
-    /* border-radius: 8px; */
+    border-radius: 8px;
   }
 
   &::backdrop {
@@ -419,11 +447,13 @@ select:disabled {
       text-align: center;
       text-wrap: balance;
       font-size: 2em;
-      color: var(--main-black);
+      color: var(--main-color);
       background: var(--main-color-light);
       width: 100%;
       font-weight: bold;
       margin-bottom: 1rem;
+      border-radius: 2em;
+      border: 2px solid var(--main-color);
     }
 
     > p {
@@ -455,17 +485,21 @@ select:disabled {
         background: none;
         width: clamp(150px, 100%, 200px);
         margin-bottom: 0.5rem;
+        border-radius: 0.5em;
 
         legend {
           margin: 0 8px;
           padding: 0 4px;
-          color: var(--main-white);
+          color: var(--main-color);
         }
 
-        &:hover,
-        &:focus,
-        &:focus-within {
+        &:focus-within,
+        &:has(input:hover, textarea:hover, select:hover, option:hover) {
           border: 1px solid var(--main-color-light);
+
+          legend {
+            color: var(--main-color-light);
+          }
         }
 
         &:has(textarea) {
@@ -482,6 +516,7 @@ select:disabled {
         appearance: none;
         -webkit-appearance: none;
         -moz-appearance: none;
+        border-radius: 0 0 0.25em 0.25em;
       }
 
       input::-webkit-outer-spin-button,
@@ -505,6 +540,20 @@ select:disabled {
           appearance: none;
           -webkit-appearance: none;
           -moz-appearance: none;
+          border-radius: 0 0 0.5em 0.5em;
+        }
+
+        fieldset {
+          border: 1px dashed var(--main-color-light);
+
+          &:focus-within,
+          &:has(input:hover, textarea:hover, select:hover, option:hover) {
+            border-style: dashed;
+          }
+
+          legend {
+            color: var(--main-color-light);
+          }
         }
       }
     }

@@ -56,7 +56,7 @@ export default function DevicesChart({ data, isLoading }) {
                 textStyle: {
                   color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
                   fontSize: 16,
-                  bold: true,
+                  /* bold: true, */
                 },
                 maxLines: 1,
                 pagingTextStyle: {

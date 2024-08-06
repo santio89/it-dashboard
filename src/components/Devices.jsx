@@ -29,7 +29,10 @@ export default function Users() {
         }
       </div>
       <div className="users__chart">
-        <DevicesChart data={data} isLoading={isLoading} />
+        <button>Devices per area</button>
+        <div className="chartWrapper">
+          <DevicesChart data={data} isLoading={isLoading} />
+        </div>
       </div>
     </div>
   )

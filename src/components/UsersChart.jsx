@@ -56,7 +56,7 @@ export default function UsersChart({ data, isLoading }) {
                 textStyle: {
                   color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
                   fontSize: 16,
-                  bold: true,
+                  /* bold: true, */
                 },
                 maxLines: 1,
                 pagingTextStyle: {
@@ -72,8 +72,8 @@ export default function UsersChart({ data, isLoading }) {
               chartArea: { width: "100%", height: "100%" },
             }}
             data={usersArray}
-            width="90%"
-            height="90%"
+            width="100%"
+            height="100%"
           />
       }
     </>
