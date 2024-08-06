@@ -8,7 +8,7 @@
 
 :root {
   --font-primary: monospace, "Courier New", Courier;
-  --main-black: rgb(30, 30, 30);
+  --main-black: rgb(40, 40, 40);
   --main-white: rgb(240, 240, 240);
   --main-gray: rgb(180, 180, 180);
   --main-gray-op: rgba(180, 180, 180, 0.8);
@@ -17,20 +17,22 @@
   --main-color: rgb(50, 57, 90);
   --main-color-dark: var(--main-black);
   --main-color-light: var(--main-white);
-  --main-container-size: 1200px;
-  --main-color-bg: rgb(30, 30, 30);
+  --main-color-mid: var(--main-gray);
+  --main-color-bg: rgb(40, 40, 40);
   --main-color-side: rgb(50, 50, 50);
+  --main-container-size: 1200px;
 }
 @supports (background: color-mix(in srgb, white, black)) {
   :root {
-    --main-color-dark: color-mix(in srgb, var(--main-color), black);
-    --main-color-light: color-mix(in srgb, var(--main-color), white);
+    --main-color-dark: color-mix(in srgb, var(--main-color), black 75%);
+    --main-color-light: color-mix(in srgb, var(--main-color), white 75%);
+    --main-color-mid: color-mix(in srgb, var(--main-color), white 25%);
   }
 }
 
 .light-theme {
   --main-black: rgb(240, 240, 240);
-  --main-white: rgb(30, 30, 30);
+  --main-white: rgb(40, 40, 40);
   --main-color-bg: rgb(200, 200, 200);
   --main-color-side: rgb(120, 120, 120);
 }
@@ -249,8 +251,8 @@ select:disabled {
   background: none;
   font: inherit;
   color: inherit;
-  color: var(--main-color);
-  background: var(--main-color-light);
+  color: var(--main-color-light);
+  background: var(--main-color);
   padding: 0.5rem 1rem;
   cursor: pointer;
   width: 100%;
@@ -259,8 +261,8 @@ select:disabled {
 .home .side-panel button.side-toggle:hover, .home .side-panel button.side-toggle:focus-visible,
 .home .side-panel a.side-toggle:hover,
 .home .side-panel a.side-toggle:focus-visible {
-  color: var(--main-color-light);
-  background: var(--main-color);
+  color: var(--main-color);
+  background: var(--main-color-light);
 }
 @media (max-width: 938px) {
   .home .side-panel button.side-toggle,
@@ -387,7 +389,7 @@ select:disabled {
   outline: none;
   color: rgb(240, 240, 240);
   font-size: 1rem;
-  background-color: var(--main-color-bg);
+  background-color: var(--main-color-mid);
   box-shadow: 0 0 2rem -1rem var(--main-color-dark);
   border: 4px solid var(--main-color);
   padding: clamp(0.5rem, 0.5rem + 2vw, 1rem);
