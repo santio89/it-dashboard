@@ -259,6 +259,13 @@ select:disabled {
 .home .side-panel.expanded {
   flex-basis: clamp(300px, 300px + 2vw, 30%);
 }
+.home .side-panel.expanded .side-panel__opts {
+  width: 100%;
+}
+.home .side-panel.expanded .side-panel__opts a {
+  border-radius: 0;
+  width: 100%;
+}
 @media (max-width: 792px) {
   .home .side-panel.expanded {
     flex-basis: clamp(80px, 80px + 2vw, 10%);

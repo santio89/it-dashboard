@@ -262,6 +262,15 @@ select:disabled {
     &.expanded {
       flex-basis: clamp(300px, 300px + 2vw, 30%);
 
+      .side-panel__opts {
+        width: 100%;
+
+        a {
+          border-radius: 0;
+          width: 100%;
+        }
+      }
+
       @media (max-width: 792px) {
         flex-basis: clamp(80px, 80px + 2vw, 10%);
       }
