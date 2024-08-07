@@ -244,9 +244,9 @@ select:disabled {
     transition: flex-basis 200ms ease-out;
     overflow-x: hidden;
     overflow-y: auto;
-    transition: background-color 400ms ease-out;
+    transition: background-color 400ms ease-out, flex-basis 200ms ease-out;
 
-    /* @media(max-width: 938px) {
+    /* @media(max-width: 792px) {
       display: none;
     } */
 
@@ -262,7 +262,7 @@ select:disabled {
     &.expanded {
       flex-basis: clamp(300px, 300px + 2vw, 30%);
 
-      @media (max-width: 938px) {
+      @media (max-width: 792px) {
         flex-basis: clamp(80px, 80px + 2vw, 10%);
       }
     }
@@ -287,7 +287,7 @@ select:disabled {
         background: var(--main-color-light);
       }
 
-      @media (max-width: 938px) {
+      @media (max-width: 792px) {
         display: none;
       }
     }
@@ -331,6 +331,16 @@ select:disabled {
     border-radius: 1rem;
     min-height: 100%;
     padding: clamp(1rem, 1rem + 1vw, 1.5rem);
+    min-width: 250px;
+    max-width: 100%;
+
+    .usersWrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
     > button {
       align-self: start;
@@ -344,7 +354,7 @@ select:disabled {
       }
     }
 
-    > ul {
+    ul {
       display: grid;
       grid-template-columns: 1fr 1fr;
       place-content: start;
@@ -364,13 +374,12 @@ select:disabled {
       }
     }
 
-    @media (max-width: 938px) {
+    @media (max-width: 792px) {
       min-height: auto;
     }
   }
 
   &__chart {
-    min-width: max(250px, 60%);
     flex: 3;
     display: flex;
     flex-direction: column;
@@ -380,6 +389,8 @@ select:disabled {
     border-radius: 1rem;
     min-height: 100%;
     padding: clamp(1rem, 1rem + 1vw, 1.5rem);
+    min-width: max(250px, 60%);
+    max-width: 100%;
 
     .chartWrapper {
       flex: 1;
@@ -395,6 +406,7 @@ select:disabled {
       & > div {
         margin-inline: auto;
         text-transform: uppercase;
+        padding: 0.25rem;
       }
     }
 
@@ -458,7 +470,7 @@ select:disabled {
     opacity: 0.5;
   }
 
-  @media (max-width: 938px) {
+  @media (max-width: 792px) {
     min-height: 80%;
   }
 }

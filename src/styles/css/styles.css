@@ -243,8 +243,8 @@ select:disabled {
   transition: flex-basis 200ms ease-out;
   overflow-x: hidden;
   overflow-y: auto;
-  transition: background-color 400ms ease-out;
-  /* @media(max-width: 938px) {
+  transition: background-color 400ms ease-out, flex-basis 200ms ease-out;
+  /* @media(max-width: 792px) {
     display: none;
   } */
 }
@@ -259,7 +259,7 @@ select:disabled {
 .home .side-panel.expanded {
   flex-basis: clamp(300px, 300px + 2vw, 30%);
 }
-@media (max-width: 938px) {
+@media (max-width: 792px) {
   .home .side-panel.expanded {
     flex-basis: clamp(80px, 80px + 2vw, 10%);
   }
@@ -284,7 +284,7 @@ select:disabled {
   color: var(--main-color);
   background: var(--main-color-light);
 }
-@media (max-width: 938px) {
+@media (max-width: 792px) {
   .home .side-panel button.side-toggle,
   .home .side-panel a.side-toggle {
     display: none;
@@ -327,6 +327,15 @@ select:disabled {
   border-radius: 1rem;
   min-height: 100%;
   padding: clamp(1rem, 1rem + 1vw, 1.5rem);
+  min-width: 250px;
+  max-width: 100%;
+}
+.users__list .usersWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .users__list > button {
   align-self: start;
@@ -337,7 +346,7 @@ select:disabled {
   color: var(--main-color-light);
   background: var(--main-color);
 }
-.users__list > ul {
+.users__list ul {
   display: grid;
   grid-template-columns: 1fr 1fr;
   place-content: start;
@@ -345,22 +354,21 @@ select:disabled {
   gap: 0.5rem;
   flex: 1;
 }
-.users__list > ul li {
+.users__list ul li {
   display: flex;
   justify-content: center;
   align-items: stretch;
 }
-.users__list > ul li > button {
+.users__list ul li > button {
   width: clamp(100px, 100px + 2vw, 180px);
   word-break: break-all;
 }
-@media (max-width: 938px) {
+@media (max-width: 792px) {
   .users__list {
     min-height: auto;
   }
 }
 .users__chart {
-  min-width: max(250px, 60%);
   flex: 3;
   display: flex;
   flex-direction: column;
@@ -370,6 +378,8 @@ select:disabled {
   border-radius: 1rem;
   min-height: 100%;
   padding: clamp(1rem, 1rem + 1vw, 1.5rem);
+  min-width: max(250px, 60%);
+  max-width: 100%;
 }
 .users__chart .chartWrapper {
   flex: 1;
@@ -385,6 +395,7 @@ select:disabled {
 .users__chart .chartWrapper > div {
   margin-inline: auto;
   text-transform: uppercase;
+  padding: 0.25rem;
 }
 .users__chart > button {
   align-self: start;
@@ -437,7 +448,7 @@ select:disabled {
   background-color: dimgray;
   opacity: 0.5;
 }
-@media (max-width: 938px) {
+@media (max-width: 792px) {
   .mainModalWrapper {
     min-height: 80%;
   }

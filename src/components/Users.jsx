@@ -21,14 +21,16 @@ export default function Users() {
       <div className="users__list">
         {/* add user option (for admins) - with modal .  edit/delete user option /for admins) - options in modal*/}
         <button onClick={() => dispatch(setModal({ active: true, data: { newUser: true } }))}>Add user</button>
-        {isLoading ? "Loading..." :
-          <ul>
-            {
-              data?.map(user =>
-                <li key={user.id}><button onClick={() => { dispatch(setModal({ active: true, data: { userData: true, ...user } })) }}>{user.name}</button></li>)
-            }
-          </ul>
-        }
+        <div className="usersWrapper">
+          {isLoading ? "Loading..." :
+            <ul>
+              {
+                data?.map(user =>
+                  <li key={user.id}><button onClick={() => { dispatch(setModal({ active: true, data: { userData: true, ...user } })) }}>{user.name}</button></li>)
+              }
+            </ul>
+          }
+        </div>
       </div>
       <div className="users__chart">
         <button>Users per area</button>
