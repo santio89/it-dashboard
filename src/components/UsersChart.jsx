@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
-import { useSelector } from 'react-redux';
 
 
 export default function UsersChart({ data, isLoading }) {
   const [usersArray, setUsersArray] = useState()
-  const lightTheme = useSelector(state => state.theme.light)
 
   useEffect(() => {
     if (data) {
@@ -43,10 +41,10 @@ export default function UsersChart({ data, isLoading }) {
               },
               fontSize: 16,
               pieSliceTextStyle: {
-                color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
+                color: `rgb(240,240,240)`,
               },
               titleTextStyle: {
-                color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
+                color: `rgb(240,240,240)`,
                 bold: true,
                 fontSize: 16
               },
@@ -54,20 +52,20 @@ export default function UsersChart({ data, isLoading }) {
                 /* position: "top",
                 alignment: "center", */
                 textStyle: {
-                  color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
+                  color: `rgb(240,240,240)`,
                   fontSize: 16,
                   /* bold: true, */
                 },
                 maxLines: 1,
                 pagingTextStyle: {
-                  color: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`
+                  color: `rgb(240,240,240)`
                 },
                 scrollArrows: {
-                  activeColor: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
+                  activeColor: `rgb(240,240,240)`,
                   inactiveColor: `rgb(100,100,100)`
                 }
               },
-              pieSliceBorderColor: `${lightTheme ? "rgb(30,30,30)" : "rgb(240,240,240)"}`,
+              pieSliceBorderColor: `rgb(240,240,240)`,
               pieSliceText: 'none',
               chartArea: { width: "98%", height: "98%" },
             }}
