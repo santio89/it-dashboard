@@ -84,6 +84,7 @@ option {
   text-align: center;
   text-wrap: balance;
   border-radius: 0.5em;
+  transition: 200ms ease-out;
 
   &:hover,
   &:focus-visible {
@@ -496,11 +497,13 @@ select:disabled {
         width: clamp(150px, 100%, 200px);
         margin-bottom: 0.5rem;
         border-radius: 0.5em;
+        transition: 200ms ease-out;
 
         legend {
           margin: 0 8px;
           padding: 0 4px;
           color: var(--main-color);
+          transition: 200ms ease-out;
         }
 
         &:focus-within,

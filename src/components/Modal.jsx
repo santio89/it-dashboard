@@ -41,14 +41,13 @@ export default function Modal() {
         modal.current.scrollTop = 0;
       }
     } else {
-      modal.current.close()
-      /* try {
+      try {
         document.startViewTransition(() => {
           modal.current.close()
         });
       } catch {
         modal.current.close()
-      } */
+      }
     }
 
     return () => {
