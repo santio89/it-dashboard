@@ -394,6 +394,7 @@ select:disabled {
   width: 100%;
   border: 2px solid var(--main-color-light);
   border-radius: 0 1rem 1rem 1rem;
+  background-color: var(--main-color-mid);
   /* chart */
 }
 .users__chart .chartWrapper > div {
