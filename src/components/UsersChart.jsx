@@ -13,10 +13,10 @@ export default function UsersChart({ data, isLoading }) {
 
       const areaUserCount = data && data?.reduce((result, user) => {
         if (!user.area) return result
-        if (!result.some(item => item.area === user.area)) {
+        if (!result.some(item => item.area.toUpperCase().trim() === user.area.toUpperCase().trim())) {
           result.push({ area: user.area.toUpperCase().trim(), users: 1 });
         } else {
-          const areaIndex = result.findIndex(item => item.area === user.area);
+          const areaIndex = result.findIndex(item => item.area.toUpperCase().trim() === user.area.toUpperCase().trim());
           result[areaIndex].users++;
         }
         return result;
