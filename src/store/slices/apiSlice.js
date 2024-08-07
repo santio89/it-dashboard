@@ -17,6 +17,9 @@ export const apiSlice = createApi({
             users.push({ id: doc.id, ...doc.data() });
           });
 
+          /* order by name */
+          users.sort((a, b) => a.name.localeCompare(b.name));
+
           return { data: users };
         } catch (error) {
           console.log(error);
@@ -90,6 +93,9 @@ export const apiSlice = createApi({
           querySnapshot?.forEach((doc) => {
             devices.push({ id: doc.id, ...doc.data() });
           });
+
+          /* order by name */
+          devices.sort((a, b) => a.name.localeCompare(b.name));
 
           return { data: devices };
         } catch (error) {
