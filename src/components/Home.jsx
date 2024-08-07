@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, NavLink } from "react-router-dom";
 import Users from "./Users";
 import Devices from "./Devices";
 import Main from "./Main"
@@ -16,12 +16,12 @@ export default function Home({ section }) {
     <div className="home">
       <aside className={`side-panel ${sideExpanded && "expanded"}`}>
         <div className="side-panel__opts">
-          <Link to="/">Home</Link>
-          <Link to="/users">Users</Link>
-          <Link to="/devices">Devices</Link>
-          <Link to="/tdl">TDL</Link>
-          <Link to="/contact">Contact</Link>
-          <Link to="/admin">Admin</Link>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/users">Users</NavLink>
+          <NavLink to="/devices">Devices</NavLink>
+          <NavLink to="/tdl">TDL</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
+          <NavLink to="/admin">Admin</NavLink>
         </div>
 
         <button className="side-toggle" onClick={() => setSideExpanded(sideExpanded => !sideExpanded)}>Toggle</button>
