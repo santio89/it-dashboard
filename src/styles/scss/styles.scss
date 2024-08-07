@@ -158,6 +158,7 @@ select:disabled {
   color: var(--main-white);
   background: var(--main-color-bg);
   overflow: hidden;
+  transition: background-color 400ms ease-out;
 }
 
 .mainContainer {
@@ -198,7 +199,28 @@ select:disabled {
       svg {
         filter: drop-shadow(0 0 4px rgb(240, 240, 240));
       }
+
+      &:hover,
+      &:focus-visible {
+        color: rgb(40, 40, 40);
+
+        svg {
+          filter: drop-shadow(0 0 4px rgb(40, 40, 40));
+        }
+      }
     }
+  }
+
+  .theme-clicked {
+    @keyframes rotate-icon {
+      from {
+        rotate: 0deg;
+      }
+      to {
+        rotate: 360deg;
+      }
+    }
+    animation: rotate-icon 400ms ease-out;
   }
 }
 
@@ -222,6 +244,7 @@ select:disabled {
     transition: flex-basis 200ms ease-out;
     overflow-x: hidden;
     overflow-y: auto;
+    transition: background-color 400ms ease-out;
 
     /* @media(max-width: 938px) {
       display: none;
