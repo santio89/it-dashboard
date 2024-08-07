@@ -362,6 +362,10 @@ select:disabled {
 .users__list ul li > button {
   width: clamp(100px, 100px + 2vw, 180px);
   word-break: break-all;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media (max-width: 792px) {
   .users__list {

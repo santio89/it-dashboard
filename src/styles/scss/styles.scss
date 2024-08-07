@@ -370,6 +370,10 @@ select:disabled {
         > button {
           width: clamp(100px, 100px + 2vw, 180px);
           word-break: break-all;
+          display: inline-block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
       }
     }

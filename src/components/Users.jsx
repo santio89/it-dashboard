@@ -26,7 +26,7 @@ export default function Users() {
             <ul>
               {
                 data?.map(user =>
-                  <li key={user.id}><button onClick={() => { dispatch(setModal({ active: true, data: { userData: true, ...user } })) }}>{user.name}</button></li>)
+                  <li key={user.id}><button title={user.name} onClick={() => { dispatch(setModal({ active: true, data: { userData: true, ...user } })) }}>{user.name}</button></li>)
               }
             </ul>
           }

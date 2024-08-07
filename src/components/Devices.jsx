@@ -23,7 +23,7 @@ export default function Users() {
           <ul>
             {
               data?.map(device =>
-                <li key={device.id}><button onClick={() => { dispatch(setModal({ active: true, data: { deviceData: true, ...device } })) }}>{device.name}</button></li>)
+                <li key={device.id}><button title={device.name} onClick={() => { dispatch(setModal({ active: true, data: { deviceData: true, ...device } })) }}>{device.name}</button></li>)
             }
           </ul>
         }
