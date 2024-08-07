@@ -46,7 +46,7 @@ html ::-webkit-scrollbar {
   border-radius: 12px;
 }
 html ::-webkit-scrollbar-thumb {
-  background: var(--main-color-dark);
+  background: var(--main-color);
   border-radius: 8px;
 }
 html ::selection {
@@ -405,6 +405,9 @@ select:disabled {
 }
 .mainModalWrapper::-webkit-scrollbar-track {
   background: var(--main-color);
+}
+.mainModalWrapper::-webkit-scrollbar-thumb {
+  background: var(--main-color-light);
 }
 .mainModalWrapper::-webkit-scrollbar {
   width: 8px;
