@@ -9,6 +9,7 @@ export default function Modal() {
   const dispatch = useDispatch()
   const modal = useRef()
   const modalActive = useSelector(state => state.modal.active)
+  const [isDragged, setIsDragged] = useState(false)
 
 
 
@@ -58,8 +59,10 @@ export default function Modal() {
 
 
   return (
-    <Draggable position={{ x: 0, y: 0 }} cancel={"button, input, textarea, select, option"}>
-      <dialog className='mainModalWrapper' ref={modal}>
+    <Draggable /*bounds={"parent"}*/ position={{ x: 0, y: 0 }} cancel={"button, input, textarea, select, option"}
+      onStart={() => { setIsDragged(true) }}
+      onStop={() => { setIsDragged(false) }} >
+      <dialog className={`mainModalWrapper ${isDragged && "is-dragged"}`} ref={modal} tabIndex={0}>
         <div className="mainModal">
           <div className="mainModal__data">
             <UsersDataModal />
