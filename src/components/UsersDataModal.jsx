@@ -166,6 +166,7 @@ export default function UsersDataModal() {
               <legend>Location</legend>
               <select onChange={e => setNewUserLocation(e.target.value.trimStart())} title="Location" className={newUserLocation === "" && "empty-select"}>
                 <option value="Location" disabled selected={modalData?.location === ""} className='empty-select'>Location</option>
+                <option value="">-</option>
                 <option value="SS" selected={modalData?.location === "SS"}>SS</option>
                 <option value="PB" selected={modalData?.location === "PB"}>PB</option>
                 <option value="1P" selected={modalData?.location === "1P"}>1P</option>
