@@ -38,7 +38,7 @@
 }
 
 html ::-webkit-scrollbar-track {
-  background: var(--main-gray);
+  background: transparent;
 }
 html ::-webkit-scrollbar {
   width: 12px;
@@ -326,9 +326,22 @@ select:disabled {
   background-color: rgba(120, 120, 120, 0.5);
   border-radius: 1rem;
   min-height: 100%;
+  max-height: 100%;
   padding: clamp(1rem, 1rem + 1vw, 1.5rem);
   min-width: 250px;
   max-width: 100%;
+  overflow-y: scroll;
+}
+.users__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.users__list::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+}
+.users__list::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
 }
 .users__list .usersWrapper {
   width: 100%;
@@ -381,9 +394,22 @@ select:disabled {
   background-color: rgba(120, 120, 120, 0.5);
   border-radius: 1rem;
   min-height: 100%;
+  max-height: 100%;
   padding: clamp(1rem, 1rem + 1vw, 1.5rem);
   min-width: max(250px, 60%);
   max-width: 100%;
+  overflow-y: scroll;
+}
+.users__chart::-webkit-scrollbar-track {
+  background: transparent;
+}
+.users__chart::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+}
+.users__chart::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
 }
 .users__chart .chartWrapper {
   flex: 1;
@@ -439,7 +465,7 @@ select:disabled {
   transition: 0ms;
 }
 .mainModalWrapper::-webkit-scrollbar-track {
-  background: var(--main-color);
+  background: transparent;
 }
 .mainModalWrapper::-webkit-scrollbar-thumb {
   background: var(--main-color-light);
