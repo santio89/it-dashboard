@@ -330,6 +330,7 @@ select:disabled {
   padding: clamp(1rem, 1rem + 1vw, 1.5rem);
   min-width: 250px;
   max-width: 100%;
+  overflow-x: hidden;
   overflow-y: scroll;
 }
 .users__list::-webkit-scrollbar-track {
@@ -398,6 +399,7 @@ select:disabled {
   padding: clamp(1rem, 1rem + 1vw, 1.5rem);
   min-width: max(250px, 60%);
   max-width: 100%;
+  overflow-x: hidden;
   overflow-y: scroll;
 }
 .users__chart::-webkit-scrollbar-track {
