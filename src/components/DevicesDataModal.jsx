@@ -133,7 +133,7 @@ export default function DevicesDataModal() {
           <div className="form-group">
             <fieldset>
               <legend>Comment</legend>
-              <textarea readOnly disabled spellCheck={false} rows="2" title="Comment" placeholder='Comment' value={modalData?.comment} />
+              <textarea readOnly disabled spellCheck={false} rows="2" title="Comment" placeholder='Comment' value={modalData?.comment || "-"} />
             </fieldset>
           </div>
           <div className='mainModal__btnContainer--edit'>
