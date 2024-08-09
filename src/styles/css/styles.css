@@ -194,21 +194,30 @@ select:disabled {
   color: rgb(240, 240, 240);
   font-weight: bold;
 }
-.mainHeader .themeBtn {
+.mainHeader__btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.mainHeader__btnContainer .themeBtn {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.mainHeader .themeBtn button {
+.mainHeader__btnContainer .themeBtn button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: rgb(240, 240, 240);
 }
-.mainHeader .themeBtn button svg {
+.mainHeader__btnContainer .themeBtn button svg {
   filter: drop-shadow(0 0 4px rgb(240, 240, 240));
 }
-.mainHeader .themeBtn button:hover, .mainHeader .themeBtn button:focus-visible {
+.mainHeader__btnContainer .themeBtn button:hover, .mainHeader__btnContainer .themeBtn button:focus-visible {
   color: rgb(40, 40, 40);
 }
-.mainHeader .themeBtn button:hover svg, .mainHeader .themeBtn button:focus-visible svg {
+.mainHeader__btnContainer .themeBtn button:hover svg, .mainHeader__btnContainer .themeBtn button:focus-visible svg {
   filter: drop-shadow(0 0 4px rgb(40, 40, 40));
 }
 .mainHeader .theme-clicked {
@@ -257,33 +266,29 @@ select:disabled {
   justify-content: start;
   align-items: stretch;
   height: 100%;
-}
-.home .side-panel .side-panel__opts {
   width: 100%;
 }
-.home .side-panel .side-panel__opts a {
+.home .side-panel__opts a {
   border-radius: 0;
   width: 100%;
   height: 60px;
 }
-.home .side-panel .side-panel__opts a:hover, .home .side-panel .side-panel__opts a:focus-visible {
+.home .side-panel__opts a:hover, .home .side-panel__opts a:focus-visible {
   box-shadow: 0 -4px 0 var(--main-color-mid);
 }
-.home .side-panel .side-panel__opts a.active {
+.home .side-panel__opts a.active {
   color: var(--main-color);
   background-color: var(--main-color-light);
   box-shadow: 0 -4px 0 var(--main-color-mid);
 }
+@media (max-width: 792px) {
+  .home .side-panel button {
+    pointer-events: none;
+    filter: grayscale(1);
+  }
+}
 .home .side-panel.expanded {
   flex-basis: clamp(300px, 300px + 2vw, 30%);
-  /*     .side-panel__opts {
-    width:auto;
-
-    a {
-      border-radius: .5em;
-      width:auto;
-    }
-  } */
 }
 @media (max-width: 792px) {
   .home .side-panel.expanded {
@@ -309,12 +314,6 @@ select:disabled {
 .home .side-panel a.side-toggle:focus-visible {
   color: var(--main-color);
   background: var(--main-color-light);
-}
-@media (max-width: 792px) {
-  .home .side-panel button.side-toggle,
-  .home .side-panel a.side-toggle {
-    display: none;
-  }
 }
 .home .main-content {
   flex: 1;

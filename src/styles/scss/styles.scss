@@ -188,24 +188,34 @@ select:disabled {
     }
   }
 
-  .themeBtn {
+  &__btnContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 0.5rem;
 
-    button {
-      color: rgb(240, 240, 240);
+    .themeBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-      svg {
-        filter: drop-shadow(0 0 4px rgb(240, 240, 240));
-      }
-
-      &:hover,
-      &:focus-visible {
-        color: rgb(40, 40, 40);
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: rgb(240, 240, 240);
 
         svg {
-          filter: drop-shadow(0 0 4px rgb(40, 40, 40));
+          filter: drop-shadow(0 0 4px rgb(240, 240, 240));
+        }
+
+        &:hover,
+        &:focus-visible {
+          color: rgb(40, 40, 40);
+
+          svg {
+            filter: drop-shadow(0 0 4px rgb(40, 40, 40));
+          }
         }
       }
     }
@@ -259,9 +269,7 @@ select:disabled {
       justify-content: start;
       align-items: stretch;
       height: 100%;
-    }
 
-    .side-panel__opts {
       width: 100%;
 
       a {
@@ -282,17 +290,15 @@ select:disabled {
       }
     }
 
+    @media (max-width: 792px) {
+      button {
+        pointer-events: none;
+        filter: grayscale(1);
+      }
+    }
+
     &.expanded {
       flex-basis: clamp(300px, 300px + 2vw, 30%);
-
-      /*     .side-panel__opts {
-        width:auto;
-  
-        a {
-          border-radius: .5em;
-          width:auto;
-        }
-      } */
 
       @media (max-width: 792px) {
         flex-basis: clamp(80px, 80px + 2vw, 10%);
@@ -317,10 +323,6 @@ select:disabled {
       &:focus-visible {
         color: var(--main-color);
         background: var(--main-color-light);
-      }
-
-      @media (max-width: 792px) {
-        display: none;
       }
     }
   }
