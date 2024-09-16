@@ -76,7 +76,7 @@ export default function TDL({ user }) {
     /* timeout-refetch */
     setTimeout(() => {
       setEditMode(null)
-    }, 500)
+    }, 400)
   }
 
   const editTask = async (task, input, priority, category) => {
@@ -91,7 +91,7 @@ export default function TDL({ user }) {
     /* timeout-refetch */
     setTimeout(() => {
       setEditMode(null)
-    }, 500)
+    }, 400)
   }
 
   const editTaskPriorityFn = async (task, priority) => {
