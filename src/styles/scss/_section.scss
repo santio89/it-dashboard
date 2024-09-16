@@ -171,8 +171,6 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      max-width: 1200px;
-      margin-inline: auto;
       border: 2px solid var(--main-color-light);
       border-radius: 0 1rem 1rem 1rem;
       background: var(--main-color-op);
@@ -180,12 +178,12 @@
       /* chart */
       & > div {
         margin-inline: auto;
-        text-transform: uppercase;
-        padding: 0.125rem;
         max-width: 1200px;
         height: 100%;
         max-height: 100%;
         min-height: 320px;
+        text-transform: uppercase;
+        padding: 0.125rem;
 
         .google-visualization-tooltip {
           pointer-events: none;
