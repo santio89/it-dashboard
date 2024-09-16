@@ -133,7 +133,7 @@ export default function ContactsDataModal({ modalData }) {
             <h2>CONTACT</h2>
             <div className="listPickerWrapper__btnContainer">
               {
-                <button className={`listPicker disabled`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
+                <button tabIndex={-1} className={`listPicker disabled`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
               }
             </div>
           </div>

@@ -1207,24 +1207,29 @@ select:disabled {
   flex-direction: column;
   width: fit-content;
 }
-.mainModal__data__taskContainer .taskOpenPriority {
+.mainModal__data__taskContainer .taskOpenData {
   align-self: start;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 0.5rem;
 }
-.mainModal__data__taskContainer .taskOpenPriority svg {
+.mainModal__data__taskContainer .taskOpenData svg {
   width: 20px;
   height: 20px;
 }
-.mainModal__data__taskContainer .taskOpenPriority.selectedLow svg {
-  color: var(--main-gray-dark);
+.mainModal__data__taskContainer .taskOpenData .underline {
+  text-decoration: underline;
 }
-.mainModal__data__taskContainer .taskOpenPriority.selectedMedium svg {
-  color: var(--main-color-light);
+.mainModal__data__taskContainer .taskOpenData .underline.selectedLow {
+  text-decoration-color: var(--main-gray-dark);
 }
-.mainModal__data__taskContainer .taskOpenPriority.selectedHigh svg {
-  color: var(--red);
+.mainModal__data__taskContainer .taskOpenData .underline.selectedMedium {
+  text-decoration-color: var(--main-color-light);
+}
+.mainModal__data__taskContainer .taskOpenData .underline.selectedHigh {
+  text-decoration-color: var(--red);
 }
 .mainModal__data__taskContainer .taskOpenContent {
   background: var(--main-color-op);

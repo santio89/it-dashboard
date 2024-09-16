@@ -341,30 +341,32 @@
       flex-direction: column;
       width: fit-content;
 
-      .taskOpenPriority {
+      .taskOpenData {
         align-self: start;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: 0.5rem;
 
         svg {
           width: 20px;
           height: 20px;
         }
 
-        &.selectedLow {
-          svg {
-            color: var(--main-gray-dark);
+        .underline {
+          text-decoration: underline;
+
+          &.selectedLow {
+            text-decoration-color: var(--main-gray-dark);
           }
-        }
-        &.selectedMedium {
-          svg {
-            color: var(--main-color-light);
+
+          &.selectedMedium {
+            text-decoration-color: var(--main-color-light);
           }
-        }
-        &.selectedHigh {
-          svg {
-            color: var(--red);
+
+          &.selectedHigh {
+            text-decoration-color: var(--red);
           }
         }
       }

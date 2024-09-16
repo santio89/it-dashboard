@@ -123,7 +123,7 @@ export default function DevicesDataModal({ modalData }) {
             <h2>DEVICE</h2>
             <div className="listPickerWrapper__btnContainer">
               {
-                <button className={`listPicker disabled`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
+                <button tabIndex={-1} className={`listPicker disabled`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
               }
             </div>
           </div>
