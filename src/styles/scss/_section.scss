@@ -1,0 +1,633 @@
+.site-section {
+  padding: clamp(0.5rem, 0.5rem + 2vw, 2rem);
+  flex: 1;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-wrap: balance;
+  overflow-x: hidden;
+  overflow-y: auto;
+  gap: 1rem;
+  align-items: start;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+  }
+
+  .btnWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    button {
+      color: var(--main-color);
+      background: var(--main-color-light);
+
+      &:hover,
+      &:focus-visible {
+        color: var(--white);
+        background: var(--main-color-mid);
+      }
+    }
+
+    .listPickerWrapper {
+      height: 25px;
+
+      .listPickerOptions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      &__btnContainer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: end;
+        gap: 0.25rem;
+
+        button.listPicker {
+          padding: 0.25rem;
+          font-size: 12px;
+          background-color: var(--main-color-mid);
+          height: 25px;
+          width: 68px;
+          color: var(--white);
+          text-transform: capitalize;
+
+          &:hover,
+          &:focus-visible,
+          &.selected {
+            outline: 1px solid var(--white);
+          }
+
+          &.notSelected {
+            outline: 1px solid var(--main-color-mid);
+            background-color: var(--main-color-light);
+            color: var(--main-color-mid);
+
+            &:hover,
+            &:focus-visible {
+              background-color: var(--main-color-mid);
+              outline: 1px solid var(--white);
+              color: var(--white);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: rgba(120, 120, 120, 0.5);
+    border-radius: 1rem;
+    min-height: 100%;
+    max-height: 100%;
+    padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
+    min-width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--main-color-op);
+    }
+
+    @media (max-width: $tablet-breakpoint) {
+      min-height: 500px;
+      max-height: 500px;
+
+      &:only-child {
+        min-height: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+
+  &__list {
+    flex: 2;
+    gap: 2rem;
+    min-width: 250px;
+
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 180px);
+      align-content: start;
+      justify-content: center;
+      place-items: stretch;
+      gap: 1rem;
+      flex: 1;
+      width: 100%;
+
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        width: 100%;
+
+        > button {
+          /* width: clamp(90px, 100%, 180px); */
+          width: 100%;
+          word-break: break-word;
+          display: inline-block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+
+  &__chart {
+    flex: 3;
+    min-width: max(250px, 60%);
+
+    .btnWrapper button {
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    .chartWrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      border: 2px solid var(--main-color-light);
+      border-radius: 0 1rem 1rem 1rem;
+      background: var(--main-color-op);
+
+      /* chart */
+      & > div {
+        margin-inline: auto;
+        text-transform: uppercase;
+        padding: 0.125rem;
+        max-width: 1200px;
+        height: 100%;
+        max-height: 100%;
+        min-height: 320px;
+
+        .google-visualization-tooltip {
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
+  &__tdl {
+    flex: 2;
+    min-width: 250px;
+    gap: 2rem;
+
+    ul {
+      max-width: 1200px;
+    }
+
+    .tdl-input {
+      width: 100%;
+      display: flex;
+      justify-content: start;
+      align-items: start;
+      flex-direction: column;
+      gap: 1rem;
+
+      &__btns {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        &__inner {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 1rem;
+        }
+      }
+
+      &__content {
+        width: 100%;
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--main-color-light);
+        max-width: 1200px;
+        margin-inline: auto;
+
+        &[disabled] {
+          pointer-events: none;
+          filter: grayscale(1);
+        }
+
+        .listPickerWrapper {
+          width: 100%;
+          position: relative;
+
+          .listPickerOptions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            position: absolute;
+            right: 0;
+            top: 0;
+          }
+
+          &__btnContainer {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            gap: 0.25rem;
+
+            button.listPicker {
+              padding: 0.25rem;
+              font-size: 12px;
+              height: 25px;
+              width: 68px;
+              color: var(--white);
+              text-transform: capitalize;
+              background-color: var(--main-color-light);
+              color: var(--main-color);
+              outline: 1px dashed var(--main-color-light);
+
+              &:hover,
+              &:focus-visible,
+              &.selected {
+                outline: 1px dashed var(--white);
+              }
+
+              &.notSelected {
+                outline: 1px solid var(--main-color-mid);
+                background-color: var(--main-color-light);
+                color: var(--main-color-mid);
+
+                &:hover,
+                &:focus-visible {
+                  background-color: var(--main-color-mid);
+                  outline: 1px solid var(--white);
+                  color: var(--white);
+                }
+              }
+            }
+          }
+        }
+
+        .textarea-input {
+          width: 100%;
+          outline: 1px dashed var(--main-color-light);
+          height: auto;
+          max-height: 120px;
+          background-color: var(--main-color-light);
+          color: var(--main-color);
+          padding: 1rem;
+          font: inherit;
+          font-weight: 400;
+          text-align: left;
+          text-wrap: balance;
+          border-radius: 0.5rem;
+          transition: 200ms ease-in-out;
+          overflow-y: scroll;
+          white-space: pre-wrap;
+
+          &:empty::before {
+            content: "Task";
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: var(--main-color-op);
+          }
+
+          &::placeholder {
+            color: var(--main-color);
+          }
+
+          &:hover,
+          &:focus-visible {
+            outline-color: var(--white);
+          }
+        }
+
+        &__priority {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+
+          button {
+            outline: 1px dashed var(--main-color-light);
+            background: var(--main-color);
+            padding: 0;
+            border-radius: 50%;
+
+            svg {
+              width: 30px;
+              height: 30px;
+              aspect-ratio: 1;
+            }
+
+            &.selectedLow {
+              color: var(--main-gray-dark);
+            }
+            &.selectedMedium {
+              color: var(--main-color-light);
+            }
+            &.selectedHigh {
+              color: var(--red);
+            }
+
+            &:hover,
+            &:focus-visible,
+            &.selected {
+              outline-color: var(--white);
+            }
+          }
+
+          &__opts {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+
+            button {
+              font-size: 12px;
+              background: var(--main-color-light);
+              color: var(--main-color);
+              padding: 0.125rem 0.25rem;
+              border-radius: 0.5rem;
+              outline: none;
+              transition: background-color 200ms ease-in-out,
+                color 200ms ease-in-out;
+
+              &:hover,
+              &:focus-visible,
+              &.selected {
+                outline: 1px dashed var(--white);
+              }
+
+              &:nth-child(1) {
+                background-color: var(--main-gray-dark);
+              }
+              &:nth-child(2) {
+                background-color: var(--main-color-light);
+              }
+              &:nth-child(3) {
+                background-color: var(--red);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    ul.tdl-list {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      flex-direction: column;
+      width: 100%;
+      gap: 1rem;
+
+      li {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: 4px;
+
+        &[disabled] {
+          pointer-events: none;
+          filter: grayscale(1);
+        }
+
+        .listPickerWrapper {
+          align-self: end;
+
+          &__btnContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+          }
+
+          button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 70px;
+            height: 20px;
+            padding: 0 0.25rem;
+            background-color: var(--main-color-op);
+            outline: 2px solid var(--main-color-op);
+            border-radius: 0 0 0.5rem 0.5rem;
+            text-transform: capitalize;
+            font-size: 12px;
+            transition: none;
+
+            &:hover,
+            &:focus-visible,
+            &.selected {
+              background: var(--main-color);
+              color: var(--main-color-light);
+            }
+
+            &.pickerOpen:nth-child(1) {
+              border-radius: 0 0 0 0.5rem;
+            }
+
+            &.pickerOpen:nth-child(2) {
+              border-radius: 0 0 0.5rem 0;
+            }
+          }
+        }
+
+        div.tdl-btnContainer {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+
+          .tdl-optionsBtns,
+          .tdl-openModal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0.5rem 0.5rem 0 0;
+            overflow: hidden;
+            background-color: var(--main-color-op);
+            width: 140px;
+            height: 30px;
+            outline: 2px solid var(--main-color-op);
+
+            button {
+              padding: 0.25rem;
+              background: transparent;
+              border-radius: 0;
+              width: 50%;
+              height: 100%;
+              text-align: center;
+              justify-content: center;
+
+              &:hover,
+              &:focus-visible {
+                background: var(--main-color);
+                color: var(--main-color-light);
+              }
+            }
+
+            &.deleteMode {
+              outline: 2px dashed var(--red);
+            }
+
+            &.editMode {
+              outline: 2px dashed var(--main-color-op);
+            }
+          }
+
+          .tdl-openModal {
+            width: 85px;
+            position: relative;
+            overflow: auto;
+
+            &.editPriority {
+              width: 105px;
+
+              button.selected {
+                background: var(--main-color);
+              }
+            }
+
+            button {
+              width: 50px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              &.tdl-priority {
+                width: 35px;
+                height: 30px;
+                transition: none;
+
+                &.selectedLow {
+                  color: var(--main-gray-dark);
+                }
+                &.selectedMedium {
+                  color: var(--main-color-light);
+                }
+                &.selectedHigh {
+                  color: var(--red);
+                }
+
+                svg {
+                  width: 20px;
+                  height: 20px;
+                  border-radius: 50%;
+                  background-color: var(--main-color);
+                  outline: 2px solid var(--main-gray);
+                  outline-offset: -1px;
+                }
+              }
+            }
+
+            .tdl-editPriority {
+              position: absolute;
+              top: 0;
+              right: -100%;
+              background: red;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: auto;
+              z-index: 2;
+            }
+          }
+        }
+
+        button,
+        textarea {
+          width: 100%;
+          height: auto;
+          max-height: 120px;
+          overflow-x: hidden;
+          overflow-y: auto;
+          white-space: break-spaces;
+          word-break: break-word;
+          text-align: left;
+          justify-content: start;
+          align-items: start;
+          transition: 200ms background-color ease-in-out,
+            200ms color ease-in-out;
+          font-weight: 400;
+
+          &.taskContentBtn {
+            padding: 1rem;
+
+            &.selectedLow {
+              outline: 1px solid var(--main-gray-dark);
+            }
+            &.selectedMedium {
+              outline: 1px solid var(--main-color-light);
+            }
+            &.selectedHigh {
+              outline: 1px solid var(--red);
+            }
+          }
+
+          &.taskOption {
+            outline: 2px solid var(--main-color-op);
+            border-radius: 0 0 0 0.5rem;
+            background-color: var(--main-color-light);
+            color: var(--main-color);
+            min-height: 120px;
+          }
+
+          &.deleteMode {
+            outline: 2px dashed var(--red);
+          }
+
+          &.editMode {
+            outline: 2px dashed var(--main-color-light);
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: var(--main-color-op);
+          }
+
+          /*   display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis; */
+        }
+
+        textarea {
+          height: 120px;
+          padding: 1rem;
+
+          &::placeholder {
+            color: var(--main-color);
+          }
+        }
+      }
+    }
+  }
+}

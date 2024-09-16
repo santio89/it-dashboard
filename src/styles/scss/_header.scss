@@ -1,0 +1,71 @@
+.mainHeader {
+  background: var(--main-color);
+  width: 100%;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  .logo {
+    font-weight: 700;
+    color: var(--white);
+    text-shadow: 1px 1px 0 var(--main-color);
+
+    &:hover,
+    &:focus-visible {
+      color: rgb(40, 40, 40);
+
+      svg {
+        text-shadow: 1px 1px 0rgb (40, 40, 40);
+      }
+    }
+  }
+
+  &__btnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    .themeBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: rgb(240, 240, 240);
+
+        svg {
+          filter: drop-shadow(0 0 4px rgb(240, 240, 240));
+        }
+
+        &:hover,
+        &:focus-visible {
+          color: rgb(40, 40, 40);
+
+          svg {
+            filter: drop-shadow(0 0 4px rgb(40, 40, 40));
+          }
+        }
+      }
+    }
+  }
+
+  .theme-clicked {
+    @keyframes rotate-icon {
+      from {
+        rotate: 0deg;
+      }
+      to {
+        rotate: 360deg;
+      }
+    }
+    animation: rotate-icon 400ms ease-in-out;
+  }
+}

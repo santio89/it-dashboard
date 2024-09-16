@@ -1,0 +1,415 @@
+/* start modal */
+.mainModalWrapper {
+  z-index: 9;
+  position: fixed;
+  margin: auto;
+  width: fit-content;
+  min-width: 300px;
+  height: fit-content;
+  outline: none;
+  color: rgb(240, 240, 240);
+  font-size: 1rem;
+  background-color: var(--main-color);
+  border: 1px solid var(--main-color-mid);
+  box-shadow: 0 0 2rem -1rem var(--main-color-dark);
+  padding: clamp(0.5rem, 0.5rem + 2vw, 2rem);
+  border-radius: 1rem;
+  transition: 200ms ease-in-out;
+
+  @starting-style {
+    scale: 0;
+    opacity: 0;
+  }
+
+  &.is-dragged {
+    transition: 0ms;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--main-color-light);
+  }
+
+  &::backdrop {
+    background-color: var(--black);
+    opacity: 0.5;
+  }
+
+  @media (max-width: $tablet-breakpoint) {
+    min-height: 80%;
+  }
+}
+
+.mainModal {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: var(--white);
+
+  h2 {
+    text-align: start;
+    text-wrap: balance;
+    font-size: 2em;
+    color: var(--white);
+    width: 100%;
+    font-weight: 800;
+    border-radius: 0.5rem;
+    /*     &::before {
+      content: "- ";
+      color: var(--main-color-op);
+    } */
+  }
+
+  &__titleContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+
+    .listPickerWrapper {
+      &__btnContainer {
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: end;
+        gap: 0.25rem;
+
+        .listPickerOptions {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        button.listPicker {
+          padding: 0.25rem;
+          font-size: 12px;
+          background-color: var(--main-color-mid);
+          height: 25px;
+          width: 68px;
+          color: var(--white);
+
+          &:hover,
+          &:focus-visible,
+          &.selected {
+            outline: 1px solid var(--white);
+          }
+
+          &.notSelected {
+            background-color: var(--main-color-light);
+            color: var(--main-color-mid);
+            outline: 1px solid var(--main-color-mid);
+
+            &:hover,
+            &:focus-visible {
+              background-color: var(--main-color-mid);
+              outline: 1px solid var(--white);
+              color: var(--white);
+            }
+          }
+        }
+
+        &.editMode button.listPicker {
+          outline: 1px dashed var(--main-color-mid);
+
+          &:hover,
+          &:focus-visible,
+          &.selected {
+            outline: 1px dashed var(--white);
+          }
+        }
+        &.deleteMode button.listPicker {
+          outline: 1px dashed var(--red);
+          color: var(--red);
+
+          &:hover,
+          &:focus-visible {
+            outline: 1px dashed var(--red);
+          }
+        }
+      }
+    }
+  }
+
+  &__data {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 1.5rem;
+
+    > p {
+      text-transform: uppercase;
+      font-weight: 700;
+      width: 100%;
+      border-bottom: 1px solid var(--main-gray-op-dark);
+    }
+
+    &__form {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: fit-content;
+      /* gap: 0.5rem; */
+
+      &[disabled] {
+        pointer-events: none;
+        filter: grayscale(1);
+      }
+
+      button {
+        background: var(--main-color-mid);
+        color: var(--white);
+        padding: 0.25rem 0.5rem;
+
+        &:hover,
+        &:focus-visible {
+          background: var(--main-color-light);
+          color: var(--main-color-mid);
+        }
+      }
+
+      .form-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10%;
+        width: 100%;
+      }
+
+      fieldset {
+        border: 1px solid var(--main-color-op);
+        background: none;
+        min-width: 150px;
+        width: 45%;
+        margin-bottom: 1rem;
+        border-radius: 0.5rem;
+        transition: 200ms ease-in-out;
+        background: var(--main-color-op);
+
+        legend {
+          margin: 0 8px;
+          padding: 0 4px;
+          color: var(--white);
+          transition: 200ms ease-in-out;
+          font-weight: 700;
+        }
+
+        &:focus-within,
+        &:has(input:hover, textarea:hover, select:hover, option:hover) {
+          border: 1px solid var(--white);
+          border-color: var(--white);
+
+          legend {
+            color: var(--white);
+          }
+        }
+
+        &:has(textarea) {
+          width: 100%;
+        }
+
+        @media (max-width: $tablet-breakpoint) {
+          width: 100%;
+        }
+      }
+
+      input,
+      textarea,
+      select {
+        border: none;
+        outline: none;
+        width: 100%;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border-radius: 0 0 0.25em 0.25em;
+        background: transparent;
+        color: var(--white);
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        appearance: none;
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type="number"] {
+        appearance: textfield;
+        -moz-appearance: textfield;
+      }
+
+      &.disabled {
+        fieldset {
+          border: 1px solid var(--main-color-op);
+
+          &:hover,
+          &:focus-visible {
+            border: 1px solid var(--main-color-op);
+          }
+        }
+      }
+
+      &.editMode {
+        input,
+        textarea,
+        select {
+          outline: 1px dashed var(--main-color-mid);
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          border-radius: 0 0 0.5rem 0.5rem;
+          color: var(--white);
+
+          &:hover,
+          &:focus-visible {
+            outline: 1px dashed var(--white);
+          }
+        }
+
+        fieldset {
+          border: 1px dashed var(--main-color-mid);
+
+          &:focus-within,
+          &:has(input:hover, textarea:hover, select:hover, option:hover) {
+            border: 1px dashed var(--white);
+          }
+
+          legend {
+            color: var(--white);
+          }
+        }
+      }
+
+      &.deleteMode {
+        input,
+        textarea,
+        select {
+          outline: 1px dashed var(--red);
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          border-radius: 0 0 0.5rem 0.5rem;
+          color: var(--red);
+        }
+
+        fieldset {
+          border: 1px dashed var(--red);
+
+          &:hover,
+          &:focus-visible,
+          &:focus-within,
+          &:has(input:hover, textarea:hover, select:hover, option:hover) {
+            border-style: dashed;
+            border-color: var(--red);
+
+            legend {
+              color: var(--red);
+            }
+          }
+
+          legend {
+            color: var(--red);
+          }
+        }
+      }
+    }
+
+    &__taskContainer {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: fit-content;
+
+      .taskOpenPriority {
+        align-self: start;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+
+        &.selectedLow {
+          svg {
+            color: var(--main-gray-dark);
+          }
+        }
+        &.selectedMedium {
+          svg {
+            color: var(--main-color-light);
+          }
+        }
+        &.selectedHigh {
+          svg {
+            color: var(--red);
+          }
+        }
+      }
+
+      .taskOpenContent {
+        background: var(--main-color-op);
+        border: 1px solid var(--main-color-op);
+        color: var(--white);
+        padding: 1em;
+        border-radius: 0.5rem;
+        width: clamp(300px, 40vw, 600px);
+        height: 100%;
+        min-height: 120px;
+        max-height: 240px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        white-space: break-spaces;
+        word-break: break-word;
+        margin-block: 1rem;
+      }
+    }
+  }
+
+  &__btnContainer {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+
+    &--edit {
+      @extend .mainModal__btnContainer;
+      justify-content: end;
+    }
+  }
+
+  &__btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__close {
+    align-self: end;
+    background-color: var(--main-color-op);
+  }
+}
+/* end modal */
