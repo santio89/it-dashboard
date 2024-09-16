@@ -85,7 +85,8 @@ export default function ContactsDataModal({ modalData }) {
       location: newUserLocation.trim(),
       comment: newUserComment.trim(),
       category: newUserCategory.trim(),
-      id: contact.id
+      id: contact.id,
+      userId: contact.userId
     }
 
     const { userData, createdAt, updatedAt, ...oldUser } = contact

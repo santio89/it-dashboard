@@ -82,7 +82,8 @@ export default function DevicesDataModal({ modalData }) {
       location: newDeviceLocation.trim(),
       comment: newDeviceComment.trim(),
       category: newDeviceCategory.trim(),
-      id: device.id
+      id: device.id,
+      userId: device.userId
     }
 
     const { deviceData, createdAt, updatedAt, ...oldDevice } = device

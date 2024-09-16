@@ -73,7 +73,7 @@ export default function TDL({ user }) {
 
   const deleteTask = async (task) => {
     await deleteTdl(task)
-    
+
     /* timeout-refetch */
     setTimeout(() => {
       setEditMode(null)
@@ -81,7 +81,7 @@ export default function TDL({ user }) {
   }
 
   const editTask = async (task, input, priority, category) => {
-    if ((input.trim() === "" || input.trim() === task.content) && (task.priority === priority) && (task.category === category)) {
+    if ((input.trim() === "" || input.trim() === task.content) && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category))) {
       setEditMode(null)
       return
     }
@@ -134,9 +134,7 @@ export default function TDL({ user }) {
   useEffect(() => {
     setEditMode(null)
     setDeleteMode(null)
-    /*     setEditTaskPriority(null) */
     setEditInputText("")
-    /*     setEditListPickerOpen(null) */
     taskOptions && setInputActive(false)
   }, [taskOptions])
 
@@ -362,7 +360,7 @@ export default function TDL({ user }) {
                             }
                             if (e.key === "Enter") {
                               e.preventDefault();
-                              editTask(task, editInputText)
+                              editTask(task, editInputText, editPriority, editCategory)
                             }
                           }} onChange={e => setEditInputText(e.target.value)} className={`taskOption editMode`} placeholder='Task'></textarea>
                         }
