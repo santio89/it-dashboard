@@ -73,6 +73,7 @@ export default function TDL({ user }) {
 
   const deleteTask = async (task) => {
     await deleteTdl(task)
+    
     /* timeout-refetch */
     setTimeout(() => {
       setEditMode(null)
