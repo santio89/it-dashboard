@@ -17,8 +17,8 @@ export default function TDLDataModal() {
       </div>
       <div className='mainModal__data__taskContainer'>
         <div className={`taskOpenData `}>
-          <div>Task priority: <span className={`underline ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>{modalData?.priority}</span></div>
-          <div>Task ID: <span>{modalData?.id}</span></div>
+          <div>Priority: <span className={`underline ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>{modalData?.priority}</span></div>
+          <div>ID: <span>{modalData?.id}</span></div>
         </div>
         <div className="taskOpenContent">
           {modalData?.content}
