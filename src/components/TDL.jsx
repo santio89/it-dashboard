@@ -236,18 +236,18 @@ export default function TDL({ user }) {
               <div className="listPickerWrapper">
                 <div className="listPickerWrapper__btnContainer">
                   {
-                    <button className={`listPicker ${listPickerOpen && "pickerOpen"}`} onClick={() => newListPickerOpen ? setNewListPickerOpen(false) : setNewListPickerOpen(true)}>{newListSelected}</button>
+                    <button title={`Task category: ${newListSelected}`} className={`listPicker ${listPickerOpen && "pickerOpen"}`} onClick={() => newListPickerOpen ? setNewListPickerOpen(false) : setNewListPickerOpen(true)}>{newListSelected}</button>
                   }
                   {
                     newListPickerOpen &&
                     <div className="listPickerOptions">
-                      <button className={`listPicker ${newListPickerOpen && "pickerOpen"}`}
+                      <button title={`Task category: ${newListSelected === "personal" ? "company" : "personal"}`} className={`listPicker ${newListPickerOpen && "pickerOpen"}`}
                         onClick={() => {
                           selectNewList(newListSelected === "personal" ? "company" : "personal")
                         }}>
                         {newListSelected === "personal" ? "Company" : "Personal"}
                       </button>
-                      <button className={`listPicker ${newListPickerOpen && "pickerOpen"} selected`}
+                      <button title={`Task category: ${newListSelected}`} className={`listPicker ${newListPickerOpen && "pickerOpen"} selected`}
                         onClick={() => {
                           setNewListPickerOpen(false)
                         }}>
@@ -382,7 +382,7 @@ export default function TDL({ user }) {
                                     <button className={`listPicker ${editMode && "pickerOpen"} ${((!editCategory && task.category === "company") || editCategory === "company") && "selected"}`} onClick={() => { editCategoryFn(task, "company") }}>Company</button>
                                   </>
                                   :
-                                  <button className={`listPicker ${editMode && "pickerOpen"}`} onClick={() => { /* ADD HINT */ }}>{task.category}</button>
+                                  <button title={`Task category: ${task.category}`} className={`listPicker ${editMode && "pickerOpen"}`} onClick={() => { /* ADD HINT */ }}>{task.category}</button>
                               }
                               {
 
