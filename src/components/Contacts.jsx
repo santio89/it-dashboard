@@ -79,7 +79,7 @@ export default function Contacts({ user }) {
         </div>
         {
           isLoadingContacts ? "Loading..." :
-            <ul ref={parentAnimateContacts}>
+            <ul className="items-list" ref={parentAnimateContacts}>
               {
                 dataContacts?.map(contact => {
                   if (listSelected === "all" || contact.category === listSelected) {

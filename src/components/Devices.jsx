@@ -78,7 +78,7 @@ export default function Devices({ user }) {
         </div>
         {
           isLoadingDevices ? "Loading..." :
-            <ul ref={parentAnimateDevices}>
+            <ul className="items-list" ref={parentAnimateDevices}>
               {
                 dataDevices?.map(device => {
                   if (listSelected === "all" || device.category === listSelected) {

@@ -161,7 +161,7 @@ export default function TDL({ user }) {
 
   return (
     <div className='site-section'>
-      <div className="site-section__inner site-section__tdl">
+      <div className="site-section__inner site-section__list">
         <div className="tdl-input">
           <div className="btnWrapper tdl-input__btns">
             <div className='tdl-input__btns__inner'>
