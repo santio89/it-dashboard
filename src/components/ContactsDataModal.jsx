@@ -131,6 +131,7 @@ export default function ContactsDataModal({ modalData }) {
         <>
           <div className="mainModal__titleContainer">
             <h2>CONTACT</h2>
+            <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
               {
                 <button tabIndex={-1} className={`listPicker disabled`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
@@ -194,6 +195,7 @@ export default function ContactsDataModal({ modalData }) {
         <>
           <div className="mainModal__titleContainer">
             <h2>EDIT CONTACT</h2>
+            <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
               {
                 <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(newUserCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newUserCategory === "personal" ? "Personal" : "Company"}</button>
@@ -277,6 +279,7 @@ export default function ContactsDataModal({ modalData }) {
         <>
           <div className="mainModal__titleContainer">
             <h2>DELETE CONTACT</h2>
+            <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
               {
                 <button className={`listPicker disabled`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>

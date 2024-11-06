@@ -69,8 +69,9 @@
 
   &__titleContainer {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
     width: 100%;
     position: relative;
 

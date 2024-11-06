@@ -121,6 +121,7 @@ export default function DevicesDataModal({ modalData }) {
         <>
           <div className="mainModal__titleContainer">
             <h2>DEVICE</h2>
+            <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
               {
                 <button tabIndex={-1} className={`listPicker disabled`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
@@ -184,6 +185,7 @@ export default function DevicesDataModal({ modalData }) {
         <>
           <div className="mainModal__titleContainer">
             <h2>EDIT DEVICE</h2>
+            <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
               {
                 <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(newDeviceCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newDeviceCategory === "personal" ? "Personal" : "Company"}</button>
@@ -264,6 +266,7 @@ export default function DevicesDataModal({ modalData }) {
         <>
           <div className="mainModal__titleContainer">
             <h2>DELETE DEVICE</h2>
+            <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
               {
                 <button className={`listPicker disabled`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>

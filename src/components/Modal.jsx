@@ -69,7 +69,7 @@ export default function Modal() {
           <div className="mainModal__data">
             {(modalData?.userData || modalData?.newUser) && <ContactsDataModal modalData={modalData} />}
             {(modalData?.deviceData || modalData?.newDevice) && <DevicesDataModal modalData={modalData} />}
-            {(modalData?.tdlData) && <TDLDataModal modalData={modalData} />}
+            {(modalData?.tdlData || modalData?.newTask) && <TDLDataModal modalData={modalData} />}
 
           </div>
           <button className='mainModal__close' onClick={() => dispatch(setModal({ active: false, data: {} }))}>Close</button>

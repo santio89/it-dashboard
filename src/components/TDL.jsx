@@ -8,7 +8,6 @@ import autoAnimate from '@formkit/auto-animate'
 export default function TDL({ user }) {
   const parentAnimateTDL = useRef()
 
-  const [inputActive, setInputActive] = useState(false)
   const [taskOptions, setTaskOptions] = useState(null)
   const [editMode, setEditMode] = useState(null)
   const [deleteMode, setDeleteMode] = useState(null)
@@ -33,7 +32,6 @@ export default function TDL({ user }) {
   const [editCategory, setEditCategory] = useState(null)
 
 
-  const [addTdl, resultAddTdl] = useAddTdlMutation()
   const [deleteTdl, resultDeleteTdl] = useDeleteTdlMutation()
   const [editTdl, resultEditTdl] = useEditTdlMutation()
 
@@ -51,25 +49,6 @@ export default function TDL({ user }) {
     setListPickerOpen(false)
   }
 
-  const selectNewList = list => {
-    setNewListSelected(list)
-    setNewListPickerOpen(false)
-  }
-
-  const addTask = () => {
-    if (textInput.current.textContent.trim() === "") {
-      setInputActive(false)
-      return
-    }
-    const task = {
-      userId: user.uid,
-      content: textInput.current.textContent.trim(),
-      priority: selectedPriority,
-      category: newListSelected
-    }
-
-    addTdl(task)
-  }
 
   const deleteTask = async (task) => {
     await deleteTdl(task)
@@ -114,18 +93,6 @@ export default function TDL({ user }) {
   }
 
   useEffect(() => {
-    setSelectedPriority("medium")
-    setTaskPriorityOpts(false)
-    setNewListPickerOpen(false)
-    setNewListSelected(listSelected == "all" ? "personal" : listSelected)
-    if (inputActive) {
-      textInput.current.textContent = ""
-      setTaskOptions(null)
-      textInput.current.focus()
-    }
-  }, [inputActive])
-
-  useEffect(() => {
     setEditPriority(null)
     setEditCategory(null)
     editMode && editInput.current.focus()
@@ -135,25 +102,11 @@ export default function TDL({ user }) {
     setEditMode(null)
     setDeleteMode(null)
     setEditInputText("")
-    taskOptions && setInputActive(false)
   }, [taskOptions])
 
   useEffect(() => {
     taskOptions && setTaskOptions(null)
   }, [listSelected])
-
-  useEffect(() => {
-    if (!resultAddTdl.isLoading) {
-      setSelectedPriority("medium")
-      setTaskPriorityOpts(false)
-      setNewListPickerOpen(false)
-      setNewListSelected(listSelected == "all" ? "personal" : listSelected)
-      if (inputActive) {
-        textInput.current.textContent = ""
-        textInput.current.focus()
-      }
-    }
-  }, [resultAddTdl])
 
   useEffect(() => {
     !isFetchingTdl && parentAnimateTDL.current && autoAnimate(parentAnimateTDL.current)
@@ -162,103 +115,41 @@ export default function TDL({ user }) {
   return (
     <div className='site-section'>
       <div className="site-section__inner site-section__list">
-        <div className="tdl-input">
-          <div className="btnWrapper tdl-input__btns">
-            <div className='tdl-input__btns__inner'>
-              <button onClick={() => setInputActive(!inputActive)}>{inputActive ? "Cancel" : "+ Add task"}</button>
-              {inputActive && <button onClick={() => { addTask() }}>Send</button>}
-
-            </div>
-            <div className="listPickerWrapper">
-              <div className="listPickerWrapper__btnContainer">
-                {
-                  <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? setListPickerOpen(false) : setListPickerOpen(true)}>{listSelected}</button>
-                }
-                {
-                  listPickerOpen &&
-                  <div className="listPickerOptions">
-                    <button className={`listPicker notSelected`}
-                      onClick={() => {
-                        selectList("personal")
-                        setNewListSelected("personal")
-                      }}>
-                      Personal
-                    </button>
-                    <button className={`listPicker notSelected`}
-                      onClick={() => {
-                        selectList("company")
-                        setNewListSelected("company")
-                      }}>
-                      Company
-                    </button>
-                    <button className={`listPicker notSelected`}
-                      onClick={() => {
-                        selectList("all")
-                        setNewListSelected("personal")
-                      }}>
-                      All
-                    </button>
-                  </div>
-                }
-              </div>
+        <div className="btnWrapper">
+          <button onClick={() => {
+            dispatch(setModal({ active: true, data: { newTask: true, userId: user?.uid, listSelected } }))
+            setListPickerOpen(false)
+          }}>+ Add task</button>
+          <div className="listPickerWrapper">
+            <div className="listPickerWrapper__btnContainer">
+              {
+                <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>{listSelected}</button>
+              }
+              {
+                listPickerOpen &&
+                <div className="listPickerOptions">
+                  <button className={`listPicker notSelected`}
+                    onClick={() => {
+                      selectList("personal")
+                    }}>
+                    Personal
+                  </button>
+                  <button className={`listPicker notSelected`}
+                    onClick={() => {
+                      selectList("company")
+                    }}>
+                    Company
+                  </button>
+                  <button className={`listPicker notSelected`}
+                    onClick={() => {
+                      selectList("all")
+                    }}>
+                    All
+                  </button>
+                </div>
+              }
             </div>
           </div>
-          {
-            inputActive &&
-            <div className='tdl-input__content' disabled={resultAddTdl.isLoading}>
-              <div className="tdl-input__content__priority">
-                <button title={`Task priority: ${selectedPriority}`} className={`${taskPriorityOpts && "selected"} ${selectedPriority === "low" && "selectedLow"} ${selectedPriority === "medium" && "selectedMedium"} ${selectedPriority === "high" && "selectedHigh"}`} onClick={() => setTaskPriorityOpts(taskPriorityOpts => !taskPriorityOpts)}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
-                  </svg>
-                </button>
-                {taskPriorityOpts &&
-                  <div className="tdl-input__content__priority__opts">
-                    <button onClick={() => { setSelectedPriority("low"); setTaskPriorityOpts(false) }} className={`${selectedPriority === "low" && "selected"}`} title='Task priority: low'>Low</button>
-                    <button onClick={() => { setSelectedPriority("medium"); setTaskPriorityOpts(false) }} className={`${selectedPriority === "medium" && "selected"}`} title='Task priority: Medium'>Medium</button>
-                    <button onClick={() => { setSelectedPriority("high"); setTaskPriorityOpts(false) }} className={`${selectedPriority === "high" && "selected"}`} title='Task priority: High'>High</button>
-                  </div>
-                }
-              </div>
-
-              <div aria-label='textarea' className='textarea-input' contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false} placeholder='Task' onKeyPress={e => {
-                if (e.shiftKey && e.key === "Enter") {
-                  return
-                }
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  addTask()
-                  return
-                }
-
-              }}></div>
-
-              <div className="listPickerWrapper">
-                <div className="listPickerWrapper__btnContainer">
-                  {
-                    <button title={`Task category: ${newListSelected}`} className={`listPicker ${listPickerOpen && "pickerOpen"}`} onClick={() => newListPickerOpen ? setNewListPickerOpen(false) : setNewListPickerOpen(true)}>{newListSelected}</button>
-                  }
-                  {
-                    newListPickerOpen &&
-                    <div className="listPickerOptions">
-                      <button title={`Task category: ${newListSelected === "personal" ? "company" : "personal"}`} className={`listPicker ${newListPickerOpen && "pickerOpen"}`}
-                        onClick={() => {
-                          selectNewList(newListSelected === "personal" ? "company" : "personal")
-                        }}>
-                        {newListSelected === "personal" ? "Company" : "Personal"}
-                      </button>
-                      <button title={`Task category: ${newListSelected}`} className={`listPicker ${newListPickerOpen && "pickerOpen"} selected`}
-                        onClick={() => {
-                          setNewListPickerOpen(false)
-                        }}>
-                        {newListSelected}
-                      </button>
-                    </div>
-                  }
-                </div>
-              </div>
-            </div>
-          }
         </div>
         {
           isLoadingTdl ? "Loading..." :
