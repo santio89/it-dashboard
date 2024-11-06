@@ -10,8 +10,9 @@ export default function TDLDataModal({ modalData }) {
   const [addTdl, resultAddTdl] = useAddTdlMutation()
 
   const [newTaskCategory, setNewTaskCategory] = useState(modalData?.listSelected == "all" ? "personal" : modalData?.listSelected)
-
   const [listPickerOpen, setListPickerOpen] = useState(false)
+
+  const [newTaskPriority, setNewTaskPriority] = useState("medium")
 
   const selectList = list => {
     setNewTaskCategory(list)
@@ -20,15 +21,15 @@ export default function TDLDataModal({ modalData }) {
 
 
   const addTask = async () => {
-/*     if (textInput.current.textContent.trim() === "") {
-   
-      return
-    } */
+    /*     if (textInput.current.textContent.trim() === "") {
+       
+          return
+        } */
     const task = {
-  /*     userId: user.uid,
-      content: textInput.current.textContent.trim(),
-      priority: selectedPriority,
-      category: newListSelected */
+      /*     userId: user.uid,
+          content: textInput.current.textContent.trim(),
+          priority: selectedPriority,
+          category: newListSelected */
     }
 
     await addTdl(task)
@@ -96,12 +97,30 @@ export default function TDLDataModal({ modalData }) {
             </div>
           </div>
           <div className='mainModal__data__taskContainer'>
-            <div className={`taskOpenData `}>
-              <div>Priority: <span className={`underline ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>{modalData?.priority}</span></div>
+            <div className={`taskOpenData`}>
+              <div>Priority: </div>
+              <button onClick={() => setNewTaskPriority("low")} className={`tdl-priority selectedLow ${newTaskPriority === "low" && "selected"}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                </svg>
+                Low
+              </button>
+              <button onClick={() => setNewTaskPriority("medium")} className={`tdl-priority selectedMedium ${newTaskPriority === "medium" && "selected"}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                </svg>
+                Medium
+              </button>
+              <button onClick={() => setNewTaskPriority("high")} className={`tdl-priority selectedHigh ${newTaskPriority === "high" && "selected"}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                </svg>
+                High
+              </button>
             </div>
-            <div className="taskOpenContent">
+            <textarea className="taskOpenContent">
               {modalData?.content}
-            </div>
+            </textarea>
           </div>
         </>
       }

@@ -345,14 +345,45 @@
       .taskOpenData {
         align-self: start;
         display: flex;
-        flex-direction: column;
         justify-content: start;
-        align-items: start;
+        align-items: center;
         gap: 0.5rem;
 
-        svg {
-          width: 20px;
-          height: 20px;
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+          font-weight: 300;
+
+          &.tdl-priority {
+            color: var(--white);
+
+            &.selectedLow > svg {
+              color: var(--main-gray-dark);
+            }
+            &.selectedMedium > svg {
+              color: var(--main-color-light);
+            }
+            &.selectedHigh > svg {
+              color: var(--red);
+            }
+
+            svg {
+              width: 20px;
+              height: 20px;
+              border-radius: 50%;
+              background-color: var(--main-color);
+              outline: 2px solid var(--main-gray);
+              outline-offset: -1px;
+            }
+          }
+
+          &:hover,
+          &:focus-visible,
+          &.selected {
+            background-color: var(--main-color-op);
+          }
         }
 
         .underline {

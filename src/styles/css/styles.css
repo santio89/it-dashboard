@@ -1239,14 +1239,39 @@ select:disabled {
 .mainModal__data__taskContainer .taskOpenData {
   align-self: start;
   display: flex;
-  flex-direction: column;
   justify-content: start;
-  align-items: start;
+  align-items: center;
   gap: 0.5rem;
 }
-.mainModal__data__taskContainer .taskOpenData svg {
+.mainModal__data__taskContainer .taskOpenData button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 300;
+}
+.mainModal__data__taskContainer .taskOpenData button.tdl-priority {
+  color: var(--white);
+}
+.mainModal__data__taskContainer .taskOpenData button.tdl-priority.selectedLow > svg {
+  color: var(--main-gray-dark);
+}
+.mainModal__data__taskContainer .taskOpenData button.tdl-priority.selectedMedium > svg {
+  color: var(--main-color-light);
+}
+.mainModal__data__taskContainer .taskOpenData button.tdl-priority.selectedHigh > svg {
+  color: var(--red);
+}
+.mainModal__data__taskContainer .taskOpenData button.tdl-priority svg {
   width: 20px;
   height: 20px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  outline: 2px solid var(--main-gray);
+  outline-offset: -1px;
+}
+.mainModal__data__taskContainer .taskOpenData button:hover, .mainModal__data__taskContainer .taskOpenData button:focus-visible, .mainModal__data__taskContainer .taskOpenData button.selected {
+  background-color: var(--main-color-op);
 }
 .mainModal__data__taskContainer .taskOpenData .underline {
   text-decoration: underline;

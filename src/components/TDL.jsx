@@ -246,10 +246,10 @@ export default function TDL({ user }) {
                         {/* edit task */}
                         {
                           editMode === task.id && <textarea disabled={resultEditTdl.isLoading} ref={editMode === task.id && editInput} title={"Task"} spellCheck={false} value={editInputText} onKeyPress={e => {
-                            if (e.shiftKey) {
+                            if (!e.shiftKey) {
                               return
                             }
-                            if (e.key === "Enter") {
+                            if (e.key === "Enter" && e.shiftKey) {
                               e.preventDefault();
                               editTask(task, editInputText, editPriority, editCategory)
                             }
