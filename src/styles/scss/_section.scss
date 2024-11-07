@@ -388,7 +388,7 @@
       }
     }
 
-  /*   .tdl-input {
+    /*   .tdl-input {
       width: 100%;
       display: flex;
       justify-content: start;
@@ -619,6 +619,19 @@
 
         .google-visualization-tooltip {
           pointer-events: none;
+        }
+
+        /* chart-error-message */
+        span {
+          background: var(--main-color-mid) !important;
+          color: var(--white) !important;
+          font: inherit !important;
+          text-align: center;
+          text-wrap: balance;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.5rem;
         }
       }
     }
