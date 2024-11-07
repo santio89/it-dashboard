@@ -91,6 +91,7 @@ export default function DevicesChart({ data, isLoading }) {
               pieSliceBorderColor: `rgb(240,240,240)`,
               pieSliceText: 'none',
               chartArea: { width: "90%", height: "90%" },
+              colors: ['#4394E5', '#87BB62', '#876FD4', '#F5921B', '#C7C7C7'], 
             }}
             data={devicesArray}
             width="100%"
