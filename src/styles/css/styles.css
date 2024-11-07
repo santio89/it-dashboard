@@ -1265,7 +1265,8 @@ option:hover,
   justify-content: start;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
 }
 .mainModal__data__form.taskContainer .taskOpenData button {
   display: flex;
