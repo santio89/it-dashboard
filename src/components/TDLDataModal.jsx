@@ -74,7 +74,7 @@ export default function TDLDataModal({ modalData }) {
               </button>
             </div>
             <fieldset>
-              <legend>Task</legend>
+              <legend>Description</legend>
               <div aria-label='textarea' className={`taskOpenContent`}>{modalData?.content}</div>
             </fieldset>
           </form>
@@ -131,7 +131,7 @@ export default function TDLDataModal({ modalData }) {
               </button>
             </div>
             <fieldset>
-              <legend>Task</legend>
+              <legend>Description</legend>
               <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false}></div>
             </fieldset>
             <div className='mainModal__btnContainer'>
