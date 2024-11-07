@@ -467,14 +467,14 @@
 
   &__btnContainer {
     display: flex;
-    justify-content: end;
+    justify-content: start;
     align-items: center;
     gap: 0.5rem;
     width: 100%;
 
     &--edit {
       @extend .mainModal__btnContainer;
-      justify-content: end;
+      justify-content: start;
     }
   }
 
