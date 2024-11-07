@@ -99,10 +99,6 @@ option {
   &:focus-visible {
     outline: 1px solid var(--white);
   }
-
-  &.disabled {
-    pointer-events: none;
-  }
 }
 
 /* inputs */

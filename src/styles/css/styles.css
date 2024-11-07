@@ -104,14 +104,6 @@ select:focus-visible,
 option:focus-visible {
   outline: 1px solid var(--white);
 }
-button.disabled,
-a.disabled,
-input.disabled,
-textarea.disabled,
-select.disabled,
-option.disabled {
-  pointer-events: none;
-}
 
 /* inputs */
 input,
@@ -1050,7 +1042,13 @@ select:disabled {
   pointer-events: none;
   filter: grayscale(1);
 }
-.mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:focus-visible, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.selected {
+.mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled {
+  outline: none;
+}
+.mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:focus, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:focus-visible {
+  outline: none;
+}
+.mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.selected {
   outline: 1px solid var(--white);
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.notSelected {
@@ -1098,7 +1096,7 @@ select:disabled {
   align-items: center;
   flex-direction: column;
   width: fit-content;
-  /* gap: 0.5rem; */
+  gap: 0.25rem;
   /* Firefox */
 }
 .mainModal__data__form[disabled] {
@@ -1279,6 +1277,9 @@ select:disabled {
 .mainModal__data__form.taskContainer .taskOpenData button:hover {
   outline: 1px solid var(--white);
 }
+.mainModal__data__form.taskContainer .taskOpenData button:hover[disabled] {
+  outline: none;
+}
 .mainModal__data__form.taskContainer .taskOpenData button.selected {
   background-color: var(--main-color-op);
 }
@@ -1309,6 +1310,7 @@ select:disabled {
   height: auto;
   min-height: 120px;
   max-height: 240px;
+  cursor: pointer;
 }
 .mainModal__data__form.taskContainer .taskOpenContent:empty::before {
   content: "Task... ";

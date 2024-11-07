@@ -12,10 +12,6 @@ export default function TDL({ user }) {
   const [editMode, setEditMode] = useState(null)
   const [deleteMode, setDeleteMode] = useState(null)
   const [editInputText, setEditInputText] = useState("")
-  const [taskPriorityOpts, setTaskPriorityOpts] = useState(false)
-  const [selectedPriority, setSelectedPriority] = useState("medium")
-
-  const textInput = useRef()
   const editInput = useRef()
   const dispatch = useDispatch()
 
@@ -23,9 +19,6 @@ export default function TDL({ user }) {
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
 
-  /* new input */
-  const [newListPickerOpen, setNewListPickerOpen] = useState(false)
-  const [newListSelected, setNewListSelected] = useState(listSelected == "all" ? "personal" : listSelected)
 
   /* edit opts */
   const [editPriority, setEditPriority] = useState(null)

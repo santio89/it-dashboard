@@ -12,9 +12,9 @@ export default function TDLDataModal({ modalData }) {
   const textInput = useRef()
 
   const [newTaskCategory, setNewTaskCategory] = useState(modalData?.listSelected == "all" ? "personal" : modalData?.listSelected)
+  const [newTaskPriority, setNewTaskPriority] = useState("medium")
   const [listPickerOpen, setListPickerOpen] = useState(false)
 
-  const [newTaskPriority, setNewTaskPriority] = useState("medium")
 
   const selectList = list => {
     setNewTaskCategory(list)
@@ -44,6 +44,9 @@ export default function TDLDataModal({ modalData }) {
       setNewTaskCategory(modalData?.listSelected == "all" ? "personal" : modalData?.listSelected)
       setListPickerOpen(false)
       /* reset inputs */
+      setNewTaskCategory(modalData?.listSelected == "all" ? "personal" : modalData?.listSelected)
+      setNewTaskPriority("medium")
+      textInput.current.textContent = ""
     }
   }, [modalActive])
 
@@ -63,7 +66,7 @@ export default function TDLDataModal({ modalData }) {
           <form className='mainModal__data__form taskContainer disabled'>
             <div className={`taskOpenData`}>
               <div>Priority: </div>
-              <button type='button' disabled onClick={() => setNewTaskPriority("low")} className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
+              <button tabIndex={-1} type='button' disabled onClick={() => setNewTaskPriority("low")} className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                 </svg>
