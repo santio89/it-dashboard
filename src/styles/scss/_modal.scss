@@ -101,6 +101,11 @@
           width: 68px;
           color: var(--white);
 
+          &[disabled] {
+            pointer-events: none;
+            filter: grayscale(1);
+          }
+
           &:hover,
           &:focus-visible,
           &.selected {
@@ -332,92 +337,105 @@
           }
         }
       }
-    }
 
-    &__taskContainer {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      width: fit-content;
-
-      .taskOpenData {
-        align-self: start;
+      &.taskContainer {
+        flex: 1;
         display: flex;
-        justify-content: start;
+        justify-content: center;
         align-items: center;
-        gap: 0.5rem;
+        flex-direction: column;
+        width: fit-content;
 
-        button {
+        .taskOpenData {
+          align-self: start;
           display: flex;
-          justify-content: center;
+          justify-content: start;
           align-items: center;
           gap: 0.5rem;
-          font-weight: 300;
 
-          &.tdl-priority {
-            color: var(--white);
+          button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 300;
+            text-transform: capitalize;
+            background-color: var(--main-color-mid);
 
-            &.selectedLow > svg {
-              color: var(--main-gray-dark);
-            }
-            &.selectedMedium > svg {
-              color: var(--main-color-light);
-            }
-            &.selectedHigh > svg {
-              color: var(--red);
+            &.tdl-priority {
+              color: var(--white);
+
+              &.selectedLow > svg {
+                color: var(--main-gray-dark);
+              }
+              &.selectedMedium > svg {
+                color: var(--main-color-light);
+              }
+              &.selectedHigh > svg {
+                color: var(--red);
+              }
+
+              svg {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: var(--main-color);
+                outline: 2px solid var(--main-gray);
+                outline-offset: -1px;
+              }
             }
 
-            svg {
-              width: 20px;
-              height: 20px;
-              border-radius: 50%;
-              background-color: var(--main-color);
-              outline: 2px solid var(--main-gray);
-              outline-offset: -1px;
+            &:hover {
+              outline: 1px solid var(--white);
+            }
+
+            &.selected {
+              background-color: var(--main-color-op);
             }
           }
 
-          &:hover,
-          &:focus-visible,
-          &.selected {
-            background-color: var(--main-color-op);
+          .underline {
+            text-decoration: underline;
+
+            &.selectedLow {
+              text-decoration-color: var(--main-gray-dark);
+            }
+
+            &.selectedMedium {
+              text-decoration-color: var(--main-color-light);
+            }
+
+            &.selectedHigh {
+              text-decoration-color: var(--red);
+            }
           }
         }
 
-        .underline {
-          text-decoration: underline;
+        .taskOpenContent {
+          background: var(--main-color-op);
+          border: 1px solid var(--main-color-op);
+          color: var(--white);
+          padding: 1em;
+          border-radius: 0.5rem;
+          width: clamp(300px, 40vw, 600px);
+          word-break: break-word;
+          margin-block: 1rem;
+          overflow-x: hidden;
+          overflow-y: scroll;
+          white-space: pre-wrap;
+          height: auto;
+          min-height: 120px;
+          max-height: 240px;
 
-          &.selectedLow {
-            text-decoration-color: var(--main-gray-dark);
+          &:empty::before {
+            content: "Task... ";
+            color: var(--main-gray);
           }
 
-          &.selectedMedium {
-            text-decoration-color: var(--main-color-light);
-          }
-
-          &.selectedHigh {
-            text-decoration-color: var(--red);
+          &:focus-visible {
+            outline: 1px solid var(--white);
           }
         }
-      }
-
-      .taskOpenContent {
-        background: var(--main-color-op);
-        border: 1px solid var(--main-color-op);
-        color: var(--white);
-        padding: 1em;
-        border-radius: 0.5rem;
-        width: clamp(300px, 40vw, 600px);
-        height: 100%;
-        min-height: 120px;
-        max-height: 240px;
-        overflow-x: hidden;
-        overflow-y: auto;
-        white-space: break-spaces;
-        word-break: break-word;
-        margin-block: 1rem;
       }
     }
   }

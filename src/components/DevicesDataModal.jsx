@@ -188,7 +188,7 @@ export default function DevicesDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
               {
-                <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(newDeviceCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newDeviceCategory === "personal" ? "Personal" : "Company"}</button>
+                <button disabled={resultEditDevice.isLoading} className={`listPicker ${listPickerOpen && "selected"} ${resultEditDevice.isLoading && "disabled"}`} onClick={() => listPickerOpen ? selectList(newDeviceCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newDeviceCategory === "personal" ? "Personal" : "Company"}</button>
               }
               {
                 listPickerOpen &&
@@ -269,7 +269,7 @@ export default function DevicesDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
               {
-                <button className={`listPicker disabled`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
+                <button disabled={resultDeleteDevice.isLoading} className={`listPicker disabled`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
               }
             </div>
           </div>
@@ -332,7 +332,7 @@ export default function DevicesDataModal({ modalData }) {
             <h2>ADD DEVICE</h2>
             <div className="listPickerWrapper__btnContainer">
               {
-                <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(newDeviceCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newDeviceCategory === "personal" ? "Personal" : "Company"}</button>
+                <button disabled={resultAddDevice.isLoading} className={`listPicker ${listPickerOpen && "selected"} ${resultAddDevice.isLoading && "disabled"}`} onClick={() => listPickerOpen ? selectList(newDeviceCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newDeviceCategory === "personal" ? "Personal" : "Company"}</button>
               }
               {
                 listPickerOpen &&

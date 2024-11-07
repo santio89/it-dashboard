@@ -198,7 +198,7 @@ export default function ContactsDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
               {
-                <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(newUserCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newUserCategory === "personal" ? "Personal" : "Company"}</button>
+                <button disabled={resultEditContact.isLoading} className={`listPicker ${listPickerOpen && "selected"} ${resultEditContact.isLoading && "disabled"}`} onClick={() => listPickerOpen ? selectList(newUserCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newUserCategory === "personal" ? "Personal" : "Company"}</button>
               }
               {
                 listPickerOpen &&
@@ -282,7 +282,7 @@ export default function ContactsDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
               {
-                <button className={`listPicker disabled`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
+                <button disabled={resultDeleteContact.isLoading} className={`listPicker disabled`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
               }
             </div>
           </div>
@@ -345,7 +345,7 @@ export default function ContactsDataModal({ modalData }) {
             <h2>ADD CONTACT</h2>
             <div className="listPickerWrapper__btnContainer">
               {
-                <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(newUserCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newUserCategory === "personal" ? "Personal" : "Company"}</button>
+                <button disabled={resultAddContact.isLoading} className={`listPicker ${listPickerOpen && "selected"} ${resultAddContact.isLoading && "disabled"}`} onClick={() => listPickerOpen ? selectList(newUserCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newUserCategory === "personal" ? "Personal" : "Company"}</button>
               }
               {
                 listPickerOpen &&

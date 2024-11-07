@@ -1046,6 +1046,10 @@ select:disabled {
   width: 68px;
   color: var(--white);
 }
+.mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker[disabled] {
+  pointer-events: none;
+  filter: grayscale(1);
+}
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:focus-visible, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.selected {
   outline: 1px solid var(--white);
 }
@@ -1228,7 +1232,7 @@ select:disabled {
 .mainModal__data__form.deleteMode fieldset legend {
   color: var(--red);
 }
-.mainModal__data__taskContainer {
+.mainModal__data__form.taskContainer {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -1236,33 +1240,35 @@ select:disabled {
   flex-direction: column;
   width: fit-content;
 }
-.mainModal__data__taskContainer .taskOpenData {
+.mainModal__data__form.taskContainer .taskOpenData {
   align-self: start;
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 0.5rem;
 }
-.mainModal__data__taskContainer .taskOpenData button {
+.mainModal__data__form.taskContainer .taskOpenData button {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
   font-weight: 300;
+  text-transform: capitalize;
+  background-color: var(--main-color-mid);
 }
-.mainModal__data__taskContainer .taskOpenData button.tdl-priority {
+.mainModal__data__form.taskContainer .taskOpenData button.tdl-priority {
   color: var(--white);
 }
-.mainModal__data__taskContainer .taskOpenData button.tdl-priority.selectedLow > svg {
+.mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selectedLow > svg {
   color: var(--main-gray-dark);
 }
-.mainModal__data__taskContainer .taskOpenData button.tdl-priority.selectedMedium > svg {
+.mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selectedMedium > svg {
   color: var(--main-color-light);
 }
-.mainModal__data__taskContainer .taskOpenData button.tdl-priority.selectedHigh > svg {
+.mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selectedHigh > svg {
   color: var(--red);
 }
-.mainModal__data__taskContainer .taskOpenData button.tdl-priority svg {
+.mainModal__data__form.taskContainer .taskOpenData button.tdl-priority svg {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -1270,36 +1276,46 @@ select:disabled {
   outline: 2px solid var(--main-gray);
   outline-offset: -1px;
 }
-.mainModal__data__taskContainer .taskOpenData button:hover, .mainModal__data__taskContainer .taskOpenData button:focus-visible, .mainModal__data__taskContainer .taskOpenData button.selected {
+.mainModal__data__form.taskContainer .taskOpenData button:hover {
+  outline: 1px solid var(--white);
+}
+.mainModal__data__form.taskContainer .taskOpenData button.selected {
   background-color: var(--main-color-op);
 }
-.mainModal__data__taskContainer .taskOpenData .underline {
+.mainModal__data__form.taskContainer .taskOpenData .underline {
   text-decoration: underline;
 }
-.mainModal__data__taskContainer .taskOpenData .underline.selectedLow {
+.mainModal__data__form.taskContainer .taskOpenData .underline.selectedLow {
   text-decoration-color: var(--main-gray-dark);
 }
-.mainModal__data__taskContainer .taskOpenData .underline.selectedMedium {
+.mainModal__data__form.taskContainer .taskOpenData .underline.selectedMedium {
   text-decoration-color: var(--main-color-light);
 }
-.mainModal__data__taskContainer .taskOpenData .underline.selectedHigh {
+.mainModal__data__form.taskContainer .taskOpenData .underline.selectedHigh {
   text-decoration-color: var(--red);
 }
-.mainModal__data__taskContainer .taskOpenContent {
+.mainModal__data__form.taskContainer .taskOpenContent {
   background: var(--main-color-op);
   border: 1px solid var(--main-color-op);
   color: var(--white);
   padding: 1em;
   border-radius: 0.5rem;
   width: clamp(300px, 40vw, 600px);
-  height: 100%;
-  min-height: 120px;
-  max-height: 240px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  white-space: break-spaces;
   word-break: break-word;
   margin-block: 1rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  white-space: pre-wrap;
+  height: auto;
+  min-height: 120px;
+  max-height: 240px;
+}
+.mainModal__data__form.taskContainer .taskOpenContent:empty::before {
+  content: "Task... ";
+  color: var(--main-gray);
+}
+.mainModal__data__form.taskContainer .taskOpenContent:focus-visible {
+  outline: 1px solid var(--white);
 }
 .mainModal__btnContainer, .mainModal__btnContainer--edit {
   display: flex;
