@@ -1122,7 +1122,6 @@ select:disabled {
 }
 .mainModal__data__form fieldset {
   border: 1px solid var(--main-color-op);
-  background: none;
   min-width: 150px;
   width: 45%;
   margin-bottom: 1rem;
@@ -1144,7 +1143,7 @@ select:disabled {
 .mainModal__data__form fieldset:focus-within legend, .mainModal__data__form fieldset:has(input:hover, textarea:hover, select:hover, option:hover) legend {
   color: var(--white);
 }
-.mainModal__data__form fieldset:has(textarea) {
+.mainModal__data__form fieldset:has(textarea, .taskOpenContent) {
   width: 100%;
 }
 @media (max-width: 792px) {
@@ -1316,7 +1315,7 @@ select:disabled {
   content: "Task... ";
   color: var(--main-gray);
 }
-.mainModal__data__form.taskContainer .taskOpenContent:focus-visible {
+.mainModal__data__form.taskContainer .taskOpenContent:focus-visible, .mainModal__data__form.taskContainer .taskOpenContent:hover:not([disabled]) {
   outline: 1px solid var(--white);
 }
 .mainModal__btnContainer, .mainModal__btnContainer--edit {

@@ -210,7 +210,6 @@
 
       fieldset {
         border: 1px solid var(--main-color-op);
-        background: none;
         min-width: 150px;
         width: 45%;
         margin-bottom: 1rem;
@@ -236,7 +235,7 @@
           }
         }
 
-        &:has(textarea) {
+        &:has(textarea, .taskOpenContent) {
           width: 100%;
         }
 
@@ -446,7 +445,8 @@
             color: var(--main-gray);
           }
 
-          &:focus-visible {
+          &:focus-visible,
+          &:hover:not([disabled]) {
             outline: 1px solid var(--white);
           }
         }
