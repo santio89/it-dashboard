@@ -73,9 +73,10 @@ export default function TDLDataModal({ modalData }) {
                 {modalData?.priority}
               </button>
             </div>
-            <div disabled className="taskOpenContent">
-              {modalData?.content}
-            </div>
+            <fieldset>
+              <legend>Task</legend>
+              <div aria-label='textarea' className={`taskOpenContent`}>{modalData?.content}</div>
+            </fieldset>
           </form>
         </>
       }
@@ -129,7 +130,10 @@ export default function TDLDataModal({ modalData }) {
                 High
               </button>
             </div>
-            <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false} placeholder='Task'></div>
+            <fieldset>
+              <legend>Task</legend>
+              <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false}></div>
+            </fieldset>
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send'>Send</button>
             </div>

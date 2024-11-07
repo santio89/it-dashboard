@@ -23,6 +23,7 @@ export default function Contacts({ user }) {
   const {
     data: dataContacts,
     isLoading: isLoadingContacts,
+    isFetching: isFetchingContacts,
     isSuccess: isSuccessContacts,
     isError: isErrorContacts,
     error: errorContacts,

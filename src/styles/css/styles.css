@@ -1136,11 +1136,19 @@ select:disabled {
   transition: 200ms ease-in-out;
   font-weight: 700;
 }
-.mainModal__data__form fieldset:focus-within, .mainModal__data__form fieldset:has(input:hover, textarea:hover, select:hover, option:hover) {
+.mainModal__data__form fieldset:focus-within, .mainModal__data__form fieldset:has(input:hover,
+textarea:hover,
+select:hover,
+option:hover,
+.taskOpenContent:hover) {
   border: 1px solid var(--white);
   border-color: var(--white);
 }
-.mainModal__data__form fieldset:focus-within legend, .mainModal__data__form fieldset:has(input:hover, textarea:hover, select:hover, option:hover) legend {
+.mainModal__data__form fieldset:focus-within legend, .mainModal__data__form fieldset:has(input:hover,
+textarea:hover,
+select:hover,
+option:hover,
+.taskOpenContent:hover) legend {
   color: var(--white);
 }
 .mainModal__data__form fieldset:has(textarea, .taskOpenContent) {
@@ -1243,6 +1251,7 @@ select:disabled {
   justify-content: start;
   align-items: center;
   gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .mainModal__data__form.taskContainer .taskOpenData button {
   display: flex;
@@ -1295,28 +1304,25 @@ select:disabled {
   text-decoration-color: var(--red);
 }
 .mainModal__data__form.taskContainer .taskOpenContent {
-  background: var(--main-color-op);
-  border: 1px solid var(--main-color-op);
   color: var(--white);
-  padding: 1em;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  width: clamp(300px, 40vw, 600px);
   word-break: break-word;
-  margin-block: 1rem;
   overflow-x: hidden;
   overflow-y: scroll;
   white-space: pre-wrap;
+  width: clamp(300px, 40vw, 600px);
   height: auto;
   min-height: 120px;
   max-height: 240px;
   cursor: pointer;
+  /* &:empty::before {
+    content: "Task... ";
+    color: var(--main-gray);
+  } */
 }
-.mainModal__data__form.taskContainer .taskOpenContent:empty::before {
-  content: "Task... ";
-  color: var(--main-gray);
-}
-.mainModal__data__form.taskContainer .taskOpenContent:focus-visible, .mainModal__data__form.taskContainer .taskOpenContent:hover:not([disabled]) {
-  outline: 1px solid var(--white);
+.mainModal__data__form.taskContainer .taskOpenContent:focus-visible {
+  outline: none;
 }
 .mainModal__btnContainer, .mainModal__btnContainer--edit {
   display: flex;

@@ -226,7 +226,13 @@
         }
 
         &:focus-within,
-        &:has(input:hover, textarea:hover, select:hover, option:hover) {
+        &:has(
+            input:hover,
+            textarea:hover,
+            select:hover,
+            option:hover,
+            .taskOpenContent:hover
+          ) {
           border: 1px solid var(--white);
           border-color: var(--white);
 
@@ -360,6 +366,7 @@
           justify-content: start;
           align-items: center;
           gap: 0.5rem;
+          margin-bottom: .5rem;
 
           button {
             display: flex;
@@ -424,31 +431,27 @@
         }
 
         .taskOpenContent {
-          background: var(--main-color-op);
-          border: 1px solid var(--main-color-op);
           color: var(--white);
-          padding: 1em;
+          padding: 0.5rem 1rem;
           border-radius: 0.5rem;
-          width: clamp(300px, 40vw, 600px);
           word-break: break-word;
-          margin-block: 1rem;
           overflow-x: hidden;
           overflow-y: scroll;
           white-space: pre-wrap;
+          width: clamp(300px, 40vw, 600px);
           height: auto;
           min-height: 120px;
           max-height: 240px;
           cursor: pointer;
 
-          &:empty::before {
-            content: "Task... ";
-            color: var(--main-gray);
+          &:focus-visible {
+            outline: none;
           }
 
-          &:focus-visible,
-          &:hover:not([disabled]) {
-            outline: 1px solid var(--white);
-          }
+          /* &:empty::before {
+            content: "Task... ";
+            color: var(--main-gray);
+          } */
         }
       }
     }

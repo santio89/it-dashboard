@@ -23,6 +23,7 @@ export default function Devices({ user }) {
   const {
     data: dataDevices,
     isLoading: isLoadingDevices,
+    isFetching: isFetchingDevices,
     isSuccess: isSucessDevices,
     isError: isErrorDevices,
     error: errorDevices,

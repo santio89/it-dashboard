@@ -102,8 +102,8 @@ export default function TDL({ user }) {
   }, [listSelected])
 
   useEffect(() => {
-    !isFetchingTdl && parentAnimateTDL.current && autoAnimate(parentAnimateTDL.current)
-  }, [parentAnimateTDL, isFetchingTdl])
+    !isLoadingTdl && parentAnimateTDL.current && autoAnimate(parentAnimateTDL.current)
+  }, [parentAnimateTDL, isLoadingTdl])
 
   return (
     <div className='site-section'>
@@ -151,7 +151,7 @@ export default function TDL({ user }) {
                 dataTdl?.map((task) => {
                   if (listSelected === "all" || listSelected === task.category) {
                     return (
-                      <li key={task.id} disabled={taskOptions === task.id && (resultEditTdl.isLoading || resultDeleteTdl.isLoading || isFetchingTdl)}>
+                      <li key={task.id} disabled={taskOptions === task.id && (resultEditTdl.isLoading || resultDeleteTdl.isLoading)}>
                         {/* task options */}
                         {
                           taskOptions === task.id &&
@@ -287,7 +287,7 @@ export default function TDL({ user }) {
           <button>Tasks by category</button>
         </div>
         <div className="chartWrapper">
-          <TDLChart data={dataTdl} isLoading={isFetchingTdl} />
+          <TDLChart data={dataTdl} isLoading={isLoadingTdl} />
         </div>
       </div>
     </div >
