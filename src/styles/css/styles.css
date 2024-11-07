@@ -1148,7 +1148,7 @@ select:disabled {
   padding: 0 4px;
   color: var(--white);
   transition: 200ms ease-in-out;
-  font-weight: 700;
+  font-weight: 600;
 }
 .mainModal__data__form fieldset:focus-within, .mainModal__data__form fieldset:has(input:hover,
 textarea:hover,
