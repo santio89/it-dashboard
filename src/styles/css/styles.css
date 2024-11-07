@@ -173,6 +173,7 @@ select:disabled {
   justify-content: start;
   align-items: center;
   font-family: var(--font-primary);
+  font-weight: 400;
   line-height: 1.4;
   color: var(--white);
   background: var(--main-color-bg);
@@ -577,7 +578,7 @@ select:disabled {
         color: var(--main-color);
         padding: 1rem;
         font: inherit;
-        font-weight: 400;
+        font-weight: 300;
         text-align: left;
         text-wrap: balance;
         border-radius: 0.5rem;
@@ -860,7 +861,7 @@ select:disabled {
   justify-content: start;
   align-items: start;
   transition: 200ms background-color ease-in-out, 200ms color ease-in-out;
-  font-weight: 400;
+  font-weight: 300;
   /*   display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -1323,6 +1324,7 @@ option:hover,
 }
 .mainModal__data__form.taskContainer .taskOpenContent {
   color: var(--white);
+  font-weight: 300;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   word-break: break-word;
