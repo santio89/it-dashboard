@@ -781,6 +781,7 @@ select:disabled {
   height: 100%;
   text-align: center;
   justify-content: center;
+  white-space: nowrap;
 }
 .site-section__list ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button:hover, .site-section__list ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button:focus-visible,
 .site-section__list ul.tdl-list li div.tdl-btnContainer .tdl-openModal button:hover,
@@ -1273,6 +1274,7 @@ option:hover,
   font-weight: 300;
   text-transform: capitalize;
   background-color: var(--main-color-mid);
+  border: 1px solid var(--main-color-op);
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority {
   color: var(--white);
@@ -1295,10 +1297,14 @@ option:hover,
   outline-offset: -1px;
 }
 .mainModal__data__form.taskContainer .taskOpenData button:hover {
-  outline: 1px solid var(--white);
+  border: 1px solid var(--white);
 }
 .mainModal__data__form.taskContainer .taskOpenData button:hover[disabled] {
+  border: 1px solid var(--main-color-op);
+}
+.mainModal__data__form.taskContainer .taskOpenData button:focus-visible {
   outline: none;
+  border: 1px solid var(--white);
 }
 .mainModal__data__form.taskContainer .taskOpenData button.selected {
   background-color: var(--main-color-op);
