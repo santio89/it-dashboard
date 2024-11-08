@@ -395,6 +395,36 @@ select:disabled {
   overflow-y: auto;
   gap: 1rem;
   align-items: start;
+  position: relative;
+}
+@keyframes moveBackground {
+  0% {
+    transform: translate(-100%, -100%);
+  }
+  25% {
+    transform: translate(100%, 100%);
+  }
+  50% {
+    transform: translate(-100%, 100%);
+  }
+  75% {
+    transform: translate(100%, -100%);
+  }
+  100% {
+    transform: translate(-100%, -100%);
+  }
+}
+.site-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 50%;
+  height: 50%;
+  background-image: radial-gradient(circle, rgba(44, 47, 150, 0.5), var(--main-color-op), rgba(44, 47, 150, 0.5));
+  filter: blur(100px);
+  z-index: -1;
+  animation: moveBackground 120s ease-in-out infinite; /* Animation applied here */
 }
 .site-section::-webkit-scrollbar {
   width: 12px;
@@ -462,7 +492,7 @@ select:disabled {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  background-color: rgba(120, 120, 120, 0.5);
+  background-color: rgba(120, 120, 120, 0.2);
   border-radius: 1rem;
   min-height: 100%;
   max-height: 100%;
@@ -471,6 +501,7 @@ select:disabled {
   max-width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  backdrop-filter: blur(50px);
 }
 .site-section__inner::-webkit-scrollbar-track {
   background: transparent;
