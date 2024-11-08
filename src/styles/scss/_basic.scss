@@ -34,6 +34,7 @@ html {
     background: var(--main-color);
   }
 }
+
 :root {
   --font-primary: geist, monospace, "Courier New", Courier;
   --main-container-size: 1200px;
@@ -181,4 +182,19 @@ select:disabled {
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+}
+
+/* loader */
+.loader {
+  color: var(--white);
+  width: fit-content;
+  font: inherit;
+  padding-bottom: 8px;
+  background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
+  animation: l2 2s linear infinite;
+}
+@keyframes l2 {
+  to {
+    background-size: 100% 3px;
+  }
 }

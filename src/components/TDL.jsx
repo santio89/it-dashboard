@@ -145,7 +145,7 @@ export default function TDL({ user }) {
           </div>
         </div>
         {
-          isLoadingTdl ? "Loading..." :
+          isLoadingTdl ? <div className="loader">Loading...</div> :
             <ul className='tdl-list' ref={parentAnimateTDL}>
               {
                 dataTdl?.map((task) => {

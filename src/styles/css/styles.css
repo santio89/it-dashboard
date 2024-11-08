@@ -191,6 +191,21 @@ select:disabled {
   overflow: hidden;
 }
 
+/* loader */
+.loader {
+  color: var(--white);
+  width: fit-content;
+  font: inherit;
+  padding-bottom: 8px;
+  background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
+  animation: l2 2s linear infinite;
+}
+
+@keyframes l2 {
+  to {
+    background-size: 100% 3px;
+  }
+}
 .mainHeader {
   background: var(--main-color);
   width: 100%;
@@ -929,7 +944,7 @@ select:disabled {
   background: var(--main-color-op);
   /* chart */
 }
-.site-section__chart .chartWrapper > div {
+.site-section__chart .chartWrapper > div:not(.loader) {
   margin-inline: auto;
   max-width: 1200px;
   height: 100%;
@@ -939,10 +954,10 @@ select:disabled {
   padding: 0.125rem;
   /* chart-error-message */
 }
-.site-section__chart .chartWrapper > div .google-visualization-tooltip {
+.site-section__chart .chartWrapper > div:not(.loader) .google-visualization-tooltip {
   pointer-events: none;
 }
-.site-section__chart .chartWrapper > div span {
+.site-section__chart .chartWrapper > div:not(.loader) span {
   background: var(--main-color-mid) !important;
   color: var(--white) !important;
   font: inherit !important;

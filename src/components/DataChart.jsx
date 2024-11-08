@@ -34,7 +34,7 @@ export default function DataChart({ data, type, isLoading }) {
   return (
     <>
       {
-        isLoading ? "Loading..." :
+        isLoading ? <div className="loader">Loading...</div> :
           <Chart
             chartType={"PieChart"}
             options={{

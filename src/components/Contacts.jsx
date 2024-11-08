@@ -79,7 +79,7 @@ export default function Contacts({ user }) {
           </div>
         </div>
         {
-          isLoadingContacts ? "Loading..." :
+          isLoadingContacts ? <div className="loader">Loading...</div>:
             <ul className="items-list" ref={parentAnimateContacts}>
               {
                 dataContacts?.map(contact => {
