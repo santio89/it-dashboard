@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
 import { useGetDevicesCompanyQuery, useGetDevicesQuery } from '../store/slices/apiSlice';
-import DevicesChart from "./DevicesChart";
+import DataChart from "./DataChart";
 import { useState, useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
 
@@ -98,7 +98,7 @@ export default function Devices({ user }) {
           <button>Devices by category</button>
         </div>
         <div className="chartWrapper">
-          <DevicesChart data={dataDevices} isLoading={isLoadingDevices} />
+          <DataChart type={{ property: "category", items: "devices" }} data={dataDevices} isLoading={isLoadingDevices} />
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import TDLChart from "./TDLChart"
+import DataChart from "./DataChart"
 
 export default function Support({ user }) {
   const [listPickerOpen, setListPickerOpen] = useState(false)
@@ -56,7 +56,7 @@ export default function Support({ user }) {
           <button>Tickets by category</button>
         </div>
         <div className="chartWrapper">
-          <TDLChart />
+          <DataChart />
         </div>
       </div>
     </div>

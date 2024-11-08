@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useGetTdlQuery, useAddTdlMutation, useDeleteTdlMutation, useEditTdlMutation } from '../store/slices/apiSlice'
 import { setModal } from '../store/slices/modalSlice'
 import { useDispatch } from 'react-redux'
-import TDLChart from './TDLChart'
+import DataChart from './DataChart'
 import autoAnimate from '@formkit/auto-animate'
 
 export default function TDL({ user }) {
@@ -287,9 +287,9 @@ export default function TDL({ user }) {
           <button>Tasks by category</button>
         </div>
         <div className="chartWrapper">
-          <TDLChart data={dataTdl} isLoading={isLoadingTdl} />
+          <DataChart type={{ property: "category", items: "tasks" }} data={dataTdl} isLoading={isLoadingTdl} />
         </div>
       </div>
-    </div >
+    </div>
   )
 }

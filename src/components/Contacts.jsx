@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
 import { useGetContactsCompanyQuery, useGetContactsQuery } from '../store/slices/apiSlice';
 import { useEffect, useState, useRef } from "react";
-import ContactsChart from "./ContactsChart";
+import DataChart from "./DataChart";
 import autoAnimate from "@formkit/auto-animate";
 
 export default function Contacts({ user }) {
@@ -99,7 +99,7 @@ export default function Contacts({ user }) {
           <button>Contacts by category</button>
         </div>
         <div className="chartWrapper">
-          <ContactsChart data={dataContacts} isLoading={isLoadingContacts} />
+          <DataChart type={{ property: "category", items: "contacts" }} data={dataContacts} isLoading={isLoadingContacts} />
         </div>
       </div>
     </div>
