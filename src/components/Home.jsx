@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react"
 import { NavLink } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import Contacts from "./Contacts";

@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
 
 export default function Devices({ user }) {
-  const parentAnimateDevices = useRef()
+  const listContainer = useRef()
 
   const dispatch = useDispatch()
   const [listPickerOpen, setListPickerOpen] = useState(false)
@@ -35,8 +35,8 @@ export default function Devices({ user }) {
   }
 
   useEffect(() => {
-    !isLoadingDevices && parentAnimateDevices.current && autoAnimate(parentAnimateDevices.current)
-  }, [parentAnimateDevices, isLoadingDevices])
+    !isLoadingDevices && listContainer.current && autoAnimate(listContainer.current)
+  }, [listContainer, isLoadingDevices])
 
   return (
     <div className='site-section'>
@@ -79,7 +79,7 @@ export default function Devices({ user }) {
         </div>
         {
           isLoadingDevices ? <div className="loader">Loading...</div> :
-            <ul className="items-list" ref={parentAnimateDevices}>
+            <ul className="items-list" ref={listContainer}>
               {
                 dataDevices?.map(device => {
                   if (listSelected === "all" || device.category === listSelected) {

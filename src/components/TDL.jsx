@@ -6,7 +6,7 @@ import DataChart from './DataChart'
 import autoAnimate from '@formkit/auto-animate'
 
 export default function TDL({ user }) {
-  const parentAnimateTDL = useRef()
+  const listContainer = useRef()
 
   const [taskOptions, setTaskOptions] = useState(null)
   const [editMode, setEditMode] = useState(null)
@@ -102,8 +102,8 @@ export default function TDL({ user }) {
   }, [listSelected])
 
   useEffect(() => {
-    !isLoadingTdl && parentAnimateTDL.current && autoAnimate(parentAnimateTDL.current)
-  }, [parentAnimateTDL, isLoadingTdl])
+    !isLoadingTdl && listContainer.current && autoAnimate(listContainer.current)
+  }, [listContainer, isLoadingTdl])
 
   return (
     <div className='site-section'>
@@ -146,7 +146,7 @@ export default function TDL({ user }) {
         </div>
         {
           isLoadingTdl ? <div className="loader">Loading...</div> :
-            <ul className='tdl-list' ref={parentAnimateTDL}>
+            <ul className='tdl-list' ref={listContainer}>
               {
                 dataTdl?.map((task) => {
                   if (listSelected === "all" || listSelected === task.category) {

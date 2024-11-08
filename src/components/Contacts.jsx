@@ -6,7 +6,7 @@ import DataChart from "./DataChart";
 import autoAnimate from "@formkit/auto-animate";
 
 export default function Contacts({ user }) {
-  const parentAnimateContacts = useRef()
+  const listContainer = useRef()
 
   const dispatch = useDispatch()
   const [listPickerOpen, setListPickerOpen] = useState(false)
@@ -35,8 +35,8 @@ export default function Contacts({ user }) {
   }
 
   useEffect(() => {
-    !isLoadingContacts && parentAnimateContacts.current && autoAnimate(parentAnimateContacts.current)
-  }, [parentAnimateContacts, isLoadingContacts])
+    !isLoadingContacts && listContainer.current && autoAnimate(listContainer.current)
+  }, [listContainer, isLoadingContacts])
 
 
   return (
@@ -80,7 +80,7 @@ export default function Contacts({ user }) {
         </div>
         {
           isLoadingContacts ? <div className="loader">Loading...</div>:
-            <ul className="items-list" ref={parentAnimateContacts}>
+            <ul className="items-list" ref={listContainer}>
               {
                 dataContacts?.map(contact => {
                   if (listSelected === "all" || contact.category === listSelected) {
