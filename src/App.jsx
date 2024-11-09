@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import Home from './components/Home';
+import Main from './components/Main';
 import Nav from './components/Nav';
 import Modal from './components/Modal'
 import './styles/css/styles.css'
@@ -56,13 +56,13 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/" element={<Home section={"main"} user={checkUser} />} />
-              <Route path="/contacts" element={<Home section={"contacts"} user={checkUser} />} />
-              <Route path="/devices" element={<Home section={"devices"} user={checkUser} />} />
-              <Route path="/tdl" element={<Home section={"tdl"} user={checkUser} />} />
-              <Route path="/support" element={<Home section={"support"} user={checkUser} />} />
-              <Route path="/admin" element={<Home section={"admin"} user={checkUser} />} />
-              <Route path="*" element={<Home section={"notFound"} user={checkUser} />} />
+              <Route path="/" element={<Main section={"main"} user={checkUser} />} />
+              <Route path="/contacts" element={<Main section={"contacts"} user={checkUser} />} />
+              <Route path="/devices" element={<Main section={"devices"} user={checkUser} />} />
+              <Route path="/tdl" element={<Main section={"tdl"} user={checkUser} />} />
+              <Route path="/support" element={<Main section={"support"} user={checkUser} />} />
+              <Route path="/admin" element={<Main section={"admin"} user={checkUser} />} />
+              <Route path="*" element={<Main section={"notFound"} user={checkUser} />} />
             </Route>
           </Routes>
         </BrowserRouter>

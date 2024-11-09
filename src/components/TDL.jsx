@@ -106,7 +106,7 @@ export default function TDL({ user }) {
   }, [listContainer, isLoadingTdl])
 
   return (
-    <div className='site-section'>
+    <>
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
@@ -290,6 +290,6 @@ export default function TDL({ user }) {
           <DataChart type={{ property: "category", items: "tasks" }} data={dataTdl} isLoading={isLoadingTdl} />
         </div>
       </div>
-    </div>
+    </>
   )
 }

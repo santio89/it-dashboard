@@ -40,7 +40,7 @@ export default function Contacts({ user }) {
 
 
   return (
-    <div className='site-section'>
+    <>
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
@@ -79,7 +79,7 @@ export default function Contacts({ user }) {
           </div>
         </div>
         {
-          isLoadingContacts ? <div className="loader">Loading...</div>:
+          isLoadingContacts ? <div className="loader">Loading...</div> :
             <ul className="items-list" ref={listContainer}>
               {
                 dataContacts?.map(contact => {
@@ -102,6 +102,6 @@ export default function Contacts({ user }) {
           <DataChart type={{ property: "category", items: "contacts" }} data={dataContacts} isLoading={isLoadingContacts} />
         </div>
       </div>
-    </div>
+    </>
   )
 }

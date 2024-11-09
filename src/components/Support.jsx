@@ -14,7 +14,7 @@ export default function Support({ user }) {
 
 
   return (
-    <div className='site-section'>
+    <>
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
@@ -59,6 +59,6 @@ export default function Support({ user }) {
           <DataChart />
         </div>
       </div>
-    </div>
+    </>
   )
 }

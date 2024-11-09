@@ -39,7 +39,7 @@ export default function Devices({ user }) {
   }, [listContainer, isLoadingDevices])
 
   return (
-    <div className='site-section'>
+    <>
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
@@ -101,6 +101,6 @@ export default function Devices({ user }) {
           <DataChart type={{ property: "category", items: "devices" }} data={dataDevices} isLoading={isLoadingDevices} />
         </div>
       </div>
-    </div>
+    </>
   )
 }
