@@ -435,7 +435,7 @@ select:disabled {
     transform: translate(100%, 100%) rotate(360deg);
   }
 }
-.site-section::before {
+.site-section:has(.home)::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -447,9 +447,9 @@ select:disabled {
   background-size: 200% 200%;
   filter: blur(200px);
   z-index: -1;
-  animation: moveBackground 200s ease-in-out infinite;
+  animation: moveBackground 100s ease-in-out infinite;
 }
-.site-section::after {
+.site-section:has(.home)::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -461,7 +461,7 @@ select:disabled {
   background-size: 200% 200%;
   filter: blur(200px);
   z-index: -2;
-  animation: moveBackgroundSecondary 240s ease-in-out infinite;
+  animation: moveBackgroundSecondary 120s ease-in-out infinite;
 }
 .site-section::-webkit-scrollbar {
   width: 12px;

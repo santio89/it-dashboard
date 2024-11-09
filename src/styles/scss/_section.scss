@@ -52,7 +52,7 @@
     }
   }
 
-  &::before {
+  &:has(.home)::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -73,10 +73,10 @@
     background-size: 200% 200%;
     filter: blur(200px);
     z-index: -1;
-    animation: moveBackground 200s ease-in-out infinite;
+    animation: moveBackground 100s ease-in-out infinite;
   }
 
-  &::after {
+  &:has(.home)::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -97,7 +97,7 @@
     background-size: 200% 200%;
     filter: blur(200px);
     z-index: -2;
-    animation: moveBackgroundSecondary 240s ease-in-out infinite;
+    animation: moveBackgroundSecondary 120s ease-in-out infinite;
   }
 
   &::-webkit-scrollbar {
