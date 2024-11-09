@@ -396,15 +396,10 @@ select:disabled {
   align-items: start;
   text-align: center;
   text-wrap: balance;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   gap: 1rem;
   position: relative;
-}
-@media (max-width: 792px) {
-  .site-section {
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
 }
 @keyframes moveBackground {
   0% {
