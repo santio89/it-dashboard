@@ -775,13 +775,13 @@ select:disabled {
   width: 100%;
 }
 .site-section__list ul.items-list li > button {
-  /* width: clamp(90px, 100%, 180px); */
   width: 100%;
   word-break: break-word;
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  outline: 1px solid var(--main-color-mid);
 }
 .site-section__list ul.tdl-list {
   display: flex;
