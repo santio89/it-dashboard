@@ -36,7 +36,7 @@ html ::selection {
   --main-gray: rgb(180, 180, 180);
   --main-gray-dark: rgb(120, 120, 120);
   --main-gray-op: rgba(180, 180, 180, 0.8);
-  --main-gray-op-dark: rgba(120, 120, 120, 0.8);
+  --main-gray-op-dark: rgba(100, 100, 100, 0.8);
   --main-color: rgb(50, 57, 90);
   --main-color-op: rgba(82, 93, 147, 0.5);
   --main-color-bg: rgb(40, 40, 40);
@@ -388,13 +388,12 @@ select:disabled {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   text-align: center;
   text-wrap: balance;
   overflow-x: hidden;
   overflow-y: auto;
   gap: 1rem;
-  align-items: start;
   position: relative;
 }
 @keyframes moveBackground {
@@ -431,7 +430,7 @@ select:disabled {
     transform: translate(100%, 100%) rotate(360deg);
   }
 }
-.site-section.home::before {
+.site-section::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -441,11 +440,11 @@ select:disabled {
   background-image: radial-gradient(circle, rgba(44, 47, 150, 0.5) 50%, rgba(99, 205, 238, 0) 50%), radial-gradient(circle, rgba(28, 35, 133, 0.5) 50%, rgba(150, 44, 47, 0) 50%);
   background-position: top left, bottom right;
   background-size: 200% 200%;
-  filter: blur(100px);
+  filter: blur(200px);
   z-index: -1;
-  animation: moveBackground 100s ease-in-out infinite;
+  animation: moveBackground 200s ease-in-out infinite;
 }
-.site-section.home::after {
+.site-section::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -455,9 +454,9 @@ select:disabled {
   background-image: radial-gradient(circle, rgba(135, 206, 250, 0.5) 50%, rgba(70, 130, 180, 0) 50%), radial-gradient(circle, rgba(0, 191, 255, 0.5) 50%, rgba(30, 144, 255, 0) 50%);
   background-position: top right, bottom left;
   background-size: 200% 200%;
-  filter: blur(100px);
+  filter: blur(200px);
   z-index: -2;
-  animation: moveBackgroundSecondary 120s ease-in-out infinite;
+  animation: moveBackgroundSecondary 240s ease-in-out infinite;
 }
 .site-section::-webkit-scrollbar {
   width: 12px;
@@ -534,7 +533,8 @@ select:disabled {
   max-width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  backdrop-filter: blur(50px);
+  backdrop-filter: blur(100px);
+  outline: 1px solid var(--main-gray-op-dark);
 }
 .site-section__inner::-webkit-scrollbar-track {
   background: transparent;

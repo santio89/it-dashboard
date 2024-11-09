@@ -4,13 +4,12 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   text-align: center;
   text-wrap: balance;
   overflow-x: hidden;
   overflow-y: auto;
   gap: 1rem;
-  align-items: start;
   position: relative;
 
   @keyframes moveBackground {
@@ -49,7 +48,7 @@
     }
   }
 
-  &.home::before {
+  &::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -66,14 +65,14 @@
         rgba(28, 35, 133, 0.5) 50%,
         rgba(150, 44, 47, 0) 50%
       );
-    background-position: top left, bottom right; 
-    background-size: 200% 200%; 
-    filter: blur(100px);
+    background-position: top left, bottom right;
+    background-size: 200% 200%;
+    filter: blur(200px);
     z-index: -1;
-    animation: moveBackground 100s ease-in-out infinite;
+    animation: moveBackground 200s ease-in-out infinite;
   }
 
-  &.home::after {
+  &::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -90,11 +89,11 @@
         rgba(0, 191, 255, 0.5) 50%,
         rgba(30, 144, 255, 0) 50%
       );
-    background-position: top right, bottom left; 
-    background-size: 200% 200%; 
-    filter: blur(100px);
-    z-index: -2; 
-    animation: moveBackgroundSecondary 120s ease-in-out infinite; 
+    background-position: top right, bottom left;
+    background-size: 200% 200%;
+    filter: blur(200px);
+    z-index: -2;
+    animation: moveBackgroundSecondary 240s ease-in-out infinite;
   }
 
   &::-webkit-scrollbar {
@@ -187,7 +186,8 @@
     max-width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    backdrop-filter: blur(50px);
+    backdrop-filter: blur(100px);
+    outline: 1px solid var(--main-gray-op-dark);
 
     &::-webkit-scrollbar-track {
       background: transparent;
