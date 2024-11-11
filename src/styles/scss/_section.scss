@@ -112,6 +112,10 @@
       min-height: 100%;
     }
 
+    &.admin {
+      min-height: 100%;
+    }
+
     &::-webkit-scrollbar-track {
       background: transparent;
     }
@@ -125,11 +129,6 @@
       /* min-height of both panels: 50% - gap/2 */
       min-height: max(50% - 0.5rem, 500px);
       max-height: 500px;
-
-      &:only-child {
-        min-height: 100%;
-        max-height: 100%;
-      }
     }
   }
 

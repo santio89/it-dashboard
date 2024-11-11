@@ -382,10 +382,6 @@ select:disabled {
   min-height: max(50% - 0.5rem, 500px);
   max-height: 500px;
 }
-.mainContainer .main-content.expanded .site-section__inner:only-child {
-  min-height: 100%;
-  max-height: 100%;
-}
 
 .site-section {
   padding: clamp(0.5rem, 0.5rem + 2vw, 2rem);
@@ -485,6 +481,9 @@ select:disabled {
   backdrop-filter: none;
   min-height: 100%;
 }
+.site-section__inner.admin {
+  min-height: 100%;
+}
 .site-section__inner::-webkit-scrollbar-track {
   background: transparent;
 }
@@ -497,10 +496,6 @@ select:disabled {
     /* min-height of both panels: 50% - gap/2 */
     min-height: max(50% - 0.5rem, 500px);
     max-height: 500px;
-  }
-  .site-section__inner:only-child {
-    min-height: 100%;
-    max-height: 100%;
   }
 }
 .site-section__list {

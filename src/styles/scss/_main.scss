@@ -120,11 +120,6 @@
           flex: 1 !important;
           min-height: max(50% - 0.5rem, 500px);
           max-height: 500px;
-
-          &:only-child {
-            min-height: 100%;
-            max-height: 100%;
-          }
         }
       }
     }
