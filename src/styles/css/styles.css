@@ -840,36 +840,36 @@ select:disabled {
 }
 @keyframes moveBackground {
   0% {
-    transform: translate(-100%, -100%) rotate(0deg);
+    transform: translate(-50%, 50%) rotate(0deg);
   }
   25% {
-    transform: translate(50%, 50%) rotate(90deg);
+    transform: translate(-50%, -50%) rotate(-90deg);
   }
   50% {
-    transform: translate(-50%, 50%) rotate(180deg);
+    transform: translate(50%, -50%) rotate(-180deg);
   }
   75% {
-    transform: translate(50%, -50%) rotate(270deg);
+    transform: translate(50%, 50%) rotate(-270deg);
   }
   100% {
-    transform: translate(-100%, -100%) rotate(360deg);
+    transform: translate(-50%, 50%) rotate(0deg);
   }
 }
 @keyframes moveBackgroundSecondary {
   0% {
-    transform: translate(100%, 100%) rotate(0deg);
+    transform: translate(50%, -50%) rotate(0deg);
   }
   25% {
-    transform: translate(-50%, -50%) rotate(90deg);
+    transform: translate(-50%, 50%) rotate(-90deg);
   }
   50% {
-    transform: translate(50%, -50%) rotate(180deg);
+    transform: translate(-50%, -50%) rotate(-180deg);
   }
   75% {
-    transform: translate(-50%, 50%) rotate(270deg);
+    transform: translate(50%, 50%) rotate(-270deg);
   }
   100% {
-    transform: translate(100%, 100%) rotate(360deg);
+    transform: translate(50%, -50%) rotate(0deg);
   }
 }
 .full-bg::before {
