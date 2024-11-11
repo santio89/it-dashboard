@@ -35,7 +35,6 @@ export default function Main({ section, user }) {
       </aside>
       <main className={`main-content ${sideExpanded && "expanded"}`}>
         <div className='site-section'>
-          <div className="full-bg"></div>
           {section === "main" && <Home />}
           {user && section === "contacts" && <Contacts user={user} />}
           {user && section === "devices" && <Devices user={user} />}

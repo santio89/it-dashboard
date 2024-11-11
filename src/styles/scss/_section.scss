@@ -475,6 +475,7 @@
       padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
       width: 100%;
       height: 100%;
+      position: relative;
 
       &:hover,
       &:focus-visible {
@@ -498,101 +499,5 @@
       grid-template-columns: 1fr;
       grid-template-rows: repeat(4, 1fr);
     }
-  }
-}
-
-.full-bg {
-  position: absolute;
-  overflow: hidden;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  flex: 0;
-  pointer-events: none;
-
-  @keyframes moveBackground {
-    0% {
-      transform: translate(-50%, 50%) rotate(0deg);
-    }
-    25% {
-      transform: translate(-50%, -50%) rotate(-90deg); 
-    }
-    50% {
-      transform: translate(50%, -50%) rotate(-180deg); 
-    }
-    75% {
-      transform: translate(50%, 50%) rotate(-270deg); 
-    }
-    100% {
-      transform: translate(-50%, 50%) rotate(0deg);
-    }
-  }
-
-  @keyframes moveBackgroundSecondary {
-    0% {
-      transform: translate(50%, -50%) rotate(0deg);
-    }
-    25% {
-      transform: translate(-50%, 50%) rotate(-90deg); 
-    }
-    50% {
-      transform: translate(-50%, -50%) rotate(-180deg); 
-    }
-    75% {
-      transform: translate(50%, 50%) rotate(-270deg); 
-    }
-    100% {
-      transform: translate(50%, -50%) rotate(0deg);
-    }
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(
-        circle,
-        rgba(44, 47, 150, 0.5) 50%,
-        rgba(99, 205, 238, 0) 50%
-      ),
-      radial-gradient(
-        circle,
-        rgba(28, 35, 133, 0.5) 50%,
-        rgba(150, 44, 47, 0) 50%
-      );
-    background-position: top left, bottom right;
-    background-size: 200% 200%;
-    filter: blur(200px);
-    z-index: -1;
-    animation: moveBackground 100s ease-in-out infinite;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(
-        circle,
-        rgba(135, 206, 250, 0.5) 50%,
-        rgba(70, 130, 180, 0) 50%
-      ),
-      radial-gradient(
-        circle,
-        rgba(0, 191, 255, 0.5) 50%,
-        rgba(30, 144, 255, 0) 50%
-      );
-    background-position: top right, bottom left;
-    background-size: 200% 200%;
-    filter: blur(200px);
-    z-index: -2;
-    animation: moveBackgroundSecondary 120s ease-in-out infinite;
   }
 }
