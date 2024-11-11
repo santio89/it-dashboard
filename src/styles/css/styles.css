@@ -598,7 +598,7 @@ select:disabled {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  outline: 1px solid var(--main-color-mid);
+  outline: 1px solid var(--main-gray-op-dark);
 }
 .site-section__list ul.tdl-list {
   display: flex;
