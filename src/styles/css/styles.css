@@ -223,6 +223,7 @@ select:disabled {
   max-height: 100%;
   flex: 0;
   pointer-events: none;
+  z-index: -1;
 }
 @keyframes moveBackground {
   0% {
@@ -269,7 +270,7 @@ select:disabled {
   background-position: top left, bottom right;
   background-size: 200% 200%;
   filter: blur(200px);
-  z-index: -1;
+  z-index: -2;
   animation: moveBackground 100s ease-in-out infinite;
 }
 .full-bg::after {
@@ -283,7 +284,7 @@ select:disabled {
   background-position: top right, bottom left;
   background-size: 200% 200%;
   filter: blur(200px);
-  z-index: -2;
+  z-index: -3;
   animation: moveBackgroundSecondary 120s ease-in-out infinite;
 }
 
