@@ -22,7 +22,7 @@ export default function Main({ section, user }) {
           <NavLink to="/">Home</NavLink>
           <NavLink to="/contacts" className={!user && "nav-link-disabled"}>Contacts</NavLink>
           <NavLink to="/devices" className={!user && "nav-link-disabled"}>Devices</NavLink>
-          <NavLink to="/tdl" className={!user && "nav-link-disabled"}>TDL</NavLink>
+          <NavLink to="/tdl" className={!user && "nav-link-disabled"}>Tasks</NavLink>
           <NavLink to="/support" className={!user && "nav-link-disabled"}>Support</NavLink>
           <NavLink to="/admin" className={!user && "nav-link-disabled"}>Admin</NavLink>
         </div>

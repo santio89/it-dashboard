@@ -33,7 +33,7 @@ export default function Nav({ rootTheme, user }) {
 
   return (
     <header className="mainHeader">
-      <Link className="logo" to="/">ITD</Link>
+      <Link className="logo" to="/">IT DASHBOARD</Link>
       <div className="mainHeader__btnContainer">
         <div className="themeBtn">
           <button onClick={toggleLight} onAnimationEnd={() => setThemeClicked(false)}>

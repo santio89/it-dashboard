@@ -16,11 +16,8 @@
 
     &:hover,
     &:focus-visible {
-      color: rgb(40, 40, 40);
-
-      svg {
-        text-shadow: 1px 1px 0rgb (40, 40, 40);
-      }
+      color: var(--main-color);
+      text-shadow: 1px 1px 0 var(--main-color-light);
     }
   }
 
