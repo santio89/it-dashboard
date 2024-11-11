@@ -276,7 +276,7 @@ select:disabled {
       );
     background-position: top left, bottom right;
     background-size: 200% 200%;
-    filter: blur(250px);
+    filter: blur(200px);
     z-index: -2;
     animation: moveBackground 40s ease-in-out infinite;
     transition: 200ms ease-in-out;
@@ -303,7 +303,7 @@ select:disabled {
       );
     background-position: top right, bottom left;
     background-size: 200% 200%;
-    filter: blur(250px);
+    filter: blur(200px);
     z-index: -3;
     animation: moveBackgroundSecondary 60s ease-in-out infinite;
     transition: 200ms ease-in-out;
