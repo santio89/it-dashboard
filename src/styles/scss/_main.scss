@@ -117,7 +117,8 @@
         align-items: stretch;
 
         &__inner {
-          min-height: 500px;
+          flex: 1 !important;
+          min-height: max(50% - 0.5rem, 500px);
           max-height: 500px;
 
           &:only-child {

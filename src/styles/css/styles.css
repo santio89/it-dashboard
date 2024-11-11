@@ -378,7 +378,8 @@ select:disabled {
   align-items: stretch;
 }
 .mainContainer .main-content.expanded .site-section__inner {
-  min-height: 500px;
+  flex: 1 !important;
+  min-height: max(50% - 0.5rem, 500px);
   max-height: 500px;
 }
 .mainContainer .main-content.expanded .site-section__inner:only-child {
@@ -556,7 +557,9 @@ select:disabled {
 }
 @media (max-width: 792px) {
   .site-section__inner {
-    min-height: 500px;
+    flex: 1 !important;
+    /* min-height of both panels: 50% - gap/2 */
+    min-height: max(50% - 0.5rem, 500px);
     max-height: 500px;
   }
   .site-section__inner:only-child {
