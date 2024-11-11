@@ -477,10 +477,18 @@
       height: 100%;
       position: relative;
 
+      .full-bg {
+        filter: grayscale(1);
+      }
+
       &:hover,
       &:focus-visible {
         outline: 1px solid white;
         background-color: var(--main-color-op2);
+
+        .full-bg {
+          filter: grayscale(0);
+        }
       }
 
       h2 {

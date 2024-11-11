@@ -216,6 +216,7 @@ select:disabled {
   max-height: 100%;
   pointer-events: none;
   z-index: -1;
+  transition: 200ms ease-in-out;
 
   @keyframes moveBackground {
     0% {
@@ -262,22 +263,23 @@ select:disabled {
     height: 100%;
     background-image: radial-gradient(
         circle,
-        rgba(0, 191, 255, 0.9) 0%,
-        rgba(99, 45, 249, 0.7) 40%,
+        rgba(65, 92, 128, 0.9) 0%,
+        rgba(62, 77, 167, 0.7) 40%,
         rgba(0, 191, 255, 0.5) 70%,
         rgba(108, 86, 255, 0.2) 100%
       ),
       radial-gradient(
         circle,
         rgba(92, 160, 255, 0.7) 0%,
-        rgba(64, 48, 241, 0.7) 50%,
+        rgba(53, 75, 111, 0.7) 50%,
         rgba(178, 101, 245, 0.2) 100%
       );
     background-position: top left, bottom right;
     background-size: 200% 200%;
     filter: blur(250px);
     z-index: -2;
-    animation: moveBackground 100s ease-in-out infinite;
+    animation: moveBackground 40s ease-in-out infinite;
+    transition: 200ms ease-in-out;
   }
 
   &::after {
@@ -289,20 +291,21 @@ select:disabled {
     height: 100%;
     background-image: radial-gradient(
         circle,
-        rgba(30, 144, 255, 0.9) 0%,
-        rgba(0, 0, 255, 0.7) 40%,
+        rgba(80, 54, 230, 0.9) 0%,
+        rgba(35, 35, 138, 0.7) 40%,
         rgba(30, 144, 255, 0.3) 100%
       ),
       radial-gradient(
         circle,
-        rgba(135, 206, 250, 0.6) 0%,
-        rgba(0, 191, 255, 0.6) 50%,
+        rgba(93, 140, 250, 0.6) 0%,
+        rgba(46, 99, 234, 0.6) 50%,
         rgba(135, 206, 250, 0.2) 100%
       );
     background-position: top right, bottom left;
     background-size: 200% 200%;
     filter: blur(250px);
     z-index: -3;
-    animation: moveBackgroundSecondary 120s ease-in-out infinite;
+    animation: moveBackgroundSecondary 60s ease-in-out infinite;
+    transition: 200ms ease-in-out;
   }
 }
