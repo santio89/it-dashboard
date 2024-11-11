@@ -65,12 +65,12 @@ export default function Modal() {
       onStart={() => { setIsDragged(true) }}
       onStop={() => { setIsDragged(false) }} >
       <dialog className={`mainModalWrapper ${isDragged && "is-dragged"}`} ref={modal} tabIndex={0}>
+        <div className="full-bg"></div>
         <div className="mainModal">
           <div className="mainModal__data">
             {(modalData?.userData || modalData?.newUser) && <ContactsDataModal modalData={modalData} />}
             {(modalData?.deviceData || modalData?.newDevice) && <DevicesDataModal modalData={modalData} />}
             {(modalData?.tdlData || modalData?.newTask) && <TDLDataModal modalData={modalData} />}
-
           </div>
           <button className='mainModal__close' onClick={() => dispatch(setModal({ active: false, data: {} }))}>Close</button>
         </div>
