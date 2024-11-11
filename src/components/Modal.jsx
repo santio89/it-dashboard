@@ -65,7 +65,6 @@ export default function Modal() {
       onStart={() => { setIsDragged(true) }}
       onStop={() => { setIsDragged(false) }} >
       <dialog className={`mainModalWrapper ${isDragged && "is-dragged"}`} ref={modal} tabIndex={0}>
-        <div className="full-bg"></div>
         <div className="mainModal">
           <div className="mainModal__data">
             {(modalData?.userData || modalData?.newUser) && <ContactsDataModal modalData={modalData} />}
