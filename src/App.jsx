@@ -19,9 +19,7 @@ function App() {
   const Layout = () => (
     <>
       <Nav rootTheme={rootTheme} user={user} />
-      <div className="mainContainer">
-        <Outlet />
-      </div>
+      <Outlet />
     </>
   );
 
