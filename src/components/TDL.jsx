@@ -116,24 +116,24 @@ export default function TDL({ user }) {
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
-                <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>{listSelected}</button>
+                <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
               }
               {
                 listPickerOpen &&
                 <div className="listPickerOptions">
-                  <button className={`listPicker notSelected`}
+                  <button className={`listPicker ${listSelected !== "personal" && "notSelected"}`}
                     onClick={() => {
                       selectList("personal")
                     }}>
                     Personal
                   </button>
-                  <button className={`listPicker notSelected`}
+                  <button className={`listPicker ${listSelected !== "company" && "notSelected"}`}
                     onClick={() => {
                       selectList("company")
                     }}>
                     Company
                   </button>
-                  <button className={`listPicker notSelected`}
+                  <button className={`listPicker ${listSelected !== "all" && "notSelected"}`}
                     onClick={() => {
                       selectList("all")
                     }}>
