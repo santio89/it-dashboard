@@ -479,11 +479,11 @@
       align-items: center;
       overflow: hidden;
       backdrop-filter: blur(100px);
-      background-color: rgba(120, 120, 120, 0.2);
       color: var(--white);
       outline: 1px solid var(--main-gray-op-dark);
       font-size: 1rem;
       padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
+      background: transparent;
 
       .full-bg {
         opacity: 0;
@@ -492,7 +492,7 @@
       &:hover,
       &:focus-visible {
         outline: 1px solid white;
-        background-color: var(--main-color-op2);
+        background-color: var(--main-color-op);
 
         .full-bg {
           opacity: 1;
