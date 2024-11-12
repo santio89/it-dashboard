@@ -558,7 +558,7 @@ select:disabled {
   background: none;
   outline: none;
   backdrop-filter: none;
-  min-height: 100%;
+  min-height: 100% !important;
 }
 .site-section__inner.admin {
   min-height: 100%;
