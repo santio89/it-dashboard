@@ -18,6 +18,22 @@
     border-radius: 12px;
   }
 
+  &:has(.site-section__homeCard) {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: min(5%, 2rem);
+    place-content: start;
+
+    @media (max-width: $tablet-breakpoint) {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 250px;
+    }
+  }
+
   .btnWrapper {
     width: 100%;
     display: flex;
@@ -105,13 +121,6 @@
     background-color: rgba(120, 120, 120, 0.2);
     outline: 1px solid var(--main-gray-op-dark);
 
-    &.home {
-      background: none;
-      outline: none;
-      backdrop-filter: none;
-      min-height: 100% !important;
-    }
-
     &.admin {
       min-height: 100%;
     }
@@ -124,11 +133,12 @@
       background: var(--main-color-op);
     }
 
-    @media (max-width: $tablet-breakpoint) {
-      flex: 1 !important;
-      /* min-height of both panels: 50% - gap/2 */
-      min-height: max(50% - 0.5rem, 500px);
-      max-height: 500px;
+    &:not(.site-section__homeCard) {
+      @media (max-width: $tablet-breakpoint) {
+        flex: 1 !important;
+        min-height: max(50% - 0.5rem, 500px);
+        max-height: 500px;
+      }
     }
   }
 
@@ -449,18 +459,19 @@
     }
   }
 
-  &__homeCards {
-    width: 100%;
-    height: 100%;
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: min(5%, 2rem);
-    place-content: center;
-    place-items: center;
+  &__homeCard {
+    position: relative;
 
-    .homeCard {
+    @media (max-width: $tablet-breakpoint) {
+      min-height: 250px;
+      max-height: 250px;
+    }
+
+    .homeCard-anchor {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
       border-radius: 1rem;
       display: flex;
       flex-direction: column;
@@ -473,9 +484,6 @@
       outline: 1px solid var(--main-gray-op-dark);
       font-size: 1rem;
       padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
-      width: 100%;
-      height: 100%;
-      position: relative;
 
       .full-bg {
         opacity: 0;
@@ -501,11 +509,6 @@
         font-size: 1em;
         font-weight: 400;
       }
-    }
-
-    @media (max-width: $tablet-breakpoint) {
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(4, 1fr);
     }
   }
 }

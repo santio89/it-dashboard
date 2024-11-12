@@ -370,13 +370,6 @@ select:disabled {
   overflow-x: hidden;
   overflow-y: auto;
   transition: background-color 400ms ease-in-out, flex-basis 200ms ease-in-out;
-  /* &.expanded {
-    flex-basis: clamp(300px, 300px + 2vw, 30%);
-
-    @media (max-width: $tablet-breakpoint) {
-      flex-basis: clamp(80px, 80px + 2vw, 10%);
-    }
-  } */
 }
 .mainContainer .side-panel .nav-link-disabled {
   pointer-events: none;
@@ -456,17 +449,17 @@ select:disabled {
   justify-content: start;
   align-items: stretch;
 }
-.mainContainer .main-content.expanded .site-section__inner {
-  flex: 1 !important;
-  min-height: max(50% - 0.5rem, 500px);
-  max-height: 500px;
-}
-.mainContainer .main-content.expanded .site-section__homeCards {
+.mainContainer .main-content.expanded .site-section:has(.site-section__homeCard) {
   grid-template-columns: 1fr;
   grid-auto-rows: 250px;
   place-content: start;
 }
-.mainContainer .main-content.expanded .site-section__homeCards .homeCard {
+.mainContainer .main-content.expanded .site-section__inner:not(.site-section__homeCard) {
+  flex: 1 !important;
+  min-height: max(50% - 0.5rem, 500px);
+  max-height: 500px;
+}
+.mainContainer .main-content.expanded .site-section__inner.site-section__homeCard {
   min-height: 250px;
   max-height: 250px;
 }
@@ -489,6 +482,22 @@ select:disabled {
   width: 12px;
   height: 12px;
   border-radius: 12px;
+}
+.site-section:has(.site-section__homeCard) {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: min(5%, 2rem);
+  place-content: start;
+}
+@media (max-width: 792px) {
+  .site-section:has(.site-section__homeCard) {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 250px;
+  }
 }
 .site-section .btnWrapper {
   width: 100%;
@@ -563,12 +572,6 @@ select:disabled {
   background-color: rgba(120, 120, 120, 0.2);
   outline: 1px solid var(--main-gray-op-dark);
 }
-.site-section__inner.home {
-  background: none;
-  outline: none;
-  backdrop-filter: none;
-  min-height: 100% !important;
-}
 .site-section__inner.admin {
   min-height: 100%;
 }
@@ -579,9 +582,8 @@ select:disabled {
   background: var(--main-color-op);
 }
 @media (max-width: 792px) {
-  .site-section__inner {
+  .site-section__inner:not(.site-section__homeCard) {
     flex: 1 !important;
-    /* min-height of both panels: 50% - gap/2 */
     min-height: max(50% - 0.5rem, 500px);
     max-height: 500px;
   }
@@ -868,18 +870,20 @@ select:disabled {
   align-items: center;
   padding: 0.5rem;
 }
-.site-section__homeCards {
+.site-section__homeCard {
+  position: relative;
+}
+@media (max-width: 792px) {
+  .site-section__homeCard {
+    min-height: 250px;
+    max-height: 250px;
+  }
+}
+.site-section__homeCard .homeCard-anchor {
   width: 100%;
   height: 100%;
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: min(5%, 2rem);
-  place-content: center;
-  place-items: center;
-}
-.site-section__homeCards .homeCard {
+  position: absolute;
+  inset: 0;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -892,34 +896,25 @@ select:disabled {
   outline: 1px solid var(--main-gray-op-dark);
   font-size: 1rem;
   padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
-  width: 100%;
-  height: 100%;
-  position: relative;
 }
-.site-section__homeCards .homeCard .full-bg {
+.site-section__homeCard .homeCard-anchor .full-bg {
   opacity: 0;
 }
-.site-section__homeCards .homeCard:hover, .site-section__homeCards .homeCard:focus-visible {
+.site-section__homeCard .homeCard-anchor:hover, .site-section__homeCard .homeCard-anchor:focus-visible {
   outline: 1px solid white;
   background-color: var(--main-color-op2);
 }
-.site-section__homeCards .homeCard:hover .full-bg, .site-section__homeCards .homeCard:focus-visible .full-bg {
+.site-section__homeCard .homeCard-anchor:hover .full-bg, .site-section__homeCard .homeCard-anchor:focus-visible .full-bg {
   opacity: 1;
 }
-.site-section__homeCards .homeCard h2 {
+.site-section__homeCard .homeCard-anchor h2 {
   font-size: 2em;
   font-weight: 700;
   text-transform: uppercase;
 }
-.site-section__homeCards .homeCard p {
+.site-section__homeCard .homeCard-anchor p {
   font-size: 1em;
   font-weight: 400;
-}
-@media (max-width: 792px) {
-  .site-section__homeCards {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, 1fr);
-  }
 }
 
 /* start modal */
