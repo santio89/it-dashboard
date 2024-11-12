@@ -25,7 +25,7 @@ export default function DevicesDataModal({ modalData }) {
   const [newDeviceModel, setNewDeviceModel] = useState("")
   const [newDeviceSn, setNewDeviceSn] = useState("")
   const [newDeviceComment, setNewDeviceComment] = useState("")
-  const [newDeviceCategory, setNewDeviceCategory] = useState(modalData?.listSelected == "all" ? "personal" : modalData?.listSelected)
+  const [newDeviceCategory, setNewDeviceCategory] = useState("personal")
 
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)

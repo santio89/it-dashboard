@@ -25,7 +25,7 @@ export default function ContactsDataModal({ modalData }) {
   const [newUserTel, setNewUserTel] = useState("")
   const [newUserRole, setNewUserRole] = useState("")
   const [newUserComment, setNewUserComment] = useState("")
-  const [newUserCategory, setNewUserCategory] = useState(modalData?.listSelected == "all" ? "personal" : modalData?.listSelected)
+  const [newUserCategory, setNewUserCategory] = useState("personal")
 
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)

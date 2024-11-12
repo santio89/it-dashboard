@@ -11,9 +11,9 @@ export default function TDLDataModal({ modalData }) {
 
   const textInput = useRef()
 
-  const [newTaskCategory, setNewTaskCategory] = useState(modalData?.listSelected == "all" ? "personal" : modalData?.listSelected)
-  const [newTaskPriority, setNewTaskPriority] = useState("medium")
   const [listPickerOpen, setListPickerOpen] = useState(false)
+  const [newTaskPriority, setNewTaskPriority] = useState("medium")
+  const [newTaskCategory, setNewTaskCategory] = useState("personal")
 
 
   const selectList = list => {
