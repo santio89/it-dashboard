@@ -485,7 +485,7 @@
       padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
       background: transparent;
 
-      .full-bg {
+      .gradient-canvas{
         opacity: 0;
       }
 
@@ -494,8 +494,8 @@
         outline: 1px solid white;
         background-color: var(--main-color-op);
 
-        .full-bg {
-          opacity: 1;
+        .gradient-canvas{
+          opacity: .9;
         }
       }
 
