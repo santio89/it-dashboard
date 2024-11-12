@@ -461,6 +461,15 @@ select:disabled {
   min-height: max(50% - 0.5rem, 500px);
   max-height: 500px;
 }
+.mainContainer .main-content.expanded .site-section__homeCards {
+  grid-template-columns: 1fr;
+  grid-auto-rows: 500px;
+  place-content: start;
+}
+.mainContainer .main-content.expanded .site-section__homeCards .homeCard {
+  min-height: 500px;
+  max-height: 500px;
+}
 
 .site-section {
   padding: clamp(0.5rem, 0.5rem + 2vw, 2rem);

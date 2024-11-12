@@ -121,6 +121,17 @@
           min-height: max(50% - 0.5rem, 500px);
           max-height: 500px;
         }
+
+        &__homeCards {
+          grid-template-columns: 1fr;
+          grid-auto-rows: 500px;
+          place-content: start;
+
+          .homeCard {
+            min-height: 500px;
+            max-height: 500px;
+          }
+        }
       }
     }
   }
