@@ -568,7 +568,6 @@ select:disabled {
   outline: none;
   backdrop-filter: none;
   min-height: 100% !important;
-  padding: 0;
 }
 .site-section__inner.admin {
   min-height: 100%;
