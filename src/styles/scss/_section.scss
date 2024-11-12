@@ -122,7 +122,7 @@
     outline: 1px solid var(--main-gray-op-dark);
 
     &.admin {
-      min-height: 100%;
+      min-height: 100% !important;
     }
 
     &::-webkit-scrollbar-track {

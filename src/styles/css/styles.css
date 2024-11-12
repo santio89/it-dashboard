@@ -572,7 +572,7 @@ select:disabled {
   outline: 1px solid var(--main-gray-op-dark);
 }
 .site-section__inner.admin {
-  min-height: 100%;
+  min-height: 100% !important;
 }
 .site-section__inner::-webkit-scrollbar-track {
   background: transparent;
