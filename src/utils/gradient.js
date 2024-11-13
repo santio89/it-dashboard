@@ -73,7 +73,7 @@ function normalizeColor(hexCode) {
                 function getUniformVariableDeclarations(uniforms, type) {
                   return Object.entries(uniforms)
                     .map(([uniform, value]) =>
-                      value.getDeclaration(uniform, type)
+                      value?.getDeclaration(uniform, type)
                     )
                     .join("\n");
                 }
@@ -176,7 +176,7 @@ function normalizeColor(hexCode) {
                 if (uniform.excludeFrom !== type) {
                   if ("array" === uniform.type)
                     return (
-                      uniform.value[0].getDeclaration(
+                      uniform.value[0]?.getDeclaration(
                         name,
                         type,
                         uniform.value.length
@@ -193,7 +193,7 @@ function normalizeColor(hexCode) {
                         Object.entries(uniform.value)
                           .map(([name, uniform]) =>
                             uniform
-                              .getDeclaration(name, type)
+                              ?.getDeclaration(name, type)
                               .replace(/^uniform/, "")
                           )
                           .join("") +
