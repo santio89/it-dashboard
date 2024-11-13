@@ -40,8 +40,8 @@ html ::selection {
   --main-gray-dark: rgb(120, 120, 120);
   --main-gray-op: rgba(180, 180, 180, 0.8);
   --main-gray-op-dark: rgba(100, 100, 100, 0.8);
-  --main-color: rgb(50, 57, 90);
-  --main-color-op: rgba(90, 102, 163, 0.5);
+  --main-color: rgb(41, 45, 55);
+  --main-color-op: rgba(59, 67, 82, 0.5);
   --main-color-bg: rgb(40, 40, 40);
   --main-color-side: rgb(50, 50, 50);
   --main-text: rgb(250, 250, 250);
@@ -851,7 +851,7 @@ select:disabled {
 }
 .site-section__homeCard {
   position: relative;
-  transition: 200ms ease-in-out;
+  transition: outline 200ms ease-in-out, background-color 200ms ease-in-out;
 }
 @media (max-width: 792px) {
   .site-section__homeCard {
@@ -881,6 +881,7 @@ select:disabled {
   background: transparent;
   outline: 1px solid white;
   text-shadow: 0 0 0 transparent;
+  transition: 200ms ease-in-out;
 }
 .site-section__homeCard .homeCard-anchor:hover, .site-section__homeCard .homeCard-anchor:focus-visible {
   text-shadow: 0 0 4rem var(--white);

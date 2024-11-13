@@ -460,7 +460,7 @@
 
   &__homeCard {
     position: relative;
-    transition: 200ms ease-in-out;
+    transition: outline 200ms ease-in-out, background-color 200ms ease-in-out;
 
     @media (max-width: $tablet-breakpoint) {
       min-height: 250px;
@@ -490,6 +490,7 @@
       background: transparent;
       outline: 1px solid white;
       text-shadow: 0 0 0 transparent;
+      transition: 200ms ease-in-out;
 
       &:hover,
       &:focus-visible {
