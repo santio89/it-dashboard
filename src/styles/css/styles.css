@@ -289,6 +289,7 @@ select:disabled {
   color: var(--white);
   background: none;
   text-shadow: 0 0 0 transparent;
+  text-align: start;
 }
 .mainHeader .logo:hover, .mainHeader .logo:focus-visible {
   text-shadow: 0 0 1rem var(--white);
