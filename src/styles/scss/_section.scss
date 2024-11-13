@@ -460,10 +460,16 @@
 
   &__homeCard {
     position: relative;
+    transition: 200ms ease-in-out;
 
     @media (max-width: $tablet-breakpoint) {
       min-height: 250px;
       max-height: 250px;
+    }
+
+    &:has(.homeCard-anchor:is(:hover, :focus-visible)) {
+      outline: 1px solid white;
+      background-color: rgba(120, 120, 120, 0.5);
     }
 
     .homeCard-anchor {
@@ -476,32 +482,18 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
       backdrop-filter: blur(100px);
       color: var(--white);
       outline: 1px solid var(--main-gray-op-dark);
       font-size: 1rem;
       padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
       background: transparent;
-
-      .bg-gradient {
-        filter: grayscale(1);
-        opacity: 0;
-      }
+      outline: 1px solid white;
+      text-shadow: 0 0 0 transparent;
 
       &:hover,
       &:focus-visible {
-        outline: 1px solid white;
-        background-color: var(--main-color-op);
-
-        .bg-gradient {
-          filter: grayscale(0);
-          opacity: 0.9;
-
-          &::before {
-            animation: gradient 10s ease-in-out infinite;
-          }
-        }
+        text-shadow: 0 0 4rem var(--white);
       }
 
       h2 {

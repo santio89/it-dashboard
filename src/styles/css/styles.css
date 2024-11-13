@@ -224,10 +224,10 @@ select:disabled {
   pointer-events: none;
   z-index: -1;
   transition: 200ms ease-in-out;
-  --gradient-color-1: var(--main-color);
-  --gradient-color-2: #3e62a4;
-  --gradient-color-3: #5a7fb3;
-  --gradient-color-4: var(--main-color);
+  --gradient-color-1: var(--main-color-op);
+  --gradient-color-2: transparent;
+  filter: grayscale(1);
+  opacity: 0;
 }
 @keyframes gradient {
   0% {
@@ -247,13 +247,12 @@ select:disabled {
   margin: auto;
   width: 100%;
   height: 100%;
-  filter: blur(100px);
+  filter: blur(200px);
   z-index: -2;
   overflow: hidden;
-  transition: 200ms ease-in-out;
-  background: linear-gradient(-45deg, var(--gradient-color-1), var(--gradient-color-2), var(--gradient-color-3), var(--gradient-color-4));
-  background-size: 400%;
-  background-position: 0% 50%;
+  transition: 400ms ease-in-out;
+  background: linear-gradient(45deg, var(--gradient-color-1), var(--gradient-color-2));
+  background-size: 200%;
 }
 
 /* bg gradient canvas */
@@ -852,12 +851,17 @@ select:disabled {
 }
 .site-section__homeCard {
   position: relative;
+  transition: 200ms ease-in-out;
 }
 @media (max-width: 792px) {
   .site-section__homeCard {
     min-height: 250px;
     max-height: 250px;
   }
+}
+.site-section__homeCard:has(.homeCard-anchor:is(:hover, :focus-visible)) {
+  outline: 1px solid white;
+  background-color: rgba(120, 120, 120, 0.5);
 }
 .site-section__homeCard .homeCard-anchor {
   width: 100%;
@@ -869,28 +873,17 @@ select:disabled {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   backdrop-filter: blur(100px);
   color: var(--white);
   outline: 1px solid var(--main-gray-op-dark);
   font-size: 1rem;
   padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
   background: transparent;
-}
-.site-section__homeCard .homeCard-anchor .bg-gradient {
-  filter: grayscale(1);
-  opacity: 0;
+  outline: 1px solid white;
+  text-shadow: 0 0 0 transparent;
 }
 .site-section__homeCard .homeCard-anchor:hover, .site-section__homeCard .homeCard-anchor:focus-visible {
-  outline: 1px solid white;
-  background-color: var(--main-color-op);
-}
-.site-section__homeCard .homeCard-anchor:hover .bg-gradient, .site-section__homeCard .homeCard-anchor:focus-visible .bg-gradient {
-  filter: grayscale(0);
-  opacity: 0.9;
-}
-.site-section__homeCard .homeCard-anchor:hover .bg-gradient::before, .site-section__homeCard .homeCard-anchor:focus-visible .bg-gradient::before {
-  animation: gradient 10s ease-in-out infinite;
+  text-shadow: 0 0 4rem var(--white);
 }
 .site-section__homeCard .homeCard-anchor h2 {
   font-size: 2em;
