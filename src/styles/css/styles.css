@@ -225,10 +225,10 @@ select:disabled {
   z-index: -1;
   transition: 200ms ease-in-out;
   /* bg vars */
-  --gradient-color-1: #34438e;
-  --gradient-color-2: #517dcf;
-  --gradient-color-3: #5991e0;
-  --gradient-color-4: #8ccbfe;
+  --gradient-color-1: #24306e;
+  --gradient-color-2: #3e62a4;
+  --gradient-color-3: #5a7fb3;
+  --gradient-color-4: #2e417e;
 }
 @keyframes gradient {
   0% {
