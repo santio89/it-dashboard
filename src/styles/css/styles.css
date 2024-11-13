@@ -499,14 +499,13 @@ select:disabled {
   border-radius: 12px;
 }
 .site-section:has(.site-section__homeCard) {
-  width: 100%;
-  height: 100%;
   flex: 1;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: min(5%, 2rem);
   place-content: start;
+  place-items: center;
 }
 @media (max-width: 792px) {
   .site-section:has(.site-section__homeCard) {
