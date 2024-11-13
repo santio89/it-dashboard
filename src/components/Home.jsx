@@ -1,40 +1,49 @@
 import { useEffect, useRef, useMemo } from "react";
 import { Link } from "react-router-dom"
-/* import { Gradient } from "../utils/gradient" */
+
+
+/* 
+import { Gradient } from "../utils/gradient" 
+-  
+CANVAS GRADIENT ELEMENT
+<canvas ref={gradientRefA} className="gradient-canvas canvas-1" data-transition-in></canvas>
+-
+
+const gradientRefA = useRef()
+  const gradientRefB = useRef()
+  const gradientRefC = useRef()
+  const gradientRefD = useRef()
+  const gradientA = useMemo(() => new Gradient(), [])
+  const gradientB = useMemo(() => new Gradient(), [])
+  const gradientC = useMemo(() => new Gradient(), [])
+  const gradientD = useMemo(() => new Gradient(), [])
+
+  useEffect(() => {
+    if (gradientRefA.current) {
+      gradientA.initGradient(".canvas-1");
+    }
+  }, [gradientA, gradientRefA]);
+
+  useEffect(() => {
+    if (gradientRefB.current) {
+      gradientB.initGradient(".canvas-2");
+    }
+  }, [gradientB, gradientRefB]);
+
+  useEffect(() => {
+    if (gradientRefC.current) {
+      gradientC.initGradient(".canvas-3");
+    }
+  }, [gradientC, gradientRefC]);
+
+  useEffect(() => {
+    if (gradientRefD.current) {
+      gradientD.initGradient(".canvas-4");
+    }
+  }, [gradientD, gradientRefD]); */
+
 
 export default function Home() {
-  /*   const gradientRefA = useRef()
-    const gradientRefB = useRef()
-    const gradientRefC = useRef()
-    const gradientRefD = useRef()
-    const gradientA = useMemo(() => new Gradient(), [])
-    const gradientB = useMemo(() => new Gradient(), [])
-    const gradientC = useMemo(() => new Gradient(), [])
-    const gradientD = useMemo(() => new Gradient(), [])
-  
-    useEffect(() => {
-      if (gradientRefA.current) {
-        gradientA.initGradient(".canvas-1");
-      }
-    }, [gradientA, gradientRefA]);
-  
-    useEffect(() => {
-      if (gradientRefB.current) {
-        gradientB.initGradient(".canvas-2");
-      }
-    }, [gradientB, gradientRefB]);
-  
-    useEffect(() => {
-      if (gradientRefC.current) {
-        gradientC.initGradient(".canvas-3");
-      }
-    }, [gradientC, gradientRefC]);
-  
-    useEffect(() => {
-      if (gradientRefD.current) {
-        gradientD.initGradient(".canvas-4");
-      }
-    }, [gradientD, gradientRefD]); */
 
   return (
     <>
