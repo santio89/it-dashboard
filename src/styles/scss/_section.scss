@@ -1,5 +1,5 @@
 .site-section {
-  padding: clamp(0.5rem, 0.5rem + 2vw, 2rem);
+  padding: clamp(0.5rem, 0.5rem + 4vw, 4rem);
   flex: 1;
   display: flex;
   flex-flow: row wrap;
@@ -464,8 +464,8 @@
     transition: outline 200ms ease-in-out, background-color 200ms ease-in-out;
     min-width: auto;
     min-height: auto;
-    width: 300px;
-    min-height: 140px;
+    width: 240px;
+    min-height: 120px;
     aspect-ratio: 16/9;
 
     &:has(.homeCard-anchor:is(:hover, :focus-visible)) {
