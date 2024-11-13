@@ -217,39 +217,21 @@ select:disabled {
   z-index: -1;
   transition: 200ms ease-in-out;
 
-  @keyframes moveBackground {
-    0% {
-      transform: translate(-50%, 50%) rotate(0deg);
-    }
-    25% {
-      transform: translate(-50%, -50%) rotate(-90deg);
-    }
-    50% {
-      transform: translate(50%, -50%) rotate(-180deg);
-    }
-    75% {
-      transform: translate(50%, 50%) rotate(-270deg);
-    }
-    100% {
-      transform: translate(-50%, 50%) rotate(0deg);
-    }
-  }
+  /* bg vars */
+  --gradient-color-1: #34438e;
+  --gradient-color-2: #517dcf;
+  --gradient-color-3: #5991e0;
+  --gradient-color-4: #8ccbfe;
 
-  @keyframes moveBackgroundSecondary {
+  @keyframes gradient {
     0% {
-      transform: translate(50%, -50%) rotate(0deg);
-    }
-    25% {
-      transform: translate(-50%, 50%) rotate(-90deg);
+      background-position: 0% 50%;
     }
     50% {
-      transform: translate(-50%, -50%) rotate(-180deg);
-    }
-    75% {
-      transform: translate(50%, 50%) rotate(-270deg);
+      background-position: 100% 50%;
     }
     100% {
-      transform: translate(50%, -50%) rotate(0deg);
+      background-position: 0% 50%;
     }
   }
 
@@ -260,61 +242,24 @@ select:disabled {
     margin: auto;
     width: 100%;
     height: 100%;
-    background-image: radial-gradient(
-        circle,
-        rgba(65, 92, 128, 0.9) 0%,
-        rgba(62, 77, 167, 0.7) 40%,
-        rgba(0, 191, 255, 0.5) 70%,
-        rgba(108, 86, 255, 0.2) 100%
-      ),
-      radial-gradient(
-        circle,
-        rgba(92, 160, 255, 0.7) 0%,
-        rgba(53, 75, 111, 0.7) 50%,
-        rgba(178, 101, 245, 0.2) 100%
-      );
-    background-position: top left, bottom right;
-    background-size: 200% 200%;
     filter: blur(200px);
     z-index: -2;
-    animation: moveBackground 40s ease-in-out infinite;
+    overflow: hidden;
     transition: 200ms ease-in-out;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(
-        circle,
-        rgba(80, 54, 230, 0.9) 0%,
-        rgba(35, 35, 138, 0.7) 40%,
-        rgba(30, 144, 255, 0.3) 100%
-      ),
-      radial-gradient(
-        circle,
-        rgba(93, 140, 250, 0.6) 0%,
-        rgba(46, 99, 234, 0.6) 50%,
-        rgba(135, 206, 250, 0.2) 100%
-      );
-    background-position: top right, bottom left;
-    background-size: 200% 200%;
-    filter: blur(200px);
-    z-index: -3;
-    animation: moveBackgroundSecondary 60s ease-in-out infinite;
-    transition: 200ms ease-in-out;
+    background: linear-gradient(
+      -45deg,
+      var(--gradient-color-1),
+      var(--gradient-color-2),
+      var(--gradient-color-3),
+      var(--gradient-color-4)
+    );
+    background-size: 200%;
+    background-position: 0% 50%;
   }
 }
 
 /* bg gradient canvas */
 .gradient-canvas {
-  --gradient-color-1: #32395a;
-  --gradient-color-2: #2e41a1;
-  --gradient-color-3: #83a2ff;
-  --gradient-color-4: #30386f;
   position: absolute;
   inset: 0;
   width: 100%;

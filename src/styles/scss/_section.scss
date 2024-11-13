@@ -485,6 +485,7 @@
       background: transparent;
 
       .bg-gradient {
+        filter: grayscale(1);
         opacity: 0;
       }
 
@@ -494,7 +495,12 @@
         background-color: var(--main-color-op);
 
         .bg-gradient {
+          filter: grayscale(0);
           opacity: 0.9;
+
+          &::before {
+            animation: gradient 10s ease-in-out infinite;
+          }
         }
       }
 
