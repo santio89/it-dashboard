@@ -216,10 +216,10 @@ select:disabled {
   pointer-events: none;
   z-index: -1;
   transition: 200ms ease-in-out;
-  --gradient-color-1: #24306e;
+  --gradient-color-1: var(--main-color);
   --gradient-color-2: #3e62a4;
   --gradient-color-3: #5a7fb3;
-  --gradient-color-4: #2e417e;
+  --gradient-color-4: var(--main-color);
 
   @keyframes gradient {
     0% {
@@ -258,10 +258,10 @@ select:disabled {
 
 /* bg gradient canvas */
 .gradient-canvas {
-  --gradient-color-1: #24306e;
+  --gradient-color-1: var(--main-color);
   --gradient-color-2: #3e62a4;
   --gradient-color-3: #5a7fb3;
-  --gradient-color-4: #2e417e;
+  --gradient-color-4: var(--main-color);
   position: absolute;
   inset: 0;
   width: 100%;
