@@ -40,28 +40,28 @@ export default function Home() {
     <>
       <div className="site-section__inner site-section__homeCard" >
         <Link className="homeCard-anchor" to="/contacts">
-          {/*  <canvas ref={gradientRefA} className="gradient-canvas canvas-1" data-transition-in></canvas> */}
+          <div className="bg-gradient"></div>
           <h2>Contacts</h2>
           <p>Manage contacts</p>
         </Link>
       </div>
       <div className="site-section__inner site-section__homeCard" >
         <Link className="homeCard-anchor" to="/devices">
-          {/*  <canvas ref={gradientRefB} className="gradient-canvas canvas-2" data-transition-in></canvas> */}
+          <div className="bg-gradient"></div>
           <h2>Devices</h2>
           <p>Manage devices</p>
         </Link>
       </div>
       <div className="site-section__inner site-section__homeCard" >
         <Link className="homeCard-anchor" to="/tdl">
-          {/*  <canvas ref={gradientRefC} className="gradient-canvas canvas-3" data-transition-in></canvas> */}
+          <div className="bg-gradient"></div>
           <h2>Tasks</h2>
           <p>Manage tasks</p>
         </Link>
       </div>
       <div className="site-section__inner site-section__homeCard" >
         <Link className="homeCard-anchor" to="/support">
-          {/*  <canvas ref={gradientRefD} className="gradient-canvas canvas-4" data-transition-in></canvas> */}
+          <div className="bg-gradient"></div>
           <h2>Support</h2>
           <p>Contact support</p>
         </Link>

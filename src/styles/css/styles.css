@@ -911,14 +911,14 @@ select:disabled {
   padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
   background: transparent;
 }
-.site-section__homeCard .homeCard-anchor .gradient-canvas {
+.site-section__homeCard .homeCard-anchor .bg-gradient {
   opacity: 0;
 }
 .site-section__homeCard .homeCard-anchor:hover, .site-section__homeCard .homeCard-anchor:focus-visible {
   outline: 1px solid white;
   background-color: var(--main-color-op);
 }
-.site-section__homeCard .homeCard-anchor:hover .gradient-canvas, .site-section__homeCard .homeCard-anchor:focus-visible .gradient-canvas {
+.site-section__homeCard .homeCard-anchor:hover .bg-gradient, .site-section__homeCard .homeCard-anchor:focus-visible .bg-gradient {
   opacity: 0.9;
 }
 .site-section__homeCard .homeCard-anchor h2 {
