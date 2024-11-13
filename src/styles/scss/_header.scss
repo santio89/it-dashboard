@@ -8,16 +8,17 @@
   position: sticky;
   top: 0;
   z-index: 2;
+  overflow: hidden;
 
   .logo {
     font-weight: 700;
     color: var(--white);
-    text-shadow: 1px 1px 0 var(--main-color);
+    background: none;
+    text-shadow: 0 0 0 transparent;
 
     &:hover,
     &:focus-visible {
-      color: var(--main-color);
-      text-shadow: 1px 1px 0 var(--main-color-light);
+      text-shadow: 0 0 1rem var(--white);
     }
   }
 
