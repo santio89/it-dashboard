@@ -176,7 +176,7 @@ function normalizeColor(hexCode) {
                 if (uniform.excludeFrom !== type) {
                   if ("array" === uniform.type)
                     return (
-                      uniform.value[0]?.getDeclaration(
+                      uniform.value[0].getDeclaration(
                         name,
                         type,
                         uniform.value.length
@@ -193,7 +193,7 @@ function normalizeColor(hexCode) {
                         Object.entries(uniform.value)
                           .map(([name, uniform]) =>
                             uniform
-                              ?.getDeclaration(name, type)
+                              .getDeclaration(name, type)
                               .replace(/^uniform/, "")
                           )
                           .join("") +
