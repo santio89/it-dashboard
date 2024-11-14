@@ -885,6 +885,9 @@ select:disabled {
 .site-section__homeCard .homeCard-anchor:hover h2, .site-section__homeCard .homeCard-anchor:focus-visible h2 {
   text-shadow: 0 0 2px var(--white);
 }
+.site-section__homeCard .homeCard-anchor:hover p, .site-section__homeCard .homeCard-anchor:focus-visible p {
+  text-shadow: 0 0 1px var(--white);
+}
 .site-section__homeCard .homeCard-anchor h2 {
   font-size: 2em;
   font-weight: 700;
