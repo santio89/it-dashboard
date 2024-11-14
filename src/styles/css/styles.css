@@ -272,7 +272,8 @@ select:disabled {
 }
 
 .mainHeader {
-  background: var(--main-color);
+  background: var(--main-color-bg);
+  border-bottom: 1px solid var(--main-gray-op-dark);
   width: 100%;
   padding: 0.5rem 2rem;
   display: flex;
@@ -283,10 +284,11 @@ select:disabled {
   z-index: 2;
   min-height: 54px;
   overflow: hidden;
+  transition: background-color 400ms ease-in-out;
 }
 .mainHeader .logo {
   font-weight: 700;
-  color: var(--white);
+  color: var(--main-text);
   background: none;
   text-shadow: 0 0 0 transparent;
   text-align: start;
@@ -309,16 +311,11 @@ select:disabled {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(240, 240, 240);
-}
-.mainHeader__btnContainer .themeBtn button svg {
-  filter: drop-shadow(0 0 4px rgb(240, 240, 240));
-}
-.mainHeader__btnContainer .themeBtn button:hover, .mainHeader__btnContainer .themeBtn button:focus-visible {
-  color: rgb(40, 40, 40);
+  color: var(--main-text);
+  background: transparent;
 }
 .mainHeader__btnContainer .themeBtn button:hover svg, .mainHeader__btnContainer .themeBtn button:focus-visible svg {
-  filter: drop-shadow(0 0 4px rgb(40, 40, 40));
+  filter: drop-shadow(0 0 4px var(--main-text));
 }
 .mainHeader .theme-clicked {
   animation: rotate-icon 400ms ease-in-out;

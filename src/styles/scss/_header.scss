@@ -1,5 +1,6 @@
 .mainHeader {
-  background: var(--main-color);
+  background: var(--main-color-bg);
+  border-bottom: 1px solid var(--main-gray-op-dark);
   width: 100%;
   padding: 0.5rem 2rem;
   display: flex;
@@ -10,10 +11,11 @@
   z-index: 2;
   min-height: 54px;
   overflow: hidden;
+  transition: background-color 400ms ease-in-out;
 
   .logo {
     font-weight: 700;
-    color: var(--white);
+    color: var(--main-text);
     background: none;
     text-shadow: 0 0 0 transparent;
     text-align: start;
@@ -39,18 +41,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color: rgb(240, 240, 240);
-
-        svg {
-          filter: drop-shadow(0 0 4px rgb(240, 240, 240));
-        }
+        color: var(--main-text);
+        background: transparent;
+     
 
         &:hover,
         &:focus-visible {
-          color: rgb(40, 40, 40);
 
           svg {
-            filter: drop-shadow(0 0 4px rgb(40, 40, 40));
+            filter: drop-shadow(0 0 4px var(--main-text));
           }
         }
       }
