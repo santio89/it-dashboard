@@ -42,13 +42,13 @@
     position: relative;
 
     button {
-      color: var(--main-color);
-      background: var(--main-color-light);
+      color: var(--white);
+      background: var(--main-color-mid);
 
       &:hover,
       &:focus-visible {
         color: var(--white);
-        background: var(--main-color-mid);
+        background: var(--main-color-op);
       }
     }
 

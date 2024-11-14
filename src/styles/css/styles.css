@@ -486,12 +486,12 @@ select:disabled {
   position: relative;
 }
 .site-section .btnWrapper button {
-  color: var(--main-color);
-  background: var(--main-color-light);
+  color: var(--white);
+  background: var(--main-color-mid);
 }
 .site-section .btnWrapper button:hover, .site-section .btnWrapper button:focus-visible {
   color: var(--white);
-  background: var(--main-color-mid);
+  background: var(--main-color-op);
 }
 .site-section .btnWrapper .listPickerWrapper {
   height: 25px;
