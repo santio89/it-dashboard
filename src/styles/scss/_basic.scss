@@ -190,7 +190,7 @@ select:disabled {
 
 /* loader */
 .loader {
-  color: var(--white);
+  color: var(--main-text);
   width: fit-content;
   font: inherit;
   padding-bottom: 8px;
@@ -216,10 +216,9 @@ select:disabled {
   pointer-events: none;
   z-index: -1;
   transition: 200ms ease-in-out;
+  filter: grayscale(1);
   --gradient-color-1: var(--main-color-op);
   --gradient-color-2: transparent;
-  filter: grayscale(1);
-  opacity: 0;
 
   @keyframes gradient {
     0% {
