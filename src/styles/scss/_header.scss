@@ -22,7 +22,7 @@
     text-align: start;
     position: relative;
 
-    &::after {
+    &::before {
       content: "";
       position: absolute;
       left: -58%;
@@ -31,7 +31,6 @@
       width: 100px;
       height: 4px;
       background-color: var(--main-color-op);
-      transition: 200ms ease-in-out;
     }
 
     &:hover,

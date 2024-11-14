@@ -292,7 +292,7 @@ select:disabled {
   text-align: start;
   position: relative;
 }
-.mainHeader .logo::after {
+.mainHeader .logo::before {
   content: "";
   position: absolute;
   left: -58%;
@@ -301,7 +301,6 @@ select:disabled {
   width: 100px;
   height: 4px;
   background-color: var(--main-color-op);
-  transition: 200ms ease-in-out;
 }
 .mainHeader .logo:hover, .mainHeader .logo:focus-visible {
   text-shadow: 0 0 2px var(--main-text);
