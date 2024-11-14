@@ -282,7 +282,8 @@ select:disabled {
   position: sticky;
   top: 0;
   z-index: 2;
-  height: 56px;
+  min-height: 56px;
+  max-height: 56px;
   overflow: hidden;
   transition: background-color 400ms ease-in-out;
 }
