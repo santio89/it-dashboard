@@ -857,10 +857,11 @@ select:disabled {
   width: 240px;
   min-height: 120px;
   aspect-ratio: 16/9;
+  background-color: var(--main-color);
 }
 .site-section__homeCard:has(.homeCard-anchor:is(:hover, :focus-visible)) {
   outline: 1px solid white;
-  background-color: var(--main-color);
+  background-color: var(--main-color-mid);
 }
 .site-section__homeCard .homeCard-anchor {
   width: 100%;
@@ -881,6 +882,9 @@ select:disabled {
   outline: 1px solid white;
   text-shadow: 0 0 0 transparent;
   transition: 200ms ease-in-out;
+}
+.site-section__homeCard .homeCard-anchor:hover, .site-section__homeCard .homeCard-anchor:focus-visible {
+  background-color: var(--main-color-op);
 }
 .site-section__homeCard .homeCard-anchor:hover h2, .site-section__homeCard .homeCard-anchor:focus-visible h2 {
   text-shadow: 0 0 2px var(--white);

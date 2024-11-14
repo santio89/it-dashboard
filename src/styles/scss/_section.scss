@@ -467,10 +467,11 @@
     width: 240px;
     min-height: 120px;
     aspect-ratio: 16/9;
+    background-color: var(--main-color);
 
     &:has(.homeCard-anchor:is(:hover, :focus-visible)) {
       outline: 1px solid white;
-      background-color: var(--main-color);
+      background-color: var(--main-color-mid);
     }
 
     .homeCard-anchor {
@@ -495,6 +496,8 @@
 
       &:hover,
       &:focus-visible {
+        background-color: var(--main-color-op);
+
         h2 {
           text-shadow: 0 0 2px var(--white);
         }
