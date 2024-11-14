@@ -468,10 +468,8 @@
     aspect-ratio: 16/9;
     transition: outline-color 200ms ease-in-out,
       background-color 200ms ease-in-out;
-    background-image: linear-gradient(
-      var(--main-color-op) 10%,
-      transparent 10%
-    );
+    background-image: linear-gradient(var(--main-color-op) 10%, transparent 10%),
+      linear-gradient(360deg, var(--main-color-op) 10%, transparent 10%);
 
     &:has(.homeCard-anchor:is(:hover, :focus-visible)) {
       outline: 1px solid var(--main-text);
