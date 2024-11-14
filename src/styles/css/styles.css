@@ -290,9 +290,21 @@ select:disabled {
   background: none;
   text-shadow: 0 0 0 transparent;
   text-align: start;
+  position: relative;
+}
+.mainHeader .logo::after {
+  content: "";
+  position: absolute;
+  left: -58%;
+  top: 50%;
+  translate: 0 -50%;
+  width: 100px;
+  height: 4px;
+  background-color: var(--main-color);
+  transition: 200ms ease-in-out;
 }
 .mainHeader .logo:hover, .mainHeader .logo:focus-visible {
-  text-shadow: 0 0 2px var(--white);
+  text-shadow: 0 0 2px var(--main-text);
 }
 .mainHeader__btnContainer {
   display: flex;
