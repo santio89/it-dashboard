@@ -73,8 +73,6 @@ option {
   font: inherit;
   letter-spacing: inherit;
   word-spacing: inherit;
-  color: var(--white);
-  background: var(--main-color);
   padding: 0.5rem 1rem;
   cursor: pointer;
   text-decoration: none;
@@ -85,6 +83,8 @@ option {
   text-wrap: balance;
   border-radius: 0.5rem;
   transition: 200ms ease-in-out;
+  background: var(--main-color);
+  color: var(--white);
 }
 button:hover, button:focus-visible,
 a:hover,
@@ -97,8 +97,8 @@ select:hover,
 select:focus-visible,
 option:hover,
 option:focus-visible {
-  color: var(--main-color);
   background: var(--main-color-light);
+  color: var(--black);
 }
 button:focus-visible,
 a:focus-visible,
@@ -118,7 +118,6 @@ option {
   outline: none;
   background: none;
   font: inherit;
-  color: inherit;
   color: var(--main-color-mid);
   background: var(--main-color-op);
   padding: 0.5rem 1rem;
@@ -638,10 +637,10 @@ select:disabled {
   text-transform: capitalize;
   font-size: 12px;
   transition: none;
+  color: var(--white);
 }
 .site-section__list ul.tdl-list li .listPickerWrapper button:hover, .site-section__list ul.tdl-list li .listPickerWrapper button:focus-visible, .site-section__list ul.tdl-list li .listPickerWrapper button.selected {
-  background: var(--main-color);
-  color: var(--main-color-light);
+  background: var(--main-color-mid);
 }
 .site-section__list ul.tdl-list li .listPickerWrapper button.pickerOpen:nth-child(1) {
   border-radius: 0 0 0 0.5rem;
@@ -680,8 +679,8 @@ select:disabled {
 .site-section__list ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button:hover, .site-section__list ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button:focus-visible,
 .site-section__list ul.tdl-list li div.tdl-btnContainer .tdl-openModal button:hover,
 .site-section__list ul.tdl-list li div.tdl-btnContainer .tdl-openModal button:focus-visible {
-  background: var(--main-color);
-  color: var(--main-color-light);
+  background: var(--main-color-mid);
+  color: var(--white);
 }
 .site-section__list ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns.deleteMode,
 .site-section__list ul.tdl-list li div.tdl-btnContainer .tdl-openModal.deleteMode {
@@ -700,7 +699,7 @@ select:disabled {
   width: 105px;
 }
 .site-section__list ul.tdl-list li div.tdl-btnContainer .tdl-openModal.editPriority button.selected {
-  background: var(--main-color);
+  background: var(--main-color-mid);
 }
 .site-section__list ul.tdl-list li div.tdl-btnContainer .tdl-openModal button {
   width: 50px;
@@ -780,9 +779,9 @@ select:disabled {
 .site-section__list ul.tdl-list li textarea.taskOption {
   outline: 2px solid var(--main-color-op);
   border-radius: 0 0 0 0.5rem;
-  background-color: var(--main-color-light);
-  color: var(--main-color);
   min-height: 120px;
+  background-color: var(--main-color-light);
+  color: var(--black);
 }
 .site-section__list ul.tdl-list li button.deleteMode,
 .site-section__list ul.tdl-list li textarea.deleteMode {
@@ -790,7 +789,7 @@ select:disabled {
 }
 .site-section__list ul.tdl-list li button.editMode,
 .site-section__list ul.tdl-list li textarea.editMode {
-  outline: 2px dashed var(--main-color-light);
+  outline: 2px dashed var(--main-gray-op);
 }
 .site-section__list ul.tdl-list li button::-webkit-scrollbar-thumb,
 .site-section__list ul.tdl-list li textarea::-webkit-scrollbar-thumb {

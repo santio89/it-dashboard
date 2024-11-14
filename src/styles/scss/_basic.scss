@@ -81,8 +81,6 @@ option {
   font: inherit;
   letter-spacing: inherit;
   word-spacing: inherit;
-  color: var(--white);
-  background: var(--main-color);
   padding: 0.5rem 1rem;
   cursor: pointer;
   text-decoration: none;
@@ -93,11 +91,13 @@ option {
   text-wrap: balance;
   border-radius: 0.5rem;
   transition: 200ms ease-in-out;
+  background: var(--main-color);
+  color: var(--white);
 
   &:hover,
   &:focus-visible {
-    color: var(--main-color);
     background: var(--main-color-light);
+    color: var(--black);
   }
 
   &:focus-visible {
@@ -114,7 +114,6 @@ option {
   outline: none;
   background: none;
   font: inherit;
-  color: inherit;
   color: var(--main-color-mid);
   background: var(--main-color-op);
   padding: 0.5rem 1rem;
