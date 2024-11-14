@@ -291,7 +291,7 @@ select:disabled {
   text-align: start;
 }
 .mainHeader .logo:hover, .mainHeader .logo:focus-visible {
-  text-shadow: 0 0 1rem var(--white);
+  text-shadow: 0 0 2px var(--white);
 }
 .mainHeader__btnContainer {
   display: flex;
