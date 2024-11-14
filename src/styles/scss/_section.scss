@@ -84,7 +84,7 @@
           &:hover,
           &:focus-visible,
           &.selected {
-            outline: 1px solid var(--white);
+            outline: 1px solid var(--main-text);
           }
 
           &.notSelected {
@@ -95,7 +95,7 @@
             &:hover,
             &:focus-visible {
               background-color: var(--main-color-mid);
-              outline: 1px solid var(--white);
+              outline: 1px solid var(--main-text);
               color: var(--white);
             }
           }
@@ -118,7 +118,7 @@
     padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
     border-radius: 1rem;
     backdrop-filter: blur(100px);
-    background-color: rgba(120, 120, 120, 0.2);
+    background-color: var(--main-section);
     outline: 1px solid var(--main-gray-op-dark);
 
     &.admin {
@@ -466,12 +466,10 @@
     width: 240px;
     min-height: 120px;
     aspect-ratio: 16/9;
-    background: var(--main-color-bg);
     transition: outline 200ms ease-in-out, background-color 200ms ease-in-out;
 
     &:has(.homeCard-anchor:is(:hover, :focus-visible)) {
-      outline: 1px solid white;
-      background: var(--main-color-mid);
+      outline: 1px solid var(--main-text);
     }
 
     .homeCard-anchor {
@@ -489,20 +487,17 @@
       font-size: 1rem;
       padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
       background: transparent;
-      outline: 1px solid white;
       text-shadow: 0 0 0 transparent;
       color: var(--main-text);
       transition: 200ms ease-in-out;
 
       &:hover,
       &:focus-visible {
-        color: var(--white);
-
         h2 {
-          text-shadow: 0 0 2px var(--white);
+          text-shadow: 0 0 2px var(--main-text);
         }
         p {
-          text-shadow: 0 0 1px var(--white);
+          text-shadow: 0 0 1px var(--main-text);
         }
       }
 

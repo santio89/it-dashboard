@@ -45,6 +45,7 @@ html ::selection {
   --main-color-bg: rgb(30, 30, 30);
   --main-color-side: var(--main-color-op);
   --main-text: rgb(250, 250, 250);
+  --main-section: rgba(120, 120, 120, 0.1);
   /* color-mix */
   --main-color-dark: color-mix(in srgb, var(--main-color), black 75%);
   --main-color-light: color-mix(in srgb, var(--main-color), white 75%);
@@ -106,7 +107,7 @@ input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
 option:focus-visible {
-  outline: 1px solid var(--white);
+  outline: 1px solid var(--main-text);
 }
 
 /* inputs */
@@ -522,7 +523,7 @@ select:disabled {
   text-transform: capitalize;
 }
 .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:hover, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:focus-visible, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.selected {
-  outline: 1px solid var(--white);
+  outline: 1px solid var(--main-text);
 }
 .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.notSelected {
   outline: 1px solid var(--main-color-mid);
@@ -531,7 +532,7 @@ select:disabled {
 }
 .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.notSelected:hover, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.notSelected:focus-visible {
   background-color: var(--main-color-mid);
-  outline: 1px solid var(--white);
+  outline: 1px solid var(--main-text);
   color: var(--white);
 }
 .site-section__inner {
@@ -548,7 +549,7 @@ select:disabled {
   padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
   border-radius: 1rem;
   backdrop-filter: blur(100px);
-  background-color: rgba(120, 120, 120, 0.2);
+  background-color: var(--main-section);
   outline: 1px solid var(--main-gray-op-dark);
 }
 .site-section__inner.admin {
@@ -856,12 +857,10 @@ select:disabled {
   width: 240px;
   min-height: 120px;
   aspect-ratio: 16/9;
-  background: var(--main-color-bg);
   transition: outline 200ms ease-in-out, background-color 200ms ease-in-out;
 }
 .site-section__homeCard:has(.homeCard-anchor:is(:hover, :focus-visible)) {
-  outline: 1px solid white;
-  background: var(--main-color-mid);
+  outline: 1px solid var(--main-text);
 }
 .site-section__homeCard .homeCard-anchor {
   width: 100%;
@@ -878,19 +877,15 @@ select:disabled {
   font-size: 1rem;
   padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
   background: transparent;
-  outline: 1px solid white;
   text-shadow: 0 0 0 transparent;
   color: var(--main-text);
   transition: 200ms ease-in-out;
 }
-.site-section__homeCard .homeCard-anchor:hover, .site-section__homeCard .homeCard-anchor:focus-visible {
-  color: var(--white);
-}
 .site-section__homeCard .homeCard-anchor:hover h2, .site-section__homeCard .homeCard-anchor:focus-visible h2 {
-  text-shadow: 0 0 2px var(--white);
+  text-shadow: 0 0 2px var(--main-text);
 }
 .site-section__homeCard .homeCard-anchor:hover p, .site-section__homeCard .homeCard-anchor:focus-visible p {
-  text-shadow: 0 0 1px var(--white);
+  text-shadow: 0 0 1px var(--main-text);
 }
 .site-section__homeCard .homeCard-anchor h2 {
   font-size: 2em;
