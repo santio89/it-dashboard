@@ -9,7 +9,7 @@
   position: sticky;
   top: 0;
   z-index: 2;
-  min-height: 54px;
+  height: 56px;
   overflow: hidden;
   transition: background-color 400ms ease-in-out;
 
@@ -43,11 +43,9 @@
         align-items: center;
         color: var(--main-text);
         background: transparent;
-     
 
         &:hover,
         &:focus-visible {
-
           svg {
             filter: drop-shadow(0 0 4px var(--main-text));
           }
