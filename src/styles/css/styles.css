@@ -819,7 +819,7 @@ select:disabled {
   justify-content: center;
   align-items: center;
   width: 100%;
-  border: 2px solid var(--main-color-light);
+  border: 2px solid var(--main-color-mid);
   border-radius: 0 1rem 1rem 1rem;
   background: var(--main-color-op);
   /* chart */
