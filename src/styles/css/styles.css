@@ -347,11 +347,10 @@ select:disabled {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background: var(--main-color-side);
+  background: var(--main-color-bg);
   transition: flex-basis 200ms ease-in-out;
-  overflow-x: hidden;
-  overflow-y: auto;
   transition: background-color 400ms ease-in-out, flex-basis 200ms ease-in-out;
+  border-right: 1px solid var(--main-gray-op-dark);
 }
 .mainContainer .side-panel .nav-link-disabled {
   pointer-events: none;
@@ -373,15 +372,16 @@ select:disabled {
   height: 60px;
   background-color: transparent;
   justify-content: start;
+  color: var(--main-text);
 }
 .mainContainer .side-panel__opts a:hover, .mainContainer .side-panel__opts a:focus-visible {
-  box-shadow: 0 -4px 0 var(--main-color-mid);
-  background-color: var(--main-color-light);
+  box-shadow: 0 -1px 0 var(--main-gray-op-dark), 0 1px 0 var(--main-gray-op-dark);
+  background-color: var(--main-color-bg);
 }
 .mainContainer .side-panel__opts a.active {
-  color: var(--main-color);
-  background-color: var(--main-color-light);
-  box-shadow: 0 -4px 0 var(--main-color-mid);
+  color: var(--main-text);
+  background-color: var(--main-color-bg);
+  box-shadow: 0 -1px 0 var(--main-gray-op-dark), 0 1px 0 var(--main-gray-op-dark);
 }
 .mainContainer .side-panel button.side-toggle,
 .mainContainer .side-panel a.side-toggle {
@@ -851,17 +851,17 @@ select:disabled {
 }
 .site-section__homeCard {
   position: relative;
-  transition: outline 200ms ease-in-out, background-color 200ms ease-in-out;
   min-width: auto;
   min-height: auto;
   width: 240px;
   min-height: 120px;
   aspect-ratio: 16/9;
-  background-color: var(--main-color);
+  background: var(--main-color-bg);
+  transition: outline 200ms ease-in-out, background-color 200ms ease-in-out;
 }
 .site-section__homeCard:has(.homeCard-anchor:is(:hover, :focus-visible)) {
   outline: 1px solid white;
-  background-color: var(--main-color-mid);
+  background: var(--main-color-mid);
 }
 .site-section__homeCard .homeCard-anchor {
   width: 100%;
@@ -874,17 +874,17 @@ select:disabled {
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(100px);
-  color: var(--white);
   outline: 1px solid var(--main-gray-op-dark);
   font-size: 1rem;
   padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
   background: transparent;
   outline: 1px solid white;
   text-shadow: 0 0 0 transparent;
+  color: var(--main-text);
   transition: 200ms ease-in-out;
 }
 .site-section__homeCard .homeCard-anchor:hover, .site-section__homeCard .homeCard-anchor:focus-visible {
-  background-color: var(--main-color-op);
+  color: var(--white);
 }
 .site-section__homeCard .homeCard-anchor:hover h2, .site-section__homeCard .homeCard-anchor:focus-visible h2 {
   text-shadow: 0 0 2px var(--white);

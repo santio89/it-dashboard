@@ -14,11 +14,10 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background: var(--main-color-side);
+    background: var(--main-color-bg);
     transition: flex-basis 200ms ease-in-out;
-    overflow-x: hidden;
-    overflow-y: auto;
     transition: background-color 400ms ease-in-out, flex-basis 200ms ease-in-out;
+    border-right: 1px solid var(--main-gray-op-dark);
 
     .nav-link-disabled {
       pointer-events: none;
@@ -41,17 +40,20 @@
         height: 60px;
         background-color: transparent;
         justify-content: start;
+        color: var(--main-text);
 
         &:hover,
         &:focus-visible {
-          box-shadow: 0 -4px 0 var(--main-color-mid);
-          background-color: var(--main-color-light);
+          box-shadow: 0 -1px 0 var(--main-gray-op-dark),
+            0 1px 0 var(--main-gray-op-dark);
+          background-color: var(--main-color-bg);
         }
 
         &.active {
-          color: var(--main-color);
-          background-color: var(--main-color-light);
-          box-shadow: 0 -4px 0 var(--main-color-mid);
+          color: var(--main-text);
+          background-color: var(--main-color-bg);
+          box-shadow: 0 -1px 0 var(--main-gray-op-dark),
+            0 1px 0 var(--main-gray-op-dark);
         }
       }
     }

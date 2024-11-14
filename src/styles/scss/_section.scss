@@ -461,17 +461,17 @@
 
   &__homeCard {
     position: relative;
-    transition: outline 200ms ease-in-out, background-color 200ms ease-in-out;
     min-width: auto;
     min-height: auto;
     width: 240px;
     min-height: 120px;
     aspect-ratio: 16/9;
-    background-color: var(--main-color);
+    background: var(--main-color-bg);
+    transition: outline 200ms ease-in-out, background-color 200ms ease-in-out;
 
     &:has(.homeCard-anchor:is(:hover, :focus-visible)) {
       outline: 1px solid white;
-      background-color: var(--main-color-mid);
+      background: var(--main-color-mid);
     }
 
     .homeCard-anchor {
@@ -485,18 +485,18 @@
       justify-content: center;
       align-items: center;
       backdrop-filter: blur(100px);
-      color: var(--white);
       outline: 1px solid var(--main-gray-op-dark);
       font-size: 1rem;
       padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
       background: transparent;
       outline: 1px solid white;
       text-shadow: 0 0 0 transparent;
+      color: var(--main-text);
       transition: 200ms ease-in-out;
 
       &:hover,
       &:focus-visible {
-        background-color: var(--main-color-op);
+        color: var(--white);
 
         h2 {
           text-shadow: 0 0 2px var(--white);
