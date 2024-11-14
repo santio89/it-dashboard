@@ -495,7 +495,9 @@
 
       &:hover,
       &:focus-visible {
-        text-shadow: 0 0 2rem var(--white);
+        h2 {
+          text-shadow: 0 0 2px var(--white);
+        }
       }
 
       h2 {
