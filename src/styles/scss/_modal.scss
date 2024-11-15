@@ -14,17 +14,18 @@
   box-shadow: 0 0 2rem -1rem var(--main-color-dark);
   padding: clamp(0.5rem, 0.5rem + 2vw, 2rem);
   border-radius: 1rem;
-  transition: 200ms ease-in-out /* allow-discrete */;
+  transition: 200ms ease-in-out; /* can add allow-discrete for exit transition */
 
   @starting-style {
     scale: 0;
     opacity: 0;
   }
 
-  /*   &:not(:modal) {
+  &:not(:modal) {
     opacity: 0;
     scale: 0;
-  } */
+    display: none;
+  }
 
   &.is-dragged {
     transition: 0ms;
