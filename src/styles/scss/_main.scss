@@ -78,8 +78,18 @@
         transition: 200ms ease-in-out;
       }
 
+      &:hover {
+        svg {
+          filter: drop-shadow(0 0 4px var(--white));
+        }
+      }
+
       &:focus-visible {
-        outline: 1px solid var(--white);
+        outline: 1px solid var(--main-white);
+
+        svg {
+          filter: drop-shadow(0 0 4px var(--white));
+        }
       }
 
       &.expanded {
