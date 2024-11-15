@@ -17,13 +17,13 @@ html ::-webkit-scrollbar-track {
   background: transparent;
 }
 html ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-  border-radius: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 12px;
 }
 html ::-webkit-scrollbar-thumb {
   background: var(--main-color-op);
-  border-radius: 8px;
+  border-radius: 12px;
 }
 html ::selection {
   color: var(--main-color-light);
@@ -446,35 +446,44 @@ select:disabled {
   align-items: stretch;
   overflow: hidden;
 }
+.mainContainer .main-content.expanded:has(.site-section__homeCard) {
+  justify-content: start;
+}
 .mainContainer .main-content.expanded .site-section {
   flex-flow: column nowrap;
   justify-content: start;
   align-items: stretch;
 }
 .mainContainer .main-content.expanded .site-section:has(.site-section__homeCard) {
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+  overflow-y: auto;
 }
 .mainContainer .main-content.expanded .site-section__inner:not(.site-section__homeCard) {
   flex: 1 !important;
   min-height: max(50% - 0.5rem, 500px);
   max-height: 500px;
 }
+@media (max-width: 792px) {
+  .mainContainer .main-content:has(.site-section__homeCard) {
+    justify-content: start;
+    align-items: center;
+    overflow-y: auto;
+  }
+}
 
 .site-section {
-  padding: clamp(0.5rem, 0.5rem + 3vw, 3rem);
   flex: 1;
-  min-height: 100%;
+  padding: clamp(0.5rem, 0.5rem + 3vw, 3rem);
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: start;
   text-align: center;
   text-wrap: balance;
-  overflow-x: hidden;
-  overflow-y: auto;
   gap: 1rem;
   position: relative;
+  overflow-y: auto;
 }
 .site-section::-webkit-scrollbar {
   width: 12px;
@@ -490,6 +499,7 @@ select:disabled {
   justify-content: center;
   align-items: center;
   gap: clamp(1rem, 1rem + 2vw, 2rem);
+  overflow-y: visible;
 }
 @media (max-width: 792px) {
   .site-section:has(.site-section__homeCard) {

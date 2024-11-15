@@ -1,17 +1,15 @@
 .site-section {
-  padding: clamp(0.5rem, 0.5rem + 3vw, 3rem);
   flex: 1;
-  min-height: 100%;
+  padding: clamp(0.5rem, 0.5rem + 3vw, 3rem);
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: start;
   text-align: center;
   text-wrap: balance;
-  overflow-x: hidden;
-  overflow-y: auto;
   gap: 1rem;
   position: relative;
+  overflow-y: auto;
 
   &::-webkit-scrollbar {
     width: 12px;
@@ -28,6 +26,7 @@
     justify-content: center;
     align-items: center;
     gap: clamp(1rem, 1rem + 2vw, 2rem);
+    overflow-y: visible;
 
     @media (max-width: $tablet-breakpoint) {
       flex-flow: column nowrap;

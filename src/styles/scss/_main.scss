@@ -118,14 +118,19 @@
     overflow: hidden;
 
     &.expanded {
+      &:has(.site-section__homeCard) {
+        justify-content: start;
+      }
+
       .site-section {
         flex-flow: column nowrap;
         justify-content: start;
         align-items: stretch;
 
         &:has(.site-section__homeCard) {
-          justify-content: center;
+          justify-content: start;
           align-items: center;
+          overflow-y: auto;
         }
 
         &__inner {
@@ -135,6 +140,14 @@
             max-height: 500px;
           }
         }
+      }
+    }
+
+    @media (max-width: $tablet-breakpoint) {
+      &:has(.site-section__homeCard) {
+        justify-content: start;
+        align-items: center;
+        overflow-y: auto;
       }
     }
   }
