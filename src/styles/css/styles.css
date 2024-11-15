@@ -942,7 +942,11 @@ select:disabled {
   box-shadow: 0 0 2rem -1rem var(--main-color-dark);
   padding: clamp(0.5rem, 0.5rem + 2vw, 2rem);
   border-radius: 1rem;
-  transition: 200ms ease-in-out;
+  transition: 200ms ease-in-out allow-discrete;
+  /*   &:not(:modal) {
+      opacity: 0;
+      scale: 0;
+    } */
 }
 @starting-style {
   .mainModalWrapper {
@@ -987,10 +991,17 @@ select:disabled {
   width: 100%;
   font-weight: 800;
   border-radius: 0.5rem;
-  /*     &::before {
-    content: "- ";
-    color: var(--main-color-op);
-  } */
+  position: relative;
+}
+.mainModal h2::before {
+  content: "";
+  position: absolute;
+  left: -105px;
+  top: 50%;
+  translate: 0 -50%;
+  width: 100px;
+  height: 8px;
+  background-color: var(--main-color-mid);
 }
 .mainModal__titleContainer {
   display: flex;

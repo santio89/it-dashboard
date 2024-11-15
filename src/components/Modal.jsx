@@ -33,8 +33,15 @@ export default function Modal() {
       document.addEventListener("click", closeModalClick)
       document.addEventListener("keydown", closeModalEsc)
 
-      modal.current.showModal()
-      modal.current.scrollTop = 0;
+      try {
+        document.startViewTransition(() => {
+          modal.current.showModal()
+          modal.current.scrollTop = 0;
+        });
+      } catch {
+        modal.current.showModal()
+        modal.current.scrollTop = 0;
+      }
     } else {
       modal.current.close()
       /* try {
@@ -57,7 +64,7 @@ export default function Modal() {
     <Draggable /*bounds={"parent"}*/ position={{ x: 0, y: 0 }} cancel={"button, input, textarea, select, option, .taskOpenContent"}
       onStart={() => { setIsDragged(true) }}
       onStop={() => { setIsDragged(false) }} >
-      <dialog initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={`mainModalWrapper ${isDragged && "is-dragged"}`} ref={modal} tabIndex={0}>
+      <dialog className={`mainModalWrapper ${isDragged && "is-dragged"}`} ref={modal} tabIndex={0}>
         <div className="mainModal">
           <div className="mainModal__data">
             {(modalData?.userData || modalData?.newUser) && <ContactsDataModal modalData={modalData} />}
