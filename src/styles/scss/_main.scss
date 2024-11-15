@@ -18,6 +18,7 @@
     transition: flex-basis 200ms ease-in-out;
     transition: background-color 400ms ease-in-out, flex-basis 200ms ease-in-out;
     border-right: 1px solid var(--main-gray-op-dark);
+    z-index: 2;
 
     .nav-link-disabled {
       pointer-events: none;

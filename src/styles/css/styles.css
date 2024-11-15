@@ -278,7 +278,7 @@ select:disabled {
   align-items: center;
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 3;
   min-height: 56px;
   max-height: 56px;
   overflow: hidden;
@@ -358,6 +358,7 @@ select:disabled {
   transition: flex-basis 200ms ease-in-out;
   transition: background-color 400ms ease-in-out, flex-basis 200ms ease-in-out;
   border-right: 1px solid var(--main-gray-op-dark);
+  z-index: 2;
 }
 .mainContainer .side-panel .nav-link-disabled {
   pointer-events: none;
