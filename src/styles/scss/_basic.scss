@@ -193,6 +193,7 @@ select:disabled {
   font: inherit;
   padding-bottom: 8px;
   background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
+  transition: 200ms ease-in-out;
   animation: load-steps 2s linear infinite;
 }
 @keyframes load-steps {
