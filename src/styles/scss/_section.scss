@@ -116,7 +116,6 @@
     overflow-x: hidden;
     overflow-y: auto;
     padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
-    border-radius: 1rem;
     backdrop-filter: blur(100px);
     background-color: var(--main-section);
     outline: 1px solid var(--main-gray-op-dark);
@@ -469,6 +468,7 @@
     transition: outline-color 200ms ease-in-out,
       background-color 200ms ease-in-out;
     background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%);
+    border-radius: 1rem;
 
     &:has(.homeCard-anchor:is(:hover, :focus-visible)) {
       outline: 1px solid var(--main-text);
