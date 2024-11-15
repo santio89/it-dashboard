@@ -33,15 +33,8 @@ export default function Modal() {
       document.addEventListener("click", closeModalClick)
       document.addEventListener("keydown", closeModalEsc)
 
-      try {
-        document.startViewTransition(() => {
-          modal.current.showModal()
-          modal.current.scrollTop = 0;
-        });
-      } catch {
-        modal.current.showModal()
-        modal.current.scrollTop = 0;
-      }
+      modal.current.showModal()
+      modal.current.scrollTop = 0;
     } else {
       modal.current.close()
       /* try {

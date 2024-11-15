@@ -1,10 +1,11 @@
+import { motion } from "motion/react"
 
 export default function Admin({ user }) {
   return (
     <>
-      <div className="site-section__inner admin">
+      <motion.div layout transition={{ duration: .2 }} className="site-section__inner admin">
         ADMIN PANEL
-      </div>
+      </motion.div>
     </>
   )
 }

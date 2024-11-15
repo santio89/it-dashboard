@@ -4,6 +4,7 @@ import { useGetContactsCompanyQuery, useGetContactsQuery } from '../store/slices
 import { useEffect, useState, useRef } from "react";
 import DataChart from "./DataChart";
 import autoAnimate from "@formkit/auto-animate";
+import { motion } from "motion/react";
 
 export default function Contacts({ user }) {
   const listContainer = useRef()
@@ -41,7 +42,7 @@ export default function Contacts({ user }) {
 
   return (
     <>
-      <div className="site-section__inner site-section__list">
+      <motion.div layout transition={{ duration: .2 }} className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
             dispatch(setModal({ active: true, data: { newUser: true, userId: user?.uid, listSelected } }));
@@ -93,15 +94,15 @@ export default function Contacts({ user }) {
               }
             </ul>
         }
-      </div>
-      <div className="site-section__inner site-section__chart">
+      </motion.div>
+      <motion.div layout transition={{ duration: .2 }} className="site-section__inner site-section__chart">
         <div className="btnWrapper">
           <button>Contacts by category</button>
         </div>
         <div className="chartWrapper">
           <DataChart type={{ property: "category", items: "contacts" }} data={dataContacts} isLoading={isLoadingContacts} />
         </div>
-      </div>
+      </motion.div>
     </>
   )
 }

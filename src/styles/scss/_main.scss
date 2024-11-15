@@ -124,6 +124,7 @@
         align-items: stretch;
 
         &:has(.site-section__homeCard) {
+          justify-content: center;
           align-items: center;
         }
 

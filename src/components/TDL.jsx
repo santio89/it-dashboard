@@ -4,6 +4,7 @@ import { setModal } from '../store/slices/modalSlice'
 import { useDispatch } from 'react-redux'
 import DataChart from './DataChart'
 import autoAnimate from '@formkit/auto-animate'
+import { motion } from 'motion/react'
 
 export default function TDL({ user }) {
   const listContainer = useRef()
@@ -107,7 +108,7 @@ export default function TDL({ user }) {
 
   return (
     <>
-      <div className="site-section__inner site-section__list">
+      <motion.div layout transition={{ duration: .2 }} className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
             dispatch(setModal({ active: true, data: { newTask: true, userId: user?.uid, listSelected } }))
@@ -281,15 +282,15 @@ export default function TDL({ user }) {
               }
             </ul>
         }
-      </div>
-      <div className="site-section__inner site-section__chart">
+      </motion.div>
+      <motion.div layout transition={{ duration: .2 }} className="site-section__inner site-section__chart">
         <div className="btnWrapper">
           <button>Tasks by category</button>
         </div>
         <div className="chartWrapper">
           <DataChart type={{ property: "category", items: "tasks" }} data={dataTdl} isLoading={isLoadingTdl} />
         </div>
-      </div>
+      </motion.div>
     </>
   )
 }
