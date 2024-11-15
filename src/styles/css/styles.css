@@ -417,7 +417,7 @@ select:disabled {
 }
 .mainContainer .side-panel button.side-toggle:focus-visible,
 .mainContainer .side-panel a.side-toggle:focus-visible {
-  outline: 1px solid var(--main-white);
+  outline: 1px solid var(--main-text);
 }
 .mainContainer .side-panel button.side-toggle:focus-visible svg,
 .mainContainer .side-panel a.side-toggle:focus-visible svg {
