@@ -32,11 +32,6 @@ export default function Contacts({ user }) {
     setListPickerOpen(false)
   }
 
-  /*   useEffect(() => {
-      !isLoadingContacts && listContainer.current && autoAnimate(listContainer.current)
-    }, [listContainer, isLoadingContacts]) */
-
-
   return (
     <>
       <motion.div layout transition={{ duration: .2 }} className="site-section__inner site-section__list">
