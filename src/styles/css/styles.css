@@ -1250,6 +1250,9 @@ option:hover,
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selectedHigh > svg {
   color: var(--red);
 }
+.mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selected {
+  border-color: var(--main-color-mid);
+}
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority svg {
   width: 20px;
   height: 20px;

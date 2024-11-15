@@ -391,6 +391,9 @@
               &.selectedHigh > svg {
                 color: var(--red);
               }
+              &.selected {
+                border-color: var(--main-color-mid);
+              }
 
               svg {
                 width: 20px;
