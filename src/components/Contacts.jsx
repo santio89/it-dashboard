@@ -36,10 +36,10 @@ export default function Contacts({ user }) {
     <>
       <motion.div layout transition={{ duration: .2 }} className="site-section__inner site-section__list">
         <div className="btnWrapper">
-          <motion.button onClick={() => {
+          <button onClick={() => {
             dispatch(setModal({ active: true, data: { newUser: true, userId: user?.uid, listSelected } }));
             setListPickerOpen(false)
-          }}>+ Add contact</motion.button>
+          }}>+ Add contact</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
