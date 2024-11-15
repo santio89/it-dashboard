@@ -942,11 +942,11 @@ select:disabled {
   box-shadow: 0 0 2rem -1rem var(--main-color-dark);
   padding: clamp(0.5rem, 0.5rem + 2vw, 2rem);
   border-radius: 1rem;
-  transition: 200ms ease-in-out allow-discrete;
+  transition: 200ms ease-in-out;
   /*   &:not(:modal) {
-      opacity: 0;
-      scale: 0;
-    } */
+    opacity: 0;
+    scale: 0;
+  } */
 }
 @starting-style {
   .mainModalWrapper {
