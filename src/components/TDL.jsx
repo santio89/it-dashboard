@@ -146,7 +146,7 @@ export default function TDL({ user }) {
                   dataTdl?.map((task) => {
                     if (listSelected === "all" || listSelected === task.category) {
                       return (
-                        <motion.li layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} key={task.id} disabled={taskOptions === task.id && (resultEditTdl.isLoading || resultDeleteTdl.isLoading)}>
+                        <motion.li layout transition={{ duration: .2 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} key={task.id} disabled={taskOptions === task.id && (resultEditTdl.isLoading || resultDeleteTdl.isLoading)}>
                           {/* task options */}
                           {
                             taskOptions === task.id &&

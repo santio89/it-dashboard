@@ -78,7 +78,7 @@ export default function Contacts({ user }) {
                 {
                   dataContacts?.map(contact => {
                     if (listSelected === "all" || contact.category === listSelected) {
-                      return (<motion.li layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} key={contact.id}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { userData: true, userId: user?.uid, ...contact } })); setListPickerOpen(false) }}>{contact.name}</button></motion.li>)
+                      return (<motion.li layout transition={{ duration: .2 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} key={contact.id}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { userData: true, userId: user?.uid, ...contact } })); setListPickerOpen(false) }}>{contact.name}</button></motion.li>)
                     } else {
                       return null
                     }
