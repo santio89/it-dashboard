@@ -71,7 +71,7 @@ export default function Modal() {
             {(modalData?.deviceData || modalData?.newDevice) && <DevicesDataModal modalData={modalData} />}
             {(modalData?.tdlData || modalData?.newTask) && <TDLDataModal modalData={modalData} />}
           </div>
-          <button className='mainModal__close' onClick={() => dispatch(setModal({ active: false, data: {} }))}>Close</button>
+          <button className='mainModal__close' onClick={() => dispatch(setModal({ active: false, data: {} }))}>X</button>
         </div>
       </dialog >
     </Draggable>
