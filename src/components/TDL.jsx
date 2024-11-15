@@ -221,14 +221,14 @@ export default function TDL({ user }) {
                             </div>
                           }
 
-                          {/* task */}
+                          {/* task / taskOptions */}
                           {
-                            deleteMode !== task.id && editMode !== task.id && taskOptions !== task.id && <button title={"Task"} className={`taskContentBtn  ${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"}`} onClick={() => { taskOptions === task.id ? setTaskOptions(null) : setTaskOptions(task.id) }}>{task.content}</button>
-                          }
-
-                          {/* task selected */}
-                          {
-                            taskOptions === task.id && deleteMode !== task.id && editMode !== task.id && <button title={"Task"} className={`taskContentBtn taskOption`} onClick={() => { taskOptions === task.id ? setTaskOptions(null) : setTaskOptions(task.id) }}>{task.content}</button>
+                            deleteMode !== task.id && editMode !== task.id &&
+                            <button title="task"
+                              className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`}
+                              onClick={() => { taskOptions === task.id ? setTaskOptions(null) : setTaskOptions(task.id) }}>
+                              {task.content}
+                            </button>
                           }
 
                           {/* edit task */}
