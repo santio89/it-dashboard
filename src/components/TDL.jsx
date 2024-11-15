@@ -3,12 +3,9 @@ import { useGetTdlQuery, useAddTdlMutation, useDeleteTdlMutation, useEditTdlMuta
 import { setModal } from '../store/slices/modalSlice'
 import { useDispatch } from 'react-redux'
 import DataChart from './DataChart'
-import autoAnimate from '@formkit/auto-animate'
-import { motion } from 'motion/react'
+import { AnimatePresence, motion } from 'motion/react'
 
 export default function TDL({ user }) {
-  const listContainer = useRef()
-
   const [taskOptions, setTaskOptions] = useState(null)
   const [editMode, setEditMode] = useState(null)
   const [deleteMode, setDeleteMode] = useState(null)
@@ -102,10 +99,6 @@ export default function TDL({ user }) {
     taskOptions && setTaskOptions(null)
   }, [listSelected])
 
-  useEffect(() => {
-    !isLoadingTdl && listContainer.current && autoAnimate(listContainer.current)
-  }, [listContainer, isLoadingTdl])
-
   return (
     <>
       <motion.div layout transition={{ duration: .2 }} className="site-section__inner site-section__list">
@@ -147,139 +140,141 @@ export default function TDL({ user }) {
         </div>
         {
           isLoadingTdl ? <div className="loader">Loading...</div> :
-            <ul className='tdl-list' ref={listContainer}>
-              {
-                dataTdl?.map((task) => {
-                  if (listSelected === "all" || listSelected === task.category) {
-                    return (
-                      <li key={task.id} disabled={taskOptions === task.id && (resultEditTdl.isLoading || resultDeleteTdl.isLoading)}>
-                        {/* task options */}
-                        {
-                          taskOptions === task.id &&
-                          <div className='tdl-btnContainer'>
-                            <div className={`tdl-openModal ${editMode === task.id && "editPriority"}`}>
-                              {
-                                editMode === task.id ?
+            <ul className='tdl-list'>
+              <AnimatePresence>
+                {
+                  dataTdl?.map((task) => {
+                    if (listSelected === "all" || listSelected === task.category) {
+                      return (
+                        <motion.li layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} key={task.id} disabled={taskOptions === task.id && (resultEditTdl.isLoading || resultDeleteTdl.isLoading)}>
+                          {/* task options */}
+                          {
+                            taskOptions === task.id &&
+                            <div className='tdl-btnContainer'>
+                              <div className={`tdl-openModal ${editMode === task.id && "editPriority"}`}>
+                                {
+                                  editMode === task.id ?
+                                    <>
+                                      <button onClick={() => editTaskPriorityFn(task, "low")} title='Task priority: low' className={`tdl-priority selectedLow ${((!editPriority && task.priority === "low") || editPriority === "low") && "selected"}`}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                                        </svg>
+                                      </button>
+                                      <button onClick={() => editTaskPriorityFn(task, "medium")} title='Task priority: medium' className={`tdl-priority selectedMedium ${((!editPriority && task.priority === "medium") || editPriority === "medium") && "selected"}`}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                                        </svg>
+                                      </button>
+                                      <button onClick={() => editTaskPriorityFn(task, "high")} title='Task priority: high' className={`tdl-priority selectedHigh ${((!editPriority && task.priority === "high") || editPriority === "high") && "selected"}`}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                                        </svg>
+                                      </button>
+                                    </> :
+                                    <>
+                                      <button title={`Task priority: ${task.priority}`} className={`tdl-priority ${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"}`}
+                                        onClick={() => {
+                                          /* ADD HINT */
+                                        }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                                        </svg>
+                                      </button>
+                                    </>
+                                }
+                                {editMode !== task.id &&
                                   <>
-                                    <button onClick={() => editTaskPriorityFn(task, "low")} title='Task priority: low' className={`tdl-priority selectedLow ${((!editPriority && task.priority === "low") || editPriority === "low") && "selected"}`}>
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
-                                      </svg>
-                                    </button>
-                                    <button onClick={() => editTaskPriorityFn(task, "medium")} title='Task priority: medium' className={`tdl-priority selectedMedium ${((!editPriority && task.priority === "medium") || editPriority === "medium") && "selected"}`}>
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
-                                      </svg>
-                                    </button>
-                                    <button onClick={() => editTaskPriorityFn(task, "high")} title='Task priority: high' className={`tdl-priority selectedHigh ${((!editPriority && task.priority === "high") || editPriority === "high") && "selected"}`}>
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
-                                      </svg>
-                                    </button>
-                                  </> :
-                                  <>
-                                    <button title={`Task priority: ${task.priority}`} className={`tdl-priority ${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"}`}
-                                      onClick={() => {
-                                        /* ADD HINT */
-                                      }}>
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
-                                      </svg>
-                                    </button>
+                                    <button onClick={() => { dispatch(setModal({ active: true, data: { tdlData: true, ...task } })); setListPickerOpen(false) }}>{"Open"}</button>
                                   </>
-                              }
-                              {editMode !== task.id &&
-                                <>
-                                  <button onClick={() => { dispatch(setModal({ active: true, data: { tdlData: true, ...task } })); setListPickerOpen(false) }}>{"Open"}</button>
-                                </>
-                              }
+                                }
+
+                              </div>
+                              <div className={`tdl-optionsBtns`}>
+                                {
+                                  editMode === task.id || deleteMode === task.id ?
+                                    <button onClick={() => {
+                                      setEditMode(null)
+                                      setDeleteMode(null)
+                                    }}>{"Cancel"}
+                                    </button> :
+                                    <button onClick={() => {
+                                      setEditMode(task.id)
+                                      setEditInputText(task.content)
+                                    }}>{"Edit"}
+                                    </button>
+                                }
+                                {
+                                  editMode === task.id || deleteMode === task.id ?
+                                    <button onClick={() => {
+                                      deleteMode === task.id && deleteTask(task)
+                                      editMode === task.id && editTask(task, editInputText, editPriority, editCategory)
+                                    }}>{"Confirm"}
+                                    </button> :
+
+                                    <button onClick={() => {
+                                      setDeleteMode(task.id)
+                                    }}>{"Delete"}
+                                    </button>
+                                }
+                              </div>
 
                             </div>
-                            <div className={`tdl-optionsBtns`}>
-                              {
-                                editMode === task.id || deleteMode === task.id ?
-                                  <button onClick={() => {
-                                    setEditMode(null)
-                                    setDeleteMode(null)
-                                  }}>{"Cancel"}
-                                  </button> :
-                                  <button onClick={() => {
-                                    setEditMode(task.id)
-                                    setEditInputText(task.content)
-                                  }}>{"Edit"}
-                                  </button>
-                              }
-                              {
-                                editMode === task.id || deleteMode === task.id ?
-                                  <button onClick={() => {
-                                    deleteMode === task.id && deleteTask(task)
-                                    editMode === task.id && editTask(task, editInputText, editPriority, editCategory)
-                                  }}>{"Confirm"}
-                                  </button> :
+                          }
 
-                                  <button onClick={() => {
-                                    setDeleteMode(task.id)
-                                  }}>{"Delete"}
-                                  </button>
+                          {/* task */}
+                          {
+                            deleteMode !== task.id && editMode !== task.id && taskOptions !== task.id && <button title={"Task"} className={`taskContentBtn  ${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"}`} onClick={() => { taskOptions === task.id ? setTaskOptions(null) : setTaskOptions(task.id) }}>{task.content}</button>
+                          }
+
+                          {/* task selected */}
+                          {
+                            taskOptions === task.id && deleteMode !== task.id && editMode !== task.id && <button title={"Task"} className={`taskContentBtn taskOption`} onClick={() => { taskOptions === task.id ? setTaskOptions(null) : setTaskOptions(task.id) }}>{task.content}</button>
+                          }
+
+                          {/* edit task */}
+                          {
+                            editMode === task.id && <textarea disabled={resultEditTdl.isLoading} ref={editMode === task.id && editInput} title={"Task"} spellCheck={false} value={editInputText} onKeyPress={e => {
+                              if (!e.shiftKey) {
+                                return
                               }
+                              if (e.key === "Enter" && e.shiftKey) {
+                                e.preventDefault();
+                                editTask(task, editInputText, editPriority, editCategory)
+                              }
+                            }} onChange={e => setEditInputText(e.target.value)} className={`taskOption editMode`} placeholder='Task'></textarea>
+                          }
+
+                          {/* delete task */}
+                          {
+                            deleteMode === task.id && <button title={"Task"} className={`taskContentBtn taskOption deleteMode`} onClick={() => { taskOptions === task.id ? setTaskOptions(null) : setTaskOptions(task.id) }}>{task.content}</button>
+                          }
+
+                          {/* task category */}
+                          {
+                            taskOptions === task.id &&
+                            <div className="listPickerWrapper">
+                              <div className="listPickerWrapper__btnContainer">
+                                {
+                                  editMode === task.id ?
+                                    <>
+                                      <button className={`listPicker ${editMode && "pickerOpen"} ${((!editCategory && task.category === "personal") || editCategory === "personal") && "selected"}`} onClick={() => { editCategoryFn(task, "personal") }}>Personal</button>
+                                      <button className={`listPicker ${editMode && "pickerOpen"} ${((!editCategory && task.category === "company") || editCategory === "company") && "selected"}`} onClick={() => { editCategoryFn(task, "company") }}>Company</button>
+                                    </>
+                                    :
+                                    <button title={`Task category: ${task.category}`} className={`listPicker ${editMode && "pickerOpen"}`} onClick={() => { /* ADD HINT */ }}>{task.category}</button>
+                                }
+                                {
+
+                                }
+                              </div>
                             </div>
-
-                          </div>
-                        }
-
-                        {/* task */}
-                        {
-                          deleteMode !== task.id && editMode !== task.id && taskOptions !== task.id && <button title={"Task"} className={`taskContentBtn  ${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"}`} onClick={() => { taskOptions === task.id ? setTaskOptions(null) : setTaskOptions(task.id) }}>{task.content}</button>
-                        }
-
-                        {/* task selected */}
-                        {
-                          taskOptions === task.id && deleteMode !== task.id && editMode !== task.id && <button title={"Task"} className={`taskContentBtn taskOption`} onClick={() => { taskOptions === task.id ? setTaskOptions(null) : setTaskOptions(task.id) }}>{task.content}</button>
-                        }
-
-                        {/* edit task */}
-                        {
-                          editMode === task.id && <textarea disabled={resultEditTdl.isLoading} ref={editMode === task.id && editInput} title={"Task"} spellCheck={false} value={editInputText} onKeyPress={e => {
-                            if (!e.shiftKey) {
-                              return
-                            }
-                            if (e.key === "Enter" && e.shiftKey) {
-                              e.preventDefault();
-                              editTask(task, editInputText, editPriority, editCategory)
-                            }
-                          }} onChange={e => setEditInputText(e.target.value)} className={`taskOption editMode`} placeholder='Task'></textarea>
-                        }
-
-                        {/* delete task */}
-                        {
-                          deleteMode === task.id && <button title={"Task"} className={`taskContentBtn taskOption deleteMode`} onClick={() => { taskOptions === task.id ? setTaskOptions(null) : setTaskOptions(task.id) }}>{task.content}</button>
-                        }
-
-                        {/* task category */}
-                        {
-                          taskOptions === task.id &&
-                          <div className="listPickerWrapper">
-                            <div className="listPickerWrapper__btnContainer">
-                              {
-                                editMode === task.id ?
-                                  <>
-                                    <button className={`listPicker ${editMode && "pickerOpen"} ${((!editCategory && task.category === "personal") || editCategory === "personal") && "selected"}`} onClick={() => { editCategoryFn(task, "personal") }}>Personal</button>
-                                    <button className={`listPicker ${editMode && "pickerOpen"} ${((!editCategory && task.category === "company") || editCategory === "company") && "selected"}`} onClick={() => { editCategoryFn(task, "company") }}>Company</button>
-                                  </>
-                                  :
-                                  <button title={`Task category: ${task.category}`} className={`listPicker ${editMode && "pickerOpen"}`} onClick={() => { /* ADD HINT */ }}>{task.category}</button>
-                              }
-                              {
-
-                              }
-                            </div>
-                          </div>
-                        }
-                      </li>)
+                          }
+                        </motion.li>)
+                    }
                   }
+                  )
                 }
-                )
-              }
+              </AnimatePresence>
             </ul>
         }
       </motion.div>

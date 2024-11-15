@@ -2,13 +2,10 @@ import { useDispatch } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
 import { useGetDevicesCompanyQuery, useGetDevicesQuery } from '../store/slices/apiSlice';
 import DataChart from "./DataChart";
-import { useState, useEffect, useRef } from "react";
-import autoAnimate from "@formkit/auto-animate";
-import { motion } from "motion/react";
+import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "motion/react";
 
 export default function Devices({ user }) {
-  const listContainer = useRef()
-
   const dispatch = useDispatch()
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
@@ -34,10 +31,6 @@ export default function Devices({ user }) {
     setListSelected(list)
     setListPickerOpen(false)
   }
-
-  useEffect(() => {
-    !isLoadingDevices && listContainer.current && autoAnimate(listContainer.current)
-  }, [listContainer, isLoadingDevices])
 
   return (
     <>
@@ -80,17 +73,19 @@ export default function Devices({ user }) {
         </div>
         {
           isLoadingDevices ? <div className="loader">Loading...</div> :
-            <ul className="items-list" ref={listContainer}>
-              {
-                dataDevices?.map(device => {
-                  if (listSelected === "all" || device.category === listSelected) {
-                    return (<li key={device.id}><button title={device.name} onClick={() => { dispatch(setModal({ active: true, data: { deviceData: true, userId: user?.uid, ...device } })); setListPickerOpen(false) }}>{device.name}</button></li>)
-                  } else {
-                    return null
+            <ul className="items-list">
+              <AnimatePresence>
+                {
+                  dataDevices?.map(device => {
+                    if (listSelected === "all" || device.category === listSelected) {
+                      return (<motion.li layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} key={device.id}><button title={device.name} onClick={() => { dispatch(setModal({ active: true, data: { deviceData: true, userId: user?.uid, ...device } })); setListPickerOpen(false) }}>{device.name}</button></motion.li>)
+                    } else {
+                      return null
+                    }
                   }
+                  )
                 }
-                )
-              }
+              </AnimatePresence>
             </ul>
         }
       </motion.div>

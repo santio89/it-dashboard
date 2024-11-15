@@ -57,7 +57,7 @@ export default function Modal() {
     <Draggable /*bounds={"parent"}*/ position={{ x: 0, y: 0 }} cancel={"button, input, textarea, select, option, .taskOpenContent"}
       onStart={() => { setIsDragged(true) }}
       onStop={() => { setIsDragged(false) }} >
-      <dialog className={`mainModalWrapper ${isDragged && "is-dragged"}`} ref={modal} tabIndex={0}>
+      <dialog initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={`mainModalWrapper ${isDragged && "is-dragged"}`} ref={modal} tabIndex={0}>
         <div className="mainModal">
           <div className="mainModal__data">
             {(modalData?.userData || modalData?.newUser) && <ContactsDataModal modalData={modalData} />}
