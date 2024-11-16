@@ -23,12 +23,10 @@ html {
   ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
-    border-radius: 12px;
   }
 
   ::-webkit-scrollbar-thumb {
     background: var(--main-color-op);
-    border-radius: 12px;
   }
 
   ::selection {
@@ -89,7 +87,6 @@ option {
   align-items: center;
   text-align: center;
   text-wrap: balance;
-  border-radius: 0.5rem;
   transition: 200ms ease-in-out;
   background: var(--main-color);
   color: var(--white);

@@ -14,7 +14,6 @@
   &::-webkit-scrollbar {
     width: 12px;
     height: 12px;
-    border-radius: 12px;
   }
 
   &:has(.site-section__homeCard) {
@@ -221,7 +220,6 @@
               padding: 0 0.25rem;
               background-color: var(--main-color-op);
               outline: 2px solid var(--main-color-op);
-              border-radius: 0 0 0.5rem 0.5rem;
               text-transform: capitalize;
               font-size: 12px;
               transition: none;
@@ -231,14 +229,6 @@
               &:focus-visible,
               &.selected {
                 background: var(--main-color-mid);
-              }
-
-              &.pickerOpen:nth-child(1) {
-                border-radius: 0 0 0 0.5rem;
-              }
-
-              &.pickerOpen:nth-child(2) {
-                border-radius: 0 0 0.5rem 0;
               }
             }
           }
@@ -253,7 +243,6 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              border-radius: 0.5rem 0.5rem 0 0;
               overflow: hidden;
               background-color: var(--main-color-op);
               width: 140px;
@@ -263,7 +252,6 @@
               button {
                 padding: 0.25rem;
                 background: transparent;
-                border-radius: 0;
                 width: 50%;
                 height: 100%;
                 text-align: center;
@@ -377,7 +365,6 @@
 
             &.taskOption {
               outline: 2px solid var(--main-color-op);
-              border-radius: 0 0 0 0.5rem;
               min-height: 120px;
               background-color: var(--main-color-light);
               color: var(--black);
@@ -418,10 +405,6 @@
     flex: 3;
     min-width: max(250px, 60%);
 
-    .btnWrapper button {
-      border-radius: 0.5rem 0.5rem 0 0;
-    }
-
     .chartWrapper {
       flex: 1;
       display: flex;
@@ -430,7 +413,6 @@
       align-items: center;
       width: 100%;
       border: 2px solid var(--main-color-mid);
-      border-radius: 0 1rem 1rem 1rem;
       background: var(--main-color-op);
 
       .dataChart {
@@ -489,7 +471,6 @@
       height: 100%;
       position: absolute;
       inset: 0;
-      border-radius: 1rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -502,7 +483,6 @@
       text-shadow: 0 0 0 transparent;
       color: var(--main-text);
       transition: 200ms ease-in-out;
-      border-radius: 0;
 
       &:hover,
       &:focus-visible {
@@ -538,7 +518,6 @@
       color: inherit;
       padding: 0;
       text-decoration: underline;
-      border-radius: 0;
       transition: all 200ms ease-in-out, color 0ms;
 
       &:hover {
