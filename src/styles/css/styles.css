@@ -379,12 +379,20 @@ select:disabled {
   justify-content: start;
   color: var(--main-text);
   transition: color 200ms ease-in-out;
+  position: relative;
 }
-.mainContainer .side-panel__opts a:hover, .mainContainer .side-panel__opts a.active {
+.mainContainer .side-panel__opts a:hover {
+  outline: 1px solid var(--main-gray-op-dark);
+  background-color: var(--main-color-bg);
+  z-index: 1;
+}
+.mainContainer .side-panel__opts a.active {
   outline: 1px solid var(--main-gray-op-dark);
 }
 .mainContainer .side-panel__opts a:focus-visible {
   outline: 1px solid var(--main-text);
+  background-color: var(--main-color-bg);
+  z-index: 1;
 }
 .mainContainer .side-panel button.side-toggle,
 .mainContainer .side-panel a.side-toggle {
