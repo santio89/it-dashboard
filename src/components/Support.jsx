@@ -16,7 +16,7 @@ export default function Support({ user }) {
 
   return (
     <>
-      <motion.div layout transition={{ duration: .2 }} className="site-section__inner site-section__list">
+      <motion.div layout transition={{ duration: 0 }} className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
           }}>+ Add ticket</button>
@@ -52,7 +52,7 @@ export default function Support({ user }) {
           </div>
         </div>
       </motion.div>
-      <motion.div layout transition={{ duration: .2 }} className="site-section__inner site-section__chart">
+      <motion.div layout transition={{ duration: 0 }} className="site-section__inner site-section__chart">
         <div className="btnWrapper">
           <button>Tickets by category</button>
         </div>

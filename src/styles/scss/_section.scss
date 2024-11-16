@@ -428,31 +428,37 @@
       border-radius: 0 1rem 1rem 1rem;
       background: var(--main-color-op);
 
-      /* chart */
-      & > div:not(.loader) {
-        margin-inline: auto;
-        max-width: 1200px;
-        height: 100%;
-        max-height: 100%;
-        min-height: 320px;
-        text-transform: uppercase;
-        padding: 0.125rem;
+      .dataChart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-        .google-visualization-tooltip {
-          pointer-events: none;
-        }
+        /* chart */
+        & > div:not(.loader) {
+          margin-inline: auto;
+          max-width: 1200px;
+          height: 100%;
+          max-height: 100%;
+          min-height: 320px;
+          text-transform: uppercase;
+          padding: 0.125rem;
 
-        /* chart-error-message */
-        span {
-          background: var(--main-color-mid) !important;
-          color: var(--white) !important;
-          font: inherit !important;
-          text-align: center;
-          text-wrap: balance;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 0.5rem;
+          .google-visualization-tooltip {
+            pointer-events: none;
+          }
+
+          /* chart-error-message */
+          span {
+            background: var(--main-color-mid) !important;
+            color: var(--white) !important;
+            font: inherit !important;
+            text-align: center;
+            text-wrap: balance;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+          }
         }
       }
     }

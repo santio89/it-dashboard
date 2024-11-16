@@ -851,9 +851,14 @@ select:disabled {
   border: 2px solid var(--main-color-mid);
   border-radius: 0 1rem 1rem 1rem;
   background: var(--main-color-op);
+}
+.site-section__chart .chartWrapper .dataChart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* chart */
 }
-.site-section__chart .chartWrapper > div:not(.loader) {
+.site-section__chart .chartWrapper .dataChart > div:not(.loader) {
   margin-inline: auto;
   max-width: 1200px;
   height: 100%;
@@ -863,10 +868,10 @@ select:disabled {
   padding: 0.125rem;
   /* chart-error-message */
 }
-.site-section__chart .chartWrapper > div:not(.loader) .google-visualization-tooltip {
+.site-section__chart .chartWrapper .dataChart > div:not(.loader) .google-visualization-tooltip {
   pointer-events: none;
 }
-.site-section__chart .chartWrapper > div:not(.loader) span {
+.site-section__chart .chartWrapper .dataChart > div:not(.loader) span {
   background: var(--main-color-mid) !important;
   color: var(--white) !important;
   font: inherit !important;

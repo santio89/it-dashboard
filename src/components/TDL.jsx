@@ -101,7 +101,7 @@ export default function TDL({ user }) {
 
   return (
     <>
-      <motion.div layout transition={{ duration: .2 }} className="site-section__inner site-section__list">
+      <motion.div layout transition={{ duration: 0 }} className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
             dispatch(setModal({ active: true, data: { newTask: true, userId: user?.uid, listSelected } }))
@@ -278,7 +278,7 @@ export default function TDL({ user }) {
             </ul>
         }
       </motion.div>
-      <motion.div layout transition={{ duration: .2 }} className="site-section__inner site-section__chart">
+      <motion.div layout transition={{ duration: 0 }} className="site-section__inner site-section__chart">
         <div className="btnWrapper">
           <button>Tasks by category</button>
         </div>
