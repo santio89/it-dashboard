@@ -119,6 +119,11 @@
     backdrop-filter: blur(100px);
     background-color: var(--main-section);
     outline: 1px solid var(--main-gray-op-dark);
+    color: var(--main-text);
+
+    &:only-child {
+      min-height: 100% !important;
+    }
 
     &.admin {
       min-height: 100% !important;

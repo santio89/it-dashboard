@@ -20,11 +20,11 @@ export default function Main({ section, user }) {
       <aside className={`side-panel ${sideExpanded && "expanded"}`}>
         <div className="side-panel__opts">
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/contacts" className={!user && "nav-link-disabled"}>Contacts</NavLink>
-          <NavLink to="/devices" className={!user && "nav-link-disabled"}>Devices</NavLink>
-          <NavLink to="/tdl" className={!user && "nav-link-disabled"}>Tasks</NavLink>
-          <NavLink to="/support" className={!user && "nav-link-disabled"}>Support</NavLink>
-          <NavLink to="/admin" className={!user && "nav-link-disabled"}>Admin</NavLink>
+          <NavLink to="/contacts">Contacts</NavLink>
+          <NavLink to="/devices">Devices</NavLink>
+          <NavLink to="/tdl">Tasks</NavLink>
+          <NavLink to="/support">Support</NavLink>
+          <NavLink to="/admin">Admin</NavLink>
         </div>
 
         <button title="Toggle layout" className={`side-toggle ${sideExpanded && "expanded"}`} onClick={() => dispatch(setSideExpanded({ sideExpanded: !sideExpanded }))}>
