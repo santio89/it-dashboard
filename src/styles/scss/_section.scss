@@ -479,7 +479,6 @@
     transition: outline-color 200ms ease-in-out,
       background-color 200ms ease-in-out;
     background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%);
-    border-radius: 1rem;
 
     &:has(.homeCard-anchor:is(:hover, :focus-visible)) {
       outline: 1px solid var(--main-text);
@@ -503,6 +502,7 @@
       text-shadow: 0 0 0 transparent;
       color: var(--main-text);
       transition: 200ms ease-in-out;
+      border-radius: 0;
 
       &:hover,
       &:focus-visible {

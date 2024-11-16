@@ -895,7 +895,6 @@ select:disabled {
   aspect-ratio: 16/9;
   transition: outline-color 200ms ease-in-out, background-color 200ms ease-in-out;
   background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%);
-  border-radius: 1rem;
 }
 .site-section__homeCard:has(.homeCard-anchor:is(:hover, :focus-visible)) {
   outline: 1px solid var(--main-text);
@@ -918,6 +917,7 @@ select:disabled {
   text-shadow: 0 0 0 transparent;
   color: var(--main-text);
   transition: 200ms ease-in-out;
+  border-radius: 0;
 }
 .site-section__homeCard .homeCard-anchor:hover h2, .site-section__homeCard .homeCard-anchor:focus-visible h2 {
   text-shadow: 0 0 2px var(--main-text);
