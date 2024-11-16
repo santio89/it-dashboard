@@ -934,6 +934,23 @@ select:disabled {
   font-size: 1em;
   font-weight: 400;
 }
+.site-section__private {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: 200ms ease-in-out;
+}
+.site-section__private button {
+  background: none;
+  color: inherit;
+  padding: 0;
+  text-decoration: underline;
+  border-radius: 0;
+  transition: all 200ms ease-in-out, color 0ms;
+}
+.site-section__private button:hover {
+  text-shadow: 0 0 4px var(--main-text);
+}
 
 /* start modal */
 .mainModalWrapper {
