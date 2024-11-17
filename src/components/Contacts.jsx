@@ -1,14 +1,15 @@
 import { useDispatch } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
 import { useGetContactsCompanyQuery, useGetContactsQuery } from '../store/slices/apiSlice';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import DataChart from "./DataChart";
-import { AnimatePresence, motion } from "motion/react";
+import autoAnimate from "@formkit/auto-animate";
 
 export default function Contacts({ user }) {
   const dispatch = useDispatch()
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
+  const listContainer = useRef()
 
   /*  const {
      data: dataContactsCompany,
@@ -32,9 +33,13 @@ export default function Contacts({ user }) {
     setListPickerOpen(false)
   }
 
+  useEffect(() => {
+    !isLoadingContacts && listContainer.current && autoAnimate(listContainer.current)
+  }, [listContainer, isLoadingContacts])
+
   return (
     <>
-      <motion.div layout transition={{ duration: 0 }} className="site-section__inner site-section__list">
+      <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
             dispatch(setModal({ active: true, data: { newUser: true, userId: user?.uid, listSelected } }));
@@ -73,30 +78,28 @@ export default function Contacts({ user }) {
         </div>
         {
           isLoadingContacts ? <div className="loader">Loading...</div> :
-            <ul className="items-list" >
-              <AnimatePresence>
-                {
-                  dataContacts?.map(contact => {
-                    if (listSelected === "all" || contact.category === listSelected) {
-                      return (<motion.li layout transition={{ duration: .2 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} key={contact.id}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { userData: true, userId: user?.uid, ...contact } })); setListPickerOpen(false) }}>{contact.name}</button></motion.li>)
-                    } else {
-                      return null
-                    }
+            <ul className="items-list" ref={listContainer}>
+              {
+                dataContacts?.map(contact => {
+                  if (listSelected === "all" || contact.category === listSelected) {
+                    return (<li key={contact.id}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { userData: true, userId: user?.uid, ...contact } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
+                  } else {
+                    return null
                   }
-                  )
                 }
-              </AnimatePresence>
+                )
+              }
             </ul>
         }
-      </motion.div>
-      <motion.div layout transition={{ duration: 0 }} className="site-section__inner site-section__chart">
+      </div>
+      <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
           <button>Contacts by category</button>
         </div>
         <div className="chartWrapper">
           <DataChart type={{ property: "category", items: "contacts" }} data={dataContacts} isLoading={isLoadingContacts} />
         </div>
-      </motion.div>
+      </div>
     </>
   )
 }

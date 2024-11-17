@@ -611,10 +611,9 @@ select:disabled {
 }
 .site-section__list ul.items-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  align-content: start;
+  grid-template-columns: repeat(auto-fit, 180px);
   justify-content: center;
-  place-items: stretch;
+  align-content: start;
   gap: 1rem;
 }
 .site-section__list ul.items-list li {

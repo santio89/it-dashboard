@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
-import { motion } from 'motion/react';
 
 
 export default function DataChart({ data, type, isLoading }) {
@@ -36,7 +35,7 @@ export default function DataChart({ data, type, isLoading }) {
     <>
       {
         isLoading ? <div className="loader">Loading...</div> :
-          <motion.div layout transition={{ duration: .2 }} className="dataChart">
+          <div className="dataChart">
             <Chart
               chartType={"PieChart"}
               options={{
@@ -79,7 +78,7 @@ export default function DataChart({ data, type, isLoading }) {
               width="100%"
               height="320px"
             />
-          </motion.div>
+          </div>
       }
     </>
   )
