@@ -157,7 +157,7 @@
 
       &.items-list {
         display: grid;
-        grid-template-columns: repeat(auto-fit, 180px);
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         align-content: start;
         justify-content: center;
         place-items: stretch;

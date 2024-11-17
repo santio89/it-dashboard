@@ -13,6 +13,9 @@ export default function TDL({ user }) {
   const editInput = useRef()
   const dispatch = useDispatch()
 
+  /* task click motion fix */
+  const [taskClicked, setTaskClicked] = useState(false)
+
   /* search */
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
@@ -99,6 +102,15 @@ export default function TDL({ user }) {
     taskOptions && setTaskOptions(null)
   }, [listSelected])
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setTaskClicked(false)
+    }, 0)
+
+    return () => clearTimeout(timeout)
+
+  }, [taskClicked])
+
   return (
     <>
       <motion.div layout transition={{ duration: 0 }} className="site-section__inner site-section__list">
@@ -145,7 +157,7 @@ export default function TDL({ user }) {
                 dataTdl?.map((task) => {
                   if (listSelected === "all" || listSelected === task.category) {
                     return (
-                      <motion.li layout transition={{ duration: .2 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} key={task.id} disabled={taskOptions === task.id && (resultEditTdl.isLoading || resultDeleteTdl.isLoading)}>
+                      <motion.li layout transition={{ duration: taskClicked ? 0 : .2 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} key={task.id} disabled={taskOptions === task.id && (resultEditTdl.isLoading || resultDeleteTdl.isLoading)}>
                         {/* task options */}
                         {
                           taskOptions === task.id &&
@@ -224,7 +236,14 @@ export default function TDL({ user }) {
                           deleteMode !== task.id && editMode !== task.id &&
                           <button title="task"
                             className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`}
-                            onClick={() => { taskOptions === task.id ? setTaskOptions(null) : setTaskOptions(task.id) }}>
+                            onClick={() => {
+                              setTaskClicked(true)
+                              if (taskOptions === task.id) {
+                                setTaskOptions(null)
+                              } else {
+                                setTaskOptions(task.id)
+                              }
+                            }}>
                             {task.content}
                           </button>
                         }
@@ -244,7 +263,7 @@ export default function TDL({ user }) {
 
                         {/* delete task */}
                         {
-                          deleteMode === task.id && <button title={"Task"} className={`taskContentBtn taskOption deleteMode`} onClick={() => { taskOptions === task.id ? setTaskOptions(null) : setTaskOptions(task.id) }}>{task.content}</button>
+                          deleteMode === task.id && <button title={"Task"} className={`taskContentBtn taskOption deleteMode`} >{task.content}</button>
                         }
 
                         {/* task category */}
