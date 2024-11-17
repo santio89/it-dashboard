@@ -9,6 +9,7 @@ import TDL from "./TDL"
 import NotFound from "./NotFound"
 import { useSelector, useDispatch } from "react-redux";
 import { setSideExpanded } from "../store/slices/themeSlice";
+import { flushSync } from "react-dom";
 
 export default function Main({ section, user }) {
   const sideExpanded = useSelector(state => state.theme.sideExpanded)
@@ -17,7 +18,9 @@ export default function Main({ section, user }) {
   const expandSide = () => {
     try {
       document.startViewTransition(() => {
-        dispatch(setSideExpanded({ sideExpanded: !sideExpanded }))
+        flushSync(() => {
+          dispatch(setSideExpanded({ sideExpanded: !sideExpanded }))
+        })
         return
       })
     } catch {

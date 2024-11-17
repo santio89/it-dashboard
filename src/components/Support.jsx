@@ -1,6 +1,5 @@
 import { useState } from "react"
 import DataChart from "./DataChart"
-import { motion } from "motion/react"
 
 export default function Support({ user }) {
   const [listPickerOpen, setListPickerOpen] = useState(false)
@@ -16,7 +15,7 @@ export default function Support({ user }) {
 
   return (
     <>
-      <motion.div layout transition={{ duration: 0 }} className="site-section__inner site-section__list">
+      <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
           }}>+ Add ticket</button>
@@ -51,15 +50,15 @@ export default function Support({ user }) {
             </div>
           </div>
         </div>
-      </motion.div>
-      <motion.div layout transition={{ duration: 0 }} className="site-section__inner site-section__chart">
+      </div>
+      <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
           <button>Tickets by category</button>
         </div>
         <div className="chartWrapper">
           <DataChart />
         </div>
-      </motion.div>
+      </div>
     </>
   )
 }
