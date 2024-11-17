@@ -4,7 +4,6 @@ import { useGetContactsCompanyQuery, useGetContactsQuery } from '../store/slices
 import { useEffect, useState, useRef } from "react";
 import DataChart from "./DataChart";
 import autoAnimate from "@formkit/auto-animate";
-import Draggable from 'react-draggable';
 
 export default function Contacts({ user }) {
   const dispatch = useDispatch()
@@ -40,7 +39,7 @@ export default function Contacts({ user }) {
 
   return (
     <>
-      <div className="site-section__inner site-section__list" transition:animate="slide">
+      <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
             dispatch(setModal({ active: true, data: { newUser: true, userId: user?.uid, listSelected } }));

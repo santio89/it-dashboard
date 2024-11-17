@@ -106,7 +106,7 @@ export default function TDL({ user }) {
 
   return (
     <>
-      <div layout transition={{ duration: 0 }} className="site-section__inner site-section__list">
+      <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
             dispatch(setModal({ active: true, data: { newTask: true, userId: user?.uid, listSelected } }))
