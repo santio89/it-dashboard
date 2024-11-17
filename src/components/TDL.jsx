@@ -225,7 +225,6 @@ export default function TDL({ user }) {
                           <button title="task"
                             className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`}
                             onClick={() => {
-                              setTaskClicked(true)
                               if (taskOptions === task.id) {
                                 setTaskOptions(null)
                               } else {
