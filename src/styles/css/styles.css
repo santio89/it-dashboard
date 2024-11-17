@@ -378,6 +378,7 @@ select:disabled {
   background: transparent;
   justify-content: start;
   color: var(--main-text);
+  outline: 1px solid transparent;
   transition: color 200ms ease-in-out;
   position: relative;
 }
@@ -912,10 +913,12 @@ select:disabled {
   font-size: 2em;
   font-weight: 700;
   text-transform: uppercase;
+  transition: 200ms ease-in-out;
 }
 .site-section__homeCard .homeCard-anchor p {
   font-size: 1em;
   font-weight: 400;
+  transition: 200ms ease-in-out;
 }
 .site-section__private {
   flex-direction: row;
@@ -1362,6 +1365,7 @@ option:hover,
   font-family: var(--font-primary);
   font-size: 1rem;
   white-space: pre-wrap;
+  transition: background-color 400ms ease-in-out, color 200ms ease-in-out;
 }
 .toaster div[data-title] {
   font-weight: 700;
