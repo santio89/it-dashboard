@@ -1357,9 +1357,9 @@ option:hover,
 /* end modal */
 .toaster {
   padding: 0.5rem;
-  background: var(--main-color);
-  color: var(--white);
-  border: 1px solid var(--main-color-light);
+  background-color: var(--main-color-bg);
+  color: var(--main-text);
+  border: 1px solid var(--main-gray-op-dark);
   font-family: var(--font-primary);
   font-size: 1rem;
   white-space: pre-wrap;
