@@ -1365,7 +1365,7 @@ option:hover,
   font-family: var(--font-primary);
   font-size: 1rem;
   white-space: pre-wrap;
-  transition: background-color 400ms ease-in-out, color 200ms ease-in-out;
+  transition: 400ms ease-in-out, color 200ms ease-in-out;
 }
 .toaster div[data-title] {
   font-weight: 700;
