@@ -952,18 +952,13 @@ select:disabled {
   border: 1px solid var(--main-color-mid);
   box-shadow: 0 0 2rem -1rem var(--main-color-dark);
   padding: clamp(0.5rem, 0.5rem + 2vw, 2rem);
-  transition: 200ms ease-in-out; /* can add allow-discrete for exit transition */
+  transition: 200ms ease-in-out;
 }
 @starting-style {
   .mainModalWrapper {
     scale: 0;
     opacity: 0;
   }
-}
-.mainModalWrapper:not(:modal) {
-  opacity: 0;
-  scale: 0;
-  display: none;
 }
 .mainModalWrapper.is-dragged {
   transition: 0ms;
