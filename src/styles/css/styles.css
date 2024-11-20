@@ -330,9 +330,13 @@ select:disabled {
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: 50%;
+  transition: 200ms ease-in-out;
 }
 .mainHeader__btnContainer .themeBtn button img.profileOn {
   filter: drop-shadow(0 0 4px var(--main-text));
+}
+.mainHeader__btnContainer .themeBtn button svg {
+  transition: 200ms ease-in-out;
 }
 .mainHeader__btnContainer .themeBtn button:hover svg,
 .mainHeader__btnContainer .themeBtn button:hover img, .mainHeader__btnContainer .themeBtn button:focus-visible svg,
@@ -344,6 +348,7 @@ select:disabled {
   top: 100%;
   background: var(--main-color-bg);
   border: 1px solid var(--main-gray-op-dark);
+  transition: 200ms ease-in, background-color 400ms ease-in-out;
 }
 .mainHeader .theme-clicked {
   animation: rotate-icon 400ms ease-in-out;

@@ -65,10 +65,15 @@
           aspect-ratio: 1;
           object-fit: cover;
           border-radius: 50%;
+          transition: 200ms ease-in-out;
 
           &.profileOn {
             filter: drop-shadow(0 0 4px var(--main-text));
           }
+        }
+
+        svg {
+          transition: 200ms ease-in-out;
         }
 
         &:hover,
@@ -84,7 +89,8 @@
         position: absolute;
         top: 100%;
         background: var(--main-color-bg);
-        border: 1px solid var(--main-gray-op-dark)
+        border: 1px solid var(--main-gray-op-dark);
+        transition: 200ms ease-in, background-color 400ms ease-in-out;
       }
     }
   }
