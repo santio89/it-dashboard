@@ -175,7 +175,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            outline: 1px solid var(--main-gray-op-dark);
+            outline: 1px solid var(--main-gray-dark);
           }
         }
       }
@@ -350,23 +350,30 @@
 
             &.taskContentBtn {
               padding: 1rem;
+              color: var(--white);
+
+              &:hover,
+              &:focus-visible {
+                background-color: var(--main-color-mid);
+              }
 
               &.selectedLow {
-                outline: 1px solid var(--main-gray-dark);
+                box-shadow: -2px 0 0 0 var(--main-gray-dark),
+                  -4px 0 0 0 var(--main-color);
               }
               &.selectedMedium {
-                outline: 1px solid var(--main-color-light);
+                box-shadow: -2px 0 0 0 var(--main-color-light),
+                  -4px 0 0 0 var(--main-color);
               }
               &.selectedHigh {
-                outline: 1px solid var(--red);
+                box-shadow: -2px -0 0 0 var(--red), -4px 0 0 0 var(--main-color);
               }
             }
 
             &.taskOption {
               outline: 2px solid var(--main-color-op);
               min-height: 120px;
-              background-color: var(--main-color-light);
-              color: var(--black);
+              background-color: var(--main-color-mid);
             }
 
             &.deleteMode {
@@ -390,6 +397,7 @@
           textarea {
             height: 120px;
             padding: 1rem;
+            color: var(--white);
 
             &::placeholder {
               color: var(--main-color);

@@ -90,6 +90,7 @@ option {
   transition: 200ms ease-in-out;
   background: var(--main-color);
   color: var(--white);
+  outline-offset: 0;
 
   &:hover,
   &:focus-visible {

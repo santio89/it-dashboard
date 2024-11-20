@@ -8,10 +8,10 @@
   align-items: center;
   position: sticky;
   top: 0;
-  z-index: 3;
+  z-index: 2;
+  height: 56px;
   min-height: 56px;
   max-height: 56px;
-  overflow: hidden;
   transition: background-color 400ms ease-in-out;
 
   .logo {
@@ -21,6 +21,7 @@
     text-shadow: 0 0 0 transparent;
     text-align: start;
     position: relative;
+    height: 56px;
 
     &::before {
       content: "";
@@ -43,7 +44,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
 
     .themeBtn {
       display: flex;
@@ -56,6 +56,15 @@
         align-items: center;
         color: var(--main-text);
         background: transparent;
+        height: 56px;
+        aspect-ratio: 1;
+
+        img {
+          width: 32px;
+          aspect-ratio: 1;
+          object-fit: cover;
+          border-radius: 50%;
+        }
 
         &:hover,
         &:focus-visible {

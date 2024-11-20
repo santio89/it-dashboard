@@ -82,6 +82,7 @@ option {
   transition: 200ms ease-in-out;
   background: var(--main-color);
   color: var(--white);
+  outline-offset: 0;
 }
 button:hover, button:focus-visible,
 a:hover,
@@ -276,10 +277,10 @@ select:disabled {
   align-items: center;
   position: sticky;
   top: 0;
-  z-index: 3;
+  z-index: 2;
+  height: 56px;
   min-height: 56px;
   max-height: 56px;
-  overflow: hidden;
   transition: background-color 400ms ease-in-out;
 }
 .mainHeader .logo {
@@ -289,6 +290,7 @@ select:disabled {
   text-shadow: 0 0 0 transparent;
   text-align: start;
   position: relative;
+  height: 56px;
 }
 .mainHeader .logo::before {
   content: "";
@@ -307,7 +309,6 @@ select:disabled {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
 }
 .mainHeader__btnContainer .themeBtn {
   display: flex;
@@ -320,6 +321,14 @@ select:disabled {
   align-items: center;
   color: var(--main-text);
   background: transparent;
+  height: 56px;
+  aspect-ratio: 1;
+}
+.mainHeader__btnContainer .themeBtn button img {
+  width: 32px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
 }
 .mainHeader__btnContainer .themeBtn button:hover svg, .mainHeader__btnContainer .themeBtn button:focus-visible svg {
   filter: drop-shadow(0 0 4px var(--main-text));
@@ -630,7 +639,7 @@ select:disabled {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  outline: 1px solid var(--main-gray-op-dark);
+  outline: 1px solid var(--main-gray-dark);
 }
 .site-section__list ul.tdl-list {
   display: flex;
@@ -789,25 +798,30 @@ select:disabled {
 .site-section__list ul.tdl-list li button.taskContentBtn,
 .site-section__list ul.tdl-list li textarea.taskContentBtn {
   padding: 1rem;
+  color: var(--white);
+}
+.site-section__list ul.tdl-list li button.taskContentBtn:hover, .site-section__list ul.tdl-list li button.taskContentBtn:focus-visible,
+.site-section__list ul.tdl-list li textarea.taskContentBtn:hover,
+.site-section__list ul.tdl-list li textarea.taskContentBtn:focus-visible {
+  background-color: var(--main-color-mid);
 }
 .site-section__list ul.tdl-list li button.taskContentBtn.selectedLow,
 .site-section__list ul.tdl-list li textarea.taskContentBtn.selectedLow {
-  outline: 1px solid var(--main-gray-dark);
+  box-shadow: -2px 0 0 0 var(--main-gray-dark), -4px 0 0 0 var(--main-color);
 }
 .site-section__list ul.tdl-list li button.taskContentBtn.selectedMedium,
 .site-section__list ul.tdl-list li textarea.taskContentBtn.selectedMedium {
-  outline: 1px solid var(--main-color-light);
+  box-shadow: -2px 0 0 0 var(--main-color-light), -4px 0 0 0 var(--main-color);
 }
 .site-section__list ul.tdl-list li button.taskContentBtn.selectedHigh,
 .site-section__list ul.tdl-list li textarea.taskContentBtn.selectedHigh {
-  outline: 1px solid var(--red);
+  box-shadow: -2px 0 0 0 var(--red), -4px 0 0 0 var(--main-color);
 }
 .site-section__list ul.tdl-list li button.taskOption,
 .site-section__list ul.tdl-list li textarea.taskOption {
   outline: 2px solid var(--main-color-op);
   min-height: 120px;
-  background-color: var(--main-color-light);
-  color: var(--black);
+  background-color: var(--main-color-mid);
 }
 .site-section__list ul.tdl-list li button.deleteMode,
 .site-section__list ul.tdl-list li textarea.deleteMode {
@@ -824,6 +838,7 @@ select:disabled {
 .site-section__list ul.tdl-list li textarea {
   height: 120px;
   padding: 1rem;
+  color: var(--white);
 }
 .site-section__list ul.tdl-list li textarea::placeholder {
   color: var(--main-color);
