@@ -282,6 +282,7 @@ select:disabled {
   min-height: 56px;
   max-height: 56px;
   transition: background-color 400ms ease-in-out;
+  position: relative;
 }
 .mainHeader .logo {
   font-weight: 700;
@@ -330,8 +331,19 @@ select:disabled {
   object-fit: cover;
   border-radius: 50%;
 }
-.mainHeader__btnContainer .themeBtn button:hover svg, .mainHeader__btnContainer .themeBtn button:focus-visible svg {
+.mainHeader__btnContainer .themeBtn button img.profileOn {
   filter: drop-shadow(0 0 4px var(--main-text));
+}
+.mainHeader__btnContainer .themeBtn button:hover svg,
+.mainHeader__btnContainer .themeBtn button:hover img, .mainHeader__btnContainer .themeBtn button:focus-visible svg,
+.mainHeader__btnContainer .themeBtn button:focus-visible img {
+  filter: drop-shadow(0 0 4px var(--main-text));
+}
+.mainHeader__btnContainer .themeBtn .profile-opts {
+  position: absolute;
+  top: 100%;
+  background: var(--main-color-bg);
+  border: 1px solid var(--main-gray-op-dark);
 }
 .mainHeader .theme-clicked {
   animation: rotate-icon 400ms ease-in-out;

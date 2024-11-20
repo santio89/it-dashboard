@@ -13,6 +13,7 @@
   min-height: 56px;
   max-height: 56px;
   transition: background-color 400ms ease-in-out;
+  position: relative;
 
   .logo {
     font-weight: 700;
@@ -64,14 +65,26 @@
           aspect-ratio: 1;
           object-fit: cover;
           border-radius: 50%;
+
+          &.profileOn {
+            filter: drop-shadow(0 0 4px var(--main-text));
+          }
         }
 
         &:hover,
         &:focus-visible {
-          svg {
+          svg,
+          img {
             filter: drop-shadow(0 0 4px var(--main-text));
           }
         }
+      }
+
+      .profile-opts {
+        position: absolute;
+        top: 100%;
+        background: var(--main-color-bg);
+        border: 1px solid var(--main-gray-op-dark)
       }
     }
   }
