@@ -66,9 +66,10 @@
           object-fit: cover;
           border-radius: 50%;
           transition: 200ms ease-in-out;
+          outline: 2px solid transparent;
 
           &.profileOn {
-            filter: drop-shadow(0 0 4px var(--main-text));
+            outline: 1px solid var(--main-text);
           }
         }
 
@@ -78,9 +79,12 @@
 
         &:hover,
         &:focus-visible {
-          svg,
-          img {
+          svg {
             filter: drop-shadow(0 0 4px var(--main-text));
+          }
+
+          img {
+            outline: 1px solid var(--main-text);
           }
         }
       }

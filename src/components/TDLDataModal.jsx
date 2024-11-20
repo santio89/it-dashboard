@@ -92,13 +92,13 @@ export default function TDLDataModal({ modalData }) {
               {
                 listPickerOpen &&
                 <div className="listPickerOptions">
-                  <button className={`listPicker notSelected`}
+                  <button className={`listPicker`}
                     onClick={() => {
                       selectList("personal")
                     }}>
                     Personal
                   </button>
-                  <button className={`listPicker notSelected`}
+                  <button className={`listPicker`}
                     onClick={() => {
                       selectList("company")
                     }}>

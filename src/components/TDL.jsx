@@ -120,19 +120,19 @@ export default function TDL({ user }) {
               {
                 listPickerOpen &&
                 <div className="listPickerOptions">
-                  <button className={`listPicker ${listSelected !== "personal" && "notSelected"}`}
+                  <button className={`listPicker ${listSelected === "personal" && "selected"}`}
                     onClick={() => {
                       selectList("personal")
                     }}>
                     Personal
                   </button>
-                  <button className={`listPicker ${listSelected !== "company" && "notSelected"}`}
+                  <button className={`listPicker ${listSelected === "company" && "selected"}`}
                     onClick={() => {
                       selectList("company")
                     }}>
                     Company
                   </button>
-                  <button className={`listPicker ${listSelected !== "all" && "notSelected"}`}
+                  <button className={`listPicker ${listSelected === "all" && "selected"}`}
                     onClick={() => {
                       selectList("all")
                     }}>

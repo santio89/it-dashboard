@@ -83,20 +83,7 @@
           &:hover,
           &:focus-visible,
           &.selected {
-            outline: 1px solid var(--main-text);
-          }
-
-          &.notSelected {
-            outline: 1px solid var(--main-color-mid);
-            background-color: var(--main-color-light);
-            color: var(--main-color-mid);
-
-            &:hover,
-            &:focus-visible {
-              background-color: var(--main-color-mid);
-              outline: 1px solid var(--main-text);
-              color: var(--white);
-            }
+            background-color: var(--main-color-op);
           }
         }
       }

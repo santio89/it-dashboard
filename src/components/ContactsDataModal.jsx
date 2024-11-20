@@ -203,13 +203,13 @@ export default function ContactsDataModal({ modalData }) {
               {
                 listPickerOpen &&
                 <div className="listPickerOptions">
-                  <button className={`listPicker notSelected`}
+                  <button className={`listPicker`}
                     onClick={() => {
                       selectList("personal")
                     }}>
                     Personal
                   </button>
-                  <button className={`listPicker notSelected`}
+                  <button className={`listPicker`}
                     onClick={() => {
                       selectList("company")
                     }}>
@@ -350,13 +350,13 @@ export default function ContactsDataModal({ modalData }) {
               {
                 listPickerOpen &&
                 <div className="listPickerOptions">
-                  <button className={`listPicker notSelected`}
+                  <button className={`listPicker`}
                     onClick={() => {
                       selectList("personal")
                     }}>
                     Personal
                   </button>
-                  <button className={`listPicker notSelected`}
+                  <button className={`listPicker`}
                     onClick={() => {
                       selectList("company")
                     }}>

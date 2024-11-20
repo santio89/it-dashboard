@@ -331,17 +331,19 @@ select:disabled {
   object-fit: cover;
   border-radius: 50%;
   transition: 200ms ease-in-out;
+  outline: 2px solid transparent;
 }
 .mainHeader__btnContainer .themeBtn button img.profileOn {
-  filter: drop-shadow(0 0 4px var(--main-text));
+  outline: 1px solid var(--main-text);
 }
 .mainHeader__btnContainer .themeBtn button svg {
   transition: 200ms ease-in-out;
 }
-.mainHeader__btnContainer .themeBtn button:hover svg,
-.mainHeader__btnContainer .themeBtn button:hover img, .mainHeader__btnContainer .themeBtn button:focus-visible svg,
-.mainHeader__btnContainer .themeBtn button:focus-visible img {
+.mainHeader__btnContainer .themeBtn button:hover svg, .mainHeader__btnContainer .themeBtn button:focus-visible svg {
   filter: drop-shadow(0 0 4px var(--main-text));
+}
+.mainHeader__btnContainer .themeBtn button:hover img, .mainHeader__btnContainer .themeBtn button:focus-visible img {
+  outline: 1px solid var(--main-text);
 }
 .mainHeader__btnContainer .themeBtn .profile-opts {
   position: absolute;
@@ -578,17 +580,7 @@ select:disabled {
   text-transform: capitalize;
 }
 .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:hover, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:focus-visible, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.selected {
-  outline: 1px solid var(--main-text);
-}
-.site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.notSelected {
-  outline: 1px solid var(--main-color-mid);
-  background-color: var(--main-color-light);
-  color: var(--main-color-mid);
-}
-.site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.notSelected:hover, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.notSelected:focus-visible {
-  background-color: var(--main-color-mid);
-  outline: 1px solid var(--main-text);
-  color: var(--white);
+  background-color: var(--main-color-op);
 }
 .site-section__inner {
   display: flex;
@@ -1082,18 +1074,8 @@ select:disabled {
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:focus, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:focus-visible {
   outline: none;
 }
-.mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.selected {
-  outline: 1px solid var(--white);
-}
-.mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.notSelected {
-  background-color: var(--main-color-light);
-  color: var(--main-color-mid);
-  outline: 1px solid var(--main-color-mid);
-}
-.mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.notSelected:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.notSelected:focus-visible {
-  background-color: var(--main-color-mid);
-  outline: 1px solid var(--white);
-  color: var(--white);
+.mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:focus-visible, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.selected {
+  background-color: var(--main-color-op);
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer.editMode button.listPicker {
   outline: 1px dashed var(--main-color-mid);
