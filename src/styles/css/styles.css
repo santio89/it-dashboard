@@ -304,7 +304,7 @@ select:disabled {
   background-color: var(--main-color-op);
 }
 .mainHeader .logo:hover, .mainHeader .logo:focus-visible {
-  text-shadow: 0 0 4px var(--main-text);
+  text-shadow: 0 0 1px var(--main-text);
 }
 .mainHeader__btnContainer {
   display: flex;
