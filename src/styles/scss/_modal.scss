@@ -360,7 +360,7 @@
             font-weight: 300;
             text-transform: capitalize;
             background-color: var(--main-color-mid);
-            border: 1px solid var(--main-color-op);
+            outline: 1px solid transparent;
 
             &.tdl-priority {
               color: var(--white);
@@ -375,7 +375,7 @@
                 color: var(--red);
               }
               &.selected {
-                border-color: var(--main-color-mid);
+                outline: 1px solid var(--main-color-mid);
               }
 
               svg {
@@ -389,16 +389,16 @@
             }
 
             &:hover {
-              border: 1px solid var(--white);
+              background-color: var(--main-color-op);
 
               &[disabled] {
-                border: 1px solid var(--main-color-op);
+                background-color: var(--main-color-op);
               }
             }
 
             &:focus-visible {
-              outline: none;
-              border: 1px solid var(--white);
+              background-color: var(--main-color-op);
+              outline: 1px solid var(--white) !important;
             }
 
             &.selected {
