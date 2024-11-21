@@ -1,6 +1,6 @@
 .mainHeader {
   background: var(--main-color-bg);
-  border-bottom: 1px solid var(--main-gray-op-dark);
+  border-bottom: 1px solid var(--main-gray-dark);
   width: 100%;
   padding: 0.5rem 2rem;
   display: flex;
@@ -37,7 +37,7 @@
 
     &:hover,
     &:focus-visible {
-      text-shadow: 0 0 1px var(--main-text);
+      text-shadow: 0 0 2px var(--main-text);
     }
   }
 
@@ -45,6 +45,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 0.25rem;
 
     .themeBtn {
       display: flex;
@@ -57,7 +58,15 @@
         align-items: center;
         color: var(--main-text);
         background: transparent;
-        height: 56px;
+        aspect-ratio: 1;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        padding: 0;
+
+        &.profileOn {
+          background: var(--main-color-op);
+        }
 
         img {
           width: 32px;
@@ -66,31 +75,17 @@
           border-radius: 50%;
           transition: 200ms ease-in-out;
           outline: 1px solid transparent;
-
-          &.profileOn {
-            outline: 1px solid var(--main-text);
-          }
         }
 
         svg {
-          aspect-ratio: 1;
+          width: 148px;
           transition: 200ms ease-in-out;
           border-radius: 50%;
-
-          &.profileOn {
-            filter: drop-shadow(0 0 4px var(--main-text));
-          }
         }
 
         &:hover,
         &:focus-visible {
-          svg {
-            filter: drop-shadow(0 0 4px var(--main-text));
-          }
-
-          img {
-            outline: 1px solid var(--main-text);
-          }
+          background: var(--main-color-op);
         }
       }
 
@@ -99,8 +94,17 @@
         top: 100%;
         right: 0;
         background: var(--main-color-bg);
-        border: 1px solid var(--main-gray-op-dark);
+        border: 1px solid var(--main-gray-dark);
         transition: 200ms ease-in, background-color 400ms ease-in-out;
+
+        button {
+          width: auto;
+          height: auto;
+          aspect-ratio: auto;
+          background-color: transparent;
+          border-radius: 0;
+          padding: 0.5rem 1rem;
+        }
       }
     }
   }

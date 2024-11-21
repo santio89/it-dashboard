@@ -160,13 +160,6 @@
     width: 100%;
     gap: 1.5rem;
 
-    > p {
-      text-transform: uppercase;
-      font-weight: 700;
-      width: 100%;
-      border-bottom: 1px solid var(--main-gray-op-dark);
-    }
-
     &__form {
       flex: 1;
       display: flex;
@@ -410,22 +403,6 @@
 
             &.selected {
               background-color: var(--main-color-op);
-            }
-          }
-
-          .underline {
-            text-decoration: underline;
-
-            &.selectedLow {
-              text-decoration-color: var(--main-gray-dark);
-            }
-
-            &.selectedMedium {
-              text-decoration-color: var(--main-color-light);
-            }
-
-            &.selectedHigh {
-              text-decoration-color: var(--red);
             }
           }
         }

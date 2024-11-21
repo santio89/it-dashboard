@@ -17,7 +17,7 @@
     background: var(--main-color-bg);
     transition: flex-basis 200ms ease-in-out;
     transition: background-color 400ms ease-in-out, flex-basis 200ms ease-in-out;
-    border-right: 1px solid var(--main-gray-op-dark);
+    border-right: 1px solid var(--main-gray-dark);
     z-index: 2;
 
     .nav-link-disabled {
@@ -34,6 +34,7 @@
       align-items: stretch;
       height: 100%;
       width: 100%;
+      gap: 1px;
 
       a {
         width: 100%;
@@ -42,22 +43,20 @@
         justify-content: start;
         color: var(--main-text);
         outline: 1px solid transparent;
-        transition: color 200ms ease-in-out;
+        transition: color 200ms ease-in-out, font-weight 200ms ease-in-out;
         position: relative;
 
-        &:hover {
-          outline: 1px solid var(--main-gray-op-dark);
-          background-color: var(--main-color-bg);
-          z-index: 1;
+        &:hover,
+        &.active {
+          outline: 1px solid var(--main-gray-dark);
         }
 
         &.active {
-          outline: 1px solid var(--main-gray-op-dark);
+          font-weight: 600;
         }
 
         &:focus-visible {
           outline: 1px solid var(--main-text);
-          background-color: var(--main-color-bg);
           z-index: 1;
         }
       }

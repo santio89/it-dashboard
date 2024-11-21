@@ -35,9 +35,9 @@ html ::selection {
   --black: rgb(10, 10, 10);
   --white: rgb(250, 250, 250);
   --main-gray: rgb(180, 180, 180);
-  --main-gray-dark: rgb(120, 120, 120);
+  --main-gray-dark: rgb(100, 100, 100);
   --main-gray-op: rgba(180, 180, 180, 0.8);
-  --main-gray-op-dark: rgba(100, 100, 100, 0.8);
+  --main-gray-dark-op: rgba(100, 100, 100, 0.8);
   --main-color: rgb(41, 45, 55);
   --main-color-op: rgba(59, 67, 82, 0.5);
   --main-section: rgba(60, 60, 60, 0.1);
@@ -269,7 +269,7 @@ select:disabled {
 
 .mainHeader {
   background: var(--main-color-bg);
-  border-bottom: 1px solid var(--main-gray-op-dark);
+  border-bottom: 1px solid var(--main-gray-dark);
   width: 100%;
   padding: 0.5rem 2rem;
   display: flex;
@@ -304,12 +304,13 @@ select:disabled {
   background-color: var(--main-color-op);
 }
 .mainHeader .logo:hover, .mainHeader .logo:focus-visible {
-  text-shadow: 0 0 1px var(--main-text);
+  text-shadow: 0 0 2px var(--main-text);
 }
 .mainHeader__btnContainer {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.25rem;
 }
 .mainHeader__btnContainer .themeBtn {
   display: flex;
@@ -322,7 +323,14 @@ select:disabled {
   align-items: center;
   color: var(--main-text);
   background: transparent;
-  height: 56px;
+  aspect-ratio: 1;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  padding: 0;
+}
+.mainHeader__btnContainer .themeBtn button.profileOn {
+  background: var(--main-color-op);
 }
 .mainHeader__btnContainer .themeBtn button img {
   width: 32px;
@@ -332,30 +340,29 @@ select:disabled {
   transition: 200ms ease-in-out;
   outline: 1px solid transparent;
 }
-.mainHeader__btnContainer .themeBtn button img.profileOn {
-  outline: 1px solid var(--main-text);
-}
 .mainHeader__btnContainer .themeBtn button svg {
-  aspect-ratio: 1;
+  width: 148px;
   transition: 200ms ease-in-out;
   border-radius: 50%;
 }
-.mainHeader__btnContainer .themeBtn button svg.profileOn {
-  filter: drop-shadow(0 0 4px var(--main-text));
-}
-.mainHeader__btnContainer .themeBtn button:hover svg, .mainHeader__btnContainer .themeBtn button:focus-visible svg {
-  filter: drop-shadow(0 0 4px var(--main-text));
-}
-.mainHeader__btnContainer .themeBtn button:hover img, .mainHeader__btnContainer .themeBtn button:focus-visible img {
-  outline: 1px solid var(--main-text);
+.mainHeader__btnContainer .themeBtn button:hover, .mainHeader__btnContainer .themeBtn button:focus-visible {
+  background: var(--main-color-op);
 }
 .mainHeader__btnContainer .themeBtn .profile-opts {
   position: absolute;
   top: 100%;
   right: 0;
   background: var(--main-color-bg);
-  border: 1px solid var(--main-gray-op-dark);
+  border: 1px solid var(--main-gray-dark);
   transition: 200ms ease-in, background-color 400ms ease-in-out;
+}
+.mainHeader__btnContainer .themeBtn .profile-opts button {
+  width: auto;
+  height: auto;
+  aspect-ratio: auto;
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0.5rem 1rem;
 }
 .mainHeader .theme-clicked {
   animation: rotate-icon 400ms ease-in-out;
@@ -388,7 +395,7 @@ select:disabled {
   background: var(--main-color-bg);
   transition: flex-basis 200ms ease-in-out;
   transition: background-color 400ms ease-in-out, flex-basis 200ms ease-in-out;
-  border-right: 1px solid var(--main-gray-op-dark);
+  border-right: 1px solid var(--main-gray-dark);
   z-index: 2;
 }
 .mainContainer .side-panel .nav-link-disabled {
@@ -404,6 +411,7 @@ select:disabled {
   align-items: stretch;
   height: 100%;
   width: 100%;
+  gap: 1px;
 }
 .mainContainer .side-panel__opts a {
   width: 100%;
@@ -412,20 +420,17 @@ select:disabled {
   justify-content: start;
   color: var(--main-text);
   outline: 1px solid transparent;
-  transition: color 200ms ease-in-out;
+  transition: color 200ms ease-in-out, font-weight 200ms ease-in-out;
   position: relative;
 }
-.mainContainer .side-panel__opts a:hover {
-  outline: 1px solid var(--main-gray-op-dark);
-  background-color: var(--main-color-bg);
-  z-index: 1;
+.mainContainer .side-panel__opts a:hover, .mainContainer .side-panel__opts a.active {
+  outline: 1px solid var(--main-gray-dark);
 }
 .mainContainer .side-panel__opts a.active {
-  outline: 1px solid var(--main-gray-op-dark);
+  font-weight: 600;
 }
 .mainContainer .side-panel__opts a:focus-visible {
   outline: 1px solid var(--main-text);
-  background-color: var(--main-color-bg);
   z-index: 1;
 }
 .mainContainer .side-panel button.side-toggle,
@@ -603,7 +608,7 @@ select:disabled {
   padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
   backdrop-filter: blur(100px);
   background-color: var(--main-section);
-  outline: 1px solid var(--main-gray-op-dark);
+  outline: 1px solid var(--main-gray-dark);
   color: var(--main-text);
 }
 .site-section__inner:only-child {
@@ -655,7 +660,7 @@ select:disabled {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  outline: 1px solid var(--main-gray-dark);
+  outline: 1px solid var(--main-gray-dark-op);
 }
 .site-section__list ul.tdl-list {
   display: flex;
@@ -926,7 +931,7 @@ select:disabled {
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(100px);
-  outline: 1px solid var(--main-gray-op-dark);
+  outline: 1px solid var(--main-gray-dark);
   font-size: 1rem;
   padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
   background: transparent;
@@ -1105,12 +1110,6 @@ select:disabled {
   flex-direction: column;
   width: 100%;
   gap: 1.5rem;
-}
-.mainModal__data > p {
-  text-transform: uppercase;
-  font-weight: 700;
-  width: 100%;
-  border-bottom: 1px solid var(--main-gray-op-dark);
 }
 .mainModal__data__form {
   flex: 1;
@@ -1319,18 +1318,6 @@ option:hover,
 .mainModal__data__form.taskContainer .taskOpenData button.selected {
   background-color: var(--main-color-op);
 }
-.mainModal__data__form.taskContainer .taskOpenData .underline {
-  text-decoration: underline;
-}
-.mainModal__data__form.taskContainer .taskOpenData .underline.selectedLow {
-  text-decoration-color: var(--main-gray-dark);
-}
-.mainModal__data__form.taskContainer .taskOpenData .underline.selectedMedium {
-  text-decoration-color: var(--main-color-light);
-}
-.mainModal__data__form.taskContainer .taskOpenData .underline.selectedHigh {
-  text-decoration-color: var(--red);
-}
 .mainModal__data__form.taskContainer .taskOpenContent {
   color: var(--white);
   font-weight: 300;
@@ -1377,7 +1364,7 @@ option:hover,
   padding: 0.5rem;
   background-color: var(--main-color-bg);
   color: var(--main-text);
-  border: 1px solid var(--main-gray-op-dark);
+  border: 1px solid var(--main-gray-dark);
   font-family: var(--font-primary);
   font-size: 1rem;
   white-space: pre-wrap;

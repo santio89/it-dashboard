@@ -104,7 +104,7 @@
     padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
     backdrop-filter: blur(100px);
     background-color: var(--main-section);
-    outline: 1px solid var(--main-gray-op-dark);
+    outline: 1px solid var(--main-gray-dark);
     color: var(--main-text);
 
     &:only-child {
@@ -162,7 +162,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            outline: 1px solid var(--main-gray-dark);
+            outline: 1px solid var(--main-gray-dark-op);
           }
         }
       }
@@ -470,7 +470,7 @@
       justify-content: center;
       align-items: center;
       backdrop-filter: blur(100px);
-      outline: 1px solid var(--main-gray-op-dark);
+      outline: 1px solid var(--main-gray-dark);
       font-size: 1rem;
       padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
       background: transparent;
