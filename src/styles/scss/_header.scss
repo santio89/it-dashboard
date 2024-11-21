@@ -37,7 +37,7 @@
 
     &:hover,
     &:focus-visible {
-      text-shadow: 0 0 2px var(--main-text);
+      text-shadow: 0 0 4px var(--main-text);
     }
   }
 
@@ -58,7 +58,6 @@
         color: var(--main-text);
         background: transparent;
         height: 56px;
-        aspect-ratio: 1;
 
         img {
           width: 32px;
@@ -74,6 +73,7 @@
         }
 
         svg {
+          aspect-ratio: 1;
           transition: 200ms ease-in-out;
         }
 
@@ -92,6 +92,7 @@
       .profile-opts {
         position: absolute;
         top: 100%;
+        right: 0;
         background: var(--main-color-bg);
         border: 1px solid var(--main-gray-op-dark);
         transition: 200ms ease-in, background-color 400ms ease-in-out;
