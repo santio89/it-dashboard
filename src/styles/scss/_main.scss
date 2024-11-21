@@ -81,7 +81,10 @@
         transition: 200ms ease-in-out;
       }
 
-      &:hover {
+      &:hover,
+      &:focus-visible {
+        background-color: var(--main-color-op);
+
         svg {
           filter: drop-shadow(0 0 4px var(--white));
         }
@@ -89,10 +92,6 @@
 
       &:focus-visible {
         outline: 1px solid var(--main-text);
-
-        svg {
-          filter: drop-shadow(0 0 4px var(--white));
-        }
       }
 
       &.expanded {

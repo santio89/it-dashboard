@@ -446,17 +446,19 @@ select:disabled {
   height: 20px;
   transition: 200ms ease-in-out;
 }
-.mainContainer .side-panel button.side-toggle:hover svg,
-.mainContainer .side-panel a.side-toggle:hover svg {
+.mainContainer .side-panel button.side-toggle:hover, .mainContainer .side-panel button.side-toggle:focus-visible,
+.mainContainer .side-panel a.side-toggle:hover,
+.mainContainer .side-panel a.side-toggle:focus-visible {
+  background-color: var(--main-color-op);
+}
+.mainContainer .side-panel button.side-toggle:hover svg, .mainContainer .side-panel button.side-toggle:focus-visible svg,
+.mainContainer .side-panel a.side-toggle:hover svg,
+.mainContainer .side-panel a.side-toggle:focus-visible svg {
   filter: drop-shadow(0 0 4px var(--white));
 }
 .mainContainer .side-panel button.side-toggle:focus-visible,
 .mainContainer .side-panel a.side-toggle:focus-visible {
   outline: 1px solid var(--main-text);
-}
-.mainContainer .side-panel button.side-toggle:focus-visible svg,
-.mainContainer .side-panel a.side-toggle:focus-visible svg {
-  filter: drop-shadow(0 0 4px var(--white));
 }
 .mainContainer .side-panel button.side-toggle.expanded svg,
 .mainContainer .side-panel a.side-toggle.expanded svg {
