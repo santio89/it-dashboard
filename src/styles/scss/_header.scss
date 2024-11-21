@@ -75,6 +75,11 @@
         svg {
           aspect-ratio: 1;
           transition: 200ms ease-in-out;
+          border-radius: 50%;
+
+          &.profileOn {
+            filter: drop-shadow(0 0 4px var(--main-text));
+          }
         }
 
         &:hover,

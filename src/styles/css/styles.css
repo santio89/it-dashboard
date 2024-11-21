@@ -338,6 +338,10 @@ select:disabled {
 .mainHeader__btnContainer .themeBtn button svg {
   aspect-ratio: 1;
   transition: 200ms ease-in-out;
+  border-radius: 50%;
+}
+.mainHeader__btnContainer .themeBtn button svg.profileOn {
+  filter: drop-shadow(0 0 4px var(--main-text));
 }
 .mainHeader__btnContainer .themeBtn button:hover svg, .mainHeader__btnContainer .themeBtn button:focus-visible svg {
   filter: drop-shadow(0 0 4px var(--main-text));
