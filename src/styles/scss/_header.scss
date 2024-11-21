@@ -65,7 +65,7 @@
           object-fit: cover;
           border-radius: 50%;
           transition: 200ms ease-in-out;
-          outline: 2px solid transparent;
+          outline: 1px solid transparent;
 
           &.profileOn {
             outline: 1px solid var(--main-text);
