@@ -12,7 +12,7 @@
   height: 56px;
   min-height: 56px;
   max-height: 56px;
-  transition: background-color 400ms ease-in-out;
+  transition: background-color 500ms ease-in-out;
   position: relative;
 
   .logo {
@@ -73,13 +73,13 @@
           aspect-ratio: 1;
           object-fit: cover;
           border-radius: 50%;
-          transition: 200ms ease-in-out;
+          transition: 250ms ease-in-out;
           outline: 1px solid transparent;
         }
 
         svg {
           width: 148px;
-          transition: 200ms ease-in-out;
+          transition: 250ms ease-in-out;
           border-radius: 50%;
         }
 
@@ -95,7 +95,7 @@
         right: 0;
         background: var(--main-color-bg);
         border: 1px solid var(--main-gray-dark);
-        transition: 200ms ease-in, background-color 400ms ease-in-out;
+        transition: 250ms ease-in, background-color 500ms ease-in-out;
 
         button {
           width: auto;
@@ -118,6 +118,6 @@
         rotate: 360deg;
       }
     }
-    animation: rotate-icon 400ms ease-in-out;
+    animation: rotate-icon 500ms ease-in-out;
   }
 }
