@@ -38,6 +38,7 @@ html ::selection {
   --main-gray-dark: rgb(100, 100, 100);
   --main-gray-op: rgba(180, 180, 180, 0.8);
   --main-gray-dark-op: rgba(100, 100, 100, 0.8);
+  --main-gray-darker-op: rgba(100, 100, 100, 0.4);
   --main-color: rgb(41, 45, 55);
   --main-color-op: rgba(59, 67, 82, 0.5);
   --main-section: rgba(60, 60, 60, 0.1);
@@ -385,6 +386,9 @@ select:disabled {
   flex: 1;
   z-index: 1;
   overflow: hidden;
+  background-image: radial-gradient(var(--main-gray-darker-op) 1px, transparent 1px);
+  background-size: 24px 24px;
+  transition: 200ms ease-in-out;
 }
 .mainContainer .side-panel {
   flex-basis: clamp(80px, 80px + 2vw, 10%);

@@ -7,6 +7,12 @@
   flex: 1;
   z-index: 1;
   overflow: hidden;
+  background-image: radial-gradient(
+    var(--main-gray-darker-op) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+  transition: 200ms ease-in-out;
 
   .side-panel {
     flex-basis: clamp(80px, 80px + 2vw, 10%);
