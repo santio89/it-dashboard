@@ -211,7 +211,6 @@
           font-weight: 600;
         }
 
-        &:focus-within,
         &:has(
             input:hover,
             textarea:hover,
@@ -219,8 +218,15 @@
             option:hover,
             .taskOpenContent:hover
           ) {
-          border: 1px solid var(--white);
-          border-color: var(--white);
+          border: 1px solid var(--main-color-mid);
+
+          legend {
+            color: var(--white);
+          }
+        }
+
+        &:focus-within {
+          border: 1px solid var(--white) !important;
 
           legend {
             color: var(--white);

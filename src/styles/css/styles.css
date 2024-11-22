@@ -1157,19 +1157,24 @@ select:disabled {
   transition: 200ms ease-in-out;
   font-weight: 600;
 }
-.mainModal__data__form fieldset:focus-within, .mainModal__data__form fieldset:has(input:hover,
+.mainModal__data__form fieldset:has(input:hover,
 textarea:hover,
 select:hover,
 option:hover,
 .taskOpenContent:hover) {
-  border: 1px solid var(--white);
-  border-color: var(--white);
+  border: 1px solid var(--main-color-mid);
 }
-.mainModal__data__form fieldset:focus-within legend, .mainModal__data__form fieldset:has(input:hover,
+.mainModal__data__form fieldset:has(input:hover,
 textarea:hover,
 select:hover,
 option:hover,
 .taskOpenContent:hover) legend {
+  color: var(--white);
+}
+.mainModal__data__form fieldset:focus-within {
+  border: 1px solid var(--white) !important;
+}
+.mainModal__data__form fieldset:focus-within legend {
   color: var(--white);
 }
 .mainModal__data__form fieldset:has(textarea, .taskOpenContent) {
