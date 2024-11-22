@@ -453,7 +453,8 @@
     min-height: 120px;
     aspect-ratio: 16/9;
     transition: outline-color 200ms ease-in-out,
-      background-color 200ms ease-in-out;
+      background-color 400ms ease-in-out;
+    background-color: var(--main-section);
     background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%);
 
     &:has(.homeCard-anchor:is(:hover, :focus-visible)) {
