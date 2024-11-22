@@ -15,13 +15,12 @@
   transition: 200ms ease-in-out;
 
   .side-panel {
-    flex-basis: clamp(80px, 80px + 2vw, 10%);
+    flex-basis: clamp(80px, 80px + 2vw, 100px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background: var(--main-color-bg);
-    transition: flex-basis 200ms ease-in-out;
     transition: background-color 400ms ease-in-out, flex-basis 200ms ease-in-out;
     border-right: 1px solid var(--main-gray-dark);
     z-index: 2;
