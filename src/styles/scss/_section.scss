@@ -102,10 +102,10 @@
     overflow-x: hidden;
     overflow-y: auto;
     padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
-    backdrop-filter: blur(100px);
     background-color: var(--main-section);
     outline: 1px solid var(--main-gray-dark);
     color: var(--main-text);
+    transition: background-color 400ms ease-in-out;
 
     &:only-child {
       min-height: 100% !important;
@@ -469,14 +469,13 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      backdrop-filter: blur(100px);
       outline: 1px solid var(--main-gray-dark);
       font-size: 1rem;
       padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
       background: transparent;
       text-shadow: 0 0 0 transparent;
       color: var(--main-text);
-      transition: 200ms ease-in-out;
+      transition: color 200ms ease-in-out, background-color 400ms ease-in-out;
 
       &:hover,
       &:focus-visible {

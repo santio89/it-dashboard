@@ -41,9 +41,9 @@ html ::selection {
   --main-gray-darker-op: rgba(100, 100, 100, 0.4);
   --main-color: rgb(41, 45, 55);
   --main-color-op: rgba(59, 67, 82, 0.5);
-  --main-section: rgba(60, 60, 60, 0.1);
   --main-color-bg: rgb(10, 10, 10);
   --main-text: rgb(250, 250, 250);
+  --main-section: rgb(15, 15, 15);
   /* color-mix */
   --main-color-dark: color-mix(in srgb, var(--main-color), black 75%);
   --main-color-light: color-mix(in srgb, var(--main-color), white 75%);
@@ -53,6 +53,7 @@ html ::selection {
 .light-theme {
   --main-color-bg: rgb(250, 250, 250);
   --main-text: rgb(10, 10, 10);
+  --main-section: rgb(230, 230, 230);
 }
 
 li {
@@ -443,22 +444,18 @@ select:disabled {
   outline: none;
   background: none;
   font: inherit;
-  background: var(--main-color-mid);
-  color: var(--white);
+  background: transparent;
+  color: var(--main-text);
   padding: 0.5rem 1rem;
   cursor: pointer;
   width: 100%;
+  border-top: 1px solid var(--main-gray-dark);
 }
 .mainContainer .side-panel button.side-toggle svg,
 .mainContainer .side-panel a.side-toggle svg {
   width: 20px;
   height: 20px;
   transition: 200ms ease-in-out;
-}
-.mainContainer .side-panel button.side-toggle:hover, .mainContainer .side-panel button.side-toggle:focus-visible,
-.mainContainer .side-panel a.side-toggle:hover,
-.mainContainer .side-panel a.side-toggle:focus-visible {
-  background-color: var(--main-color-op);
 }
 .mainContainer .side-panel button.side-toggle:hover svg, .mainContainer .side-panel button.side-toggle:focus-visible svg,
 .mainContainer .side-panel a.side-toggle:hover svg,
@@ -610,10 +607,10 @@ select:disabled {
   overflow-x: hidden;
   overflow-y: auto;
   padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
-  backdrop-filter: blur(100px);
   background-color: var(--main-section);
   outline: 1px solid var(--main-gray-dark);
   color: var(--main-text);
+  transition: background-color 400ms ease-in-out;
 }
 .site-section__inner:only-child {
   min-height: 100% !important;
@@ -934,14 +931,13 @@ select:disabled {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(100px);
   outline: 1px solid var(--main-gray-dark);
   font-size: 1rem;
   padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
   background: transparent;
   text-shadow: 0 0 0 transparent;
   color: var(--main-text);
-  transition: 200ms ease-in-out;
+  transition: color 200ms ease-in-out, background-color 400ms ease-in-out;
 }
 .site-section__homeCard .homeCard-anchor:hover h2, .site-section__homeCard .homeCard-anchor:focus-visible h2 {
   text-shadow: 0 0 2px var(--main-text);

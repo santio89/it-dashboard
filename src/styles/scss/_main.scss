@@ -74,11 +74,12 @@
       outline: none;
       background: none;
       font: inherit;
-      background: var(--main-color-mid);
-      color: var(--white);
+      background: transparent;
+      color: var(--main-text);
       padding: 0.5rem 1rem;
       cursor: pointer;
       width: 100%;
+      border-top: 1px solid var(--main-gray-dark);
 
       svg {
         width: 20px;
@@ -88,8 +89,6 @@
 
       &:hover,
       &:focus-visible {
-        background-color: var(--main-color-op);
-
         svg {
           filter: drop-shadow(0 0 4px var(--white));
         }
