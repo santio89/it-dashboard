@@ -105,7 +105,7 @@
     background-color: var(--main-section);
     outline: 1px solid var(--main-gray-dark);
     color: var(--main-text);
-    transition: background-color 500ms ease-in-out;
+    transition: background-color 400ms ease-in-out;
 
     &:only-child {
       min-height: 100% !important;
@@ -331,8 +331,8 @@
             text-align: left;
             justify-content: start;
             align-items: start;
-            transition: 250ms background-color ease-in-out,
-              250ms color ease-in-out;
+            transition: 200ms background-color ease-in-out,
+              200ms color ease-in-out;
             font-weight: 300;
 
             &.taskContentBtn {
@@ -452,8 +452,8 @@
     width: 240px;
     min-height: 120px;
     aspect-ratio: 16/9;
-    transition: outline-color 250ms ease-in-out,
-      background-color 250ms ease-in-out;
+    transition: outline-color 200ms ease-in-out,
+      background-color 200ms ease-in-out;
     background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%);
 
     &:has(.homeCard-anchor:is(:hover, :focus-visible)) {
@@ -475,7 +475,7 @@
       background: transparent;
       text-shadow: 0 0 0 transparent;
       color: var(--main-text);
-      transition: color 250ms ease-in-out, background-color 500ms ease-in-out;
+      transition: color 200ms ease-in-out, background-color 400ms ease-in-out;
 
       &:hover,
       &:focus-visible {
@@ -491,13 +491,13 @@
         font-size: 2em;
         font-weight: 700;
         text-transform: uppercase;
-        transition: 250ms text-shadow ease-in-out;
+        transition: 200ms text-shadow ease-in-out;
       }
 
       p {
         font-size: 1em;
         font-weight: 400;
-        transition: 250ms text-shadow ease-in-out;
+        transition: 200ms text-shadow ease-in-out;
       }
     }
   }
@@ -506,14 +506,14 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    transition: 250ms ease-in-out;
+    transition: 200ms ease-in-out;
 
     button {
       background: none;
       color: inherit;
       padding: 0;
       text-decoration: underline;
-      transition: all 250ms ease-in-out, color 0ms;
+      transition: all 200ms ease-in-out, color 0ms;
 
       &:hover {
         text-shadow: 0 0 4px var(--main-text);

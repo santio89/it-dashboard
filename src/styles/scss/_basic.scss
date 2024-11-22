@@ -89,7 +89,7 @@ option {
   align-items: center;
   text-align: center;
   text-wrap: balance;
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
   background: var(--main-color);
   color: var(--white);
   outline-offset: 0;
@@ -173,7 +173,7 @@ select:disabled {
   color: var(--white);
   background: var(--main-color-bg);
   overflow: hidden;
-  transition: background-color 500ms ease-in-out, color 250ms ease-in-out;
+  transition: background-color 400ms ease-in-out, color 200ms ease-in-out;
 }
 
 /* main container */
@@ -193,7 +193,7 @@ select:disabled {
   font: inherit;
   padding-bottom: 8px;
   background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
   animation: load-steps 2s linear infinite;
 }
 @keyframes load-steps {
@@ -214,7 +214,7 @@ select:disabled {
   max-height: 100%;
   pointer-events: none;
   z-index: -1;
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
   filter: grayscale(1);
   --gradient-color-1: var(--main-color-op);
   --gradient-color-2: transparent;
@@ -241,7 +241,7 @@ select:disabled {
     filter: blur(200px);
     z-index: -2;
     overflow: hidden;
-    transition: 500ms ease-in-out;
+    transition: 400ms ease-in-out;
     background: linear-gradient(
       45deg,
       var(--gradient-color-1),
@@ -263,6 +263,6 @@ select:disabled {
   height: 100%;
   z-index: -1;
   overflow: hidden;
-  transition: 500ms ease-in-out;
+  transition: 400ms ease-in-out;
   filter: blur(2px);
 }

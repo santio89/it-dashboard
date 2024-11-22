@@ -81,7 +81,7 @@ option {
   align-items: center;
   text-align: center;
   text-wrap: balance;
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
   background: var(--main-color);
   color: var(--white);
   outline-offset: 0;
@@ -181,7 +181,7 @@ select:disabled {
   color: var(--white);
   background: var(--main-color-bg);
   overflow: hidden;
-  transition: background-color 500ms ease-in-out, color 250ms ease-in-out;
+  transition: background-color 400ms ease-in-out, color 200ms ease-in-out;
 }
 
 /* main container */
@@ -201,7 +201,7 @@ select:disabled {
   font: inherit;
   padding-bottom: 8px;
   background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
   animation: load-steps 2s linear infinite;
 }
 
@@ -222,7 +222,7 @@ select:disabled {
   max-height: 100%;
   pointer-events: none;
   z-index: -1;
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
   filter: grayscale(1);
   --gradient-color-1: var(--main-color-op);
   --gradient-color-2: transparent;
@@ -248,7 +248,7 @@ select:disabled {
   filter: blur(200px);
   z-index: -2;
   overflow: hidden;
-  transition: 500ms ease-in-out;
+  transition: 400ms ease-in-out;
   background: linear-gradient(45deg, var(--gradient-color-1), var(--gradient-color-2));
   background-size: 200%;
 }
@@ -265,7 +265,7 @@ select:disabled {
   height: 100%;
   z-index: -1;
   overflow: hidden;
-  transition: 500ms ease-in-out;
+  transition: 400ms ease-in-out;
   filter: blur(2px);
 }
 
@@ -283,7 +283,7 @@ select:disabled {
   height: 56px;
   min-height: 56px;
   max-height: 56px;
-  transition: background-color 500ms ease-in-out;
+  transition: background-color 400ms ease-in-out;
   position: relative;
 }
 .mainHeader .logo {
@@ -339,12 +339,12 @@ select:disabled {
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: 50%;
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
   outline: 1px solid transparent;
 }
 .mainHeader__btnContainer .themeBtn button svg {
   width: 148px;
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
   border-radius: 50%;
 }
 .mainHeader__btnContainer .themeBtn button:hover, .mainHeader__btnContainer .themeBtn button:focus-visible {
@@ -356,7 +356,7 @@ select:disabled {
   right: 0;
   background: var(--main-color-bg);
   border: 1px solid var(--main-gray-dark);
-  transition: 250ms ease-in, background-color 500ms ease-in-out;
+  transition: 200ms ease-in, background-color 400ms ease-in-out;
 }
 .mainHeader__btnContainer .themeBtn .profile-opts button {
   width: auto;
@@ -367,7 +367,7 @@ select:disabled {
   padding: 0.5rem 1rem;
 }
 .mainHeader .theme-clicked {
-  animation: rotate-icon 500ms ease-in-out;
+  animation: rotate-icon 400ms ease-in-out;
 }
 @keyframes rotate-icon {
   from {
@@ -389,7 +389,7 @@ select:disabled {
   overflow: hidden;
   background-image: radial-gradient(var(--main-gray-darker-op) 1px, transparent 1px);
   background-size: 24px 24px;
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
 }
 .mainContainer .side-panel {
   flex-basis: clamp(80px, 80px + 2vw, 10%);
@@ -398,8 +398,8 @@ select:disabled {
   justify-content: space-between;
   align-items: center;
   background: var(--main-color-bg);
-  transition: flex-basis 250ms ease-in-out;
-  transition: background-color 500ms ease-in-out, flex-basis 250ms ease-in-out;
+  transition: flex-basis 200ms ease-in-out;
+  transition: background-color 400ms ease-in-out, flex-basis 200ms ease-in-out;
   border-right: 1px solid var(--main-gray-dark);
   z-index: 2;
 }
@@ -425,7 +425,7 @@ select:disabled {
   justify-content: start;
   color: var(--main-text);
   outline: 1px solid transparent;
-  transition: color 250ms ease-in-out, font-weight 250ms ease-in-out;
+  transition: color 200ms ease-in-out, font-weight 200ms ease-in-out, outline 200ms ease-in-out;
   position: relative;
 }
 .mainContainer .side-panel__opts a:hover, .mainContainer .side-panel__opts a.active {
@@ -455,7 +455,7 @@ select:disabled {
 .mainContainer .side-panel a.side-toggle svg {
   width: 20px;
   height: 20px;
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
 }
 .mainContainer .side-panel button.side-toggle:hover svg, .mainContainer .side-panel button.side-toggle:focus-visible svg,
 .mainContainer .side-panel a.side-toggle:hover svg,
@@ -610,7 +610,7 @@ select:disabled {
   background-color: var(--main-section);
   outline: 1px solid var(--main-gray-dark);
   color: var(--main-text);
-  transition: background-color 500ms ease-in-out;
+  transition: background-color 400ms ease-in-out;
 }
 .site-section__inner:only-child {
   min-height: 100% !important;
@@ -810,7 +810,7 @@ select:disabled {
   text-align: left;
   justify-content: start;
   align-items: start;
-  transition: 250ms background-color ease-in-out, 250ms color ease-in-out;
+  transition: 200ms background-color ease-in-out, 200ms color ease-in-out;
   font-weight: 300;
   /*   display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -916,7 +916,7 @@ select:disabled {
   width: 240px;
   min-height: 120px;
   aspect-ratio: 16/9;
-  transition: outline-color 250ms ease-in-out, background-color 250ms ease-in-out;
+  transition: outline-color 200ms ease-in-out, background-color 200ms ease-in-out;
   background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%);
 }
 .site-section__homeCard:has(.homeCard-anchor:is(:hover, :focus-visible)) {
@@ -937,7 +937,7 @@ select:disabled {
   background: transparent;
   text-shadow: 0 0 0 transparent;
   color: var(--main-text);
-  transition: color 250ms ease-in-out, background-color 500ms ease-in-out;
+  transition: color 200ms ease-in-out, background-color 400ms ease-in-out;
 }
 .site-section__homeCard .homeCard-anchor:hover h2, .site-section__homeCard .homeCard-anchor:focus-visible h2 {
   text-shadow: 0 0 2px var(--main-text);
@@ -949,25 +949,25 @@ select:disabled {
   font-size: 2em;
   font-weight: 700;
   text-transform: uppercase;
-  transition: 250ms text-shadow ease-in-out;
+  transition: 200ms text-shadow ease-in-out;
 }
 .site-section__homeCard .homeCard-anchor p {
   font-size: 1em;
   font-weight: 400;
-  transition: 250ms text-shadow ease-in-out;
+  transition: 200ms text-shadow ease-in-out;
 }
 .site-section__private {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
 }
 .site-section__private button {
   background: none;
   color: inherit;
   padding: 0;
   text-decoration: underline;
-  transition: all 250ms ease-in-out, color 0ms;
+  transition: all 200ms ease-in-out, color 0ms;
 }
 .site-section__private button:hover {
   text-shadow: 0 0 4px var(--main-text);
@@ -988,7 +988,7 @@ select:disabled {
   border: 1px solid var(--main-color-mid);
   box-shadow: 0 0 2rem -1rem var(--main-color-dark);
   padding: clamp(0.5rem, 0.5rem + 2vw, 2rem);
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
 }
 @starting-style {
   .mainModalWrapper {
@@ -1147,14 +1147,14 @@ select:disabled {
   min-width: 150px;
   width: 45%;
   margin-bottom: 1rem;
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
   background: var(--main-color-op);
 }
 .mainModal__data__form fieldset legend {
   margin: 0 8px;
   padding: 0 4px;
   color: var(--white);
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
   font-weight: 600;
 }
 .mainModal__data__form fieldset:has(input:hover,
@@ -1373,7 +1373,7 @@ option:hover,
   font-family: var(--font-primary);
   font-size: 1rem;
   white-space: pre-wrap;
-  transition: 500ms ease-in-out, color 250ms ease-in-out;
+  transition: 400ms ease-in-out, color 200ms ease-in-out;
 }
 .toaster div[data-title] {
   font-weight: 700;

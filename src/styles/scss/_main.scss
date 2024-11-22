@@ -12,7 +12,7 @@
     transparent 1px
   );
   background-size: 24px 24px;
-  transition: 250ms ease-in-out;
+  transition: 200ms ease-in-out;
 
   .side-panel {
     flex-basis: clamp(80px, 80px + 2vw, 10%);
@@ -21,8 +21,8 @@
     justify-content: space-between;
     align-items: center;
     background: var(--main-color-bg);
-    transition: flex-basis 250ms ease-in-out;
-    transition: background-color 500ms ease-in-out, flex-basis 250ms ease-in-out;
+    transition: flex-basis 200ms ease-in-out;
+    transition: background-color 400ms ease-in-out, flex-basis 200ms ease-in-out;
     border-right: 1px solid var(--main-gray-dark);
     z-index: 2;
 
@@ -49,7 +49,8 @@
         justify-content: start;
         color: var(--main-text);
         outline: 1px solid transparent;
-        transition: color 250ms ease-in-out, font-weight 250ms ease-in-out;
+        transition: color 200ms ease-in-out, font-weight 200ms ease-in-out,
+          outline 200ms ease-in-out;
         position: relative;
 
         &:hover,
@@ -84,7 +85,7 @@
       svg {
         width: 20px;
         height: 20px;
-        transition: 250ms ease-in-out;
+        transition: 200ms ease-in-out;
       }
 
       &:hover,
