@@ -127,6 +127,7 @@
       transparent 1px
     );
     background-size: 24px 24px;
+    background-position: 0% 0%;
 
     &.expanded {
       &:has(.site-section__homeCard) {

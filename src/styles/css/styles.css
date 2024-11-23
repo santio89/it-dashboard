@@ -491,6 +491,7 @@ select:disabled {
   background-color: var(--main-color-bg);
   background-image: radial-gradient(var(--main-gray-darker-op) 1px, transparent 1px);
   background-size: 24px 24px;
+  background-position: 0% 0%;
 }
 .mainContainer .main-content.expanded:has(.site-section__homeCard) {
   justify-content: start;
