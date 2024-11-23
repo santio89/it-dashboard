@@ -7,7 +7,6 @@
   flex: 1;
   z-index: 1;
   overflow: hidden;
-  transition: 200ms ease-in-out;
 
   .side-panel {
     width: clamp(80px, 80px + 4vw, 140px);
