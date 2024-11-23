@@ -665,6 +665,7 @@ select:disabled {
   overflow: hidden;
   text-overflow: ellipsis;
   outline: 1px solid var(--main-gray-dark-op);
+  box-shadow: -2px 0 0 0 var(--main-color-light), -4px 0 0 0 var(--main-color);
 }
 .site-section__list ul.tdl-list {
   display: flex;
