@@ -121,6 +121,7 @@
     justify-content: center;
     align-items: stretch;
     overflow: hidden;
+    background-color: var(--main-color-bg);
     background-image: radial-gradient(
       var(--main-gray-darker-op) 1px,
       transparent 1px
