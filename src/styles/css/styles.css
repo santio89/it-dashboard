@@ -386,8 +386,6 @@ select:disabled {
   flex: 1;
   z-index: 1;
   overflow: hidden;
-  background-image: radial-gradient(var(--main-gray-darker-op) 1px, transparent 1px);
-  background-size: 24px 24px;
   transition: 200ms ease-in-out;
 }
 .mainContainer .side-panel {
@@ -490,6 +488,8 @@ select:disabled {
   justify-content: center;
   align-items: stretch;
   overflow: hidden;
+  background-image: radial-gradient(var(--main-gray-darker-op) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 .mainContainer .main-content.expanded:has(.site-section__homeCard) {
   justify-content: start;
