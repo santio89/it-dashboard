@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useGetTdlQuery, useAddTdlMutation, useDeleteTdlMutation, useEditTdlMutation } from '../store/slices/apiSlice'
+import { useGetTdlQuery, useDeleteTdlMutation, useEditTdlMutation } from '../store/slices/apiSlice'
 import { setModal } from '../store/slices/modalSlice'
 import { useDispatch } from 'react-redux'
 import DataChart from './DataChart'

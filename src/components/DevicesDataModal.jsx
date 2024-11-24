@@ -173,7 +173,7 @@ export default function DevicesDataModal({ modalData }) {
                 <textarea readOnly disabled spellCheck={false} rows="2" title="Comment" value={modalData?.comment || "-"} />
               </fieldset>
             </div>
-            <div className='mainModal__btnContainer--edit'>
+            <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(true)}>Delete</button>
             </div>
@@ -254,7 +254,7 @@ export default function DevicesDataModal({ modalData }) {
                 <textarea spellCheck={false} rows="2" title="Comment" value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value.trimStart())} maxLength={500} />
               </fieldset>
             </div>
-            <div className='mainModal__btnContainer--edit'>
+            <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
               <button className='mainModal__send' >Confirm</button>
             </div>
@@ -273,7 +273,7 @@ export default function DevicesDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form deleteMode' disabled={resultDeleteDevice.isLoading}>
+          <form className='mainModal__data__form deleteMode disabled' disabled={resultDeleteDevice.isLoading}>
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
@@ -318,7 +318,7 @@ export default function DevicesDataModal({ modalData }) {
                 <textarea readOnly disabled spellCheck={false} rows="2" title="Comment" value={modalData?.comment || "-"} />
               </fieldset>
             </div>
-            <div className='mainModal__btnContainer--edit'>
+            <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
               <button type='button' className='mainModal__send' onClick={() => deleteDeviceFn(modalData)}>Confirm</button>
             </div>

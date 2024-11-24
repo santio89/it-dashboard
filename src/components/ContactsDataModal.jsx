@@ -183,7 +183,7 @@ export default function ContactsDataModal({ modalData }) {
                 <textarea readOnly disabled spellCheck={false} rows="2" title="Comment" value={modalData?.comment || "-"} />
               </fieldset>
             </div>
-            <div className='mainModal__btnContainer--edit'>
+            <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(true)}>Delete</button>
             </div>
@@ -267,7 +267,7 @@ export default function ContactsDataModal({ modalData }) {
                 <textarea spellCheck={false} rows="2" title="Comment" value={newUserComment} onChange={e => setNewUserComment(e.target.value.trimStart())} maxLength={500} />
               </fieldset>
             </div>
-            <div className='mainModal__btnContainer--edit'>
+            <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
               <button className='mainModal__send'>Confirm</button>
             </div>
@@ -331,7 +331,7 @@ export default function ContactsDataModal({ modalData }) {
                 <textarea readOnly disabled spellCheck={false} rows="2" title="Comment" value={modalData?.comment || "-"} />
               </fieldset>
             </div>
-            <div className='mainModal__btnContainer--edit'>
+            <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
               <button type='button' className='mainModal__send' onClick={() => deleteUserFn(modalData)}>Confirm</button>
             </div>
