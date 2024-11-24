@@ -208,7 +208,7 @@ export default function TDLDataModal({ modalData }) {
         modalData?.tdlData && deleteMode &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>TASK</h2>
+            <h2>DELETE TASK</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
               <button tabIndex={-1} className={`listPicker disabled`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
