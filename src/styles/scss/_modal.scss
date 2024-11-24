@@ -80,6 +80,10 @@
     }
   }
 
+  button:focus-visible {
+    outline-color: var(--white);
+  }
+
   &__titleContainer {
     display: flex;
     flex-direction: column;
@@ -120,12 +124,10 @@
           }
 
           &.disabled {
-            outline: none;
-
             &:hover,
             &:focus,
             &:focus-visible {
-              outline: none;
+              background-color: var(--main-color-mid);
             }
           }
 
@@ -385,6 +387,7 @@
             text-transform: capitalize;
             background-color: var(--main-color-mid);
             outline: 1px solid transparent;
+            outline-offset: -1px;
 
             &.tdl-priority {
               color: var(--white);
@@ -399,7 +402,10 @@
                 color: var(--red);
               }
               &.selected {
-                outline: 1px solid var(--main-color-mid);
+                outline: 1px solid var(--main-color-op);
+              }
+              &:hover {
+                outline-color: var(--main-color-mid);
               }
 
               svg {
@@ -417,12 +423,14 @@
 
               &[disabled] {
                 background-color: var(--main-color-op);
+                outline-color: var(--main-color-op);
               }
             }
 
             &:focus-visible {
               background-color: var(--main-color-op);
-              outline: 1px solid var(--white) !important;
+              outline: 1px solid var(--white);
+              outline-color: var(--white) !important;
             }
 
             &.selected {

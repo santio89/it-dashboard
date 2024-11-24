@@ -1055,6 +1055,9 @@ select:disabled {
   height: 8px;
   background-color: var(--main-color-mid);
 }
+.mainModal button:focus-visible {
+  outline-color: var(--white);
+}
 .mainModal__titleContainer {
   display: flex;
   flex-direction: column;
@@ -1091,11 +1094,8 @@ select:disabled {
   pointer-events: none;
   filter: grayscale(1);
 }
-.mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled {
-  outline: none;
-}
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:focus, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:focus-visible {
-  outline: none;
+  background-color: var(--main-color-mid);
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:focus-visible, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.selected {
   background-color: var(--main-color-op);
@@ -1303,6 +1303,7 @@ option:hover,
   text-transform: capitalize;
   background-color: var(--main-color-mid);
   outline: 1px solid transparent;
+  outline-offset: -1px;
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority {
   color: var(--white);
@@ -1317,7 +1318,10 @@ option:hover,
   color: var(--red);
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selected {
-  outline: 1px solid var(--main-color-mid);
+  outline: 1px solid var(--main-color-op);
+}
+.mainModal__data__form.taskContainer .taskOpenData button.tdl-priority:hover {
+  outline-color: var(--main-color-mid);
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority svg {
   width: 16px;
@@ -1332,10 +1336,12 @@ option:hover,
 }
 .mainModal__data__form.taskContainer .taskOpenData button:hover[disabled] {
   background-color: var(--main-color-op);
+  outline-color: var(--main-color-op);
 }
 .mainModal__data__form.taskContainer .taskOpenData button:focus-visible {
   background-color: var(--main-color-op);
-  outline: 1px solid var(--white) !important;
+  outline: 1px solid var(--white);
+  outline-color: var(--white) !important;
 }
 .mainModal__data__form.taskContainer .taskOpenData button.selected {
   background-color: var(--main-color-op);

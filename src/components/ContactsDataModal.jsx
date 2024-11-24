@@ -282,7 +282,7 @@ export default function ContactsDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
               {
-                <button disabled={resultDeleteContact.isLoading} className={`listPicker disabled`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
+                <button tabIndex={-1} disabled={resultDeleteContact.isLoading} className={`listPicker disabled`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
               }
             </div>
           </div>

@@ -269,7 +269,7 @@ export default function DevicesDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
               {
-                <button disabled={resultDeleteDevice.isLoading} className={`listPicker disabled`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
+                <button tabIndex={-1} disabled={resultDeleteDevice.isLoading} className={`listPicker disabled`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
               }
             </div>
           </div>
