@@ -55,6 +55,7 @@
         svg {
           width: 20px;
           height: 20px;
+          transition: scale 200ms ease-in-out;
 
           path {
             stroke: var(--main-text);
@@ -72,6 +73,8 @@
           font-weight: 600;
 
           svg {
+            scale: 1.1;
+
             path {
               stroke-width: 0.5px;
             }

@@ -373,6 +373,7 @@ select:disabled {
 .mainContainer .side-panel__opts a svg {
   width: 20px;
   height: 20px;
+  transition: scale 200ms ease-in-out;
 }
 .mainContainer .side-panel__opts a svg path {
   stroke: var(--main-text);
@@ -384,6 +385,9 @@ select:disabled {
 }
 .mainContainer .side-panel__opts a.active {
   font-weight: 600;
+}
+.mainContainer .side-panel__opts a.active svg {
+  scale: 1.1;
 }
 .mainContainer .side-panel__opts a.active svg path {
   stroke-width: 0.5px;
