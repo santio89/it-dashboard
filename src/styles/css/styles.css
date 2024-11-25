@@ -374,12 +374,16 @@ select:disabled {
 .mainContainer .side-panel__opts a svg {
   width: 20px;
   height: 20px;
+  transition: 200ms ease-in-out;
 }
 .mainContainer .side-panel__opts a:hover, .mainContainer .side-panel__opts a.active {
   outline: 1px solid var(--main-gray-dark);
 }
 .mainContainer .side-panel__opts a.active {
   font-weight: 600;
+}
+.mainContainer .side-panel__opts a.active svg {
+  filter: drop-shadow(0 0 2px var(--main-text));
 }
 .mainContainer .side-panel__opts a:focus-visible {
   outline: 1px solid var(--main-text);
@@ -407,7 +411,7 @@ select:disabled {
 .mainContainer .side-panel button.side-toggle:hover svg, .mainContainer .side-panel button.side-toggle:focus-visible svg,
 .mainContainer .side-panel a.side-toggle:hover svg,
 .mainContainer .side-panel a.side-toggle:focus-visible svg {
-  filter: drop-shadow(0 0 4px var(--white));
+  filter: drop-shadow(0 0 2px var(--main-text));
 }
 .mainContainer .side-panel button.side-toggle:focus-visible,
 .mainContainer .side-panel a.side-toggle:focus-visible {

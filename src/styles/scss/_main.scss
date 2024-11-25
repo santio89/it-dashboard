@@ -55,6 +55,7 @@
         svg {
           width: 20px;
           height: 20px;
+          transition: 200ms ease-in-out;
         }
 
         &:hover,
@@ -64,6 +65,10 @@
 
         &.active {
           font-weight: 600;
+
+          svg {
+            filter: drop-shadow(0 0 2px var(--main-text));
+          }
         }
 
         &:focus-visible {
@@ -95,7 +100,7 @@
       &:hover,
       &:focus-visible {
         svg {
-          filter: drop-shadow(0 0 4px var(--white));
+          filter: drop-shadow(0 0 2px var(--main-text));
         }
       }
 
