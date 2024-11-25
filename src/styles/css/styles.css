@@ -382,9 +382,6 @@ select:disabled {
 .mainContainer .side-panel__opts a.active {
   font-weight: 600;
 }
-.mainContainer .side-panel__opts a.active svg {
-  filter: drop-shadow(0 0 2px var(--main-text));
-}
 .mainContainer .side-panel__opts a:focus-visible {
   outline: 1px solid var(--main-text);
   z-index: 1;
