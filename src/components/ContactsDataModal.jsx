@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { setModal } from '../store/slices/modalSlice';
-import { useAddContactCompanyMutation, useDeleteContactCompanyMutation, useEditContactCompanyMutation, useAddContactMutation, useDeleteContactMutation, useEditContactMutation } from '../store/slices/apiSlice';
+import { useAddContactMutation, useDeleteContactMutation, useEditContactMutation } from '../store/slices/apiSlice';
 import { objectEquality } from '../utils/objectEquality';
 
 export default function ContactsDataModal({ modalData }) {
@@ -9,10 +9,6 @@ export default function ContactsDataModal({ modalData }) {
   const modalActive = useSelector(state => state.modal.active)
 
   const [listPickerOpen, setListPickerOpen] = useState(false)
-
-  /*   const [addContactCompany, resultAddContactCompany] = useAddContactCompanyMutation()
-    const [deleteContactCompany, resultDeleteContactCompany] = useDeleteContactCompanyMutation()
-    const [editContactCompany, resultEditContactCompany] = useEditContactCompanyMutation() */
 
   const [addContact, resultAddContact] = useAddContactMutation()
   const [deleteContact, resultDeleteContact] = useDeleteContactMutation()
@@ -50,7 +46,10 @@ export default function ContactsDataModal({ modalData }) {
 
     await addContact({ ...user, userId: modalData.userId })
 
-    dispatch(setModal({ active: false, data: {} }))
+    /* timeout-refetch */
+    setTimeout(() => {
+      dispatch(setModal({ active: false, data: {} }))
+    }, 400)
   }
 
   const deleteUserFn = async (contact) => {
@@ -59,7 +58,7 @@ export default function ContactsDataModal({ modalData }) {
     /* timeout-refetch */
     setTimeout(() => {
       dispatch(setModal({ active: false, data: {} }))
-    }, 500)
+    }, 400)
   }
 
   const editModeFN = () => {
@@ -101,7 +100,7 @@ export default function ContactsDataModal({ modalData }) {
       /* timeout-refetch */
       setTimeout(() => {
         dispatch(setModal({ active: false, data: {} }))
-      }, 500)
+      }, 400)
     }
   }
 

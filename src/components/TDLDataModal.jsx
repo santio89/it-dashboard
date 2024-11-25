@@ -42,7 +42,10 @@ export default function TDLDataModal({ modalData }) {
     }
 
     await addTdl({ ...task, userId: modalData.userId, })
-    dispatch(setModal({ active: false, data: {} }))
+    /* timeout-refetch */
+    setTimeout(() => {
+      dispatch(setModal({ active: false, data: {} }))
+    }, 400)
   }
 
   const editModeFN = () => {
@@ -79,17 +82,8 @@ export default function TDLDataModal({ modalData }) {
     /* timeout-refetch */
     setTimeout(() => {
       dispatch(setModal({ active: false, data: {} }))
-    }, 500)
+    }, 400)
   }
-
-
-  /*     const deleteUserFn = async (contact) => {
-        await deleteContact(contact)
-    
-        setTimeout(() => {
-          dispatch(setModal({ active: false, data: {} }))
-        }, 500)
-      } */
 
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
-import { useGetDevicesCompanyQuery, useGetDevicesQuery } from '../store/slices/apiSlice';
+import { useGetDevicesQuery } from '../store/slices/apiSlice';
 import DataChart from "./DataChart";
 import { useState, useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
@@ -10,14 +10,6 @@ export default function Devices({ user }) {
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
   const listContainer = useRef()
-
-  /*   const {
-      data: dataDevicesCompany,
-      isLoading: isLoadingDevicesCompany,
-      isSuccess: isSucessDevicesCompany,
-      isError: isErrorDevicesCompany,
-      error: errorDevicesCompany,
-    } = useGetDevicesCompanyQuery(); */
 
   const {
     data: dataDevices,

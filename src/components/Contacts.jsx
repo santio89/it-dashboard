@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
-import { useGetContactsCompanyQuery, useGetContactsQuery } from '../store/slices/apiSlice';
+import { useGetContactsQuery } from '../store/slices/apiSlice';
 import { useEffect, useState, useRef } from "react";
 import DataChart from "./DataChart";
 import autoAnimate from "@formkit/auto-animate";
@@ -10,14 +10,6 @@ export default function Contacts({ user }) {
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
   const listContainer = useRef()
-
-  /*  const {
-     data: dataContactsCompany,
-     isLoading: isLoadingContactsCompany,
-     isSuccess: isSuccessContactsCompany,
-     isError: isErrorContactsCompany,
-     error: errorContactsCompany,
-   } = useGetContactsCompanyQuery(); */
 
   const {
     data: dataContacts,

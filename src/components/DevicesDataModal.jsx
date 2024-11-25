@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { setModal } from '../store/slices/modalSlice';
-import { useAddDeviceCompanyMutation, useDeleteDeviceCompanyMutation, useEditDeviceCompanyMutation, useAddDeviceMutation, useDeleteDeviceMutation, useEditDeviceMutation } from '../store/slices/apiSlice';
+import { useAddDeviceMutation, useDeleteDeviceMutation, useEditDeviceMutation } from '../store/slices/apiSlice';
 import { objectEquality } from '../utils/objectEquality';
 
 export default function DevicesDataModal({ modalData }) {
@@ -9,10 +9,6 @@ export default function DevicesDataModal({ modalData }) {
   const modalActive = useSelector(state => state.modal.active)
 
   const [listPickerOpen, setListPickerOpen] = useState(false)
-
-  const [addDeviceCompany, resultAddDeviceCompany] = useAddDeviceCompanyMutation()
-  const [deleteDeviceCompany, resultDeleteDeviceCompany] = useDeleteDeviceCompanyMutation()
-  const [editDeviceCompany, resultEditDeviceCompany] = useEditDeviceCompanyMutation()
 
   const [addDevice, resultAddDevice] = useAddDeviceMutation()
   const [deleteDevice, resultDeleteDevice] = useDeleteDeviceMutation()
@@ -50,13 +46,19 @@ export default function DevicesDataModal({ modalData }) {
 
     await addDevice({ ...device, userId: modalData.userId })
 
-    dispatch(setModal({ active: false, data: {} }))
+    /* timeout-refetch */
+    setTimeout(() => {
+      dispatch(setModal({ active: false, data: {} }))
+    }, 400)
   }
 
   const deleteDeviceFn = async (device) => {
     await deleteDevice(device)
 
-    dispatch(setModal({ active: false, data: {} }))
+    /* timeout-refetch */
+    setTimeout(() => {
+      dispatch(setModal({ active: false, data: {} }))
+    }, 400)
   }
 
   const editModeFN = () => {
@@ -96,6 +98,11 @@ export default function DevicesDataModal({ modalData }) {
       await editDevice({ ...newDevice, userId: modalData.userId })
       dispatch(setModal({ active: false, data: {} }))
     }
+
+    /* timeout-refetch */
+    setTimeout(() => {
+      dispatch(setModal({ active: false, data: {} }))
+    }, 400)
   }
 
   useEffect(() => {
