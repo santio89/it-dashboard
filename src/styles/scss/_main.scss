@@ -19,8 +19,7 @@
     transition: background-color 400ms ease-in-out, width 200ms ease-in-out;
     border-right: 1px solid var(--main-gray-dark);
     z-index: 2;
-    overflow-x: visible;
-    overflow-y: auto;
+    overflow: visible;
 
     &::-webkit-scrollbar {
       width: 4px;
@@ -32,6 +31,10 @@
       top: 0;
       left: 0;
       bottom: 0;
+    }
+
+    @media (max-height: 493px) {
+      overflow-y: auto;
     }
 
     .nav-link-disabled {
@@ -86,9 +89,6 @@
 
         &.active {
           outline: 1px solid var(--main-gray-dark);
-        }
-
-        &.active {
           font-weight: 600;
 
           svg {

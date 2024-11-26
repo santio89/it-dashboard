@@ -377,8 +377,7 @@ select:disabled {
   transition: background-color 400ms ease-in-out, width 200ms ease-in-out;
   border-right: 1px solid var(--main-gray-dark);
   z-index: 2;
-  overflow-x: visible;
-  overflow-y: auto;
+  overflow: visible;
 }
 .mainContainer .side-panel::-webkit-scrollbar {
   width: 4px;
@@ -390,6 +389,11 @@ select:disabled {
     top: 0;
     left: 0;
     bottom: 0;
+  }
+}
+@media (max-height: 493px) {
+  .mainContainer .side-panel {
+    overflow-y: auto;
   }
 }
 .mainContainer .side-panel .nav-link-disabled {
@@ -439,8 +443,6 @@ select:disabled {
 }
 .mainContainer .side-panel__opts a.active {
   outline: 1px solid var(--main-gray-dark);
-}
-.mainContainer .side-panel__opts a.active {
   font-weight: 600;
 }
 .mainContainer .side-panel__opts a.active svg {
