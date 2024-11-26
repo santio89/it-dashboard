@@ -543,20 +543,18 @@ select:disabled {
   height: 12px;
 }
 .site-section:has(.site-section__homeCard) {
-  flex: 0 1 auto;
   width: 100%;
   margin: auto;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  gap: clamp(1rem, 1rem + 2vw, 2rem);
+  display: grid;
+  grid-template-columns: 240px 240px;
+  place-content: center;
+  place-items: center;
+  gap: clamp(1rem, 1rem + 4vw, 4rem);
   overflow-y: visible;
 }
 @media (max-width: 792px) {
   .site-section:has(.site-section__homeCard) {
-    flex-flow: column nowrap;
-    justify-content: start;
+    grid-template-columns: 240px;
   }
 }
 .site-section .btnWrapper {
