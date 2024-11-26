@@ -298,14 +298,18 @@ select:disabled {
   position: absolute;
   top: 100%;
   right: 0;
+  transform: translateX(100%);
   background: var(--main-color-bg);
   border: 1px solid var(--main-gray-dark);
-  transition: 200ms ease-in, background-color 400ms ease-in-out;
+  transition: 200ms ease-in-out, background-color 400ms ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
   gap: 1px;
+}
+.mainHeader__btnContainer .btnWrapper .profile-opts.open {
+  transform: translateX(0%);
 }
 .mainHeader__btnContainer .btnWrapper .profile-opts button {
   width: 100%;
