@@ -53,7 +53,7 @@ export default function DataChart({ data, type, isLoading }) {
                   fontSize: 16
                 },
                 legend: {
-                  /* position: "top", */
+                  position: window.innerWidth < 513 ? "top" : "right",
                   alignment: "start",
                   textStyle: {
                     color: `rgb(240,240,240)`,
@@ -75,7 +75,7 @@ export default function DataChart({ data, type, isLoading }) {
                 colors: ['#4394E5', '#87BB62', '#876FD4', '#F5921B', '#C7C7C7'],
               }}
               data={chartArray}
-              width="100%"
+              width={window.innerWidth < 513 ? "240px" : "100%"}
               height="320px"
             />
           </div>
