@@ -10,12 +10,16 @@ import NotFound from "./NotFound"
 import { useSelector, useDispatch } from "react-redux";
 import { setSideExpanded } from "../store/slices/themeSlice";
 import { flushSync } from "react-dom";
+import { useEffect, useRef } from "react";
 
 export default function Main({ section, user }) {
   const sideExpanded = useSelector(state => state.theme.sideExpanded)
   const dispatch = useDispatch()
+  const sidePanel = useRef()
 
   const expandSide = () => {
+    sidePanel.current.style.overflow = "hidden"
+
     try {
       document.startViewTransition(() => {
         flushSync(() => {
@@ -28,10 +32,31 @@ export default function Main({ section, user }) {
     }
   }
 
+  useEffect(() => {
+    const panel = sidePanel.current
+
+    /*   const sideOverflowHidden = () => {
+        panel.style.overflow = "hidden"
+      } */
+    const sideOverflowVisible = () => {
+      panel.style.overflow = "visible"
+    }
+
+
+    /* panel.addEventListener("transitionstart", sideOverflowHidden); */
+    panel.addEventListener("transitionend", sideOverflowVisible);
+
+    return () => {
+      /* panel.removeEventListener("transitionstart", sideOverflowHidden); */
+      panel.removeEventListener("transitionend", sideOverflowVisible);
+    };
+
+  }, [])
+
 
   return (
     <div className="mainContainer">
-      <aside className={`side-panel ${sideExpanded && "expanded"}`}>
+      <aside ref={sidePanel} className={`side-panel ${sideExpanded && "expanded"}`}>
         <div className="side-panel__opts">
           <NavLink to="/">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-house" viewBox="0 0 16 16">

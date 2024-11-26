@@ -19,7 +19,7 @@
     transition: background-color 400ms ease-in-out, width 200ms ease-in-out;
     border-right: 1px solid var(--main-gray-dark);
     z-index: 2;
-    overflow: hidden;
+    overflow: visible;
 
     @media (max-width: $tablet-breakpoint) {
       position: absolute;
@@ -78,7 +78,6 @@
           }
         }
 
-        &:hover,
         &.active {
           outline: 1px solid var(--main-gray-dark);
         }
@@ -95,9 +94,16 @@
           }
         }
 
+        &:hover,
         &:focus-visible {
           outline: 1px solid var(--main-text);
           z-index: 1;
+
+          svg {
+            path {
+              stroke-width: 0.4px;
+            }
+          }
         }
       }
     }
@@ -111,7 +117,7 @@
       background: transparent;
       color: var(--main-text);
       cursor: pointer;
-      border-top: 1px solid var(--main-gray-dark);
+      outline: 1px solid var(--main-gray-dark);
       width: 100%;
 
       svg {
@@ -132,15 +138,12 @@
 
       &:hover,
       &:focus-visible {
+        outline: 1px solid var(--main-text);
         svg {
           path {
             stroke-width: 0.4px;
           }
         }
-      }
-
-      &:focus-visible {
-        outline: 1px solid var(--main-text);
       }
 
       &.expanded {
