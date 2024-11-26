@@ -26,14 +26,14 @@ export default function Main({ section, user }) {
 
       const transition = document.startViewTransition(() => {
         flushSync(() => {
-          sidePanel.current.style.overflow = "hidden"
+          sidePanel.current.style.overflowX = "hidden"
           dispatch(setSideExpanded({ sideExpanded: !sideExpanded }))
         })
         return
       })
 
       await transition.finished;
-      sidePanel.current.style.overflow = "visible"
+      sidePanel.current.style.overflowX = "visible"
     }
   }
 

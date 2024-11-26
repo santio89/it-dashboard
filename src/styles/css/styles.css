@@ -17,8 +17,8 @@ html ::-webkit-scrollbar-track {
   background: transparent;
 }
 html ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
 }
 html ::-webkit-scrollbar-thumb {
   background: var(--main-color-op);
@@ -377,7 +377,12 @@ select:disabled {
   transition: background-color 400ms ease-in-out, width 200ms ease-in-out;
   border-right: 1px solid var(--main-gray-dark);
   z-index: 2;
-  overflow: visible;
+  overflow-x: visible;
+  overflow-y: auto;
+}
+.mainContainer .side-panel::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
 }
 @media (max-width: 792px) {
   .mainContainer .side-panel {
@@ -623,12 +628,6 @@ select:disabled {
 .site-section__inner.admin {
   min-height: 100% !important;
 }
-.site-section__inner::-webkit-scrollbar-track {
-  background: transparent;
-}
-.site-section__inner::-webkit-scrollbar-thumb {
-  background: var(--main-color-op);
-}
 @media (max-width: 792px) {
   .site-section__inner:not(.site-section__homeCard) {
     flex: 1;
@@ -859,10 +858,6 @@ select:disabled {
 .site-section__list ul.tdl-list li textarea.editMode {
   outline: 2px dashed var(--main-gray-op);
 }
-.site-section__list ul.tdl-list li button::-webkit-scrollbar-thumb,
-.site-section__list ul.tdl-list li textarea::-webkit-scrollbar-thumb {
-  background: var(--main-color-op);
-}
 .site-section__list ul.tdl-list li textarea {
   height: 120px;
   padding: 1rem;
@@ -1011,12 +1006,6 @@ select:disabled {
 }
 .mainModalWrapper.is-dragged {
   transition: 0ms;
-}
-.mainModalWrapper::-webkit-scrollbar-track {
-  background: transparent;
-}
-.mainModalWrapper::-webkit-scrollbar-thumb {
-  background: var(--main-color-light);
 }
 .mainModalWrapper::backdrop {
   background-color: var(--black);

@@ -120,14 +120,6 @@
       min-height: 100% !important;
     }
 
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: var(--main-color-op);
-    }
-
     &:not(.site-section__homeCard) {
       @media (max-width: $tablet-breakpoint) {
         flex: 1;
@@ -376,10 +368,6 @@
 
             &.editMode {
               outline: 2px dashed var(--main-gray-op);
-            }
-
-            &::-webkit-scrollbar-thumb {
-              background: var(--main-color-op);
             }
 
             /*   display: -webkit-box;
