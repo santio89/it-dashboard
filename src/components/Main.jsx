@@ -17,42 +17,25 @@ export default function Main({ section, user }) {
   const dispatch = useDispatch()
   const sidePanel = useRef()
 
-  const expandSide = () => {
-    sidePanel.current.style.overflow = "hidden"
+  const expandSide = async () => {
 
-    try {
-      document.startViewTransition(() => {
+    if (!document.startViewTransition) {
+      dispatch(setSideExpanded({ sideExpanded: !sideExpanded }))
+      return;
+    } else {
+
+      const transition = document.startViewTransition(() => {
         flushSync(() => {
+          sidePanel.current.style.overflow = "hidden"
           dispatch(setSideExpanded({ sideExpanded: !sideExpanded }))
         })
         return
       })
-    } catch {
-      dispatch(setSideExpanded({ sideExpanded: !sideExpanded }))
+
+      await transition.finished;
+      sidePanel.current.style.overflow = "visible"
     }
   }
-
-  useEffect(() => {
-    const panel = sidePanel.current
-
-    /*   const sideOverflowHidden = () => {
-        panel.style.overflow = "hidden"
-      } */
-    const sideOverflowVisible = () => {
-      panel.style.overflow = "visible"
-    }
-
-
-    /* panel.addEventListener("transitionstart", sideOverflowHidden); */
-    panel.addEventListener("transitionend", sideOverflowVisible);
-
-    return () => {
-      /* panel.removeEventListener("transitionstart", sideOverflowHidden); */
-      panel.removeEventListener("transitionend", sideOverflowVisible);
-    };
-
-  }, [])
-
 
   return (
     <div className="mainContainer">
