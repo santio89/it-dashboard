@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { setLight } from "../store/slices/themeSlice"
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from "react"
-import { useSignGoogleMutation, useSignOutMutation, useGetCurrentUserQuery } from "../store/slices/apiSlice"
+import { useSignGoogleMutation, useSignOutMutation } from "../store/slices/apiSlice"
 
 export default function Nav({ rootTheme, user }) {
   const dispatch = useDispatch()
@@ -38,7 +38,7 @@ export default function Nav({ rootTheme, user }) {
     <header className="mainHeader">
       <Link className="logo" to="/">IT DASHBOARD</Link>
       <div className="mainHeader__btnContainer">
-        <div className="themeBtn">
+        <div className="btnWrapper">
           <button onClick={toggleLight} onAnimationEnd={() => setThemeClicked(false)}>
             {lightTheme ?
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className={themeClicked && "theme-clicked"} viewBox="0 0 16 16">
@@ -52,7 +52,7 @@ export default function Nav({ rootTheme, user }) {
 
           </button>
         </div>
-        <div className="themeBtn">
+        <div className="btnWrapper">
           {user ?
             <>
               <button className={`profileBtn ${profileOpts && "profileOn"}`} onClick={() => setProfileOpts(!profileOpts)}>

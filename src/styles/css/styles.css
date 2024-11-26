@@ -254,12 +254,12 @@ select:disabled {
   align-items: center;
   gap: 0.25rem;
 }
-.mainHeader__btnContainer .themeBtn {
+.mainHeader__btnContainer .btnWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.mainHeader__btnContainer .themeBtn button {
+.mainHeader__btnContainer .btnWrapper button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -271,26 +271,26 @@ select:disabled {
   border-radius: 50%;
   padding: 0;
 }
-.mainHeader__btnContainer .themeBtn button.profileOn {
+.mainHeader__btnContainer .btnWrapper button.profileOn {
   background: var(--main-color-op);
 }
-.mainHeader__btnContainer .themeBtn button img {
+.mainHeader__btnContainer .btnWrapper button img {
   width: 32px;
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: 50%;
   outline: 1px solid transparent;
 }
-.mainHeader__btnContainer .themeBtn button svg {
+.mainHeader__btnContainer .btnWrapper button svg {
   width: 20px;
   height: 20px;
   transition: transform 200ms ease-in-out;
   border-radius: 50%;
 }
-.mainHeader__btnContainer .themeBtn button:hover, .mainHeader__btnContainer .themeBtn button:focus-visible {
+.mainHeader__btnContainer .btnWrapper button:hover, .mainHeader__btnContainer .btnWrapper button:focus-visible {
   background: var(--main-color-op);
 }
-.mainHeader__btnContainer .themeBtn .profile-opts {
+.mainHeader__btnContainer .btnWrapper .profile-opts {
   position: absolute;
   top: 100%;
   right: 0;
@@ -298,7 +298,7 @@ select:disabled {
   border: 1px solid var(--main-gray-dark);
   transition: 200ms ease-in, background-color 400ms ease-in-out;
 }
-.mainHeader__btnContainer .themeBtn .profile-opts button {
+.mainHeader__btnContainer .btnWrapper .profile-opts button {
   width: auto;
   height: auto;
   aspect-ratio: auto;
@@ -421,14 +421,6 @@ select:disabled {
   cursor: pointer;
   border-top: 1px solid var(--main-gray-dark);
   width: 100%;
-  /*   @media (max-width: $tablet-breakpoint) {
-    pointer-events: none;
-    filter: grayscale(1);
-
-    svg {
-      transform: rotate(90deg);
-    }
-  } */
 }
 .mainContainer .side-panel button.side-toggle svg,
 .mainContainer .side-panel a.side-toggle svg {
@@ -438,12 +430,18 @@ select:disabled {
   min-height: 20px;
   max-width: 20px;
   max-height: 20px;
-  transition: filter 200ms ease-in-out, transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out;
 }
-.mainContainer .side-panel button.side-toggle:hover svg, .mainContainer .side-panel button.side-toggle:focus-visible svg,
-.mainContainer .side-panel a.side-toggle:hover svg,
-.mainContainer .side-panel a.side-toggle:focus-visible svg {
-  filter: drop-shadow(0 0 2px var(--main-text));
+.mainContainer .side-panel button.side-toggle svg path,
+.mainContainer .side-panel a.side-toggle svg path {
+  stroke: var(--main-text);
+  stroke-width: 0px;
+  transition: stroke-width 200ms ease-in-out;
+}
+.mainContainer .side-panel button.side-toggle:hover svg path, .mainContainer .side-panel button.side-toggle:focus-visible svg path,
+.mainContainer .side-panel a.side-toggle:hover svg path,
+.mainContainer .side-panel a.side-toggle:focus-visible svg path {
+  stroke-width: 0.4px;
 }
 .mainContainer .side-panel button.side-toggle:focus-visible,
 .mainContainer .side-panel a.side-toggle:focus-visible {

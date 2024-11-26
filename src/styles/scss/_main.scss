@@ -121,13 +121,21 @@
         min-height: 20px;
         max-width: 20px;
         max-height: 20px;
-        transition: filter 200ms ease-in-out, transform 200ms ease-in-out;
+        transition: transform 200ms ease-in-out;
+
+        path {
+          stroke: var(--main-text);
+          stroke-width: 0px;
+          transition: stroke-width 200ms ease-in-out;
+        }
       }
 
       &:hover,
       &:focus-visible {
         svg {
-          filter: drop-shadow(0 0 2px var(--main-text));
+          path {
+            stroke-width: 0.4px;
+          }
         }
       }
 
@@ -140,15 +148,6 @@
           transform: rotate(-180deg);
         }
       }
-
-      /*   @media (max-width: $tablet-breakpoint) {
-        pointer-events: none;
-        filter: grayscale(1);
-
-        svg {
-          transform: rotate(90deg);
-        }
-      } */
     }
   }
 
