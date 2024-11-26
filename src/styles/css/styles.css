@@ -329,7 +329,7 @@ select:disabled {
   overflow: hidden;
 }
 .mainContainer .side-panel {
-  width: 38px;
+  width: 52px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -361,7 +361,6 @@ select:disabled {
 .mainContainer .side-panel__opts a {
   width: 100%;
   height: 60px;
-  padding: 0.5rem;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -410,7 +409,6 @@ select:disabled {
   font: inherit;
   background: transparent;
   color: var(--main-text);
-  padding: 0.5rem;
   cursor: pointer;
   border-top: 1px solid var(--main-gray-dark);
   width: 100%;
