@@ -329,22 +329,24 @@ select:disabled {
   overflow: hidden;
 }
 .mainContainer .side-panel {
-  width: clamp(80px, 80px + 4vw, 140px);
-  /* width: 50px; */
+  width: 38px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background: var(--main-color-bg);
-  transition: width 200ms ease-in-out;
   transition: background-color 400ms ease-in-out, width 200ms ease-in-out;
   border-right: 1px solid var(--main-gray-dark);
   z-index: 2;
+  overflow: hidden;
 }
 .mainContainer .side-panel .nav-link-disabled {
   pointer-events: none;
   cursor: default;
   filter: grayscale(1);
+}
+.mainContainer .side-panel.expanded {
+  width: 140px;
 }
 .mainContainer .side-panel__opts {
   margin-block: clamp(0.5rem, 0.5rem + 2vw, 2rem);
@@ -373,6 +375,10 @@ select:disabled {
 .mainContainer .side-panel__opts a svg {
   width: 20px;
   height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
   transition: scale 200ms ease-in-out;
 }
 .mainContainer .side-panel__opts a svg path {
@@ -390,7 +396,7 @@ select:disabled {
   scale: 1.1;
 }
 .mainContainer .side-panel__opts a.active svg path {
-  stroke-width: 0.5px;
+  stroke-width: 0.4px;
 }
 .mainContainer .side-panel__opts a:focus-visible {
   outline: 1px solid var(--main-text);
@@ -404,15 +410,27 @@ select:disabled {
   font: inherit;
   background: transparent;
   color: var(--main-text);
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   cursor: pointer;
-  width: 100%;
   border-top: 1px solid var(--main-gray-dark);
+  width: 100%;
+  /*   @media (max-width: $tablet-breakpoint) {
+    pointer-events: none;
+    filter: grayscale(1);
+
+    svg {
+      transform: rotate(90deg);
+    }
+  } */
 }
 .mainContainer .side-panel button.side-toggle svg,
 .mainContainer .side-panel a.side-toggle svg {
   width: 20px;
   height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
   transition: filter 200ms ease-in-out, transform 200ms ease-in-out;
 }
 .mainContainer .side-panel button.side-toggle:hover svg, .mainContainer .side-panel button.side-toggle:focus-visible svg,
@@ -426,18 +444,7 @@ select:disabled {
 }
 .mainContainer .side-panel button.side-toggle.expanded svg,
 .mainContainer .side-panel a.side-toggle.expanded svg {
-  transform: rotate(90deg);
-}
-@media (max-width: 792px) {
-  .mainContainer .side-panel button.side-toggle,
-  .mainContainer .side-panel a.side-toggle {
-    pointer-events: none;
-    filter: grayscale(1);
-  }
-  .mainContainer .side-panel button.side-toggle svg,
-  .mainContainer .side-panel a.side-toggle svg {
-    transform: rotate(90deg);
-  }
+  transform: rotate(-180deg);
 }
 .mainContainer .main-content {
   flex: 1;
@@ -451,24 +458,31 @@ select:disabled {
   background-size: 24px 24px;
   background-position: 0% 0%;
   transition: background-color 400ms ease-in-out;
-}
-.mainContainer .main-content.expanded:has(.site-section__homeCard) {
-  justify-content: start;
-}
-.mainContainer .main-content.expanded .site-section {
-  flex-flow: column nowrap;
-  justify-content: start;
-  align-items: stretch;
-}
-.mainContainer .main-content.expanded .site-section:has(.site-section__homeCard) {
-  justify-content: start;
-  align-items: center;
-  overflow-y: auto;
-}
-.mainContainer .main-content.expanded .site-section__inner:not(.site-section__homeCard) {
-  flex: 1 !important;
-  min-height: max(50% - 0.5rem, 500px);
-  max-height: 500px;
+  /* &.expanded {
+    &:has(.site-section__homeCard) {
+      justify-content: start;
+    }
+
+    .site-section {
+      flex-flow: column nowrap;
+      justify-content: start;
+      align-items: stretch;
+
+      &:has(.site-section__homeCard) {
+        justify-content: start;
+        align-items: center;
+        overflow-y: auto;
+      }
+
+      &__inner {
+        &:not(.site-section__homeCard) {
+          flex: 1 !important;
+          min-height: max(50% - 0.5rem, 500px);
+          max-height: 500px;
+        }
+      }
+    }
+  } */
 }
 @media (max-width: 792px) {
   .mainContainer .main-content:has(.site-section__homeCard) {

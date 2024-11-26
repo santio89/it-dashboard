@@ -9,22 +9,25 @@
   overflow: hidden;
 
   .side-panel {
-    width: clamp(80px, 80px + 4vw, 140px);
-    /* width: 50px; */
+    width: 38px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background: var(--main-color-bg);
-    transition: width 200ms ease-in-out;
     transition: background-color 400ms ease-in-out, width 200ms ease-in-out;
     border-right: 1px solid var(--main-gray-dark);
     z-index: 2;
+    overflow: hidden;
 
     .nav-link-disabled {
       pointer-events: none;
       cursor: default;
       filter: grayscale(1);
+    }
+
+    &.expanded {
+      width: 140px;
     }
 
     &__opts {
@@ -55,6 +58,10 @@
         svg {
           width: 20px;
           height: 20px;
+          min-width: 20px;
+          min-height: 20px;
+          max-width: 20px;
+          max-height: 20px;
           transition: scale 200ms ease-in-out;
 
           path {
@@ -76,7 +83,7 @@
             scale: 1.1;
 
             path {
-              stroke-width: 0.5px;
+              stroke-width: 0.4px;
             }
           }
         }
@@ -96,14 +103,18 @@
       font: inherit;
       background: transparent;
       color: var(--main-text);
-      padding: 0.5rem 1rem;
+      padding: 0.5rem;
       cursor: pointer;
-      width: 100%;
       border-top: 1px solid var(--main-gray-dark);
+      width: 100%;
 
       svg {
         width: 20px;
         height: 20px;
+        min-width: 20px;
+        min-height: 20px;
+        max-width: 20px;
+        max-height: 20px;
         transition: filter 200ms ease-in-out, transform 200ms ease-in-out;
       }
 
@@ -120,18 +131,18 @@
 
       &.expanded {
         svg {
-          transform: rotate(90deg);
+          transform: rotate(-180deg);
         }
       }
 
-      @media (max-width: $tablet-breakpoint) {
+      /*   @media (max-width: $tablet-breakpoint) {
         pointer-events: none;
         filter: grayscale(1);
 
         svg {
           transform: rotate(90deg);
         }
-      }
+      } */
     }
   }
 
@@ -151,7 +162,7 @@
     background-position: 0% 0%;
     transition: background-color 400ms ease-in-out;
 
-    &.expanded {
+    /* &.expanded {
       &:has(.site-section__homeCard) {
         justify-content: start;
       }
@@ -175,7 +186,7 @@
           }
         }
       }
-    }
+    } */
 
     @media (max-width: $tablet-breakpoint) {
       &:has(.site-section__homeCard) {

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   light: false,
-  sideExpanded: false
+  sideExpanded: true
 }
 
 const themeSlice = createSlice({
