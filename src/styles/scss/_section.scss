@@ -11,6 +11,11 @@
   position: relative;
   overflow-y: auto;
 
+  @media (max-width: $tablet-breakpoint) {
+    flex-flow: column nowrap;
+    justify-content: start;
+  }
+
   &::-webkit-scrollbar {
     width: 12px;
     height: 12px;
@@ -125,9 +130,10 @@
 
     &:not(.site-section__homeCard) {
       @media (max-width: $tablet-breakpoint) {
-        flex: 1 !important;
+        flex: 1;
         min-height: max(50% - 0.5rem, 500px);
         max-height: 500px;
+        width: 100%;
       }
     }
   }
