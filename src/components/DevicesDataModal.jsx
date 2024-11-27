@@ -31,8 +31,11 @@ export default function DevicesDataModal({ modalData }) {
     setListPickerOpen(false)
   }
 
-  const addDeviceFn = async (e) => {
-    e.preventDefault()
+  const addDeviceFn = async () => {
+    if (resultAddDevice.isLoading) {
+      return
+    }
+
     const device = {
       name: newDeviceName.trim(),
       type: newDeviceType.trim(),
@@ -45,20 +48,26 @@ export default function DevicesDataModal({ modalData }) {
     }
 
     await addDevice({ ...device, userId: modalData.userId })
+    dispatch(setModal({ active: false, data: {} }))
 
     /* timeout-refetch */
-    setTimeout(() => {
+    /* setTimeout(() => {
       dispatch(setModal({ active: false, data: {} }))
-    }, 400)
+    }, 400) */
   }
 
   const deleteDeviceFn = async (device) => {
+    if (resultDeleteDevice.isLoading) {
+      return
+    }
+
     await deleteDevice(device)
+    dispatch(setModal({ active: false, data: {} }))
 
     /* timeout-refetch */
-    setTimeout(() => {
-      dispatch(setModal({ active: false, data: {} }))
-    }, 400)
+    /*  setTimeout(() => {
+       dispatch(setModal({ active: false, data: {} }))
+     }, 400) */
   }
 
   const editModeFN = () => {
@@ -73,8 +82,11 @@ export default function DevicesDataModal({ modalData }) {
     setEditMode(true)
   }
 
-  const editDeviceFn = async (e, device) => {
-    e.preventDefault()
+  const editDeviceFn = async (device) => {
+    if (resultEditDevice.isLoading) {
+      return
+    }
+
     const newDevice = {
       name: newDeviceName.trim(),
       type: newDeviceType.trim(),
@@ -97,12 +109,12 @@ export default function DevicesDataModal({ modalData }) {
     } else {
       await editDevice({ ...newDevice, userId: modalData.userId })
       dispatch(setModal({ active: false, data: {} }))
-    }
 
-    /* timeout-refetch */
-    setTimeout(() => {
-      dispatch(setModal({ active: false, data: {} }))
-    }, 400)
+      /* timeout-refetch */
+      /*  setTimeout(() => {
+         dispatch(setModal({ active: false, data: {} }))
+       }, 400) */
+    }
   }
 
   useEffect(() => {
@@ -216,7 +228,7 @@ export default function DevicesDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form editMode' onSubmit={(e) => editDeviceFn(e, modalData)} disabled={resultEditDevice.isLoading}>
+          <form className='mainModal__data__form editMode' disabled={resultEditDevice.isLoading}>
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
@@ -263,7 +275,7 @@ export default function DevicesDataModal({ modalData }) {
             </div>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
-              <button className='mainModal__send' >Confirm</button>
+              <button type='button' className='mainModal__send' onClick={() => editDeviceFn(modalData)}>Confirm</button>
             </div>
           </form>
         </>
@@ -360,7 +372,7 @@ export default function DevicesDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form' onSubmit={(e) => addDeviceFn(e)} disabled={resultAddDevice.isLoading}>
+          <form className='mainModal__data__form' disabled={resultAddDevice.isLoading}>
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
@@ -406,7 +418,7 @@ export default function DevicesDataModal({ modalData }) {
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
-              <button className='mainModal__send'>Send</button>
+              <button type='button' className='mainModal__send' onClick={() => addDeviceFn()}>Send</button>
             </div>
           </form>
         </>

@@ -31,8 +31,11 @@ export default function ContactsDataModal({ modalData }) {
     setListPickerOpen(false)
   }
 
-  const addUserFn = async (e) => {
-    e.preventDefault()
+  const addUserFn = async () => {
+    if (resultAddContact.isLoading) {
+      return
+    }
+
     const user = {
       name: newUserName.trim(),
       email: newUserEmail.trim(),
@@ -45,20 +48,26 @@ export default function ContactsDataModal({ modalData }) {
     }
 
     await addContact({ ...user, userId: modalData.userId })
+    dispatch(setModal({ active: false, data: {} }))
 
     /* timeout-refetch */
-    setTimeout(() => {
-      dispatch(setModal({ active: false, data: {} }))
-    }, 400)
+    /*   setTimeout(() => {
+        dispatch(setModal({ active: false, data: {} }))
+      }, 400) */
   }
 
   const deleteUserFn = async (contact) => {
+    if (resultDeleteContact.isLoading) {
+      return
+    }
+
     await deleteContact(contact)
+    dispatch(setModal({ active: false, data: {} }))
 
     /* timeout-refetch */
-    setTimeout(() => {
-      dispatch(setModal({ active: false, data: {} }))
-    }, 400)
+    /*     setTimeout(() => {
+          dispatch(setModal({ active: false, data: {} }))
+        }, 400) */
   }
 
   const editModeFN = () => {
@@ -73,8 +82,11 @@ export default function ContactsDataModal({ modalData }) {
     setEditMode(true)
   }
 
-  const editUserFn = async (e, contact) => {
-    e.preventDefault()
+  const editUserFn = async (contact) => {
+    if (resultEditContact.isLoading) {
+      return
+    }
+
     const newUser = {
       name: newUserName.trim(),
       email: newUserEmail.trim(),
@@ -96,11 +108,12 @@ export default function ContactsDataModal({ modalData }) {
       return
     } else {
       await editContact({ ...newUser, userId: modalData.userId })
+      dispatch(setModal({ active: false, data: {} }))
 
       /* timeout-refetch */
-      setTimeout(() => {
-        dispatch(setModal({ active: false, data: {} }))
-      }, 400)
+      /*    setTimeout(() => {
+           dispatch(setModal({ active: false, data: {} }))
+         }, 400) */
     }
   }
 
@@ -218,7 +231,7 @@ export default function ContactsDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form editMode' onSubmit={(e) => editUserFn(e, modalData)} disabled={resultEditContact.isLoading}>
+          <form className='mainModal__data__form editMode' disabled={resultEditContact.isLoading}>
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
@@ -268,7 +281,7 @@ export default function ContactsDataModal({ modalData }) {
             </div>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
-              <button className='mainModal__send'>Confirm</button>
+              <button type='button' className='mainModal__send' onClick={() => editUserFn(modalData)} >Confirm</button>
             </div>
           </form>
         </>
@@ -332,7 +345,7 @@ export default function ContactsDataModal({ modalData }) {
             </div>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
-              <button type='button' className='mainModal__send' onClick={() => deleteUserFn(modalData)}>Confirm</button>
+              <button type='button' className='mainModal__send' onClick={() => deleteUserFn(modalData)} >Confirm</button>
             </div>
           </form>
         </>
@@ -365,7 +378,7 @@ export default function ContactsDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form' onSubmit={(e) => addUserFn(e)} disabled={resultAddContact.isLoading}>
+          <form className='mainModal__data__form' disabled={resultAddContact.isLoading}>
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
@@ -414,7 +427,7 @@ export default function ContactsDataModal({ modalData }) {
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
-              <button className='mainModal__send'>Send</button>
+              <button type='button' className='mainModal__send' onClick={() => addUserFn()} >Send</button>
             </div>
           </form>
         </>

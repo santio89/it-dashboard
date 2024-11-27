@@ -29,8 +29,11 @@ export default function TDLDataModal({ modalData }) {
   }
 
 
-  const addTdlFn = async (e) => {
-    e.preventDefault()
+  const addTdlFn = async () => {
+    if (resultAddTdl.isLoading) {
+      return
+    }
+
     if (textInput.current.textContent.trim() === "") {
 
       return
@@ -42,10 +45,12 @@ export default function TDLDataModal({ modalData }) {
     }
 
     await addTdl({ ...task, userId: modalData.userId, })
+    dispatch(setModal({ active: false, data: {} }))
+
     /* timeout-refetch */
-    setTimeout(() => {
+    /* setTimeout(() => {
       dispatch(setModal({ active: false, data: {} }))
-    }, 400)
+    }, 400) */
   }
 
   const editModeFN = () => {
@@ -55,8 +60,11 @@ export default function TDLDataModal({ modalData }) {
     setEditMode(true)
   }
 
-  const editTaskFn = async (e, task) => {
-    e.preventDefault()
+  const editTaskFn = async (task) => {
+    if (resultEditTdl.isLoading) {
+      return
+    }
+
     const input = textInputEdit.current.textContent.trim()
     const priority = newTaskPriority.trim()
     const category = newTaskCategory.trim()
@@ -67,22 +75,29 @@ export default function TDLDataModal({ modalData }) {
     }
 
     const newTask = { ...task, content: input.trim(), category: category ?? task.category, priority: priority ?? task.priority }
+
     await editTdl(newTask)
+    dispatch(setModal({ active: false, data: {} }))
 
     /* timeout-refetch */
-    setTimeout(() => {
-      dispatch(setModal({ active: false, data: {} }))
-    }, 400)
+    /*  setTimeout(() => {
+       dispatch(setModal({ active: false, data: {} }))
+     }, 400) */
   }
 
 
   const deleteTdlFn = async (task) => {
+    if (resultDeleteTdl.isLoading) {
+      return
+    }
+
     await deleteTdl(task)
+    dispatch(setModal({ active: false, data: {} }))
 
     /* timeout-refetch */
-    setTimeout(() => {
-      dispatch(setModal({ active: false, data: {} }))
-    }, 400)
+    /*  setTimeout(() => {
+       dispatch(setModal({ active: false, data: {} }))
+     }, 400) */
   }
 
 
@@ -164,7 +179,7 @@ export default function TDLDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form taskContainer editMode' onSubmit={(e) => editTaskFn(e, modalData)} disabled={resultEditTdl.isLoading}>
+          <form className='mainModal__data__form taskContainer editMode' disabled={resultEditTdl.isLoading}>
             <div className={`taskOpenData`}>
               <div>Priority: </div>
               <button type='button' onClick={() => setNewTaskPriority("low")} className={`tdl-priority selectedLow ${newTaskPriority === "low" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
@@ -192,7 +207,7 @@ export default function TDLDataModal({ modalData }) {
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
-              <button className='mainModal__send'>Confirm</button>
+              <button type='button' className='mainModal__send' onClick={() => editTaskFn(modalData)}>Confirm</button>
             </div>
           </form>
         </>
@@ -257,7 +272,7 @@ export default function TDLDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form disabled={resultAddTdl.isLoading} className='mainModal__data__form taskContainer' onSubmit={(e) => addTdlFn(e)}>
+          <form disabled={resultAddTdl.isLoading} className='mainModal__data__form taskContainer'>
             <div className={`taskOpenData`}>
               <div>Priority: </div>
               <button type='button' onClick={() => setNewTaskPriority("low")} className={`tdl-priority selectedLow ${newTaskPriority === "low" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
@@ -284,7 +299,7 @@ export default function TDLDataModal({ modalData }) {
               <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false}></div>
             </fieldset>
             <div className='mainModal__btnContainer'>
-              <button className='mainModal__send'>Send</button>
+              <button type='button' className='mainModal__send' onClick={() => addTdlFn()}>Send</button>
             </div>
           </form>
         </>

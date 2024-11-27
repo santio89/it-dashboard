@@ -43,6 +43,10 @@ export default function TDL({ user }) {
 
 
   const deleteTask = async (task) => {
+    if (resultDeleteTdl.isLoading) {
+      return
+    }
+
     await deleteTdl(task)
 
     /* timeout-refetch */
@@ -52,6 +56,11 @@ export default function TDL({ user }) {
   }
 
   const editTask = async (task, input, priority, category) => {
+    0
+    if (resultEditTdl.isLoading) {
+      return
+    }
+
     if ((input.trim() === "" || input.trim() === task.content) && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category))) {
       setEditMode(null)
       return
