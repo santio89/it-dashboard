@@ -9,37 +9,18 @@ import TDL from "./TDL"
 import NotFound from "./NotFound"
 import { useSelector, useDispatch } from "react-redux";
 import { setSideExpanded } from "../store/slices/themeSlice";
-import { flushSync } from "react-dom";
-import { useEffect, useRef } from "react";
 
 export default function Main({ section, user }) {
   const sideExpanded = useSelector(state => state.theme.sideExpanded)
   const dispatch = useDispatch()
-  const sidePanel = useRef()
 
   const expandSide = async () => {
     dispatch(setSideExpanded({ sideExpanded: !sideExpanded }))
-
-   /*  if (!document.startViewTransition) {
-      dispatch(setSideExpanded({ sideExpanded: !sideExpanded }))
-      return;
-    } else {
-      const transition = document.startViewTransition(() => {
-        flushSync(() => {
-          sidePanel.current.style.overflowX = "hidden"
-          dispatch(setSideExpanded({ sideExpanded: !sideExpanded }))
-        })
-        return
-      })
-
-      await transition.finished;
-      sidePanel.current.style.overflowX = "visible"
-    } */
   }
 
   return (
     <div className="mainContainer">
-      <aside ref={sidePanel} className={`side-panel ${sideExpanded && "expanded"}`}>
+      <aside className={`side-panel ${sideExpanded && "expanded"}`}>
         <div className="side-panel__opts">
           <NavLink to="/">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-house" viewBox="0 0 16 16">

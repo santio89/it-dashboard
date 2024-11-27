@@ -376,7 +376,6 @@ select:disabled {
   transition: background-color 400ms ease-in-out, width 200ms ease-in-out;
   border-right: 1px solid var(--main-gray-dark);
   z-index: 2;
-  overflow: visible;
   position: absolute;
   top: 0;
   left: 0;
