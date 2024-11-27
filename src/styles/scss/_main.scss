@@ -10,7 +10,6 @@
   position: relative;
 
   .side-panel {
-    width: 52px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -20,11 +19,11 @@
     border-right: 1px solid var(--main-gray-dark);
     z-index: 2;
     overflow: visible;
-
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
+    width: 52px;
 
     @media (max-width: $tablet-breakpoint) {
       position: absolute;
@@ -54,7 +53,7 @@
 
     &.expanded {
       width: 140px;
-      position: static;
+      /*    position: static; */
     }
 
     .nav-link-disabled {
@@ -199,11 +198,11 @@
     );
     background-size: 24px 24px;
     background-position: 0% 0%;
-    transition: background-color 400ms ease-in-out;
+    transition: background-color 400ms ease-in-out, margin 400ms ease-in-out;
     margin-left: 52px;
 
     &.expanded {
-      margin-left: 0;
+      margin-left: 140px;
     }
 
     @media (max-width: $tablet-breakpoint) {

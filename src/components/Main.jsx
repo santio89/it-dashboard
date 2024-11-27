@@ -18,12 +18,12 @@ export default function Main({ section, user }) {
   const sidePanel = useRef()
 
   const expandSide = async () => {
+    dispatch(setSideExpanded({ sideExpanded: !sideExpanded }))
 
-    if (!document.startViewTransition) {
+   /*  if (!document.startViewTransition) {
       dispatch(setSideExpanded({ sideExpanded: !sideExpanded }))
       return;
     } else {
-
       const transition = document.startViewTransition(() => {
         flushSync(() => {
           sidePanel.current.style.overflowX = "hidden"
@@ -34,7 +34,7 @@ export default function Main({ section, user }) {
 
       await transition.finished;
       sidePanel.current.style.overflowX = "visible"
-    }
+    } */
   }
 
   return (
