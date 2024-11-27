@@ -917,12 +917,13 @@ select:disabled {
   width: 240px;
   min-height: 120px;
   aspect-ratio: 16/9;
-  transition: outline-color 200ms ease-in-out, background-color 400ms ease-in-out;
   background-color: var(--main-section);
   background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%);
+  transition: background-color 400ms ease-in-out, outline-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
 }
 .site-section__homeCard:has(.homeCard-anchor:is(:hover, :focus-visible)) {
   outline: 1px solid var(--main-text);
+  box-shadow: 0 0 1rem var(--main-color-op);
 }
 .site-section__homeCard .homeCard-anchor {
   width: 100%;
