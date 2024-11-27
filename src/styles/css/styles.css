@@ -378,10 +378,10 @@ select:disabled {
   border-right: 1px solid var(--main-gray-dark);
   z-index: 2;
   overflow: visible;
-}
-.mainContainer .side-panel::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
 }
 @media (max-width: 792px) {
   .mainContainer .side-panel {
@@ -396,13 +396,24 @@ select:disabled {
     overflow-y: auto;
   }
 }
+.mainContainer .side-panel:hover {
+  width: 140px;
+}
+.mainContainer .side-panel:hover a span {
+  opacity: 1;
+}
+.mainContainer .side-panel::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.mainContainer .side-panel.expanded {
+  width: 140px;
+  position: static;
+}
 .mainContainer .side-panel .nav-link-disabled {
   pointer-events: none;
   cursor: default;
   filter: grayscale(1);
-}
-.mainContainer .side-panel.expanded {
-  width: 140px;
 }
 .mainContainer .side-panel__opts {
   margin-block: clamp(0.5rem, 0.5rem + 2vw, 2rem);
@@ -440,6 +451,13 @@ select:disabled {
   stroke: var(--main-text);
   stroke-width: 0px;
   transition: stroke-width 200ms ease-in-out;
+}
+.mainContainer .side-panel__opts a span {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+.mainContainer .side-panel__opts a span.expanded {
+  opacity: 1;
 }
 .mainContainer .side-panel__opts a.active {
   outline: 1px solid var(--main-gray-dark);
@@ -512,6 +530,10 @@ select:disabled {
   background-size: 24px 24px;
   background-position: 0% 0%;
   transition: background-color 400ms ease-in-out;
+  margin-left: 52px;
+}
+.mainContainer .main-content.expanded {
+  margin-left: 0;
 }
 @media (max-width: 792px) {
   .mainContainer .main-content {

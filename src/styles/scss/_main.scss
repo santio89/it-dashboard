@@ -21,10 +21,10 @@
     z-index: 2;
     overflow: visible;
 
-    &::-webkit-scrollbar {
-      width: 4px;
-      height: 4px;
-    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
 
     @media (max-width: $tablet-breakpoint) {
       position: absolute;
@@ -37,14 +37,30 @@
       overflow-y: auto;
     }
 
-    .nav-link-disabled {
-      pointer-events: none;
-      cursor: default;
-      filter: grayscale(1);
+    &:hover {
+      width: 140px;
+
+      a {
+        span {
+          opacity: 1;
+        }
+      }
+    }
+
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
     }
 
     &.expanded {
       width: 140px;
+      position: static;
+    }
+
+    .nav-link-disabled {
+      pointer-events: none;
+      cursor: default;
+      filter: grayscale(1);
     }
 
     &__opts {
@@ -84,6 +100,15 @@
             stroke: var(--main-text);
             stroke-width: 0px;
             transition: stroke-width 200ms ease-in-out;
+          }
+        }
+
+        span {
+          opacity: 0;
+          transition: opacity 200ms ease-in-out;
+
+          &.expanded {
+            opacity: 1;
           }
         }
 
@@ -175,6 +200,11 @@
     background-size: 24px 24px;
     background-position: 0% 0%;
     transition: background-color 400ms ease-in-out;
+    margin-left: 52px;
+
+    &.expanded {
+      margin-left: 0;
+    }
 
     @media (max-width: $tablet-breakpoint) {
       justify-content: start;
