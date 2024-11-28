@@ -36,6 +36,10 @@ export default function DevicesDataModal({ modalData }) {
       return
     }
 
+    if (newDeviceName.trim() === "") {
+      return
+    }
+
     const device = {
       name: newDeviceName.trim(),
       type: newDeviceType.trim(),
@@ -84,6 +88,10 @@ export default function DevicesDataModal({ modalData }) {
 
   const editDeviceFn = async (device) => {
     if (resultEditDevice.isLoading) {
+      return
+    }
+
+    if (newDeviceName.trim() === "") {
       return
     }
 

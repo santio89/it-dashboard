@@ -36,6 +36,10 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
+    if (newUserName.trim() === "") {
+      return
+    }
+
     const user = {
       name: newUserName.trim(),
       email: newUserEmail.trim(),
@@ -84,6 +88,10 @@ export default function ContactsDataModal({ modalData }) {
 
   const editUserFn = async (contact) => {
     if (resultEditContact.isLoading) {
+      return
+    }
+
+    if (newUserName.trim() === "") {
       return
     }
 

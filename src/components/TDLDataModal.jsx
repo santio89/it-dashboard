@@ -35,7 +35,6 @@ export default function TDLDataModal({ modalData }) {
     }
 
     if (textInput.current.textContent.trim() === "") {
-
       return
     }
     const task = {
@@ -69,7 +68,11 @@ export default function TDLDataModal({ modalData }) {
     const priority = newTaskPriority.trim()
     const category = newTaskCategory.trim()
 
-    if ((input.trim() === "" || input.trim() === task.content) && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category))) {
+    if (input.trim() === "") {
+      return
+    }
+
+    if (input.trim() === task.content && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category))) {
       dispatch(setModal({ active: false, data: {} }))
       return
     }

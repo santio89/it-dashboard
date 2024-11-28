@@ -1,10 +1,5 @@
-import { useEffect } from "react"
 
 function ProfileDataModal({ modalData }) {
-
-  useEffect(() => {
-    console.log(modalData)
-  }, [modalData])
 
 
   return (
