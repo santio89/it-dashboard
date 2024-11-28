@@ -100,7 +100,6 @@ option {
   outline: none;
   background: none;
   font: inherit;
-  cursor: pointer;
   background: var(--main-color);
   letter-spacing: inherit;
   word-spacing: inherit;
@@ -123,6 +122,10 @@ option {
   &:focus-visible {
     outline: 1px solid var(--main-text);
   }
+}
+
+button {
+  cursor: pointer;
 }
 
 /* text */
@@ -153,7 +156,6 @@ option {
   color: var(--main-color-mid);
   background: var(--main-color-op);
   padding: 0.5rem 1rem;
-  cursor: pointer;
   text-decoration: none;
   display: flex;
   justify-content: start;

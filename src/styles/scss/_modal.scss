@@ -432,6 +432,7 @@
         }
 
         .taskOpenContent {
+          display: inline-block;
           color: var(--white);
           font-weight: 300;
           padding: 0.5rem 1rem;
@@ -443,8 +444,7 @@
           height: auto;
           min-height: 120px;
           max-height: 240px;
-          cursor: pointer;
-          display: inline-block;
+          cursor: text;
 
           &:focus-visible {
             outline: none;

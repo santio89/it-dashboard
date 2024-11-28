@@ -92,7 +92,6 @@ option {
   outline: none;
   background: none;
   font: inherit;
-  cursor: pointer;
   background: var(--main-color);
   letter-spacing: inherit;
   word-spacing: inherit;
@@ -129,6 +128,10 @@ option:focus-visible {
   outline: 1px solid var(--main-text);
 }
 
+button {
+  cursor: pointer;
+}
+
 /* text */
 p {
   overflow-wrap: break-word;
@@ -157,7 +160,6 @@ option {
   color: var(--main-color-mid);
   background: var(--main-color-op);
   padding: 0.5rem 1rem;
-  cursor: pointer;
   text-decoration: none;
   display: flex;
   justify-content: start;
@@ -1380,6 +1382,7 @@ option:hover,
   background-color: var(--main-color-op);
 }
 .mainModal__data__form.taskContainer .taskOpenContent {
+  display: inline-block;
   color: var(--white);
   font-weight: 300;
   padding: 0.5rem 1rem;
@@ -1391,8 +1394,7 @@ option:hover,
   height: auto;
   min-height: 120px;
   max-height: 240px;
-  cursor: pointer;
-  display: inline-block;
+  cursor: text;
 }
 .mainModal__data__form.taskContainer .taskOpenContent:focus-visible {
   outline: none;
