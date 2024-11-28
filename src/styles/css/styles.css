@@ -318,6 +318,7 @@ select:disabled {
   transform: translateX(100%);
   background: var(--main-color-bg);
   border: 1px solid var(--main-gray-dark);
+  border-right: none;
   transition: 200ms ease-in-out, background-color 400ms ease-in-out;
   display: flex;
   flex-direction: column;
