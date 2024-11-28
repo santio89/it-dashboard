@@ -13,28 +13,6 @@ $tablet-breakpoint: 792px;
   box-sizing: border-box;
 }
 
-html {
-  font-size: 100%;
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--main-color-op);
-  }
-
-  ::selection {
-    color: var(--main-color-light);
-    background: var(--main-color);
-  }
-}
-
 :root {
   --font-primary: geist, monospace, "Courier New", Courier;
   --main-container-size: 1200px;
@@ -62,6 +40,48 @@ html {
   --main-color-bg: rgb(250, 250, 250);
   --main-text: rgb(10, 10, 10);
   --main-section: rgb(230, 230, 230);
+}
+
+html {
+  font-size: 100%;
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--main-color-op);
+  }
+
+  ::selection {
+    color: var(--main-color-light);
+    background: var(--main-color);
+  }
+}
+
+#root {
+  isolation: isolate;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-primary);
+  line-height: 1.4;
+  color: var(--white);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: inline-block;
+  max-width: 100%;
 }
 
 li {
@@ -102,6 +122,18 @@ option {
   &:focus-visible {
     outline: 1px solid var(--main-text);
   }
+}
+
+/* text */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 /* inputs */
@@ -154,8 +186,7 @@ select:disabled {
   font-style: italic;
 }
 
-/* end inputs */
-
+/*layout */
 .root-theme {
   width: 100%;
   min-height: 100vh;
@@ -166,10 +197,7 @@ select:disabled {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  font-family: var(--font-primary);
   font-weight: 400;
-  line-height: 1.4;
-  color: var(--white);
   background: var(--main-color-bg);
   overflow: hidden;
   transition: background-color 400ms ease-in-out, color 200ms ease-in-out;
