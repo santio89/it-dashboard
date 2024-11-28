@@ -100,7 +100,7 @@ export default function ContactsDataModal({ modalData }) {
       userId: contact.userId
     }
 
-    const { userData, createdAt, updatedAt, ...oldUser } = contact
+    const { contactData, createdAt, updatedAt, ...oldUser } = contact
     const contactEquality = objectEquality(oldUser, newUser)
 
     if (contactEquality) {
@@ -126,7 +126,7 @@ export default function ContactsDataModal({ modalData }) {
       setNewUserTel("")
       setNewUserRole("")
       setNewUserComment("")
-      setNewUserCategory(modalData?.listSelected == "all" ? "personal" : modalData?.listSelected)
+      setNewUserCategory("personal")
       setListPickerOpen(false)
       setEditMode(false)
       setDeleteMode(false)
@@ -139,7 +139,7 @@ export default function ContactsDataModal({ modalData }) {
 
   return (
     <>
-      {modalData?.userData && !editMode && !deleteMode &&
+      {modalData?.contactData && !editMode && !deleteMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>CONTACT</h2>
@@ -203,7 +203,7 @@ export default function ContactsDataModal({ modalData }) {
         </>
       }
 
-      {modalData?.userData && editMode &&
+      {modalData?.contactData && editMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>EDIT CONTACT</h2>
@@ -287,7 +287,7 @@ export default function ContactsDataModal({ modalData }) {
         </>
       }
 
-      {modalData?.userData && deleteMode &&
+      {modalData?.contactData && deleteMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>DELETE CONTACT</h2>

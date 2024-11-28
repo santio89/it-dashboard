@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { setModal } from '../store/slices/modalSlice';
+import Draggable from 'react-draggable';
 import ContactsDataModal from './ContactsDataModal';
 import DevicesDataModal from './DevicesDataModal';
 import TDLDataModal from './TDLDataModal';
-import Draggable from 'react-draggable';
+import ProfileDataModal from './ProfileDataModal';
 
 export default function Modal() {
   const dispatch = useDispatch()
@@ -67,9 +68,13 @@ export default function Modal() {
       <dialog className={`mainModalWrapper ${isDragged && "is-dragged"}`} ref={modal} tabIndex={0}>
         <div className="mainModal">
           <div className="mainModal__data">
-            {(modalData?.userData || modalData?.newUser) && <ContactsDataModal modalData={modalData} />}
-            {(modalData?.deviceData || modalData?.newDevice) && <DevicesDataModal modalData={modalData} />}
-            {(modalData?.tdlData || modalData?.newTask) && <TDLDataModal modalData={modalData} />}
+            {modalData?.modalType === "ContactsDataModal" && <ContactsDataModal modalData={modalData} />}
+
+            {modalData?.modalType === "DevicesDataModal" && <DevicesDataModal modalData={modalData} />}
+
+            {modalData?.modalType === "TDLDataModal" && <TDLDataModal modalData={modalData} />}
+
+            {modalData?.modalType === "ProfileDataModal" && <ProfileDataModal modalData={modalData} />}
           </div>
           <button className='mainModal__close' onClick={() => dispatch(setModal({ active: false, data: {} }))}>X</button>
         </div>

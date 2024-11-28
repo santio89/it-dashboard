@@ -118,7 +118,7 @@ export default function TDL({ user }) {
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
-            dispatch(setModal({ active: true, data: { newTask: true, userId: user?.uid, listSelected } }))
+            dispatch(setModal({ active: true, data: { modalType: "TDLDataModal", newTask: true, userId: user?.uid } }))
             setListPickerOpen(false)
           }}>+ Add task</button>
           <div className="listPickerWrapper">
@@ -196,7 +196,7 @@ export default function TDL({ user }) {
                             }
                             {editMode !== task.id &&
                               <>
-                                <button onClick={() => { dispatch(setModal({ active: true, data: { tdlData: true, ...task } })); setListPickerOpen(false) }}>{"Open"}</button>
+                                <button onClick={() => { dispatch(setModal({ active: true, data: { modalType: "TDLDataModal", tdlData: true, ...task } })); setListPickerOpen(false) }}>{"Open"}</button>
                               </>
                             }
 

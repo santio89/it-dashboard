@@ -34,7 +34,7 @@ export default function Contacts({ user }) {
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
-            dispatch(setModal({ active: true, data: { newUser: true, userId: user?.uid, listSelected } }));
+            dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newUser: true, userId: user?.uid } }));
             setListPickerOpen(false)
           }}>+ Add contact</button>
           <div className="listPickerWrapper">
@@ -74,7 +74,7 @@ export default function Contacts({ user }) {
               {
                 dataContacts?.map(contact => {
                   if (listSelected === "all" || contact.category === listSelected) {
-                    return (<li key={contact.id}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { userData: true, userId: user?.uid, ...contact } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
+                    return (<li key={contact.id}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
                   } else {
                     return null
                   }

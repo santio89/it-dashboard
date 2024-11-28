@@ -126,7 +126,7 @@ export default function DevicesDataModal({ modalData }) {
       setNewDeviceArea("")
       setNewDeviceLocation("")
       setNewDeviceComment("")
-      setNewDeviceCategory(modalData?.listSelected == "all" ? "personal" : modalData?.listSelected)
+      setNewDeviceCategory("personal")
       setListPickerOpen(false)
       setEditMode(false)
       setDeleteMode(false)

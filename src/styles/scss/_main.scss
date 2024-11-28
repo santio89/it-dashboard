@@ -52,7 +52,6 @@
 
     &.expanded {
       width: 140px;
-      /*    position: static; */
     }
 
     .nav-link-disabled {
@@ -197,17 +196,17 @@
     );
     background-size: 24px 24px;
     background-position: 0% 0%;
-    transition: background-color 400ms ease-in-out, margin 400ms ease-in-out;
-    margin-left: 52px;
+    transition: background-color 400ms ease-in-out, transform 400ms ease-in-out;
+    transform: translateX(52px);
 
     &.expanded {
-      margin-left: 140px;
+      transform: translateX(140px);
     }
 
     @media (max-width: $tablet-breakpoint) {
       justify-content: start;
       overflow-y: auto;
-      margin-left: 52px;
+      transform: translateX(52px);
     }
   }
 }

@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { setLight } from "../store/slices/themeSlice"
+import { setModal } from "../store/slices/modalSlice"
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from "react"
 import { useSignGoogleMutation, useSignOutMutation } from "../store/slices/apiSlice"
@@ -32,6 +33,10 @@ export default function Nav({ rootTheme, user }) {
 
   const setOpts = () => {
     setProfileOpts(!profileOpts)
+  }
+
+  const openProfile = () => {
+    dispatch(setModal({ active: true, data: { modalType: "ProfileDataModal", profileData: true, ...user } }))
   }
 
   useEffect(() => {
@@ -77,7 +82,7 @@ export default function Nav({ rootTheme, user }) {
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-lines-fill" viewBox="0 0 16 16">
                         <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
                       </svg>
-                      <span>Profile</span>
+                      <span onClick={() => { openProfile() }}>Profile</span>
                     </button>
                     <button onClick={() => { signOut() }}>
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-box-arrow-right" viewBox="0 0 16 16">

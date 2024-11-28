@@ -103,10 +103,8 @@ export default function TDLDataModal({ modalData }) {
 
   useEffect(() => {
     if (!modalActive) {
-      setNewTaskCategory(modalData?.listSelected == "all" ? "personal" : modalData?.listSelected)
       setListPickerOpen(false)
-      /* reset inputs */
-      setNewTaskCategory(modalData?.listSelected == "all" ? "personal" : modalData?.listSelected)
+      setNewTaskCategory("personal")
       setNewTaskPriority("medium")
       textInput.current.textContent = ""
       textInputEdit.current.textContent = ""

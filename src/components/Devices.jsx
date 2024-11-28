@@ -34,7 +34,7 @@ export default function Devices({ user }) {
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
-            dispatch(setModal({ active: true, data: { newDevice: true, userId: user?.uid, listSelected } }))
+            dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", newDevice: true, userId: user?.uid } }))
             setListPickerOpen(false)
           }}>+ Add device</button>
           <div className="listPickerWrapper">
@@ -74,7 +74,9 @@ export default function Devices({ user }) {
               {
                 dataDevices?.map(device => {
                   if (listSelected === "all" || device.category === listSelected) {
-                    return (<li key={device.id}><button title={device.name} onClick={() => { dispatch(setModal({ active: true, data: { deviceData: true, userId: user?.uid, ...device } })); setListPickerOpen(false) }}>{device.name}</button></li>)
+                    return (<li key={device.id}><button title={device.name} onClick={() => {
+                      dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device } })); setListPickerOpen(false)
+                    }}>{device.name}</button></li>)
                   } else {
                     return null
                   }
