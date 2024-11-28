@@ -28,11 +28,11 @@ function ProfileDataModal({ modalData }) {
               </div>
               <fieldset>
                 <legend>Name</legend>
-                <input readOnly disabled spellCheck={false} type="text" title="Name" value={modalData?.displayName || "-"} />
+                <input readOnly disabled spellCheck={false} type="text" value={modalData?.displayName || "-"} />
               </fieldset>
               <fieldset>
                 <legend>E-Mail</legend>
-                <input readOnly disabled spellCheck={false} type="text" title="E-Mail" value={modalData?.email || "-"} />
+                <input readOnly disabled spellCheck={false} type="text" value={modalData?.email || "-"} />
               </fieldset>
             </div>
           </form>

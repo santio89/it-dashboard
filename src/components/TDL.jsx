@@ -167,24 +167,24 @@ export default function TDL({ user }) {
                             {
                               editMode === task.id ?
                                 <>
-                                  <button onClick={() => editTaskPriorityFn(task, "low")} title='Task priority: low' className={`tdl-priority selectedLow ${((!editPriority && task.priority === "low") || editPriority === "low") && "selected"}`}>
+                                  <button onClick={() => editTaskPriorityFn(task, "low")} className={`tdl-priority selectedLow ${((!editPriority && task.priority === "low") || editPriority === "low") && "selected"}`}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                                       <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                                     </svg>
                                   </button>
-                                  <button onClick={() => editTaskPriorityFn(task, "medium")} title='Task priority: medium' className={`tdl-priority selectedMedium ${((!editPriority && task.priority === "medium") || editPriority === "medium") && "selected"}`}>
+                                  <button onClick={() => editTaskPriorityFn(task, "medium")} className={`tdl-priority selectedMedium ${((!editPriority && task.priority === "medium") || editPriority === "medium") && "selected"}`}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                                       <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                                     </svg>
                                   </button>
-                                  <button onClick={() => editTaskPriorityFn(task, "high")} title='Task priority: high' className={`tdl-priority selectedHigh ${((!editPriority && task.priority === "high") || editPriority === "high") && "selected"}`}>
+                                  <button onClick={() => editTaskPriorityFn(task, "high")} className={`tdl-priority selectedHigh ${((!editPriority && task.priority === "high") || editPriority === "high") && "selected"}`}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                                       <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                                     </svg>
                                   </button>
                                 </> :
                                 <>
-                                  <button title={`Task priority: ${task.priority}`} className={`tdl-priority ${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"}`}
+                                  <button className={`tdl-priority ${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"}`}
                                     onClick={() => {
                                       /* ADD HINT */
                                     }}>
@@ -235,8 +235,7 @@ export default function TDL({ user }) {
                       {/* task / taskOptions */}
                       {
                         deleteMode !== task.id && editMode !== task.id &&
-                        <button title="task"
-                          className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`}
+                        <button className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`}
                           onClick={() => {
                             if (taskOptions === task.id) {
                               setTaskOptions(null)
@@ -250,7 +249,7 @@ export default function TDL({ user }) {
 
                       {/* edit task */}
                       {
-                        editMode === task.id && <textarea disabled={resultEditTdl.isLoading} ref={editMode === task.id && editInput} title={"Task"} spellCheck={false} value={editInputText} onKeyPress={e => {
+                        editMode === task.id && <textarea placeholder="Required" disabled={resultEditTdl.isLoading} ref={editMode === task.id && editInput} spellCheck={false} value={editInputText} onKeyPress={e => {
                           if (!e.shiftKey) {
                             return
                           }
@@ -258,12 +257,12 @@ export default function TDL({ user }) {
                             e.preventDefault();
                             editTask(task, editInputText, editPriority, editCategory)
                           }
-                        }} onChange={e => setEditInputText(e.target.value)} className={`taskOption editMode`} placeholder='Task'></textarea>
+                        }} onChange={e => setEditInputText(e.target.value)} className={`taskOption editMode`}></textarea>
                       }
 
                       {/* delete task */}
                       {
-                        deleteMode === task.id && <button title={"Task"} className={`taskContentBtn taskOption deleteMode`} >{task.content}</button>
+                        deleteMode === task.id && <button className={`taskContentBtn taskOption deleteMode`} >{task.content}</button>
                       }
 
                       {/* task category */}
@@ -278,7 +277,7 @@ export default function TDL({ user }) {
                                   <button className={`listPicker ${editMode && "pickerOpen"} ${((!editCategory && task.category === "company") || editCategory === "company") && "selected"}`} onClick={() => { editCategoryFn(task, "company") }}>Company</button>
                                 </>
                                 :
-                                <button title={`Task category: ${task.category}`} className={`listPicker ${editMode && "pickerOpen"}`} onClick={() => { /* ADD HINT */ }}>{task.category}</button>
+                                <button className={`listPicker ${editMode && "pickerOpen"}`} onClick={() => { /* ADD HINT */ }}>{task.category}</button>
                             }
                             {
                             }

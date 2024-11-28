@@ -160,14 +160,8 @@ option {
   font-weight: 300;
 
   &::placeholder {
-    color: var(--main-color-mid);
+    color: var(--main-gray);
     font-style: italic;
-  }
-
-  &:hover::placeholder,
-  &:focus::placeholder,
-  &:focus-visible::placeholder {
-    color: var(--main-color);
   }
 }
 

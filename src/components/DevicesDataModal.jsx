@@ -151,32 +151,32 @@ export default function DevicesDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
-                <input readOnly disabled spellCheck={false} type="text" title="Name" value={modalData?.name || "-"} />
+                <input placeholder='Required' readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
               </fieldset>
               <fieldset>
                 <legend>Type</legend>
-                <input readOnly disabled spellCheck={false} type="text" title="Type" value={modalData?.type || "-"} />
+                <input readOnly disabled spellCheck={false} type="text" value={modalData?.type || "-"} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
                 <legend>Model</legend>
-                <input readOnly disabled spellCheck={false} type="text" title="Model" value={modalData?.model || "-"} />
+                <input readOnly disabled spellCheck={false} type="text" value={modalData?.model || "-"} />
               </fieldset>
               <fieldset>
                 <legend>Serial Number</legend>
-                <input readOnly disabled spellCheck={false} type="text" title="Serial Number" value={modalData?.sn || "-"} />
+                <input readOnly disabled spellCheck={false} type="text" value={modalData?.sn || "-"} />
               </fieldset>
             </div>
 
             {/* <div className="form-group">
               <fieldset>
                 <legend>Area</legend>
-                <input readOnly disabled spellCheck={false} type="text" title="Area" value={modalData?.area || "-"} />
+                <input readOnly disabled spellCheck={false} type="text" value={modalData?.area || "-"} />
               </fieldset>
               <fieldset>
                 <legend>Location</legend>
-                <select readOnly disabled title="Location" >
+                <select readOnly disabled >
                   <option readOnly disabled value="" selected={modalData?.location === ""} >-</option>
                   <option readOnly disabled value="SS" selected={modalData?.location === "SS"}>SS</option>
                   <option readOnly disabled value="PB" selected={modalData?.location === "PB"}>PB</option>
@@ -189,7 +189,7 @@ export default function DevicesDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend>Comment</legend>
-                <textarea readOnly disabled spellCheck={false} rows="2" title="Comment" value={modalData?.comment || "-"} />
+                <textarea readOnly disabled spellCheck={false} rows="2" value={modalData?.comment || "-"} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -232,32 +232,32 @@ export default function DevicesDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
-                <input spellCheck={false} type="text" title="Name" value={newDeviceName} onChange={e => setNewDeviceName(e.target.value.trimStart())} maxLength={200} required />
+                <input placeholder='Required' spellCheck={false} type="text" value={newDeviceName} onChange={e => setNewDeviceName(e.target.value.trimStart())} maxLength={200} required />
               </fieldset>
               <fieldset>
                 <legend>Type</legend>
-                <input spellCheck={false} type="text" title="Type" value={newDeviceType} onChange={e => setNewDeviceType(e.target.value.trimStart())} maxLength={200} />
+                <input spellCheck={false} type="text" value={newDeviceType} onChange={e => setNewDeviceType(e.target.value.trimStart())} maxLength={200} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
                 <legend>Model</legend>
-                <input spellCheck={false} type="text" title="Model" value={newDeviceModel} onChange={e => setNewDeviceModel(e.target.value.trimStart())} maxLength={200} />
+                <input spellCheck={false} type="text" value={newDeviceModel} onChange={e => setNewDeviceModel(e.target.value.trimStart())} maxLength={200} />
               </fieldset>
               <fieldset>
                 <legend>Serial Number</legend>
-                <input spellCheck={false} type="text" title="Serial Number" value={newDeviceSn} onChange={e => setNewDeviceSn(e.target.value.trimStart())} maxLength={200} />
+                <input spellCheck={false} type="text" value={newDeviceSn} onChange={e => setNewDeviceSn(e.target.value.trimStart())} maxLength={200} />
               </fieldset>
             </div>
 
             {/* <div className="form-group">
               <fieldset>
                 <legend>Area</legend>
-                <input spellCheck={false} type="text" title="Area" value={newDeviceArea} onChange={e => setNewDeviceArea(e.target.value.trimStart())} maxLength={200} />
+                <input spellCheck={false} type="text" value={newDeviceArea} onChange={e => setNewDeviceArea(e.target.value.trimStart())} maxLength={200} />
               </fieldset>
               <fieldset>
                 <legend>Location</legend>
-                <select onChange={e => setNewDeviceLocation(e.target.value.trimStart())} title="Location" className={newDeviceLocation === "" && "empty-select"}>
+                <select onChange={e => setNewDeviceLocation(e.target.value.trimStart())} className={newDeviceLocation === "" && "empty-select"}>
                   <option value="" selected={modalData?.location === ""} className='empty-select'></option>
                   <option value="SS" selected={modalData?.location === "SS"}>SS</option>
                   <option value="PB" selected={modalData?.location === "PB"}>PB</option>
@@ -270,7 +270,7 @@ export default function DevicesDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend>Comment</legend>
-                <textarea spellCheck={false} rows="2" title="Comment" value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value.trimStart())} maxLength={500} />
+                <textarea spellCheck={false} rows="2" value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value.trimStart())} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -296,32 +296,32 @@ export default function DevicesDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
-                <input readOnly disabled spellCheck={false} type="text" title="Name" value={modalData?.name || "-"} />
+                <input placeholder='Required' readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
               </fieldset>
               <fieldset>
                 <legend>Type</legend>
-                <input readOnly disabled spellCheck={false} type="text" title="Type" value={modalData?.type || "-"} />
+                <input readOnly disabled spellCheck={false} type="text" value={modalData?.type || "-"} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
                 <legend>Model</legend>
-                <input readOnly disabled spellCheck={false} type="text" title="Model" value={modalData?.model || "-"} />
+                <input readOnly disabled spellCheck={false} type="text" value={modalData?.model || "-"} />
               </fieldset>
               <fieldset>
                 <legend>Serial Number</legend>
-                <input readOnly disabled spellCheck={false} type="text" title="Serial Number" value={modalData?.sn || "-"} />
+                <input readOnly disabled spellCheck={false} type="text" value={modalData?.sn || "-"} />
               </fieldset>
             </div>
 
             {/* <div className="form-group">
               <fieldset>
                 <legend>Area</legend>
-                <input readOnly disabled spellCheck={false} type="text" title="Area" value={modalData?.area || "-"} />
+                <input readOnly disabled spellCheck={false} type="text" value={modalData?.area || "-"} />
               </fieldset>
               <fieldset>
                 <legend>Location</legend>
-                <select readOnly disabled title="Location" >
+                <select readOnly disabled >
                   <option readOnly disabled value="" selected={modalData?.location === ""} >-</option>
                   <option readOnly disabled value="SS" selected={modalData?.location === "SS"}>SS</option>
                   <option readOnly disabled value="PB" selected={modalData?.location === "PB"}>PB</option>
@@ -334,7 +334,7 @@ export default function DevicesDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend>Comment</legend>
-                <textarea readOnly disabled spellCheck={false} rows="2" title="Comment" value={modalData?.comment || "-"} />
+                <textarea readOnly disabled spellCheck={false} rows="2" value={modalData?.comment || "-"} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -376,32 +376,32 @@ export default function DevicesDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
-                <input spellCheck={false} type="text" title="Name" value={newDeviceName} onChange={e => setNewDeviceName(e.target.value.trimStart())} maxLength={200} required />
+                <input placeholder='Required' spellCheck={false} type="text" value={newDeviceName} onChange={e => setNewDeviceName(e.target.value.trimStart())} maxLength={200} required />
               </fieldset>
               <fieldset>
                 <legend>Type</legend>
-                <input spellCheck={false} type="text" title="Type" value={newDeviceType} onChange={e => setNewDeviceType(e.target.value.trimStart())} maxLength={200} />
+                <input spellCheck={false} type="text" value={newDeviceType} onChange={e => setNewDeviceType(e.target.value.trimStart())} maxLength={200} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
                 <legend>Model</legend>
-                <input spellCheck={false} type="text" title="Model" value={newDeviceModel} onChange={e => setNewDeviceModel(e.target.value.trimStart())} maxLength={200} />
+                <input spellCheck={false} type="text" value={newDeviceModel} onChange={e => setNewDeviceModel(e.target.value.trimStart())} maxLength={200} />
               </fieldset>
               <fieldset>
                 <legend>Serial Number</legend>
-                <input spellCheck={false} type="text" title="Serial Number" value={newDeviceSn} onChange={e => setNewDeviceSn(e.target.value.trimStart())} maxLength={200} />
+                <input spellCheck={false} type="text" value={newDeviceSn} onChange={e => setNewDeviceSn(e.target.value.trimStart())} maxLength={200} />
               </fieldset>
             </div>
 
             {/* <div className="form-group">
               <fieldset>
                 <legend>Area</legend>
-                <input spellCheck={false} type="text" title="Area" value={newDeviceArea} onChange={e => setNewDeviceArea(e.target.value.trimStart())} maxLength={200} />
+                <input spellCheck={false} type="text" value={newDeviceArea} onChange={e => setNewDeviceArea(e.target.value.trimStart())} maxLength={200} />
               </fieldset>
               <fieldset>
                 <legend>Location</legend>
-                <select onChange={e => setNewDeviceLocation(e.target.value.trimStart())} title="Location" className={newDeviceLocation === "" && "empty-select"}>
+                <select onChange={e => setNewDeviceLocation(e.target.value.trimStart())} className={newDeviceLocation === "" && "empty-select"}>
                   <option value="Location" selected className='empty-select'></option>
                   <option value="SS">SS</option>
                   <option value="PB">PB</option>
@@ -414,7 +414,7 @@ export default function DevicesDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend>Comment</legend>
-                <textarea spellCheck={false} rows="2" title="Comment" value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value.trimStart())} maxLength={500} />
+                <textarea spellCheck={false} rows="2" value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value.trimStart())} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
