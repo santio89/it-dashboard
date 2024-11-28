@@ -415,7 +415,7 @@ select:disabled {
   filter: grayscale(1);
 }
 .mainContainer .side-panel__opts {
-  margin-block: clamp(0.5rem, 0.5rem + 2vw, 2rem);
+  margin-block: 30px;
   display: flex;
   flex-direction: column;
   justify-content: start;
