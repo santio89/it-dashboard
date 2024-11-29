@@ -31,7 +31,9 @@ export default function DevicesDataModal({ modalData }) {
     setListPickerOpen(false)
   }
 
-  const addDeviceFn = async () => {
+  const addDeviceFn = async (e) => {
+    e.preventDefault()
+
     if (resultAddDevice.isLoading) {
       return
     }
@@ -60,7 +62,9 @@ export default function DevicesDataModal({ modalData }) {
     }, 400) */
   }
 
-  const deleteDeviceFn = async (device) => {
+  const deleteDeviceFn = async (e, device) => {
+    e.preventDefault()
+
     if (resultDeleteDevice.isLoading) {
       return
     }
@@ -86,7 +90,9 @@ export default function DevicesDataModal({ modalData }) {
     setEditMode(true)
   }
 
-  const editDeviceFn = async (device) => {
+  const editDeviceFn = async (e, device) => {
+    e.preventDefault()
+
     if (resultEditDevice.isLoading) {
       return
     }
@@ -122,6 +128,12 @@ export default function DevicesDataModal({ modalData }) {
       /*  setTimeout(() => {
          dispatch(setModal({ active: false, data: {} }))
        }, 400) */
+    }
+  }
+
+  const preventEnterSubmit = (e) => {
+    if (e.key === "Enter" && e.target.className !== "mainModal__send" && e.target.tagName !== "TEXTAREA" && e.target.ariaLabel !== "textarea") {
+      e.preventDefault()
     }
   }
 
@@ -236,7 +248,7 @@ export default function DevicesDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form editMode' disabled={resultEditDevice.isLoading}>
+          <form className='mainModal__data__form editMode' disabled={resultEditDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editDeviceFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
@@ -283,7 +295,7 @@ export default function DevicesDataModal({ modalData }) {
             </div>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
-              <button type='button' className='mainModal__send' onClick={() => editDeviceFn(modalData)}>Confirm</button>
+              <button className='mainModal__send' >Confirm</button>
             </div>
           </form>
         </>
@@ -300,7 +312,7 @@ export default function DevicesDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form deleteMode disabled' disabled={resultDeleteDevice.isLoading}>
+          <form className='mainModal__data__form deleteMode disabled' disabled={resultDeleteDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteDeviceFn(e, modalData)}>
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
@@ -347,7 +359,7 @@ export default function DevicesDataModal({ modalData }) {
             </div>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
-              <button type='button' className='mainModal__send' onClick={() => deleteDeviceFn(modalData)}>Confirm</button>
+              <button className='mainModal__send' >Confirm</button>
             </div>
           </form>
         </>
@@ -380,7 +392,7 @@ export default function DevicesDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form' disabled={resultAddDevice.isLoading}>
+          <form className='mainModal__data__form' disabled={resultAddDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addDeviceFn(e)}>
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
@@ -426,7 +438,7 @@ export default function DevicesDataModal({ modalData }) {
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
-              <button type='button' className='mainModal__send' onClick={() => addDeviceFn()}>Send</button>
+              <button className='mainModal__send'>Send</button>
             </div>
           </form>
         </>

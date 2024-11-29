@@ -29,7 +29,9 @@ export default function TDLDataModal({ modalData }) {
   }
 
 
-  const addTdlFn = async () => {
+  const addTdlFn = async (e) => {
+    e.preventDefault()
+
     if (resultAddTdl.isLoading) {
       return
     }
@@ -59,7 +61,9 @@ export default function TDLDataModal({ modalData }) {
     setEditMode(true)
   }
 
-  const editTaskFn = async (task) => {
+  const editTaskFn = async (e, task) => {
+    e.preventDefault()
+
     if (resultEditTdl.isLoading) {
       return
     }
@@ -89,7 +93,9 @@ export default function TDLDataModal({ modalData }) {
   }
 
 
-  const deleteTdlFn = async (task) => {
+  const deleteTdlFn = async (e, task) => {
+    e.preventDefault()
+
     if (resultDeleteTdl.isLoading) {
       return
     }
@@ -103,6 +109,11 @@ export default function TDLDataModal({ modalData }) {
      }, 400) */
   }
 
+  const preventEnterSubmit = (e) => {
+    if (e.key === "Enter" && e.target.className !== "mainModal__send" && e.target.tagName !== "TEXTAREA" && e.target.ariaLabel !== "textarea") {
+      e.preventDefault()
+    }
+  }
 
   useEffect(() => {
     if (!modalActive) {
@@ -180,7 +191,7 @@ export default function TDLDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form taskContainer editMode' disabled={resultEditTdl.isLoading}>
+          <form className='mainModal__data__form taskContainer editMode' disabled={resultEditTdl.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTaskFn(e, modalData)}>
             <div className={`taskOpenData`}>
               <div>Priority: </div>
               <button type='button' onClick={() => setNewTaskPriority("low")} className={`tdl-priority selectedLow ${newTaskPriority === "low" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
@@ -208,7 +219,7 @@ export default function TDLDataModal({ modalData }) {
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
-              <button type='button' className='mainModal__send' onClick={() => editTaskFn(modalData)}>Confirm</button>
+              <button className='mainModal__send'>Confirm</button>
             </div>
           </form>
         </>
@@ -224,7 +235,7 @@ export default function TDLDataModal({ modalData }) {
               <button tabIndex={-1} className={`listPicker disabled`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
             </div>
           </div>
-          <form className='mainModal__data__form taskContainer deleteMode disabled' disabled={resultDeleteTdl.isLoading}>
+          <form className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteTdl.isLoading} onSubmit={(e) => deleteTdlFn(e, modalData)}>
             <div className={`taskOpenData`}>
               <div>Priority: </div>
               <button tabIndex={-1} type='button' disabled onClick={() => setNewTaskPriority("low")} className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
@@ -240,7 +251,7 @@ export default function TDLDataModal({ modalData }) {
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
-              <button type='button' className='mainModal__send' onClick={() => deleteTdlFn(modalData)}>Confirm</button>
+              <button className='mainModal__send'>Confirm</button>
             </div>
           </form>
         </>
@@ -273,7 +284,7 @@ export default function TDLDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form disabled={resultAddTdl.isLoading} className='mainModal__data__form taskContainer'>
+          <form disabled={resultAddTdl.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addTdlFn(e)}>
             <div className={`taskOpenData`}>
               <div>Priority: </div>
               <button type='button' onClick={() => setNewTaskPriority("low")} className={`tdl-priority selectedLow ${newTaskPriority === "low" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
@@ -300,7 +311,7 @@ export default function TDLDataModal({ modalData }) {
               <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false} placeholder='Required'></div>
             </fieldset>
             <div className='mainModal__btnContainer'>
-              <button type='button' className='mainModal__send' onClick={() => addTdlFn()}>Send</button>
+              <button className='mainModal__send'>Send</button>
             </div>
           </form>
         </>

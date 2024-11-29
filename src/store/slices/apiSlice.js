@@ -359,7 +359,7 @@ export const apiSlice = createApi({
 
           return {
             data: {
-              id,
+              id: device.id,
               res: `eliminated`
             }
           }

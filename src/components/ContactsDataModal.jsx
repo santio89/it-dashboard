@@ -31,7 +31,9 @@ export default function ContactsDataModal({ modalData }) {
     setListPickerOpen(false)
   }
 
-  const addUserFn = async () => {
+  const addUserFn = async (e) => {
+    e.preventDefault()
+
     if (resultAddContact.isLoading) {
       return
     }
@@ -60,7 +62,9 @@ export default function ContactsDataModal({ modalData }) {
       }, 400) */
   }
 
-  const deleteUserFn = async (contact) => {
+  const deleteUserFn = async (e, contact) => {
+    e.preventDefault()
+
     if (resultDeleteContact.isLoading) {
       return
     }
@@ -86,7 +90,9 @@ export default function ContactsDataModal({ modalData }) {
     setEditMode(true)
   }
 
-  const editUserFn = async (contact) => {
+  const editUserFn = async (e, contact) => {
+    e.preventDefault()
+
     if (resultEditContact.isLoading) {
       return
     }
@@ -122,6 +128,12 @@ export default function ContactsDataModal({ modalData }) {
       /*    setTimeout(() => {
            dispatch(setModal({ active: false, data: {} }))
          }, 400) */
+    }
+  }
+
+  const preventEnterSubmit = (e) => {
+    if (e.key === "Enter" && e.target.className !== "mainModal__send" && e.target.tagName !== "TEXTAREA" && e.target.ariaLabel !== "textarea") {
+      e.preventDefault()
     }
   }
 
@@ -239,7 +251,7 @@ export default function ContactsDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form editMode' disabled={resultEditContact.isLoading}>
+          <form className='mainModal__data__form editMode' disabled={resultEditContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editUserFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
@@ -247,7 +259,7 @@ export default function ContactsDataModal({ modalData }) {
               </fieldset>
               <fieldset>
                 <legend>E-Mail</legend>
-                <input spellCheck={false} type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value.trimStart())} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
+                <input spellCheck={false} type="email" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value.trimStart())} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
               </fieldset>
             </div>
             <div className="form-group">
@@ -289,7 +301,7 @@ export default function ContactsDataModal({ modalData }) {
             </div>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
-              <button type='button' className='mainModal__send' onClick={() => editUserFn(modalData)} >Confirm</button>
+              <button className='mainModal__send' >Confirm</button>
             </div>
           </form>
         </>
@@ -306,7 +318,7 @@ export default function ContactsDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form deleteMode disabled' disabled={resultDeleteContact.isLoading}>
+          <form className='mainModal__data__form deleteMode disabled' disabled={resultDeleteContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteUserFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
@@ -353,7 +365,7 @@ export default function ContactsDataModal({ modalData }) {
             </div>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
-              <button type='button' className='mainModal__send' onClick={() => deleteUserFn(modalData)} >Confirm</button>
+              <button className='mainModal__send' >Confirm</button>
             </div>
           </form>
         </>
@@ -386,7 +398,7 @@ export default function ContactsDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form' disabled={resultAddContact.isLoading}>
+          <form className='mainModal__data__form' disabled={resultAddContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addUserFn(e)}  >
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
@@ -394,7 +406,7 @@ export default function ContactsDataModal({ modalData }) {
               </fieldset>
               <fieldset>
                 <legend>E-Mail</legend>
-                <input spellCheck={false} type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value.trimStart())} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
+                <input spellCheck={false} type="email" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value.trimStart())} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
               </fieldset>
             </div>
             <div className="form-group">
@@ -435,7 +447,7 @@ export default function ContactsDataModal({ modalData }) {
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
-              <button type='button' className='mainModal__send' onClick={() => addUserFn()} >Send</button>
+              <button className='mainModal__send'>Send</button>
             </div>
           </form>
         </>
