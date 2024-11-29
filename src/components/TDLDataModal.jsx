@@ -32,10 +32,11 @@ export default function TDLDataModal({ modalData }) {
   const addTdlFn = async (e) => {
     e.preventDefault()
 
+    textInput.current.textContent = textInput.current.textContent.trimStart()
+
     if (resultAddTdl.isLoading) {
       return
     }
-
     if (textInput.current.textContent.trim() === "") {
       return
     }
@@ -55,7 +56,6 @@ export default function TDLDataModal({ modalData }) {
   }
 
   const editModeFN = () => {
-    /* textInputEdit.current.textContent = modalData?.content */
     setNewTaskPriority(modalData?.priority)
     setNewTaskCategory(modalData?.category)
     setEditMode(true)
@@ -63,6 +63,8 @@ export default function TDLDataModal({ modalData }) {
 
   const editTaskFn = async (e, task) => {
     e.preventDefault()
+
+    textInputEdit.current.textContent = textInputEdit.current.textContent.trimStart()
 
     if (resultEditTdl.isLoading) {
       return
@@ -308,7 +310,10 @@ export default function TDLDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false} placeholder='Required'></div>
+              <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false} placeholder='Required' onKeyDown={(e) => {
+                /*   e.target.textContent = e.target.textContent.trimStart() */
+                /*    textInput.current.textContent = textInput.current.textContent.trimStart() */
+              }}></div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send'>Send</button>

@@ -184,7 +184,7 @@ export default function ContactsDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend>Tel</legend>
-                <input readOnly disabled spellCheck={false} type="text" value={modalData?.tel || "-"} />
+                <input readOnly disabled spellCheck={false} type="tel" value={modalData?.tel || "-"} />
               </fieldset>
               <fieldset>
                 <legend>Role</legend>
@@ -259,7 +259,7 @@ export default function ContactsDataModal({ modalData }) {
               </fieldset>
               <fieldset>
                 <legend>E-Mail</legend>
-                <input spellCheck={false} type="email" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value.trimStart())} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
+                <input spellCheck={false} type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value.trimStart())} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
               </fieldset>
             </div>
             <div className="form-group">
@@ -332,7 +332,7 @@ export default function ContactsDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend>Tel</legend>
-                <input readOnly disabled spellCheck={false} type="text" value={modalData?.tel || "-"} />
+                <input readOnly disabled spellCheck={false} type="tel" value={modalData?.tel || "-"} />
               </fieldset>
               <fieldset>
                 <legend>Role</legend>
@@ -406,7 +406,7 @@ export default function ContactsDataModal({ modalData }) {
               </fieldset>
               <fieldset>
                 <legend>E-Mail</legend>
-                <input spellCheck={false} type="email" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value.trimStart())} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
+                <input spellCheck={false} type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value.trimStart())} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
               </fieldset>
             </div>
             <div className="form-group">

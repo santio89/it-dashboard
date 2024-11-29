@@ -260,7 +260,7 @@ export default function TDL({ user }) {
                             e.preventDefault();
                             editTask(task, editInputText, editPriority, editCategory)
                           }
-                        }} onChange={e => setEditInputText(e.target.value)} className={`taskOption editMode`}></textarea>
+                        }} onChange={e => setEditInputText(e.target.value.trimStart())} className={`taskOption editMode`}></textarea>
                       }
 
                       {/* delete task */}
