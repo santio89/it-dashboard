@@ -252,15 +252,7 @@ export default function TDL({ user }) {
 
                       {/* edit task */}
                       {
-                        editMode === task.id && <textarea placeholder="Required" disabled={resultEditTdl.isLoading} ref={editMode === task.id && editInput} spellCheck={false} value={editInputText} onKeyPress={e => {
-                          if (!e.shiftKey) {
-                            return
-                          }
-                          if (e.key === "Enter" && e.shiftKey) {
-                            e.preventDefault();
-                            editTask(task, editInputText, editPriority, editCategory)
-                          }
-                        }} onChange={e => setEditInputText(e.target.value.trimStart())} className={`taskOption editMode`}></textarea>
+                        editMode === task.id && <textarea placeholder="Required" disabled={resultEditTdl.isLoading} ref={editMode === task.id && editInput} spellCheck={false} value={editInputText} onChange={e => setEditInputText(e.target.value.trimStart())} className={`taskOption editMode`}></textarea>
                       }
 
                       {/* delete task */}
