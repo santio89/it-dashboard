@@ -183,7 +183,7 @@
   }
 
   .main-content {
-    flex: 1;
+    width: calc(100% - 52px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -196,17 +196,16 @@
     );
     background-size: 24px 24px;
     background-position: 0% 0%;
-    transition: background-color 400ms ease-in-out, transform 400ms ease-in-out;
-    transform: translateX(52px);
+    transition: background-color 400ms ease-in-out, width 400ms ease-in-out;
+    margin-left: auto;
 
     &.expanded {
-      transform: translateX(140px);
+      width: calc(100% - 140px);
     }
 
     @media (max-width: $tablet-breakpoint) {
       justify-content: start;
       overflow-y: auto;
-      transform: translateX(52px);
     }
   }
 }

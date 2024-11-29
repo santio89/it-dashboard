@@ -9,7 +9,7 @@
   text-wrap: balance;
   gap: 1rem;
   position: relative;
-  overflow-y: auto;
+  overflow: auto;
 
   @media (max-width: $tablet-breakpoint) {
     flex-flow: column nowrap;
