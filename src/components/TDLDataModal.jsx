@@ -314,10 +314,7 @@ export default function TDLDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false} placeholder='Required' onKeyDown={(e) => {
-                /*   e.target.textContent = e.target.textContent.trimStart() */
-                /*    textInput.current.textContent = textInput.current.textContent.trimStart() */
-              }}></div>
+              <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false} placeholder='Required'></div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send' onClick={trimInputs}>Send</button>
