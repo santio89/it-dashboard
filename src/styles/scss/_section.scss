@@ -34,6 +34,10 @@
     @media (max-width: $tablet-breakpoint) {
       grid-template-columns: 240px;
     }
+
+    @media (max-width: $tablet-breakpoint) and (max-height: 699px) {
+      align-content: start;
+    }
   }
 
   .btnWrapper {

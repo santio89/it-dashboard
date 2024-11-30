@@ -202,10 +202,5 @@
     &.expanded {
       width: calc(100% - 140px);
     }
-
-    @media (max-width: $tablet-breakpoint) {
-      justify-content: start;
-      overflow-y: auto;
-    }
   }
 }
