@@ -196,8 +196,9 @@
     );
     background-size: 24px 24px;
     background-position: 0% 0%;
-    transition: background-color 400ms ease-in-out, width 200ms ease-in-out;
     margin-left: auto;
+    transition: background-color 400ms ease-in-out, width 200ms ease-in-out;
+    will-change: width;
 
     &.expanded {
       width: calc(100% - 140px);
