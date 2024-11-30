@@ -41,6 +41,9 @@ export default function TDL({ user }) {
     setListPickerOpen(false)
   }
 
+  const trimInputs = () => {
+    setEditInputText(editInputText => editInputText.trim())
+  }
 
   const deleteTask = async (task) => {
     if (resultDeleteTdl.isLoading) {
@@ -221,6 +224,7 @@ export default function TDL({ user }) {
                             {
                               editMode === task.id || deleteMode === task.id ?
                                 <button onClick={() => {
+                                  trimInputs()
                                   deleteMode === task.id && deleteTask(task)
                                   editMode === task.id && editTask(task, editInputText, editPriority, editCategory)
                                 }}>{"Confirm"}
@@ -252,7 +256,8 @@ export default function TDL({ user }) {
 
                       {/* edit task */}
                       {
-                        editMode === task.id && <textarea placeholder="Required" disabled={resultEditTdl.isLoading} ref={editMode === task.id && editInput} spellCheck={false} value={editInputText} onChange={e => setEditInputText(e.target.value.trimStart())} className={`taskOption editMode`}></textarea>
+                        editMode === task.id &&
+                        <textarea placeholder="Required" disabled={resultEditTdl.isLoading} ref={editMode === task.id && editInput} spellCheck={false} value={editInputText} onChange={e => setEditInputText(e.target.value)} className={`taskOption editMode`}></textarea>
                       }
 
                       {/* delete task */}

@@ -15,8 +15,6 @@ export default function ContactsDataModal({ modalData }) {
   const [editContact, resultEditContact] = useEditContactMutation()
 
   const [newUserName, setNewUserName] = useState("")
-  const [newUserArea, setNewUserArea] = useState("")
-  const [newUserLocation, setNewUserLocation] = useState("")
   const [newUserEmail, setNewUserEmail] = useState("")
   const [newUserTel, setNewUserTel] = useState("")
   const [newUserRole, setNewUserRole] = useState("")
@@ -29,6 +27,15 @@ export default function ContactsDataModal({ modalData }) {
   const selectList = list => {
     setNewUserCategory(list)
     setListPickerOpen(false)
+  }
+
+  const trimInputs = () => {
+    setNewUserName(newUserName => newUserName.trim())
+    setNewUserEmail(newUserEmail => newUserEmail.trim())
+    setNewUserTel(newUserTel => newUserTel.trim())
+    setNewUserRole(newUserRole => newUserRole.trim())
+    setNewUserComment(newUserComment => newUserComment.trim())
+    setNewUserCategory(newUserCategory => newUserCategory.trim())
   }
 
   const addUserFn = async (e) => {
@@ -47,8 +54,6 @@ export default function ContactsDataModal({ modalData }) {
       email: newUserEmail.trim(),
       tel: newUserTel.trim(),
       role: newUserRole.trim(),
-      area: newUserArea.trim(),
-      location: newUserLocation.trim(),
       comment: newUserComment.trim(),
       category: newUserCategory.trim(),
     }
@@ -80,8 +85,6 @@ export default function ContactsDataModal({ modalData }) {
 
   const editModeFN = () => {
     setNewUserName(modalData?.name)
-    setNewUserArea(modalData?.area)
-    setNewUserLocation(modalData?.location)
     setNewUserEmail(modalData?.email)
     setNewUserTel(modalData?.tel)
     setNewUserRole(modalData?.role)
@@ -106,8 +109,6 @@ export default function ContactsDataModal({ modalData }) {
       email: newUserEmail.trim(),
       tel: newUserTel.trim(),
       role: newUserRole.trim(),
-      area: newUserArea.trim(),
-      location: newUserLocation.trim(),
       comment: newUserComment.trim(),
       category: newUserCategory.trim(),
       id: contact.id,
@@ -140,8 +141,6 @@ export default function ContactsDataModal({ modalData }) {
   useEffect(() => {
     if (!modalActive) {
       setNewUserName("")
-      setNewUserArea("")
-      setNewUserLocation("")
       setNewUserEmail("")
       setNewUserTel("")
       setNewUserRole("")
@@ -251,39 +250,39 @@ export default function ContactsDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form editMode' disabled={resultEditContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editUserFn(e, modalData)} >
+          <form className='mainModal__data__form editMode' disabled={resultEditContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => { trimInputs(); editUserFn(e, modalData) }} >
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
-                <input placeholder='Required' spellCheck={false} type="text" value={newUserName} onChange={e => setNewUserName(e.target.value.trimStart())} maxLength={200} required />
+                <input placeholder='Required' spellCheck={false} type="text" value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} required />
               </fieldset>
               <fieldset>
                 <legend>E-Mail</legend>
-                <input spellCheck={false} type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value.trimStart())} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
+                <input spellCheck={false} type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
                 <legend>Tel</legend>
                 <input spellCheck={false} type="tel" value={newUserTel} onChange={e => {
-                  const value = e.target.value.replace(/\D/g, '').trimStart();
+                  const value = e.target.value.replace(/\D/g, '');
                   setNewUserTel(value)
                 }} maxLength={20} />
               </fieldset>
               <fieldset>
                 <legend>Role</legend>
-                <input spellCheck={false} type="text" value={newUserRole} onChange={e => setNewUserRole(e.target.value.trimStart())} maxLength={200} />
+                <input spellCheck={false} type="text" value={newUserRole} onChange={e => setNewUserRole(e.target.value)} maxLength={200} />
               </fieldset>
             </div>
 
             {/*     <div className="form-group">
               <fieldset>
                 <legend>Area</legend>
-                <input spellCheck={false} type="text" value={newUserArea} onChange={e => setNewUserArea(e.target.value.trimStart())} maxLength={200} />
+                <input spellCheck={false} type="text" value={newUserArea} onChange={e => setNewUserArea(e.target.value)} maxLength={200} />
               </fieldset>
               <fieldset>
                 <legend>Location</legend>
-                <select onChange={e => setNewUserLocation(e.target.value.trimStart())} className={newUserLocation === "" && "empty-select"}>
+                <select onChange={e => setNewUserLocation(e.target.value)} className={newUserLocation === "" && "empty-select"}>
                   <option value="" selected={modalData?.location === ""} className='empty-select'></option>
                   <option value="SS" selected={modalData?.location === "SS"}>SS</option>
                   <option value="PB" selected={modalData?.location === "PB"}>PB</option>
@@ -296,12 +295,12 @@ export default function ContactsDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend>Comment</legend>
-                <textarea spellCheck={false} rows="2" value={newUserComment} onChange={e => setNewUserComment(e.target.value.trimStart())} maxLength={500} />
+                <textarea spellCheck={false} rows="2" value={newUserComment} onChange={e => setNewUserComment(e.target.value)} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
-              <button className='mainModal__send' >Confirm</button>
+              <button className='mainModal__send' onClick={trimInputs}>Confirm</button>
             </div>
           </form>
         </>
@@ -365,7 +364,7 @@ export default function ContactsDataModal({ modalData }) {
             </div>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
-              <button className='mainModal__send' >Confirm</button>
+              <button className='mainModal__send' onClick={trimInputs}>Confirm</button>
             </div>
           </form>
         </>
@@ -398,39 +397,39 @@ export default function ContactsDataModal({ modalData }) {
               }
             </div>
           </div>
-          <form className='mainModal__data__form' disabled={resultAddContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addUserFn(e)}  >
+          <form className='mainModal__data__form' disabled={resultAddContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => { addUserFn(e) }}  >
             <div className="form-group">
               <fieldset>
                 <legend>Name</legend>
-                <input placeholder='Required' spellCheck={false} type="text" value={newUserName} onChange={e => setNewUserName(e.target.value.trimStart())} maxLength={200} required />
+                <input placeholder='Required' spellCheck={false} type="text" value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} required />
               </fieldset>
               <fieldset>
                 <legend>E-Mail</legend>
-                <input spellCheck={false} type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value.trimStart())} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
+                <input spellCheck={false} type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
                 <legend>Tel</legend>
                 <input spellCheck={false} type="tel" value={newUserTel} onChange={e => {
-                  const value = e.target.value.replace(/\D/g, '').trimStart();
+                  const value = e.target.value.replace(/\D/g, '');
                   setNewUserTel(value)
                 }} maxLength={20} />
               </fieldset>
               <fieldset>
                 <legend>Role</legend>
-                <input spellCheck={false} type="text" value={newUserRole} onChange={e => setNewUserRole(e.target.value.trimStart())} maxLength={200} />
+                <input spellCheck={false} type="text" value={newUserRole} onChange={e => setNewUserRole(e.target.value)} maxLength={200} />
               </fieldset>
             </div>
 
             {/* <div className="form-group">
               <fieldset>
                 <legend>Area</legend>
-                <input spellCheck={false} type="text" value={newUserArea} onChange={e => setNewUserArea(e.target.value.trimStart())} maxLength={200} />
+                <input spellCheck={false} type="text" value={newUserArea} onChange={e => setNewUserArea(e.target.value)} maxLength={200} />
               </fieldset>
               <fieldset>
                 <legend>Location</legend>
-                <select onChange={e => setNewUserLocation(e.target.value.trimStart())} className={newUserLocation === "" && "empty-select"}>
+                <select onChange={e => setNewUserLocation(e.target.value)} className={newUserLocation === "" && "empty-select"}>
                   <option value="Location" selected className='empty-select'></option>
                   <option value="SS">SS</option>
                   <option value="PB">PB</option>
@@ -443,11 +442,11 @@ export default function ContactsDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend>Comment</legend>
-                <textarea spellCheck={false} rows="2" value={newUserComment} onChange={e => setNewUserComment(e.target.value.trimStart())} maxLength={500} />
+                <textarea spellCheck={false} rows="2" value={newUserComment} onChange={e => setNewUserComment(e.target.value)} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
-              <button className='mainModal__send'>Send</button>
+              <button className='mainModal__send' onClick={trimInputs}>Send</button>
             </div>
           </form>
         </>

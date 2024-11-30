@@ -28,11 +28,17 @@ export default function TDLDataModal({ modalData }) {
     setListPickerOpen(false)
   }
 
+  const trimInputs = () => {
+    if (textInput.current) {
+      textInput.current.textContent = textInput.current.textContent.trim()
+    }
+    if (textInputEdit.current) {
+      textInputEdit.current.textContent = textInputEdit.current.textContent.trim()
+    }
+  }
 
   const addTdlFn = async (e) => {
     e.preventDefault()
-
-    textInput.current.textContent = textInput.current.textContent.trimStart()
 
     if (resultAddTdl.isLoading) {
       return
@@ -63,8 +69,6 @@ export default function TDLDataModal({ modalData }) {
 
   const editTaskFn = async (e, task) => {
     e.preventDefault()
-
-    textInputEdit.current.textContent = textInputEdit.current.textContent.trimStart()
 
     if (resultEditTdl.isLoading) {
       return
@@ -221,7 +225,7 @@ export default function TDLDataModal({ modalData }) {
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
-              <button className='mainModal__send'>Confirm</button>
+              <button className='mainModal__send' onClick={trimInputs}>Confirm</button>
             </div>
           </form>
         </>
@@ -253,7 +257,7 @@ export default function TDLDataModal({ modalData }) {
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
-              <button className='mainModal__send'>Confirm</button>
+              <button className='mainModal__send' onClick={trimInputs}>Confirm</button>
             </div>
           </form>
         </>
@@ -316,7 +320,7 @@ export default function TDLDataModal({ modalData }) {
               }}></div>
             </fieldset>
             <div className='mainModal__btnContainer'>
-              <button className='mainModal__send'>Send</button>
+              <button className='mainModal__send' onClick={trimInputs}>Send</button>
             </div>
           </form>
         </>
