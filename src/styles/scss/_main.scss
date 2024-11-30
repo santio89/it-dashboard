@@ -15,7 +15,8 @@
     justify-content: space-between;
     align-items: center;
     background: var(--main-color-bg);
-    transition: background-color 400ms ease-in-out, width 200ms ease-in-out;
+    transition: background-color 400ms ease-in-out,
+      width 400ms var(--aside-transition);
     border-right: 1px solid var(--main-gray-dark);
     z-index: 2;
     position: absolute;
@@ -102,7 +103,7 @@
 
         span {
           opacity: 0;
-          transition: opacity 200ms ease-in-out;
+          transition: opacity 200ms var(--aside-transition);
 
           &.expanded {
             opacity: 1;
@@ -197,7 +198,8 @@
     background-size: 24px 24px;
     background-position: 0% 0%;
     margin-left: auto;
-    transition: background-color 400ms ease-in-out, width 200ms ease-in-out;
+    transition: background-color 400ms ease-in-out,
+      width 400ms var(--aside-transition);
     will-change: width;
 
     &.expanded {
