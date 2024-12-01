@@ -12,6 +12,8 @@ export default function Devices({ user }) {
   const [listSelected, setListSelected] = useState("all")
   const listContainer = useRef()
 
+  const [devicesList, setDevicesList] = useState(null)
+
   const {
     data: dataDevices,
     isLoading: isLoadingDevices,
@@ -26,9 +28,24 @@ export default function Devices({ user }) {
     setListPickerOpen(false)
   }
 
+  /* order by name */
   useEffect(() => {
-    !isLoadingDevices && listContainer.current && autoAnimate(listContainer.current)
-  }, [listContainer, isLoadingDevices])
+    if (dataDevices) {
+      let orderedList = []
+
+      if (sortList) {
+        orderedList = [...dataDevices].sort((a, b) => b.name.localeCompare(a.name))
+      } else {
+        orderedList = [...dataDevices].sort((a, b) => a.name.localeCompare(b.name))
+      }
+
+      setDevicesList(orderedList)
+    }
+  }, [sortList, dataDevices])
+
+  useEffect(() => {
+    !isLoadingDevices && devicesList listContainer.current && autoAnimate(listContainer.current)
+  }, [listContainer, isLoadingDevices, devicesList])
 
   return (
     <>
@@ -90,7 +107,7 @@ export default function Devices({ user }) {
               </div>
               <ul className="items-list" ref={listContainer}>
                 {
-                  dataDevices?.map(device => {
+                  devicesList?.map(device => {
                     if (listSelected === "all" || device.category === listSelected) {
                       return (<li key={device.id}><button title={device.name} onClick={() => {
                         dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device } })); setListPickerOpen(false)

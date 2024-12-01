@@ -12,6 +12,8 @@ export default function Contacts({ user }) {
   const [listSelected, setListSelected] = useState("all")
   const listContainer = useRef()
 
+  const [contactsList, setContactsList] = useState(null)
+
   const {
     data: dataContacts,
     isLoading: isLoadingContacts,
@@ -26,9 +28,24 @@ export default function Contacts({ user }) {
     setListPickerOpen(false)
   }
 
+  /* order by name */
   useEffect(() => {
-    !isLoadingContacts && listContainer.current && autoAnimate(listContainer.current)
-  }, [listContainer, isLoadingContacts])
+    if (dataContacts) {
+      let orderedList = []
+
+      if (sortList) {
+        orderedList = [...dataContacts].sort((a, b) => b.name.localeCompare(a.name))
+      } else {
+        orderedList = [...dataContacts].sort((a, b) => a.name.localeCompare(b.name))
+      }
+
+      setContactsList(orderedList)
+    }
+  }, [sortList, dataContacts])
+
+  useEffect(() => {
+    !isLoadingContacts && contactsList && listContainer.current && autoAnimate(listContainer.current)
+  }, [listContainer, isLoadingContacts, contactsList])
 
   return (
     <>
@@ -90,7 +107,7 @@ export default function Contacts({ user }) {
               </div>
               <ul className="items-list" ref={listContainer}>
                 {
-                  dataContacts?.map(contact => {
+                  contactsList?.map(contact => {
                     if (listSelected === "all" || contact.category === listSelected) {
                       return (<li key={contact.id}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
                     } else {

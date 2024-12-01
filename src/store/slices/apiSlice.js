@@ -204,7 +204,7 @@ export const apiSlice = createApi({
           });
 
           /* order by name */
-          contacts.sort((a, b) => a.name.localeCompare(b.name));
+          /* contacts.sort((a, b) => a.name.localeCompare(b.name)); */
 
           return { data: contacts };
         } catch (error) {
@@ -308,7 +308,7 @@ export const apiSlice = createApi({
           });
 
           /* order by name */
-          devices.sort((a, b) => a.name.localeCompare(b.name));
+          /* devices.sort((a, b) => a.name.localeCompare(b.name)); */
 
           return { data: devices };
         } catch (error) {
@@ -413,7 +413,7 @@ export const apiSlice = createApi({
           });
 
           /* order by date */
-          tasks.sort((a, b) => b.createdAt.toDate() - a.createdAt.toDate());
+          /*  tasks.sort((a, b) => b.createdAt.toDate() - a.createdAt.toDate()); */
 
           return { data: tasks };
         } catch (error) {

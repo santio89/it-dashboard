@@ -6,13 +6,16 @@ import DataChart from './DataChart'
 import autoAnimate from "@formkit/auto-animate";
 
 export default function TDL({ user }) {
+  const dispatch = useDispatch()
+  const [sortList, setSortList] = useState(false)
   const [taskOptions, setTaskOptions] = useState(null)
   const [editMode, setEditMode] = useState(null)
   const [deleteMode, setDeleteMode] = useState(null)
   const [editInputText, setEditInputText] = useState("")
   const editInput = useRef()
-  const dispatch = useDispatch()
   const listContainer = useRef()
+
+  const [tdlList, setTdlList] = useState(null)
 
   /* search */
   const [listPickerOpen, setListPickerOpen] = useState(false)
@@ -115,9 +118,24 @@ export default function TDL({ user }) {
     taskOptions && setTaskOptions(null)
   }, [listSelected])
 
+  /* order by name */
   useEffect(() => {
-    !isLoadingTdl && listContainer.current && autoAnimate(listContainer.current)
-  }, [listContainer, isLoadingTdl])
+    if (dataTdl) {
+      let orderedList = []
+
+      if (sortList) {
+        orderedList = [...dataTdl].sort((a, b) => a.createdAt.toDate() - b.createdAt.toDate());
+      } else {
+        orderedList = [...dataTdl].sort((a, b) => b.createdAt.toDate() - a.createdAt.toDate());
+      }
+
+      setTdlList(orderedList)
+    }
+  }, [sortList, dataTdl])
+
+  useEffect(() => {
+    !isLoadingTdl && tdlList && listContainer.current && autoAnimate(listContainer.current)
+  }, [listContainer, isLoadingTdl, tdlList])
 
   return (
     <>
@@ -162,15 +180,20 @@ export default function TDL({ user }) {
           isLoadingTdl ? <div className="loader">Loading...</div> :
             <div className="listWrapper">
               <div className="sortBtn">
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-filter-square" viewBox="0 0 16 16">
-                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-                    <path d="M6 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
-                  </svg>
+                <button onClick={() => setSortList(sortList => !sortList)}>
+                  {
+                    sortList ?
+                      <svg style={{ transform: "rotate(180deg)" }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-filter" viewBox="0 0 16 16">
+                        <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+                      </svg> :
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-filter" viewBox="0 0 16 16">
+                        <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+                      </svg>
+                  }
                 </button>
               </div>
               <ul className='tdl-list' ref={listContainer}>        {
-                dataTdl?.map((task) => {
+                tdlList?.map((task) => {
                   if (listSelected === "all" || listSelected === task.category) {
                     return (
                       <li key={task.id} disabled={taskOptions === task.id && (resultEditTdl.isLoading || resultDeleteTdl.isLoading)}>
