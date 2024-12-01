@@ -43,9 +43,9 @@ export default function Devices({ user }) {
     }
   }, [sortList, dataDevices])
 
-/*   useEffect(() => {
+  useEffect(() => {
     !isLoadingDevices && devicesList && listContainer.current && autoAnimate(listContainer.current)
-  }, [listContainer, isLoadingDevices, devicesList]) */
+  }, [listContainer, isLoadingDevices, devicesList])
 
   return (
     <>
