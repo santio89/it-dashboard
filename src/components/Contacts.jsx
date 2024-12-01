@@ -43,9 +43,9 @@ export default function Contacts({ user }) {
     }
   }, [sortList, dataContacts])
 
-  useEffect(() => {
+/*   useEffect(() => {
     !isLoadingContacts && contactsList && listContainer.current && autoAnimate(listContainer.current)
-  }, [listContainer, isLoadingContacts, contactsList])
+  }, [listContainer, isLoadingContacts, contactsList]) */
 
   return (
     <>

@@ -133,9 +133,9 @@ export default function TDL({ user }) {
     }
   }, [sortList, dataTdl])
 
-  useEffect(() => {
+/*   useEffect(() => {
     !isLoadingTdl && tdlList && listContainer.current && autoAnimate(listContainer.current)
-  }, [listContainer, isLoadingTdl, tdlList])
+  }, [listContainer, isLoadingTdl, tdlList]) */
 
   return (
     <>
