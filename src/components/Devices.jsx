@@ -10,7 +10,6 @@ export default function Devices({ user }) {
   const [sortList, setSortList] = useState(false)
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
-  const [emptySelection, setEmptySelection] = useState(false)
   const listContainer = useRef()
 
   const [devicesList, setDevicesList] = useState(null)
@@ -30,26 +29,25 @@ export default function Devices({ user }) {
   }
 
 
-  useEffect(() => {
-    if (listContainer.current) {
-      listContainer.current.childNodes.length === 0 ? setEmptySelection(true) : setEmptySelection(false)
-    }
-  }, [listSelected])
-
-  /* order by name */
+  /* order*/
   useEffect(() => {
     if (dataDevices) {
-      let orderedList = []
+      /* filter */
+      const filteredList = dataDevices?.filter(contact => {
+        return (listSelected === "all" || contact.category === listSelected)
+      })
 
+      /* sort */
+      let orderedList = []
       if (sortList) {
-        orderedList = [...dataDevices].sort((a, b) => b.name.localeCompare(a.name))
+        orderedList = [...filteredList].sort((a, b) => b.name.localeCompare(a.name))
       } else {
-        orderedList = [...dataDevices].sort((a, b) => a.name.localeCompare(b.name))
+        orderedList = [...filteredList].sort((a, b) => a.name.localeCompare(b.name))
       }
 
       setDevicesList(orderedList)
     }
-  }, [sortList, dataDevices])
+  }, [listSelected, sortList, dataDevices])
 
   useEffect(() => {
     !isLoadingDevices && devicesList && listContainer.current && autoAnimate(listContainer.current)
@@ -115,18 +113,13 @@ export default function Devices({ user }) {
               </div>
               <ul className="items-list" ref={listContainer}>
                 {
-                  devicesList?.map(device => {
-                    if (listSelected === "all" || device.category === listSelected) {
-                      return (<li key={device.id}><button title={device.name} onClick={() => {
-                        dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device } })); setListPickerOpen(false)
-                      }}>{device.name}</button></li>)
-                    } else {
-                      return null
-                    }
-                  })
+                  devicesList?.map(device =>
+                    <li key={device.id}><button title={device.name} onClick={() => {
+                      dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device } })); setListPickerOpen(false)
+                    }}>{device.name}</button></li>)
                 }
                 {
-                  devicesList?.length === 0 && <li>No Data</li> 
+                  dataDevices?.length === 0 && <li>No Data</li>
                 }
               </ul>
             </div>

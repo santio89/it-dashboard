@@ -7,7 +7,6 @@ export default function Support({ user }) {
   const [sortList, setSortList] = useState(false)
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
-  const [emptySelection, setEmptySelection] = useState(false)
 
   const listContainer = useRef()
 
@@ -21,6 +20,10 @@ export default function Support({ user }) {
     setListSelected(list)
     setListPickerOpen(false)
   }
+
+  /*
+   order
+  */
 
 
   return (

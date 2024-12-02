@@ -10,7 +10,6 @@ export default function Contacts({ user }) {
   const [sortList, setSortList] = useState(false)
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
-  const [emptySelection, setEmptySelection] = useState(false)
   const listContainer = useRef()
 
   const [contactsList, setContactsList] = useState(null)
@@ -30,26 +29,25 @@ export default function Contacts({ user }) {
   }
 
 
-  useEffect(() => {
-    if (listContainer.current) {
-      listContainer.current.childNodes.length === 0 ? setEmptySelection(true) : setEmptySelection(false)
-    }
-  }, [listSelected])
-
-  /* order by name */
+  /* order */
   useEffect(() => {
     if (dataContacts) {
-      let orderedList = []
+      /* filter */
+      const filteredList = dataContacts?.filter(contact => {
+        return (listSelected === "all" || contact.category === listSelected)
+      })
 
+      /* sort */
+      let orderedList = []
       if (sortList) {
-        orderedList = [...dataContacts].sort((a, b) => b.name.localeCompare(a.name))
+        orderedList = [...filteredList].sort((a, b) => b.name.localeCompare(a.name))
       } else {
-        orderedList = [...dataContacts].sort((a, b) => a.name.localeCompare(b.name))
+        orderedList = [...filteredList].sort((a, b) => a.name.localeCompare(b.name))
       }
 
       setContactsList(orderedList)
     }
-  }, [sortList, dataContacts])
+  }, [listSelected, sortList, dataContacts])
 
   useEffect(() => {
     !isLoadingContacts && contactsList && listContainer.current && autoAnimate(listContainer.current)
@@ -116,16 +114,11 @@ export default function Contacts({ user }) {
 
               <ul className="items-list" ref={listContainer}>
                 {
-                  contactsList?.map(contact => {
-                    if (listSelected === "all" || contact.category === listSelected) {
-                      return (<li key={contact.id}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
-                    } else {
-                      return null
-                    }
-                  })
+                  contactsList?.map(contact =>
+                    <li key={contact.id}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
                 }
                 {
-                  contactsList?.length === 0 && <li>No Data</li> 
+                  contactsList?.length === 0 && <li>No Data</li>
                 }
               </ul>
             </div>
