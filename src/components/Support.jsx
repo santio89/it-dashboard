@@ -7,6 +7,8 @@ export default function Support({ user }) {
   const [sortList, setSortList] = useState(false)
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
+  const [emptySelection, setEmptySelection] = useState(true)
+
   const listContainer = useRef()
 
   const [supportList, setSupportList] = useState(null)
@@ -79,7 +81,9 @@ export default function Support({ user }) {
                 /* map list */
               }
               {
-                    /* supportList?.length === 0 &&  */<li>No Data</li>
+                /* supportList?.length === 0 ? <li>No Data</li> :
+                  (emptySelection && <li>No items to show</li>) */
+                <li>No Data</li>
               }
             </ul>
           </div>

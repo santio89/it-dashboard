@@ -10,6 +10,7 @@ export default function Contacts({ user }) {
   const [sortList, setSortList] = useState(false)
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
+  const [emptySelection, setEmptySelection] = useState(true)
   const listContainer = useRef()
 
   const [contactsList, setContactsList] = useState(null)
@@ -27,6 +28,13 @@ export default function Contacts({ user }) {
     setListSelected(list)
     setListPickerOpen(false)
   }
+
+
+  useEffect(() => {
+    if (listContainer.current) {
+      listContainer.current.childNodes.length === 0 ? setEmptySelection(true) : setEmptySelection(false)
+    }
+  }, [listSelected])
 
   /* order by name */
   useEffect(() => {
@@ -113,11 +121,11 @@ export default function Contacts({ user }) {
                     } else {
                       return null
                     }
-                  }
-                  )
+                  })
                 }
                 {
-                  contactsList?.length === 0 && <li>No Data</li>
+                  contactsList?.length === 0 ? <li>No Data</li> :
+                    (emptySelection && <li>No items to show</li>)
                 }
               </ul>
             </div>
