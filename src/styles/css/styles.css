@@ -977,6 +977,13 @@ select:disabled {
   padding: 0.125rem;
   /* chart-error-message */
 }
+.site-section__chart .chartWrapper .dataChart > div:not(.loader) svg text {
+  fill: var(--main-text);
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 1rem;
+  transition: 200ms ease-in-out;
+}
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) .google-visualization-tooltip {
   pointer-events: none;
 }

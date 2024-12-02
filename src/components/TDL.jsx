@@ -321,6 +321,9 @@ export default function TDL({ user }) {
                 }
                 )
               }
+                {
+                  tdlList?.length === 0 && <li>No items to show</li>
+                }
               </ul>
             </div>
         }
