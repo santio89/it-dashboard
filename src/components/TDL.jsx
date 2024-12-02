@@ -131,7 +131,6 @@ export default function TDL({ user }) {
   useEffect(() => {
     if (dataTdl) {
       let orderedList = []
-
       if (sortList) {
         orderedList = [...dataTdl].sort((a, b) => a.createdAt.toDate() - b.createdAt.toDate());
       } else {
