@@ -474,11 +474,14 @@
 
           svg {
             text {
-              fill: var(--main-text);
               font-family: var(--font-primary);
               font-weight: 300;
               font-size: 1rem;
               transition: 200ms ease-in-out;
+
+              &[text-anchor="middle"] {
+                fill: var(--main-text);
+              }
             }
           }
 
