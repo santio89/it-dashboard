@@ -127,7 +127,7 @@ export default function Devices({ user }) {
                 }
                 {
                   devicesList?.length === 0 ? <li>No Data</li> :
-                    (emptySelection && <li>No items to show</li>)
+                    emptySelection && <li>No items to show</li>
                 }
               </ul>
             </div>
