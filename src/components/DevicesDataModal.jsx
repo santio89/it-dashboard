@@ -115,7 +115,7 @@ export default function DevicesDataModal({ modalData }) {
       userId: device.userId
     }
 
-    const { deviceData, createdAt, updatedAt, ...oldDevice } = device
+    const { deviceData, modalType, createdAt, updatedAt, ...oldDevice } = device
     const deviceEquality = objectEquality(oldDevice, newDevice)
 
     if (deviceEquality) {

@@ -115,7 +115,8 @@ export default function ContactsDataModal({ modalData }) {
       userId: contact.userId
     }
 
-    const { contactData, createdAt, updatedAt, ...oldUser } = contact
+    const { modalType, contactData, createdAt, updatedAt, ...oldUser } = contact
+   
     const contactEquality = objectEquality(oldUser, newUser)
 
     if (contactEquality) {
