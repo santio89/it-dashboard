@@ -55,36 +55,37 @@ export default function Contacts({ user }) {
             dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newUser: true, userId: user?.uid } }));
             setListPickerOpen(false)
           }}>+ Add contact</button>
-          <div className="listPickerWrapper">
-            <div className="listPickerWrapper__btnContainer">
-              {
-                <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
-              }
-              {
-                listPickerOpen &&
-                <div className="listPickerOptions">
-                  <button className={`listPicker ${listSelected === "personal" && "selected"}`}
-                    onClick={() => {
-                      selectList("personal")
-                    }}>
-                    Personal
-                  </button>
-                  <button className={`listPicker ${listSelected === "company" && "selected"}`}
-                    onClick={() => {
-                      selectList("company")
-                    }}>
-                    Company
-                  </button>
-                  <button className={`listPicker ${listSelected === "all" && "selected"}`}
-                    onClick={() => {
-                      selectList("all")
-                    }}>
-                    All
-                  </button>
-                </div>
-              }
-            </div>
-          </div>
+          {!isLoadingContacts &&
+            <div className="listPickerWrapper">
+              <div className="listPickerWrapper__btnContainer">
+                {
+                  <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
+                }
+                {
+                  listPickerOpen &&
+                  <div className="listPickerOptions">
+                    <button className={`listPicker ${listSelected === "personal" && "selected"}`}
+                      onClick={() => {
+                        selectList("personal")
+                      }}>
+                      Personal
+                    </button>
+                    <button className={`listPicker ${listSelected === "company" && "selected"}`}
+                      onClick={() => {
+                        selectList("company")
+                      }}>
+                      Company
+                    </button>
+                    <button className={`listPicker ${listSelected === "all" && "selected"}`}
+                      onClick={() => {
+                        selectList("all")
+                      }}>
+                      All
+                    </button>
+                  </div>
+                }
+              </div>
+            </div>}
         </div>
         {
           isLoadingContacts ? <div className="loader">Loading...</div> :

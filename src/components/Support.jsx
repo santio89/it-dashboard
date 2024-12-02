@@ -19,7 +19,7 @@ export default function Support({ user }) {
         <div className="btnWrapper">
           <button onClick={() => {
           }}>+ Add ticket</button>
-          <div className="listPickerWrapper">
+          {/* <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
                 <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
@@ -48,7 +48,7 @@ export default function Support({ user }) {
                 </div>
               }
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="site-section__inner site-section__chart">
