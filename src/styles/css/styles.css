@@ -985,6 +985,7 @@ select:disabled {
 }
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) svg text[text-anchor=middle] {
   fill: var(--main-text);
+  font-weight: 400;
 }
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) .google-visualization-tooltip {
   pointer-events: none;
