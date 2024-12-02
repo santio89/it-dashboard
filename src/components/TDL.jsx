@@ -107,8 +107,8 @@ export default function TDL({ user }) {
   useEffect(() => {
     if (dataTdl) {
       /* filter */
-      const filteredList = dataTdl?.filter(contact => {
-        return (listSelected === "all" || contact.category === listSelected)
+      const filteredList = dataTdl?.filter(item => {
+        return (listSelected === "all" || item.category === listSelected)
       })
 
       /* sort */

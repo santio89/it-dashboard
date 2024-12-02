@@ -33,8 +33,8 @@ export default function Devices({ user }) {
   useEffect(() => {
     if (dataDevices) {
       /* filter */
-      const filteredList = dataDevices?.filter(contact => {
-        return (listSelected === "all" || contact.category === listSelected)
+      const filteredList = dataDevices?.filter(item => {
+        return (listSelected === "all" || item.category === listSelected)
       })
 
       /* sort */

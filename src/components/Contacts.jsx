@@ -33,8 +33,8 @@ export default function Contacts({ user }) {
   useEffect(() => {
     if (dataContacts) {
       /* filter */
-      const filteredList = dataContacts?.filter(contact => {
-        return (listSelected === "all" || contact.category === listSelected)
+      const filteredList = dataContacts?.filter(item => {
+        return (listSelected === "all" || item.category === listSelected)
       })
 
       /* sort */
