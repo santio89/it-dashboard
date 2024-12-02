@@ -718,7 +718,7 @@ select:disabled {
   transition: stroke-width 200ms ease-in-out;
 }
 .site-section__list .listWrapper .sortBtn button:hover svg path {
-  stroke-width: 0.4px;
+  stroke-width: 0.2px;
 }
 .site-section__list .listWrapper .sortBtn button:focus-visible {
   outline: 1px solid var(--main-text);
