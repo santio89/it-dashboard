@@ -55,37 +55,36 @@ export default function Devices({ user }) {
             dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", newDevice: true, userId: user?.uid } }))
             setListPickerOpen(false)
           }}>+ Add device</button>
-          {!isLoadingDevices &&
-            <div className="listPickerWrapper">
-              <div className="listPickerWrapper__btnContainer">
-                {
-                  <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
-                }
-                {
-                  listPickerOpen &&
-                  <div className="listPickerOptions">
-                    <button className={`listPicker ${listSelected === "personal" && "selected"}`}
-                      onClick={() => {
-                        selectList("personal")
-                      }}>
-                      Personal
-                    </button>
-                    <button className={`listPicker ${listSelected === "company" && "selected"}`}
-                      onClick={() => {
-                        selectList("company")
-                      }}>
-                      Company
-                    </button>
-                    <button className={`listPicker ${listSelected === "all" && "selected"}`}
-                      onClick={() => {
-                        selectList("all")
-                      }}>
-                      All
-                    </button>
-                  </div>
-                }
-              </div>
-            </div>}
+          <div className="listPickerWrapper">
+            <div className="listPickerWrapper__btnContainer">
+              {
+                <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
+              }
+              {
+                listPickerOpen &&
+                <div className="listPickerOptions">
+                  <button className={`listPicker ${listSelected === "personal" && "selected"}`}
+                    onClick={() => {
+                      selectList("personal")
+                    }}>
+                    Personal
+                  </button>
+                  <button className={`listPicker ${listSelected === "company" && "selected"}`}
+                    onClick={() => {
+                      selectList("company")
+                    }}>
+                    Company
+                  </button>
+                  <button className={`listPicker ${listSelected === "all" && "selected"}`}
+                    onClick={() => {
+                      selectList("all")
+                    }}>
+                    All
+                  </button>
+                </div>
+              }
+            </div>
+          </div>
         </div>
         {
           isLoadingDevices ? <div className="loader">Loading...</div> :
