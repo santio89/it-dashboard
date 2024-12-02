@@ -685,6 +685,37 @@ select:disabled {
   gap: 0.5rem;
   min-width: 250px;
 }
+.site-section__list .sortBtn {
+  align-self: end;
+}
+.site-section__list .sortBtn button {
+  background: none;
+  color: var(--main-text);
+  padding: 0.25rem;
+  outline: 1px solid transparent;
+}
+.site-section__list .sortBtn button svg {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  min-height: 24px;
+  max-height: 24px;
+}
+.site-section__list .sortBtn button svg path {
+  stroke: var(--main-text);
+  stroke-width: 0px;
+  transition: stroke-width 200ms ease-in-out;
+}
+.site-section__list .sortBtn button:hover svg path {
+  stroke-width: 0.2px;
+}
+.site-section__list .sortBtn button:focus-visible {
+  outline: 1px solid var(--main-text);
+}
+.site-section__list .sortBtn button:focus-visible svg path {
+  stroke-width: 0.4px;
+}
 .site-section__list .listWrapper {
   flex: 1;
   width: 100%;
@@ -694,37 +725,6 @@ select:disabled {
   justify-content: start;
   align-items: center;
   gap: 0.5rem;
-}
-.site-section__list .listWrapper .sortBtn {
-  align-self: end;
-}
-.site-section__list .listWrapper .sortBtn button {
-  background: none;
-  color: var(--main-text);
-  padding: 0.25rem;
-  outline: 1px solid transparent;
-}
-.site-section__list .listWrapper .sortBtn button svg {
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
-  max-width: 24px;
-  min-height: 24px;
-  max-height: 24px;
-}
-.site-section__list .listWrapper .sortBtn button svg path {
-  stroke: var(--main-text);
-  stroke-width: 0px;
-  transition: stroke-width 200ms ease-in-out;
-}
-.site-section__list .listWrapper .sortBtn button:hover svg path {
-  stroke-width: 0.2px;
-}
-.site-section__list .listWrapper .sortBtn button:focus-visible {
-  outline: 1px solid var(--main-text);
-}
-.site-section__list .listWrapper .sortBtn button:focus-visible svg path {
-  stroke-width: 0.4px;
 }
 .site-section__list .listWrapper ul {
   flex: 1;

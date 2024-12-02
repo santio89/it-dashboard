@@ -137,6 +137,50 @@
     gap: 0.5rem;
     min-width: 250px;
 
+    .sortBtn {
+      align-self: end;
+
+      button {
+        background: none;
+        color: var(--main-text);
+        padding: 0.25rem;
+        outline: 1px solid transparent;
+
+        svg {
+          width: 24px;
+          height: 24px;
+          min-width: 24px;
+          max-width: 24px;
+          min-height: 24px;
+          max-height: 24px;
+
+          path {
+            stroke: var(--main-text);
+            stroke-width: 0px;
+            transition: stroke-width 200ms ease-in-out;
+          }
+        }
+
+        &:hover {
+          svg {
+            path {
+              stroke-width: 0.2px;
+            }
+          }
+        }
+
+        &:focus-visible {
+          outline: 1px solid var(--main-text);
+
+          svg {
+            path {
+              stroke-width: 0.4px;
+            }
+          }
+        }
+      }
+    }
+
     .listWrapper {
       flex: 1;
       width: 100%;
@@ -146,50 +190,6 @@
       justify-content: start;
       align-items: center;
       gap: 0.5rem;
-
-      .sortBtn {
-        align-self: end;
-
-        button {
-          background: none;
-          color: var(--main-text);
-          padding: 0.25rem;
-          outline: 1px solid transparent;
-
-          svg {
-            width: 24px;
-            height: 24px;
-            min-width: 24px;
-            max-width: 24px;
-            min-height: 24px;
-            max-height: 24px;
-
-            path {
-              stroke: var(--main-text);
-              stroke-width: 0px;
-              transition: stroke-width 200ms ease-in-out;
-            }
-          }
-
-          &:hover {
-            svg {
-              path {
-                stroke-width: 0.2px;
-              }
-            }
-          }
-
-          &:focus-visible {
-            outline: 1px solid var(--main-text);
-
-            svg {
-              path {
-                stroke-width: 0.4px;
-              }
-            }
-          }
-        }
-      }
 
       ul {
         flex: 1;
