@@ -119,7 +119,7 @@ export default function Devices({ user }) {
                     }}>{device.name}</button></li>)
                 }
                 {
-                  dataDevices?.length === 0 && <li>No Data</li>
+                  devicesList?.length === 0 && <li>No Data</li>
                 }
               </ul>
             </div>
