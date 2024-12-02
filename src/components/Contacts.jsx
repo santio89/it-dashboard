@@ -117,7 +117,7 @@ export default function Contacts({ user }) {
                   )
                 }
                 {
-                  contactsList?.length === 0 && <li>No items to show</li>
+                  contactsList?.length === 0 && <li>No Data</li>
                 }
               </ul>
             </div>

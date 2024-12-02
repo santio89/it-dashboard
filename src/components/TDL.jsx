@@ -322,7 +322,7 @@ export default function TDL({ user }) {
                 )
               }
                 {
-                  tdlList?.length === 0 && <li>No items to show</li>
+                  tdlList?.length === 0 && <li>No Data</li>
                 }
               </ul>
             </div>
