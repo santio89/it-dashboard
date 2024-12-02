@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import DataChart from "./DataChart"
 import { useDispatch } from "react-redux"
 
@@ -7,7 +7,7 @@ export default function Support({ user }) {
   const [sortList, setSortList] = useState(false)
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
-  const [emptySelection, setEmptySelection] = useState(true)
+  const [emptySelection, setEmptySelection] = useState(false)
 
   const listContainer = useRef()
 
@@ -81,8 +81,6 @@ export default function Support({ user }) {
                 /* map list */
               }
               {
-                /* supportList?.length === 0 ? <li>No Data</li> :
-                  (emptySelection && <li>No items to show</li>) */
                 <li>No Data</li>
               }
             </ul>

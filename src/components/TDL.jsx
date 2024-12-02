@@ -20,7 +20,7 @@ export default function TDL({ user }) {
   /* search */
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
-  const [emptySelection, setEmptySelection] = useState(true)
+  const [emptySelection, setEmptySelection] = useState(false)
 
 
   /* edit opts */
@@ -102,6 +102,7 @@ export default function TDL({ user }) {
 
     setEditCategory(category)
   }
+
 
 
   useEffect(() => {
@@ -330,8 +331,7 @@ export default function TDL({ user }) {
                   })
                 }
                 {
-                  tdlList?.length === 0 ? <li>No Data</li> :
-                    emptySelection && <li>No items to show</li>
+                  tdlList?.length === 0 && <li>No Data</li>
                 }
               </ul>
             </div>

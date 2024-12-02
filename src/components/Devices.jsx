@@ -10,7 +10,7 @@ export default function Devices({ user }) {
   const [sortList, setSortList] = useState(false)
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
-  const [emptySelection, setEmptySelection] = useState(true)
+  const [emptySelection, setEmptySelection] = useState(false)
   const listContainer = useRef()
 
   const [devicesList, setDevicesList] = useState(null)
@@ -126,8 +126,7 @@ export default function Devices({ user }) {
                   })
                 }
                 {
-                  devicesList?.length === 0 ? <li>No Data</li> :
-                    emptySelection && <li>No items to show</li>
+                  devicesList?.length === 0 && <li>No Data</li> 
                 }
               </ul>
             </div>

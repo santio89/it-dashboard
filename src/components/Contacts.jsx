@@ -10,7 +10,7 @@ export default function Contacts({ user }) {
   const [sortList, setSortList] = useState(false)
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
-  const [emptySelection, setEmptySelection] = useState(true)
+  const [emptySelection, setEmptySelection] = useState(false)
   const listContainer = useRef()
 
   const [contactsList, setContactsList] = useState(null)
@@ -113,6 +113,7 @@ export default function Contacts({ user }) {
                   }
                 </button>
               </div>
+
               <ul className="items-list" ref={listContainer}>
                 {
                   contactsList?.map(contact => {
@@ -124,8 +125,7 @@ export default function Contacts({ user }) {
                   })
                 }
                 {
-                  contactsList?.length === 0 ? <li>No Data</li> :
-                    emptySelection && <li>No items to show</li>
+                  contactsList?.length === 0 && <li>No Data</li> 
                 }
               </ul>
             </div>
