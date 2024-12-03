@@ -110,6 +110,9 @@
           width: 68px;
           color: var(--white);
 
+          outline: 1px solid transparent;
+          outline-offset: -1px;
+
           &[disabled] {
             pointer-events: none;
             filter: grayscale(1);
@@ -127,6 +130,10 @@
           &:focus-visible,
           &.selected {
             background-color: var(--main-color-op);
+          }
+
+          &.selected {
+            outline-color: var(--main-color-op);
           }
         }
 
