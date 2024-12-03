@@ -407,7 +407,7 @@ select:disabled {
   bottom: 0;
   width: 52px;
 }
-@media (max-width: 792px) {
+@media (max-width: 969px) {
   .mainContainer .side-panel {
     position: absolute;
     top: 0;
@@ -573,7 +573,7 @@ select:disabled {
   position: relative;
   overflow: auto;
 }
-@media (max-width: 792px) {
+@media (max-width: 969px) {
   .site-section {
     flex-flow: column nowrap;
     justify-content: start;
@@ -593,12 +593,12 @@ select:disabled {
   gap: clamp(1rem, 1rem + 4vw, 4rem);
   overflow-y: visible;
 }
-@media (max-width: 792px) {
+@media (max-width: 969px) {
   .site-section:has(.site-section__homeCard) {
     grid-template-columns: 240px;
   }
 }
-@media (max-width: 792px) and (max-height: 699px) {
+@media (max-width: 969px) and (max-height: 699px) {
   .site-section:has(.site-section__homeCard) {
     align-content: start;
   }
@@ -672,7 +672,7 @@ select:disabled {
 .site-section__inner.admin {
   min-height: 100% !important;
 }
-@media (max-width: 792px) {
+@media (max-width: 969px) {
   .site-section__inner:not(.site-section__homeCard) {
     flex: 1;
     min-height: max(50% - 0.5rem, 500px);
@@ -770,8 +770,11 @@ select:disabled {
   pointer-events: none;
   filter: grayscale(1);
 }
-.site-section__list .listWrapper ul.tdl-list li .listPickerWrapper {
-  align-self: end;
+.site-section__list .listWrapper ul.tdl-list li .taskFooter {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .site-section__list .listWrapper ul.tdl-list li .listPickerWrapper__btnContainer {
   display: flex;
@@ -1103,7 +1106,7 @@ select:disabled {
   background-color: var(--black);
   opacity: 0.5;
 }
-@media (max-width: 792px) {
+@media (max-width: 969px) {
   .mainModalWrapper {
     min-height: 80%;
   }
@@ -1275,7 +1278,7 @@ option:hover,
 .mainModal__data__form fieldset:has(textarea, .taskOpenContent) {
   width: 100%;
 }
-@media (max-width: 792px) {
+@media (max-width: 969px) {
   .mainModal__data__form fieldset {
     width: 100%;
   }

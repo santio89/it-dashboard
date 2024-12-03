@@ -16,6 +16,7 @@ export default function TDLDataModal({ modalData }) {
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [newTaskPriority, setNewTaskPriority] = useState("medium")
   const [newTaskCategory, setNewTaskCategory] = useState("personal")
+  const [newTaskStatus, setNewTaskStatus] = useState("not done")
 
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)
@@ -49,6 +50,7 @@ export default function TDLDataModal({ modalData }) {
     const task = {
       content: textInput.current.textContent.trim(),
       priority: newTaskPriority,
+      status: newTaskStatus,
       category: newTaskCategory
     }
 
@@ -77,17 +79,18 @@ export default function TDLDataModal({ modalData }) {
     const input = textInputEdit.current.textContent.trim()
     const priority = newTaskPriority.trim()
     const category = newTaskCategory.trim()
+    const status = newTaskStatus.trim()
 
     if (input.trim() === "") {
       return
     }
 
-    if (input.trim() === task.content && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category))) {
+    if (input.trim() === task.content && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category)) && (task.status === (status ?? task.status))) {
       dispatch(setModal({ active: false, data: {} }))
       return
     }
 
-    const newTask = { ...task, content: input.trim(), category: category ?? task.category, priority: priority ?? task.priority }
+    const newTask = { ...task, content: input.trim(), category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
 
     await editTdl(newTask)
     dispatch(setModal({ active: false, data: {} }))
@@ -149,11 +152,17 @@ export default function TDLDataModal({ modalData }) {
           <form className='mainModal__data__form taskContainer disabled'>
             <div className={`taskOpenData`}>
               <div>Priority: </div>
-              <button tabIndex={-1} type='button' disabled onClick={() => setNewTaskPriority("low")} className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
+              <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                 </svg>
                 {modalData?.priority}
+              </button>
+            </div>
+            <div className={`taskOpenData`}>
+              <div>Status: </div>
+              <button tabIndex={-1} type='button' disabled className={`tdl-priority selected`}>
+                {modalData?.status}
               </button>
             </div>
             <fieldset>
@@ -219,6 +228,15 @@ export default function TDLDataModal({ modalData }) {
                 High
               </button>
             </div>
+            <div className={`taskOpenData`}>
+              <div>Status: </div>
+              <button type='button' onClick={() => setNewTaskStatus("not done")} className={`tdl-priority ${newTaskStatus === "not done" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
+                Not Done
+              </button>
+              <button type='button' onClick={() => setNewTaskStatus("done")} className={`tdl-priority ${newTaskStatus === "done" && "selected"}  ${resultAddTdl.isLoading && "disabled"}`}>
+                Done
+              </button>
+            </div>
             <fieldset>
               <legend>Description</legend>
               <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultEditTdl.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
@@ -244,11 +262,17 @@ export default function TDLDataModal({ modalData }) {
           <form className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteTdl.isLoading} onSubmit={(e) => deleteTdlFn(e, modalData)}>
             <div className={`taskOpenData`}>
               <div>Priority: </div>
-              <button tabIndex={-1} type='button' disabled onClick={() => setNewTaskPriority("low")} className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
+              <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                 </svg>
                 {modalData?.priority}
+              </button>
+            </div>
+            <div className={`taskOpenData`}>
+              <div>Status: </div>
+              <button tabIndex={-1} type='button' disabled className={`tdl-priority selected`}>
+                {modalData?.status}
               </button>
             </div>
             <fieldset>
@@ -310,6 +334,15 @@ export default function TDLDataModal({ modalData }) {
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                 </svg>
                 High
+              </button>
+            </div>
+            <div className={`taskOpenData`}>
+              <div>Status: </div>
+              <button type='button' onClick={() => setNewTaskStatus("not done")} className={`tdl-priority ${newTaskStatus === "not done" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
+                Not Done
+              </button>
+              <button type='button' onClick={() => setNewTaskStatus("done")} className={`tdl-priority ${newTaskStatus === "done" && "selected"}  ${resultAddTdl.isLoading && "disabled"}`}>
+                Done
               </button>
             </div>
             <fieldset>

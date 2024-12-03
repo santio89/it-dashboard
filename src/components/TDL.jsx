@@ -25,6 +25,7 @@ export default function TDL({ user }) {
   /* edit opts */
   const [editPriority, setEditPriority] = useState(null)
   const [editCategory, setEditCategory] = useState(null)
+  const [editStatus, setEditStatus] = useState(null)
 
 
   const [deleteTdl, resultDeleteTdl] = useDeleteTdlMutation()
@@ -61,7 +62,7 @@ export default function TDL({ user }) {
     }, 400)
   }
 
-  const editTask = async (task, input, priority, category) => {
+  const editTask = async (task, input, priority, category, status) => {
     if (resultEditTdl.isLoading) {
       return
     }
@@ -70,12 +71,12 @@ export default function TDL({ user }) {
       return
     }
 
-    if (input.trim() === task.content && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category))) {
+    if (input.trim() === task.content && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category)) && (task.status === (status ?? task.status))) {
       setEditMode(null)
       return
     }
 
-    const newTask = { ...task, content: input.trim(), category: category ?? task.category, priority: priority ?? task.priority }
+    const newTask = { ...task, content: input.trim(), category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
     await editTdl(newTask)
 
     /* timeout-refetch */
@@ -100,6 +101,15 @@ export default function TDL({ user }) {
     }
 
     setEditCategory(category)
+  }
+
+  const editStatusFn = async (task, status) => {
+    if (status === task.status) {
+      setEditStatus(null)
+      return
+    }
+
+    setEditStatus(status)
   }
 
 
@@ -136,6 +146,7 @@ export default function TDL({ user }) {
   useEffect(() => {
     setEditPriority(null)
     setEditCategory(null)
+    setEditStatus(null)
     editMode && editInput.current.focus()
   }, [editMode])
 
@@ -263,7 +274,7 @@ export default function TDL({ user }) {
                                 <button onClick={() => {
                                   trimInputs()
                                   deleteMode === task.id && deleteTask(task)
-                                  editMode === task.id && editTask(task, editInputText, editPriority, editCategory)
+                                  editMode === task.id && editTask(task, editInputText, editPriority, editCategory, editStatus)
                                 }}>{"Confirm"}
                                 </button> :
 
@@ -302,22 +313,39 @@ export default function TDL({ user }) {
                         deleteMode === task.id && <button className={`taskContentBtn taskOption deleteMode`} >{task.content}</button>
                       }
 
-                      {/* task category */}
+                      {/* task status/category */}
                       {
                         taskOptions === task.id &&
-                        <div className="listPickerWrapper">
-                          <div className="listPickerWrapper__btnContainer">
-                            {
-                              editMode === task.id ?
-                                <>
-                                  <button className={`listPicker ${editMode && "pickerOpen"} ${((!editCategory && task.category === "personal") || editCategory === "personal") && "selected"}`} onClick={() => { editCategoryFn(task, "personal") }}>Personal</button>
-                                  <button className={`listPicker ${editMode && "pickerOpen"} ${((!editCategory && task.category === "company") || editCategory === "company") && "selected"}`} onClick={() => { editCategoryFn(task, "company") }}>Company</button>
-                                </>
-                                :
-                                <button className={`listPicker ${editMode && "pickerOpen"}`} onClick={() => { /* ADD HINT */ }}>{task.category}</button>
-                            }
-                            {
-                            }
+                        <div className="taskFooter">
+                          <div className="listPickerWrapper">
+                            <div className="listPickerWrapper__btnContainer">
+                              {
+                                editMode === task.id ?
+                                  <>
+                                    <button className={`listPicker ${editMode && "pickerOpen"} ${((!editCategory && task.category === "personal") || editCategory === "personal") && "selected"}`} onClick={() => { editCategoryFn(task, "personal") }}>Personal</button>
+                                    <button className={`listPicker ${editMode && "pickerOpen"} ${((!editCategory && task.category === "company") || editCategory === "company") && "selected"}`} onClick={() => { editCategoryFn(task, "company") }}>Company</button>
+                                  </>
+                                  :
+                                  <button className={`listPicker ${editMode && "pickerOpen"}`} onClick={() => { /* ADD HINT */ }}>{task.category}</button>
+                              }
+                              {
+                              }
+                            </div>
+                          </div>
+                          <div className="listPickerWrapper">
+                            <div className="listPickerWrapper__btnContainer">
+                              {
+                                editMode === task.id ?
+                                  <>
+                                    <button className={`listPicker ${editMode && "pickerOpen"} ${((!editStatus && task.status === "not done") || editStatus === "not done") && "selected"}`} onClick={() => { editStatusFn(task, "not done") }}>Not done</button>
+                                    <button className={`listPicker ${editMode && "pickerOpen"} ${((!editStatus && task.status === "done") || editStatus === "done") && "selected"}`} onClick={() => { editStatusFn(task, "done") }}>Done</button>
+                                  </>
+                                  :
+                                  <button className={`listPicker ${editMode && "pickerOpen"}`} onClick={() => { /* ADD HINT */ }}>{task.status}</button>
+                              }
+                              {
+                              }
+                            </div>
                           </div>
                         </div>
                       }

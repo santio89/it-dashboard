@@ -240,8 +240,14 @@
               filter: grayscale(1);
             }
 
+            .taskFooter{
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+
             .listPickerWrapper {
-              align-self: end;
 
               &__btnContainer {
                 display: flex;
