@@ -396,9 +396,6 @@
               &.selected {
                 outline: 1px solid var(--main-color-op);
               }
-              &:hover {
-                outline-color: var(--main-color-mid);
-              }
 
               svg {
                 width: 16px;

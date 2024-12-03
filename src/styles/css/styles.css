@@ -1408,9 +1408,6 @@ option:hover,
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selected {
   outline: 1px solid var(--main-color-op);
 }
-.mainModal__data__form.taskContainer .taskOpenData button.tdl-priority:hover {
-  outline-color: var(--main-color-mid);
-}
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority svg {
   width: 16px;
   height: 16px;
