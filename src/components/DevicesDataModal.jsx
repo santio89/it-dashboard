@@ -162,7 +162,7 @@ export default function DevicesDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
               {
-                <button tabIndex={-1} className={`listPicker disabled`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
+                <button tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
               }
             </div>
           </div>
@@ -225,26 +225,20 @@ export default function DevicesDataModal({ modalData }) {
             <h2>EDIT DEVICE</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
-              {
-                <button disabled={resultEditDevice.isLoading} className={`listPicker ${listPickerOpen && "selected"} ${resultEditDevice.isLoading && "disabled"}`} onClick={() => listPickerOpen ? selectList(newDeviceCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newDeviceCategory === "personal" ? "Personal" : "Company"}</button>
-              }
-              {
-                listPickerOpen &&
-                <div className="listPickerOptions">
-                  <button className={`listPicker`}
-                    onClick={() => {
-                      selectList("personal")
-                    }}>
-                    Personal
-                  </button>
-                  <button className={`listPicker`}
-                    onClick={() => {
-                      selectList("company")
-                    }}>
-                    Company
-                  </button>
-                </div>
-              }
+              <div className="listPickerOptions">
+                <button disabled={resultEditDevice.isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${resultEditDevice.isLoading && "disabled"}`}
+                  onClick={() => {
+                    selectList("personal")
+                  }}>
+                  Personal
+                </button>
+                <button disabled={resultEditDevice.isLoading} className={`listPicker ${newDeviceCategory === "company" && "selected"} ${resultEditDevice.isLoading && "disabled"}`}
+                  onClick={() => {
+                    selectList("company")
+                  }}>
+                  Company
+                </button>
+              </div>
             </div>
           </div>
           <form className='mainModal__data__form editMode' disabled={resultEditDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editDeviceFn(e, modalData)} >
@@ -307,7 +301,7 @@ export default function DevicesDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
               {
-                <button tabIndex={-1} disabled={resultDeleteDevice.isLoading} className={`listPicker disabled`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
+                <button tabIndex={-1} disabled={resultDeleteDevice.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
               }
             </div>
           </div>
@@ -369,26 +363,20 @@ export default function DevicesDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>ADD DEVICE</h2>
             <div className="listPickerWrapper__btnContainer">
-              {
-                <button disabled={resultAddDevice.isLoading} className={`listPicker ${listPickerOpen && "selected"} ${resultAddDevice.isLoading && "disabled"}`} onClick={() => listPickerOpen ? selectList(newDeviceCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newDeviceCategory === "personal" ? "Personal" : "Company"}</button>
-              }
-              {
-                listPickerOpen &&
-                <div className="listPickerOptions">
-                  <button className={`listPicker`}
-                    onClick={() => {
-                      selectList("personal")
-                    }}>
-                    Personal
-                  </button>
-                  <button className={`listPicker`}
-                    onClick={() => {
-                      selectList("company")
-                    }}>
-                    Company
-                  </button>
-                </div>
-              }
+              <div className="listPickerOptions">
+                <button disabled={resultEditDevice.isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${resultEditDevice.isLoading && "disabled"}`}
+                  onClick={() => {
+                    selectList("personal")
+                  }}>
+                  Personal
+                </button>
+                <button disabled={resultEditDevice.isLoading} className={`listPicker ${newDeviceCategory === "company" && "selected"} ${resultEditDevice.isLoading && "disabled"}`}
+                  onClick={() => {
+                    selectList("company")
+                  }}>
+                  Company
+                </button>
+              </div>
             </div>
           </div>
           <form className='mainModal__data__form' disabled={resultAddDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addDeviceFn(e)}>

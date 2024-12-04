@@ -1183,8 +1183,11 @@ select:disabled {
   pointer-events: none;
   filter: grayscale(1);
 }
+.mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled {
+  background-color: var(--main-color-op);
+}
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:focus, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:focus-visible {
-  background-color: var(--main-color-mid);
+  background-color: var(--main-color-op);
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:focus-visible, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.selected {
   background-color: var(--main-color-op);
@@ -1195,7 +1198,7 @@ select:disabled {
 .mainModal__titleContainer .listPickerWrapper__btnContainer.editMode button.listPicker {
   outline: 1px dashed var(--main-color-mid);
 }
-.mainModal__titleContainer .listPickerWrapper__btnContainer.editMode button.listPicker:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer.editMode button.listPicker:focus-visible, .mainModal__titleContainer .listPickerWrapper__btnContainer.editMode button.listPicker.selected {
+.mainModal__titleContainer .listPickerWrapper__btnContainer.editMode button.listPicker:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer.editMode button.listPicker:focus-visible {
   outline: 1px dashed var(--white);
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer.deleteMode button.listPicker {

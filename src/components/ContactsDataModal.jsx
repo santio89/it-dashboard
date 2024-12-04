@@ -116,7 +116,7 @@ export default function ContactsDataModal({ modalData }) {
     }
 
     const { modalType, contactData, createdAt, updatedAt, ...oldUser } = contact
-   
+
     const contactEquality = objectEquality(oldUser, newUser)
 
     if (contactEquality) {
@@ -166,7 +166,7 @@ export default function ContactsDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
               {
-                <button tabIndex={-1} className={`listPicker disabled`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
+                <button tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
               }
             </div>
           </div>
@@ -229,26 +229,20 @@ export default function ContactsDataModal({ modalData }) {
             <h2>EDIT CONTACT</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
-              {
-                <button disabled={resultEditContact.isLoading} className={`listPicker ${listPickerOpen && "selected"} ${resultEditContact.isLoading && "disabled"}`} onClick={() => listPickerOpen ? selectList(newUserCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newUserCategory === "personal" ? "Personal" : "Company"}</button>
-              }
-              {
-                listPickerOpen &&
-                <div className="listPickerOptions">
-                  <button className={`listPicker`}
-                    onClick={() => {
-                      selectList("personal")
-                    }}>
-                    Personal
-                  </button>
-                  <button className={`listPicker`}
-                    onClick={() => {
-                      selectList("company")
-                    }}>
-                    Company
-                  </button>
-                </div>
-              }
+              <div className="listPickerOptions">
+                <button disabled={resultEditContact.isLoading} className={`listPicker ${newUserCategory === "personal" && "selected"} ${resultEditContact.isLoading && "disabled"}`}
+                  onClick={() => {
+                    selectList("personal")
+                  }}>
+                  Personal
+                </button>
+                <button disabled={resultEditContact.isLoading} className={`listPicker ${newUserCategory === "company" && "selected"} ${resultEditContact.isLoading && "disabled"}`}
+                  onClick={() => {
+                    selectList("company")
+                  }}>
+                  Company
+                </button>
+              </div>
             </div>
           </div>
           <form className='mainModal__data__form editMode' disabled={resultEditContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => { trimInputs(); editUserFn(e, modalData) }} >
@@ -314,7 +308,7 @@ export default function ContactsDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
               {
-                <button tabIndex={-1} disabled={resultDeleteContact.isLoading} className={`listPicker disabled`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
+                <button tabIndex={-1} disabled={resultDeleteContact.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
               }
             </div>
           </div>
@@ -376,26 +370,20 @@ export default function ContactsDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>ADD CONTACT</h2>
             <div className="listPickerWrapper__btnContainer">
-              {
-                <button disabled={resultAddContact.isLoading} className={`listPicker ${listPickerOpen && "selected"} ${resultAddContact.isLoading && "disabled"}`} onClick={() => listPickerOpen ? selectList(newUserCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newUserCategory === "personal" ? "Personal" : "Company"}</button>
-              }
-              {
-                listPickerOpen &&
-                <div className="listPickerOptions">
-                  <button className={`listPicker`}
-                    onClick={() => {
-                      selectList("personal")
-                    }}>
-                    Personal
-                  </button>
-                  <button className={`listPicker`}
-                    onClick={() => {
-                      selectList("company")
-                    }}>
-                    Company
-                  </button>
-                </div>
-              }
+              <div className="listPickerOptions">
+                <button disabled={resultEditContact.isLoading} className={`listPicker ${newUserCategory === "personal" && "selected"} ${resultEditContact.isLoading && "disabled"}`}
+                  onClick={() => {
+                    selectList("personal")
+                  }}>
+                  Personal
+                </button>
+                <button disabled={resultEditContact.isLoading} className={`listPicker ${newUserCategory === "company" && "selected"} ${resultEditContact.isLoading && "disabled"}`}
+                  onClick={() => {
+                    selectList("company")
+                  }}>
+                  Company
+                </button>
+              </div>
             </div>
           </div>
           <form className='mainModal__data__form' disabled={resultAddContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => { addUserFn(e) }}  >

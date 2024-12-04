@@ -66,6 +66,7 @@ export default function TDLDataModal({ modalData }) {
   const editModeFN = () => {
     setNewTaskPriority(modalData?.priority)
     setNewTaskCategory(modalData?.category)
+    setNewTaskStatus(modalData?.status)
     setEditMode(true)
   }
 
@@ -146,7 +147,7 @@ export default function TDLDataModal({ modalData }) {
             <h2>TASK</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
-              <button tabIndex={-1} className={`listPicker disabled`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
+              <button tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
             </div>
           </div>
           <form className='mainModal__data__form taskContainer disabled'>
@@ -184,26 +185,20 @@ export default function TDLDataModal({ modalData }) {
             <h2>EDIT TASK</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
-              {
-                <button disabled={resultEditTdl.isLoading} className={`listPicker ${listPickerOpen && "selected"} ${resultEditTdl.isLoading && "disabled"}`} onClick={() => listPickerOpen ? selectList(newTaskCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newTaskCategory === "personal" ? "Personal" : "Company"}</button>
-              }
-              {
-                listPickerOpen &&
-                <div className="listPickerOptions">
-                  <button className={`listPicker`}
-                    onClick={() => {
-                      selectList("personal")
-                    }}>
-                    Personal
-                  </button>
-                  <button className={`listPicker`}
-                    onClick={() => {
-                      selectList("company")
-                    }}>
-                    Company
-                  </button>
-                </div>
-              }
+              <div className="listPickerOptions">
+                <button disabled={resultEditTdl.isLoading} className={`listPicker ${newTaskCategory === "personal" && "selected"} ${resultEditTdl.isLoading && "disabled"}`}
+                  onClick={() => {
+                    selectList("personal")
+                  }}>
+                  Personal
+                </button>
+                <button disabled={resultEditTdl.isLoading} className={`listPicker ${newTaskCategory === "company" && "selected"} ${resultEditTdl.isLoading && "disabled"}`}
+                  onClick={() => {
+                    selectList("company")
+                  }}>
+                  Company
+                </button>
+              </div>
             </div>
           </div>
           <form className='mainModal__data__form taskContainer editMode' disabled={resultEditTdl.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTaskFn(e, modalData)}>
@@ -256,7 +251,7 @@ export default function TDLDataModal({ modalData }) {
             <h2>DELETE TASK</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
-              <button tabIndex={-1} className={`listPicker disabled`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
+              <button tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
             </div>
           </div>
           <form className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteTdl.isLoading} onSubmit={(e) => deleteTdlFn(e, modalData)}>
@@ -292,26 +287,20 @@ export default function TDLDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>ADD TASK</h2>
             <div className="listPickerWrapper__btnContainer">
-              {
-                <button disabled={resultAddTdl.isLoading} className={`listPicker ${listPickerOpen && "selected"} ${resultAddTdl.isLoading && "disabled"}`} onClick={() => listPickerOpen ? selectList(newTaskCategory === "personal" ? "personal" : "company") : setListPickerOpen(true)}>{newTaskCategory === "personal" ? "Personal" : "Company"}</button>
-              }
-              {
-                listPickerOpen &&
-                <div className="listPickerOptions">
-                  <button className={`listPicker`}
-                    onClick={() => {
-                      selectList("personal")
-                    }}>
-                    Personal
-                  </button>
-                  <button className={`listPicker`}
-                    onClick={() => {
-                      selectList("company")
-                    }}>
-                    Company
-                  </button>
-                </div>
-              }
+              <div className="listPickerOptions">
+                <button disabled={resultEditTdl.isLoading} className={`listPicker ${newTaskCategory === "personal" && "selected"} ${resultEditTdl.isLoading && "disabled"}`}
+                  onClick={() => {
+                    selectList("personal")
+                  }}>
+                  Personal
+                </button>
+                <button disabled={resultEditTdl.isLoading} className={`listPicker ${newTaskCategory === "company" && "selected"} ${resultEditTdl.isLoading && "disabled"}`}
+                  onClick={() => {
+                    selectList("company")
+                  }}>
+                  Company
+                </button>
+              </div>
             </div>
           </div>
           <form disabled={resultAddTdl.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addTdlFn(e)}>
