@@ -1303,6 +1303,13 @@ option:hover,
   background: transparent;
   color: var(--white);
 }
+.mainModal__data__form input,
+.mainModal__data__form textarea {
+  cursor: text;
+}
+.mainModal__data__form select {
+  cursor: pointer;
+}
 .mainModal__data__form input::-webkit-outer-spin-button,
 .mainModal__data__form input::-webkit-inner-spin-button {
   appearance: none;

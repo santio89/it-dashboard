@@ -265,6 +265,15 @@
         color: var(--white);
       }
 
+      input,
+      textarea {
+        cursor: text;
+      }
+
+      select {
+        cursor: pointer;
+      }
+
       input::-webkit-outer-spin-button,
       input::-webkit-inner-spin-button {
         appearance: none;
