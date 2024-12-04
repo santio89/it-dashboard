@@ -118,7 +118,7 @@
           }
 
           &.disabled {
-            /* background-color: var(--main-color-op); */
+            cursor: default;
 
             &:hover,
             &:focus,
@@ -290,6 +290,12 @@
         fieldset {
           border: 1px solid var(--main-color-op);
 
+          /* input,
+          textarea,
+          select {
+            cursor: default;
+          } */
+
           &:hover,
           &:focus-visible {
             border: 1px solid var(--main-color-op);
@@ -398,6 +404,10 @@
             background-color: var(--main-color-mid);
             outline: 1px solid transparent;
             outline-offset: -1px;
+
+            &[disabled] {
+              cursor: default;
+            }
 
             &.tdl-priority {
               color: var(--white);

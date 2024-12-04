@@ -1184,7 +1184,7 @@ select:disabled {
   filter: grayscale(1);
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled {
-  /* background-color: var(--main-color-op); */
+  cursor: default;
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:focus, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:focus-visible {
   background-color: var(--main-color-op);
@@ -1322,6 +1322,11 @@ option:hover,
 }
 .mainModal__data__form.disabled fieldset {
   border: 1px solid var(--main-color-op);
+  /* input,
+  textarea,
+  select {
+    cursor: default;
+  } */
 }
 .mainModal__data__form.disabled fieldset:hover, .mainModal__data__form.disabled fieldset:focus-visible {
   border: 1px solid var(--main-color-op);
@@ -1407,6 +1412,9 @@ option:hover,
   background-color: var(--main-color-mid);
   outline: 1px solid transparent;
   outline-offset: -1px;
+}
+.mainModal__data__form.taskContainer .taskOpenData button[disabled] {
+  cursor: default;
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority {
   color: var(--white);
