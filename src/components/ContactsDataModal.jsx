@@ -307,9 +307,7 @@ export default function ContactsDataModal({ modalData }) {
             <h2>DELETE CONTACT</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
-              {
-                <button tabIndex={-1} disabled={resultDeleteContact.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
-              }
+              <button tabIndex={-1} disabled={resultDeleteContact.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
             </div>
           </div>
           <form className='mainModal__data__form deleteMode disabled' disabled={resultDeleteContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteUserFn(e, modalData)} >
@@ -371,13 +369,13 @@ export default function ContactsDataModal({ modalData }) {
             <h2>ADD CONTACT</h2>
             <div className="listPickerWrapper__btnContainer">
               <div className="listPickerOptions">
-                <button disabled={resultEditContact.isLoading} className={`listPicker ${newUserCategory === "personal" && "selected"} ${resultEditContact.isLoading && "disabled"}`}
+                <button disabled={resultAddContact.isLoading} className={`listPicker ${newUserCategory === "personal" && "selected"} ${resultAddContact.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
                   Personal
                 </button>
-                <button disabled={resultEditContact.isLoading} className={`listPicker ${newUserCategory === "company" && "selected"} ${resultEditContact.isLoading && "disabled"}`}
+                <button disabled={resultAddContact.isLoading} className={`listPicker ${newUserCategory === "company" && "selected"} ${resultAddContact.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>

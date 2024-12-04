@@ -118,7 +118,8 @@
           }
 
           &.disabled {
-            background-color: var(--main-color-op);
+            /* background-color: var(--main-color-op); */
+
             &:hover,
             &:focus,
             &:focus-visible {
@@ -138,11 +139,13 @@
         }
 
         &.editMode button.listPicker {
-          outline: 1px dashed var(--main-color-mid);
-
           &:hover,
           &:focus-visible {
             outline: 1px dashed var(--white);
+          }
+
+          &.selected {
+            outline: 1px dashed var(--main-color-mid);
           }
         }
         &.deleteMode button.listPicker {
