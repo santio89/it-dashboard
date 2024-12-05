@@ -798,9 +798,6 @@ select:disabled {
 .site-section__list .listWrapper ul.tdl-list li .listPickerWrapper button:hover, .site-section__list .listWrapper ul.tdl-list li .listPickerWrapper button:focus-visible, .site-section__list .listWrapper ul.tdl-list li .listPickerWrapper button.selected {
   background: var(--main-color-mid);
 }
-.site-section__list .listWrapper ul.tdl-list li .listPickerWrapper button:focus-visible {
-  outline: 1px solid var(--white);
-}
 .site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer {
   display: flex;
   justify-content: space-between;
@@ -835,7 +832,7 @@ select:disabled {
 }
 .site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button:focus-visible,
 .site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal button:focus-visible {
-  outline: 1px solid var(--white);
+  outline: none;
 }
 .site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns.deleteMode,
 .site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal.deleteMode {
