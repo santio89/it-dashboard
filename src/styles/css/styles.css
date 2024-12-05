@@ -364,9 +364,6 @@ select:disabled {
 .mainHeader__btnContainer .btnWrapper .profile-opts button:hover, .mainHeader__btnContainer .btnWrapper .profile-opts button:focus-visible {
   background-color: var(--main-color-op-light);
 }
-.mainHeader__btnContainer .btnWrapper .profile-opts button:hover svg path, .mainHeader__btnContainer .btnWrapper .profile-opts button:focus-visible svg path {
-  stroke-width: 0.4px;
-}
 .mainHeader .theme-clicked {
   animation: rotate-icon 400ms ease-in-out;
 }

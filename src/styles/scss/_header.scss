@@ -141,12 +141,6 @@
           &:hover,
           &:focus-visible {
             background-color: var(--main-color-op-light);
-
-            svg {
-              path {
-                stroke-width: 0.4px;
-              }
-            }
           }
         }
       }
