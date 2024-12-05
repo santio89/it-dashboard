@@ -1165,12 +1165,13 @@ select:disabled {
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker {
   padding: 0.25rem;
   font-size: 12px;
-  background-color: var(--main-color-mid);
+  background: transparent;
   height: 25px;
   width: 68px;
   color: var(--white);
   outline: 1px solid transparent;
   outline-offset: -1px;
+  color: var(--main-gray);
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker[disabled] {
   pointer-events: none;
@@ -1182,17 +1183,21 @@ select:disabled {
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:focus, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:focus-visible {
   background-color: var(--main-color-op);
 }
-.mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:focus-visible, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.selected {
-  background-color: var(--main-color-op);
-}
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.selected {
   outline-color: var(--main-color-op);
 }
-.mainModal__titleContainer .listPickerWrapper__btnContainer.editMode button.listPicker:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer.editMode button.listPicker:focus-visible {
-  outline: 1px dashed var(--white);
+.mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:focus-visible, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.selected {
+  background-color: var(--main-color-op);
+  color: var(--white);
+}
+.mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker:focus-visible {
+  outline-color: var(--white);
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer.editMode button.listPicker.selected {
   outline: 1px dashed var(--main-color-mid);
+}
+.mainModal__titleContainer .listPickerWrapper__btnContainer.editMode button.listPicker:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer.editMode button.listPicker:focus-visible {
+  outline: 1px dashed var(--white);
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer.deleteMode button.listPicker {
   outline: 1px dashed var(--red);
@@ -1217,6 +1222,7 @@ select:disabled {
   flex-direction: column;
   width: fit-content;
   gap: 0.125rem;
+  transition: 200ms ease-in-out;
   /* profile modal */
 }
 .mainModal__data__form[disabled] {
@@ -1315,11 +1321,6 @@ option:hover,
 }
 .mainModal__data__form.disabled fieldset {
   border: 1px solid var(--main-color-op);
-  /* input,
-  textarea,
-  select {
-    cursor: default;
-  } */
 }
 .mainModal__data__form.disabled fieldset:hover, .mainModal__data__form.disabled fieldset:focus-visible {
   border: 1px solid var(--main-color-op);
@@ -1340,7 +1341,7 @@ option:hover,
 .mainModal__data__form.editMode select:focus-visible {
   outline: 1px dashed var(--white);
 }
-.mainModal__data__form.editMode .tdl-priority {
+.mainModal__data__form.editMode .tdl-priority.selected {
   outline: 1px dashed var(--main-color-mid) !important;
 }
 .mainModal__data__form.editMode .tdl-priority:hover, .mainModal__data__form.editMode .tdl-priority:focus-visible {
@@ -1399,18 +1400,26 @@ option:hover,
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
   font-weight: 300;
   text-transform: capitalize;
-  background-color: var(--main-color-mid);
-  outline: 1px solid transparent;
   outline-offset: -1px;
+  background: transparent;
+  outline: 1px solid transparent;
 }
 .mainModal__data__form.taskContainer .taskOpenData button[disabled] {
   cursor: default;
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority {
-  color: var(--white);
+  color: var(--main-gray);
+}
+.mainModal__data__form.taskContainer .taskOpenData button.tdl-priority svg {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  outline: 2px solid var(--main-gray);
+  outline-offset: -1px;
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selectedLow > svg {
   color: var(--main-gray-dark);
@@ -1423,17 +1432,11 @@ option:hover,
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selected {
   outline: 1px solid var(--main-color-op);
-}
-.mainModal__data__form.taskContainer .taskOpenData button.tdl-priority svg {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background-color: var(--main-color);
-  outline: 2px solid var(--main-gray);
-  outline-offset: -1px;
+  color: var(--white);
 }
 .mainModal__data__form.taskContainer .taskOpenData button:hover {
   background-color: var(--main-color-op);
+  color: var(--white);
 }
 .mainModal__data__form.taskContainer .taskOpenData button:hover[disabled] {
   background-color: var(--main-color-op);
@@ -1441,11 +1444,14 @@ option:hover,
 }
 .mainModal__data__form.taskContainer .taskOpenData button:focus-visible {
   background-color: var(--main-color-op);
+  color: var(--white);
   outline: 1px solid var(--white);
-  outline-color: var(--white) !important;
 }
 .mainModal__data__form.taskContainer .taskOpenData button.selected {
   background-color: var(--main-color-op);
+}
+.mainModal__data__form.taskContainer .taskOpenData button.selected:focus-visible {
+  outline: 1px solid var(--white);
 }
 .mainModal__data__form.taskContainer .taskOpenContent {
   display: inline-block;
