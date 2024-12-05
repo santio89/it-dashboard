@@ -615,7 +615,7 @@ select:disabled {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  background: var(--main-color-mid);
 }
 .site-section .btnWrapper .listPickerWrapper__btnContainer {
   position: absolute;
@@ -633,11 +633,15 @@ select:disabled {
   background-color: var(--main-color-mid);
   height: 25px;
   width: 68px;
-  color: var(--white);
+  color: var(--main-gray);
   text-transform: capitalize;
+}
+.site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.filter {
+  color: var(--white);
 }
 .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:hover, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:focus-visible, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.selected {
   background-color: var(--main-color-op);
+  color: var(--white);
 }
 .site-section__inner {
   display: flex;

@@ -40,7 +40,7 @@ export default function Support({ user }) {
               {
                 listPickerOpen &&
                 <div className="listPickerOptions">
-                  <button className={`listPicker ${listSelected === "personal" && "selected"}`}
+                  <button className={`listPicker filter ${listSelected === "personal" && "selected"}`}
                     onClick={() => {
                       selectList("personal")
                     }}>

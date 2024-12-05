@@ -66,7 +66,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 0.5rem;
+        background: var(--main-color-mid);
       }
 
       &__btnContainer {
@@ -85,13 +85,18 @@
           background-color: var(--main-color-mid);
           height: 25px;
           width: 68px;
-          color: var(--white);
+          color: var(--main-gray);
           text-transform: capitalize;
+
+          &.filter {
+            color: var(--white);
+          }
 
           &:hover,
           &:focus-visible,
           &.selected {
             background-color: var(--main-color-op);
+            color: var(--white);
           }
         }
       }
