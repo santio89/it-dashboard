@@ -35,12 +35,12 @@ export default function Support({ user }) {
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
-                <button className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
+                <button className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
               }
               {
                 listPickerOpen &&
                 <div className="listPickerOptions">
-                  <button className={`listPicker filter ${listSelected === "personal" && "selected"}`}
+                  <button className={`listPicker ${listSelected === "personal" && "selected"}`}
                     onClick={() => {
                       selectList("personal")
                     }}>

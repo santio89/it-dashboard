@@ -67,7 +67,6 @@
       align-items: stretch;
       height: 100%;
       width: 100%;
-      /* gap: 1px; */
 
       a {
         width: 100%;
@@ -79,7 +78,8 @@
         background: transparent;
         color: var(--main-text);
         outline: 1px solid transparent;
-        transition: color 200ms ease-in-out, outline 200ms ease-in-out;
+        transition: color 200ms ease-in-out, background-color 200ms ease-in-out,
+          outline 200ms ease-in-out;
         position: relative;
 
         svg {
@@ -93,6 +93,7 @@
           path {
             stroke: var(--main-text);
             stroke-width: 0px;
+            transition: stroke-width 200ms ease-in-out;
           }
         }
 
@@ -120,6 +121,12 @@
         &:focus-visible {
           background-color: var(--main-color-op-light);
           z-index: 1;
+
+          svg {
+            path {
+              stroke-width: 0.4px;
+            }
+          }
         }
       }
     }
@@ -143,7 +150,7 @@
         min-height: 20px;
         max-width: 20px;
         max-height: 20px;
-        transition: transform 200ms ease-in-out;
+        transition: transform 200ms var(--aside-transition);
 
         path {
           stroke: var(--main-text);
@@ -154,7 +161,8 @@
 
       &:hover,
       &:focus-visible {
-        outline: 1px solid var(--main-text);
+        background-color: var(--main-color-op-light);
+
         svg {
           path {
             stroke-width: 0.4px;
