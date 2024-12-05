@@ -285,6 +285,10 @@
                 &.selected {
                   background: var(--main-color-mid);
                 }
+
+                &:focus-visible {
+                  outline: 1px solid var(--white);
+                }
               }
             }
 
@@ -317,6 +321,10 @@
                   &:focus-visible {
                     background: var(--main-color-mid);
                     color: var(--white);
+                  }
+
+                  &:focus-visible {
+                    outline: 1px solid var(--white);
                   }
                 }
 
