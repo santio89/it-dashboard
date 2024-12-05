@@ -31,11 +31,12 @@
     gap: clamp(1rem, 1rem + 4vw, 4rem);
     overflow-y: visible;
 
-    @media (max-width: $tablet-breakpoint) {
+    @media (max-width: $home-breakpoint) {
       grid-template-columns: 240px;
+      align-content: start;
     }
 
-    @media (max-width: $tablet-breakpoint) and (max-height: 699px) {
+    @media (max-height: $home-breakpoint-height) {
       align-content: start;
     }
   }
@@ -240,7 +241,7 @@
               filter: grayscale(1);
             }
 
-            .taskFooter{
+            .taskFooter {
               width: 100%;
               display: flex;
               justify-content: space-between;
@@ -248,7 +249,6 @@
             }
 
             .listPickerWrapper {
-
               &__btnContainer {
                 display: flex;
                 justify-content: center;

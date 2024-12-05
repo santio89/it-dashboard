@@ -402,6 +402,7 @@ select:disabled {
   bottom: 0;
   width: 52px;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 @media (max-width: 969px) {
   .mainContainer .side-panel {
@@ -409,11 +410,6 @@ select:disabled {
     top: 0;
     left: 0;
     bottom: 0;
-  }
-}
-@media (max-height: 493px) {
-  .mainContainer .side-panel {
-    overflow-y: auto;
   }
 }
 .mainContainer .side-panel:hover {
@@ -586,12 +582,13 @@ select:disabled {
   gap: clamp(1rem, 1rem + 4vw, 4rem);
   overflow-y: visible;
 }
-@media (max-width: 969px) {
+@media (max-width: 669px) {
   .site-section:has(.site-section__homeCard) {
     grid-template-columns: 240px;
+    align-content: start;
   }
 }
-@media (max-width: 969px) and (max-height: 699px) {
+@media (max-height: 444px) {
   .site-section:has(.site-section__homeCard) {
     align-content: start;
   }

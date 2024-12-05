@@ -25,16 +25,13 @@
     bottom: 0;
     width: 52px;
     overflow-x: hidden;
+    overflow-y: auto;
 
     @media (max-width: $tablet-breakpoint) {
       position: absolute;
       top: 0;
       left: 0;
       bottom: 0;
-    }
-
-    @media (max-height: 493px) {
-      overflow-y: auto;
     }
 
     &:hover {
