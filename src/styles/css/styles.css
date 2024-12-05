@@ -644,6 +644,9 @@ select:disabled {
   background-color: var(--main-color-op);
   color: var(--white);
 }
+.site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:focus-visible {
+  z-index: 1;
+}
 .site-section__inner {
   display: flex;
   flex-direction: column;
