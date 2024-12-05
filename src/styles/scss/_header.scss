@@ -140,13 +140,7 @@
 
           &:hover,
           &:focus-visible {
-            outline: 1px solid var(--main-gray-dark);
-
-            svg {
-              path {
-                stroke-width: 0.4px;
-              }
-            }
+            background-color: var(--main-color-op-light);
           }
         }
       }

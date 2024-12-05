@@ -70,7 +70,7 @@
       align-items: stretch;
       height: 100%;
       width: 100%;
-      gap: 1px;
+      /* gap: 1px; */
 
       a {
         width: 100%;
@@ -112,7 +112,7 @@
         }
 
         &.active {
-          outline: 1px solid var(--main-gray-dark);
+          background-color: var(--main-color-op-light);
           font-weight: 600;
 
           svg {
@@ -126,14 +126,8 @@
 
         &:hover,
         &:focus-visible {
-          outline: 1px solid var(--main-gray-dark);
+          background-color: var(--main-color-op-light);
           z-index: 1;
-
-          svg {
-            path {
-              stroke-width: 0.4px;
-            }
-          }
         }
       }
     }
