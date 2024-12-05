@@ -360,11 +360,8 @@ select:disabled {
   stroke-width: 0px;
   transition: stroke-width 200ms ease-in-out;
 }
-.mainHeader__btnContainer .btnWrapper .profile-opts button:hover {
-  outline: 1px solid var(--main-gray-dark);
-}
 .mainHeader__btnContainer .btnWrapper .profile-opts button:hover, .mainHeader__btnContainer .btnWrapper .profile-opts button:focus-visible {
-  outline: 1px solid var(--main-text);
+  outline: 1px solid var(--main-gray-dark);
 }
 .mainHeader__btnContainer .btnWrapper .profile-opts button:hover svg path, .mainHeader__btnContainer .btnWrapper .profile-opts button:focus-visible svg path {
   stroke-width: 0.4px;
@@ -406,6 +403,7 @@ select:disabled {
   left: 0;
   bottom: 0;
   width: 52px;
+  overflow-x: hidden;
 }
 @media (max-width: 969px) {
   .mainContainer .side-panel {
@@ -493,7 +491,7 @@ select:disabled {
   stroke-width: 0.4px;
 }
 .mainContainer .side-panel__opts a:hover, .mainContainer .side-panel__opts a:focus-visible {
-  outline: 1px solid var(--main-text);
+  outline: 1px solid var(--main-gray-dark);
   z-index: 1;
 }
 .mainContainer .side-panel__opts a:hover svg path, .mainContainer .side-panel__opts a:focus-visible svg path {

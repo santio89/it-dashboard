@@ -138,17 +138,10 @@
             }
           }
 
-          &:hover {
+          &:hover,
+          &:focus-visible {
             outline: 1px solid var(--main-gray-dark);
-          }
 
-          &:hover,
-          &:focus-visible {
-            outline: 1px solid var(--main-text);
-          }
-
-          &:hover,
-          &:focus-visible {
             svg {
               path {
                 stroke-width: 0.4px;

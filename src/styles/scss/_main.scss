@@ -24,6 +24,7 @@
     left: 0;
     bottom: 0;
     width: 52px;
+    overflow-x: hidden;
 
     @media (max-width: $tablet-breakpoint) {
       position: absolute;
@@ -125,7 +126,7 @@
 
         &:hover,
         &:focus-visible {
-          outline: 1px solid var(--main-text);
+          outline: 1px solid var(--main-gray-dark);
           z-index: 1;
 
           svg {
