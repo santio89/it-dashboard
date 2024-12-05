@@ -450,7 +450,7 @@ select:disabled {
   background: transparent;
   color: var(--main-text);
   outline: 1px solid transparent;
-  transition: color 200ms ease-in-out, font-weight 200ms ease-in-out, outline 200ms ease-in-out;
+  transition: color 200ms ease-in-out, outline 200ms ease-in-out;
   position: relative;
 }
 .mainContainer .side-panel__opts a svg {
@@ -460,12 +460,10 @@ select:disabled {
   min-height: 20px;
   max-width: 20px;
   max-height: 20px;
-  transition: scale 200ms ease-in-out;
 }
 .mainContainer .side-panel__opts a svg path {
   stroke: var(--main-text);
   stroke-width: 0px;
-  transition: stroke-width 200ms ease-in-out;
 }
 .mainContainer .side-panel__opts a span {
   opacity: 0;
@@ -477,9 +475,6 @@ select:disabled {
 .mainContainer .side-panel__opts a.active {
   background-color: var(--main-color-op-light);
   font-weight: 600;
-}
-.mainContainer .side-panel__opts a.active svg {
-  scale: 1.1;
 }
 .mainContainer .side-panel__opts a.active svg path {
   stroke-width: 0.4px;
