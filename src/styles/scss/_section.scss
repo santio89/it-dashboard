@@ -88,6 +88,7 @@
           width: 68px;
           color: var(--main-gray);
           text-transform: capitalize;
+          outline: 1px solid transparent;
 
           &.filter {
             color: var(--white);
@@ -102,6 +103,8 @@
 
           &:focus-visible {
             z-index: 1;
+
+            outline: 1px solid var(--main-text);
           }
         }
       }

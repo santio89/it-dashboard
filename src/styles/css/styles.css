@@ -637,6 +637,7 @@ select:disabled {
   width: 68px;
   color: var(--main-gray);
   text-transform: capitalize;
+  outline: 1px solid transparent;
 }
 .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.filter {
   color: var(--white);
@@ -647,6 +648,7 @@ select:disabled {
 }
 .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:focus-visible {
   z-index: 1;
+  outline: 1px solid var(--main-text);
 }
 .site-section__inner {
   display: flex;
