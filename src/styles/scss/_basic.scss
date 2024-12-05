@@ -119,9 +119,10 @@ option {
   align-items: center;
   text-align: center;
   text-wrap: balance;
-  transition: 200ms ease-in-out;
   color: var(--white);
   outline-offset: 0;
+  transition: color 200ms ease-in-out, background-color 200ms ease-in-out,
+    outline-color 200ms ease-in-out, border-color 200ms ease-in-out;
 
   &:hover,
   &:focus-visible {

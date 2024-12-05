@@ -103,9 +103,9 @@ option {
   align-items: center;
   text-align: center;
   text-wrap: balance;
-  transition: 200ms ease-in-out;
   color: var(--white);
   outline-offset: 0;
+  transition: color 200ms ease-in-out, background-color 200ms ease-in-out, outline-color 200ms ease-in-out, border-color 200ms ease-in-out;
 }
 button:hover, button:focus-visible,
 a:hover,
@@ -617,6 +617,7 @@ select:disabled {
   justify-content: center;
   align-items: center;
   background: var(--main-color-mid);
+  outline: 1px solid var(--main-color-op);
 }
 .site-section .btnWrapper .listPickerWrapper__btnContainer {
   position: absolute;
