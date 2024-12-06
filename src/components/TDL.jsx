@@ -282,7 +282,9 @@ export default function TDL({ user }) {
                                       <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                                     </svg>
                                   </button>
-
+                                  {
+                                    <div className="btnContainer-separator"></div>
+                                  }
                                   <button className={` ${editMode && "pickerOpen"}`} onClick={() => { /* ADD HINT */ }}>
                                     {task.category === "personal" && <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-file-person" viewBox="0 0 16 16">
                                       <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
@@ -293,7 +295,9 @@ export default function TDL({ user }) {
                                       <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1zm11 0H3v14h3v-2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V15h3z" />
                                     </svg>}
                                   </button>
-
+                                  {
+                                    <div className="btnContainer-separator"></div>
+                                  }
                                   <button className={` ${editMode && "pickerOpen"}`} onClick={() => { /* ADD HINT */ }}>
                                     {task.status === "done" && <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-square" viewBox="0 0 16 16">
                                       <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
@@ -303,20 +307,15 @@ export default function TDL({ user }) {
                                       <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
                                     </svg>}
                                   </button>
+                                  {
+                                    <div className="btnContainer-separator"></div>
+                                  }
                                 </>
                             }
                           </div>
                           <div className={`tdl-optionsBtns`}>
-                            {editMode === task.id &&
-                              <div className="btnContainer-separator"></div>}
-                            {/* open */}
                             {
-                              <button onClick={() => { setEditMode(null), setDeleteMode(null), dispatch(setModal({ active: true, data: { modalType: "TDLDataModal", tdlData: true, ...task } })); setListPickerOpen(false) }}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-expand" viewBox="0 0 16 16">
-                                  <path fillRule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708m0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708" />
-                                </svg>
-                              </button>
-                            }
+                              <div className="btnContainer-separator"></div>}
                             {
                               editMode === task.id || deleteMode === task.id ?
                                 /* cancel */
@@ -358,7 +357,17 @@ export default function TDL({ user }) {
                                   </svg>
                                 </button>
                             }
-
+                            {
+                              <div className="btnContainer-separator"></div>
+                            }
+                            {
+                              /* open */
+                              < button onClick={() => { setEditMode(null), setDeleteMode(null), dispatch(setModal({ active: true, data: { modalType: "TDLDataModal", tdlData: true, ...task } })); setListPickerOpen(false) }}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                  <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                                </svg>
+                              </button>
+                            }
                           </div>
                         </div>
                       }
@@ -398,7 +407,7 @@ export default function TDL({ user }) {
               </ul>
             </div>
         }
-      </div>
+      </div >
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
           <button>Tasks by category</button>
