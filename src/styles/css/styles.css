@@ -771,12 +771,6 @@ select:disabled {
   pointer-events: none;
   filter: grayscale(1);
 }
-.site-section__list .listWrapper ul.tdl-list li .taskFooter {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 .site-section__list .listWrapper ul.tdl-list li .listPickerWrapper__btnContainer {
   display: flex;
   justify-content: center;
@@ -788,8 +782,8 @@ select:disabled {
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 70px;
-  height: 20px;
+  /*  width: 70px;
+  height: 20px; */
   padding: 0 0.25rem;
   background-color: var(--main-color-op);
   outline: 2px solid var(--main-color-op);
@@ -805,78 +799,89 @@ select:disabled {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  background: var(--main-color-op);
+  outline: 2px solid var(--main-color-op);
+  /*   padding-top: 1px; */
+}
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer svg {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  max-height: 20px;
 }
 .site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns,
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal {
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData {
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background-color: var(--main-color-op);
-  width: 140px;
   height: 30px;
-  outline: 2px solid var(--main-color-op);
 }
 .site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button,
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal button {
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button {
   padding: 0.25rem;
   background: transparent;
-  width: 50%;
+  width: 30px;
   height: 100%;
   text-align: center;
   justify-content: center;
   white-space: nowrap;
-}
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button:hover, .site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button:focus-visible,
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal button:hover,
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal button:focus-visible {
-  background: var(--main-color-mid);
-  color: var(--white);
-}
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button:focus-visible,
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal button:focus-visible {
-  outline: none;
-}
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns.deleteMode,
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal.deleteMode {
-  outline: 2px dashed var(--red);
-}
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns.editMode,
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal.editMode {
-  outline: 2px dashed var(--main-color-op);
-}
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal {
-  width: 85px;
-  position: relative;
-  overflow: auto;
-}
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal.editPriority {
-  width: 105px;
-}
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal.editPriority button.selected {
-  background: var(--main-color-mid);
-}
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal button {
-  width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal button.tdl-priority {
-  width: 35px;
-  height: 30px;
-  transition: none;
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button:hover, .site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button:focus-visible,
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button:hover,
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button:focus-visible {
+  background: var(--main-color-mid);
+  color: var(--white);
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal button.tdl-priority.selectedLow {
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button:focus-visible,
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button:focus-visible {
+  outline: none;
+}
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns.deleteMode,
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData.deleteMode {
+  outline: 2px dashed var(--red);
+}
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns.editMode,
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData.editMode {
+  outline: 2px dashed var(--main-color-op);
+}
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns {
+  justify-content: end;
+}
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData {
+  position: relative;
+  overflow: auto;
+  gap: 4px;
+  justify-content: start;
+}
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData .editBtnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData .editBtnWrapper-separator {
+  height: 100%;
+  width: 2px;
+  background: var(--main-gray-op);
+}
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData.editPriority button.selected {
+  background: var(--main-color-mid);
+}
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button.tdl-priority.selectedLow {
   color: var(--main-gray-dark);
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal button.tdl-priority.selectedMedium {
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button.tdl-priority.selectedMedium {
   color: var(--main-color-light);
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal button.tdl-priority.selectedHigh {
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button.tdl-priority.selectedHigh {
   color: var(--red);
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal button.tdl-priority svg {
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button.tdl-priority svg {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -884,7 +889,7 @@ select:disabled {
   outline: 2px solid var(--main-gray);
   outline-offset: -1px;
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-openModal .tdl-editPriority {
+.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData .tdl-editPriority {
   position: absolute;
   top: 0;
   right: -100%;
@@ -1519,6 +1524,14 @@ option:hover,
 .mainModal__close {
   align-self: end;
   background-color: var(--main-color-op);
+}
+.mainModal__close svg {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
 }
 
 /* end modal */

@@ -254,13 +254,6 @@
               filter: grayscale(1);
             }
 
-            .taskFooter {
-              width: 100%;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            }
-
             .listPickerWrapper {
               &__btnContainer {
                 display: flex;
@@ -274,8 +267,8 @@
                 justify-content: center;
                 align-items: center;
                 text-align: center;
-                width: 70px;
-                height: 20px;
+                /*  width: 70px;
+                height: 20px; */
                 padding: 0 0.25rem;
                 background-color: var(--main-color-op);
                 outline: 2px solid var(--main-color-op);
@@ -296,26 +289,38 @@
               display: flex;
               justify-content: space-between;
               width: 100%;
+              background: var(--main-color-op);
+              outline: 2px solid var(--main-color-op);
+              /*   padding-top: 1px; */
+
+              svg {
+                width: 20px;
+                height: 20px;
+                min-width: 20px;
+                max-width: 20px;
+                min-height: 20px;
+                max-height: 20px;
+              }
 
               .tdl-optionsBtns,
-              .tdl-openModal {
+              .tdl-itemData {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 overflow: hidden;
-                background-color: var(--main-color-op);
-                width: 140px;
                 height: 30px;
-                outline: 2px solid var(--main-color-op);
 
                 button {
                   padding: 0.25rem;
                   background: transparent;
-                  width: 50%;
+                  width: 30px;
                   height: 100%;
                   text-align: center;
                   justify-content: center;
                   white-space: nowrap;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
 
                   &:hover,
                   &:focus-visible {
@@ -337,30 +342,36 @@
                 }
               }
 
-              .tdl-openModal {
-                width: 85px;
+              .tdl-optionsBtns {
+                justify-content: end;
+              }
+
+              .tdl-itemData {
                 position: relative;
                 overflow: auto;
+                gap: 4px;
+                justify-content: start;
+
+                .editBtnWrapper {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+
+                  &-separator {
+                    height: 100%;
+                    width: 2px;
+                    background: var(--main-gray-op);
+                  }
+                }
 
                 &.editPriority {
-                  width: 105px;
-
                   button.selected {
                     background: var(--main-color-mid);
                   }
                 }
 
                 button {
-                  width: 50px;
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-
                   &.tdl-priority {
-                    width: 35px;
-                    height: 30px;
-                    transition: none;
-
                     &.selectedLow {
                       color: var(--main-gray-dark);
                     }
