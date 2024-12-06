@@ -307,6 +307,8 @@ export default function TDL({ user }) {
                             }
                           </div>
                           <div className={`tdl-optionsBtns`}>
+                            {editMode === task.id &&
+                              <div className="btnContainer-separator"></div>}
                             {/* open */}
                             {
                               <button onClick={() => { dispatch(setModal({ active: true, data: { modalType: "TDLDataModal", tdlData: true, ...task } })); setListPickerOpen(false) }}>
