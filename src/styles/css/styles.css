@@ -795,15 +795,14 @@ select:disabled {
 .site-section__list .listWrapper ul.tdl-list li .listPickerWrapper button:hover, .site-section__list .listWrapper ul.tdl-list li .listPickerWrapper button:focus-visible, .site-section__list .listWrapper ul.tdl-list li .listPickerWrapper button.selected {
   background: var(--main-color-mid);
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer {
   display: flex;
   justify-content: space-between;
   width: 100%;
   background: var(--main-color-op);
   outline: 2px solid var(--main-color-op);
-  /*   padding-top: 1px; */
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer svg {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer svg {
   width: 20px;
   height: 20px;
   min-width: 20px;
@@ -811,16 +810,23 @@ select:disabled {
   min-height: 20px;
   max-height: 20px;
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns,
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .btnContainer-separator {
+  height: 100%;
+  width: 1px;
+  background: var(--main-gray-op);
+  flex-shrink: 0;
+  margin-inline: 4px;
+}
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns,
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData {
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   height: 30px;
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button,
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns button,
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button {
   padding: 0.25rem;
   background: transparent;
   width: 30px;
@@ -832,56 +838,55 @@ select:disabled {
   justify-content: center;
   align-items: center;
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button:hover, .site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button:focus-visible,
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button:hover,
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button:focus-visible {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns button:hover, .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns button:focus-visible,
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button:hover,
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button:focus-visible {
   background: var(--main-color-mid);
   color: var(--white);
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns button:focus-visible,
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button:focus-visible {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns button:focus-visible,
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button:focus-visible {
   outline: none;
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns.deleteMode,
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData.deleteMode {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns.deleteMode,
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData.deleteMode {
   outline: 2px dashed var(--red);
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns.editMode,
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData.editMode {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns.editMode,
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData.editMode {
   outline: 2px dashed var(--main-color-op);
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-optionsBtns {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns {
   justify-content: end;
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData {
   position: relative;
-  overflow: auto;
-  gap: 4px;
   justify-content: start;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData .editBtnWrapper {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData .editBtnWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData .editBtnWrapper-separator {
-  height: 100%;
-  width: 2px;
-  background: var(--main-gray-op);
-}
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData.editPriority button.selected {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData.editPriority button.selected {
   background: var(--main-color-mid);
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button.tdl-priority.selectedLow {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button.tdl-priority.selectedLow {
   color: var(--main-gray-dark);
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button.tdl-priority.selectedMedium {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button.tdl-priority.selectedMedium {
   color: var(--main-color-light);
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button.tdl-priority.selectedHigh {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button.tdl-priority.selectedHigh {
   color: var(--red);
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData button.tdl-priority svg {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button.tdl-priority svg {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -889,7 +894,7 @@ select:disabled {
   outline: 2px solid var(--main-gray);
   outline-offset: -1px;
 }
-.site-section__list .listWrapper ul.tdl-list li div.tdl-btnContainer .tdl-itemData .tdl-editPriority {
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData .tdl-editPriority {
   position: absolute;
   top: 0;
   right: -100%;

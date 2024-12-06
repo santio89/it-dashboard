@@ -239,7 +239,7 @@ export default function TDL({ user }) {
                                     </button>
                                   </div>
 
-                                  <div className="editBtnWrapper-separator"></div>
+                                  <div className="btnContainer-separator"></div>
 
                                   <div className="editBtnWrapper">
                                     {/* personal */}
@@ -256,7 +256,7 @@ export default function TDL({ user }) {
 
                                   </div>
 
-                                  <div className="editBtnWrapper-separator"></div>
+                                  <div className="btnContainer-separator"></div>
 
                                   <div className="editBtnWrapper">
                                     {/* not done */}
@@ -270,6 +270,8 @@ export default function TDL({ user }) {
                                       <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
                                     </svg></button>
                                   </div>
+
+                                  <div className="btnContainer-separator"></div>
                                 </> :
                                 <>
                                   <button className={`tdl-priority ${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"}`}
@@ -307,9 +309,11 @@ export default function TDL({ user }) {
                           <div className={`tdl-optionsBtns`}>
                             {/* open */}
                             {
-                              <button onClick={() => { dispatch(setModal({ active: true, data: { modalType: "TDLDataModal", tdlData: true, ...task } })); setListPickerOpen(false) }}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrows-angle-expand" viewBox="0 0 16 16">
-                                <path fillRule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707" />
-                              </svg></button>
+                              <button onClick={() => { dispatch(setModal({ active: true, data: { modalType: "TDLDataModal", tdlData: true, ...task } })); setListPickerOpen(false) }}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-expand" viewBox="0 0 16 16">
+                                  <path fillRule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708m0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708" />
+                                </svg>
+                              </button>
                             }
                             {
                               editMode === task.id || deleteMode === task.id ?

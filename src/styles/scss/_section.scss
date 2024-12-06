@@ -285,13 +285,12 @@
               }
             }
 
-            div.tdl-btnContainer {
+            .tdl-btnContainer {
               display: flex;
               justify-content: space-between;
               width: 100%;
               background: var(--main-color-op);
               outline: 2px solid var(--main-color-op);
-              /*   padding-top: 1px; */
 
               svg {
                 width: 20px;
@@ -300,6 +299,14 @@
                 max-width: 20px;
                 min-height: 20px;
                 max-height: 20px;
+              }
+
+              .btnContainer-separator {
+                height: 100%;
+                width: 1px;
+                background: var(--main-gray-op);
+                flex-shrink: 0;
+                margin-inline: 4px;
               }
 
               .tdl-optionsBtns,
@@ -348,20 +355,19 @@
 
               .tdl-itemData {
                 position: relative;
-                overflow: auto;
-                gap: 4px;
                 justify-content: start;
+                overflow-x: auto;
+                overflow-y: hidden;
+
+                &::-webkit-scrollbar {
+                  width: 4px;
+                  height: 4px;
+                }
 
                 .editBtnWrapper {
                   display: flex;
                   justify-content: center;
                   align-items: center;
-
-                  &-separator {
-                    height: 100%;
-                    width: 2px;
-                    background: var(--main-gray-op);
-                  }
                 }
 
                 &.editPriority {
