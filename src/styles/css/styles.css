@@ -1363,6 +1363,9 @@ option:hover,
 .mainModal__data__form.editMode select:focus-visible {
   outline: 1px dashed var(--white);
 }
+.mainModal__data__form.editMode .tdl-priority {
+  outline: 1px dashed transparent !important;
+}
 .mainModal__data__form.editMode .tdl-priority.selected {
   outline: 1px dashed var(--main-color-mid) !important;
 }
