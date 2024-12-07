@@ -54,8 +54,8 @@ html ::-webkit-scrollbar-thumb {
   background: var(--main-color-op);
 }
 html ::selection {
-  color: var(--main-color-light);
-  background: var(--main-color);
+  color: var(--main-color);
+  background: var(--main-color-light);
 }
 
 #root {
@@ -1145,6 +1145,7 @@ select:disabled {
   color: var(--white);
   font-weight: 800;
   position: relative;
+  cursor: default;
 }
 .mainModal h2::before {
   content: "";
