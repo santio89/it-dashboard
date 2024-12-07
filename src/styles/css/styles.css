@@ -1143,7 +1143,6 @@ select:disabled {
   text-wrap: balance;
   font-size: 2em;
   color: var(--white);
-  width: 100%;
   font-weight: 800;
   position: relative;
 }
