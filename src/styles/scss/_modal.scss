@@ -145,6 +145,8 @@
         }
 
         &.editMode button.listPicker {
+          outline: 1px dashed transparent;
+
           &.selected {
             outline: 1px dashed var(--main-color-mid);
           }
