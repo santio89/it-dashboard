@@ -12,7 +12,7 @@ function ProfileDataModal({ modalData }) {
             <div>ID: <span>{modalData?.uid}</span></div>
             <div className="listPickerWrapper__btnContainer">
               {
-                <button tabIndex={-1} className={`listPicker disabled selected`} >Profile</button>
+                <button tabIndex={-1} className={`listPicker disabled selected`} >Personal</button>
               }
             </div>
           </div>
