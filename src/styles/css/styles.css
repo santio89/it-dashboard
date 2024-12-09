@@ -1518,7 +1518,6 @@ option:hover,
   aspect-ratio: 1;
   border-radius: 50%;
   border: 4px solid var(--main-color-op);
-  cursor: pointer;
 }
 .mainModal__btnContainer {
   display: flex;
