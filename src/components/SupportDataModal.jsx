@@ -13,8 +13,8 @@ export default function SupportDataModal({ modalData }) {
   const textInputEdit = useRef()
 
   const [newTicketCategory, setNewTicketCategory] = useState("personal")
-/*   const [newTaskPriority, setNewTaskPriority] = useState("medium")
-  const [newTaskStatus, setNewTaskStatus] = useState("not done") */
+  /*   const [newTaskPriority, setNewTaskPriority] = useState("medium")
+    const [newTaskStatus, setNewTaskStatus] = useState("not done") */
   const [newTicketTitle, setNewTicketTitle] = useState("")
 
   const [editMode, setEditMode] = useState(false)
@@ -132,7 +132,7 @@ export default function SupportDataModal({ modalData }) {
   useEffect(() => {
     if (!modalActive) {
       setNewTicketCategory("personal")
-     /*  setNewTaskPriority("medium") */
+      /*  setNewTaskPriority("medium") */
       textInput.current.textContent = ""
       textInputEdit.current.textContent = ""
       setEditMode(false)
@@ -154,7 +154,7 @@ export default function SupportDataModal({ modalData }) {
             </div>
           </div>
           <form className='mainModal__data__form taskContainer disabled'>
-            <div className={`taskOpenData`}>
+            {/*  <div className={`taskOpenData`}>
               <div>Priority: </div>
               <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
@@ -162,16 +162,20 @@ export default function SupportDataModal({ modalData }) {
                 </svg>
                 {modalData?.priority}
               </button>
-            </div>
-            <div className={`taskOpenData`}>
+            </div> */}
+            {/*   <div className={`taskOpenData`}>
               <div>Status: </div>
               <button tabIndex={-1} type='button' disabled className={`tdl-priority selected`}>
                 {modalData?.status}
               </button>
-            </div>
+            </div> */}
+            <fieldset>
+              <legend>Title</legend>
+              <input placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+            </fieldset>
             <fieldset>
               <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent`}>{modalData?.content}</div>
+              <div aria-label='textarea' className={`taskOpenContent`}>{modalData?.content || "-"}</div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>

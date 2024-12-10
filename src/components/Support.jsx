@@ -3,6 +3,7 @@ import DataChart from "./DataChart"
 import { useDispatch } from "react-redux"
 import { setModal } from "../store/slices/modalSlice"
 import { useGetSupportQuery } from "../store/slices/apiSlice"
+import autoAnimate from "@formkit/auto-animate"
 
 export default function Support({ user }) {
   const dispatch = useDispatch()
@@ -47,6 +48,10 @@ export default function Support({ user }) {
       setSupportList(orderedList)
     }
   }, [sortList, listSelected, dataSupport])
+
+  useEffect(() => {
+    !isLoadingSupport && supportList && listContainer.current && autoAnimate(listContainer.current)
+  }, [listContainer, isLoadingSupport, supportList])
 
 
   return (
