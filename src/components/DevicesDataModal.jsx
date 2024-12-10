@@ -8,8 +8,6 @@ export default function DevicesDataModal({ modalData }) {
   const dispatch = useDispatch()
   const modalActive = useSelector(state => state.modal.active)
 
-  const [listPickerOpen, setListPickerOpen] = useState(false)
-
   const [addDevice, resultAddDevice] = useAddDeviceMutation()
   const [deleteDevice, resultDeleteDevice] = useDeleteDeviceMutation()
   const [editDevice, resultEditDevice] = useEditDeviceMutation()
@@ -26,7 +24,6 @@ export default function DevicesDataModal({ modalData }) {
 
   const selectList = list => {
     setNewDeviceCategory(list)
-    setListPickerOpen(false)
   }
 
   const trimInputs = () => {
@@ -146,7 +143,6 @@ export default function DevicesDataModal({ modalData }) {
       setNewDeviceSn("")
       setNewDeviceComment("")
       setNewDeviceCategory("personal")
-      setListPickerOpen(false)
       setEditMode(false)
       setDeleteMode(false)
     }

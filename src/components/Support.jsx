@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react"
 import DataChart from "./DataChart"
 import { useDispatch } from "react-redux"
+import { setModal } from "../store/slices/modalSlice"
 
 export default function Support({ user }) {
   const dispatch = useDispatch()
@@ -31,6 +32,7 @@ export default function Support({ user }) {
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
+            dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", newTicket: true, userId: user?.uid } }))
           }}>+ Add ticket</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">

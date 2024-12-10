@@ -5,7 +5,7 @@ import { useAddTdlMutation } from '../store/slices/apiSlice'
 import { setModal } from '../store/slices/modalSlice'
 import { useDeleteTdlMutation, useEditTdlMutation } from '../store/slices/apiSlice'
 
-export default function TDLDataModal({ modalData }) {
+export default function SupportDataModal({ modalData }) {
   const dispatch = useDispatch()
   const modalActive = useSelector(state => state.modal.active)
   const [addTdl, resultAddTdl] = useAddTdlMutation()
@@ -16,6 +16,7 @@ export default function TDLDataModal({ modalData }) {
   const [newTaskPriority, setNewTaskPriority] = useState("medium")
   const [newTaskCategory, setNewTaskCategory] = useState("personal")
   const [newTaskStatus, setNewTaskStatus] = useState("not done")
+  const [newTicketTitle, setNewTicketTitle] = useState("")
 
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)
@@ -42,9 +43,9 @@ export default function TDLDataModal({ modalData }) {
     if (resultAddTdl.isLoading) {
       return
     }
-    if (textInput.current.textContent.trim() === "") {
-      return
-    }
+    /*  if (textInput.current.textContent.trim() === "") {
+       return
+     } */
     const task = {
       content: textInput.current.textContent.trim(),
       priority: newTaskPriority,
@@ -138,10 +139,10 @@ export default function TDLDataModal({ modalData }) {
   return (
     <>
       {
-        modalData?.tdlData && !editMode && !deleteMode &&
+        modalData?.supportData && !editMode && !deleteMode &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>TASK</h2>
+            <h2>TICKET</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
               <button tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
@@ -176,10 +177,10 @@ export default function TDLDataModal({ modalData }) {
       }
       {/* edit mode */}
       {
-        modalData?.tdlData && editMode &&
+        modalData?.supportData && editMode &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>EDIT TASK</h2>
+            <h2>EDIT TICKET</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
               <div className="listPickerOptions">
@@ -242,10 +243,10 @@ export default function TDLDataModal({ modalData }) {
       }
       {/* delete mode */}
       {
-        modalData?.tdlData && deleteMode &&
+        modalData?.supportData && deleteMode &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>DELETE TASK</h2>
+            <h2>DELETE TICKET</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
               <button tabIndex={-1} disabled={resultDeleteTdl.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
@@ -279,10 +280,10 @@ export default function TDLDataModal({ modalData }) {
         </>
       }
       {
-        modalData?.newTask &&
+        modalData?.newTicket &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>ADD TASK</h2>
+            <h2>ADD TICKET</h2>
             <div className="listPickerWrapper__btnContainer">
               <div className="listPickerOptions">
                 <button disabled={resultAddTdl.isLoading} className={`listPicker ${newTaskCategory === "personal" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}
@@ -300,8 +301,8 @@ export default function TDLDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form disabled={resultAddTdl.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addTdlFn(e)}>
-            <div className={`taskOpenData`}>
+          <form disabled={resultAddTdl.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} /* onSubmit={(e) => addTdlFn(e)} */>
+            {/*  <div className={`taskOpenData`}>
               <div>Priority: </div>
               <button type='button' onClick={() => setNewTaskPriority("low")} className={`tdl-priority selectedLow ${newTaskPriority === "low" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
@@ -330,10 +331,14 @@ export default function TDLDataModal({ modalData }) {
               <button type='button' onClick={() => setNewTaskStatus("done")} className={`tdl-priority ${newTaskStatus === "done" && "selected"}  ${resultAddTdl.isLoading && "disabled"}`}>
                 Done
               </button>
-            </div>
+            </div> */}
+            <fieldset>
+              <legend>Title</legend>
+              <input placeholder='Required' spellCheck={false} type="text" value={newTicketTitle} onChange={e => setNewTicketTitle(e.target.value)} maxLength={200} required />
+            </fieldset>
             <fieldset>
               <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false} placeholder='Required'></div>
+              <div aria-label='textarea' className={`taskOpenContent supportTask ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false}></div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send' onClick={trimInputs}>Send</button>

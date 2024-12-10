@@ -1415,6 +1415,12 @@ option:hover,
   flex-direction: column;
   width: fit-content;
 }
+.mainModal__data__form.taskContainer fieldset,
+.mainModal__data__form.taskContainer input,
+.mainModal__data__form.taskContainer select,
+.mainModal__data__form.taskContainer textarea {
+  width: 100%;
+}
 .mainModal__data__form.taskContainer .taskOpenData {
   align-self: start;
   display: flex;
@@ -1499,7 +1505,7 @@ option:hover,
 .mainModal__data__form.taskContainer .taskOpenContent:focus-visible {
   outline: none;
 }
-.mainModal__data__form.taskContainer .taskOpenContent:empty::before {
+.mainModal__data__form.taskContainer .taskOpenContent:not(.supportTask):empty::before {
   content: "Required";
   font-style: italic;
   color: var(--main-gray);

@@ -8,8 +8,6 @@ export default function ContactsDataModal({ modalData }) {
   const dispatch = useDispatch()
   const modalActive = useSelector(state => state.modal.active)
 
-  const [listPickerOpen, setListPickerOpen] = useState(false)
-
   const [addContact, resultAddContact] = useAddContactMutation()
   const [deleteContact, resultDeleteContact] = useDeleteContactMutation()
   const [editContact, resultEditContact] = useEditContactMutation()
@@ -26,7 +24,6 @@ export default function ContactsDataModal({ modalData }) {
 
   const selectList = list => {
     setNewUserCategory(list)
-    setListPickerOpen(false)
   }
 
   const trimInputs = () => {
@@ -147,15 +144,10 @@ export default function ContactsDataModal({ modalData }) {
       setNewUserRole("")
       setNewUserComment("")
       setNewUserCategory("personal")
-      setListPickerOpen(false)
       setEditMode(false)
       setDeleteMode(false)
     }
   }, [modalActive])
-
-  useEffect(() => {
-    setListPickerOpen(false)
-  }, [deleteMode, editMode])
 
   return (
     <>
