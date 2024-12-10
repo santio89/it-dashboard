@@ -67,6 +67,7 @@ export default function SupportDataModal({ modalData }) {
 
   const editModeFN = () => {
     setNewTicketCategory(modalData?.category)
+    setNewTicketTitle(modalData?.title)
     /*  setNewTicketPriority(modalData?.priority)
      setNewTicketStatus(modalData?.status) */
     setEditMode(true)
@@ -86,7 +87,7 @@ export default function SupportDataModal({ modalData }) {
     /*    const priority = newTicketPriority.trim()
        const status = newTicketStatus.trim() */
 
-    if (input.trim() === "") {
+    if (title.trim() === "") {
       return
     }
 
@@ -209,7 +210,7 @@ export default function SupportDataModal({ modalData }) {
             </div>
           </div>
           <form className='mainModal__data__form taskContainer editMode' disabled={resultEditSupport.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
-            <div className={`taskOpenData`}>
+            {/*  <div className={`taskOpenData`}>
               <div>Priority: </div>
               <button type='button' onClick={() => setNewTaskPriority("low")} className={`tdl-priority selectedLow ${newTaskPriority === "low" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
@@ -238,10 +239,14 @@ export default function SupportDataModal({ modalData }) {
               <button type='button' onClick={() => setNewTaskStatus("done")} className={`tdl-priority ${newTaskStatus === "done" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
                 Done
               </button>
-            </div>
+            </div> */}
+            <fieldset>
+              <legend>Title</legend>
+              <input placeholder='Required' spellCheck={false} type="text" value={newTicketTitle} onChange={e => setNewTicketTitle(e.target.value)} maxLength={200} required />
+            </fieldset>
             <fieldset>
               <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent ${resultAddSupport.isLoading && "disabled"}`} contentEditable={!resultEditSupport.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
+              <div aria-label='textarea' className={`taskOpenContent supportContent ${resultAddSupport.isLoading && "disabled"}`} contentEditable={!resultAddSupport.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
@@ -262,7 +267,7 @@ export default function SupportDataModal({ modalData }) {
             </div>
           </div>
           <form className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteSupport.isLoading} onSubmit={(e) => deleteSupportFn(e, modalData)}>
-            <div className={`taskOpenData`}>
+            {/*  <div className={`taskOpenData`}>
               <div>Priority: </div>
               <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
@@ -270,16 +275,20 @@ export default function SupportDataModal({ modalData }) {
                 </svg>
                 {modalData?.priority}
               </button>
-            </div>
-            <div className={`taskOpenData`}>
+            </div> */}
+            {/* <div className={`taskOpenData`}>
               <div>Status: </div>
               <button tabIndex={-1} type='button' disabled className={`tdl-priority selected`}>
                 {modalData?.status}
               </button>
-            </div>
+            </div> */}
+            <fieldset>
+              <legend>Title</legend>
+              <input placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+            </fieldset>
             <fieldset>
               <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent`}>{modalData?.content}</div>
+              <div aria-label='textarea' className={`taskOpenContent supportContent`}>{modalData?.content}</div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>

@@ -581,8 +581,9 @@ export const apiSlice = createApi({
     }),
     editSupport: builder.mutation({
       async queryFn(ticket) {
+        console.log(ticket)
         try {
-          const docRef = doc(collection(db, "authUsersData", ticket.userId, "tdl"), ticket.id)
+          const docRef = doc(collection(db, "authUsersData", ticket.userId, "support"), ticket.id)
           await setDoc(docRef, {
             ...ticket,
             updatedAt: serverTimestamp()
