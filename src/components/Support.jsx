@@ -108,7 +108,7 @@ export default function Support({ user }) {
         {
           isLoadingSupport ? <div className="loader">Loading...</div> :
             <div className="listWrapper">
-              <ul className="items-list" ref={listContainer}>
+              <ul className="support-list" ref={listContainer}>
                 {
                   supportList?.map((ticket) =>
                     <li key={ticket.id}><button title={ticket.title} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, userId: user?.uid, ...ticket } })); setListPickerOpen(false) }}>{ticket.title}</button></li>

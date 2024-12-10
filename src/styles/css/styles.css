@@ -965,6 +965,22 @@ select:disabled {
   padding: 1rem;
   color: var(--white);
 }
+.site-section__list .listWrapper ul.support-list {
+  display: flex;
+  justify-content: start;
+  align-items: stretch;
+  flex-direction: column;
+  gap: 1rem;
+}
+.site-section__list .listWrapper ul.support-list li {
+  width: 100%;
+}
+.site-section__list .listWrapper ul.support-list li > button {
+  width: 100%;
+  text-align: start;
+  justify-content: start;
+  padding: 1rem;
+}
 .site-section__chart {
   flex: 3;
   min-width: max(250px, 60%);
