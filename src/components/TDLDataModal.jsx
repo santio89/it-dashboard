@@ -1,9 +1,8 @@
 import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { useAddTdlMutation } from '../store/slices/apiSlice'
 import { setModal } from '../store/slices/modalSlice'
-import { useDeleteTdlMutation, useEditTdlMutation } from '../store/slices/apiSlice'
+import { useAddTdlMutation, useDeleteTdlMutation, useEditTdlMutation } from '../store/slices/apiSlice'
 
 export default function TDLDataModal({ modalData }) {
   const dispatch = useDispatch()

@@ -1505,7 +1505,7 @@ option:hover,
 .mainModal__data__form.taskContainer .taskOpenContent:focus-visible {
   outline: none;
 }
-.mainModal__data__form.taskContainer .taskOpenContent:not(.supportTask):empty::before {
+.mainModal__data__form.taskContainer .taskOpenContent:not(.supportContent):empty::before {
   content: "Required";
   font-style: italic;
   color: var(--main-gray);

@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react"
 import DataChart from "./DataChart"
 import { useDispatch } from "react-redux"
 import { setModal } from "../store/slices/modalSlice"
+import { useGetSupportQuery } from "../store/slices/apiSlice"
 
 export default function Support({ user }) {
   const dispatch = useDispatch()
@@ -13,18 +14,39 @@ export default function Support({ user }) {
 
   const [supportList, setSupportList] = useState(null)
 
-  /*
-    useGetSupportQuery()
-  */
+  const {
+    data: dataSupport,
+    isLoading: isLoadingSupport,
+    isFetching: isFetchingSupport,
+    isSuccess: isSuccessSupport,
+    isError: isErrorSupport,
+    error: errorSupport,
+  } = useGetSupportQuery(user.uid);
 
   const selectList = list => {
     setListSelected(list)
     setListPickerOpen(false)
   }
 
-  /*
-   order
-  */
+  /* order */
+  useEffect(() => {
+    if (dataSupport) {
+      /* filter */
+      const filteredList = dataSupport?.filter(item => {
+        return (listSelected === "all" || item.category === listSelected)
+      })
+
+      /* sort */
+      let orderedList = []
+      if (sortList) {
+        orderedList = [...filteredList].sort((a, b) => a.createdAt.toDate() - b.createdAt.toDate());
+      } else {
+        orderedList = [...filteredList].sort((a, b) => b.createdAt.toDate() - a.createdAt.toDate());
+      }
+
+      setSupportList(orderedList)
+    }
+  }, [sortList, listSelected, dataSupport])
 
 
   return (
@@ -79,17 +101,19 @@ export default function Support({ user }) {
           </button>
         </div>
         {
-          /*  isLoadingSupport ? <div className="loader">Loading...</div> : */
-          <div className="listWrapper">
-            <ul className="items-list" ref={listContainer}>
-              {
-                /* map list */
-              }
-              {
-                <li>No Data</li>
-              }
-            </ul>
-          </div>
+          isLoadingSupport ? <div className="loader">Loading...</div> :
+            <div className="listWrapper">
+              <ul className="items-list" ref={listContainer}>
+                {
+                  supportList?.map((ticket) =>
+                    <li key={ticket.id}><button title={ticket.title} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, userId: user?.uid, ...ticket } })); setListPickerOpen(false) }}>{ticket.title}</button></li>
+                  )
+                }
+                {
+                  supportList?.length === 0 && <li>No Data</li>
+                }
+              </ul>
+            </div>
         }
       </div>
       <div className="site-section__inner site-section__chart">
@@ -97,7 +121,7 @@ export default function Support({ user }) {
           <button>Tickets by category</button>
         </div>
         <div className="chartWrapper">
-          <DataChart type={{ property: "category", items: "support" }} data={[/* dataSupport */]} /* isLoading={isLoadingSupport} */ />
+          <DataChart type={{ property: "category", items: "tickets" }} data={dataSupport} isLoading={isLoadingSupport} />
         </div>
       </div>
     </>

@@ -502,6 +502,110 @@ export const apiSlice = createApi({
       invalidatesTags: ['tdl'],
     }),
 
+    /* SUPPORT */
+    getSupport: builder.query({
+      async queryFn(userId) {
+        if (!userId) { return }
+        try {
+          // retrieve documents
+          const ref = collection(db, 'authUsersData', userId, "support");
+          const querySnapshot = await getDocs(ref);
+          let tickets = [];
+
+          querySnapshot?.forEach((doc) => {
+            tickets.push({ id: doc.id, ...doc.data() });
+          });
+
+          /* order by date */
+          /*  tasks.sort((a, b) => b.createdAt.toDate() - a.createdAt.toDate()); */
+
+          return { data: tickets };
+        } catch (error) {
+          console.log(error);
+          return { error: error };
+        }
+      },
+      providesTags: ['support'],
+    }),
+    addSupport: builder.mutation({
+      async queryFn(ticket) {
+        try {
+          const res = await addDoc(collection(db, "authUsersData", ticket.userId, "support"), {
+            ...ticket,
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp()
+          });
+
+          toast.message('Ticket added', {
+            description: `ID: ${res.id}`,
+          })
+
+          return {
+            data: {
+              ...ticket,
+              id: res.id,
+              createdAt: serverTimestamp(),
+              updatedAt: serverTimestamp()
+            }
+          };
+        } catch (error) {
+          console.log(error);
+          return { error: error };
+        }
+      },
+      invalidatesTags: ['support'],
+    }),
+    deleteSupport: builder.mutation({
+      async queryFn(ticket) {
+        try {
+          const docRef = doc(collection(db, "authUsersData", ticket.userId, "support"), ticket.id)
+          await deleteDoc(docRef)
+
+          toast.message('Ticket deleted', {
+            description: `ID: ${ticket.id}`,
+          })
+
+          return {
+            data: {
+              id: ticket.id,
+              res: `eliminated`
+            }
+          }
+        } catch (error) {
+          console.log(error);
+          return { error: error };
+        }
+
+      },
+      invalidatesTags: ['support'],
+    }),
+    editSupport: builder.mutation({
+      async queryFn(ticket) {
+        try {
+          const docRef = doc(collection(db, "authUsersData", ticket.userId, "tdl"), ticket.id)
+          await setDoc(docRef, {
+            ...ticket,
+            updatedAt: serverTimestamp()
+          })
+
+          toast.message('Ticket edited', {
+            description: `ID: ${ticket.id}`,
+          })
+
+          return {
+            data: {
+              ...ticket,
+              updatedAt: serverTimestamp()
+            }
+          }
+        } catch (error) {
+          console.log(error)
+          return { error: error }
+        }
+      },
+      invalidatesTags: ['support'],
+    }),
+
     /* AUTH */
     signGoogle: builder.mutation({
       async queryFn() {
@@ -580,6 +684,11 @@ export const {
   useAddTdlMutation,
   useDeleteTdlMutation,
   useEditTdlMutation,
+
+  useGetSupportQuery,
+  useAddSupportMutation,
+  useDeleteSupportMutation,
+  useEditSupportMutation,
 
   useSignGoogleMutation,
   useSignOutMutation,

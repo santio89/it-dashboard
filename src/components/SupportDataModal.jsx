@@ -1,34 +1,36 @@
 import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { useAddTdlMutation } from '../store/slices/apiSlice'
 import { setModal } from '../store/slices/modalSlice'
-import { useDeleteTdlMutation, useEditTdlMutation } from '../store/slices/apiSlice'
+import { useAddSupportMutation, useDeleteSupportMutation, useEditSupportMutation } from '../store/slices/apiSlice'
 
 export default function SupportDataModal({ modalData }) {
   const dispatch = useDispatch()
   const modalActive = useSelector(state => state.modal.active)
-  const [addTdl, resultAddTdl] = useAddTdlMutation()
+  const [addSupport, resultAddSupport] = useAddSupportMutation()
 
   const textInput = useRef()
   const textInputEdit = useRef()
 
-  const [newTaskPriority, setNewTaskPriority] = useState("medium")
-  const [newTaskCategory, setNewTaskCategory] = useState("personal")
-  const [newTaskStatus, setNewTaskStatus] = useState("not done")
+  const [newTicketCategory, setNewTicketCategory] = useState("personal")
+/*   const [newTaskPriority, setNewTaskPriority] = useState("medium")
+  const [newTaskStatus, setNewTaskStatus] = useState("not done") */
   const [newTicketTitle, setNewTicketTitle] = useState("")
 
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)
 
-  const [deleteTdl, resultDeleteTdl] = useDeleteTdlMutation()
-  const [editTdl, resultEditTdl] = useEditTdlMutation()
+  const [deleteSupport, resultDeleteSupport] = useDeleteSupportMutation()
+  const [editSupport, resultEditSupport] = useEditSupportMutation()
 
   const selectList = list => {
-    setNewTaskCategory(list)
+    setNewTicketCategory(list)
   }
 
   const trimInputs = () => {
+    setNewTicketTitle(newTicketName => newTicketName.trim())
+    setNewTicketCategory(newTicketCategory => newTicketCategory.trim())
+
     if (textInput.current) {
       textInput.current.textContent = textInput.current.textContent.trim()
     }
@@ -37,23 +39,24 @@ export default function SupportDataModal({ modalData }) {
     }
   }
 
-  const addTdlFn = async (e) => {
+  const addSupportFn = async (e) => {
     e.preventDefault()
 
-    if (resultAddTdl.isLoading) {
+    if (resultAddSupport.isLoading) {
       return
     }
-    /*  if (textInput.current.textContent.trim() === "") {
-       return
-     } */
-    const task = {
+    if (newTicketTitle.trim() === "") {
+      return
+    }
+    const ticket = {
+      title: newTicketTitle,
+      category: newTicketCategory,
       content: textInput.current.textContent.trim(),
-      priority: newTaskPriority,
-      status: newTaskStatus,
-      category: newTaskCategory
+      /*       priority: newTicketPriority,
+            status: newTicketStatus, */
     }
 
-    await addTdl({ ...task, userId: modalData.userId, })
+    await addSupport({ ...ticket, userId: modalData.userId, })
     dispatch(setModal({ active: false, data: {} }))
 
     /* timeout-refetch */
@@ -63,36 +66,38 @@ export default function SupportDataModal({ modalData }) {
   }
 
   const editModeFN = () => {
-    setNewTaskPriority(modalData?.priority)
-    setNewTaskCategory(modalData?.category)
-    setNewTaskStatus(modalData?.status)
+    setNewTicketCategory(modalData?.category)
+    /*  setNewTicketPriority(modalData?.priority)
+     setNewTicketStatus(modalData?.status) */
     setEditMode(true)
   }
 
-  const editTaskFn = async (e, task) => {
+  const editTicketFn = async (e, ticket) => {
     e.preventDefault()
 
-    if (resultEditTdl.isLoading) {
+    if (resultEditSupport.isLoading) {
       return
     }
 
     const input = textInputEdit.current.textContent.trim()
-    const priority = newTaskPriority.trim()
-    const category = newTaskCategory.trim()
-    const status = newTaskStatus.trim()
+    const title = newTicketTitle.trim()
+    const category = newTicketCategory.trim()
+
+    /*    const priority = newTicketPriority.trim()
+       const status = newTicketStatus.trim() */
 
     if (input.trim() === "") {
       return
     }
 
-    if (input.trim() === task.content && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category)) && (task.status === (status ?? task.status))) {
+    if (input.trim() === ticket.content /* && (ticket.priority === (priority ?? ticket.priority)) */ && (ticket.category === (category ?? ticket.category)) && (ticket.title === (title ?? ticket.title)) /* && (ticket.status === (status ?? ticket.status)) */) {
       dispatch(setModal({ active: false, data: {} }))
       return
     }
 
-    const newTask = { ...task, content: input.trim(), category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
+    const newTicket = { ...ticket, title: title ?? ticket.title, content: input.trim(), category: category ?? ticket.category, /* priority: priority ?? ticket.priority, status: status ?? ticket.status */ }
 
-    await editTdl(newTask)
+    await editSupport(newTicket)
     dispatch(setModal({ active: false, data: {} }))
 
     /* timeout-refetch */
@@ -102,14 +107,14 @@ export default function SupportDataModal({ modalData }) {
   }
 
 
-  const deleteTdlFn = async (e, task) => {
+  const deleteSupportFn = async (e, ticket) => {
     e.preventDefault()
 
-    if (resultDeleteTdl.isLoading) {
+    if (resultDeleteSupport.isLoading) {
       return
     }
 
-    await deleteTdl(task)
+    await deleteSupport(ticket)
     dispatch(setModal({ active: false, data: {} }))
 
     /* timeout-refetch */
@@ -126,8 +131,8 @@ export default function SupportDataModal({ modalData }) {
 
   useEffect(() => {
     if (!modalActive) {
-      setNewTaskCategory("personal")
-      setNewTaskPriority("medium")
+      setNewTicketCategory("personal")
+     /*  setNewTaskPriority("medium") */
       textInput.current.textContent = ""
       textInputEdit.current.textContent = ""
       setEditMode(false)
@@ -184,13 +189,13 @@ export default function SupportDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
               <div className="listPickerOptions">
-                <button disabled={resultEditTdl.isLoading} className={`listPicker ${newTaskCategory === "personal" && "selected"} ${resultEditTdl.isLoading && "disabled"}`}
+                <button disabled={resultEditSupport.isLoading} className={`listPicker ${newTicketCategory === "personal" && "selected"} ${resultEditSupport.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
                   Personal
                 </button>
-                <button disabled={resultEditTdl.isLoading} className={`listPicker ${newTaskCategory === "company" && "selected"} ${resultEditTdl.isLoading && "disabled"}`}
+                <button disabled={resultEditSupport.isLoading} className={`listPicker ${newTicketCategory === "company" && "selected"} ${resultEditSupport.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>
@@ -199,22 +204,22 @@ export default function SupportDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form className='mainModal__data__form taskContainer editMode' disabled={resultEditTdl.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTaskFn(e, modalData)}>
+          <form className='mainModal__data__form taskContainer editMode' disabled={resultEditSupport.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
             <div className={`taskOpenData`}>
               <div>Priority: </div>
-              <button type='button' onClick={() => setNewTaskPriority("low")} className={`tdl-priority selectedLow ${newTaskPriority === "low" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
+              <button type='button' onClick={() => setNewTaskPriority("low")} className={`tdl-priority selectedLow ${newTaskPriority === "low" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                 </svg>
                 Low
               </button>
-              <button type='button' onClick={() => setNewTaskPriority("medium")} className={`tdl-priority selectedMedium ${newTaskPriority === "medium" && "selected"}  ${resultAddTdl.isLoading && "disabled"}`}>
+              <button type='button' onClick={() => setNewTaskPriority("medium")} className={`tdl-priority selectedMedium ${newTaskPriority === "medium" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                 </svg>
                 Medium
               </button>
-              <button type='button' onClick={() => setNewTaskPriority("high")} className={`tdl-priority selectedHigh ${newTaskPriority === "high" && "selected"}  ${resultAddTdl.isLoading && "disabled"}`}>
+              <button type='button' onClick={() => setNewTaskPriority("high")} className={`tdl-priority selectedHigh ${newTaskPriority === "high" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                 </svg>
@@ -223,16 +228,16 @@ export default function SupportDataModal({ modalData }) {
             </div>
             <div className={`taskOpenData`}>
               <div>Status: </div>
-              <button type='button' onClick={() => setNewTaskStatus("not done")} className={`tdl-priority ${newTaskStatus === "not done" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
+              <button type='button' onClick={() => setNewTaskStatus("not done")} className={`tdl-priority ${newTaskStatus === "not done" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
                 Not Done
               </button>
-              <button type='button' onClick={() => setNewTaskStatus("done")} className={`tdl-priority ${newTaskStatus === "done" && "selected"}  ${resultAddTdl.isLoading && "disabled"}`}>
+              <button type='button' onClick={() => setNewTaskStatus("done")} className={`tdl-priority ${newTaskStatus === "done" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
                 Done
               </button>
             </div>
             <fieldset>
               <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultEditTdl.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
+              <div aria-label='textarea' className={`taskOpenContent ${resultAddSupport.isLoading && "disabled"}`} contentEditable={!resultEditSupport.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
@@ -249,10 +254,10 @@ export default function SupportDataModal({ modalData }) {
             <h2>DELETE TICKET</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
-              <button tabIndex={-1} disabled={resultDeleteTdl.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
+              <button tabIndex={-1} disabled={resultDeleteSupport.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
             </div>
           </div>
-          <form className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteTdl.isLoading} onSubmit={(e) => deleteTdlFn(e, modalData)}>
+          <form className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteSupport.isLoading} onSubmit={(e) => deleteSupportFn(e, modalData)}>
             <div className={`taskOpenData`}>
               <div>Priority: </div>
               <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
@@ -286,13 +291,13 @@ export default function SupportDataModal({ modalData }) {
             <h2>ADD TICKET</h2>
             <div className="listPickerWrapper__btnContainer">
               <div className="listPickerOptions">
-                <button disabled={resultAddTdl.isLoading} className={`listPicker ${newTaskCategory === "personal" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}
+                <button disabled={resultAddSupport.isLoading} className={`listPicker ${newTicketCategory === "personal" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
                   Personal
                 </button>
-                <button disabled={resultAddTdl.isLoading} className={`listPicker ${newTaskCategory === "company" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}
+                <button disabled={resultAddSupport.isLoading} className={`listPicker ${newTicketCategory === "company" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>
@@ -301,22 +306,22 @@ export default function SupportDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form disabled={resultAddTdl.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} /* onSubmit={(e) => addTdlFn(e)} */>
+          <form disabled={resultAddSupport.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addSupportFn(e)}>
             {/*  <div className={`taskOpenData`}>
               <div>Priority: </div>
-              <button type='button' onClick={() => setNewTaskPriority("low")} className={`tdl-priority selectedLow ${newTaskPriority === "low" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
+              <button type='button' onClick={() => setNewTaskPriority("low")} className={`tdl-priority selectedLow ${newTaskPriority === "low" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                 </svg>
                 Low
               </button>
-              <button type='button' onClick={() => setNewTaskPriority("medium")} className={`tdl-priority selectedMedium ${newTaskPriority === "medium" && "selected"}  ${resultAddTdl.isLoading && "disabled"}`}>
+              <button type='button' onClick={() => setNewTaskPriority("medium")} className={`tdl-priority selectedMedium ${newTaskPriority === "medium" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                 </svg>
                 Medium
               </button>
-              <button type='button' onClick={() => setNewTaskPriority("high")} className={`tdl-priority selectedHigh ${newTaskPriority === "high" && "selected"}  ${resultAddTdl.isLoading && "disabled"}`}>
+              <button type='button' onClick={() => setNewTaskPriority("high")} className={`tdl-priority selectedHigh ${newTaskPriority === "high" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                 </svg>
@@ -325,10 +330,10 @@ export default function SupportDataModal({ modalData }) {
             </div>
             <div className={`taskOpenData`}>
               <div>Status: </div>
-              <button type='button' onClick={() => setNewTaskStatus("not done")} className={`tdl-priority ${newTaskStatus === "not done" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
+              <button type='button' onClick={() => setNewTaskStatus("not done")} className={`tdl-priority ${newTaskStatus === "not done" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
                 Not Done
               </button>
-              <button type='button' onClick={() => setNewTaskStatus("done")} className={`tdl-priority ${newTaskStatus === "done" && "selected"}  ${resultAddTdl.isLoading && "disabled"}`}>
+              <button type='button' onClick={() => setNewTaskStatus("done")} className={`tdl-priority ${newTaskStatus === "done" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
                 Done
               </button>
             </div> */}
@@ -338,7 +343,7 @@ export default function SupportDataModal({ modalData }) {
             </fieldset>
             <fieldset>
               <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent supportTask ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false}></div>
+              <div aria-label='textarea' className={`taskOpenContent supportContent ${resultAddSupport.isLoading && "disabled"}`} contentEditable={!resultAddSupport.isLoading} ref={textInput} spellCheck={false}></div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send' onClick={trimInputs}>Send</button>
