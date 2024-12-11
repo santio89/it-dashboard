@@ -11,11 +11,10 @@ export default function SupportDataModal({ modalData }) {
 
   const textInput = useRef()
   const textInputEdit = useRef()
-
   const [newTicketCategory, setNewTicketCategory] = useState("personal")
+  const [newTicketTitle, setNewTicketTitle] = useState("")
   /*   const [newTaskPriority, setNewTaskPriority] = useState("medium")
     const [newTaskStatus, setNewTaskStatus] = useState("not done") */
-  const [newTicketTitle, setNewTicketTitle] = useState("")
 
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)
@@ -29,7 +28,6 @@ export default function SupportDataModal({ modalData }) {
 
   const trimInputs = () => {
     setNewTicketTitle(newTicketName => newTicketName.trim())
-    setNewTicketCategory(newTicketCategory => newTicketCategory.trim())
 
     if (textInput.current) {
       textInput.current.textContent = textInput.current.textContent.trim()
@@ -134,8 +132,9 @@ export default function SupportDataModal({ modalData }) {
 
   useEffect(() => {
     if (!modalActive) {
-      setNewTicketCategory("personal")
       /*  setNewTaskPriority("medium") */
+      setNewTicketCategory("personal")
+      setNewTicketTitle("")
       textInput.current.textContent = ""
       textInputEdit.current.textContent = ""
       setEditMode(false)

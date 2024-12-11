@@ -11,7 +11,7 @@ export default function TDLDataModal({ modalData }) {
 
   const textInput = useRef()
   const textInputEdit = useRef()
-
+  const [newTaskTitle, setNewTaskTitle] = useState("")
   const [newTaskPriority, setNewTaskPriority] = useState("medium")
   const [newTaskCategory, setNewTaskCategory] = useState("personal")
   const [newTaskStatus, setNewTaskStatus] = useState("not done")
@@ -27,6 +27,8 @@ export default function TDLDataModal({ modalData }) {
   }
 
   const trimInputs = () => {
+    setNewTaskTitle(newTaskTitle => newTaskTitle.trim())
+
     if (textInput.current) {
       textInput.current.textContent = textInput.current.textContent.trim()
     }
@@ -41,10 +43,11 @@ export default function TDLDataModal({ modalData }) {
     if (resultAddTdl.isLoading) {
       return
     }
-    if (textInput.current.textContent.trim() === "") {
+    if (newTaskTitle.trim() === "") {
       return
     }
     const task = {
+      title: newTaskTitle,
       content: textInput.current.textContent.trim(),
       priority: newTaskPriority,
       status: newTaskStatus,
@@ -78,19 +81,20 @@ export default function TDLDataModal({ modalData }) {
     const priority = newTaskPriority.trim()
     const category = newTaskCategory.trim()
     const status = newTaskStatus.trim()
+    const title = newTaskTitle.trim()
 
-    if (input.trim() === "") {
+    if (title.trim() === "") {
       return
     }
 
-    if (input.trim() === task.content && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category)) && (task.status === (status ?? task.status))) {
+    if (input.trim() === task.content && (task.title === (title ?? task.title)) && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category)) && (task.status === (status ?? task.status))) {
       dispatch(setModal({ active: false, data: {} }))
       return
     }
 
     const { modalType, tdlData, ...trimTask } = task
 
-    const newTask = { ...trimTask, content: input.trim(), category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
+    const newTask = { ...trimTask, title: title ?? task.title, content: input.trim(), category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
 
     await editTdl(newTask)
     dispatch(setModal({ active: false, data: {} }))
@@ -126,8 +130,10 @@ export default function TDLDataModal({ modalData }) {
 
   useEffect(() => {
     if (!modalActive) {
-      setNewTaskCategory("personal")
+      setNewTaskTitle("")
       setNewTaskPriority("medium")
+      setNewTaskStatus("not done")
+      setNewTaskCategory("personal")
       textInput.current.textContent = ""
       textInputEdit.current.textContent = ""
       setEditMode(false)
@@ -164,6 +170,10 @@ export default function TDLDataModal({ modalData }) {
                 {modalData?.status}
               </button>
             </div>
+            <fieldset>
+              <legend>Title</legend>
+              <input placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+            </fieldset>
             <fieldset>
               <legend>Description</legend>
               <div aria-label='textarea' className={`taskOpenContent`}>{modalData?.content}</div>
@@ -231,6 +241,10 @@ export default function TDLDataModal({ modalData }) {
               </button>
             </div>
             <fieldset>
+              <legend>Title</legend>
+              <input placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
+            </fieldset>
+            <fieldset>
               <legend>Description</legend>
               <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultEditTdl.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
             </fieldset>
@@ -268,6 +282,10 @@ export default function TDLDataModal({ modalData }) {
                 {modalData?.status}
               </button>
             </div>
+            <fieldset>
+              <legend>Title</legend>
+              <input placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+            </fieldset>
             <fieldset>
               <legend>Description</legend>
               <div aria-label='textarea' className={`taskOpenContent`}>{modalData?.content}</div>
@@ -332,6 +350,10 @@ export default function TDLDataModal({ modalData }) {
                 Done
               </button>
             </div>
+            <fieldset>
+              <legend>Title</legend>
+              <input placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
+            </fieldset>
             <fieldset>
               <legend>Description</legend>
               <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false} placeholder='Required'></div>

@@ -494,11 +494,11 @@
             outline: none;
           }
 
-          &:not(.supportContent):empty::before {
+          /* &:not(.supportContent):empty::before {
             content: "Required";
             font-style: italic;
             color: var(--main-gray);
-          }
+          } */
         }
       }
 

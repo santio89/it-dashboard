@@ -392,7 +392,7 @@ export default function TDL({ user }) {
                       {/* edit task */}
                       {
                         editMode === task.id &&
-                        <textarea placeholder="Required" disabled={resultEditTdl.isLoading} ref={editMode === task.id && editInput} spellCheck={false} value={editInputText} onChange={e => setEditInputText(e.target.value)} className={`taskOption editMode`}></textarea>
+                        <textarea disabled={resultEditTdl.isLoading} ref={editMode === task.id && editInput} spellCheck={false} value={editInputText} onChange={e => setEditInputText(e.target.value)} className={`taskOption editMode`}></textarea>
                       }
 
                       {/* delete task */}

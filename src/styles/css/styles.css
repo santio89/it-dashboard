@@ -1517,14 +1517,14 @@ option:hover,
   min-height: 120px;
   max-height: 240px;
   cursor: text;
+  /* &:not(.supportContent):empty::before {
+    content: "Required";
+    font-style: italic;
+    color: var(--main-gray);
+  } */
 }
 .mainModal__data__form.taskContainer .taskOpenContent:focus-visible {
   outline: none;
-}
-.mainModal__data__form.taskContainer .taskOpenContent:not(.supportContent):empty::before {
-  content: "Required";
-  font-style: italic;
-  color: var(--main-gray);
 }
 .mainModal__data__form.profile .form-group {
   flex-direction: column;
