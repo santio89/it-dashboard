@@ -96,7 +96,9 @@ export default function SupportDataModal({ modalData }) {
       return
     }
 
-    const newTicket = { ...ticket, title: title ?? ticket.title, content: input.trim(), category: category ?? ticket.category, /* priority: priority ?? ticket.priority, status: status ?? ticket.status */ }
+    const { modalType, supportData, ...trimTicket } = ticket
+
+    const newTicket = { ...trimTicket, title: title ?? ticket.title, content: input.trim(), category: category ?? ticket.category, /* priority: priority ?? ticket.priority, status: status ?? ticket.status */ }
 
     await editSupport(newTicket)
     dispatch(setModal({ active: false, data: {} }))

@@ -88,7 +88,9 @@ export default function TDLDataModal({ modalData }) {
       return
     }
 
-    const newTask = { ...task, content: input.trim(), category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
+    const { modalType, tdlData, ...trimTask } = task
+
+    const newTask = { ...trimTask, content: input.trim(), category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
 
     await editTdl(newTask)
     dispatch(setModal({ active: false, data: {} }))
