@@ -11,7 +11,6 @@ export default function TDL({ user }) {
   const [taskOptions, setTaskOptions] = useState(null)
   const [editMode, setEditMode] = useState(null)
   const [deleteMode, setDeleteMode] = useState(null)
-  const [editInputText, setEditInputText] = useState("")
   const editInput = useRef()
   const listContainer = useRef()
 
@@ -22,7 +21,11 @@ export default function TDL({ user }) {
   const [listSelected, setListSelected] = useState("all")
 
 
-  /* edit opts */
+  /* edit opts inputs */
+  const [editInputText, setEditInputText] = useState(null)
+  const [editInputTitle, setEditInputTitle] = useState(null)
+
+  /* edit opts btns */
   const [editPriority, setEditPriority] = useState(null)
   const [editCategory, setEditCategory] = useState(null)
   const [editStatus, setEditStatus] = useState(null)
@@ -62,21 +65,21 @@ export default function TDL({ user }) {
     }, 400)
   }
 
-  const editTask = async (task, input, priority, category, status) => {
+  const editTask = async (task, title, input, priority, category, status) => {
     if (resultEditTdl.isLoading) {
       return
     }
 
-    if (input.trim() === "") {
+    if (title.trim() === "") {
       return
     }
 
-    if (input.trim() === task.content && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category)) && (task.status === (status ?? task.status))) {
+    if (input.trim() === task.content && (task.title === (title ?? task.title)) && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category)) && (task.status === (status ?? task.status))) {
       setEditMode(null)
       return
     }
 
-    const newTask = { ...task, content: input.trim(), category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
+    const newTask = { ...task, content: input.trim(), title: title ?? task.title, category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
     await editTdl(newTask)
 
     /* timeout-refetch */
@@ -95,7 +98,7 @@ export default function TDL({ user }) {
   }
 
   const editCategoryFn = async (task, category) => {
-    if (category === task.priority) {
+    if (category === task.category) {
       setEditCategory(null)
       return
     }
@@ -140,14 +143,19 @@ export default function TDL({ user }) {
   useEffect(() => {
     setEditMode(null)
     setDeleteMode(null)
-    setEditInputText("")
   }, [taskOptions])
 
   useEffect(() => {
-    setEditPriority(null)
-    setEditCategory(null)
-    setEditStatus(null)
-    editMode && editInput.current.focus()
+    if (editMode) {
+      /* replace for title ref */
+      editMode && editInput.current.focus()
+    } else {
+      setEditInputText(null)
+      setEditInputTitle(null)
+      setEditPriority(null)
+      setEditCategory(null)
+      setEditStatus(null)
+    }
   }, [editMode])
 
   useEffect(() => {
@@ -274,7 +282,7 @@ export default function TDL({ user }) {
                                   <div className="btnContainer-separator"></div>
                                 </> :
                                 <>
-                                  <button title={`Priority: ${task.priority}`}
+                                  <button className={`tdl-priority ${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"}`} title={`Priority: ${task.priority}`}
                                     onClick={() => {
                                       /* ADD HINT */
                                     }}>
@@ -330,6 +338,10 @@ export default function TDL({ user }) {
                                 <button title={"Edit"} onClick={() => {
                                   setEditMode(task.id)
                                   setEditInputText(task.content)
+                                  setEditInputTitle(task.title)
+                                  setEditPriority(task.priority)
+                                  setEditCategory(task.category)
+                                  setEditStatus(task.status)
                                 }}>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
@@ -343,7 +355,7 @@ export default function TDL({ user }) {
                                 <button title={"Confirm"} onClick={() => {
                                   trimInputs()
                                   deleteMode === task.id && deleteTask(task)
-                                  editMode === task.id && editTask(task, editInputText, editPriority, editCategory, editStatus)
+                                  editMode === task.id && editTask(task, editInputTitle, editInputText, editPriority, editCategory, editStatus)
                                 }}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-lg confirm" viewBox="0 0 16 16">
                                     <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z" />
                                   </svg>
@@ -374,7 +386,7 @@ export default function TDL({ user }) {
 
 
 
-                      {/* task / taskOptions */}
+                      {/* task  */}
                       {
                         deleteMode !== task.id && editMode !== task.id &&
                         <button className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`}
