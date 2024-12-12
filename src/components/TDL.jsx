@@ -407,13 +407,13 @@ export default function TDL({ user }) {
                           {
                             taskOptions === task.id ?
                               <>
-                                <div className='taskContentTitle'>{task.title}</div>
+                                <div title={task.title} className='taskContentTitle'>{task.title}</div>
                                 <div className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`}>
                                   {task.content || "-"}
                                 </div>
                               </> :
                               <>
-                                <button className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`} onClick={() => setTaskOptions(task.id)} >
+                                <button title={task.title} className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`} onClick={() => setTaskOptions(task.id)} >
                                   {task.title}
                                 </button></>
                           }

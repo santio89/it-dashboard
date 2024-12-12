@@ -267,6 +267,15 @@
               &:focus-visible {
                 background: var(--main-color-op);
               }
+
+              svg {
+                width: 20px;
+                height: 20px;
+                min-width: 20px;
+                min-height: 20px;
+                max-width: 20px;
+                max-height: 20px;
+              }
             }
 
             &[disabled] {
@@ -510,6 +519,8 @@
               box-shadow: 0 1px 0 0 var(--main-gray-op);
               z-index: 1;
               color: var(--white);
+              overflow: hidden;
+              text-overflow: ellipsis;
 
               input {
                 width: 100%;
