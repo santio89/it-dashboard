@@ -398,8 +398,6 @@ export default function TDL({ user }) {
                         </div>
                       }
 
-
-
                       {/* task  */}
                       {
                         deleteMode !== task.id && editMode !== task.id &&
