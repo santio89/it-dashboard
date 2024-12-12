@@ -765,7 +765,6 @@ select:disabled {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 4px;
 }
 .site-section__list .listWrapper ul.tdl-list li[disabled] {
   pointer-events: none;
@@ -786,7 +785,7 @@ select:disabled {
   height: 20px; */
   padding: 0 0.25rem;
   background-color: var(--main-color-op);
-  outline: 2px solid var(--main-color-op);
+  /*  outline: 2px solid var(--main-color-op); */
   text-transform: capitalize;
   font-size: 12px;
   transition: none;
@@ -800,7 +799,8 @@ select:disabled {
   justify-content: space-between;
   width: 100%;
   background: var(--main-color-op);
-  outline: 2px solid var(--main-color-op);
+  padding: 0.5rem;
+  /*  outline: 2px solid var(--main-color-op); */
 }
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer svg {
   width: 20px;
@@ -850,11 +850,11 @@ select:disabled {
 }
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns.deleteMode,
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData.deleteMode {
-  outline: 2px dashed var(--red);
+  outline: 1px dashed var(--red);
 }
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns.editMode,
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData.editMode {
-  outline: 2px dashed var(--main-color-op);
+  outline: 1px dashed var(--main-color-op);
 }
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns {
   justify-content: end;
@@ -919,6 +919,7 @@ select:disabled {
   align-items: start;
   transition: 200ms background-color ease-in-out, 200ms color ease-in-out;
   font-weight: 300;
+  outline: none;
   /*   display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -948,22 +949,48 @@ select:disabled {
 }
 .site-section__list .listWrapper ul.tdl-list li button.taskOption,
 .site-section__list .listWrapper ul.tdl-list li textarea.taskOption {
-  outline: 2px solid var(--main-color-op);
+  /*  outline: 2px solid var(--main-color-op); */
   min-height: 120px;
   background-color: var(--main-color-mid);
 }
 .site-section__list .listWrapper ul.tdl-list li button.deleteMode,
 .site-section__list .listWrapper ul.tdl-list li textarea.deleteMode {
-  outline: 2px dashed var(--red);
+  outline: 1px dashed var(--red);
 }
 .site-section__list .listWrapper ul.tdl-list li button.editMode,
 .site-section__list .listWrapper ul.tdl-list li textarea.editMode {
-  outline: 2px dashed var(--main-gray-op);
+  outline: 1px dashed var(--main-gray-op);
 }
 .site-section__list .listWrapper ul.tdl-list li textarea {
   height: 120px;
   padding: 1rem;
   color: var(--white);
+}
+.site-section__list .listWrapper ul.tdl-list li .taskContentTitle {
+  /*  outline: 2px solid var(--main-color-op); */
+  width: 100%;
+  background-color: var(--main-color-mid);
+  text-align: start;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  box-shadow: 0 1px 0 0 var(--main-gray-op);
+  z-index: 1;
+}
+.site-section__list .listWrapper ul.tdl-list li .taskContentTitle input {
+  width: 100%;
+  background-color: inherit;
+  outline: none;
+  color: var(--white);
+  padding: 0;
+  font-weight: 600;
+}
+.site-section__list .listWrapper ul.tdl-list li .taskContentTitle.editMode {
+  outline: 1px dashed var(--main-gray-op);
+  box-shadow: none;
+}
+.site-section__list .listWrapper ul.tdl-list li .taskContentTitle.deleteMode {
+  outline: 1px dashed var(--red);
+  box-shadow: none;
 }
 .site-section__list .listWrapper ul.support-list {
   display: flex;

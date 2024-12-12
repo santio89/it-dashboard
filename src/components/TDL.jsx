@@ -389,27 +389,42 @@ export default function TDL({ user }) {
                       {/* task  */}
                       {
                         deleteMode !== task.id && editMode !== task.id &&
-                        <button className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`}
-                          onClick={() => {
-                            if (taskOptions === task.id) {
-                              setTaskOptions(null)
-                            } else {
-                              setTaskOptions(task.id)
-                            }
-                          }}>
-                          {task.content}
-                        </button>
+                        <>
+                          {
+                            taskOptions === task.id &&
+                            <div className='taskContentTitle'>{task.title}</div>
+                          }
+                          <button className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`}
+                            onClick={() => {
+                              if (taskOptions === task.id) {
+                                setTaskOptions(null)
+                              } else {
+                                setTaskOptions(task.id)
+                              }
+                            }}>
+                            {taskOptions === task.id ? (task.content || "-") : task.title}
+                          </button>
+                        </>
                       }
 
                       {/* edit task */}
                       {
                         editMode === task.id &&
-                        <textarea disabled={resultEditTdl.isLoading} ref={editMode === task.id && editInput} spellCheck={false} value={editInputText} onChange={e => setEditInputText(e.target.value)} className={`taskOption editMode`}></textarea>
+                        <>
+                          <div className='taskContentTitle editMode'> <input ref={editMode === task.id && editInput} placeholder='Required' spellCheck={false} type="text" value={editInputTitle} onChange={e => setEditInputTitle(e.target.value)} maxLength={200} required /></div>
+                          <textarea disabled={resultEditTdl.isLoading} spellCheck={false} value={editInputText} onChange={e => setEditInputText(e.target.value)} className={`taskOption editMode`}>
+                          </textarea>
+                        </>
+
                       }
 
                       {/* delete task */}
                       {
-                        deleteMode === task.id && <button className={`taskContentBtn taskOption deleteMode`} >{task.content}</button>
+                        deleteMode === task.id &&
+                        <>
+                          <div className='taskContentTitle deleteMode'>{task.title}</div>
+                          <button className={`taskContentBtn taskOption deleteMode`} >{task.content || "-"}</button>
+                        </>
                       }
                     </li>)
                 }

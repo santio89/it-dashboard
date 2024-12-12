@@ -176,7 +176,7 @@ export default function TDLDataModal({ modalData }) {
             </fieldset>
             <fieldset>
               <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent`}>{modalData?.content}</div>
+              <div aria-label='textarea' className={`taskOpenContent`}>{modalData?.content || "-"}</div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
@@ -288,7 +288,7 @@ export default function TDLDataModal({ modalData }) {
             </fieldset>
             <fieldset>
               <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent`}>{modalData?.content}</div>
+              <div aria-label='textarea' className={`taskOpenContent`}>{modalData?.content || "-"}</div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
