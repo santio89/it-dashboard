@@ -946,6 +946,8 @@ select:disabled {
 .site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn {
   padding: 1rem;
   color: var(--white);
+  cursor: text;
+  user-select: text;
 }
 .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn:hover, .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn:focus-visible,
 .site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn:hover,

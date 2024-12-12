@@ -434,7 +434,7 @@ export default function TDL({ user }) {
                         deleteMode === task.id &&
                         <>
                           <div className='taskContentTitle deleteMode'>{task.title}</div>
-                          <button className={`taskContentBtn taskOption deleteMode`} style={{ cursor: "default" }} >{task.content || "-"}</button>
+                          <button className={`taskContentBtn taskOption deleteMode`}>{task.content || "-"}</button>
                         </>
                       }
                     </li>)

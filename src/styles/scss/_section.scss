@@ -453,6 +453,8 @@
               &.taskContentBtn {
                 padding: 1rem;
                 color: var(--white);
+                cursor: text;
+                user-select: text;
 
                 &:hover,
                 &:focus-visible {
