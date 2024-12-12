@@ -411,8 +411,8 @@ export default function TDL({ user }) {
                       {
                         editMode === task.id &&
                         <>
-                          <div className='taskContentTitle editMode'> <input ref={editMode === task.id && editInput} placeholder='Required' spellCheck={false} type="text" value={editInputTitle} onChange={e => setEditInputTitle(e.target.value)} maxLength={200} required /></div>
-                          <textarea disabled={resultEditTdl.isLoading} spellCheck={false} value={editInputText} onChange={e => setEditInputText(e.target.value)} className={`taskOption editMode`}>
+                          <div className='taskContentTitle editMode'> <input ref={editMode === task.id && editInput} placeholder='Title (required)' spellCheck={false} type="text" value={editInputTitle} onChange={e => setEditInputTitle(e.target.value)} maxLength={200} required /></div>
+                          <textarea placeholder='Description' disabled={resultEditTdl.isLoading} spellCheck={false} value={editInputText} onChange={e => setEditInputText(e.target.value)} className={`taskOption editMode`}>
                           </textarea>
                         </>
 
