@@ -1475,15 +1475,15 @@ option:hover,
   align-items: center;
   flex-direction: column;
   width: fit-content;
+  /* .taskInputTitle {
+    font-weight: 600;
+  } */
 }
 .mainModal__data__form.taskContainer fieldset,
 .mainModal__data__form.taskContainer input,
 .mainModal__data__form.taskContainer select,
 .mainModal__data__form.taskContainer textarea {
   width: 100%;
-}
-.mainModal__data__form.taskContainer .taskInputTitle {
-  font-weight: 600;
 }
 .mainModal__data__form.taskContainer .taskOpenData {
   align-self: start;
