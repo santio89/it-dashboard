@@ -67,6 +67,7 @@ export default function TDLDataModal({ modalData }) {
     setNewTaskPriority(modalData?.priority)
     setNewTaskCategory(modalData?.category)
     setNewTaskStatus(modalData?.status)
+    setNewTaskTitle(modalData?.title)
     setEditMode(true)
   }
 
