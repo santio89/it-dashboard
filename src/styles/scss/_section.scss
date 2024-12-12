@@ -247,6 +247,21 @@
             flex-direction: column;
             justify-content: start;
             align-items: center;
+            position: relative;
+
+            .taskOptionsClose {
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              width: 32px;
+              height: 32px;
+              padding: 0;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background: none;
+              padding: 0.25rem;
+            }
 
             &[disabled] {
               pointer-events: none;
@@ -270,7 +285,7 @@
                 height: 20px; */
                 padding: 0 0.25rem;
                 background-color: var(--main-color-op);
-               /*  outline: 2px solid var(--main-color-op); */
+                /*  outline: 2px solid var(--main-color-op); */
                 text-transform: capitalize;
                 font-size: 12px;
                 transition: none;
@@ -289,8 +304,8 @@
               justify-content: space-between;
               width: 100%;
               background: var(--main-color-op);
-              padding: .5rem;
-             /*  outline: 2px solid var(--main-color-op); */
+              padding: 0.5rem;
+              /*  outline: 2px solid var(--main-color-op); */
 
               svg {
                 width: 20px;
@@ -454,7 +469,7 @@
               }
 
               &.taskOption {
-               /*  outline: 2px solid var(--main-color-op); */
+                /*  outline: 2px solid var(--main-color-op); */
                 min-height: 120px;
                 background-color: var(--main-color-mid);
               }
@@ -479,18 +494,18 @@
               color: var(--white);
             }
 
-            .taskContentTitle{
-             /*  outline: 2px solid var(--main-color-op); */
+            .taskContentTitle {
+              /*  outline: 2px solid var(--main-color-op); */
               width: 100%;
               background-color: var(--main-color-mid);
               text-align: start;
-              padding: .5rem 1rem;
+              padding: 0.5rem 1rem;
               font-weight: 600;
               box-shadow: 0 1px 0 0 var(--main-gray-op);
               z-index: 1;
               color: var(--white);
 
-              input{
+              input {
                 width: 100%;
                 background-color: inherit;
                 outline: none;
@@ -499,12 +514,12 @@
                 font-weight: 600;
               }
 
-              &.editMode{
+              &.editMode {
                 outline: 1px dashed var(--main-gray-op);
                 box-shadow: none;
               }
 
-              &.deleteMode{
+              &.deleteMode {
                 outline: 1px dashed var(--red);
                 box-shadow: none;
               }

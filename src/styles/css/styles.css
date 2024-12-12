@@ -765,6 +765,20 @@ select:disabled {
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  position: relative;
+}
+.site-section__list .listWrapper ul.tdl-list li .taskOptionsClose {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  padding: 0.25rem;
 }
 .site-section__list .listWrapper ul.tdl-list li[disabled] {
   pointer-events: none;
