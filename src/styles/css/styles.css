@@ -1464,6 +1464,9 @@ option:hover,
 .mainModal__data__form.taskContainer textarea {
   width: 100%;
 }
+.mainModal__data__form.taskContainer .taskInputTitle {
+  font-weight: 600;
+}
 .mainModal__data__form.taskContainer .taskOpenData {
   align-self: start;
   display: flex;

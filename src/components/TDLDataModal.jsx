@@ -173,7 +173,7 @@ export default function TDLDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend>Title</legend>
-              <input placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+              <input className='taskInputTitle' placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
             </fieldset>
             <fieldset>
               <legend>Description</legend>
@@ -243,7 +243,7 @@ export default function TDLDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend>Title</legend>
-              <input placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
+              <input className='taskInputTitle' placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
             </fieldset>
             <fieldset>
               <legend>Description</legend>
@@ -285,7 +285,7 @@ export default function TDLDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend>Title</legend>
-              <input placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+              <input className='taskInputTitle' placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
             </fieldset>
             <fieldset>
               <legend>Description</legend>
@@ -353,7 +353,7 @@ export default function TDLDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend>Title</legend>
-              <input placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
+              <input className='taskInputTitle' placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
             </fieldset>
             <fieldset>
               <legend>Description</legend>
