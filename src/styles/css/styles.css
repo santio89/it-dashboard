@@ -1516,13 +1516,21 @@ option:hover,
 .mainModal__data__form.taskContainer textarea {
   width: 100%;
 }
+.mainModal__data__form.taskContainer .taskOptions {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
 .mainModal__data__form.taskContainer .taskOpenData {
   align-self: start;
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 1rem;
   font-weight: 600;
 }
 .mainModal__data__form.taskContainer .taskOpenData button {
