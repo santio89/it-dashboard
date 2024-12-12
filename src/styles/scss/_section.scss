@@ -464,6 +464,12 @@
               &.taskContentBtn {
                 padding: 1rem;
                 color: var(--white);
+                text-align: start;
+                text-wrap: balance;
+                display: inline-block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
 
                 &:hover,
                 &:focus-visible {
@@ -514,7 +520,7 @@
               width: 100%;
               background-color: var(--main-color-mid);
               text-align: start;
-              padding: 0.5rem 1rem;
+              padding: 1rem;
               font-weight: 600;
               box-shadow: 0 1px 0 0 var(--main-gray-op);
               z-index: 1;

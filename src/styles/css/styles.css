@@ -957,6 +957,12 @@ select:disabled {
 .site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn {
   padding: 1rem;
   color: var(--white);
+  text-align: start;
+  text-wrap: balance;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn:hover, .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn:focus-visible,
 .site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn:hover,
@@ -1006,7 +1012,7 @@ select:disabled {
   width: 100%;
   background-color: var(--main-color-mid);
   text-align: start;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   font-weight: 600;
   box-shadow: 0 1px 0 0 var(--main-gray-op);
   z-index: 1;
