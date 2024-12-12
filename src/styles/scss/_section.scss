@@ -434,7 +434,8 @@
             }
 
             button,
-            textarea {
+            textarea,
+            .taskContentBtn {
               width: 100%;
               height: auto;
               max-height: 120px;
@@ -453,8 +454,6 @@
               &.taskContentBtn {
                 padding: 1rem;
                 color: var(--white);
-                cursor: text;
-                user-select: text;
 
                 &:hover,
                 &:focus-visible {
@@ -502,7 +501,6 @@
             }
 
             .taskContentTitle {
-              /*  outline: 2px solid var(--main-color-op); */
               width: 100%;
               background-color: var(--main-color-mid);
               text-align: start;
@@ -511,7 +509,6 @@
               box-shadow: 0 1px 0 0 var(--main-gray-op);
               z-index: 1;
               color: var(--white);
-              cursor: text;
 
               input {
                 width: 100%;

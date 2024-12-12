@@ -405,16 +405,18 @@ export default function TDL({ user }) {
                         deleteMode !== task.id && editMode !== task.id &&
                         <>
                           {
-                            taskOptions === task.id &&
-                            <div className='taskContentTitle'>{task.title}</div>
+                            taskOptions === task.id ?
+                              <>
+                                <div className='taskContentTitle'>{task.title}</div>
+                                <div className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`}>
+                                  {task.content || "-"}
+                                </div>
+                              </> :
+                              <>
+                                <button className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`} onClick={() => setTaskOptions(task.id)} >
+                                  {task.title}
+                                </button></>
                           }
-                          <button className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`} onClick={() => {
-                            if (taskOptions !== task.id) {
-                              setTaskOptions(task.id)
-                            }
-                          }} style={{ cursor: taskOptions === task.id ? "text" : "pointer" }}>
-                            {taskOptions === task.id ? (task.content || "-") : task.title}
-                          </button>
                         </>
                       }
 
@@ -434,7 +436,7 @@ export default function TDL({ user }) {
                         deleteMode === task.id &&
                         <>
                           <div className='taskContentTitle deleteMode'>{task.title}</div>
-                          <button className={`taskContentBtn taskOption deleteMode`}>{task.content || "-"}</button>
+                          <div className={`taskContentBtn taskOption deleteMode`}>{task.content || "-"}</div>
                         </>
                       }
                     </li>)

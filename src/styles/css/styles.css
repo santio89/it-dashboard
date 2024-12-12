@@ -923,7 +923,8 @@ select:disabled {
   z-index: 2;
 }
 .site-section__list .listWrapper ul.tdl-list li button,
-.site-section__list .listWrapper ul.tdl-list li textarea {
+.site-section__list .listWrapper ul.tdl-list li textarea,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn {
   width: 100%;
   height: auto;
   max-height: 120px;
@@ -943,41 +944,48 @@ select:disabled {
     text-overflow: ellipsis; */
 }
 .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn {
+.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn {
   padding: 1rem;
   color: var(--white);
-  cursor: text;
-  user-select: text;
 }
 .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn:hover, .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn:focus-visible,
 .site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn:hover,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn:focus-visible {
+.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn:focus-visible,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn:hover,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn:focus-visible {
   background-color: var(--main-color-mid);
 }
 .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn.selectedLow,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.selectedLow {
+.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.selectedLow,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn.selectedLow {
   box-shadow: -2px 0 0 0 var(--main-gray-dark), -4px 0 0 0 var(--main-color);
 }
 .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn.selectedMedium,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.selectedMedium {
+.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.selectedMedium,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn.selectedMedium {
   box-shadow: -2px 0 0 0 var(--main-color-light), -4px 0 0 0 var(--main-color);
 }
 .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn.selectedHigh,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.selectedHigh {
+.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.selectedHigh,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn.selectedHigh {
   box-shadow: -2px 0 0 0 var(--red), -4px 0 0 0 var(--main-color);
 }
 .site-section__list .listWrapper ul.tdl-list li button.taskOption,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskOption {
+.site-section__list .listWrapper ul.tdl-list li textarea.taskOption,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskOption {
   /*  outline: 2px solid var(--main-color-op); */
   min-height: 120px;
   background-color: var(--main-color-mid);
 }
 .site-section__list .listWrapper ul.tdl-list li button.deleteMode,
-.site-section__list .listWrapper ul.tdl-list li textarea.deleteMode {
+.site-section__list .listWrapper ul.tdl-list li textarea.deleteMode,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.deleteMode {
   outline: 1px dashed var(--red);
 }
 .site-section__list .listWrapper ul.tdl-list li button.editMode,
-.site-section__list .listWrapper ul.tdl-list li textarea.editMode {
+.site-section__list .listWrapper ul.tdl-list li textarea.editMode,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.editMode {
   outline: 1px dashed var(--main-gray-op);
 }
 .site-section__list .listWrapper ul.tdl-list li textarea {
@@ -986,7 +994,6 @@ select:disabled {
   color: var(--white);
 }
 .site-section__list .listWrapper ul.tdl-list li .taskContentTitle {
-  /*  outline: 2px solid var(--main-color-op); */
   width: 100%;
   background-color: var(--main-color-mid);
   text-align: start;
@@ -995,7 +1002,6 @@ select:disabled {
   box-shadow: 0 1px 0 0 var(--main-gray-op);
   z-index: 1;
   color: var(--white);
-  cursor: text;
 }
 .site-section__list .listWrapper ul.tdl-list li .taskContentTitle input {
   width: 100%;
