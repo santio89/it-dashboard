@@ -3,8 +3,9 @@
   z-index: 9;
   position: fixed;
   margin: auto;
-  width: fit-content;
-  min-width: 300px;
+  min-width: 600px;
+  width: 600px;
+  max-width: 600px;
   height: fit-content;
   outline: none;
   color: rgb(240, 240, 240);
@@ -37,6 +38,8 @@
 
   @media (max-width: $tablet-breakpoint) {
     min-height: 80%;
+    min-width: 300px;
+    width: fit-content;
   }
 }
 
@@ -182,7 +185,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      width: fit-content;
+      width: 100%;
       gap: 0.125rem;
       transition: 200ms ease-in-out;
 
@@ -389,7 +392,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        width: fit-content;
+        width: 100%;
 
         fieldset,
         input,
@@ -410,6 +413,10 @@
           align-items: center;
           gap: 1rem;
           margin-bottom: 1rem;
+
+          @media (max-width: $tablet-breakpoint) {
+            flex-direction: column;
+          }
         }
 
         .taskOpenData {
@@ -498,7 +505,8 @@
           overflow-x: hidden;
           overflow-y: scroll;
           white-space: pre-wrap;
-          width: clamp(300px, 40vw, 600px);
+          /* width: clamp(300px, 40vw, 600px); */
+          width: 100%;
           height: auto;
           min-height: 120px;
           max-height: 240px;

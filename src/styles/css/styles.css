@@ -1183,8 +1183,9 @@ select:disabled {
   z-index: 9;
   position: fixed;
   margin: auto;
-  width: fit-content;
-  min-width: 300px;
+  min-width: 600px;
+  width: 600px;
+  max-width: 600px;
   height: fit-content;
   outline: none;
   color: rgb(240, 240, 240);
@@ -1216,6 +1217,8 @@ select:disabled {
 @media (max-width: 969px) {
   .mainModalWrapper {
     min-height: 80%;
+    min-width: 300px;
+    width: fit-content;
   }
 }
 
@@ -1337,7 +1340,7 @@ select:disabled {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: fit-content;
+  width: 100%;
   gap: 0.125rem;
   transition: 200ms ease-in-out;
   /* profile modal */
@@ -1505,7 +1508,7 @@ option:hover,
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: fit-content;
+  width: 100%;
   /* .taskInputTitle {
     font-weight: 600;
   } */
@@ -1524,6 +1527,11 @@ option:hover,
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
+}
+@media (max-width: 969px) {
+  .mainModal__data__form.taskContainer .taskOptions {
+    flex-direction: column;
+  }
 }
 .mainModal__data__form.taskContainer .taskOpenData {
   align-self: start;
@@ -1600,7 +1608,8 @@ option:hover,
   overflow-x: hidden;
   overflow-y: scroll;
   white-space: pre-wrap;
-  width: clamp(300px, 40vw, 600px);
+  /* width: clamp(300px, 40vw, 600px); */
+  width: 100%;
   height: auto;
   min-height: 120px;
   max-height: 240px;
