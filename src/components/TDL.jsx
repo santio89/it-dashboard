@@ -412,7 +412,7 @@ export default function TDL({ user }) {
                             if (taskOptions !== task.id) {
                               setTaskOptions(task.id)
                             }
-                          }} style={{ cursor: taskOptions === task.id ? "default" : "pointer" }}>
+                          }} style={{ cursor: taskOptions === task.id ? "text" : "pointer" }}>
                             {taskOptions === task.id ? (task.content || "-") : task.title}
                           </button>
                         </>
