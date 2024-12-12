@@ -963,6 +963,10 @@ select:disabled {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  /* display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis; */
 }
 .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn:hover, .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn:focus-visible,
 .site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn:hover,
