@@ -417,8 +417,8 @@
           display: flex;
           justify-content: start;
           align-items: center;
-          gap: 0.5rem;
-          font-weight: 600;
+          /* gap: 0.5rem; */
+          /* font-weight: 600; */
 
           button {
             display: flex;
@@ -430,6 +430,7 @@
             outline-offset: -1px;
             background: transparent;
             outline: 1px solid transparent;
+            border: 1px solid var(--main-color-op);
 
             &[disabled] {
               cursor: default;
