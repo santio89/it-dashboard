@@ -780,6 +780,9 @@ select:disabled {
   background: none;
   padding: 0.25rem;
 }
+.site-section__list .listWrapper ul.tdl-list li .taskOptionsClose:hover, .site-section__list .listWrapper ul.tdl-list li .taskOptionsClose:focus-visible {
+  background: var(--main-color-op);
+}
 .site-section__list .listWrapper ul.tdl-list li[disabled] {
   pointer-events: none;
   filter: grayscale(1);

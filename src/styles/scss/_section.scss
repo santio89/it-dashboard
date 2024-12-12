@@ -261,6 +261,11 @@
               align-items: center;
               background: none;
               padding: 0.25rem;
+
+              &:hover,
+              &:focus-visible {
+                background: var(--main-color-op);
+              }
             }
 
             &[disabled] {
