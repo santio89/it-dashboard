@@ -249,7 +249,7 @@
             align-items: center;
             position: relative;
 
-            .taskOptionsClose {
+            .taskPriority {
               position: absolute;
               bottom: 0;
               right: 0;
@@ -263,10 +263,10 @@
               background: none;
               padding: 0.25rem;
 
-              &:hover,
+              /* &:hover,
               &:focus-visible {
                 background: var(--main-color-op);
-              }
+              } */
 
               svg {
                 width: 20px;
@@ -275,6 +275,19 @@
                 min-height: 20px;
                 max-width: 20px;
                 max-height: 20px;
+                background-color: var(--main-color);
+                border-radius: 50%;
+                padding: 1px;
+              }
+
+              &.selectedLow {
+                color: var(--main-gray-dark);
+              }
+              &.selectedMedium {
+                color: var(--main-color-light);
+              }
+              &.selectedHigh {
+                color: var(--red);
               }
             }
 
@@ -320,6 +333,7 @@
               width: 100%;
               background: var(--main-color-op);
               padding: 0.5rem;
+              cursor: pointer;
               /*  outline: 2px solid var(--main-color-op); */
 
               svg {
@@ -400,12 +414,6 @@
                   align-items: center;
                 }
 
-                &.editPriority {
-                  button.selected {
-                    background: var(--main-color-mid);
-                  }
-                }
-
                 button {
                   &.tdl-priority {
                     &.selectedLow {
@@ -427,18 +435,6 @@
                       outline-offset: -1px;
                     }
                   }
-                }
-
-                .tdl-editPriority {
-                  position: absolute;
-                  top: 0;
-                  right: -100%;
-                  background: red;
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  width: auto;
-                  z-index: 2;
                 }
               }
             }

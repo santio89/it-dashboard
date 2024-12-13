@@ -767,7 +767,7 @@ select:disabled {
   align-items: center;
   position: relative;
 }
-.site-section__list .listWrapper ul.tdl-list li .taskOptionsClose {
+.site-section__list .listWrapper ul.tdl-list li .taskPriority {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -780,17 +780,30 @@ select:disabled {
   align-items: center;
   background: none;
   padding: 0.25rem;
+  /* &:hover,
+  &:focus-visible {
+    background: var(--main-color-op);
+  } */
 }
-.site-section__list .listWrapper ul.tdl-list li .taskOptionsClose:hover, .site-section__list .listWrapper ul.tdl-list li .taskOptionsClose:focus-visible {
-  background: var(--main-color-op);
-}
-.site-section__list .listWrapper ul.tdl-list li .taskOptionsClose svg {
+.site-section__list .listWrapper ul.tdl-list li .taskPriority svg {
   width: 20px;
   height: 20px;
   min-width: 20px;
   min-height: 20px;
   max-width: 20px;
   max-height: 20px;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  padding: 1px;
+}
+.site-section__list .listWrapper ul.tdl-list li .taskPriority.selectedLow {
+  color: var(--main-gray-dark);
+}
+.site-section__list .listWrapper ul.tdl-list li .taskPriority.selectedMedium {
+  color: var(--main-color-light);
+}
+.site-section__list .listWrapper ul.tdl-list li .taskPriority.selectedHigh {
+  color: var(--red);
 }
 .site-section__list .listWrapper ul.tdl-list li[disabled] {
   pointer-events: none;
@@ -826,6 +839,7 @@ select:disabled {
   width: 100%;
   background: var(--main-color-op);
   padding: 0.5rem;
+  cursor: pointer;
   /*  outline: 2px solid var(--main-color-op); */
 }
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer svg {
@@ -900,9 +914,6 @@ select:disabled {
   justify-content: center;
   align-items: center;
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData.editPriority button.selected {
-  background: var(--main-color-mid);
-}
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button.tdl-priority.selectedLow {
   color: var(--main-gray-dark);
 }
@@ -919,17 +930,6 @@ select:disabled {
   background-color: var(--main-color);
   outline: 2px solid var(--main-gray);
   outline-offset: -1px;
-}
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData .tdl-editPriority {
-  position: absolute;
-  top: 0;
-  right: -100%;
-  background: red;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  z-index: 2;
 }
 .site-section__list .listWrapper ul.tdl-list li button,
 .site-section__list .listWrapper ul.tdl-list li textarea,
