@@ -1547,6 +1547,7 @@ option:hover,
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.25rem;
   font-weight: 300;
   text-transform: capitalize;
