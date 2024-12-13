@@ -975,6 +975,11 @@ select:disabled {
 .site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn:focus-visible {
   background-color: var(--main-color-mid);
 }
+.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn.taskDone,
+.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.taskDone,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn.taskDone {
+  text-decoration: line-through;
+}
 .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn.selectedLow,
 .site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.selectedLow,
 .site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn.selectedLow {

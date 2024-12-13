@@ -481,6 +481,10 @@
                   background-color: var(--main-color-mid);
                 }
 
+                &.taskDone {
+                  text-decoration: line-through;
+                }
+
                 &.selectedLow {
                   box-shadow: -2px 0 0 0 var(--main-gray-dark),
                     -4px 0 0 0 var(--main-color);
