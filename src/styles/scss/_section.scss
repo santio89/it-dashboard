@@ -500,6 +500,8 @@
                 /*  outline: 2px solid var(--main-color-op); */
                 min-height: 120px;
                 background-color: var(--main-color-mid);
+                white-space: normal;
+                overflow-y: auto;
               }
 
               &.deleteMode {
@@ -531,8 +533,9 @@
               box-shadow: 0 1px 0 0 var(--main-gray-op);
               z-index: 1;
               color: var(--white);
-              overflow: hidden;
-              text-overflow: ellipsis;
+              overflow-x: auto;
+              /* overflow: hidden;
+              text-overflow: ellipsis; */
 
               input {
                 width: 100%;
