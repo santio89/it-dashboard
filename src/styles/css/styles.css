@@ -1218,7 +1218,7 @@ select:disabled {
   .mainModalWrapper {
     min-height: 80%;
     min-width: 300px;
-    width: fit-content;
+    width: 100%;
   }
 }
 
