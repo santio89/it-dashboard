@@ -1186,7 +1186,7 @@ select:disabled {
   min-width: 600px;
   width: 600px;
   max-width: 600px;
-  height: fit-content;
+  min-height: fit-content;
   outline: none;
   color: rgb(240, 240, 240);
   font-size: 1rem;
@@ -1217,6 +1217,7 @@ select:disabled {
 @media (max-width: 969px) {
   .mainModalWrapper {
     min-height: 80%;
+    min-height: fit-content;
     min-width: 300px;
     max-width: 500px;
     width: 100%;
