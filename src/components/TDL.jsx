@@ -49,7 +49,7 @@ export default function TDL({ user }) {
   }
 
   const trimInputs = () => {
-    setEditInputText(editInputText => editInputText.trim())
+    setEditInputText(editInputText => editInputText?.trim())
   }
 
   const deleteTask = async (task) => {
