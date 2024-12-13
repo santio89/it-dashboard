@@ -483,6 +483,7 @@
 
                 &.taskDone {
                   text-decoration: line-through;
+                  filter: grayscale(0.5);
                 }
 
                 &.selectedLow {

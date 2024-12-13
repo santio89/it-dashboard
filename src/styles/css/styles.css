@@ -979,6 +979,7 @@ select:disabled {
 .site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.taskDone,
 .site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn.taskDone {
   text-decoration: line-through;
+  filter: grayscale(0.5);
 }
 .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn.selectedLow,
 .site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.selectedLow,
