@@ -174,12 +174,12 @@ export default function TDLDataModal({ modalData }) {
               </div>
             </div>
             <fieldset>
-              <legend>Title</legend>
-              <input className='taskInputTitle' placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+              <legend><label htmlFor="title">Title</label></legend>
+              <input id="title" className='taskInputTitle' placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
             </fieldset>
             <fieldset>
-              <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent`}>{modalData?.content || "-"}</div>
+              <legend><label htmlFor="description">Description</label></legend>
+              <div id="description" aria-label='textarea' className={`taskOpenContent`}>{modalData?.content || "-"}</div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
@@ -246,12 +246,12 @@ export default function TDLDataModal({ modalData }) {
               </div>
             </div>
             <fieldset>
-              <legend>Title</legend>
-              <input className='taskInputTitle' placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
+              <legend><label htmlFor="editTitle">Title</label></legend>
+              <input id="editTitle" className='taskInputTitle' placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
             </fieldset>
             <fieldset>
-              <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultEditTdl.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
+              <legend><label htmlFor="editDescription" onClick={() => textInputEdit.current.focus()}>Description</label></legend>
+              <div id="editDescription" aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultEditTdl.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
@@ -290,12 +290,12 @@ export default function TDLDataModal({ modalData }) {
               </div>
             </div>
             <fieldset>
-              <legend>Title</legend>
-              <input className='taskInputTitle' placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+              <legend><label htmlFor="deleteTitle">Title</label></legend>
+              <input id="deleteTitle" className='taskInputTitle' placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
             </fieldset>
             <fieldset>
-              <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent`}>{modalData?.content || "-"}</div>
+              <legend><label htmlFor="deleteDescription">Description</label></legend>
+              <div id="deleteDescription" aria-label='textarea' className={`taskOpenContent`}>{modalData?.content || "-"}</div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
@@ -360,12 +360,12 @@ export default function TDLDataModal({ modalData }) {
               </div>
             </div>
             <fieldset>
-              <legend>Title</legend>
-              <input className='taskInputTitle' placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
+              <legend><label htmlFor="addTitle">Title</label></legend>
+              <input id="addTitle" className='taskInputTitle' placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
             </fieldset>
             <fieldset>
-              <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false} placeholder='Required'></div>
+              <legend><label htmlFor="addDescription" onClick={() => textInput.current.focus()}>Description</label></legend>
+              <div id="addDescription" aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false} placeholder='Required'></div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send' onClick={trimInputs}>Send</button>

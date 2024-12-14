@@ -239,13 +239,10 @@
             textarea:hover,
             select:hover,
             option:hover,
+            label:hover,
             .taskOpenContent:hover
           ) {
           border-color: var(--main-color-mid);
-
-          legend {
-            color: var(--white);
-          }
         }
 
         &:focus-within {
@@ -348,6 +345,7 @@
               textarea:hover,
               select:hover,
               option:hover,
+              label:hover,
               .taskOpenContent:hover
             ) {
             border: 1px dashed var(--white);
@@ -426,6 +424,10 @@
           display: flex;
           justify-content: start;
           align-items: center;
+
+          > div {
+            cursor: default;
+          }
           /* gap: 0.5rem; */
           /* font-weight: 600; */
 

@@ -1397,15 +1397,9 @@ select:disabled {
 textarea:hover,
 select:hover,
 option:hover,
+label:hover,
 .taskOpenContent:hover) {
   border-color: var(--main-color-mid);
-}
-.mainModal__data__form fieldset:has(input:hover,
-textarea:hover,
-select:hover,
-option:hover,
-.taskOpenContent:hover) legend {
-  color: var(--white);
 }
 .mainModal__data__form fieldset:focus-within {
   border-color: var(--white) !important;
@@ -1488,6 +1482,7 @@ option:hover,
 textarea:hover,
 select:hover,
 option:hover,
+label:hover,
 .taskOpenContent:hover) {
   border: 1px dashed var(--white);
 }
@@ -1551,6 +1546,9 @@ option:hover,
   align-items: center;
   /* gap: 0.5rem; */
   /* font-weight: 600; */
+}
+.mainModal__data__form.taskContainer .taskOpenData > div {
+  cursor: default;
 }
 .mainModal__data__form.taskContainer .taskOpenData button {
   display: flex;

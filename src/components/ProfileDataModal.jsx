@@ -22,12 +22,12 @@ function ProfileDataModal({ modalData }) {
                 <img src={modalData?.photoURL} alt="Profile pic" />
               </div>
               <fieldset>
-                <legend>Name</legend>
-                <input readOnly disabled spellCheck={false} type="text" value={modalData?.displayName || "-"} />
+                <legend><label htmlFor="name">Name</label></legend>
+                <input id="name" readOnly disabled spellCheck={false} type="text" value={modalData?.displayName || "-"} />
               </fieldset>
               <fieldset>
-                <legend>E-Mail</legend>
-                <input readOnly disabled spellCheck={false} type="text" value={modalData?.email || "-"} />
+                <legend><label htmlFor="email">E-Mail</label></legend>
+                <input id="email" readOnly disabled spellCheck={false} type="text" value={modalData?.email || "-"} />
               </fieldset>
             </div>
           </form>

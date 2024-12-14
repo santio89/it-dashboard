@@ -163,22 +163,22 @@ export default function DevicesDataModal({ modalData }) {
           <form className='mainModal__data__form disabled'>
             <div className="form-group">
               <fieldset>
-                <legend>Name</legend>
-                <input placeholder='Required' readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
+                <legend><label htmlFor="name">Name</label></legend>
+                <input id='name' placeholder='Required' readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
               </fieldset>
               <fieldset>
-                <legend>Type</legend>
-                <input readOnly disabled spellCheck={false} type="text" value={modalData?.type || "-"} />
+                <legend><label htmlFor="type">Type</label></legend>
+                <input id="type" readOnly disabled spellCheck={false} type="text" value={modalData?.type || "-"} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
-                <legend>Model</legend>
-                <input readOnly disabled spellCheck={false} type="text" value={modalData?.model || "-"} />
+                <legend><label htmlFor="Model">Model</label></legend>
+                <input id="model" readOnly disabled spellCheck={false} type="text" value={modalData?.model || "-"} />
               </fieldset>
               <fieldset>
-                <legend>Serial Number</legend>
-                <input readOnly disabled spellCheck={false} type="text" value={modalData?.sn || "-"} />
+                <legend><label htmlFor="sn">Serial Number</label></legend>
+                <input id="sn" readOnly disabled spellCheck={false} type="text" value={modalData?.sn || "-"} />
               </fieldset>
             </div>
 
@@ -201,8 +201,8 @@ export default function DevicesDataModal({ modalData }) {
 
             <div className="form-group">
               <fieldset>
-                <legend>Comment</legend>
-                <textarea readOnly disabled spellCheck={false} rows="2" value={modalData?.comment || "-"} />
+                <legend><label htmlFor="comment">Comment</label> </legend>
+                <textarea id="comment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comment || "-"} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -238,22 +238,22 @@ export default function DevicesDataModal({ modalData }) {
           <form className='mainModal__data__form editMode' disabled={resultEditDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editDeviceFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
-                <legend>Name</legend>
-                <input placeholder='Required' spellCheck={false} type="text" value={newDeviceName} onChange={e => setNewDeviceName(e.target.value)} maxLength={200} required />
+                <legend><label htmlFor="editName">Name</label></legend>
+                <input id="editName" placeholder='Required' spellCheck={false} type="text" value={newDeviceName} onChange={e => setNewDeviceName(e.target.value)} maxLength={200} required />
               </fieldset>
               <fieldset>
-                <legend>Type</legend>
-                <input spellCheck={false} type="text" value={newDeviceType} onChange={e => setNewDeviceType(e.target.value)} maxLength={200} />
+                <legend><label htmlFor="editType">Type</label></legend>
+                <input id="editType" spellCheck={false} type="text" value={newDeviceType} onChange={e => setNewDeviceType(e.target.value)} maxLength={200} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
-                <legend>Model</legend>
-                <input spellCheck={false} type="text" value={newDeviceModel} onChange={e => setNewDeviceModel(e.target.value)} maxLength={200} />
+                <legend><label htmlFor="editModel">Model</label></legend>
+                <input id="editModel" spellCheck={false} type="text" value={newDeviceModel} onChange={e => setNewDeviceModel(e.target.value)} maxLength={200} />
               </fieldset>
               <fieldset>
-                <legend>Serial Number</legend>
-                <input spellCheck={false} type="text" value={newDeviceSn} onChange={e => setNewDeviceSn(e.target.value)} maxLength={200} />
+                <legend><label htmlFor="editSn">Serial Number</label></legend>
+                <input id="editSn" spellCheck={false} type="text" value={newDeviceSn} onChange={e => setNewDeviceSn(e.target.value)} maxLength={200} />
               </fieldset>
             </div>
 
@@ -276,8 +276,8 @@ export default function DevicesDataModal({ modalData }) {
 
             <div className="form-group">
               <fieldset>
-                <legend>Comment</legend>
-                <textarea spellCheck={false} rows="2" value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value)} maxLength={500} />
+                <legend><label htmlFor="editComment">Comment</label></legend>
+                <textarea id="editComment" spellCheck={false} rows="2" value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value)} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -300,22 +300,22 @@ export default function DevicesDataModal({ modalData }) {
           <form className='mainModal__data__form deleteMode disabled' disabled={resultDeleteDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteDeviceFn(e, modalData)}>
             <div className="form-group">
               <fieldset>
-                <legend>Name</legend>
-                <input placeholder='Required' readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
+                <legend><label htmlFor="deleteName">Name</label></legend>
+                <input id="deleteName" placeholder='Required' readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
               </fieldset>
               <fieldset>
-                <legend>Type</legend>
-                <input readOnly disabled spellCheck={false} type="text" value={modalData?.type || "-"} />
+                <legend><label htmlFor="deleteType">Type</label></legend>
+                <input id="deleteType" readOnly disabled spellCheck={false} type="text" value={modalData?.type || "-"} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
-                <legend>Model</legend>
-                <input readOnly disabled spellCheck={false} type="text" value={modalData?.model || "-"} />
+                <legend><label htmlFor="deleteModel">Model</label></legend>
+                <input id="deleteModel" readOnly disabled spellCheck={false} type="text" value={modalData?.model || "-"} />
               </fieldset>
               <fieldset>
-                <legend>Serial Number</legend>
-                <input readOnly disabled spellCheck={false} type="text" value={modalData?.sn || "-"} />
+                <legend><label htmlFor="deleteSn">Serial Number</label></legend>
+                <input id="deleteSn" readOnly disabled spellCheck={false} type="text" value={modalData?.sn || "-"} />
               </fieldset>
             </div>
 
@@ -338,8 +338,8 @@ export default function DevicesDataModal({ modalData }) {
 
             <div className="form-group">
               <fieldset>
-                <legend>Comment</legend>
-                <textarea readOnly disabled spellCheck={false} rows="2" value={modalData?.comment || "-"} />
+                <legend><label htmlFor="deleteComment">Comment</label></legend>
+                <textarea id="deleteComment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comment || "-"} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -374,22 +374,22 @@ export default function DevicesDataModal({ modalData }) {
           <form className='mainModal__data__form' disabled={resultAddDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addDeviceFn(e)}>
             <div className="form-group">
               <fieldset>
-                <legend>Name</legend>
-                <input placeholder='Required' spellCheck={false} type="text" value={newDeviceName} onChange={e => setNewDeviceName(e.target.value)} maxLength={200} required />
+                <legend><label htmlFor="addName">Name</label></legend>
+                <input id="addName" placeholder='Required' spellCheck={false} type="text" value={newDeviceName} onChange={e => setNewDeviceName(e.target.value)} maxLength={200} required />
               </fieldset>
               <fieldset>
-                <legend>Type</legend>
-                <input spellCheck={false} type="text" value={newDeviceType} onChange={e => setNewDeviceType(e.target.value)} maxLength={200} />
+                <legend><label htmlFor="addType">Type</label></legend>
+                <input id="addType" spellCheck={false} type="text" value={newDeviceType} onChange={e => setNewDeviceType(e.target.value)} maxLength={200} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
-                <legend>Model</legend>
-                <input spellCheck={false} type="text" value={newDeviceModel} onChange={e => setNewDeviceModel(e.target.value)} maxLength={200} />
+                <legend><label htmlFor="addModel">Model</label></legend>
+                <input id="addModel" spellCheck={false} type="text" value={newDeviceModel} onChange={e => setNewDeviceModel(e.target.value)} maxLength={200} />
               </fieldset>
               <fieldset>
-                <legend>Serial Number</legend>
-                <input spellCheck={false} type="text" value={newDeviceSn} onChange={e => setNewDeviceSn(e.target.value)} maxLength={200} />
+                <legend><label htmlFor="addSn">Serial Number</label></legend>
+                <input id="addSn" spellCheck={false} type="text" value={newDeviceSn} onChange={e => setNewDeviceSn(e.target.value)} maxLength={200} />
               </fieldset>
             </div>
 
@@ -412,8 +412,8 @@ export default function DevicesDataModal({ modalData }) {
 
             <div className="form-group">
               <fieldset>
-                <legend>Comment</legend>
-                <textarea spellCheck={false} rows="2" value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value)} maxLength={500} />
+                <legend><label htmlFor="addComment">Comment</label></legend>
+                <textarea id="addComment" spellCheck={false} rows="2" value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value)} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
