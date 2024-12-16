@@ -172,12 +172,12 @@ export default function SupportDataModal({ modalData }) {
               </button>
             </div> */}
             <fieldset>
-              <legend>Title</legend>
-              <input placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+              <legend><label htmlFor="title">Title</label></legend>
+              <input id="title" placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
             </fieldset>
             <fieldset>
-              <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent`}>{modalData?.content || "-"}</div>
+              <legend><label htmlFor="description">Description</label></legend>
+              <div id="description" aria-label='textarea' className={`taskOpenContent`}>{modalData?.content || "-"}</div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
@@ -211,43 +211,13 @@ export default function SupportDataModal({ modalData }) {
             </div>
           </div>
           <form className='mainModal__data__form taskContainer editMode' disabled={resultEditSupport.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
-            {/*  <div className={`taskOpenData`}>
-              <div>Priority: </div>
-              <button type='button' onClick={() => setNewTaskPriority("low")} className={`tdl-priority selectedLow ${newTaskPriority === "low" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
-                </svg>
-                Low
-              </button>
-              <button type='button' onClick={() => setNewTaskPriority("medium")} className={`tdl-priority selectedMedium ${newTaskPriority === "medium" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
-                </svg>
-                Medium
-              </button>
-              <button type='button' onClick={() => setNewTaskPriority("high")} className={`tdl-priority selectedHigh ${newTaskPriority === "high" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
-                </svg>
-                High
-              </button>
-            </div>
-            <div className={`taskOpenData`}>
-              <div>Status: </div>
-              <button type='button' onClick={() => setNewTaskStatus("not done")} className={`tdl-priority ${newTaskStatus === "not done" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
-                Not Done
-              </button>
-              <button type='button' onClick={() => setNewTaskStatus("done")} className={`tdl-priority ${newTaskStatus === "done" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
-                Done
-              </button>
-            </div> */}
             <fieldset>
-              <legend>Title</legend>
-              <input placeholder='Required' spellCheck={false} type="text" value={newTicketTitle} onChange={e => setNewTicketTitle(e.target.value)} maxLength={200} required />
+              <legend><label htmlFor="editTitle">Title</label></legend>
+              <input id="editTitle" placeholder='Required' spellCheck={false} type="text" value={newTicketTitle} onChange={e => setNewTicketTitle(e.target.value)} maxLength={200} required />
             </fieldset>
             <fieldset>
-              <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent supportContent ${resultAddSupport.isLoading && "disabled"}`} contentEditable={!resultAddSupport.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
+              <legend><label htmlFor="editDescription" onClick={() => textInputEdit.current.focus()}>Description</label></legend>
+              <div id="editDescription" aria-label='textarea' className={`taskOpenContent supportContent ${resultAddSupport.isLoading && "disabled"}`} contentEditable={!resultAddSupport.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
@@ -268,28 +238,13 @@ export default function SupportDataModal({ modalData }) {
             </div>
           </div>
           <form className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteSupport.isLoading} onSubmit={(e) => deleteSupportFn(e, modalData)}>
-            {/*  <div className={`taskOpenData`}>
-              <div>Priority: </div>
-              <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
-                </svg>
-                {modalData?.priority}
-              </button>
-            </div> */}
-            {/* <div className={`taskOpenData`}>
-              <div>Status: </div>
-              <button tabIndex={-1} type='button' disabled className={`tdl-priority selected`}>
-                {modalData?.status}
-              </button>
-            </div> */}
             <fieldset>
-              <legend>Title</legend>
-              <input placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+              <legend><label htmlFor="deleteTitle">Title</label></legend>
+              <input id="deleteTitle" placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
             </fieldset>
             <fieldset>
-              <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent supportContent`}>{modalData?.content}</div>
+              <legend><label htmlFor="deleteDescription">Description</label></legend>
+              <div id="deleteDescription" aria-label='textarea' className={`taskOpenContent supportContent`}>{modalData?.content}</div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
@@ -321,43 +276,13 @@ export default function SupportDataModal({ modalData }) {
             </div>
           </div>
           <form disabled={resultAddSupport.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addSupportFn(e)}>
-            {/*  <div className={`taskOpenData`}>
-              <div>Priority: </div>
-              <button type='button' onClick={() => setNewTaskPriority("low")} className={`tdl-priority selectedLow ${newTaskPriority === "low" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
-                </svg>
-                Low
-              </button>
-              <button type='button' onClick={() => setNewTaskPriority("medium")} className={`tdl-priority selectedMedium ${newTaskPriority === "medium" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
-                </svg>
-                Medium
-              </button>
-              <button type='button' onClick={() => setNewTaskPriority("high")} className={`tdl-priority selectedHigh ${newTaskPriority === "high" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
-                </svg>
-                High
-              </button>
-            </div>
-            <div className={`taskOpenData`}>
-              <div>Status: </div>
-              <button type='button' onClick={() => setNewTaskStatus("not done")} className={`tdl-priority ${newTaskStatus === "not done" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
-                Not Done
-              </button>
-              <button type='button' onClick={() => setNewTaskStatus("done")} className={`tdl-priority ${newTaskStatus === "done" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
-                Done
-              </button>
-            </div> */}
             <fieldset>
-              <legend>Title</legend>
-              <input placeholder='Required' spellCheck={false} type="text" value={newTicketTitle} onChange={e => setNewTicketTitle(e.target.value)} maxLength={200} required />
+              <legend><label htmlFor="addTitle">Title</label></legend>
+              <input id="addTitle" placeholder='Required' spellCheck={false} type="text" value={newTicketTitle} onChange={e => setNewTicketTitle(e.target.value)} maxLength={200} required />
             </fieldset>
             <fieldset>
-              <legend>Description</legend>
-              <div aria-label='textarea' className={`taskOpenContent supportContent ${resultAddSupport.isLoading && "disabled"}`} contentEditable={!resultAddSupport.isLoading} ref={textInput} spellCheck={false}></div>
+              <legend><label htmlFor="addDescription" onClick={() => textInput.current.focus()}>Description</label></legend>
+              <div id="addDescription" aria-label='textarea' className={`taskOpenContent supportContent ${resultAddSupport.isLoading && "disabled"}`} contentEditable={!resultAddSupport.isLoading} ref={textInput} spellCheck={false}></div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send' onClick={trimInputs}>Send</button>
