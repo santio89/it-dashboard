@@ -251,7 +251,7 @@ export default function TDLDataModal({ modalData }) {
             </fieldset>
             <fieldset>
               <legend><label htmlFor="editDescription" onClick={() => textInputEdit.current.focus()}>Description</label></legend>
-              <div id="editDescription" aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultEditTdl.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
+              <div id="editDescription" aria-label='textarea' className={`taskOpenContent ${resultEditTdl.isLoading && "disabled"}`} contentEditable={!resultEditTdl.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>

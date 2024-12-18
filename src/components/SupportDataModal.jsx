@@ -217,7 +217,7 @@ export default function SupportDataModal({ modalData }) {
             </fieldset>
             <fieldset>
               <legend><label htmlFor="editDescription" onClick={() => textInputEdit.current.focus()}>Description</label></legend>
-              <div id="editDescription" aria-label='textarea' className={`taskOpenContent supportContent ${resultAddSupport.isLoading && "disabled"}`} contentEditable={!resultAddSupport.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
+              <div id="editDescription" aria-label='textarea' className={`taskOpenContent supportContent ${resultEditSupport.isLoading && "disabled"}`} contentEditable={!resultEditSupport.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
