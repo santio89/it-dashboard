@@ -1397,8 +1397,7 @@ select:disabled {
 textarea:hover,
 select:hover,
 option:hover,
-label:hover,
-.taskOpenContent:hover) {
+label:hover) {
   border-color: var(--main-color-mid);
 }
 .mainModal__data__form fieldset:focus-within {
@@ -1407,7 +1406,7 @@ label:hover,
 .mainModal__data__form fieldset:focus-within legend {
   color: var(--white);
 }
-.mainModal__data__form fieldset:has(textarea, .taskOpenContent) {
+.mainModal__data__form fieldset:has(textarea) {
   width: 100%;
 }
 @media (max-width: 969px) {
@@ -1482,8 +1481,7 @@ label:hover,
 textarea:hover,
 select:hover,
 option:hover,
-label:hover,
-.taskOpenContent:hover) {
+label:hover) {
   border: 1px dashed var(--white);
 }
 .mainModal__data__form.deleteMode input,
@@ -1500,11 +1498,7 @@ label:hover,
 .mainModal__data__form.deleteMode fieldset {
   border: 1px dashed var(--red);
 }
-.mainModal__data__form.deleteMode fieldset:hover, .mainModal__data__form.deleteMode fieldset:focus-visible, .mainModal__data__form.deleteMode fieldset:focus-within, .mainModal__data__form.deleteMode fieldset:has(input:hover,
-textarea:hover,
-select:hover,
-option:hover,
-.taskOpenContent:hover) {
+.mainModal__data__form.deleteMode fieldset:hover, .mainModal__data__form.deleteMode fieldset:focus-visible, .mainModal__data__form.deleteMode fieldset:focus-within, .mainModal__data__form.deleteMode fieldset:has(input:hover, textarea:hover, select:hover, option:hover) {
   border-style: dashed;
   border-color: var(--red);
 }
@@ -1610,28 +1604,11 @@ option:hover,
   outline: 1px solid var(--white);
 }
 .mainModal__data__form.taskContainer .taskOpenContent {
-  display: inline-block;
-  color: var(--white);
-  font-weight: 300;
-  padding: 0.5rem 1rem;
-  word-break: break-word;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  white-space: pre-wrap;
-  /* width: clamp(300px, 40vw, 600px); */
   width: 100%;
-  height: auto;
+  height: 100%;
   min-height: 120px;
   max-height: 240px;
-  cursor: text;
-  /* &:not(.supportContent):empty::before {
-    content: "Required";
-    font-style: italic;
-    color: var(--main-gray);
-  } */
-}
-.mainModal__data__form.taskContainer .taskOpenContent:focus-visible {
-  outline: none;
+  field-sizing: content;
 }
 .mainModal__data__form.profile .form-group {
   flex-direction: column;

@@ -9,9 +9,10 @@ export default function TDLDataModal({ modalData }) {
   const modalActive = useSelector(state => state.modal.active)
   const [addTdl, resultAddTdl] = useAddTdlMutation()
 
-  const textInput = useRef()
-  const textInputEdit = useRef()
+  /* const textInput = useRef()
+  const textInputEdit = useRef() */
   const [newTaskTitle, setNewTaskTitle] = useState("")
+  const [newTaskDescription, setNewTaskDescription] = useState("")
   const [newTaskPriority, setNewTaskPriority] = useState("medium")
   const [newTaskCategory, setNewTaskCategory] = useState("personal")
   const [newTaskStatus, setNewTaskStatus] = useState("not done")
@@ -28,13 +29,7 @@ export default function TDLDataModal({ modalData }) {
 
   const trimInputs = () => {
     setNewTaskTitle(newTaskTitle => newTaskTitle.trim())
-
-    if (textInput.current) {
-      textInput.current.textContent = textInput.current.textContent.trim()
-    }
-    if (textInputEdit.current) {
-      textInputEdit.current.textContent = textInputEdit.current.textContent.trim()
-    }
+    setNewTaskDescription(newTaskDescription => newTaskDescription.trim())
   }
 
   const addTdlFn = async (e) => {
@@ -48,7 +43,7 @@ export default function TDLDataModal({ modalData }) {
     }
     const task = {
       title: newTaskTitle,
-      content: textInput.current.textContent.trim(),
+      content: newTaskDescription,
       priority: newTaskPriority,
       status: newTaskStatus,
       category: newTaskCategory
@@ -68,6 +63,7 @@ export default function TDLDataModal({ modalData }) {
     setNewTaskCategory(modalData?.category)
     setNewTaskStatus(modalData?.status)
     setNewTaskTitle(modalData?.title)
+    setNewTaskDescription(modalData?.content)
     setEditMode(true)
   }
 
@@ -78,7 +74,7 @@ export default function TDLDataModal({ modalData }) {
       return
     }
 
-    const input = textInputEdit.current.textContent.trim()
+    const input = newTaskDescription.trim()
     const priority = newTaskPriority.trim()
     const category = newTaskCategory.trim()
     const status = newTaskStatus.trim()
@@ -124,7 +120,7 @@ export default function TDLDataModal({ modalData }) {
   }
 
   const preventEnterSubmit = (e) => {
-    if (e.key === "Enter" && e.target.className !== "mainModal__send" && e.target.tagName !== "TEXTAREA" && e.target.ariaLabel !== "textarea") {
+    if (e.key === "Enter" && e.target.className !== "mainModal__send" && e.target.tagName !== "TEXTAREA") {
       e.preventDefault()
     }
   }
@@ -132,11 +128,10 @@ export default function TDLDataModal({ modalData }) {
   useEffect(() => {
     if (!modalActive) {
       setNewTaskTitle("")
+      setNewTaskDescription("")
       setNewTaskPriority("medium")
       setNewTaskStatus("not done")
       setNewTaskCategory("personal")
-      textInput.current.textContent = ""
-      textInputEdit.current.textContent = ""
       setEditMode(false)
       setDeleteMode(false)
     }
@@ -179,7 +174,7 @@ export default function TDLDataModal({ modalData }) {
             </fieldset>
             <fieldset>
               <legend><label htmlFor="description">Description</label></legend>
-              <div id="description" aria-label='textarea' className={`taskOpenContent`}>{modalData?.content || "-"}</div>
+              <textarea id="description" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.content || "-"} />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
@@ -250,8 +245,8 @@ export default function TDLDataModal({ modalData }) {
               <input id="editTitle" className='taskInputTitle' placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
             </fieldset>
             <fieldset>
-              <legend><label htmlFor="editDescription" onClick={() => textInputEdit.current.focus()}>Description</label></legend>
-              <div id="editDescription" aria-label='textarea' className={`taskOpenContent ${resultEditTdl.isLoading && "disabled"}`} contentEditable={!resultEditTdl.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
+              <legend><label htmlFor="editDescription">Description</label></legend>
+              <textarea id="addDescription" spellCheck={false} rows="4" value={newTaskDescription} onChange={e => setNewTaskDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
@@ -295,7 +290,7 @@ export default function TDLDataModal({ modalData }) {
             </fieldset>
             <fieldset>
               <legend><label htmlFor="deleteDescription">Description</label></legend>
-              <div id="deleteDescription" aria-label='textarea' className={`taskOpenContent`}>{modalData?.content || "-"}</div>
+              <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.content || "-"} />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
@@ -364,8 +359,8 @@ export default function TDLDataModal({ modalData }) {
               <input id="addTitle" className='taskInputTitle' placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
             </fieldset>
             <fieldset>
-              <legend><label htmlFor="addDescription" onClick={() => textInput.current.focus()}>Description</label></legend>
-              <div id="addDescription" aria-label='textarea' className={`taskOpenContent ${resultAddTdl.isLoading && "disabled"}`} contentEditable={!resultAddTdl.isLoading} ref={textInput} spellCheck={false} placeholder='Required'></div>
+              <legend><label htmlFor="addDescription">Description</label></legend>
+              <textarea id="addDescription" spellCheck={false} rows="4" value={newTaskDescription} onChange={e => setNewTaskDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send' onClick={trimInputs}>Send</button>

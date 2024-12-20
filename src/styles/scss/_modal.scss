@@ -239,8 +239,7 @@
             textarea:hover,
             select:hover,
             option:hover,
-            label:hover,
-            .taskOpenContent:hover
+            label:hover
           ) {
           border-color: var(--main-color-mid);
         }
@@ -253,7 +252,7 @@
           }
         }
 
-        &:has(textarea, .taskOpenContent) {
+        &:has(textarea) {
           width: 100%;
         }
 
@@ -345,8 +344,7 @@
               textarea:hover,
               select:hover,
               option:hover,
-              label:hover,
-              .taskOpenContent:hover
+              label:hover
             ) {
             border: 1px dashed var(--white);
           }
@@ -373,13 +371,7 @@
           &:hover,
           &:focus-visible,
           &:focus-within,
-          &:has(
-              input:hover,
-              textarea:hover,
-              select:hover,
-              option:hover,
-              .taskOpenContent:hover
-            ) {
+          &:has(input:hover, textarea:hover, select:hover, option:hover) {
             border-style: dashed;
             border-color: var(--red);
           }
@@ -502,30 +494,11 @@
         }
 
         .taskOpenContent {
-          display: inline-block;
-          color: var(--white);
-          font-weight: 300;
-          padding: 0.5rem 1rem;
-          word-break: break-word;
-          overflow-x: hidden;
-          overflow-y: scroll;
-          white-space: pre-wrap;
-          /* width: clamp(300px, 40vw, 600px); */
           width: 100%;
-          height: auto;
+          height: 100%;
           min-height: 120px;
           max-height: 240px;
-          cursor: text;
-
-          &:focus-visible {
-            outline: none;
-          }
-
-          /* &:not(.supportContent):empty::before {
-            content: "Required";
-            font-style: italic;
-            color: var(--main-gray);
-          } */
+          field-sizing: content;
         }
       }
 
