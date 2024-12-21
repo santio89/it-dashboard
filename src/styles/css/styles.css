@@ -1509,8 +1509,8 @@ label:hover) {
   align-items: center;
   flex-direction: column;
   width: 100%;
-  /* .taskInputTitle {
-    font-weight: 600;
+  /* .taskOpenTitle {
+    field-sizing: content;
   } */
 }
 .mainModal__data__form.taskContainer fieldset,

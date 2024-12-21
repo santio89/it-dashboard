@@ -9,10 +9,11 @@ export default function SupportDataModal({ modalData }) {
   const modalActive = useSelector(state => state.modal.active)
   const [addSupport, resultAddSupport] = useAddSupportMutation()
 
-  const textInput = useRef()
-  const textInputEdit = useRef()
-  const [newTicketCategory, setNewTicketCategory] = useState("personal")
+  /*   const textInput = useRef()
+    const textInputEdit = useRef() */
   const [newTicketTitle, setNewTicketTitle] = useState("")
+  const [newTicketDescription, setNewTicketDescription] = useState("")
+  const [newTicketCategory, setNewTicketCategory] = useState("personal")
   /*   const [newTaskPriority, setNewTaskPriority] = useState("medium")
     const [newTaskStatus, setNewTaskStatus] = useState("not done") */
 
@@ -28,13 +29,7 @@ export default function SupportDataModal({ modalData }) {
 
   const trimInputs = () => {
     setNewTicketTitle(newTicketName => newTicketName.trim())
-
-    if (textInput.current) {
-      textInput.current.textContent = textInput.current.textContent.trim()
-    }
-    if (textInputEdit.current) {
-      textInputEdit.current.textContent = textInputEdit.current.textContent.trim()
-    }
+    setNewTicketDescription(newTicketDescription => newTicketDescription.trim())
   }
 
   const addSupportFn = async (e) => {
@@ -49,7 +44,7 @@ export default function SupportDataModal({ modalData }) {
     const ticket = {
       title: newTicketTitle,
       category: newTicketCategory,
-      content: textInput.current.textContent.trim(),
+      content: newTicketDescription
       /*       priority: newTicketPriority,
             status: newTicketStatus, */
     }
@@ -66,6 +61,7 @@ export default function SupportDataModal({ modalData }) {
   const editModeFN = () => {
     setNewTicketCategory(modalData?.category)
     setNewTicketTitle(modalData?.title)
+    setNewTicketDescription(modalData?.content)
     /*  setNewTicketPriority(modalData?.priority)
      setNewTicketStatus(modalData?.status) */
     setEditMode(true)
@@ -78,7 +74,7 @@ export default function SupportDataModal({ modalData }) {
       return
     }
 
-    const input = textInputEdit.current.textContent.trim()
+    const input = newTicketDescription.trim()
     const title = newTicketTitle.trim()
     const category = newTicketCategory.trim()
 
@@ -133,10 +129,9 @@ export default function SupportDataModal({ modalData }) {
   useEffect(() => {
     if (!modalActive) {
       /*  setNewTaskPriority("medium") */
-      setNewTicketCategory("personal")
       setNewTicketTitle("")
-      textInput.current.textContent = ""
-      textInputEdit.current.textContent = ""
+      setNewTicketDescription("")
+      setNewTicketCategory("personal")
       setEditMode(false)
       setDeleteMode(false)
     }
@@ -173,11 +168,12 @@ export default function SupportDataModal({ modalData }) {
             </div> */}
             <fieldset>
               <legend><label htmlFor="title">Title</label></legend>
-              <input id="title" placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+              <input className='taskOpenTitle' id="title" placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="description">Description</label></legend>
-              <div id="description" aria-label='textarea' className={`taskOpenContent`}>{modalData?.content || "-"}</div>
+              <textarea id="description" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.content || "-"} />
+
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
@@ -213,11 +209,12 @@ export default function SupportDataModal({ modalData }) {
           <form className='mainModal__data__form taskContainer editMode' disabled={resultEditSupport.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
             <fieldset>
               <legend><label htmlFor="editTitle">Title</label></legend>
-              <input id="editTitle" placeholder='Required' spellCheck={false} type="text" value={newTicketTitle} onChange={e => setNewTicketTitle(e.target.value)} maxLength={200} required />
+              <input className='taskOpenTitle' id="editTitle" placeholder='Required' spellCheck={false} type="text" value={newTicketTitle} onChange={e => setNewTicketTitle(e.target.value)} maxLength={200} required />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="editDescription" onClick={() => textInputEdit.current.focus()}>Description</label></legend>
-              <div id="editDescription" aria-label='textarea' className={`taskOpenContent supportContent ${resultEditSupport.isLoading && "disabled"}`} contentEditable={!resultEditSupport.isLoading} ref={textInputEdit} spellCheck={false}>{modalData?.content}</div>
+              <textarea id="editDescription" spellCheck={false} rows="4" value={newTicketDescription} onChange={e => setNewTicketDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
+
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
@@ -240,11 +237,12 @@ export default function SupportDataModal({ modalData }) {
           <form className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteSupport.isLoading} onSubmit={(e) => deleteSupportFn(e, modalData)}>
             <fieldset>
               <legend><label htmlFor="deleteTitle">Title</label></legend>
-              <input id="deleteTitle" placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+              <input className='taskOpenTitle' id="deleteTitle" placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="deleteDescription">Description</label></legend>
-              <div id="deleteDescription" aria-label='textarea' className={`taskOpenContent supportContent`}>{modalData?.content}</div>
+              <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.content || "-"} />
+
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
@@ -278,11 +276,11 @@ export default function SupportDataModal({ modalData }) {
           <form disabled={resultAddSupport.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addSupportFn(e)}>
             <fieldset>
               <legend><label htmlFor="addTitle">Title</label></legend>
-              <input id="addTitle" placeholder='Required' spellCheck={false} type="text" value={newTicketTitle} onChange={e => setNewTicketTitle(e.target.value)} maxLength={200} required />
+              <input className='taskOpenTitle' id="addTitle" placeholder='Required' spellCheck={false} type="text" value={newTicketTitle} onChange={e => setNewTicketTitle(e.target.value)} maxLength={200} required />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="addDescription" onClick={() => textInput.current.focus()}>Description</label></legend>
-              <div id="addDescription" aria-label='textarea' className={`taskOpenContent supportContent ${resultAddSupport.isLoading && "disabled"}`} contentEditable={!resultAddSupport.isLoading} ref={textInput} spellCheck={false}></div>
+              <textarea id="addDescription" spellCheck={false} rows="4" value={newTicketDescription} onChange={e => setNewTicketDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send' onClick={trimInputs}>Send</button>

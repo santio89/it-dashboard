@@ -393,10 +393,6 @@
           width: 100%;
         }
 
-        /* .taskInputTitle {
-          font-weight: 600;
-        } */
-
         .taskOptions {
           width: 100%;
           display: flex;
@@ -500,6 +496,10 @@
           max-height: 240px;
           field-sizing: content;
         }
+
+        /* .taskOpenTitle {
+          field-sizing: content;
+        } */
       }
 
       /* profile modal */

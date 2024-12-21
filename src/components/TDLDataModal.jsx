@@ -170,7 +170,7 @@ export default function TDLDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="title">Title</label></legend>
-              <input id="title" className='taskInputTitle' placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+              <input id="title" className='taskOpenTitle' placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="description">Description</label></legend>
@@ -242,11 +242,11 @@ export default function TDLDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="editTitle">Title</label></legend>
-              <input id="editTitle" className='taskInputTitle' placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
+              <input id="editTitle" className='taskOpenTitle' placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="editDescription">Description</label></legend>
-              <textarea id="addDescription" spellCheck={false} rows="4" value={newTaskDescription} onChange={e => setNewTaskDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
+              <textarea id="editDescription" spellCheck={false} rows="4" value={newTaskDescription} onChange={e => setNewTaskDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
@@ -286,7 +286,7 @@ export default function TDLDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="deleteTitle">Title</label></legend>
-              <input id="deleteTitle" className='taskInputTitle' placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+              <input id="deleteTitle" className='taskOpenTitle' placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="deleteDescription">Description</label></legend>
@@ -356,7 +356,7 @@ export default function TDLDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="addTitle">Title</label></legend>
-              <input id="addTitle" className='taskInputTitle' placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
+              <input id="addTitle" className='taskOpenTitle' placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="addDescription">Description</label></legend>
