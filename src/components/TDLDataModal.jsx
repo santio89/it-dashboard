@@ -170,7 +170,7 @@ export default function TDLDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="title">Title</label></legend>
-              <input id="title" className='taskOpenTitle' placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+              <textarea id="title" placeholder='Required' required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="description">Description</label></legend>
@@ -242,7 +242,7 @@ export default function TDLDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="editTitle">Title</label></legend>
-              <input id="editTitle" className='taskOpenTitle' placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
+              <textarea id="editTitle" placeholder='Required' required spellCheck={false} rows="1" value={newTaskTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTaskTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="editDescription">Description</label></legend>
@@ -286,11 +286,11 @@ export default function TDLDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="deleteTitle">Title</label></legend>
-              <input id="deleteTitle" className='taskOpenTitle' placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+              <textarea id="deleteTitle" placeholder='Required' required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="deleteDescription">Description</label></legend>
-              <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.content || "-"} />
+              <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="4" className='taskOpenContent' value={modalData?.content || "-"} />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
@@ -356,7 +356,7 @@ export default function TDLDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="addTitle">Title</label></legend>
-              <input id="addTitle" className='taskOpenTitle' placeholder='Required' spellCheck={false} type="text" value={newTaskTitle} onChange={e => setNewTaskTitle(e.target.value)} maxLength={200} required />
+              <textarea id="addTitle" placeholder='Required' required spellCheck={false} rows="1" value={newTaskTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTaskTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="addDescription">Description</label></legend>

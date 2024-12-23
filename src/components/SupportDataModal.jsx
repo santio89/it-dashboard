@@ -168,12 +168,11 @@ export default function SupportDataModal({ modalData }) {
             </div> */}
             <fieldset>
               <legend><label htmlFor="title">Title</label></legend>
-              <input className='taskOpenTitle' id="title" placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+              <textarea id="deleteTitle" placeholder='Required' required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="description">Description</label></legend>
               <textarea id="description" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.content || "-"} />
-
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
@@ -209,7 +208,7 @@ export default function SupportDataModal({ modalData }) {
           <form className='mainModal__data__form taskContainer editMode' disabled={resultEditSupport.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
             <fieldset>
               <legend><label htmlFor="editTitle">Title</label></legend>
-              <input className='taskOpenTitle' id="editTitle" placeholder='Required' spellCheck={false} type="text" value={newTicketTitle} onChange={e => setNewTicketTitle(e.target.value)} maxLength={200} required />
+              <textarea id="addTitle" placeholder='Required' required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="editDescription" onClick={() => textInputEdit.current.focus()}>Description</label></legend>
@@ -237,12 +236,11 @@ export default function SupportDataModal({ modalData }) {
           <form className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteSupport.isLoading} onSubmit={(e) => deleteSupportFn(e, modalData)}>
             <fieldset>
               <legend><label htmlFor="deleteTitle">Title</label></legend>
-              <input className='taskOpenTitle' id="deleteTitle" placeholder='Required' disabled spellCheck={false} type="text" value={modalData?.title || "-"} required />
+              <textarea id="deleteTitle" placeholder='Required' required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="deleteDescription">Description</label></legend>
-              <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.content || "-"} />
-
+              <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="4" className='taskOpenContent' value={modalData?.content || "-"} />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
@@ -276,7 +274,7 @@ export default function SupportDataModal({ modalData }) {
           <form disabled={resultAddSupport.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addSupportFn(e)}>
             <fieldset>
               <legend><label htmlFor="addTitle">Title</label></legend>
-              <input className='taskOpenTitle' id="addTitle" placeholder='Required' spellCheck={false} type="text" value={newTicketTitle} onChange={e => setNewTicketTitle(e.target.value)} maxLength={200} required />
+              <textarea id="addTitle" placeholder='Required' required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="addDescription" onClick={() => textInput.current.focus()}>Description</label></legend>
