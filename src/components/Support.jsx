@@ -111,7 +111,7 @@ export default function Support({ user }) {
               <ul className="support-list" ref={listContainer}>
                 {
                   supportList?.map((ticket) =>
-                    <li key={ticket.id}><button title={ticket.title} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, userId: user?.uid, ...ticket } })); setListPickerOpen(false) }}>{ticket.title}</button></li>
+                    <li key={ticket.id}><button className="taskContentBtn" title={ticket.title} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, userId: user?.uid, ...ticket } })); setListPickerOpen(false) }}>{ticket.title}</button></li>
                   )
                 }
                 {

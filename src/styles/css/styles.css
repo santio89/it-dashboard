@@ -958,7 +958,7 @@ select:disabled {
   padding: 1rem;
   color: var(--white);
   text-align: start;
-  text-wrap: balance;
+  text-wrap: pretty;
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
@@ -1060,11 +1060,15 @@ select:disabled {
   width: 100%;
   box-shadow: -2px 0 0 0 var(--main-color-light), -4px 0 0 0 var(--main-color);
 }
-.site-section__list .listWrapper ul.support-list li > button {
+.site-section__list .listWrapper ul.support-list li .taskContentBtn {
   width: 100%;
-  text-align: start;
-  justify-content: start;
   padding: 1rem;
+  text-align: start;
+  text-wrap: pretty;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .site-section__chart {
   flex: 3;
