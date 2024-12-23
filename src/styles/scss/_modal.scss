@@ -307,7 +307,7 @@
       }
 
       &.editMode {
-        input,
+        /* input,
         textarea,
         select {
           outline: 1px dashed var(--main-color-mid);
@@ -320,7 +320,7 @@
           &:focus-visible {
             outline: 1px dashed var(--white);
           }
-        }
+        } */
 
         .tdl-priority {
           outline: 1px dashed transparent !important;
@@ -352,14 +352,14 @@
       }
 
       &.deleteMode {
-        input,
+        /* input,
         textarea,
         select {
           outline: 1px dashed var(--red);
           appearance: none;
           -webkit-appearance: none;
           -moz-appearance: none;
-        }
+        } */
 
         .tdl-priority {
           outline: 1px dashed var(--red) !important;

@@ -1449,21 +1449,21 @@ label:hover) {
 .mainModal__data__form.disabled fieldset:hover, .mainModal__data__form.disabled fieldset:focus-visible {
   border: 1px solid var(--main-color-op);
 }
-.mainModal__data__form.editMode input,
-.mainModal__data__form.editMode textarea,
-.mainModal__data__form.editMode select {
-  outline: 1px dashed var(--main-color-mid);
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  color: var(--white);
-}
-.mainModal__data__form.editMode input:hover, .mainModal__data__form.editMode input:focus-visible,
-.mainModal__data__form.editMode textarea:hover,
-.mainModal__data__form.editMode textarea:focus-visible,
-.mainModal__data__form.editMode select:hover,
-.mainModal__data__form.editMode select:focus-visible {
-  outline: 1px dashed var(--white);
+.mainModal__data__form.editMode {
+  /* input,
+  textarea,
+  select {
+    outline: 1px dashed var(--main-color-mid);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: var(--white);
+
+    &:hover,
+    &:focus-visible {
+      outline: 1px dashed var(--white);
+    }
+  } */
 }
 .mainModal__data__form.editMode .tdl-priority {
   outline: 1px dashed transparent !important;
@@ -1484,13 +1484,15 @@ option:hover,
 label:hover) {
   border: 1px dashed var(--white);
 }
-.mainModal__data__form.deleteMode input,
-.mainModal__data__form.deleteMode textarea,
-.mainModal__data__form.deleteMode select {
-  outline: 1px dashed var(--red);
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+.mainModal__data__form.deleteMode {
+  /* input,
+  textarea,
+  select {
+    outline: 1px dashed var(--red);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  } */
 }
 .mainModal__data__form.deleteMode .tdl-priority {
   outline: 1px dashed var(--red) !important;
