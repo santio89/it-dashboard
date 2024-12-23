@@ -166,7 +166,7 @@ option {
   justify-content: start;
   align-items: center;
   text-align: left;
-  text-wrap: balance;
+  text-wrap: pretty;
   resize: none;
   font-style: normal;
   font-weight: 300;
