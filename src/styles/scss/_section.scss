@@ -533,9 +533,9 @@
               box-shadow: 0 1px 0 0 var(--main-gray-op);
               z-index: 1;
               color: var(--white);
-              overflow-x: auto;
-              /* overflow: hidden;
-              text-overflow: ellipsis; */
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
 
               input {
                 width: 100%;
