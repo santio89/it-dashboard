@@ -776,7 +776,7 @@ select:disabled {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  box-shadow: -2px 0 0 0 var(--main-color-light), -4px 0 0 0 var(--main-color);
+  box-shadow: -2px 0 0 0 var(--main-color-light);
 }
 .site-section__list .listWrapper ul.tdl-list {
   display: flex;
@@ -795,6 +795,15 @@ select:disabled {
 }
 .site-section__list .listWrapper ul.tdl-list li:has(.tdl-btnContainer) {
   overflow: hidden;
+}
+.site-section__list .listWrapper ul.tdl-list li.selectedLow {
+  box-shadow: -2px 0 0 0 var(--main-gray-dark);
+}
+.site-section__list .listWrapper ul.tdl-list li.selectedMedium {
+  box-shadow: -2px 0 0 0 var(--main-color-light);
+}
+.site-section__list .listWrapper ul.tdl-list li.selectedHigh {
+  box-shadow: -2px 0 0 0 var(--red);
 }
 .site-section__list .listWrapper ul.tdl-list li .taskPriority {
   position: absolute;
@@ -849,11 +858,8 @@ select:disabled {
   justify-content: center;
   align-items: center;
   text-align: center;
-  /*  width: 70px;
-  height: 20px; */
   padding: 0 0.25rem;
   background-color: var(--main-color-op);
-  /*  outline: 2px solid var(--main-color-op); */
   text-transform: capitalize;
   font-size: 12px;
   transition: none;
@@ -992,17 +998,23 @@ select:disabled {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: 200ms ease-in-out;
   /* display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis; */
-}
-.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn:hover, .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn:focus-visible,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn:hover,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn:focus-visible,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn:hover,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn:focus-visible {
-  background-color: var(--main-color-mid);
+  /* &.selectedLow {
+    box-shadow: -2px 0 0 0 var(--main-gray-dark),
+      -4px 0 0 0 var(--main-color);
+  }
+  &.selectedMedium {
+    box-shadow: -2px 0 0 0 var(--main-color-light),
+      -4px 0 0 0 var(--main-color);
+  }
+  &.selectedHigh {
+    box-shadow: -2px 0 0 0 var(--red),
+      -4px 0 0 0 var(--main-color);
+  } */
 }
 .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn.taskDone,
 .site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.taskDone,
@@ -1010,29 +1022,15 @@ select:disabled {
   text-decoration: line-through;
   filter: grayscale(0.5);
 }
-.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn.selectedLow,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.selectedLow,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn.selectedLow {
-  box-shadow: -2px 0 0 0 var(--main-gray-dark), -4px 0 0 0 var(--main-color);
-}
-.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn.selectedMedium,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.selectedMedium,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn.selectedMedium {
-  box-shadow: -2px 0 0 0 var(--main-color-light), -4px 0 0 0 var(--main-color);
-}
-.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn.selectedHigh,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.selectedHigh,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn.selectedHigh {
-  box-shadow: -2px 0 0 0 var(--red), -4px 0 0 0 var(--main-color);
-}
 .site-section__list .listWrapper ul.tdl-list li button.taskOption,
 .site-section__list .listWrapper ul.tdl-list li textarea.taskOption,
 .site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskOption {
-  /*  outline: 2px solid var(--main-color-op); */
   min-height: 120px;
-  background-color: var(--main-color-mid);
+  background-color: var(--main-color-op-light);
   white-space: normal;
   overflow-y: auto;
+  color: var(--main-text);
+  transition: 200ms ease-in-out;
 }
 .site-section__list .listWrapper ul.tdl-list li button.deleteMode,
 .site-section__list .listWrapper ul.tdl-list li textarea.deleteMode,
@@ -1051,16 +1049,17 @@ select:disabled {
 }
 .site-section__list .listWrapper ul.tdl-list li .taskContentTitle {
   width: 100%;
-  background-color: var(--main-color-mid);
+  background-color: var(--main-color-op-light);
   text-align: start;
   padding: 1rem;
   font-weight: 600;
-  box-shadow: 0 1px 0 0 var(--main-gray-op);
+  box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
   z-index: 1;
-  color: var(--white);
+  color: var(--main-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: 200ms ease-in-out;
 }
 .site-section__list .listWrapper ul.tdl-list li .taskContentTitle input {
   width: 100%;
@@ -1239,6 +1238,7 @@ select:disabled {
   transition: 200ms ease-in-out, outline 0ms, border 0ms;
   height: fit-content;
   max-height: 90%;
+  border-radius: var(--main-radius);
 }
 .mainModalWrapper:has(form.editMode) {
   border: 1px dashed var(--main-color-mid);
@@ -1584,7 +1584,7 @@ label:hover) {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.25rem;
+  gap: 6px;
   font-weight: 300;
   text-transform: capitalize;
   outline-offset: -1px;

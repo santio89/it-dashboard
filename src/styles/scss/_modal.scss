@@ -15,6 +15,7 @@
   transition: 200ms ease-in-out, outline 0ms, border 0ms;
   height: fit-content;
   max-height: 90%;
+  border-radius: var(--main-radius);
 
   &:has(form.editMode) {
     border: 1px dashed var(--main-color-mid);
@@ -425,7 +426,7 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 0.25rem;
+            gap: 6px;
             font-weight: 300;
             text-transform: capitalize;
             outline-offset: -1px;
