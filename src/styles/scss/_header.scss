@@ -1,8 +1,8 @@
 .mainHeader {
   width: 100%;
   background: var(--main-section);
-  border-bottom: 1px solid var(--main-gray-dark);
-  /* border-radius: var(--main-radius); */
+  border: 1px solid var(--main-gray-dark);
+  border-radius: var(--main-radius);
   padding: 0.5rem 2rem;
   display: flex;
   justify-content: space-between;
