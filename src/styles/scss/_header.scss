@@ -1,9 +1,8 @@
 .mainHeader {
   width: 100%;
   background: var(--main-section);
-  border: 1px solid var(--main-gray-dark);
-  border-radius: var(--main-radius);
-  margin: var(--main-section-spacing);
+  border-bottom: 1px solid var(--main-gray-dark);
+  /* border-radius: var(--main-radius); */
   padding: 0.5rem 2rem;
   display: flex;
   justify-content: space-between;
