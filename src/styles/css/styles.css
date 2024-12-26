@@ -426,6 +426,7 @@ select:disabled {
   border: 1px solid var(--main-gray-dark);
   border-radius: var(--main-radius);
   padding: 0.5rem;
+  padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem) 0.5rem;
   width: var(--aside-small-size);
   background-color: var(--main-section);
 }
@@ -456,7 +457,6 @@ select:disabled {
   filter: grayscale(1);
 }
 .mainContainer .side-panel__opts {
-  margin-block: 30px;
   display: flex;
   flex-direction: column;
   justify-content: start;
