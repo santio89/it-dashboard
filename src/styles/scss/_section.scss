@@ -1,14 +1,12 @@
 .site-section {
   flex: 1;
-  padding-block: var(--main-section-spacing);
-  padding-inline: calc(var(--main-section-spacing) / 2);
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: start;
   text-align: center;
   text-wrap: balance;
-  gap: calc(var(--main-section-spacing) / 2);
+  gap: var(--main-section-spacing);
   position: relative;
   overflow: auto;
 

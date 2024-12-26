@@ -14,9 +14,11 @@
   interpolate-size: allow-keywords;
   --font-primary: geist, monospace, "Courier New", Courier;
   --main-container-size: 1200px;
+  --aside-small-size: 70px;
+  --aside-big-size: 150px;
   --aside-transition: cubic-bezier(0, 1, 0.5, 1);
   --main-radius: 0.5rem;
-  --main-section-spacing: clamp(0.5rem, 0.5rem + 2vw, 2rem);
+  --main-section-spacing: calc(clamp(0.25rem, 0.25rem + 2vw, 1.1rem));
   --red: rgb(226, 47, 89);
   --black: rgb(10, 10, 10);
   --white: rgb(250, 250, 250);
@@ -210,9 +212,15 @@ select:disabled {
   justify-content: start;
   align-items: center;
   font-weight: 400;
-  background: var(--main-color-bg);
   overflow: hidden;
   transition: background-color 400ms ease-in-out, color 200ms ease-in-out;
+  padding: var(--main-section-spacing);
+  gap: var(--main-section-spacing);
+  background-color: var(--main-color-bg);
+  background-image: radial-gradient(var(--main-gray-darker-op) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0% 0%;
+  transition: background-color 400ms ease-in-out;
 }
 
 /* main container */
@@ -271,10 +279,10 @@ select:disabled {
 .mainHeader .logo::before {
   content: "";
   position: absolute;
-  left: -58%;
+  left: -32px;
   top: 50%;
   translate: 0 -50%;
-  width: 100px;
+  width: 42px;
   height: 4px;
   background-color: var(--main-color-op);
 }
@@ -329,9 +337,9 @@ select:disabled {
 }
 .mainHeader__btnContainer .btnWrapper .profile-opts {
   position: absolute;
-  top: 100%;
-  right: 0;
-  transform: translateX(100%);
+  top: calc(100% + 1px);
+  right: -1px;
+  transform: translateX(calc(100% + var(--main-section-spacing)));
   background: var(--main-section);
   border: 1px solid var(--main-gray-dark);
   transition: 200ms ease-in-out, background-color 400ms ease-in-out;
@@ -342,11 +350,10 @@ select:disabled {
   gap: 0.5rem;
   padding: 0.5rem;
   border-radius: var(--main-radius);
-  margin-top: 0.5rem;
+  margin-top: var(--main-section-spacing);
 }
 .mainHeader__btnContainer .btnWrapper .profile-opts.open {
-  transform: translateX(0%);
-  margin: 0.5rem;
+  transform: translateX(0);
 }
 .mainHeader__btnContainer .btnWrapper .profile-opts button {
   width: 100%;
@@ -401,11 +408,6 @@ select:disabled {
   z-index: 1;
   overflow: hidden;
   position: relative;
-  background-color: var(--main-color-bg);
-  background-image: radial-gradient(var(--main-gray-darker-op) 1px, transparent 1px);
-  background-size: 24px 24px;
-  background-position: 0% 0%;
-  transition: background-color 400ms ease-in-out;
 }
 .mainContainer .side-panel {
   display: flex;
@@ -423,10 +425,8 @@ select:disabled {
   overflow-y: auto;
   border: 1px solid var(--main-gray-dark);
   border-radius: var(--main-radius);
-  margin-block: var(--main-section-spacing);
-  margin-inline: calc(var(--main-section-spacing) / 2) 0;
   padding: 0.5rem;
-  width: 70px;
+  width: var(--aside-small-size);
   background-color: var(--main-section);
 }
 @media (max-width: 969px) {
@@ -438,7 +438,7 @@ select:disabled {
   }
 }
 .mainContainer .side-panel:hover {
-  width: 150px;
+  width: var(--aside-big-size);
 }
 .mainContainer .side-panel:hover a span {
   opacity: 1;
@@ -448,7 +448,7 @@ select:disabled {
   height: 4px;
 }
 .mainContainer .side-panel.expanded {
-  width: 150px;
+  width: var(--aside-big-size);
 }
 .mainContainer .side-panel .nav-link-disabled {
   pointer-events: none;
@@ -555,31 +555,29 @@ select:disabled {
   transform: rotate(-180deg);
 }
 .mainContainer .main-content {
-  width: calc(100% - 70px - var(--main-section-spacing) / 2);
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
   overflow: hidden;
-  margin-left: auto;
-  transition: width 400ms var(--aside-transition);
-  will-change: width;
+  margin-left: calc(var(--aside-small-size) + var(--main-section-spacing));
+  transition: margin-left 400ms var(--aside-transition);
+  will-change: margin-left;
 }
 .mainContainer .main-content.expanded {
-  width: calc(100% - 150px - var(--main-section-spacing) / 2);
+  margin-left: calc(var(--aside-big-size) + var(--main-section-spacing));
 }
 
 .site-section {
   flex: 1;
-  padding-block: var(--main-section-spacing);
-  padding-inline: calc(var(--main-section-spacing) / 2);
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: start;
   text-align: center;
   text-wrap: balance;
-  gap: calc(var(--main-section-spacing) / 2);
+  gap: var(--main-section-spacing);
   position: relative;
   overflow: auto;
 }

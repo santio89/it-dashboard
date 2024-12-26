@@ -28,10 +28,10 @@
     &::before {
       content: "";
       position: absolute;
-      left: -58%;
+      left: -32px;
       top: 50%;
       translate: 0 -50%;
-      width: 100px;
+      width: 42px;
       height: 4px;
       background-color: var(--main-color-op);
     }
@@ -96,9 +96,9 @@
 
       .profile-opts {
         position: absolute;
-        top: 100%;
-        right: 0;
-        transform: translateX(100%);
+        top: calc(100% + 1px);
+        right: -1px;
+        transform: translateX(calc(100% + var(--main-section-spacing)));
         background: var(--main-section);
         border: 1px solid var(--main-gray-dark);
         transition: 200ms ease-in-out, background-color 400ms ease-in-out;
@@ -109,11 +109,10 @@
         gap: 0.5rem;
         padding: 0.5rem;
         border-radius: var(--main-radius);
-        margin-top: 0.5rem;
+        margin-top: var(--main-section-spacing);
 
         &.open {
-          transform: translateX(0%);
-          margin: 0.5rem;
+          transform: translateX(0);
         }
 
         button {

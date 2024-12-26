@@ -8,14 +8,6 @@
   z-index: 1;
   overflow: hidden;
   position: relative;
-  background-color: var(--main-color-bg);
-  background-image: radial-gradient(
-    var(--main-gray-darker-op) 1px,
-    transparent 1px
-  );
-  background-size: 24px 24px;
-  background-position: 0% 0%;
-  transition: background-color 400ms ease-in-out;
 
   .side-panel {
     display: flex;
@@ -34,10 +26,8 @@
     overflow-y: auto;
     border: 1px solid var(--main-gray-dark);
     border-radius: var(--main-radius);
-    margin-block: var(--main-section-spacing);
-    margin-inline: calc(var(--main-section-spacing) / 2) 0;
     padding: 0.5rem;
-    width: 70px;
+    width: var(--aside-small-size);
     background-color: var(--main-section);
 
     @media (max-width: $tablet-breakpoint) {
@@ -48,7 +38,7 @@
     }
 
     &:hover {
-      width: 150px;
+      width: var(--aside-big-size);
 
       a {
         span {
@@ -63,7 +53,7 @@
     }
 
     &.expanded {
-      width: 150px;
+      width: var(--aside-big-size);
     }
 
     .nav-link-disabled {
@@ -193,19 +183,18 @@
   }
 
   .main-content {
-    width: calc(100% - 70px - (var(--main-section-spacing) / 2));
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
     overflow: hidden;
-
-    margin-left: auto;
-    transition: width 400ms var(--aside-transition);
-    will-change: width;
+    margin-left: calc(var(--aside-small-size) + var(--main-section-spacing));
+    transition: margin-left 400ms var(--aside-transition);
+    will-change: margin-left;
 
     &.expanded {
-      width: calc(100% - 150px - (var(--main-section-spacing) / 2));
+      margin-left: calc(var(--aside-big-size) + var(--main-section-spacing));
     }
   }
 }
