@@ -628,9 +628,6 @@ select:disabled {
   color: var(--white);
   background: var(--main-color-op);
 }
-.site-section .btnWrapper:has(+ .chartWrapper) button {
-  border-radius: var(--main-radius) var(--main-radius) 0 0;
-}
 .site-section .btnWrapper .listPickerWrapper {
   height: 25px;
 }
@@ -1103,6 +1100,22 @@ select:disabled {
 .site-section__chart {
   flex: 3;
   min-width: max(250px, 60%);
+}
+.site-section__chart .btnWrapper button {
+  border-radius: var(--main-radius) var(--main-radius) 0 0;
+  position: relative;
+}
+.site-section__chart .btnWrapper button::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  right: -8px;
+  bottom: 0;
+  background-color: var(--main-color-mid);
+  mask-image: url(../../assets/img/round-border-fix.svg);
+  mask-size: cover;
+  mask-repeat: no-repeat;
 }
 .site-section__chart .chartWrapper {
   flex: 1;

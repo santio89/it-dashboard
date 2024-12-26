@@ -58,10 +58,6 @@
       }
     }
 
-    &:has(+ .chartWrapper) button {
-      border-radius: var(--main-radius) var(--main-radius) 0 0;
-    }
-
     .listPickerWrapper {
       height: 25px;
 
@@ -607,6 +603,26 @@
   &__chart {
     flex: 3;
     min-width: max(250px, 60%);
+
+    .btnWrapper {
+      button {
+        border-radius: var(--main-radius) var(--main-radius) 0 0;
+        position: relative;
+
+        &::after {
+          content: "";
+          width: 8px;
+          height: 8px;
+          position: absolute;
+          right: -8px;
+          bottom: 0;
+          background-color: var(--main-color-mid);
+          mask-image: url(../../assets/img/round-border-fix.svg);
+          mask-size: cover;
+          mask-repeat: no-repeat;
+        }
+      }
+    }
 
     .chartWrapper {
       flex: 1;
