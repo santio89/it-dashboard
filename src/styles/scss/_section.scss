@@ -620,6 +620,13 @@
           mask-image: url(../../assets/img/round-border-fix.svg);
           mask-size: cover;
           mask-repeat: no-repeat;
+          transition: background-color 200ms ease-in-out;
+        }
+
+        &:is(:hover, :focus-visible) {
+          &::after {
+            background-color: var(--main-color-op);
+          }
         }
       }
     }

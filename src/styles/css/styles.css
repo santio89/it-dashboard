@@ -1116,6 +1116,10 @@ select:disabled {
   mask-image: url(../../assets/img/round-border-fix.svg);
   mask-size: cover;
   mask-repeat: no-repeat;
+  transition: background-color 200ms ease-in-out;
+}
+.site-section__chart .btnWrapper button:is(:hover, :focus-visible)::after {
+  background-color: var(--main-color-op);
 }
 .site-section__chart .chartWrapper {
   flex: 1;
