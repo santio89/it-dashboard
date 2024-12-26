@@ -16,11 +16,17 @@ $home-breakpoint-height: 444px;
 }
 
 :root {
+  interpolate-size: allow-keywords;
+
   --font-primary: geist, monospace, "Courier New", Courier;
 
   --main-container-size: 1200px;
 
   --aside-transition: cubic-bezier(0, 1, 0.5, 1);
+
+  --main-radius: 0.5rem;
+
+  --main-section-spacing: clamp(0.5rem, 0.5rem + 2vw, 2rem);
 
   --red: rgb(226, 47, 89);
   --black: rgb(10, 10, 10);
@@ -57,15 +63,18 @@ html {
 
   ::-webkit-scrollbar-track {
     background: transparent;
+    border-radius: var(--main-radius);
   }
 
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
+    border-radius: var(--main-radius);
   }
 
   ::-webkit-scrollbar-thumb {
     background: var(--main-color-op);
+    border-radius: var(--main-radius);
   }
 
   ::selection {
@@ -123,6 +132,7 @@ option {
   outline-offset: 0;
   transition: color 200ms ease-in-out, background-color 200ms ease-in-out,
     outline-color 200ms ease-in-out, border-color 200ms ease-in-out;
+  border-radius: var(--main-radius);
 
   &:hover,
   &:focus-visible {

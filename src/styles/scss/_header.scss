@@ -1,5 +1,5 @@
 .mainHeader {
-  background: var(--main-color-bg);
+  background: var(--main-section);
   border-bottom: 1px solid var(--main-gray-dark);
   width: 100%;
   padding: 0.5rem 2rem;
@@ -98,18 +98,21 @@
         top: 100%;
         right: 0;
         transform: translateX(100%);
-        background: var(--main-color-bg);
+        background: var(--main-section);
         border: 1px solid var(--main-gray-dark);
-        border-right: none;
         transition: 200ms ease-in-out, background-color 400ms ease-in-out;
         display: flex;
         flex-direction: column;
         justify-content: start;
         align-items: center;
-        gap: 1px;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border-radius: var(--main-radius);
+        margin-top: 0.5rem;
 
         &.open {
           transform: translateX(0%);
+          margin: 0.5rem;
         }
 
         button {
@@ -127,6 +130,7 @@
           display: flex;
           justify-content: start;
           align-items: center;
+          border-radius: var(--main-radius);
 
           svg {
             border-radius: 0;
