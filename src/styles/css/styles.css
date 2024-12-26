@@ -561,12 +561,13 @@ select:disabled {
   justify-content: center;
   align-items: stretch;
   overflow: hidden;
-  margin-left: calc(var(--aside-small-size) + var(--main-section-spacing));
+  padding-left: var(--main-section-spacing);
+  margin-left: var(--aside-small-size);
   transition: margin-left 400ms var(--aside-transition);
   will-change: margin-left;
 }
 .mainContainer .main-content.expanded {
-  margin-left: calc(var(--aside-big-size) + var(--main-section-spacing));
+  margin-left: var(--aside-big-size);
 }
 
 .site-section {
