@@ -428,6 +428,15 @@ select:disabled {
   padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem) 0.5rem;
   width: var(--aside-small-size);
   background-color: var(--main-section);
+  /* &:hover {
+    width: var(--aside-big-size);
+
+    a {
+      span {
+        opacity: 1;
+      }
+    }
+  } */
 }
 @media (max-width: 969px) {
   .mainContainer .side-panel {
@@ -436,12 +445,6 @@ select:disabled {
     left: 0;
     bottom: 0;
   }
-}
-.mainContainer .side-panel:hover {
-  width: var(--aside-big-size);
-}
-.mainContainer .side-panel:hover a span {
-  opacity: 1;
 }
 .mainContainer .side-panel::-webkit-scrollbar {
   width: 4px;
