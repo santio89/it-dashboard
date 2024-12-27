@@ -124,7 +124,8 @@
     max-width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 1rem;
+    padding-block: 1rem;
+    padding-inline: .5rem;
     background-color: var(--main-section);
     color: var(--main-text);
     transition: background-color 400ms ease-in-out;
@@ -140,6 +141,8 @@
     }
 
     &:not(.site-section__homeCard) {
+      scrollbar-gutter: stable both-edges;
+
       @media (max-width: $tablet-breakpoint) {
         flex: 1;
         min-height: max(50% - 0.5rem, 500px);

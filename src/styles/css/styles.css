@@ -695,7 +695,8 @@ select:disabled {
   max-width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 1rem;
+  padding-block: 1rem;
+  padding-inline: 0.5rem;
   background-color: var(--main-section);
   color: var(--main-text);
   transition: background-color 400ms ease-in-out;
@@ -707,6 +708,9 @@ select:disabled {
 }
 .site-section__inner.admin {
   min-height: 100% !important;
+}
+.site-section__inner:not(.site-section__homeCard) {
+  scrollbar-gutter: stable both-edges;
 }
 @media (max-width: 969px) {
   .site-section__inner:not(.site-section__homeCard) {
