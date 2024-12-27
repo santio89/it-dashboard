@@ -234,6 +234,30 @@ select:disabled {
   flex-direction: column;
   justify-content: start;
   align-items: center;
+
+  /* css-pattern */
+  /* --s: 24px;
+  --c1: var(--main-color-bg);
+  --c2: var(--main-color);
+  --_g: var(--c1) 90deg, var(--c2) 0 135deg, #0000 0;
+  background: conic-gradient(
+      from -45deg at calc(100% / 3) calc(100% / 3),
+      var(--c1) 90deg,
+      #0000 0
+    ),
+    conic-gradient(from -135deg at calc(100% / 3) calc(2 * 100% / 3), var(--_g)),
+    conic-gradient(
+      from 135deg at calc(2 * 100% / 3) calc(2 * 100% / 3),
+      var(--_g)
+    ),
+    conic-gradient(
+      from 45deg at calc(2 * 100% / 3) calc(100% / 3),
+      var(--_g),
+      var(--c1) 0 225deg,
+      var(--c2) 0
+    );
+  background-size: var(--s) var(--s); */
+  /* fin css-pattern */
 }
 
 /* main container */
