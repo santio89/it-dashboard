@@ -224,14 +224,14 @@ select:disabled {
   font-weight: 400;
   overflow: hidden;
   transition: background-color 400ms ease-in-out, color 200ms ease-in-out;
-  padding: var(--main-section-spacing);
+  padding: calc(var(--main-section-spacing)/2) calc(var(--main-section-spacing)/2);
   gap: var(--main-section-spacing);
   background-color: var(--main-color-bg);
   background-image: radial-gradient(
     var(--main-gray-darker-op) 1px,
     transparent 1px
   );
-  background-size: 24px 24px;
+  background-size: 32px 32px;
   background-position: 0% 0%;
   transition: background-color 400ms ease-in-out;
 }

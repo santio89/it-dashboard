@@ -160,7 +160,7 @@ export default function ContactsDataModal({ modalData }) {
               <button tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
             </div>
           </div>
-          <form className='mainModal__data__form disabled'>
+          <form autoComplete='off' className='mainModal__data__form disabled'>
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="name">Name</label></legend>
@@ -235,7 +235,7 @@ export default function ContactsDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form className='mainModal__data__form editMode' disabled={resultEditContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => { trimInputs(); editUserFn(e, modalData) }} >
+          <form autoComplete='off' className='mainModal__data__form editMode' disabled={resultEditContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => { trimInputs(); editUserFn(e, modalData) }} >
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="editName">Name</label></legend>
@@ -300,7 +300,7 @@ export default function ContactsDataModal({ modalData }) {
               <button tabIndex={-1} disabled={resultDeleteContact.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
             </div>
           </div>
-          <form className='mainModal__data__form deleteMode disabled' disabled={resultDeleteContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteUserFn(e, modalData)} >
+          <form autoComplete='off' className='mainModal__data__form deleteMode disabled' disabled={resultDeleteContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteUserFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="deleteName">Name</label></legend>
@@ -374,7 +374,7 @@ export default function ContactsDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form className='mainModal__data__form' disabled={resultAddContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => { addUserFn(e) }}  >
+          <form autoComplete='off' className='mainModal__data__form' disabled={resultAddContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => { addUserFn(e) }}  >
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="addName">Name</label></legend>

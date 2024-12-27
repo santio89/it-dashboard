@@ -160,7 +160,7 @@ export default function DevicesDataModal({ modalData }) {
               <button tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
             </div>
           </div>
-          <form className='mainModal__data__form disabled'>
+          <form autoComplete='off' className='mainModal__data__form disabled'>
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="name">Name</label></legend>
@@ -235,7 +235,7 @@ export default function DevicesDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form className='mainModal__data__form editMode' disabled={resultEditDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editDeviceFn(e, modalData)} >
+          <form autoComplete='off' className='mainModal__data__form editMode' disabled={resultEditDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editDeviceFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="editName">Name</label></legend>
@@ -297,7 +297,7 @@ export default function DevicesDataModal({ modalData }) {
               <button tabIndex={-1} disabled={resultDeleteDevice.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
             </div>
           </div>
-          <form className='mainModal__data__form deleteMode disabled' disabled={resultDeleteDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteDeviceFn(e, modalData)}>
+          <form autoComplete='off' className='mainModal__data__form deleteMode disabled' disabled={resultDeleteDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteDeviceFn(e, modalData)}>
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="deleteName">Name</label></legend>
@@ -371,7 +371,7 @@ export default function DevicesDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form className='mainModal__data__form' disabled={resultAddDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addDeviceFn(e)}>
+          <form autoComplete='off' className='mainModal__data__form' disabled={resultAddDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addDeviceFn(e)}>
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="addName">Name</label></legend>

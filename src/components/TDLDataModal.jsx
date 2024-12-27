@@ -150,7 +150,7 @@ export default function TDLDataModal({ modalData }) {
               <button tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
             </div>
           </div>
-          <form className='mainModal__data__form taskContainer disabled'>
+          <form autoCapitalize='off' className='mainModal__data__form taskContainer disabled'>
             <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>Priority:&nbsp;</div>
@@ -207,7 +207,7 @@ export default function TDLDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form className='mainModal__data__form taskContainer editMode' disabled={resultEditTdl.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTaskFn(e, modalData)}>
+          <form autoCapitalize='off' className='mainModal__data__form taskContainer editMode' disabled={resultEditTdl.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTaskFn(e, modalData)}>
             <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>Priority:&nbsp;</div>
@@ -266,7 +266,7 @@ export default function TDLDataModal({ modalData }) {
               <button tabIndex={-1} disabled={resultDeleteTdl.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
             </div>
           </div>
-          <form className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteTdl.isLoading} onSubmit={(e) => deleteTdlFn(e, modalData)}>
+          <form autoCapitalize='off' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteTdl.isLoading} onSubmit={(e) => deleteTdlFn(e, modalData)}>
             <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>Priority:&nbsp;</div>
@@ -321,7 +321,7 @@ export default function TDLDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form disabled={resultAddTdl.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addTdlFn(e)}>
+          <form autoCapitalize='off' disabled={resultAddTdl.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addTdlFn(e)}>
             <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>Priority:&nbsp;</div>
