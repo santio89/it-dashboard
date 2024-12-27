@@ -97,7 +97,7 @@
       .profile-opts {
         position: absolute;
         top: calc(100% + 1px);
-        right: -1px;
+        right: -2px;
         transform: translateX(calc(100% + var(--main-section-spacing)));
         background: var(--main-section);
         border: 1px solid var(--main-gray-dark);
