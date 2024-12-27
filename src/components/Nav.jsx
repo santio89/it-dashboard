@@ -48,7 +48,7 @@ export default function Nav({ rootTheme, user }) {
       <Link className="logo" to="/">IT DASHBOARD</Link>
       <div className="mainHeader__btnContainer">
         <div className="btnWrapper">
-          <button onClick={toggleLight} onAnimationEnd={() => setThemeClicked(false)}>
+          <button aria-label="Dark/Light Mode" onClick={toggleLight} onAnimationEnd={() => setThemeClicked(false)}>
             {lightTheme ?
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className={themeClicked && "theme-clicked"} viewBox="0 0 16 16">
                 <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278" />
@@ -62,11 +62,11 @@ export default function Nav({ rootTheme, user }) {
         </div>
         <div className="btnWrapper">
           {user ?
-            <button className={`profileBtn ${profileOpts && "profileOn"}`} onClick={() => setProfileOpts(!profileOpts)}>
+            <button aria-label="Profile" className={`profileBtn ${profileOpts && "profileOn"}`} onClick={() => setProfileOpts(!profileOpts)}>
               <img alt="profile-pic" src={user.photoURL} />
             </button>
             :
-            <button className={`profileBtn ${profileOpts && "profileOn"}`} onClick={() => setOpts()}>
+            <button aria-label="Profile" className={`profileBtn ${profileOpts && "profileOn"}`} onClick={() => setOpts()}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
               </svg>
