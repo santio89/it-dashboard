@@ -1198,6 +1198,8 @@ select:disabled {
   aspect-ratio: 16/9;
   background-color: var(--main-section);
   background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%);
+  outline: 1px solid transparent;
+  box-shadow: 0 0 1rem transparent;
   transition: background-color 400ms ease-in-out, outline-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
 }
 .site-section__homeCard:has(.homeCard-anchor:is(:hover, :focus-visible)) {
