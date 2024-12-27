@@ -18,7 +18,7 @@
   --aside-big-size: 150px;
   --aside-transition: cubic-bezier(0, 1, 0.5, 1);
   --main-radius: 0.5rem;
-  --main-section-spacing: calc(clamp(0.25rem, 0.25rem + 2vw, 1.1rem));
+  --main-section-spacing: calc(clamp(0.25rem, 0.25rem + 2vw, 1rem));
   --red: rgb(226, 47, 89);
   --black: rgb(10, 10, 10);
   --white: rgb(250, 250, 250);
@@ -213,7 +213,7 @@ select:disabled {
   padding: calc(var(--main-section-spacing) / 2) calc(var(--main-section-spacing) / 2);
   background-color: var(--main-color-bg);
   background-image: radial-gradient(var(--main-gray-darker-op) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-size: 8px 8px;
   background-position: 0% 0%;
   transition: background-color 400ms ease-in-out;
   display: flex;

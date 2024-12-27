@@ -30,7 +30,7 @@ $home-breakpoint-height: 444px;
 
   --main-radius: 0.5rem;
 
-  --main-section-spacing: calc(clamp(0.25rem, 0.25rem + 2vw, 1.1rem));
+  --main-section-spacing: calc(clamp(0.25rem, 0.25rem + 2vw, 1rem));
 
   --red: rgb(226, 47, 89);
   --black: rgb(10, 10, 10);
@@ -227,7 +227,7 @@ select:disabled {
     var(--main-gray-darker-op) 1px,
     transparent 1px
   );
-  background-size: 32px 32px;
+  background-size: 8px 8px;
   background-position: 0% 0%;
   transition: background-color 400ms ease-in-out;
   display: flex;
