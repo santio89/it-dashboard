@@ -124,7 +124,7 @@
     max-width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
+    padding: 1rem;
     background-color: var(--main-section);
     color: var(--main-text);
     transition: background-color 400ms ease-in-out;
@@ -721,7 +721,7 @@
       align-items: center;
       outline: 1px solid var(--main-gray-dark);
       font-size: 1rem;
-      padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
+      padding: 1rem;
       background: transparent;
       text-shadow: 0 0 0 transparent;
       color: var(--main-text);

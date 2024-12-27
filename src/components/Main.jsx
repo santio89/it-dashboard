@@ -9,8 +9,9 @@ import TDL from "./TDL"
 import NotFound from "./NotFound"
 import { useSelector, useDispatch } from "react-redux";
 import { setSideExpanded } from "../store/slices/themeSlice";
+import Nav from "./Nav";
 
-export default function Main({ section, user }) {
+export default function Main({ rootTheme, section, user }) {
   const sideExpanded = useSelector(state => state.theme.sideExpanded)
   const dispatch = useDispatch()
 
@@ -86,14 +87,15 @@ export default function Main({ section, user }) {
         </button>
       </aside>
       <main className={`main-content ${sideExpanded && "expanded"}`}>
+      <Nav rootTheme={rootTheme} user={user} section={section} /> 
         <div className='site-section'>
-          {section === "main" && <Home />}
+          {section === "home" && <Home />}
           {user && section === "contacts" && <Contacts user={user} />}
           {user && section === "devices" && <Devices user={user} />}
-          {user && section === "tdl" && <TDL user={user} />}
+          {user && section === "tasks" && <TDL user={user} />}
           {user && section === "support" && <Support user={user} />}
           {user && section === "admin" && <Admin user={user} />}
-          {!user && section !== "main" && section !== "notFound" && <PrivateRoute />}
+          {!user && section !== "home" && section !== "notFound" && <PrivateRoute />}
           {section === "notFound" && <NotFound />}
         </div>
       </main>

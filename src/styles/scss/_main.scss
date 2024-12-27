@@ -26,7 +26,7 @@
     overflow-y: auto;
     border: 1px solid var(--main-gray-dark);
     border-radius: var(--main-radius);
-    padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem) 0.5rem;
+    padding: 0.5rem;
     width: var(--aside-small-size);
     background-color: var(--main-section);
 
@@ -187,6 +187,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
+    gap: var(--main-section-spacing);
     overflow: hidden;
     padding-left: var(--main-section-spacing);
     margin-left: var(--aside-small-size);

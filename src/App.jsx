@@ -18,7 +18,7 @@ function App() {
 
   const Layout = () => (
     <>
-      <Nav rootTheme={rootTheme} user={user} />
+      {/* <Nav rootTheme={rootTheme} user={user} /> */}
       <Outlet />
     </>
   );
@@ -54,13 +54,13 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/" element={<Main section={"main"} user={checkUser} />} />
-              <Route path="/contacts" element={<Main section={"contacts"} user={checkUser} />} />
-              <Route path="/devices" element={<Main section={"devices"} user={checkUser} />} />
-              <Route path="/tdl" element={<Main section={"tdl"} user={checkUser} />} />
-              <Route path="/support" element={<Main section={"support"} user={checkUser} />} />
-              <Route path="/admin" element={<Main section={"admin"} user={checkUser} />} />
-              <Route path="*" element={<Main section={"notFound"} user={checkUser} />} />
+              <Route path="/" element={<Main rootTheme={rootTheme} section={"home"} user={checkUser} />} />
+              <Route path="/contacts" element={<Main rootTheme={rootTheme} section={"contacts"} user={checkUser} />} />
+              <Route path="/devices" element={<Main rootTheme={rootTheme} section={"devices"} user={checkUser} />} />
+              <Route path="/tdl" element={<Main rootTheme={rootTheme} section={"tasks"} user={checkUser} />} />
+              <Route path="/support" element={<Main rootTheme={rootTheme} section={"support"} user={checkUser} />} />
+              <Route path="/admin" element={<Main rootTheme={rootTheme} section={"admin"} user={checkUser} />} />
+              <Route path="*" element={<Main rootTheme={rootTheme} section={"notFound"} user={checkUser} />} />
             </Route>
           </Routes>
         </BrowserRouter>

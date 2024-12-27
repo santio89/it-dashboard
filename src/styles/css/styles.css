@@ -254,7 +254,7 @@ select:disabled {
   background: var(--main-section);
   border: 1px solid var(--main-gray-dark);
   border-radius: var(--main-radius);
-  padding: 0.5rem 2rem;
+  padding: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -269,25 +269,34 @@ select:disabled {
 }
 .mainHeader .logo {
   font-weight: 700;
+  font-size: 1.25em;
   color: var(--main-text);
   background: none;
   text-shadow: 0 0 0 transparent;
   text-align: start;
   position: relative;
-  height: 56px;
-}
-.mainHeader .logo::before {
-  content: "";
-  position: absolute;
-  left: -32px;
-  top: 50%;
-  translate: 0 -50%;
-  width: 42px;
-  height: 4px;
-  background-color: var(--main-color-op);
-}
-.mainHeader .logo:hover, .mainHeader .logo:focus-visible {
-  text-shadow: 0 0 2px var(--main-text);
+  padding: 0;
+  text-transform: uppercase;
+  transition: 200ms ease-in-out;
+  /* &::first-letter{
+    text-decoration: underline;
+    text-decoration-color: var(--main-color-op);
+    text-decoration-thickness: 4px;
+    text-underline-offset: 4px;
+  } */
+  /* &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--main-color-op);
+  } */
+  /* &:hover,
+  &:focus-visible {
+    text-shadow: 0 0 2px var(--main-text);
+  } */
 }
 .mainHeader__btnContainer {
   display: flex;
@@ -426,7 +435,7 @@ select:disabled {
   overflow-y: auto;
   border: 1px solid var(--main-gray-dark);
   border-radius: var(--main-radius);
-  padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem) 0.5rem;
+  padding: 0.5rem;
   width: var(--aside-small-size);
   background-color: var(--main-section);
   /* &:hover {
@@ -563,6 +572,7 @@ select:disabled {
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
+  gap: var(--main-section-spacing);
   overflow: hidden;
   padding-left: var(--main-section-spacing);
   margin-left: var(--aside-small-size);
@@ -686,7 +696,7 @@ select:disabled {
   max-width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
+  padding: 1rem;
   background-color: var(--main-section);
   color: var(--main-text);
   transition: background-color 400ms ease-in-out;
@@ -1202,7 +1212,7 @@ select:disabled {
   align-items: center;
   outline: 1px solid var(--main-gray-dark);
   font-size: 1rem;
-  padding: clamp(0.25rem, 0.25rem + 1vw, 1.5rem);
+  padding: 1rem;
   background: transparent;
   text-shadow: 0 0 0 transparent;
   color: var(--main-text);

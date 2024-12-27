@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux"
 import { setLight } from "../store/slices/themeSlice"
 import { setModal } from "../store/slices/modalSlice"
-import { Link } from 'react-router-dom'
+/* import { Link } from 'react-router-dom' */
 import { useEffect, useState } from "react"
 import { useSignGoogleMutation, useSignOutMutation } from "../store/slices/apiSlice"
 
-export default function Nav({ rootTheme, user }) {
+export default function Nav({ rootTheme, user, section }) {
   const dispatch = useDispatch()
   const lightTheme = useSelector(state => state.theme.light)
   const [themeClicked, setThemeClicked] = useState(false)
@@ -45,7 +45,7 @@ export default function Nav({ rootTheme, user }) {
 
   return (
     <header className="mainHeader">
-      <Link className="logo" to="/">IT DASHBOARD</Link>
+      <div className="logo" to="/">{section === "home" ? "IT DASHBOARD" : section}</div>
       <div className="mainHeader__btnContainer">
         <div className="btnWrapper">
           <button aria-label="Dark/Light Mode" onClick={toggleLight} onAnimationEnd={() => setThemeClicked(false)}>
