@@ -217,15 +217,11 @@ select:disabled {
   min-height: 100dvh;
   max-height: 100vh;
   max-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
   font-weight: 400;
   overflow: hidden;
   transition: background-color 400ms ease-in-out, color 200ms ease-in-out;
-  padding: calc(var(--main-section-spacing)/2) calc(var(--main-section-spacing)/2);
-  gap: var(--main-section-spacing);
+  padding: calc(var(--main-section-spacing) / 2)
+    calc(var(--main-section-spacing) / 2);
   background-color: var(--main-color-bg);
   background-image: radial-gradient(
     var(--main-gray-darker-op) 1px,
@@ -234,6 +230,10 @@ select:disabled {
   background-size: 32px 32px;
   background-position: 0% 0%;
   transition: background-color 400ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
 }
 
 /* main container */
