@@ -96,12 +96,12 @@
 
       .profile-opts {
         position: absolute;
-        top: calc(100% + 1px);
-        right: -2px;
-        transform: translateX(calc(100% + var(--main-section-spacing)));
+        top: calc(100% + var(--main-section-spacing) / 2 + 1px);
+        right: -1px;
         background: var(--main-section);
         border: 1px solid var(--main-gray-dark);
-        transition: 200ms ease-in-out, background-color 400ms ease-in-out;
+        transition: 200ms ease-in-out, scale 100ms ease-in-out,
+          opacity 100ms ease-in-out, background-color 400ms ease-in-out;
         display: flex;
         flex-direction: column;
         justify-content: start;
@@ -109,10 +109,13 @@
         gap: 0.5rem;
         padding: 0.5rem;
         border-radius: var(--main-radius);
-        margin-top: var(--main-section-spacing);
+
+        scale: 0.9;
+        opacity: 0;
 
         &.open {
-          transform: translateX(0);
+          scale: 1;
+          opacity: 1;
         }
 
         button {
