@@ -653,7 +653,7 @@
       align-items: center;
       width: 100%;
       border: 2px solid var(--main-color-mid);
-      background: var(--main-color-op);
+      background: var(--main-color-op-light);
       border-radius: 0 var(--main-radius) var(--main-radius) var(--main-radius);
 
       .dataChart {
@@ -676,6 +676,8 @@
               font-family: var(--font-primary);
               font-weight: 300;
               font-size: 1rem;
+              transition: 200ms ease-in-out;
+              fill: var(--main-text);
               transition: 200ms ease-in-out;
 
               &[text-anchor="middle"] {
