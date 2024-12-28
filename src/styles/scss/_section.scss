@@ -234,7 +234,7 @@
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
-              box-shadow: -2px 0 0 0 var(--main-color-light);
+              box-shadow: -2px 0 0 0 var(--main-color);
             }
           }
         }
@@ -262,7 +262,7 @@
               box-shadow: -2px 0 0 0 var(--main-gray-dark);
             }
             &.selectedMedium {
-              box-shadow: -2px 0 0 0 var(--main-color-light);
+              box-shadow: -2px 0 0 0 var(--main-color);
             }
             &.selectedHigh {
               box-shadow: -2px 0 0 0 var(--red);
@@ -510,7 +510,7 @@
                     -4px 0 0 0 var(--main-color);
                 }
                 &.selectedMedium {
-                  box-shadow: -2px 0 0 0 var(--main-color-light),
+                  box-shadow: -2px 0 0 0 var(--main-color),
                     -4px 0 0 0 var(--main-color);
                 }
                 &.selectedHigh {
@@ -594,7 +594,7 @@
 
           li {
             width: 100%;
-            box-shadow: -2px 0 0 0 var(--main-color-light);
+            box-shadow: -2px 0 0 0 var(--main-color);
             border-radius: var(--main-radius);
 
             .taskContentBtn {

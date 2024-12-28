@@ -804,7 +804,7 @@ select:disabled {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  box-shadow: -2px 0 0 0 var(--main-color-light);
+  box-shadow: -2px 0 0 0 var(--main-color);
 }
 .site-section__list .listWrapper ul.tdl-list {
   display: flex;
@@ -828,7 +828,7 @@ select:disabled {
   box-shadow: -2px 0 0 0 var(--main-gray-dark);
 }
 .site-section__list .listWrapper ul.tdl-list li.selectedMedium {
-  box-shadow: -2px 0 0 0 var(--main-color-light);
+  box-shadow: -2px 0 0 0 var(--main-color);
 }
 .site-section__list .listWrapper ul.tdl-list li.selectedHigh {
   box-shadow: -2px 0 0 0 var(--red);
@@ -1047,7 +1047,7 @@ select:disabled {
       -4px 0 0 0 var(--main-color);
   }
   &.selectedMedium {
-    box-shadow: -2px 0 0 0 var(--main-color-light),
+    box-shadow: -2px 0 0 0 var(--main-color),
       -4px 0 0 0 var(--main-color);
   }
   &.selectedHigh {
@@ -1126,7 +1126,7 @@ select:disabled {
 }
 .site-section__list .listWrapper ul.support-list li {
   width: 100%;
-  box-shadow: -2px 0 0 0 var(--main-color-light);
+  box-shadow: -2px 0 0 0 var(--main-color);
   border-radius: var(--main-radius);
 }
 .site-section__list .listWrapper ul.support-list li .taskContentBtn {
@@ -1661,20 +1661,23 @@ label:hover) {
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority {
   color: var(--main-gray);
+  filter: grayscale(0.5);
+  transition: 200ms ease-in-out;
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority svg {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: var(--main-color);
-  outline: 2px solid var(--main-gray);
+  background-color: var(--main-gray);
+  outline: 1px solid var(--main-gray);
   outline-offset: -1px;
+  transition: 200ms ease-in-out;
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selectedLow > svg {
   color: var(--main-gray-dark);
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selectedMedium > svg {
-  color: var(--main-color-light);
+  color: var(--main-color);
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selectedHigh > svg {
   color: var(--red);
@@ -1682,14 +1685,24 @@ label:hover) {
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selected {
   outline: 1px solid var(--main-color-op);
   color: var(--white);
+  filter: grayscale(0);
+}
+.mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selected svg {
+  background-color: var(--white);
+  outline-color: var(--white);
 }
 .mainModal__data__form.taskContainer .taskOpenData button:hover {
   background-color: var(--main-color-op);
   color: var(--white);
+  filter: grayscale(0);
 }
 .mainModal__data__form.taskContainer .taskOpenData button:hover[disabled] {
   background-color: var(--main-color-op);
   outline-color: var(--main-color-op);
+}
+.mainModal__data__form.taskContainer .taskOpenData button:hover svg {
+  background-color: var(--white);
+  outline-color: var(--white);
 }
 .mainModal__data__form.taskContainer .taskOpenData button:focus-visible {
   background-color: var(--main-color-op);

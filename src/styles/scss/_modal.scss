@@ -440,21 +440,24 @@
 
             &.tdl-priority {
               color: var(--main-gray);
+              filter: grayscale(0.5);
+              transition: 200ms ease-in-out;
 
               svg {
                 width: 16px;
                 height: 16px;
                 border-radius: 50%;
-                background-color: var(--main-color);
-                outline: 2px solid var(--main-gray);
+                background-color: var(--main-gray);
+                outline: 1px solid var(--main-gray);
                 outline-offset: -1px;
+                transition: 200ms ease-in-out;
               }
 
               &.selectedLow > svg {
                 color: var(--main-gray-dark);
               }
               &.selectedMedium > svg {
-                color: var(--main-color-light);
+                color: var(--main-color);
               }
               &.selectedHigh > svg {
                 color: var(--red);
@@ -462,16 +465,28 @@
               &.selected {
                 outline: 1px solid var(--main-color-op);
                 color: var(--white);
+                filter: grayscale(0);
+
+                svg {
+                  background-color: var(--white);
+                  outline-color: var(--white);
+                }
               }
             }
 
             &:hover {
               background-color: var(--main-color-op);
               color: var(--white);
+              filter: grayscale(0);
 
               &[disabled] {
                 background-color: var(--main-color-op);
                 outline-color: var(--main-color-op);
+              }
+
+              svg {
+                background-color: var(--white);
+                outline-color: var(--white);
               }
             }
 
