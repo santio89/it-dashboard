@@ -713,7 +713,7 @@
     &:has(.homeCard-anchor:is(:hover, :focus-visible)) {
       outline: 1px solid var(--main-text);
       box-shadow: 0 0 0.5rem var(--main-text),
-        0 0 0.25rem var(--main-text) inset;
+        0 0 0.125rem var(--main-text) inset;
     }
 
     .homeCard-anchor {
