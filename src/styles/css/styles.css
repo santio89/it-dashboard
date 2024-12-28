@@ -966,6 +966,10 @@ select:disabled {
   justify-content: start;
   overflow-x: auto;
   overflow-y: hidden;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 2px;
 }
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData::-webkit-scrollbar {
   width: 4px;
@@ -975,6 +979,13 @@ select:disabled {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData span {
+  color: var(--main-text);
+  transition: 200ms ease-in-out;
+}
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button {
+  color: var(--main-text);
 }
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button.tdl-priority.selectedLow {
   color: var(--main-gray-dark);

@@ -419,6 +419,10 @@
                 justify-content: start;
                 overflow-x: auto;
                 overflow-y: hidden;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                gap: 2px;
 
                 &::-webkit-scrollbar {
                   width: 4px;
@@ -431,7 +435,14 @@
                   align-items: center;
                 }
 
+                span{
+                  color: var(--main-text);
+                  transition: 200ms ease-in-out;
+                }
+
                 button {
+                  color: var(--main-text);
+
                   &.tdl-priority {
                     &.selectedLow {
                       color: var(--main-gray-dark);
