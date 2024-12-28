@@ -1705,6 +1705,7 @@ label:hover) {
 }
 .mainModal__data__form.profile .form-group fieldset {
   width: 100%;
+  max-width: 300px;
 }
 .mainModal__data__form.profile .form-group .profilePicWrapper {
   margin-bottom: 1rem;
