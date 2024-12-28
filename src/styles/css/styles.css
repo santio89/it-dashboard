@@ -746,6 +746,7 @@ select:disabled {
   color: var(--main-text);
   padding: 0.25rem;
   outline: 1px solid transparent;
+  border-radius: var(--main-radius);
 }
 .site-section__list .sortBtn button svg {
   width: 24px;
@@ -767,7 +768,7 @@ select:disabled {
   outline: 1px solid var(--main-text);
 }
 .site-section__list .sortBtn button:focus-visible svg path {
-  stroke-width: 0.4px;
+  stroke-width: 0.2px;
 }
 .site-section__list .listWrapper {
   flex: 1;

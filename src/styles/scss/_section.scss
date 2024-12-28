@@ -163,6 +163,7 @@
         color: var(--main-text);
         padding: 0.25rem;
         outline: 1px solid transparent;
+        border-radius: var(--main-radius);
 
         svg {
           width: 24px;
@@ -192,7 +193,7 @@
 
           svg {
             path {
-              stroke-width: 0.4px;
+              stroke-width: 0.2px;
             }
           }
         }
