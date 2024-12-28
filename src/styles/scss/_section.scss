@@ -389,11 +389,11 @@
                   display: flex;
                   justify-content: center;
                   align-items: center;
+                  color: var(--main-text);
 
                   &:hover,
                   &:focus-visible {
                     background: var(--main-color-mid);
-                    color: var(--white);
                   }
 
                   &:focus-visible {
@@ -435,7 +435,7 @@
                   align-items: center;
                 }
 
-                span{
+                span {
                   color: var(--main-text);
                   transition: 200ms ease-in-out;
                 }

@@ -939,12 +939,12 @@ select:disabled {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--main-text);
 }
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns button:hover, .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns button:focus-visible,
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button:hover,
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button:focus-visible {
   background: var(--main-color-mid);
-  color: var(--white);
 }
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns button:focus-visible,
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button:focus-visible {
