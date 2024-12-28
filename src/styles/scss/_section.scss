@@ -48,13 +48,12 @@
     position: relative;
 
     button {
-      color: var(--white);
-      background: var(--main-color-mid);
+      color: var(--main-text);
+      background: var(--main-color-op);
 
       &:hover,
       &:focus-visible {
-        color: var(--white);
-        background: var(--main-color-op);
+        background: var(--main-color-op-light);
       }
     }
 
@@ -65,11 +64,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: var(--main-color-mid);
-        outline: 1px solid var(--main-color-op);
+        background-color: var(--main-color-bg);
+        border: 1px solid var(--main-gray-dark);
         border-radius: var(--main-radius);
         padding: 0.125rem;
         gap: 0.125rem;
+        transition: background-color 400ms ease-in-out;
+
+        button.listPicker {
+          background-color: transparent;
+        }
       }
 
       &__btnContainer {
@@ -85,27 +89,21 @@
         button.listPicker {
           padding: 0.25rem;
           font-size: 12px;
-          background-color: var(--main-color-mid);
+          background-color: var(--main-color-op);
           height: 25px;
           width: 68px;
-          color: var(--main-gray);
+          color: var(--main-text);
           text-transform: capitalize;
           outline: 1px solid transparent;
-
-          &.filter {
-            color: var(--white);
-          }
 
           &:hover,
           &:focus-visible,
           &.selected {
-            background-color: var(--main-color-op);
-            color: var(--white);
+            background-color: var(--main-color-op-light);
           }
 
           &:focus-visible {
             z-index: 1;
-
             outline: 1px solid var(--main-text);
           }
         }
@@ -438,6 +436,7 @@
                 span {
                   color: var(--main-text);
                   transition: 200ms ease-in-out;
+                  font-weight: 300;
                 }
 
                 button {
@@ -482,12 +481,11 @@
               align-items: start;
               transition: 200ms background-color ease-in-out,
                 200ms color ease-in-out;
-              font-weight: 300;
+              font-weight: 400;
               outline: none;
 
               &.taskContentBtn {
                 padding: 1rem;
-                color: var(--white);
                 text-align: start;
                 text-wrap: pretty;
                 display: inline-block;
@@ -527,6 +525,7 @@
                 overflow-y: auto;
                 color: var(--main-text);
                 transition: 200ms ease-in-out;
+                font-weight: 300;
               }
 
               &.deleteMode {
@@ -630,7 +629,7 @@
           position: absolute;
           right: -8px;
           bottom: 0;
-          background-color: var(--main-color-mid);
+          background-color: var(--main-color-op);
           mask-image: url(../../assets/img/round-border-fix.svg);
           mask-size: cover;
           mask-repeat: no-repeat;
@@ -639,7 +638,7 @@
 
         &:is(:hover, :focus-visible) {
           &::after {
-            background-color: var(--main-color-op);
+            background-color: var(--main-color-op-light);
           }
         }
       }
