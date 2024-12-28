@@ -669,6 +669,7 @@ select:disabled {
 }
 .site-section .btnWrapper .listPickerWrapper .listPickerOptions button.listPicker {
   background-color: transparent;
+  color: var(--main-gray-dark);
 }
 .site-section .btnWrapper .listPickerWrapper__btnContainer {
   position: absolute;
@@ -692,6 +693,7 @@ select:disabled {
 }
 .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:hover, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:focus-visible, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.selected {
   background-color: var(--main-color-op-light);
+  color: var(--main-text);
 }
 .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:focus-visible {
   z-index: 1;

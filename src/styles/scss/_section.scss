@@ -73,6 +73,7 @@
 
         button.listPicker {
           background-color: transparent;
+          color: var(--main-gray-dark);
         }
       }
 
@@ -100,6 +101,7 @@
           &:focus-visible,
           &.selected {
             background-color: var(--main-color-op-light);
+            color: var(--main-text);
           }
 
           &:focus-visible {
