@@ -1746,14 +1746,13 @@ label:hover) {
 .mainModal__close {
   align-self: end;
   background-color: var(--main-color-op);
-}
-.mainModal__close svg {
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
-  min-height: 20px;
-  max-width: 20px;
-  max-height: 20px;
+  color: var(--white) svg;
+  color-width: 20px;
+  color-height: 20px;
+  color-min-width: 20px;
+  color-min-height: 20px;
+  color-max-width: 20px;
+  color-max-height: 20px;
 }
 
 /* end modal */
