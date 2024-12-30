@@ -278,7 +278,6 @@ select:disabled {
   min-height: 56px;
   max-height: 56px;
   transition: background-color 400ms ease-in-out;
-  position: relative;
 }
 .mainHeader .logo {
   font-weight: 700;
