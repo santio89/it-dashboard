@@ -53,10 +53,12 @@ export default function ContactsDataModal({ modalData }) {
       role: newUserRole.trim(),
       comment: newUserComment.trim(),
       category: newUserCategory.trim(),
+      localId: crypto.randomUUID(),
+      localTime: Date.now()
     }
 
-    await addContact({ ...user, userId: modalData.userId })
     dispatch(setModal({ active: false, data: {} }))
+    await addContact({ ...user, userId: modalData.userId })
 
     /* timeout-refetch */
     /* setTimeout(() => {
@@ -104,7 +106,9 @@ export default function ContactsDataModal({ modalData }) {
       comment: newUserComment.trim(),
       category: newUserCategory.trim(),
       id: contact.id,
-      userId: contact.userId
+      userId: contact.userId,
+      localId: contact.localId,
+      localTime: contact.localTime
     }
 
     const { modalType, contactData, createdAt, updatedAt, ...oldUser } = contact

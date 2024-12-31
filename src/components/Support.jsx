@@ -112,11 +112,11 @@ export default function Support({ user }) {
               <ul className="support-list" ref={listContainer}>
                 {
                   supportList?.map((ticket) =>
-                    <li key={ticket.id}><button className="taskContentBtn" title={ticket.title} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, userId: user?.uid, ...ticket } })); setListPickerOpen(false) }}>{ticket.title}</button></li>
+                    <li key={ticket.localId}><button className="taskContentBtn" title={ticket.title} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, userId: user?.uid, ...ticket } })); setListPickerOpen(false) }}>{ticket.title}</button></li>
                   )
                 }
                 {
-                  supportList?.length === 0 && <li>No Data</li>
+                  supportList?.length === 0 && <li className="no-data">No Data</li>
                 }
               </ul>
             </div>

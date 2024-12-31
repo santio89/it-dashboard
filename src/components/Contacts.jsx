@@ -116,10 +116,10 @@ export default function Contacts({ user }) {
               <ul className="items-list" ref={listContainer}>
                 {
                   contactsList?.map(contact =>
-                    <li key={contact.id}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
+                    <li key={contact.localId}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
                 }
                 {
-                  contactsList?.length === 0 && <li>No Data</li>
+                  contactsList?.length === 0 && <li className="no-data">No Data</li>
                 }
               </ul>
             </div>

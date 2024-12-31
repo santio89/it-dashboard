@@ -46,11 +46,13 @@ export default function TDLDataModal({ modalData }) {
       content: newTaskDescription,
       priority: newTaskPriority,
       status: newTaskStatus,
-      category: newTaskCategory
+      category: newTaskCategory,
+      localId: crypto.randomUUID(),
+      localTime: Date.now()
     }
 
-    await addTdl({ ...task, userId: modalData.userId, })
     dispatch(setModal({ active: false, data: {} }))
+    await addTdl({ ...task, userId: modalData.userId, })
 
     /* timeout-refetch */
     /* setTimeout(() => {

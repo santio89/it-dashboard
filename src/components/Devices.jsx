@@ -114,12 +114,12 @@ export default function Devices({ user }) {
               <ul className="items-list" ref={listContainer}>
                 {
                   devicesList?.map(device =>
-                    <li key={device.id}><button title={device.name} onClick={() => {
+                    <li key={device.localId}><button title={device.name} onClick={() => {
                       dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device } })); setListPickerOpen(false)
                     }}>{device.name}</button></li>)
                 }
                 {
-                  devicesList?.length === 0 && <li>No Data</li>
+                  devicesList?.length === 0 && <li className="no-data">No Data</li>
                 }
               </ul>
             </div>

@@ -44,13 +44,15 @@ export default function SupportDataModal({ modalData }) {
     const ticket = {
       title: newTicketTitle,
       category: newTicketCategory,
-      content: newTicketDescription
+      content: newTicketDescription,
+      localId: crypto.randomUUID(),
+      localTime: Date.now()
       /*       priority: newTicketPriority,
             status: newTicketStatus, */
     }
 
-    await addSupport({ ...ticket, userId: modalData.userId, })
     dispatch(setModal({ active: false, data: {} }))
+    await addSupport({ ...ticket, userId: modalData.userId, })
 
     /* timeout-refetch */
     /* setTimeout(() => {

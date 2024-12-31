@@ -56,9 +56,9 @@ export default function TDL({ user }) {
       let orderedList = []
 
       if (sortList) {
-        orderedList = [...filteredList].sort((a, b) => a.createdAt.toDate() - b.createdAt.toDate());
+        orderedList = [...filteredList].sort((a, b) => a.localTime - b.localTime);
       } else {
-        orderedList = [...filteredList].sort((a, b) => b.createdAt.toDate() - a.createdAt.toDate());
+        orderedList = [...filteredList].sort((a, b) => b.localTime - a.localTime);
       }
 
       setTdlList(orderedList)
@@ -132,7 +132,7 @@ export default function TDL({ user }) {
               <ul className='tdl-list' ref={listContainer}>
                 {
                   tdlList?.map((task) =>
-                    <li className={`${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"}`} key={task.id}>
+                    <li key={task.localId} className={`${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"}`}>
                       {/* priority btn */}
                       {/* {taskOptions === task.id &&
 
@@ -201,7 +201,7 @@ export default function TDL({ user }) {
                     </li>)
                 }
                 {
-                  tdlList?.length === 0 && <li>No Data</li>
+                  tdlList?.length === 0 && <li className="no-data">No Data</li>
                 }
               </ul>
             </div>

@@ -53,10 +53,12 @@ export default function DevicesDataModal({ modalData }) {
       sn: newDeviceSn.trim(),
       comment: newDeviceComment.trim(),
       category: newDeviceCategory.trim(),
+      localId: crypto.randomUUID(),
+      localTime: Date.now()
     }
 
-    await addDevice({ ...device, userId: modalData.userId })
     dispatch(setModal({ active: false, data: {} }))
+    await addDevice({ ...device, userId: modalData.userId })
 
     /* timeout-refetch */
     /* setTimeout(() => {
@@ -104,7 +106,9 @@ export default function DevicesDataModal({ modalData }) {
       comment: newDeviceComment.trim(),
       category: newDeviceCategory.trim(),
       id: device.id,
-      userId: device.userId
+      userId: device.userId,
+      localId: device.localId,
+      localTime: device.localTime
     }
 
     const { deviceData, modalType, createdAt, updatedAt, ...oldDevice } = device

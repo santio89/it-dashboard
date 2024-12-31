@@ -19,9 +19,6 @@ export const apiSlice = createApi({
             contacts.push({ id: doc.id, ...doc.data() });
           });
 
-          /* order by name */
-          /* contacts.sort((a, b) => a.name.localeCompare(b.name)); */
-
           return { data: contacts };
         } catch (error) {
           console.log(error);
@@ -39,9 +36,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          toast.message('Contact added', {
+          /* toast.message('Contact added', {
             description: `ID: ${res.id}`,
-          });
+          }); */
 
           return {
             data: {
@@ -57,12 +54,16 @@ export const apiSlice = createApi({
         }
       },
       invalidatesTags: ['contacts'],
-      /* onQueryStarted: async (contact, { dispatch, queryFulfilled }) => {
+      onQueryStarted: async (contact, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getContacts', contact.userId, draft => {
             draft.push({ ...contact, id: 'temp-id', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
           })
         );
+
+        toast.message('Contact added', {
+          description: `ID: ${contact.localId}`,
+        });
   
         try {
           await queryFulfilled;
@@ -72,7 +73,7 @@ export const apiSlice = createApi({
           });
           patchResult.undo();
         }
-      } */
+      }
     }),
     deleteContact: builder.mutation({
       async queryFn(contact) {
@@ -104,7 +105,7 @@ export const apiSlice = createApi({
         );
 
         toast.message('Contact deleted', {
-          description: `ID: ${contact.id}`,
+          description: `ID: ${contact.localId}`,
         });
 
         try {
@@ -153,7 +154,7 @@ export const apiSlice = createApi({
         );
 
         toast.message('Contact edited', {
-          description: `ID: ${contact.id}`,
+          description: `ID: ${contact.localId}`,
         });
 
         try {
@@ -179,9 +180,6 @@ export const apiSlice = createApi({
             devices.push({ id: doc.id, ...doc.data() });
           });
 
-          /* order by name */
-          /* devices.sort((a, b) => a.name.localeCompare(b.name)); */
-
           return { data: devices };
         } catch (error) {
           console.log(error);
@@ -199,9 +197,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          toast.message('Device added', {
+         /*  toast.message('Device added', {
             description: `ID: ${res.id}`,
-          });
+          }); */
 
           return {
             data: {
@@ -217,13 +215,17 @@ export const apiSlice = createApi({
         }
       },
       invalidatesTags: ['devices'],
-      /* onQueryStarted: async (device, { dispatch, queryFulfilled }) => {
+      onQueryStarted: async (device, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getDevices', device.userId, draft => {
             draft.push({ ...device, id: 'temp-id', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
           })
         );
-  
+
+        toast.message('Device added', {
+          description: `ID: ${device.localId}`,
+        });
+
         try {
           await queryFulfilled;
         } catch {
@@ -232,7 +234,7 @@ export const apiSlice = createApi({
           });
           patchResult.undo();
         }
-      } */
+      }
     }),
     deleteDevice: builder.mutation({
       async queryFn(device) {
@@ -264,7 +266,7 @@ export const apiSlice = createApi({
         );
 
         toast.message('Device deleted', {
-          description: `ID: ${device.id}`,
+          description: `ID: ${device.localId}`,
         });
 
         try {
@@ -313,7 +315,7 @@ export const apiSlice = createApi({
         );
 
         toast.message('Device edited', {
-          description: `ID: ${device.id}`,
+          description: `ID: ${device.localId}`,
         });
 
         try {
@@ -339,9 +341,6 @@ export const apiSlice = createApi({
             tasks.push({ id: doc.id, ...doc.data() });
           });
 
-          /* order by date */
-          /*  tasks.sort((a, b) => b.createdAt.toDate() - a.createdAt.toDate()); */
-
           return { data: tasks };
         } catch (error) {
           console.log(error);
@@ -359,9 +358,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          toast.message('Task added', {
+          /* toast.message('Task added', {
             description: `ID: ${res.id}`,
-          });
+          }); */
 
           return {
             data: {
@@ -377,12 +376,16 @@ export const apiSlice = createApi({
         }
       },
       invalidatesTags: ['tdl'],
-      /* onQueryStarted: async (task, { dispatch, queryFulfilled }) => {
+      onQueryStarted: async (task, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getTdl', task.userId, draft => {
             draft.push({ ...task, id: 'temp-id', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
           })
         );
+
+        toast.message('Task added', {
+          description: `ID: ${task.localId}`,
+        });
   
         try {
           await queryFulfilled;
@@ -392,7 +395,7 @@ export const apiSlice = createApi({
           });
           patchResult.undo();
         }
-      } */
+      }
     }),
     deleteTdl: builder.mutation({
       async queryFn(task) {
@@ -424,7 +427,7 @@ export const apiSlice = createApi({
         );
 
         toast.message('Task deleted', {
-          description: `ID: ${task.id}`,
+          description: `ID: ${task.localId}`,
         });
 
         try {
@@ -473,7 +476,7 @@ export const apiSlice = createApi({
         );
 
         toast.message('Task edited', {
-          description: `ID: ${task.id}`,
+          description: `ID: ${task.localId}`,
         });
 
         try {
@@ -499,9 +502,6 @@ export const apiSlice = createApi({
             tickets.push({ id: doc.id, ...doc.data() });
           });
 
-          /* order by date */
-          /*  tasks.sort((a, b) => b.createdAt.toDate() - a.createdAt.toDate()); */
-
           return { data: tickets };
         } catch (error) {
           console.log(error);
@@ -519,9 +519,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          toast.message('Ticket added', {
-            description: `ID: ${res.id}`,
-          });
+          /* toast.message('Ticket added', {
+            description: `ID: ${ticket.id}`,
+          }); */
 
           return {
             data: {
@@ -537,12 +537,16 @@ export const apiSlice = createApi({
         }
       },
       invalidatesTags: ['support'],
-      /* onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
+      onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getSupport', ticket.userId, draft => {
             draft.push({ ...ticket, id: 'temp-id', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
           })
         );
+
+        toast.message('Ticket added', {
+          description: `ID: ${ticket.localId}`,
+        });
   
         try {
           await queryFulfilled;
@@ -552,7 +556,7 @@ export const apiSlice = createApi({
           });
           patchResult.undo();
         }
-      } */
+      }
     }),
     deleteSupport: builder.mutation({
       async queryFn(ticket) {
@@ -584,7 +588,7 @@ export const apiSlice = createApi({
         );
 
         toast.message('Ticket deleted', {
-          description: `ID: ${ticket.id}`,
+          description: `ID: ${ticket.localId}`,
         });
 
         try {
@@ -632,7 +636,7 @@ export const apiSlice = createApi({
         );
 
         toast.message('Ticket edited', {
-          description: `ID: ${ticket.id}`,
+          description: `ID: ${ticket.localId}`,
         });
 
         try {
