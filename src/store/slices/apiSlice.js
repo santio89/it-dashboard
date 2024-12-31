@@ -67,7 +67,7 @@ export const apiSlice = createApi({
         try {
           await queryFulfilled;
         } catch {
-          toast.message('EConnection eror', {
+          toast.message('Connection error', {
             description: `Rolling back changes`,
           });
           patchResult.undo();
@@ -227,7 +227,7 @@ export const apiSlice = createApi({
         try {
           await queryFulfilled;
         } catch {
-          toast.message('EConnection eror', {
+          toast.message('Connection error', {
             description: `Rolling back changes`,
           });
           patchResult.undo();
@@ -387,7 +387,7 @@ export const apiSlice = createApi({
         try {
           await queryFulfilled;
         } catch {
-          toast.message('EConnection eror', {
+          toast.message('Connection error', {
             description: `Rolling back changes`,
           });
           patchResult.undo();
@@ -547,7 +547,7 @@ export const apiSlice = createApi({
         try {
           await queryFulfilled;
         } catch {
-          toast.message('EConnection eror', {
+          toast.message('Connection error', {
             description: `Rolling back changes`,
           });
           patchResult.undo();
