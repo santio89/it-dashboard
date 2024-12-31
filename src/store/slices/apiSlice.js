@@ -500,6 +500,23 @@ export const apiSlice = createApi({
         }
       },
       invalidatesTags: ['tdl'],
+      onQueryStarted: async (task, { dispatch, queryFulfilled }) => {
+        // Optimistically update the UI
+        const patchResult = dispatch(
+          apiSlice.util.updateQueryData('getTdl', task.userId, draft => {
+            const index = draft.findIndex(t => t.id === task.id);
+            if (index !== -1) {
+              draft[index] = { ...task, updatedAt: new Date().toISOString() };
+            }
+          })
+        );
+
+        try {
+          await queryFulfilled;
+        } catch {
+          patchResult.undo();
+        }
+      }
     }),
 
     /* SUPPORT */
