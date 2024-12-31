@@ -132,7 +132,7 @@ export default function TDL({ user }) {
               <ul className='tdl-list' ref={listContainer}>
                 {
                   tdlList?.map((task) =>
-                    <li className={`${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"}`} key={task.id} /* disabled={taskOptions === task.id && (resultEditTdl.isLoading)} */>
+                    <li className={`${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"}`} key={task.id}>
                       {/* priority btn */}
                       {/* {taskOptions === task.id &&
 
