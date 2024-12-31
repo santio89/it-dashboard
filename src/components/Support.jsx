@@ -41,9 +41,9 @@ export default function Support({ user }) {
       let orderedList = []
 
       if (sortList) {
-        orderedList = [...filteredList].sort((a, b) => a.createdAt.toDate() - b.createdAt.toDate());
+        orderedList = [...filteredList].sort((a, b) => a.localTime - b.localTime);
       } else {
-        orderedList = [...filteredList].sort((a, b) => b.createdAt.toDate() - a.createdAt.toDate());
+        orderedList = [...filteredList].sort((a, b) => b.localTime - a.localTime);
       }
 
       setSupportList(orderedList)
