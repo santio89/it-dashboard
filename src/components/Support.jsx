@@ -39,6 +39,7 @@ export default function Support({ user }) {
 
       /* sort */
       let orderedList = []
+
       if (sortList) {
         orderedList = [...filteredList].sort((a, b) => a.createdAt.toDate() - b.createdAt.toDate());
       } else {
