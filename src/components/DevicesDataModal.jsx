@@ -71,13 +71,8 @@ export default function DevicesDataModal({ modalData }) {
       return
     }
 
-    await deleteDevice(device)
     dispatch(setModal({ active: false, data: {} }))
-
-    /* timeout-refetch */
-    /*  setTimeout(() => {
-       dispatch(setModal({ active: false, data: {} }))
-     }, 400) */
+    await deleteDevice(device)
   }
 
   const editModeFN = () => {
@@ -119,13 +114,8 @@ export default function DevicesDataModal({ modalData }) {
       dispatch(setModal({ active: false, data: {} }))
       return
     } else {
-      await editDevice({ ...newDevice, userId: modalData.userId })
       dispatch(setModal({ active: false, data: {} }))
-
-      /* timeout-refetch */
-      /*  setTimeout(() => {
-         dispatch(setModal({ active: false, data: {} }))
-       }, 400) */
+      await editDevice({ ...newDevice, userId: modalData.userId })
     }
   }
 

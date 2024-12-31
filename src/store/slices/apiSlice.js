@@ -698,11 +698,6 @@ export const apiSlice = createApi({
 
 export default apiSlice.reducer
 export const {
-  useGetContactsCompanyQuery,
-  useAddContactCompanyMutation,
-  useDeleteContactCompanyMutation,
-  useEditContactCompanyMutation,
-
   useGetContactsQuery,
   useAddContactMutation,
   useDeleteContactMutation,

@@ -59,9 +59,9 @@ export default function ContactsDataModal({ modalData }) {
     dispatch(setModal({ active: false, data: {} }))
 
     /* timeout-refetch */
-    /*   setTimeout(() => {
-        dispatch(setModal({ active: false, data: {} }))
-      }, 400) */
+    /* setTimeout(() => {
+      dispatch(setModal({ active: false, data: {} }))
+    }, 400) */
   }
 
   const deleteUserFn = async (e, contact) => {
@@ -71,13 +71,8 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
-    await deleteContact(contact)
     dispatch(setModal({ active: false, data: {} }))
-
-    /* timeout-refetch */
-    /*     setTimeout(() => {
-          dispatch(setModal({ active: false, data: {} }))
-        }, 400) */
+    await deleteContact(contact)
   }
 
   const editModeFN = () => {
@@ -120,13 +115,8 @@ export default function ContactsDataModal({ modalData }) {
       dispatch(setModal({ active: false, data: {} }))
       return
     } else {
-      await editContact({ ...newUser, userId: modalData.userId })
       dispatch(setModal({ active: false, data: {} }))
-
-      /* timeout-refetch */
-      /*    setTimeout(() => {
-           dispatch(setModal({ active: false, data: {} }))
-         }, 400) */
+      await editContact({ ...newUser, userId: modalData.userId })
     }
   }
 

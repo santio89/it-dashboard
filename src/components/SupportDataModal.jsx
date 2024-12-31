@@ -94,8 +94,8 @@ export default function SupportDataModal({ modalData }) {
 
     const newTicket = { ...trimTicket, title: title ?? ticket.title, content: input.trim(), category: category ?? ticket.category, /* priority: priority ?? ticket.priority, status: status ?? ticket.status */ }
 
-    await editSupport(newTicket)
     dispatch(setModal({ active: false, data: {} }))
+    await editSupport(newTicket)
 
     /* timeout-refetch */
     /*  setTimeout(() => {
@@ -111,8 +111,8 @@ export default function SupportDataModal({ modalData }) {
       return
     }
 
-    await deleteSupport(ticket)
     dispatch(setModal({ active: false, data: {} }))
+    await deleteSupport(ticket)
 
     /* timeout-refetch */
     /*  setTimeout(() => {

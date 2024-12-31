@@ -93,8 +93,8 @@ export default function TDLDataModal({ modalData }) {
 
     const newTask = { ...trimTask, title: title ?? task.title, content: input.trim(), category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
 
-    await editTdl(newTask)
     dispatch(setModal({ active: false, data: {} }))
+    await editTdl(newTask)
 
     /* timeout-refetch */
     /*  setTimeout(() => {
@@ -110,8 +110,8 @@ export default function TDLDataModal({ modalData }) {
       return
     }
 
-    await deleteTdl(task)
     dispatch(setModal({ active: false, data: {} }))
+    await deleteTdl(task)
 
     /* timeout-refetch */
     /*  setTimeout(() => {
