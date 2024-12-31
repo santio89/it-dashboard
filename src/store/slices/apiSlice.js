@@ -36,9 +36,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          /* toast.message('Contact added', {
+          toast.message('Contact added', {
             description: `ID: ${res.id}`,
-          }); */
+          });
 
           return {
             data: {
@@ -61,10 +61,9 @@ export const apiSlice = createApi({
           })
         );
 
-        toast.message('Contact added', {
-          description: `ID: ${contact.localId}`,
-        });
-  
+
+        toast('Adding contact...')
+
         try {
           await queryFulfilled;
         } catch {
@@ -81,9 +80,9 @@ export const apiSlice = createApi({
           const docRef = doc(collection(db, "authUsersData", contact.userId, "contacts"), contact.id);
           await deleteDoc(docRef);
 
-          /* toast.message('Contact deleted', {
+          toast.message('Contact deleted', {
             description: `ID: ${contact.id}`,
-          }); */
+          });
 
           return {
             data: {
@@ -104,9 +103,7 @@ export const apiSlice = createApi({
           })
         );
 
-        toast.message('Contact deleted', {
-          description: `ID: ${contact.localId}`,
-        });
+        toast('Deleting contact...')
 
         try {
           await queryFulfilled;
@@ -127,9 +124,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          /* toast.message('Contact edited', {
+          toast.message('Contact edited', {
             description: `ID: ${contact.id}`,
-          }); */
+          });
 
           return {
             data: {
@@ -153,9 +150,7 @@ export const apiSlice = createApi({
           })
         );
 
-        toast.message('Contact edited', {
-          description: `ID: ${contact.localId}`,
-        });
+        toast('Editing contact...')
 
         try {
           await queryFulfilled;
@@ -197,9 +192,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-         /*  toast.message('Device added', {
-            description: `ID: ${res.id}`,
-          }); */
+           toast.message('Device added', {
+             description: `ID: ${res.id}`,
+           });
 
           return {
             data: {
@@ -221,10 +216,8 @@ export const apiSlice = createApi({
             draft.push({ ...device, id: 'temp-id', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
           })
         );
-
-        toast.message('Device added', {
-          description: `ID: ${device.localId}`,
-        });
+        
+        toast('Adding device...')
 
         try {
           await queryFulfilled;
@@ -242,9 +235,9 @@ export const apiSlice = createApi({
           const docRef = doc(collection(db, "authUsersData", device.userId, "devices"), device.id);
           await deleteDoc(docRef);
 
-          /* toast.message('Device deleted', {
+          toast.message('Device deleted', {
             description: `ID: ${device.id}`,
-          }); */
+          });
 
           return {
             data: {
@@ -265,9 +258,7 @@ export const apiSlice = createApi({
           })
         );
 
-        toast.message('Device deleted', {
-          description: `ID: ${device.localId}`,
-        });
+        toast('Deleting device...')
 
         try {
           await queryFulfilled;
@@ -288,9 +279,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          /* toast.message('Device edited', {
+          toast.message('Device edited', {
             description: `ID: ${device.id}`,
-          }); */
+          });
 
           return {
             data: {
@@ -314,9 +305,7 @@ export const apiSlice = createApi({
           })
         );
 
-        toast.message('Device edited', {
-          description: `ID: ${device.localId}`,
-        });
+        toast('Editing device...')
 
         try {
           await queryFulfilled;
@@ -358,9 +347,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          /* toast.message('Task added', {
+          toast.message('Task added', {
             description: `ID: ${res.id}`,
-          }); */
+          });
 
           return {
             data: {
@@ -383,10 +372,8 @@ export const apiSlice = createApi({
           })
         );
 
-        toast.message('Task added', {
-          description: `ID: ${task.localId}`,
-        });
-  
+        toast('Adding task...')
+
         try {
           await queryFulfilled;
         } catch {
@@ -403,9 +390,9 @@ export const apiSlice = createApi({
           const docRef = doc(collection(db, "authUsersData", task.userId, "tdl"), task.id);
           await deleteDoc(docRef);
 
-          /* toast.message('Task deleted', {
+          toast.message('Task deleted', {
             description: `ID: ${task.id}`,
-          }); */
+          });
 
           return {
             data: {
@@ -426,9 +413,7 @@ export const apiSlice = createApi({
           })
         );
 
-        toast.message('Task deleted', {
-          description: `ID: ${task.localId}`,
-        });
+        toast('Deleting task...')
 
         try {
           await queryFulfilled;
@@ -449,9 +434,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          /* toast.message('Task edited', {
+          toast.message('Task edited', {
             description: `ID: ${task.id}`,
-          }); */
+          });
 
           return {
             data: {
@@ -475,9 +460,7 @@ export const apiSlice = createApi({
           })
         );
 
-        toast.message('Task edited', {
-          description: `ID: ${task.localId}`,
-        });
+        toast('Editing task...')
 
         try {
           await queryFulfilled;
@@ -519,9 +502,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          /* toast.message('Ticket added', {
+          toast.message('Ticket added', {
             description: `ID: ${ticket.id}`,
-          }); */
+          });
 
           return {
             data: {
@@ -544,10 +527,8 @@ export const apiSlice = createApi({
           })
         );
 
-        toast.message('Ticket added', {
-          description: `ID: ${ticket.localId}`,
-        });
-  
+        toast('Adding ticket...')
+
         try {
           await queryFulfilled;
         } catch {
@@ -564,9 +545,9 @@ export const apiSlice = createApi({
           const docRef = doc(collection(db, "authUsersData", ticket.userId, "support"), ticket.id);
           await deleteDoc(docRef);
 
-          /* toast.message('Ticket deleted', {
+          toast.message('Ticket deleted', {
             description: `ID: ${ticket.id}`,
-          }); */
+          });
 
           return {
             data: {
@@ -587,9 +568,7 @@ export const apiSlice = createApi({
           })
         );
 
-        toast.message('Ticket deleted', {
-          description: `ID: ${ticket.localId}`,
-        });
+        toast('Deleting ticket...')
 
         try {
           await queryFulfilled;
@@ -610,9 +589,10 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          /* toast.message('Ticket edited', {
+          toast.message('Ticket edited', {
             description: `ID: ${ticket.id}`,
-          }); */
+          });
+
           return {
             data: {
               ...ticket,
@@ -635,9 +615,7 @@ export const apiSlice = createApi({
           })
         );
 
-        toast.message('Ticket edited', {
-          description: `ID: ${ticket.localId}`,
-        });
+         toast('Editing ticket...')
 
         try {
           await queryFulfilled;
