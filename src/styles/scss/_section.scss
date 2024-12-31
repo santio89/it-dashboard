@@ -69,8 +69,15 @@
         border-radius: var(--main-radius);
         padding: 0.125rem;
         gap: 0.125rem;
-        transition: background-color 400ms ease-in-out;
+        transition: background-color 400ms ease-in-out, scale 100ms ease-in-out,
+          opacity 100ms ease-in-out;
         z-index: 1;
+        transform-origin: top right;
+
+        @starting-style {
+          scale: 0.9;
+          opacity: 0;
+        }
 
         button.listPicker {
           background-color: transparent;

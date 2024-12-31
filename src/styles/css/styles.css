@@ -373,10 +373,12 @@ select:disabled {
   transform-origin: top right;
   scale: 0.9;
   opacity: 0;
+  pointer-events: none;
 }
 .mainHeader__btnContainer .btnWrapper .profile-opts.open {
   scale: 1;
   opacity: 1;
+  pointer-events: auto;
 }
 .mainHeader__btnContainer .btnWrapper .profile-opts button {
   width: 100%;
@@ -665,8 +667,15 @@ select:disabled {
   border-radius: var(--main-radius);
   padding: 0.125rem;
   gap: 0.125rem;
-  transition: background-color 400ms ease-in-out;
+  transition: background-color 400ms ease-in-out, scale 100ms ease-in-out, opacity 100ms ease-in-out;
   z-index: 1;
+  transform-origin: top right;
+}
+@starting-style {
+  .site-section .btnWrapper .listPickerWrapper .listPickerOptions {
+    scale: 0.9;
+    opacity: 0;
+  }
 }
 .site-section .btnWrapper .listPickerWrapper .listPickerOptions button.listPicker {
   background-color: transparent;
