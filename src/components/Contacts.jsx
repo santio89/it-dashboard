@@ -117,7 +117,7 @@ export default function Contacts({ user }) {
               <ul className="items-list" ref={listContainer}>
                 {
                   contactsList?.map(contact =>
-                    <li key={contact.localId}><button disabled={isFetchingContacts || contact.id === "temp-id"} title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact, dataList: dataContacts } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
+                    <li key={contact.localId}><button disabled={contact.id === "temp-id"} title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact, dataList: dataContacts } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
                 }
                 {
                   contactsList?.length === 0 && <li className="no-data">No Data</li>
