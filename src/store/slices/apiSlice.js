@@ -517,7 +517,7 @@ export const apiSlice = createApi({
           });
 
           toast.message('Ticket added', {
-            description: `ID: ${ticket.id}`,
+            description: `ID: ${res.id}`,
           });
 
           return {
