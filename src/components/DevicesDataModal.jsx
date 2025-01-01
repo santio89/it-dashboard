@@ -12,6 +12,8 @@ export default function DevicesDataModal({ modalData }) {
   const [deleteDevice, resultDeleteDevice] = useDeleteDeviceMutation()
   const [editDevice, resultEditDevice] = useEditDeviceMutation()
 
+  const [errorMsg, setErrorMsg] = useState(null)
+
   const [newDeviceName, setNewDeviceName] = useState("")
   const [newDeviceType, setNewDeviceType] = useState("")
   const [newDeviceModel, setNewDeviceModel] = useState("")
@@ -46,6 +48,11 @@ export default function DevicesDataModal({ modalData }) {
       return
     }
 
+    if (modalData?.dataList?.find(contact => contact.name === newDeviceName.trim())) {
+      setErrorMsg("Device already exists")
+      return
+    }
+
     const device = {
       name: newDeviceName.trim(),
       type: newDeviceType.trim(),
@@ -59,11 +66,6 @@ export default function DevicesDataModal({ modalData }) {
 
     dispatch(setModal({ active: false, data: {} }))
     await addDevice({ ...device, userId: modalData.userId })
-
-    /* timeout-refetch */
-    /* setTimeout(() => {
-      dispatch(setModal({ active: false, data: {} }))
-    }, 400) */
   }
 
   const deleteDeviceFn = async (e, device) => {
@@ -98,6 +100,11 @@ export default function DevicesDataModal({ modalData }) {
       return
     }
 
+    if (modalData?.dataList?.find(contact => contact.name === newDeviceName.trim())) {
+      setErrorMsg("Device already exists")
+      return
+    }
+
     const newDevice = {
       name: newDeviceName.trim(),
       type: newDeviceType.trim(),
@@ -128,6 +135,21 @@ export default function DevicesDataModal({ modalData }) {
       e.preventDefault()
     }
   }
+
+  useEffect(() => {
+    let timeout;
+
+    if (errorMsg) {
+      timeout = setTimeout(() => {
+        setErrorMsg(null)
+      }, 4000)
+    }
+
+    return () => {
+      clearTimeout(timeout)
+    }
+
+  }, [errorMsg])
 
   useEffect(() => {
     if (!modalActive) {
@@ -413,6 +435,10 @@ export default function DevicesDataModal({ modalData }) {
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send' onClick={trimInputs}>Send</button>
             </div>
+            {
+              errorMsg &&
+              <div className="mainModal__error">{errorMsg}</div>
+            }
           </form>
         </>
       }

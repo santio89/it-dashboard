@@ -59,30 +59,30 @@ export default function Support({ user }) {
     <>
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
-          <button onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", newTicket: true, userId: user?.uid, dataSupport } }))
+          <button disabled={isLoadingSupport} onClick={() => {
+            dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", newTicket: true, userId: user?.uid, dataList: dataSupport } }))
           }}>+ Add ticket</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
-                <button className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
+                <button disabled={isLoadingSupport} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
               }
               {
                 listPickerOpen &&
                 <div className="listPickerOptions">
-                  <button className={`listPicker ${listSelected === "personal" && "selected"}`}
+                  <button disabled={isLoadingSupport} className={`listPicker ${listSelected === "personal" && "selected"}`}
                     onClick={() => {
                       selectList("personal")
                     }}>
                     Personal
                   </button>
-                  <button className={`listPicker ${listSelected === "company" && "selected"}`}
+                  <button disabled={isLoadingSupport} className={`listPicker ${listSelected === "company" && "selected"}`}
                     onClick={() => {
                       selectList("company")
                     }}>
                     Company
                   </button>
-                  <button className={`listPicker ${listSelected === "all" && "selected"}`}
+                  <button disabled={isLoadingSupport} className={`listPicker ${listSelected === "all" && "selected"}`}
                     onClick={() => {
                       selectList("all")
                     }}>
@@ -112,7 +112,7 @@ export default function Support({ user }) {
               <ul className="support-list" ref={listContainer}>
                 {
                   supportList?.map((ticket) =>
-                    <li key={ticket.localId}><button className="taskContentBtn" title={ticket.title} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, userId: user?.uid, ...ticket, dataSupport } })); setListPickerOpen(false) }}>{ticket.title}</button></li>
+                    <li key={ticket.localId}><button className="taskContentBtn" title={ticket.title} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, userId: user?.uid, ...ticket, dataList: dataSupport } })); setListPickerOpen(false) }}>{ticket.title}</button></li>
                   )
                 }
                 {

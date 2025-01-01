@@ -39,7 +39,7 @@ export default function Contacts({ user }) {
 
       /* sort */
       let orderedList = []
-      
+
       if (sortList) {
         orderedList = [...filteredList].sort((a, b) => b.name.localeCompare(a.name))
       } else {
@@ -58,31 +58,31 @@ export default function Contacts({ user }) {
     <>
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
-          <button onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newUser: true, userId: user?.uid, dataContacts } }));
+          <button disabled={isLoadingContacts} onClick={() => {
+            dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newUser: true, userId: user?.uid, dataList: dataContacts } }));
             setListPickerOpen(false)
           }}>+ Add contact</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
-                <button className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
+                <button disabled={isLoadingContacts} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
               }
               {
                 listPickerOpen &&
                 <div className="listPickerOptions">
-                  <button className={`listPicker ${listSelected === "personal" && "selected"}`}
+                  <button disabled={isLoadingContacts} className={`listPicker ${listSelected === "personal" && "selected"}`}
                     onClick={() => {
                       selectList("personal")
                     }}>
                     Personal
                   </button>
-                  <button className={`listPicker ${listSelected === "company" && "selected"}`}
+                  <button disabled={isLoadingContacts} className={`listPicker ${listSelected === "company" && "selected"}`}
                     onClick={() => {
                       selectList("company")
                     }}>
                     Company
                   </button>
-                  <button className={`listPicker ${listSelected === "all" && "selected"}`}
+                  <button disabled={isLoadingContacts} className={`listPicker ${listSelected === "all" && "selected"}`}
                     onClick={() => {
                       selectList("all")
                     }}>
@@ -117,7 +117,7 @@ export default function Contacts({ user }) {
               <ul className="items-list" ref={listContainer}>
                 {
                   contactsList?.map(contact =>
-                    <li key={contact.localId}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact, dataContacts } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
+                    <li key={contact.localId}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact, dataList: dataContacts } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
                 }
                 {
                   contactsList?.length === 0 && <li className="no-data">No Data</li>

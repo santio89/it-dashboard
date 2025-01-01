@@ -190,6 +190,7 @@
       width: 100%;
       gap: 0.125rem;
       transition: 200ms ease-in-out;
+      position: relative;
 
       &[disabled] {
         pointer-events: none;
@@ -578,6 +579,23 @@
     &:hover,
     &:focus-visible {
       background-color: var(--main-color-op-light);
+    }
+  }
+
+  &__error{
+    position: absolute;
+    bottom: -2rem;
+    left: .5rem;
+    color: var(--red);
+    font-weight: 400;
+    transition: 200ms ease-in-out;
+    
+    &::first-letter{
+      text-transform: capitalize;
+    }
+
+    @starting-style{
+      opacity: 0;
     }
   }
 }

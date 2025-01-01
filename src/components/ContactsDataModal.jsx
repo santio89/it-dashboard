@@ -12,6 +12,8 @@ export default function ContactsDataModal({ modalData }) {
   const [deleteContact, resultDeleteContact] = useDeleteContactMutation()
   const [editContact, resultEditContact] = useEditContactMutation()
 
+  const [errorMsg, setErrorMsg] = useState(null)
+
   const [newUserName, setNewUserName] = useState("")
   const [newUserEmail, setNewUserEmail] = useState("")
   const [newUserTel, setNewUserTel] = useState("")
@@ -46,10 +48,10 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
-    /* if (modalData?.dataContacts?.find(contact=>contact.name === newUserName.trim())){
-      console.log("contact exists")
+    if (modalData?.dataList?.find(contact => contact.name === newUserName.trim())) {
+      setErrorMsg("Contact already exists")
       return
-    } */
+    }
 
     const user = {
       name: newUserName.trim(),
@@ -64,11 +66,6 @@ export default function ContactsDataModal({ modalData }) {
 
     dispatch(setModal({ active: false, data: {} }))
     await addContact({ ...user, userId: modalData.userId })
-
-    /* timeout-refetch */
-    /* setTimeout(() => {
-      dispatch(setModal({ active: false, data: {} }))
-    }, 400) */
   }
 
   const deleteUserFn = async (e, contact) => {
@@ -103,10 +100,11 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
-    /* if (modalData?.dataContacts?.find(contact=>contact.name === newUserName.trim())){
+    if (modalData?.dataList?.find(contact => contact.name === newUserName.trim())) {
       console.log("contact exists")
+      setErrorMsg("Contact already exists")
       return
-    } */
+    }
 
     const newUser = {
       name: newUserName.trim(),
@@ -139,6 +137,21 @@ export default function ContactsDataModal({ modalData }) {
       e.preventDefault()
     }
   }
+
+  useEffect(() => {
+    let timeout;
+
+    if (errorMsg) {
+      timeout = setTimeout(() => {
+        setErrorMsg(null)
+      }, 4000)
+    }
+
+    return () => {
+      clearTimeout(timeout)
+    }
+
+  }, [errorMsg])
 
   useEffect(() => {
     if (!modalActive) {
@@ -429,6 +442,10 @@ export default function ContactsDataModal({ modalData }) {
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send' onClick={trimInputs}>Send</button>
             </div>
+            {
+              errorMsg &&
+              <div className="mainModal__error">{errorMsg}</div>
+            }
           </form>
         </>
       }

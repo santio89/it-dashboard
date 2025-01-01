@@ -78,31 +78,31 @@ export default function TDL({ user }) {
     <>
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
-          <button onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "TDLDataModal", newTask: true, userId: user?.uid, dataSupport } }))
+          <button disabled={isLoadingTdl} onClick={() => {
+            dispatch(setModal({ active: true, data: { modalType: "TDLDataModal", newTask: true, userId: user?.uid, dataList: dataTdl } }))
             setListPickerOpen(false)
           }}>+ Add task</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
-                <button className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
+                <button disabled={isLoadingTdl} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
               }
               {
                 listPickerOpen &&
                 <div className="listPickerOptions">
-                  <button className={`listPicker ${listSelected === "personal" && "selected"}`}
+                  <button disabled={isLoadingTdl} className={`listPicker ${listSelected === "personal" && "selected"}`}
                     onClick={() => {
                       selectList("personal")
                     }}>
                     Personal
                   </button>
-                  <button className={`listPicker ${listSelected === "company" && "selected"}`}
+                  <button disabled={isLoadingTdl} className={`listPicker ${listSelected === "company" && "selected"}`}
                     onClick={() => {
                       selectList("company")
                     }}>
                     Company
                   </button>
-                  <button className={`listPicker ${listSelected === "all" && "selected"}`}
+                  <button disabled={isLoadingTdl} className={`listPicker ${listSelected === "all" && "selected"}`}
                     onClick={() => {
                       selectList("all")
                     }}>
@@ -168,7 +168,7 @@ export default function TDL({ user }) {
                           <div className={`tdl-optionsBtns`}>
                             {
                               /* open */
-                              <button disabled={isFetchingTdl} title={"Info"} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "TDLDataModal", tdlData: true, ...task, dataSupport } })); setListPickerOpen(false) }}>
+                              <button disabled={isFetchingTdl} title={"Info"} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "TDLDataModal", tdlData: true, ...task, dataList: dataTdl } })); setListPickerOpen(false) }}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
                                   <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                                 </svg>

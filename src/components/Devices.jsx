@@ -57,31 +57,31 @@ export default function Devices({ user }) {
     <>
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
-          <button onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", newDevice: true, userId: user?.uid, dataDevices } }))
+          <button disabled={isLoadingDevices} onClick={() => {
+            dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", newDevice: true, userId: user?.uid, dataList: dataDevices } }))
             setListPickerOpen(false)
           }}>+ Add device</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
-                <button className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
+                <button disabled={isLoadingDevices} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
               }
               {
                 listPickerOpen &&
                 <div className="listPickerOptions">
-                  <button className={`listPicker ${listSelected === "personal" && "selected"}`}
+                  <button disabled={isLoadingDevices} className={`listPicker ${listSelected === "personal" && "selected"}`}
                     onClick={() => {
                       selectList("personal")
                     }}>
                     Personal
                   </button>
-                  <button className={`listPicker ${listSelected === "company" && "selected"}`}
+                  <button disabled={isLoadingDevices} className={`listPicker ${listSelected === "company" && "selected"}`}
                     onClick={() => {
                       selectList("company")
                     }}>
                     Company
                   </button>
-                  <button className={`listPicker ${listSelected === "all" && "selected"}`}
+                  <button disabled={isLoadingDevices} className={`listPicker ${listSelected === "all" && "selected"}`}
                     onClick={() => {
                       selectList("all")
                     }}>
@@ -115,7 +115,7 @@ export default function Devices({ user }) {
                 {
                   devicesList?.map(device =>
                     <li key={device.localId}><button title={device.name} onClick={() => {
-                      dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device, dataDevices } })); setListPickerOpen(false)
+                      dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device, dataList: dataDevices } })); setListPickerOpen(false)
                     }}>{device.name}</button></li>)
                 }
                 {

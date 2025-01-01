@@ -114,7 +114,7 @@ option {
   text-wrap: balance;
   color: var(--main-text);
   outline-offset: 0;
-  transition: color 200ms ease-in-out, background-color 200ms ease-in-out, outline-color 200ms ease-in-out, border-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out, background-color 200ms ease-in-out, outline-color 200ms ease-in-out, border-color 200ms ease-in-out, filter 200ms ease-in-out;
   border-radius: var(--main-radius);
 }
 button:hover, button:focus-visible,
@@ -654,6 +654,10 @@ select:disabled {
 }
 .site-section .btnWrapper button:hover, .site-section .btnWrapper button:focus-visible {
   background: var(--main-color-op-light);
+}
+.site-section .btnWrapper button[disabled] {
+  pointer-events: none;
+  filter: grayscale(1);
 }
 .site-section .btnWrapper .listPickerWrapper {
   height: 25px;
@@ -1464,6 +1468,7 @@ select:disabled {
   width: 100%;
   gap: 0.125rem;
   transition: 200ms ease-in-out;
+  position: relative;
   /* profile modal */
 }
 .mainModal__data__form[disabled] {
@@ -1783,6 +1788,22 @@ label:hover) {
 }
 .mainModal__close:hover, .mainModal__close:focus-visible {
   background-color: var(--main-color-op-light);
+}
+.mainModal__error {
+  position: absolute;
+  bottom: -2rem;
+  left: 0.5rem;
+  color: var(--red);
+  font-weight: 400;
+  transition: 200ms ease-in-out;
+}
+.mainModal__error::first-letter {
+  text-transform: capitalize;
+}
+@starting-style {
+  .mainModal__error {
+    opacity: 0;
+  }
 }
 
 /* end modal */
