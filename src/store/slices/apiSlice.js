@@ -36,6 +36,23 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
+          /*  toast.promise(
+             addDoc(collection(db, "authUsersData", contact.userId, "contacts"), {
+               ...contact,
+               createdAt: serverTimestamp(),
+               updatedAt: serverTimestamp()
+             }),
+             {
+               loading: 'Adding contact...',
+               success: (data) => {
+                 res = data;
+                 console.log(res)
+                 return `Contact added`;
+               },
+               error: 'Connection error: rolling back changes',
+             }
+           ); */
+
           toast.message('Contact added', {
             description: `ID: ${res.id}`,
           });
@@ -67,9 +84,6 @@ export const apiSlice = createApi({
         try {
           await queryFulfilled;
         } catch {
-          toast.message('Connection error', {
-            description: `Rolling back changes`,
-          });
           patchResult.undo();
         }
       }
@@ -192,9 +206,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-           toast.message('Device added', {
-             description: `ID: ${res.id}`,
-           });
+          toast.message('Device added', {
+            description: `ID: ${res.id}`,
+          });
 
           return {
             data: {
@@ -216,7 +230,7 @@ export const apiSlice = createApi({
             draft.push({ ...device, id: 'temp-id', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
           })
         );
-        
+
         toast('Adding device...')
 
         try {
@@ -615,7 +629,7 @@ export const apiSlice = createApi({
           })
         );
 
-         toast('Editing ticket...')
+        toast('Editing ticket...')
 
         try {
           await queryFulfilled;
