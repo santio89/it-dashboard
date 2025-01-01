@@ -47,7 +47,7 @@ function App() {
   return (
     <>
       <div ref={rootTheme} className={`root-theme`}>
-        <Toaster toastOptions={{
+        <Toaster visibleToasts={2} toastOptions={{
           className: 'toaster',
         }} />
         <Modal />
