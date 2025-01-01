@@ -114,7 +114,7 @@ export default function Devices({ user }) {
               <ul className="items-list" ref={listContainer}>
                 {
                   devicesList?.map(device =>
-                    <li key={device.localId}><button title={device.name} onClick={() => {
+                    <li key={device.localId}><button disabled={isFetchingDevices || device.id === "temp-id"} title={device.name} onClick={() => {
                       dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device, dataList: dataDevices } })); setListPickerOpen(false)
                     }}>{device.name}</button></li>)
                 }
