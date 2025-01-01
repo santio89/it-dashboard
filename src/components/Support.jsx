@@ -60,7 +60,7 @@ export default function Support({ user }) {
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", newTicket: true, userId: user?.uid } }))
+            dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", newTicket: true, userId: user?.uid, dataSupport } }))
           }}>+ Add ticket</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
@@ -112,7 +112,7 @@ export default function Support({ user }) {
               <ul className="support-list" ref={listContainer}>
                 {
                   supportList?.map((ticket) =>
-                    <li key={ticket.localId}><button className="taskContentBtn" title={ticket.title} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, userId: user?.uid, ...ticket } })); setListPickerOpen(false) }}>{ticket.title}</button></li>
+                    <li key={ticket.localId}><button className="taskContentBtn" title={ticket.title} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, userId: user?.uid, ...ticket, dataSupport } })); setListPickerOpen(false) }}>{ticket.title}</button></li>
                   )
                 }
                 {

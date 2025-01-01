@@ -46,6 +46,11 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
+    /* if (modalData?.dataContacts?.find(contact=>contact.name === newUserName.trim())){
+      console.log("contact exists")
+      return
+    } */
+
     const user = {
       name: newUserName.trim(),
       email: newUserEmail.trim(),
@@ -97,6 +102,11 @@ export default function ContactsDataModal({ modalData }) {
     if (newUserName.trim() === "") {
       return
     }
+
+    /* if (modalData?.dataContacts?.find(contact=>contact.name === newUserName.trim())){
+      console.log("contact exists")
+      return
+    } */
 
     const newUser = {
       name: newUserName.trim(),

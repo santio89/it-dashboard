@@ -39,6 +39,7 @@ export default function Contacts({ user }) {
 
       /* sort */
       let orderedList = []
+      
       if (sortList) {
         orderedList = [...filteredList].sort((a, b) => b.name.localeCompare(a.name))
       } else {
@@ -58,7 +59,7 @@ export default function Contacts({ user }) {
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newUser: true, userId: user?.uid } }));
+            dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newUser: true, userId: user?.uid, dataContacts } }));
             setListPickerOpen(false)
           }}>+ Add contact</button>
           <div className="listPickerWrapper">
@@ -116,7 +117,7 @@ export default function Contacts({ user }) {
               <ul className="items-list" ref={listContainer}>
                 {
                   contactsList?.map(contact =>
-                    <li key={contact.localId}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
+                    <li key={contact.localId}><button title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact, dataContacts } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
                 }
                 {
                   contactsList?.length === 0 && <li className="no-data">No Data</li>
