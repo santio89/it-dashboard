@@ -127,7 +127,7 @@ export default function Devices({ user }) {
       </div>
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
-          <button>Devices by category</button>
+          <button disabled={isLoadingDevices}>Devices by category</button>
         </div>
         <div className="chartWrapper">
           <DataChart type={{ property: "category", items: "devices" }} data={dataDevices} isLoading={isLoadingDevices} />
