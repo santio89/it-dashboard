@@ -48,7 +48,7 @@ export default function DevicesDataModal({ modalData }) {
       return
     }
 
-    if (modalData?.dataList?.find(contact => contact.name === newDeviceName.trim())) {
+    if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newDeviceName.trim().toLowerCase())) {
       setErrorMsg("Device already exists")
       return
     }
@@ -100,7 +100,7 @@ export default function DevicesDataModal({ modalData }) {
       return
     }
 
-    if (modalData?.dataList?.find(contact => contact.name === newDeviceName.trim())) {
+    if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newDeviceName.trim().toLowerCase())) {
       setErrorMsg("Device already exists")
       return
     }

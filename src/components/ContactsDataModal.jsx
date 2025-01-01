@@ -48,7 +48,7 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
-    if (modalData?.dataList?.find(contact => contact.name === newUserName.trim())) {
+    if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.trim().toLowerCase())) {
       setErrorMsg("Contact already exists")
       return
     }
@@ -100,8 +100,7 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
-    if (modalData?.dataList?.find(contact => contact.name === newUserName.trim())) {
-      console.log("contact exists")
+    if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.trim().toLowerCase())) {
       setErrorMsg("Contact already exists")
       return
     }
