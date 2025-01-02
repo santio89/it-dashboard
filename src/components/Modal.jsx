@@ -33,7 +33,7 @@ export default function Modal() {
     }
 
     if (modalActive) {
-      document.addEventListener("click", closeModalClick)
+      document.addEventListener("mousedown", closeModalClick)
       document.addEventListener("keydown", closeModalEsc)
 
       try {
