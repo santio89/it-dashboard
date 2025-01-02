@@ -1320,7 +1320,7 @@ select:disabled {
   overflow: hidden;
   --mouse-x: 50%;
   --mouse-y: 50%;
-  --spotlight-color: var(--main-color);
+  --spotlight-color: var(--main-color-op);
   color: var(--main-text);
   transition: 200ms ease-in-out, background-color 400ms ease-in-out;
 }
