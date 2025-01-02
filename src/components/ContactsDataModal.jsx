@@ -100,7 +100,7 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
-    if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.trim().toLowerCase())) {
+    if (contact.name !== newUserName && modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.trim().toLowerCase())) {
       setErrorMsg("Contact already exists")
       return
     }
@@ -118,7 +118,7 @@ export default function ContactsDataModal({ modalData }) {
       localTime: contact.localTime
     }
 
-    const { modalType, contactData, createdAt, updatedAt, ...oldUser } = contact
+    const { modalType, contactData, createdAt, updatedAt, dataList, ...oldUser } = contact
 
     const contactEquality = objectEquality(oldUser, newUser)
 
@@ -139,7 +139,7 @@ export default function ContactsDataModal({ modalData }) {
 
   useEffect(() => {
     let timeout;
-
+    console.log(errorMsg)
     if (errorMsg) {
       timeout = setTimeout(() => {
         setErrorMsg(null)
@@ -303,6 +303,10 @@ export default function ContactsDataModal({ modalData }) {
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
               <button className='mainModal__send' onClick={trimInputs}>Confirm</button>
             </div>
+            {
+              errorMsg &&
+              <div className="mainModal__error">{errorMsg}</div>
+            }
           </form>
         </>
       }

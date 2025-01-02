@@ -367,10 +367,6 @@ export default function TDLDataModal({ modalData }) {
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send' onClick={trimInputs}>Send</button>
             </div>
-            {/* {
-              errorMsg &&
-              <div className="mainModal__error">{errorMsg}</div>
-            } */}
           </form>
         </>
       }

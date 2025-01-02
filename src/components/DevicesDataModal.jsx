@@ -100,7 +100,7 @@ export default function DevicesDataModal({ modalData }) {
       return
     }
 
-    if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newDeviceName.trim().toLowerCase())) {
+    if (device.name !== newDeviceName && modalData?.dataList?.find(contact => contact.name.toLowerCase() === newDeviceName.trim().toLowerCase())) {
       setErrorMsg("Device already exists")
       return
     }
@@ -118,7 +118,7 @@ export default function DevicesDataModal({ modalData }) {
       localTime: device.localTime
     }
 
-    const { deviceData, modalType, createdAt, updatedAt, ...oldDevice } = device
+    const { deviceData, modalType, createdAt, updatedAt, dataList, ...oldDevice } = device
     const deviceEquality = objectEquality(oldDevice, newDevice)
 
     if (deviceEquality) {
@@ -300,6 +300,10 @@ export default function DevicesDataModal({ modalData }) {
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
               <button className='mainModal__send' onClick={trimInputs}>Confirm</button>
             </div>
+            {
+              errorMsg &&
+              <div className="mainModal__error">{errorMsg}</div>
+            }
           </form>
         </>
       }
