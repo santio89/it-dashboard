@@ -9,6 +9,7 @@
   gap: var(--main-section-spacing);
   position: relative;
   overflow: auto;
+  padding-top: var(--main-section-spacing);
 
   @media (max-width: $tablet-breakpoint) {
     flex-flow: column nowrap;
@@ -20,7 +21,7 @@
     height: 12px;
   }
 
-  &:has(.site-section__homeCard) {
+  &:has(.card-spotlight) {
     width: 100%;
     margin: auto;
     display: grid;
@@ -29,14 +30,17 @@
     place-items: center;
     gap: clamp(1rem, 1rem + 4vw, 4rem);
     overflow-y: visible;
+    padding-block: var(--main-section-spacing);
 
     @media (max-width: $home-breakpoint) {
       grid-template-columns: 240px;
       align-content: start;
+      align-items: start;
     }
 
     @media (max-height: $home-breakpoint-height) {
       align-content: start;
+      align-items: start;
     }
   }
 
@@ -144,6 +148,14 @@
     transition: background-color 400ms ease-in-out;
     border: 1px solid var(--main-gray-dark);
     border-radius: var(--main-radius);
+    scrollbar-gutter: stable both-edges;
+
+    @media (max-width: $tablet-breakpoint) {
+      flex: 1;
+      min-height: max(50% - 0.5rem, 500px);
+      max-height: 500px;
+      width: 100%;
+    }
 
     &:only-child {
       min-height: 100% !important;
@@ -151,17 +163,6 @@
 
     &.admin {
       min-height: 100% !important;
-    }
-
-    &:not(.site-section__homeCard) {
-      scrollbar-gutter: stable both-edges;
-
-      @media (max-width: $tablet-breakpoint) {
-        flex: 1;
-        min-height: max(50% - 0.5rem, 500px);
-        max-height: 500px;
-        width: 100%;
-      }
     }
   }
 
@@ -723,7 +724,7 @@
     }
   }
 
-  &__homeCard {
+  /* &__homeCard {
     position: relative;
     min-width: auto;
     min-height: auto;
@@ -783,7 +784,7 @@
         transition: 200ms text-shadow ease-in-out;
       }
     }
-  }
+  } */
 
   &__private {
     flex-direction: row;
@@ -804,3 +805,98 @@
     }
   }
 }
+
+/* spotlight card */
+.card-spotlight {
+  position: relative;
+  border-radius: var(--main-radius);
+  background-color: var(--main-color-bg);
+  overflow: hidden;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --spotlight-color: var(--main-color);
+  color: var(--main-text);
+  transition: 200ms ease-in-out, background-color 400ms ease-in-out;
+}
+
+.card-spotlight::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    var(--spotlight-color),
+    transparent 80%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.card-spotlight:hover::before,
+.card-spotlight:focus-within::before {
+  opacity: 0.8;
+}
+
+.homeCard {
+  box-shadow: 0 0 0.5rem transparent, 0 0 0.25rem transparent inset;
+  background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%);
+  min-width: auto;
+  min-height: auto;
+  width: 100%;
+  min-height: 120px;
+  aspect-ratio: 16/9;
+  border: 1px solid var(--main-gray-dark);
+
+  &:has(.homeCard__link:is(:hover, :focus-visible)) {
+    border: 1px solid var(--main-text);
+    box-shadow: 0 0 0.5rem var(--main-text), 0 0 0.125rem var(--main-text) inset;
+  }
+
+  &__link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    padding: 1rem;
+    background: transparent;
+    text-shadow: 0 0 0 transparent;
+    color: var(--main-text);
+    transition: color 200ms ease-in-out, background-color 400ms ease-in-out;
+    border-radius: 0;
+    outline: none;
+    border: none;
+
+    &:hover,
+    &:focus-visible {
+      background: transparent;
+
+      h2 {
+        text-shadow: 0 0 2px var(--main-text);
+      }
+      p {
+        text-shadow: 0 0 1px var(--main-text);
+      }
+    }
+
+    h2 {
+      font-size: 2em;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: 200ms text-shadow ease-in-out;
+    }
+
+    p {
+      font-size: 1em;
+      font-weight: 400;
+      transition: 200ms text-shadow ease-in-out;
+    }
+  }
+}
+/* fin spotlight card */

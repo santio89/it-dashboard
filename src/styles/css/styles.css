@@ -587,7 +587,6 @@ select:disabled {
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  gap: var(--main-section-spacing);
   overflow: hidden;
   padding-left: var(--main-section-spacing);
   margin-left: var(--aside-small-size);
@@ -609,6 +608,68 @@ select:disabled {
   gap: var(--main-section-spacing);
   position: relative;
   overflow: auto;
+  padding-top: var(--main-section-spacing);
+  /* &__homeCard {
+    position: relative;
+    min-width: auto;
+    min-height: auto;
+    width: 240px;
+    min-height: 120px;
+    aspect-ratio: 16/9;
+    background-color: var(--main-section);
+    background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%);
+    outline: 1px solid transparent;
+    box-shadow: 0 0 0.5rem transparent, 0 0 0.25rem transparent inset;
+    transition: background-color 400ms ease-in-out,
+      outline-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
+
+    &:has(.homeCard-anchor:is(:hover, :focus-visible)) {
+      outline: 1px solid var(--main-text);
+      box-shadow: 0 0 0.5rem var(--main-text),
+        0 0 0.125rem var(--main-text) inset;
+    }
+
+    .homeCard-anchor {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      outline: 1px solid var(--main-gray-dark);
+      font-size: 1rem;
+      padding: 1rem;
+      background: transparent;
+      text-shadow: 0 0 0 transparent;
+      color: var(--main-text);
+      transition: color 200ms ease-in-out, background-color 400ms ease-in-out;
+
+      &:hover,
+      &:focus-visible {
+        h2 {
+          text-shadow: 0 0 2px var(--main-text);
+        }
+        p {
+          text-shadow: 0 0 1px var(--main-text);
+        }
+      }
+
+      h2 {
+        font-size: 2em;
+        font-weight: 700;
+        text-transform: uppercase;
+        transition: 200ms text-shadow ease-in-out;
+      }
+
+      p {
+        font-size: 1em;
+        font-weight: 400;
+        transition: 200ms text-shadow ease-in-out;
+      }
+    }
+  } */
 }
 @media (max-width: 969px) {
   .site-section {
@@ -620,7 +681,7 @@ select:disabled {
   width: 12px;
   height: 12px;
 }
-.site-section:has(.site-section__homeCard) {
+.site-section:has(.card-spotlight) {
   width: 100%;
   margin: auto;
   display: grid;
@@ -629,16 +690,19 @@ select:disabled {
   place-items: center;
   gap: clamp(1rem, 1rem + 4vw, 4rem);
   overflow-y: visible;
+  padding-block: var(--main-section-spacing);
 }
-@media (max-width: 669px) {
-  .site-section:has(.site-section__homeCard) {
+@media (max-width: 719px) {
+  .site-section:has(.card-spotlight) {
     grid-template-columns: 240px;
     align-content: start;
+    align-items: start;
   }
 }
 @media (max-height: 444px) {
-  .site-section:has(.site-section__homeCard) {
+  .site-section:has(.card-spotlight) {
     align-content: start;
+    align-items: start;
   }
 }
 .site-section .btnWrapper {
@@ -731,23 +795,21 @@ select:disabled {
   transition: background-color 400ms ease-in-out;
   border: 1px solid var(--main-gray-dark);
   border-radius: var(--main-radius);
+  scrollbar-gutter: stable both-edges;
+}
+@media (max-width: 969px) {
+  .site-section__inner {
+    flex: 1;
+    min-height: max(50% - 0.5rem, 500px);
+    max-height: 500px;
+    width: 100%;
+  }
 }
 .site-section__inner:only-child {
   min-height: 100% !important;
 }
 .site-section__inner.admin {
   min-height: 100% !important;
-}
-.site-section__inner:not(.site-section__homeCard) {
-  scrollbar-gutter: stable both-edges;
-}
-@media (max-width: 969px) {
-  .site-section__inner:not(.site-section__homeCard) {
-    flex: 1;
-    min-height: max(50% - 0.5rem, 500px);
-    max-height: 500px;
-    width: 100%;
-  }
 }
 .site-section__list {
   flex: 2;
@@ -1233,57 +1295,6 @@ select:disabled {
   align-items: center;
   padding: 0.5rem;
 }
-.site-section__homeCard {
-  position: relative;
-  min-width: auto;
-  min-height: auto;
-  width: 240px;
-  min-height: 120px;
-  aspect-ratio: 16/9;
-  background-color: var(--main-section);
-  background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%);
-  outline: 1px solid transparent;
-  box-shadow: 0 0 0.5rem transparent, 0 0 0.25rem transparent inset;
-  transition: background-color 400ms ease-in-out, outline-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
-}
-.site-section__homeCard:has(.homeCard-anchor:is(:hover, :focus-visible)) {
-  outline: 1px solid var(--main-text);
-  box-shadow: 0 0 0.5rem var(--main-text), 0 0 0.125rem var(--main-text) inset;
-}
-.site-section__homeCard .homeCard-anchor {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  outline: 1px solid var(--main-gray-dark);
-  font-size: 1rem;
-  padding: 1rem;
-  background: transparent;
-  text-shadow: 0 0 0 transparent;
-  color: var(--main-text);
-  transition: color 200ms ease-in-out, background-color 400ms ease-in-out;
-}
-.site-section__homeCard .homeCard-anchor:hover h2, .site-section__homeCard .homeCard-anchor:focus-visible h2 {
-  text-shadow: 0 0 2px var(--main-text);
-}
-.site-section__homeCard .homeCard-anchor:hover p, .site-section__homeCard .homeCard-anchor:focus-visible p {
-  text-shadow: 0 0 1px var(--main-text);
-}
-.site-section__homeCard .homeCard-anchor h2 {
-  font-size: 2em;
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: 200ms text-shadow ease-in-out;
-}
-.site-section__homeCard .homeCard-anchor p {
-  font-size: 1em;
-  font-weight: 400;
-  transition: 200ms text-shadow ease-in-out;
-}
 .site-section__private {
   flex-direction: row;
   justify-content: center;
@@ -1301,6 +1312,90 @@ select:disabled {
   text-shadow: 0 0 4px var(--main-text);
 }
 
+/* spotlight card */
+.card-spotlight {
+  position: relative;
+  border-radius: var(--main-radius);
+  background-color: var(--main-color-bg);
+  overflow: hidden;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --spotlight-color: var(--main-color);
+  color: var(--main-text);
+  transition: 200ms ease-in-out, background-color 400ms ease-in-out;
+}
+
+.card-spotlight::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.card-spotlight:hover::before,
+.card-spotlight:focus-within::before {
+  opacity: 0.8;
+}
+
+.homeCard {
+  box-shadow: 0 0 0.5rem transparent, 0 0 0.25rem transparent inset;
+  background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%);
+  min-width: auto;
+  min-height: auto;
+  width: 100%;
+  min-height: 120px;
+  aspect-ratio: 16/9;
+  border: 1px solid var(--main-gray-dark);
+}
+.homeCard:has(.homeCard__link:is(:hover, :focus-visible)) {
+  border: 1px solid var(--main-text);
+  box-shadow: 0 0 0.5rem var(--main-text), 0 0 0.125rem var(--main-text) inset;
+}
+.homeCard__link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  padding: 1rem;
+  background: transparent;
+  text-shadow: 0 0 0 transparent;
+  color: var(--main-text);
+  transition: color 200ms ease-in-out, background-color 400ms ease-in-out;
+  border-radius: 0;
+  outline: none;
+  border: none;
+}
+.homeCard__link:hover, .homeCard__link:focus-visible {
+  background: transparent;
+}
+.homeCard__link:hover h2, .homeCard__link:focus-visible h2 {
+  text-shadow: 0 0 2px var(--main-text);
+}
+.homeCard__link:hover p, .homeCard__link:focus-visible p {
+  text-shadow: 0 0 1px var(--main-text);
+}
+.homeCard__link h2 {
+  font-size: 2em;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: 200ms text-shadow ease-in-out;
+}
+.homeCard__link p {
+  font-size: 1em;
+  font-weight: 400;
+  transition: 200ms text-shadow ease-in-out;
+}
+
+/* fin spotlight card */
 /* start modal */
 .mainModalWrapper {
   z-index: 9;

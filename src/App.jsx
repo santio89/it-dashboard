@@ -1,9 +1,9 @@
+import './styles/css/styles.css'
 import { useEffect, useRef, useState } from 'react'
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Main from './components/Main';
 import Nav from './components/Nav';
 import Modal from './components/Modal'
-import './styles/css/styles.css'
 import { firebaseOnAuthStateChanged, firebaseAuth } from './config/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './store/slices/authSlice';
