@@ -242,6 +242,12 @@
             justify-content: center;
             align-items: stretch;
             width: 100%;
+            transition: filter 200ms ease-in-out;
+
+            &:has(button[disabled]) {
+              filter: grayscale(1);
+              pointer-events: none;
+            }
 
             > button {
               width: 100%;
@@ -267,8 +273,26 @@
             flex-direction: column;
             justify-content: start;
             align-items: center;
-            position: relative;
             border-radius: var(--main-radius);
+            transition: filter 200ms ease-in-out;
+
+            &:has(button[disabled]) {
+              filter: grayscale(1);
+              pointer-events: none;
+            }
+
+            &:has(.taskDone) {
+              text-decoration: line-through;
+              filter: grayscale(0.5);
+            }
+
+            &:has(button[title="Status: done"]) {
+              filter: grayscale(0.5);
+
+              :not(.tdl-btnContainer) {
+                text-decoration: line-through;
+              }
+            }
 
             &:has(.tdl-btnContainer) {
               overflow: hidden;
@@ -516,11 +540,6 @@
                 -webkit-box-orient: vertical;
                 text-overflow: ellipsis; */
 
-                &.taskDone {
-                  text-decoration: line-through;
-                  filter: grayscale(0.5);
-                }
-
                 /* &.selectedLow {
                   box-shadow: -2px 0 0 0 var(--main-gray-dark),
                     -4px 0 0 0 var(--main-color);
@@ -611,6 +630,12 @@
           li {
             width: 100%;
             border-radius: var(--main-radius);
+            transition: filter 200ms ease-in-out;
+
+            &:has(button[disabled]) {
+              filter: grayscale(1);
+              pointer-events: none;
+            }
 
             .taskContentBtn {
               width: 100%;
@@ -688,18 +713,11 @@
 
           svg {
             text {
+              fill: var(--main-text);
               font-family: var(--font-primary);
               font-weight: 300;
               font-size: 1rem;
               transition: 200ms ease-in-out;
-              fill: var(--main-text);
-              transition: 200ms ease-in-out;
-
-              &[text-anchor="middle"] {
-                fill: var(--main-text);
-                font-weight: 400;
-                text-transform: capitalize;
-              }
             }
           }
 

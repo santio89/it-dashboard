@@ -874,6 +874,11 @@ select:disabled {
   justify-content: center;
   align-items: stretch;
   width: 100%;
+  transition: filter 200ms ease-in-out;
+}
+.site-section__list .listWrapper ul.items-list li:has(button[disabled]) {
+  filter: grayscale(1);
+  pointer-events: none;
 }
 .site-section__list .listWrapper ul.items-list li > button {
   width: 100%;
@@ -896,8 +901,22 @@ select:disabled {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  position: relative;
   border-radius: var(--main-radius);
+  transition: filter 200ms ease-in-out;
+}
+.site-section__list .listWrapper ul.tdl-list li:has(button[disabled]) {
+  filter: grayscale(1);
+  pointer-events: none;
+}
+.site-section__list .listWrapper ul.tdl-list li:has(.taskDone) {
+  text-decoration: line-through;
+  filter: grayscale(0.5);
+}
+.site-section__list .listWrapper ul.tdl-list li:has(button[title="Status: done"]) {
+  filter: grayscale(0.5);
+}
+.site-section__list .listWrapper ul.tdl-list li:has(button[title="Status: done"]) :not(.tdl-btnContainer) {
+  text-decoration: line-through;
 }
 .site-section__list .listWrapper ul.tdl-list li:has(.tdl-btnContainer) {
   overflow: hidden;
@@ -1133,12 +1152,6 @@ select:disabled {
       -4px 0 0 0 var(--main-color);
   } */
 }
-.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn.taskDone,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.taskDone,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn.taskDone {
-  text-decoration: line-through;
-  filter: grayscale(0.5);
-}
 .site-section__list .listWrapper ul.tdl-list li button.taskOption,
 .site-section__list .listWrapper ul.tdl-list li textarea.taskOption,
 .site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskOption {
@@ -1205,6 +1218,11 @@ select:disabled {
 .site-section__list .listWrapper ul.support-list li {
   width: 100%;
   border-radius: var(--main-radius);
+  transition: filter 200ms ease-in-out;
+}
+.site-section__list .listWrapper ul.support-list li:has(button[disabled]) {
+  filter: grayscale(1);
+  pointer-events: none;
 }
 .site-section__list .listWrapper ul.support-list li .taskContentBtn {
   width: 100%;
@@ -1269,17 +1287,11 @@ select:disabled {
   /* chart-error-message */
 }
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) svg text {
+  fill: var(--main-text);
   font-family: var(--font-primary);
   font-weight: 300;
   font-size: 1rem;
   transition: 200ms ease-in-out;
-  fill: var(--main-text);
-  transition: 200ms ease-in-out;
-}
-.site-section__chart .chartWrapper .dataChart > div:not(.loader) svg text[text-anchor=middle] {
-  fill: var(--main-text);
-  font-weight: 400;
-  text-transform: capitalize;
 }
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) .google-visualization-tooltip {
   pointer-events: none;
