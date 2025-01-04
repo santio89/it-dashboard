@@ -915,7 +915,8 @@ select:disabled {
 .site-section__list .listWrapper ul.tdl-list li:has(button[title="Status: done"]) {
   filter: grayscale(0.5);
 }
-.site-section__list .listWrapper ul.tdl-list li:has(button[title="Status: done"]) :not(.tdl-btnContainer) {
+.site-section__list .listWrapper ul.tdl-list li:has(button[title="Status: done"]) .taskContentTitle,
+.site-section__list .listWrapper ul.tdl-list li:has(button[title="Status: done"]) .taskContentBtn {
   text-decoration: line-through;
 }
 .site-section__list .listWrapper ul.tdl-list li:has(.tdl-btnContainer) {
@@ -1000,7 +1001,6 @@ select:disabled {
   background: var(--main-color-op);
   padding: 0.5rem;
   cursor: pointer;
-  /*  outline: 2px solid var(--main-color-op); */
 }
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer svg {
   width: 20px;

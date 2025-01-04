@@ -289,7 +289,8 @@
             &:has(button[title="Status: done"]) {
               filter: grayscale(0.5);
 
-              :not(.tdl-btnContainer) {
+              .taskContentTitle,
+              .taskContentBtn {
                 text-decoration: line-through;
               }
             }
@@ -390,7 +391,6 @@
               background: var(--main-color-op);
               padding: 0.5rem;
               cursor: pointer;
-              /*  outline: 2px solid var(--main-color-op); */
 
               svg {
                 width: 20px;

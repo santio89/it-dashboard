@@ -135,7 +135,8 @@ option {
   color: var(--main-text);
   outline-offset: 0;
   transition: color 200ms ease-in-out, background-color 200ms ease-in-out,
-    outline-color 200ms ease-in-out, border-color 200ms ease-in-out, filter 200ms ease-in-out;
+    outline-color 200ms ease-in-out, border-color 200ms ease-in-out,
+    filter 200ms ease-in-out;
   border-radius: var(--main-radius);
 
   &:hover,
