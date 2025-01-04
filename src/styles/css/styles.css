@@ -905,19 +905,19 @@ select:disabled {
   transition: filter 200ms ease-in-out;
 }
 .site-section__list .listWrapper ul.tdl-list li:has(button[disabled]) {
-  filter: grayscale(1);
+  filter: grayscale(0.5);
   pointer-events: none;
 }
 .site-section__list .listWrapper ul.tdl-list li:has(.taskDone) {
   text-decoration: line-through;
-  filter: grayscale(0.5);
+  filter: grayscale(1);
 }
 .site-section__list .listWrapper ul.tdl-list li:has(button[title="Status: done"]) {
-  filter: grayscale(0.5);
-}
-.site-section__list .listWrapper ul.tdl-list li:has(button[title="Status: done"]) .taskContentTitle,
-.site-section__list .listWrapper ul.tdl-list li:has(button[title="Status: done"]) .taskContentBtn {
-  text-decoration: line-through;
+  filter: grayscale(1);
+  /* .taskContentTitle,
+  .taskContentBtn {
+    text-decoration: line-through;
+  } */
 }
 .site-section__list .listWrapper ul.tdl-list li:has(.tdl-btnContainer) {
   overflow: hidden;

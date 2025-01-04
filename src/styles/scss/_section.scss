@@ -277,22 +277,22 @@
             transition: filter 200ms ease-in-out;
 
             &:has(button[disabled]) {
-              filter: grayscale(1);
+              filter: grayscale(0.5);
               pointer-events: none;
             }
 
             &:has(.taskDone) {
               text-decoration: line-through;
-              filter: grayscale(0.5);
+              filter: grayscale(1);
             }
 
             &:has(button[title="Status: done"]) {
-              filter: grayscale(0.5);
+              filter: grayscale(1);
 
-              .taskContentTitle,
+              /* .taskContentTitle,
               .taskContentBtn {
                 text-decoration: line-through;
-              }
+              } */
             }
 
             &:has(.tdl-btnContainer) {
