@@ -942,7 +942,7 @@ select:disabled {
   text-decoration: line-through;
   filter: grayscale(1);
 }
-.site-section__list .listWrapper ul.tdl-list li:has(button[title="Status: done"]), .site-section__list .listWrapper ul.support-list li:has(button[title="Status: done"]) {
+.site-section__list .listWrapper ul.tdl-list li:has(button[title="Status: completed"]), .site-section__list .listWrapper ul.support-list li:has(button[title="Status: completed"]) {
   filter: grayscale(1);
   /* .taskContentTitle,
   .taskContentBtn {

@@ -286,7 +286,7 @@
               filter: grayscale(1);
             }
 
-            &:has(button[title="Status: done"]) {
+            &:has(button[title="Status: completed"]) {
               filter: grayscale(1);
 
               /* .taskContentTitle,
