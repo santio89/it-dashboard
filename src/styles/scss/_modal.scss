@@ -398,7 +398,7 @@
         .taskOptions {
           width: 100%;
           display: flex;
-          flex-flow: row wrap;
+          flex-flow: column wrap;
           justify-content: space-between;
           align-items: center;
           gap: 1rem;
@@ -582,19 +582,19 @@
     }
   }
 
-  &__error{
+  &__error {
     position: absolute;
     bottom: -2rem;
-    left: .5rem;
+    left: 0.5rem;
     color: var(--red);
     font-weight: 400;
     transition: 200ms ease-in-out;
-    
-    &::first-letter{
+
+    &::first-letter {
       text-transform: capitalize;
     }
 
-    @starting-style{
+    @starting-style {
       opacity: 0;
     }
   }

@@ -15,7 +15,7 @@ export default function TDLDataModal({ modalData }) {
   const [newTaskDescription, setNewTaskDescription] = useState("")
   const [newTaskPriority, setNewTaskPriority] = useState("medium")
   const [newTaskCategory, setNewTaskCategory] = useState("personal")
-  const [newTaskStatus, setNewTaskStatus] = useState("not done")
+  const [newTaskStatus, setNewTaskStatus] = useState("pending")
 
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)
@@ -132,7 +132,7 @@ export default function TDLDataModal({ modalData }) {
       setNewTaskTitle("")
       setNewTaskDescription("")
       setNewTaskPriority("medium")
-      setNewTaskStatus("not done")
+      setNewTaskStatus("pending")
       setNewTaskCategory("personal")
       setEditMode(false)
       setDeleteMode(false)
@@ -234,11 +234,11 @@ export default function TDLDataModal({ modalData }) {
               </div>
               <div className={`taskOpenData`}>
                 <div>Status:&nbsp;</div>
-                <button type='button' onClick={() => setNewTaskStatus("not done")} className={`tdl-priority ${newTaskStatus === "not done" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
-                  Not Done
+                <button type='button' onClick={() => setNewTaskStatus("pending")} className={`tdl-priority ${newTaskStatus === "pending" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
+                  Pending
                 </button>
-                <button type='button' onClick={() => setNewTaskStatus("done")} className={`tdl-priority ${newTaskStatus === "done" && "selected"}  ${resultAddTdl.isLoading && "disabled"}`}>
-                  Done
+                <button type='button' onClick={() => setNewTaskStatus("completed")} className={`tdl-priority ${newTaskStatus === "completed" && "selected"}  ${resultAddTdl.isLoading && "disabled"}`}>
+                  Completed
                 </button>
               </div>
             </div>
@@ -348,11 +348,11 @@ export default function TDLDataModal({ modalData }) {
               </div>
               <div className={`taskOpenData`}>
                 <div>Status:&nbsp;</div>
-                <button type='button' onClick={() => setNewTaskStatus("not done")} className={`tdl-priority ${newTaskStatus === "not done" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
-                  Not Done
+                <button type='button' onClick={() => setNewTaskStatus("pending")} className={`tdl-priority ${newTaskStatus === "pending" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}>
+                  Pending
                 </button>
-                <button type='button' onClick={() => setNewTaskStatus("done")} className={`tdl-priority ${newTaskStatus === "done" && "selected"}  ${resultAddTdl.isLoading && "disabled"}`}>
-                  Done
+                <button type='button' onClick={() => setNewTaskStatus("completed")} className={`tdl-priority ${newTaskStatus === "completed" && "selected"}  ${resultAddTdl.isLoading && "disabled"}`}>
+                  Completed
                 </button>
               </div>
             </div>

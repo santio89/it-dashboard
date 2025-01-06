@@ -14,8 +14,8 @@ export default function SupportDataModal({ modalData }) {
   const [newTicketTitle, setNewTicketTitle] = useState("")
   const [newTicketDescription, setNewTicketDescription] = useState("")
   const [newTicketCategory, setNewTicketCategory] = useState("personal")
-  /*   const [newTaskPriority, setNewTaskPriority] = useState("medium")
-    const [newTaskStatus, setNewTaskStatus] = useState("not done") */
+  /*   const [newTicketPriority, setNewTicketPriority] = useState("medium")
+    const [newTicketStatus, setNewTicketStatus] = useState("pending") */
 
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)
@@ -130,7 +130,9 @@ export default function SupportDataModal({ modalData }) {
 
   useEffect(() => {
     if (!modalActive) {
-      /*  setNewTaskPriority("medium") */
+      /*  setNewTicketPriority("medium")
+      setNewTicketStatus("pending")
+      */
       setNewTicketTitle("")
       setNewTicketDescription("")
       setNewTicketCategory("personal")

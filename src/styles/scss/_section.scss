@@ -281,7 +281,7 @@
               pointer-events: none;
             }
 
-            &:has(.taskDone) {
+            &:has(.taskCompleted) {
               text-decoration: line-through;
               filter: grayscale(1);
             }

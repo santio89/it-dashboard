@@ -908,7 +908,7 @@ select:disabled {
   filter: grayscale(0.5);
   pointer-events: none;
 }
-.site-section__list .listWrapper ul.tdl-list li:has(.taskDone) {
+.site-section__list .listWrapper ul.tdl-list li:has(.taskCompleted) {
   text-decoration: line-through;
   filter: grayscale(1);
 }
@@ -1744,7 +1744,7 @@ label:hover) {
 .mainModal__data__form.taskContainer .taskOptions {
   width: 100%;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
