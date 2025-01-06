@@ -261,7 +261,7 @@
           }
         }
 
-        &.tdl-list {
+        &.tdl-list, &.support-list {
           display: flex;
           justify-content: start;
           align-items: stretch;
@@ -620,7 +620,7 @@
           }
         }
 
-        &.support-list {
+        /* &.support-list {
           display: flex;
           justify-content: start;
           align-items: stretch;
@@ -649,7 +649,7 @@
               box-shadow: -2px 0 0 0 var(--main-color);
             }
           }
-        }
+        } */
       }
     }
   }

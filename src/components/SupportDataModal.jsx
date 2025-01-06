@@ -14,8 +14,8 @@ export default function SupportDataModal({ modalData }) {
   const [newTicketTitle, setNewTicketTitle] = useState("")
   const [newTicketDescription, setNewTicketDescription] = useState("")
   const [newTicketCategory, setNewTicketCategory] = useState("personal")
-  /*   const [newTicketPriority, setNewTicketPriority] = useState("medium")
-    const [newTicketStatus, setNewTicketStatus] = useState("pending") */
+  const [newTicketPriority, setNewTicketPriority] = useState("medium")
+  const [newTicketStatus, setNewTicketStatus] = useState("pending")
 
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)
@@ -46,9 +46,9 @@ export default function SupportDataModal({ modalData }) {
       category: newTicketCategory,
       content: newTicketDescription,
       localId: crypto.randomUUID(),
-      localTime: Date.now()
-      /*       priority: newTicketPriority,
-            status: newTicketStatus, */
+      localTime: Date.now(),
+      priority: newTicketPriority,
+      status: newTicketStatus,
     }
 
     dispatch(setModal({ active: false, data: {} }))
@@ -64,8 +64,8 @@ export default function SupportDataModal({ modalData }) {
     setNewTicketCategory(modalData?.category)
     setNewTicketTitle(modalData?.title)
     setNewTicketDescription(modalData?.content)
-    /*  setNewTicketPriority(modalData?.priority)
-     setNewTicketStatus(modalData?.status) */
+    setNewTicketPriority(modalData?.priority)
+    setNewTicketStatus(modalData?.status)
     setEditMode(true)
   }
 
@@ -79,22 +79,21 @@ export default function SupportDataModal({ modalData }) {
     const input = newTicketDescription.trim()
     const title = newTicketTitle.trim()
     const category = newTicketCategory.trim()
-
-    /*    const priority = newTicketPriority.trim()
-       const status = newTicketStatus.trim() */
+    const priority = newTicketPriority.trim()
+    const status = newTicketStatus.trim()
 
     if (title.trim() === "") {
       return
     }
 
-    if (input.trim() === ticket.content /* && (ticket.priority === (priority ?? ticket.priority)) */ && (ticket.category === (category ?? ticket.category)) && (ticket.title === (title ?? ticket.title)) /* && (ticket.status === (status ?? ticket.status)) */) {
+    if (input.trim() === ticket.content && (ticket.priority === (priority ?? ticket.priority)) && (ticket.category === (category ?? ticket.category)) && (ticket.title === (title ?? ticket.title)) && (ticket.status === (status ?? ticket.status))) {
       dispatch(setModal({ active: false, data: {} }))
       return
     }
 
     const { modalType, supportData, ...trimTicket } = ticket
 
-    const newTicket = { ...trimTicket, title: title ?? ticket.title, content: input.trim(), category: category ?? ticket.category, /* priority: priority ?? ticket.priority, status: status ?? ticket.status */ }
+    const newTicket = { ...trimTicket, title: title ?? ticket.title, content: input.trim(), category: category ?? ticket.category, priority: priority ?? ticket.priority, status: status ?? ticket.status }
 
     dispatch(setModal({ active: false, data: {} }))
     await editSupport(newTicket)
@@ -130,9 +129,8 @@ export default function SupportDataModal({ modalData }) {
 
   useEffect(() => {
     if (!modalActive) {
-      /*  setNewTicketPriority("medium")
+      setNewTicketPriority("medium")
       setNewTicketStatus("pending")
-      */
       setNewTicketTitle("")
       setNewTicketDescription("")
       setNewTicketCategory("personal")
@@ -155,21 +153,23 @@ export default function SupportDataModal({ modalData }) {
             </div>
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer disabled'>
-            {/*  <div className={`taskOpenData`}>
-              <div>Priority: </div>
-              <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
-                </svg>
-                {modalData?.priority}
-              </button>
-            </div> */}
-            {/*   <div className={`taskOpenData`}>
-              <div>Status: </div>
-              <button tabIndex={-1} type='button' disabled className={`tdl-priority selected`}>
-                {modalData?.status}
-              </button>
-            </div> */}
+            <div className="taskOptions">
+              <div className={`taskOpenData`}>
+                <div>Priority:&nbsp;</div>
+                <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                  </svg>
+                  {modalData?.priority}
+                </button>
+              </div>
+              <div className={`taskOpenData`}>
+                <div>Status:&nbsp;</div>
+                <button tabIndex={-1} type='button' disabled className={`tdl-priority selected`}>
+                  {modalData?.status}
+                </button>
+              </div>
+            </div>
             <fieldset>
               <legend><label htmlFor="title">Title</label></legend>
               <textarea id="deleteTitle" placeholder='Required' required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
@@ -210,12 +210,44 @@ export default function SupportDataModal({ modalData }) {
             </div>
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer editMode' disabled={resultEditSupport.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
+            <div className="taskOptions">
+              <div className={`taskOpenData`}>
+                <div>Priority:&nbsp;</div>
+                <button type='button' onClick={() => setNewTicketPriority("low")} className={`tdl-priority selectedLow ${newTicketPriority === "low" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                  </svg>
+                  Low
+                </button>
+                <button type='button' onClick={() => setNewTicketPriority("medium")} className={`tdl-priority selectedMedium ${newTicketPriority === "medium" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                  </svg>
+                  Medium
+                </button>
+                <button type='button' onClick={() => setNewTicketPriority("high")} className={`tdl-priority selectedHigh ${newTicketPriority === "high" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                  </svg>
+                  High
+                </button>
+              </div>
+              <div className={`taskOpenData`}>
+                <div>Status:&nbsp;</div>
+                <button type='button' onClick={() => setNewTicketStatus("pending")} className={`tdl-priority ${newTicketStatus === "pending" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
+                  Pending
+                </button>
+                <button type='button' onClick={() => setNewTicketStatus("completed")} className={`tdl-priority ${newTicketStatus === "completed" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
+                  Completed
+                </button>
+              </div>
+            </div>
             <fieldset>
               <legend><label htmlFor="editTitle">Title</label></legend>
               <textarea id="addTitle" placeholder='Required' required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
-              <legend><label htmlFor="editDescription" onClick={() => textInputEdit.current.focus()}>Description</label></legend>
+              <legend><label htmlFor="editDescription">Description</label></legend>
               <textarea id="editDescription" spellCheck={false} rows="4" value={newTicketDescription} onChange={e => setNewTicketDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
 
             </fieldset>
@@ -238,6 +270,23 @@ export default function SupportDataModal({ modalData }) {
             </div>
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteSupport.isLoading} onSubmit={(e) => deleteSupportFn(e, modalData)}>
+            <div className="taskOptions">
+              <div className={`taskOpenData`}>
+                <div>Priority:&nbsp;</div>
+                <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                  </svg>
+                  {modalData?.priority}
+                </button>
+              </div>
+              <div className={`taskOpenData`}>
+                <div>Status:&nbsp;</div>
+                <button tabIndex={-1} type='button' disabled className={`tdl-priority selected`}>
+                  {modalData?.status}
+                </button>
+              </div>
+            </div>
             <fieldset>
               <legend><label htmlFor="deleteTitle">Title</label></legend>
               <textarea id="deleteTitle" placeholder='Required' required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
@@ -276,12 +325,44 @@ export default function SupportDataModal({ modalData }) {
             </div>
           </div>
           <form autoCapitalize='off' disabled={resultAddSupport.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addSupportFn(e)}>
+            <div className="taskOptions">
+              <div className={`taskOpenData`}>
+                <div>Priority:&nbsp;</div>
+                <button type='button' onClick={() => setNewTicketPriority("low")} className={`tdl-priority selectedLow ${newTicketPriority === "low" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                  </svg>
+                  Low
+                </button>
+                <button type='button' onClick={() => setNewTicketPriority("medium")} className={`tdl-priority selectedMedium ${newTicketPriority === "medium" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                  </svg>
+                  Medium
+                </button>
+                <button type='button' onClick={() => setNewTicketPriority("high")} className={`tdl-priority selectedHigh ${newTicketPriority === "high" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                  </svg>
+                  High
+                </button>
+              </div>
+              <div className={`taskOpenData`}>
+                <div>Status:&nbsp;</div>
+                <button type='button' onClick={() => setNewTicketStatus("pending")} className={`tdl-priority ${newTicketStatus === "pending" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
+                  Pending
+                </button>
+                <button type='button' onClick={() => setNewTicketStatus("completed")} className={`tdl-priority ${newTicketStatus === "completed" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
+                  Completed
+                </button>
+              </div>
+            </div>
             <fieldset>
               <legend><label htmlFor="addTitle">Title</label></legend>
               <textarea id="addTitle" placeholder='Required' required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
-              <legend><label htmlFor="addDescription" onClick={() => textInput.current.focus()}>Description</label></legend>
+              <legend><label htmlFor="addDescription">Description</label></legend>
               <textarea id="addDescription" spellCheck={false} rows="4" value={newTicketDescription} onChange={e => setNewTicketDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
             </fieldset>
             <div className='mainModal__btnContainer'>

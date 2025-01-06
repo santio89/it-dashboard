@@ -2,18 +2,23 @@ import { useRef, useState, useEffect } from "react"
 import DataChart from "./DataChart"
 import { useDispatch } from "react-redux"
 import { setModal } from "../store/slices/modalSlice"
-import { useGetSupportQuery } from "../store/slices/apiSlice"
+import { useGetSupportQuery, useEditSupportMutation } from "../store/slices/apiSlice"
 import autoAnimate from "@formkit/auto-animate"
 
 export default function Support({ user }) {
   const dispatch = useDispatch()
   const [sortList, setSortList] = useState(false)
-  const [listPickerOpen, setListPickerOpen] = useState(false)
-  const [listSelected, setListSelected] = useState("all")
-
+  const [ticketOptions, setTicketOptions] = useState(null)
   const listContainer = useRef()
 
   const [supportList, setSupportList] = useState(null)
+
+  /* search */
+  const [listPickerOpen, setListPickerOpen] = useState(false)
+  const [listSelected, setListSelected] = useState("all")
+
+    /* edit support mutation */
+    const [editSupport, resultEditSupport] = useEditSupportMutation()
 
   const {
     data: dataSupport,
@@ -27,6 +32,16 @@ export default function Support({ user }) {
   const selectList = list => {
     setListSelected(list)
     setListPickerOpen(false)
+  }
+
+  const editStatusFn = async (ticket) => {
+    if (resultEditSupport.isLoading || isFetchingSupport) {
+      return
+    }
+
+    const newTicket = { ...ticket, status: ticket.status === "completed" ? "pending" : "completed" }
+
+    await editSupport(newTicket)
   }
 
   /* order */
@@ -112,7 +127,64 @@ export default function Support({ user }) {
               <ul className="support-list" ref={listContainer}>
                 {
                   supportList?.map((ticket) =>
-                    <li key={ticket.localId}><button disabled={ticket.id === "temp-id"} className="taskContentBtn" title={ticket.title} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, userId: user?.uid, ...ticket, dataList: dataSupport } })); setListPickerOpen(false) }}>{ticket.title}</button></li>
+                    <li key={ticket.localId} className={`${ticket.priority === "low" && "selectedLow"} ${ticket.priority === "medium" && "selectedMedium"} ${ticket.priority === "high" && "selectedHigh"}`}>
+                      {/* ticket options */}
+                      {
+                        ticketOptions === ticket.id &&
+                        <div className='tdl-btnContainer' onClick={() => {
+                          setTicketOptions(null)
+                        }}>
+                          {/* ticket status */}
+                          <div className={`tdl-itemData `}>
+                            {<>
+                              <span>Status:</span>
+                              <button disabled={ticket.id === "temp-id"} title={`Status: ${ticket.status ?? "pending"}`} onClick={(e) => { e.stopPropagation(); editStatusFn(ticket) }}>
+                                {ticket.status === "completed" ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-square" viewBox="0 0 16 16">
+                                  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                                  <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
+                                </svg> :
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-square" viewBox="0 0 16 16">
+                                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                                  </svg>
+                                }
+                              </button>
+                            </>
+                            }
+                          </div>
+                          <div className={`tdl-optionsBtns`}>
+                            {
+                              /* open */
+                              <button disabled={ticket.id === "temp-id"} title={"Info"} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, ...ticket, dataList: dataSupport } })); setListPickerOpen(false) }}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                  <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                                </svg>
+                              </button>
+                            }
+                          </div>
+                        </div>
+                      }
+
+                      {/* ticket  */}
+                      {
+                        <>
+                          {
+                            ticketOptions === ticket.id ?
+                              <>
+                                <div title={ticket.title} className='taskContentTitle'>{ticket.title}</div>
+                                <div className={`taskContentBtn ${ticketOptions !== ticket.id && ticket.priority === "low" && "selectedLow"} ${ticketOptions !== ticket.id && ticket.priority === "medium" && "selectedMedium"} ${ticketOptions !== ticket.id && ticket.priority === "high" && "selectedHigh"} ${ticketOptions === ticket.id && "taskOption"}`}>
+                                  {ticket.content || "-"}
+                                </div>
+                              </> :
+                              <>
+                                <button disabled={ticket.id === "temp-id"} title={ticket.title} className={`taskContentBtn ${ticketOptions !== ticket.id && ticket.priority === "low" && "selectedLow"} ${ticketOptions !== ticket.id && ticket.priority === "medium" && "selectedMedium"} ${ticketOptions !== ticket.id && ticket.priority === "high" && "selectedHigh"} ${ticketOptions === ticket.id && "taskOption"} ${ticket.status === "completed" && "taskCompleted"}`} onClick={() => {
+                                  setTicketOptions(ticket.id);
+                                }} >
+                                  {ticket.title}
+                                </button></>
+                          }
+                        </>
+                      }
+                    </li>
                   )
                 }
                 {

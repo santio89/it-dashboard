@@ -13,8 +13,8 @@ export default function TDLDataModal({ modalData }) {
   const textInputEdit = useRef() */
   const [newTaskTitle, setNewTaskTitle] = useState("")
   const [newTaskDescription, setNewTaskDescription] = useState("")
-  const [newTaskPriority, setNewTaskPriority] = useState("medium")
   const [newTaskCategory, setNewTaskCategory] = useState("personal")
+  const [newTaskPriority, setNewTaskPriority] = useState("medium")
   const [newTaskStatus, setNewTaskStatus] = useState("pending")
 
   const [editMode, setEditMode] = useState(false)
@@ -61,11 +61,11 @@ export default function TDLDataModal({ modalData }) {
   }
 
   const editModeFN = () => {
-    setNewTaskPriority(modalData?.priority)
     setNewTaskCategory(modalData?.category)
-    setNewTaskStatus(modalData?.status)
     setNewTaskTitle(modalData?.title)
     setNewTaskDescription(modalData?.content)
+    setNewTaskPriority(modalData?.priority)
+    setNewTaskStatus(modalData?.status)
     setEditMode(true)
   }
 
@@ -77,10 +77,10 @@ export default function TDLDataModal({ modalData }) {
     }
 
     const input = newTaskDescription.trim()
-    const priority = newTaskPriority.trim()
-    const category = newTaskCategory.trim()
-    const status = newTaskStatus.trim()
     const title = newTaskTitle.trim()
+    const category = newTaskCategory.trim()
+    const priority = newTaskPriority.trim()
+    const status = newTaskStatus.trim()
 
     if (title.trim() === "") {
       return
