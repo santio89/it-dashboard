@@ -63,6 +63,7 @@
       &[disabled] {
         pointer-events: none;
         filter: grayscale(1);
+        color: var(--main-gray-dark);
       }
     }
 
@@ -110,7 +111,6 @@
           background-color: var(--main-color-op);
           height: 25px;
           width: 68px;
-          color: var(--main-text);
           text-transform: capitalize;
           outline: 1px solid transparent;
 
@@ -118,7 +118,6 @@
           &:focus-visible,
           &.selected {
             background-color: var(--main-color-op-light);
-            color: var(--main-text);
           }
 
           &:focus-visible {
@@ -361,34 +360,6 @@
             &[disabled] {
               pointer-events: none;
               filter: grayscale(1);
-            }
-
-            .listPickerWrapper {
-              &__btnContainer {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 4px;
-              }
-
-              button {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                padding: 0 0.25rem;
-                background-color: var(--main-color-op);
-                text-transform: capitalize;
-                font-size: 12px;
-                transition: none;
-                color: var(--white);
-
-                &:hover,
-                &:focus-visible,
-                &.selected {
-                  background: var(--main-color-mid);
-                }
-              }
             }
 
             .tdl-btnContainer {

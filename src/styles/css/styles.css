@@ -722,6 +722,7 @@ select:disabled {
 .site-section .btnWrapper button[disabled] {
   pointer-events: none;
   filter: grayscale(1);
+  color: var(--main-gray-dark);
 }
 .site-section .btnWrapper .listPickerWrapper {
   height: 25px;
@@ -765,13 +766,11 @@ select:disabled {
   background-color: var(--main-color-op);
   height: 25px;
   width: 68px;
-  color: var(--main-text);
   text-transform: capitalize;
   outline: 1px solid transparent;
 }
 .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:hover, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:focus-visible, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.selected {
   background-color: var(--main-color-op-light);
-  color: var(--main-text);
 }
 .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:focus-visible {
   z-index: 1;
@@ -1007,27 +1006,6 @@ select:disabled {
 .site-section__list .listWrapper ul.tdl-list li[disabled], .site-section__list .listWrapper ul.support-list li[disabled] {
   pointer-events: none;
   filter: grayscale(1);
-}
-.site-section__list .listWrapper ul.tdl-list li .listPickerWrapper__btnContainer, .site-section__list .listWrapper ul.support-list li .listPickerWrapper__btnContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-}
-.site-section__list .listWrapper ul.tdl-list li .listPickerWrapper button, .site-section__list .listWrapper ul.support-list li .listPickerWrapper button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 0.25rem;
-  background-color: var(--main-color-op);
-  text-transform: capitalize;
-  font-size: 12px;
-  transition: none;
-  color: var(--white);
-}
-.site-section__list .listWrapper ul.tdl-list li .listPickerWrapper button:hover, .site-section__list .listWrapper ul.tdl-list li .listPickerWrapper button:focus-visible, .site-section__list .listWrapper ul.tdl-list li .listPickerWrapper button.selected, .site-section__list .listWrapper ul.support-list li .listPickerWrapper button:hover, .site-section__list .listWrapper ul.support-list li .listPickerWrapper button:focus-visible, .site-section__list .listWrapper ul.support-list li .listPickerWrapper button.selected {
-  background: var(--main-color-mid);
 }
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer {
   display: flex;
