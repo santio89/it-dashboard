@@ -280,30 +280,8 @@
             justify-content: start;
             align-items: center;
             border-radius: var(--main-radius);
-            transition: filter 200ms ease-in-out;
-
-            &:has(button[disabled]) {
-              filter: grayscale(0.5);
-              pointer-events: none;
-            }
-
-            &:has(.taskCompleted) {
-              text-decoration: line-through;
-              filter: grayscale(1);
-            }
-
-            &:has(button[title="Status: completed"]) {
-              filter: grayscale(1);
-
-              /* .taskContentTitle,
-              .taskContentBtn {
-                text-decoration: line-through;
-              } */
-            }
-
-            &:has(.tdl-btnContainer) {
-              overflow: hidden;
-            }
+            transition: filter 200ms ease-in-out, box-shadow 200ms ease-in-out;
+            box-shadow: -2px 0 0 0 transparent;
 
             &.selectedLow {
               box-shadow: -2px 0 0 0 var(--main-gray-dark);
@@ -313,6 +291,31 @@
             }
             &.selectedHigh {
               box-shadow: -2px 0 0 0 var(--red);
+            }
+
+            &:has(.tdl-btnContainer) {
+              overflow: hidden;
+            }
+
+            &:has(button[disabled]) {
+              filter: grayscale(0.5);
+              pointer-events: none;
+            }
+
+            &:has(.taskCompleted) {
+              text-decoration: line-through;
+              filter: grayscale(1);
+              color: var(--main-gray-dark);
+              box-shadow: -2px 0 0 0 var(--main-gray-darker-op);
+
+              .taskCompleted {
+                color: var(--main-gray-dark);
+              }
+            }
+
+            &:has(button[title="Status: completed"]) {
+              filter: grayscale(1);
+              box-shadow: -2px 0 0 0 var(--main-gray-darker-op);
             }
 
             .taskPriority {
@@ -597,37 +600,6 @@
             }
           }
         }
-
-        /* &.support-list {
-          display: flex;
-          justify-content: start;
-          align-items: stretch;
-          flex-direction: column;
-          gap: 1rem;
-
-          li {
-            width: 100%;
-            border-radius: var(--main-radius);
-            transition: filter 200ms ease-in-out;
-
-            &:has(button[disabled]) {
-              filter: grayscale(1);
-              pointer-events: none;
-            }
-
-            .taskContentBtn {
-              width: 100%;
-              padding: 1rem;
-              text-align: start;
-              text-wrap: pretty;
-              display: inline-block;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              box-shadow: -2px 0 0 0 var(--main-color);
-            }
-          }
-        } */
       }
     }
   }
