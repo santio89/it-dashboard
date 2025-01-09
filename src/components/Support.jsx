@@ -109,7 +109,7 @@ export default function Support({ user }) {
           </div>
         </div>
         <div className="sortBtn">
-          <button onClick={() => setSortList(sortList => !sortList)}>
+          <button disabled={isLoadingSupport} onClick={() => setSortList(sortList => !sortList)}>
             {
               sortList ?
                 <svg style={{ transform: "rotate(180deg)" }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-filter" viewBox="0 0 16 16">

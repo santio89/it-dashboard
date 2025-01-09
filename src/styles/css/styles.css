@@ -848,6 +848,11 @@ select:disabled {
 .site-section__list .sortBtn button:focus-visible svg path {
   stroke-width: 0.2px;
 }
+.site-section__list .sortBtn button[disabled] {
+  pointer-events: none;
+  color: var(--main-gray);
+  filter: grayscale(1);
+}
 .site-section__list .listWrapper {
   flex: 1;
   width: 100%;

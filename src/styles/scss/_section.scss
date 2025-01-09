@@ -213,6 +213,12 @@
             }
           }
         }
+
+        &[disabled] {
+          pointer-events: none;
+          color: var(--main-gray);
+          filter: grayscale(1);
+        }
       }
     }
 
@@ -261,7 +267,8 @@
           }
         }
 
-        &.tdl-list, &.support-list {
+        &.tdl-list,
+        &.support-list {
           display: flex;
           justify-content: start;
           align-items: stretch;
