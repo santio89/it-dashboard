@@ -262,6 +262,14 @@ select:disabled {
     background-size: 100% 3px;
   }
 }
+/* google-chart-tooltip */
+.goog-tooltip > div {
+  color: var(--main-gray-dark) !important;
+  border: 1px solid var(--main-gray-dark) !important;
+  padding: 0.25rem !important;
+  font-family: var(--font-primary) !important;
+}
+
 .mainHeader {
   width: 100%;
   background: var(--main-section);
@@ -609,67 +617,6 @@ select:disabled {
   position: relative;
   overflow: auto;
   padding-top: var(--main-section-spacing);
-  /* &__homeCard {
-    position: relative;
-    min-width: auto;
-    min-height: auto;
-    width: 240px;
-    min-height: 120px;
-    aspect-ratio: 16/9;
-    background-color: var(--main-section);
-    background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%);
-    outline: 1px solid transparent;
-    box-shadow: 0 0 0.5rem transparent, 0 0 0.25rem transparent inset;
-    transition: background-color 400ms ease-in-out,
-      outline-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
-
-    &:has(.homeCard-anchor:is(:hover, :focus-visible)) {
-      outline: 1px solid var(--main-text);
-      box-shadow: 0 0 0.5rem var(--main-text),
-        0 0 0.125rem var(--main-text) inset;
-    }
-
-    .homeCard-anchor {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      outline: 1px solid var(--main-gray-dark);
-      font-size: 1rem;
-      padding: 1rem;
-      background: transparent;
-      text-shadow: 0 0 0 transparent;
-      color: var(--main-text);
-      transition: color 200ms ease-in-out, background-color 400ms ease-in-out;
-
-      &:hover,
-      &:focus-visible {
-        h2 {
-          text-shadow: 0 0 2px var(--main-text);
-        }
-        p {
-          text-shadow: 0 0 1px var(--main-text);
-        }
-      }
-
-      h2 {
-        font-size: 2em;
-        font-weight: 700;
-        text-transform: uppercase;
-        transition: 200ms text-shadow ease-in-out;
-      }
-
-      p {
-        font-size: 1em;
-        font-weight: 400;
-        transition: 200ms text-shadow ease-in-out;
-      }
-    }
-  } */
 }
 @media (max-width: 969px) {
   .site-section {

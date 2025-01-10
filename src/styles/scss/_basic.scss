@@ -277,3 +277,13 @@ select:disabled {
     background-size: 100% 3px;
   }
 }
+
+/* google-chart-tooltip */
+.goog-tooltip {
+  > div {
+    color: var(--main-gray-dark) !important;
+    border: 1px solid var(--main-gray-dark) !important;
+    padding: 0.25rem !important;
+    font-family: var(--font-primary) !important;
+  }
+}
