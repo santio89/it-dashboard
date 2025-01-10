@@ -35,50 +35,51 @@ export default function DataChart({ data, type, isLoading }) {
     <>
       {
         isLoading ? <div className="loader">Loading...</div> :
-          <div className="dataChart">
-            <Chart
-              chartType={"PieChart"}
-              options={{
-                title: "",
-                backgroundColor: {
-                  'fill': 'transparent',
-                },
-                fontSize: 16,
-                pieSliceTextStyle: {
-                  color: `rgb(240,240,240)`,
-                },
-                titleTextStyle: {
-                  color: `rgb(240,240,240)`,
-                  bold: true,
-                  fontSize: 16
-                },
-                legend: {
-                  position: window.innerWidth < 513 ? "top" : "right",
-                  alignment: "start",
-                  textStyle: {
-                    color: `rgb(240,240,240)`,
-                    fontSize: 16,
-                    /* bold: true, */
+          <>
+            <div className="dataChart">
+              <Chart
+                chartType={"PieChart"}
+                options={{
+                  title: "",
+                  backgroundColor: {
+                    'fill': 'transparent',
                   },
-                  maxLines: 1,
-                  pagingTextStyle: {
-                    color: `rgb(240,240,240)`
+                  fontSize: 16,
+                  pieSliceTextStyle: {
+                    color: `rgb(100,100,100)`,
                   },
-                  scrollArrows: {
-                    activeColor: `rgb(240,240,240)`,
-                    inactiveColor: `rgb(100,100,100)`
-                  }
-                },
-                pieSliceBorderColor: `rgb(240,240,240)`,
-                pieSliceText: 'none',
-                chartArea: { width: "90%", height: "90%" },
-                colors: ['#4394E5', '#87BB62', '#876FD4', '#F5921B', '#C7C7C7'],
-              }}
-              data={chartArray}
-              width={window.innerWidth < 513 ? "240px" : "100%"}
-              height="320px"
-            />
-          </div>
+                  titleTextStyle: {
+                    color: `rgb(100,100,100)`,
+                    bold: true,
+                    fontSize: 16
+                  },
+                  legend: {
+                    position: "right",
+                    alignment: "start",
+                    textStyle: {
+                      color: `rgb(100,100,100)`,
+                      fontSize: 16,
+                    },
+                    maxLines: 1,
+                    pagingTextStyle: {
+                      color: `rgb(100,100,100)`
+                    },
+                    scrollArrows: {
+                      activeColor: `rgb(100,100,100)`,
+                      inactiveColor: `rgb(100,100,100)`
+                    },
+                  },
+                  pieSliceBorderColor: `rgb(100,100,100)`,
+                  pieSliceText: 'none',
+                  chartArea: { width: "90%", height: "90%" },
+                  colors: ['#4394E5', '#87BB62', '#876FD4', '#F5921B', '#C7C7C7'],
+                }}
+                data={chartArray}
+                width={window.innerWidth < 513 ? "240px" : "100%"}
+                height={window.innerWidth < 513 ? "240px" : "100%"}
+              />
+            </div>
+          </>
       }
     </>
   )

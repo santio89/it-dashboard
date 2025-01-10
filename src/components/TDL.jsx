@@ -204,6 +204,7 @@ export default function TDL({ user }) {
         </div>
         <div className="chartWrapper">
           <DataChart type={{ property: "category", items: "tasks" }} data={dataTdl} isLoading={isLoadingTdl} />
+          {/* <DataChart type={{ property: "category", items: "tasks" }} data={dataTdl} isLoading={isLoadingTdl} /> */}
         </div>
       </div>
     </>

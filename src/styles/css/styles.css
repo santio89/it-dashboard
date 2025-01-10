@@ -1214,56 +1214,66 @@ select:disabled {
 .site-section__chart {
   flex: 3;
   min-width: max(250px, 60%);
-}
-.site-section__chart .btnWrapper button {
-  border-radius: var(--main-radius) var(--main-radius) 0 0;
-  position: relative;
-}
-.site-section__chart .btnWrapper button::after {
-  content: "";
-  width: 8px;
-  height: 8px;
-  position: absolute;
-  right: -8px;
-  bottom: 0;
-  background-color: var(--main-color-op);
-  mask-image: url(../../assets/img/round-border-fix.svg);
-  mask-size: cover;
-  mask-repeat: no-repeat;
-  transition: background-color 200ms ease-in-out;
-}
-.site-section__chart .btnWrapper button:is(:hover, :focus-visible)::after {
-  background-color: var(--main-color-op-light);
+  gap: 3rem;
+  /* .btnWrapper {
+    button {
+      border-radius: var(--main-radius) var(--main-radius) 0 0;
+      position: relative;
+
+      &::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        right: -8px;
+        bottom: 0;
+        background-color: var(--main-color-op);
+        mask-image: url(../../assets/img/round-border-fix.svg);
+        mask-size: cover;
+        mask-repeat: no-repeat;
+        transition: background-color 200ms ease-in-out;
+      }
+
+      &:is(:hover, :focus-visible) {
+        &::after {
+          background-color: var(--main-color-op-light);
+        }
+      }
+    }
+  } */
 }
 .site-section__chart .chartWrapper {
   flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  gap: max(1rem, 4%);
   width: 100%;
-  border: 2px solid var(--main-color-mid);
-  background: var(--main-color-op-light);
-  border-radius: 0 var(--main-radius) var(--main-radius) var(--main-radius);
+  /* border: 2px solid var(--main-color-mid); */
+  /*  background: var(--main-color-op-light); */
+  /*  border-radius: 0 var(--main-radius) var(--main-radius) var(--main-radius); */
 }
 .site-section__chart .chartWrapper .dataChart {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid var(--main-gray-darker-op);
+  border-radius: var(--main-radius);
+  background: var(--main-color-op-light);
   /* chart */
 }
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) {
-  margin-inline: auto;
-  max-width: 1200px;
-  height: 100%;
+  max-width: 100%;
   max-height: 100%;
+  min-width: 320px;
   min-height: 320px;
+  aspect-ratio: 1;
   text-transform: uppercase;
-  padding: 0.125rem;
   /* chart-error-message */
 }
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) svg text {
-  fill: var(--main-text);
+  fill: var(--main-gray-dark) !important;
   font-family: var(--font-primary);
   font-weight: 300;
   font-size: 1rem;
