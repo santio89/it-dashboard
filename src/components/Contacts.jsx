@@ -128,7 +128,7 @@ export default function Contacts({ user }) {
       </div>
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
-          <button disabled={isLoadingContacts}>Contacts by category</button>
+          <button disabled={isLoadingContacts}>Charts</button>
         </div>
         <div className="chartWrapper">
           <DataChart type={{ property: "category", items: "contacts" }} data={dataContacts} isLoading={isLoadingContacts} />

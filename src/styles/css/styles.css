@@ -758,7 +758,7 @@ select:disabled {
   min-height: 100% !important;
 }
 .site-section__list {
-  flex: 2;
+  flex: 3;
   gap: 0.5rem;
   min-width: 250px;
 }
@@ -1159,8 +1159,8 @@ select:disabled {
   box-shadow: none;
 }
 .site-section__chart {
-  flex: 3;
-  min-width: max(250px, 60%);
+  flex: 1;
+  min-width: max(300px, 25%);
   gap: 3rem;
   /* .btnWrapper {
     button {
@@ -1195,7 +1195,7 @@ select:disabled {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  gap: max(1rem, 4%);
+  gap: 1rem;
   width: 100%;
   /* border: 2px solid var(--main-color-mid); */
   /*  background: var(--main-color-op-light); */
@@ -1239,6 +1239,11 @@ select:disabled {
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
+}
+@media (max-width: 969px) {
+  .site-section__chart {
+    main-width: 250px;
+  }
 }
 .site-section__private {
   flex-direction: row;

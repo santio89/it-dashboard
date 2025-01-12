@@ -196,10 +196,12 @@ export default function Support({ user }) {
       </div>
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
-          <button disabled={isLoadingSupport}>Tickets by category</button>
+          <button disabled={isLoadingSupport}>Charts</button>
         </div>
         <div className="chartWrapper">
           <DataChart type={{ property: "category", items: "tickets" }} data={dataSupport} isLoading={isLoadingSupport} />
+          <DataChart type={{ property: "status", items: "tickets" }} data={dataSupport} isLoading={isLoadingSupport} />
+          <DataChart type={{ property: "priority", items: "tickets" }} data={dataSupport} isLoading={isLoadingSupport} />
         </div>
       </div>
     </>
