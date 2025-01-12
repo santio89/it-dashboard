@@ -66,7 +66,7 @@ export default function DataChart({ data, type, isLoading }) {
                 inactiveColor: `rgb(100,100,100)`
               },
             },
-            pieSliceBorderColor: `rgb(100,100,100)`,
+            pieSliceBorderColor: `rgb(250,250,250)`,
             pieSliceText: 'none',
             chartArea: { width: "90%", height: "90%" },
             colors: ['#4394E5', '#87BB62', '#876FD4', '#F5921B', '#C7C7C7'],
