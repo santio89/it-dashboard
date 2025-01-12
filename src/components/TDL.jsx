@@ -203,9 +203,14 @@ export default function TDL({ user }) {
           <button disabled={isLoadingTdl}>Charts</button>
         </div>
         <div className="chartWrapper">
-          <DataChart type={{ property: "category", items: "tasks" }} data={dataTdl} isLoading={isLoadingTdl} />
-          <DataChart type={{ property: "status", items: "tasks" }} data={dataTdl} isLoading={isLoadingTdl} />
-          <DataChart type={{ property: "priority", items: "tasks" }} data={dataTdl} isLoading={isLoadingTdl} />
+          {
+            isLoadingTdl ? <div className="loader">Loading...</div> :
+              <>
+                <DataChart type={{ property: "category", items: "tasks" }} data={dataTdl} isLoading={isLoadingTdl} />
+                <DataChart type={{ property: "status", items: "tasks" }} data={dataTdl} isLoading={isLoadingTdl} />
+                <DataChart type={{ property: "priority", items: "tasks" }} data={dataTdl} isLoading={isLoadingTdl} />
+              </>
+          }
         </div>
       </div>
     </>

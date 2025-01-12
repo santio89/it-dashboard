@@ -17,8 +17,8 @@ export default function Support({ user }) {
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
 
-    /* edit support mutation */
-    const [editSupport, resultEditSupport] = useEditSupportMutation()
+  /* edit support mutation */
+  const [editSupport, resultEditSupport] = useEditSupportMutation()
 
   const {
     data: dataSupport,
@@ -199,9 +199,14 @@ export default function Support({ user }) {
           <button disabled={isLoadingSupport}>Charts</button>
         </div>
         <div className="chartWrapper">
-          <DataChart type={{ property: "category", items: "tickets" }} data={dataSupport} isLoading={isLoadingSupport} />
-          <DataChart type={{ property: "status", items: "tickets" }} data={dataSupport} isLoading={isLoadingSupport} />
-          <DataChart type={{ property: "priority", items: "tickets" }} data={dataSupport} isLoading={isLoadingSupport} />
+          {
+            isLoadingSupport ? <div className="loader">Loading...</div> :
+              <>
+                <DataChart type={{ property: "category", items: "tickets" }} data={dataSupport} isLoading={isLoadingSupport} />
+                <DataChart type={{ property: "status", items: "tickets" }} data={dataSupport} isLoading={isLoadingSupport} />
+                <DataChart type={{ property: "priority", items: "tickets" }} data={dataSupport} isLoading={isLoadingSupport} />
+              </>
+          }
         </div>
       </div>
     </>

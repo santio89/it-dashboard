@@ -131,7 +131,11 @@ export default function Contacts({ user }) {
           <button disabled={isLoadingContacts}>Charts</button>
         </div>
         <div className="chartWrapper">
-          <DataChart type={{ property: "category", items: "contacts" }} data={dataContacts} isLoading={isLoadingContacts} />
+          {
+            isLoadingContacts ? <div className="loader">Loading...</div> :
+            <DataChart type={{ property: "category", items: "contacts" }} data={dataContacts} />
+          }
+          
         </div>
       </div>
     </>
