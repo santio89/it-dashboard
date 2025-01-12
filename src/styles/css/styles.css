@@ -632,7 +632,7 @@ select:disabled {
   width: 100%;
   margin: auto;
   display: grid;
-  grid-template-columns: 240px 240px;
+  grid-template-columns: 280px 280px;
   place-content: center;
   place-items: center;
   gap: clamp(1rem, 1rem + 4vw, 4rem);
@@ -641,7 +641,7 @@ select:disabled {
 }
 @media (max-width: 719px) {
   .site-section:has(.card-spotlight) {
-    grid-template-columns: 240px;
+    grid-template-columns: 280px;
     align-content: start;
     align-items: start;
   }
