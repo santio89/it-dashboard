@@ -665,7 +665,7 @@
 
           svg {
             text {
-              fill: var(--main-gray-dark);
+              /* fill: var(--main-gray-dark); */
               font-family: var(--font-primary);
               font-size: 1rem;
               transition: 200ms ease-in-out;
@@ -693,7 +693,7 @@
     }
 
     @media (max-width: $tablet-breakpoint) {
-      main-width: 250px;
+      min-width: 250px;
     }
   }
 

@@ -1218,7 +1218,7 @@ select:disabled {
   /* chart-error-message */
 }
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) svg text {
-  fill: var(--main-gray-dark);
+  /* fill: var(--main-gray-dark); */
   font-family: var(--font-primary);
   font-size: 1rem;
   transition: 200ms ease-in-out;
@@ -1239,7 +1239,7 @@ select:disabled {
 }
 @media (max-width: 969px) {
   .site-section__chart {
-    main-width: 250px;
+    min-width: 250px;
   }
 }
 .site-section__private {
