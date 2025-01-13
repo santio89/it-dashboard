@@ -37,7 +37,7 @@ export default function DataChart({ data, type, isLoading }) {
         <Chart
           chartType={"PieChart"}
           options={{
-            title: "",
+            title: type?.property,
             backgroundColor: {
               'fill': 'transparent',
             },
@@ -68,7 +68,7 @@ export default function DataChart({ data, type, isLoading }) {
             },
             pieSliceBorderColor: `rgb(250,250,250)`,
             pieSliceText: 'none',
-            chartArea: { width: "90%", height: "90%" },
+            /* chartArea: { width: "70%", height: "70%" }, */
             colors: ['#4394E5', '#87BB62', '#876FD4', '#F5921B', '#C7C7C7'],
           }}
           data={chartArray}
