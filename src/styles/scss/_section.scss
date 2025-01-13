@@ -639,8 +639,8 @@
     .chartWrapper {
       flex: 1;
       display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: start;
       align-items: center;
       gap: 1rem;
       width: 100%;
