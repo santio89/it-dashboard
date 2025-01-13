@@ -1223,10 +1223,14 @@ select:disabled {
   font-size: 1rem;
   transition: 200ms ease-in-out;
   text-transform: capitalize;
+  /* no data */
 }
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) svg text[font-weight=bold] {
   font-weight: 600;
   text-transform: uppercase;
+}
+.site-section__chart .chartWrapper .dataChart > div:not(.loader) svg text[text-anchor=middle] {
+  fill: var(--main-text);
 }
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) .google-visualization-tooltip {
   pointer-events: none;

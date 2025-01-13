@@ -675,6 +675,11 @@
                 font-weight: 600;
                 text-transform: uppercase;
               }
+
+              /* no data */
+              &[text-anchor="middle"] {
+                fill: var(--main-text);
+              }
             }
           }
 
