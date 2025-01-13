@@ -48,7 +48,7 @@ export default function DataChart({ data, type, isLoading }) {
               color: `rgb(100,100,100)`,
             },
             titleTextStyle: {
-              color: !lightTheme ? "rgb(250,250,250)" : "rgb(10,10,10)",
+              color: "rgb(100,100,100)",
               bold: true,
               fontSize: 16,
             },
@@ -56,7 +56,7 @@ export default function DataChart({ data, type, isLoading }) {
               position: "bottom",
               alignment: "center",
               textStyle: {
-                color: !lightTheme ? "rgb(250,250,250)" : "rgb(10,10,10)",
+                color: "rgb(100,100,100)",
                 fontSize: 16,
                 bold: false
               },
@@ -69,7 +69,7 @@ export default function DataChart({ data, type, isLoading }) {
                 inactiveColor: `rgb(100,100,100)`
               },
             },
-            pieSliceBorderColor: `rgb(250,250,250)`,
+            pieSliceBorderColor: `rgb(100,100,100)`,
             pieSliceText: 'none',
             chartArea: { width: "65%", height: "65%" },
             colors: ['#4394E5', '#87BB62', '#876FD4', '#F5921B', '#C7C7C7'],

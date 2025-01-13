@@ -663,22 +663,31 @@
           padding-block: 0.5rem;
 
           svg {
+            path[stroke-width="1"] {
+              stroke: var(--main-text);
+              stroke-width: 0.8;
+              transition: 200ms ease-in-out;
+            }
+
             text {
-              /* fill: var(--main-gray-dark); */
+              text-transform: capitalize;
               font-weight: 300;
               font-family: var(--font-primary);
               font-size: 1rem;
+              fill: var(--main-text);
               transition: 200ms ease-in-out;
-              text-transform: capitalize;
 
               &[font-weight="bold"] {
                 font-weight: 600;
                 text-transform: uppercase;
+                fill: var(--main-text);
+                transition: 200ms ease-in-out;
               }
 
               /* no data */
               &[text-anchor="middle"] {
                 fill: var(--main-text);
+                transition: 200ms ease-in-out;
               }
             }
           }
