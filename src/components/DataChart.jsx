@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
+import { useSelector } from 'react-redux';
 
 
 export default function DataChart({ data, type, isLoading }) {
   const [chartArray, setChartArray] = useState()
+  const lightTheme = useSelector(state => state.theme.light)
 
   useEffect(() => {
     if (data) {
@@ -13,10 +15,10 @@ export default function DataChart({ data, type, isLoading }) {
       const propertyItemsCount = data && data?.reduce((result, dataItem) => {
         if (!dataItem[type.property]) return result
 
-        if (!result.some(item => item[type.property].toUpperCase().trim() === dataItem[type.property].toUpperCase().trim())) {
-          result.push({ [type.property]: dataItem[type.property].toUpperCase().trim(), ammount: 1 });
+        if (!result.some(item => item[type.property].trim() === dataItem[type.property].trim())) {
+          result.push({ [type.property]: dataItem[type.property].trim(), ammount: 1 });
         } else {
-          const propertyIndex = result.findIndex(item => item[type.property].toUpperCase().trim() === dataItem[type.property].toUpperCase().trim());
+          const propertyIndex = result.findIndex(item => item[type.property].trim() === dataItem[type.property].trim());
           result[propertyIndex].ammount++;
         }
         return result;
@@ -46,15 +48,15 @@ export default function DataChart({ data, type, isLoading }) {
               color: `rgb(100,100,100)`,
             },
             titleTextStyle: {
-              color: `rgb(100,100,100)`,
+              color: !lightTheme ? "rgb(250,250,250)" : "rgb(10,10,10)",
               bold: true,
-              fontSize: 16
+              fontSize: 16,
             },
             legend: {
               position: "bottom",
-              alignment: "start",
+              alignment: "center",
               textStyle: {
-                color: `rgb(100,100,100)`,
+                color: !lightTheme ? "rgb(250,250,250)" : "rgb(10,10,10)",
                 fontSize: 16,
                 bold: false
               },
