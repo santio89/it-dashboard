@@ -51,11 +51,12 @@ export default function DataChart({ data, type, isLoading }) {
               fontSize: 16
             },
             legend: {
-              position: "right",
+              position: "bottom",
               alignment: "start",
               textStyle: {
                 color: `rgb(100,100,100)`,
                 fontSize: 16,
+                bold: false
               },
               maxLines: 1,
               pagingTextStyle: {
@@ -68,7 +69,7 @@ export default function DataChart({ data, type, isLoading }) {
             },
             pieSliceBorderColor: `rgb(250,250,250)`,
             pieSliceText: 'none',
-            /* chartArea: { width: "70%", height: "70%" }, */
+            chartArea: { width: "65%", height: "65%" },
             colors: ['#4394E5', '#87BB62', '#876FD4', '#F5921B', '#C7C7C7'],
           }}
           data={chartArray}

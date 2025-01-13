@@ -1214,13 +1214,12 @@ select:disabled {
   max-width: 100%;
   max-height: 100%;
   text-transform: uppercase;
-  padding-top: 1rem;
+  padding-block: 0.5rem;
   /* chart-error-message */
 }
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) svg text {
-  fill: var(--main-gray-dark) !important;
+  fill: var(--main-gray-dark);
   font-family: var(--font-primary);
-  font-weight: 300;
   font-size: 1rem;
   transition: 200ms ease-in-out;
 }
