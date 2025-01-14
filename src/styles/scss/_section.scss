@@ -674,20 +674,21 @@
               font-weight: 300;
               font-family: var(--font-primary);
               font-size: 1rem;
-              fill: var(--main-text);
+              fill: var(--black);
               transition: 200ms ease-in-out;
 
               &[font-weight="bold"] {
                 font-weight: 600;
                 text-transform: uppercase;
-                fill: var(--main-text);
-                transition: 200ms ease-in-out;
               }
 
               /* no data */
               &[text-anchor="middle"] {
                 fill: var(--main-text);
-                transition: 200ms ease-in-out;
+              }
+
+              &[fill="#ffffff"] {
+                fill: var(--main-text);
               }
             }
           }

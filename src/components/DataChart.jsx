@@ -48,7 +48,7 @@ export default function DataChart({ data, type, isLoading }) {
               color: `rgb(100,100,100)`,
             },
             titleTextStyle: {
-              color: "rgb(100,100,100)",
+              color: "#ffffff",
               bold: true,
               fontSize: 16,
             },
@@ -56,7 +56,7 @@ export default function DataChart({ data, type, isLoading }) {
               position: "bottom",
               alignment: "center",
               textStyle: {
-                color: "rgb(100,100,100)",
+                color: "#ffffff",
                 fontSize: 16,
                 bold: false
               },
