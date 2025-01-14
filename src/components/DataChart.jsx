@@ -72,7 +72,7 @@ export default function DataChart({ data, type, isLoading }) {
             pieSliceBorderColor: `rgb(100,100,100)`,
             pieSliceText: 'none',
             chartArea: { width: "65%", height: "65%" },
-            colors: ['#4394E5', '#87BB62', '#876FD4', '#F5921B', '#C7C7C7'],
+            colors: ['#3e424b', '#7f8187', '#d4d5d7', '#191b21', '#08090b'],
           }}
           data={chartArray}
           width={window.innerWidth < 513 ? "240px" : "100%"}
