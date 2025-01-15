@@ -675,6 +675,33 @@ select:disabled {
 .site-section .btnWrapper .listPickerWrapper {
   height: 25px;
 }
+.site-section .btnWrapper .listPickerWrapper__btnContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: end;
+  gap: 0.25rem;
+}
+.site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker {
+  padding: 0.25rem;
+  font-size: 12px;
+  background-color: var(--main-color-op);
+  height: 25px;
+  width: 68px;
+  text-transform: capitalize;
+  outline: 1px solid transparent;
+}
+.site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:hover, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:focus-visible, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.selected {
+  background-color: var(--main-color-op-light);
+  color: var(--main-text);
+}
+.site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:focus-visible {
+  z-index: 1;
+  outline: 1px solid var(--main-text);
+}
 .site-section .btnWrapper .listPickerWrapper .listPickerOptions {
   display: flex;
   justify-content: center;
@@ -698,29 +725,11 @@ select:disabled {
   background-color: transparent;
   color: var(--main-gray-dark);
 }
-.site-section .btnWrapper .listPickerWrapper__btnContainer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: end;
-  gap: 0.25rem;
-}
-.site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker {
-  padding: 0.25rem;
-  font-size: 12px;
-  background-color: var(--main-color-op);
-  height: 25px;
-  width: 68px;
-  text-transform: capitalize;
-  outline: 1px solid transparent;
-}
-.site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:hover, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:focus-visible, .site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker.selected {
+.site-section .btnWrapper .listPickerWrapper .listPickerOptions button.listPicker:hover, .site-section .btnWrapper .listPickerWrapper .listPickerOptions button.listPicker:focus-visible, .site-section .btnWrapper .listPickerWrapper .listPickerOptions button.listPicker.selected {
   background-color: var(--main-color-op-light);
+  color: var(--main-text);
 }
-.site-section .btnWrapper .listPickerWrapper__btnContainer button.listPicker:focus-visible {
+.site-section .btnWrapper .listPickerWrapper .listPickerOptions button.listPicker:focus-visible {
   z-index: 1;
   outline: 1px solid var(--main-text);
 }

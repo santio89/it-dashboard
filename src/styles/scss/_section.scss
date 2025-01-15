@@ -70,31 +70,6 @@
     .listPickerWrapper {
       height: 25px;
 
-      .listPickerOptions {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: var(--main-color-bg);
-        border: 1px solid var(--main-gray-dark);
-        border-radius: var(--main-radius);
-        padding: 0.125rem;
-        gap: 0.125rem;
-        transition: background-color 400ms ease-in-out, scale 100ms ease-in-out,
-          opacity 100ms ease-in-out;
-        z-index: 1;
-        transform-origin: top right;
-
-        @starting-style {
-          scale: 0.9;
-          opacity: 0;
-        }
-
-        button.listPicker {
-          background-color: transparent;
-          color: var(--main-gray-dark);
-        }
-      }
-
       &__btnContainer {
         position: absolute;
         top: 0;
@@ -118,6 +93,44 @@
           &:focus-visible,
           &.selected {
             background-color: var(--main-color-op-light);
+            color: var(--main-text);
+          }
+
+          &:focus-visible {
+            z-index: 1;
+            outline: 1px solid var(--main-text);
+          }
+        }
+      }
+
+      .listPickerOptions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--main-color-bg);
+        border: 1px solid var(--main-gray-dark);
+        border-radius: var(--main-radius);
+        padding: 0.125rem;
+        gap: 0.125rem;
+        transition: background-color 400ms ease-in-out, scale 100ms ease-in-out,
+          opacity 100ms ease-in-out;
+        z-index: 1;
+        transform-origin: top right;
+
+        @starting-style {
+          scale: 0.9;
+          opacity: 0;
+        }
+
+        button.listPicker {
+          background-color: transparent;
+          color: var(--main-gray-dark);
+
+          &:hover,
+          &:focus-visible,
+          &.selected {
+            background-color: var(--main-color-op-light);
+            color: var(--main-text);
           }
 
           &:focus-visible {
