@@ -998,6 +998,11 @@ select:disabled {
 .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData button:focus-visible {
   outline: none;
 }
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns:hover button,
+.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData:hover button, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-optionsBtns:hover button,
+.site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData:hover button {
+  background: var(--main-color-mid);
+}
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns.deleteMode,
 .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData.deleteMode, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-optionsBtns.deleteMode,
 .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData.deleteMode {
@@ -1174,6 +1179,7 @@ select:disabled {
 .site-section__list .listWrapper ul.tdl-list li .taskContentAnswer, .site-section__list .listWrapper ul.support-list li .taskContentAnswer {
   width: 100%;
   background: var(--main-color-op-light);
+  color: var(--main-gray-dark);
   padding: 0.5rem 1rem;
   text-align: end;
   text-wrap: balance;

@@ -434,6 +434,10 @@
                   }
                 }
 
+                &:hover button {
+                  background: var(--main-color-mid);
+                }
+
                 &.deleteMode {
                   outline: 1px dashed var(--red);
                 }
@@ -616,6 +620,7 @@
             .taskContentAnswer {
               width: 100%;
               background: var(--main-color-op-light);
+              color: var(--main-gray-dark);
               padding: 0.5rem 1rem;
               text-align: end;
               text-wrap: balance;
