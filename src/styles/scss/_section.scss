@@ -528,6 +528,7 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 transition: 200ms ease-in-out;
+                box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
 
                 /* display: -webkit-box;
                 -webkit-line-clamp: 3;
@@ -610,6 +611,16 @@
                 outline: 1px dashed var(--red);
                 box-shadow: none;
               }
+            }
+
+            .taskContentAnswer {
+              width: 100%;
+              background: var(--main-gray-darker-op);
+              padding: 0.5rem 1rem;
+              text-align: end;
+              text-wrap: balance;
+              font-weight: 300;
+              transition: 200ms ease-in-out;
             }
           }
         }

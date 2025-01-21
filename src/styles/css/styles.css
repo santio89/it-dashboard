@@ -1089,6 +1089,7 @@ select:disabled {
   overflow: hidden;
   text-overflow: ellipsis;
   transition: 200ms ease-in-out;
+  box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
   /* display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -1167,6 +1168,15 @@ select:disabled {
 .site-section__list .listWrapper ul.tdl-list li .taskContentTitle.deleteMode, .site-section__list .listWrapper ul.support-list li .taskContentTitle.deleteMode {
   outline: 1px dashed var(--red);
   box-shadow: none;
+}
+.site-section__list .listWrapper ul.tdl-list li .taskContentAnswer, .site-section__list .listWrapper ul.support-list li .taskContentAnswer {
+  width: 100%;
+  background: var(--main-gray-darker-op);
+  padding: 0.5rem 1rem;
+  text-align: end;
+  text-wrap: balance;
+  font-weight: 300;
+  transition: 200ms ease-in-out;
 }
 .site-section__chart {
   flex: 1;
