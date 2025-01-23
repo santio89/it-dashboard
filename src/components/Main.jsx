@@ -87,7 +87,7 @@ export default function Main({ rootTheme, section, user }) {
         </button>
       </aside>
       <main className={`main-content ${sideExpanded && "expanded"}`}>
-      <Nav rootTheme={rootTheme} user={user} section={section} /> 
+        <Nav rootTheme={rootTheme} user={user} section={section} />
         <div className='site-section'>
           {section === "home" && <Home />}
           {user && section === "contacts" && <Contacts user={user} />}

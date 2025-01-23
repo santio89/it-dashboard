@@ -45,7 +45,7 @@ function App() {
     /* firebaseOnSnapshot(firebaseDoc(firebaseDb, "authUsersData", "SF"), (doc) => {
       console.log("Current data: ", doc.data());
   }); */
-  
+
   }, [])
 
 
@@ -56,7 +56,9 @@ function App() {
           className: 'toaster',
         }} />
         <Modal />
-        <BrowserRouter>
+        <BrowserRouter future={{
+          v7_startTransition: true,
+        }}>
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Main rootTheme={rootTheme} section={"home"} user={checkUser} />} />
