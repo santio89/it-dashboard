@@ -7,7 +7,6 @@ import DevicesDataModal from './DevicesDataModal';
 import TDLDataModal from './TDLDataModal';
 import ProfileDataModal from './ProfileDataModal';
 import SupportDataModal from './SupportDataModal';
-import Support from './Support';
 
 export default function Modal() {
   const dispatch = useDispatch()

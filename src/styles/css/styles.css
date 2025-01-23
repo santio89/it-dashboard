@@ -10,6 +10,9 @@
   box-sizing: border-box;
 }
 
+@view-transition {
+  navigation: auto;
+}
 :root {
   interpolate-size: allow-keywords;
   --font-primary: geist, monospace, "Courier New", Courier;
