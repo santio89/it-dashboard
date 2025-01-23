@@ -1,26 +1,18 @@
 import { useDispatch, useSelector } from "react-redux"
 import { setLight } from "../store/slices/themeSlice"
 import { setModal } from "../store/slices/modalSlice"
-/* import { Link } from 'react-router' */
+import { useLocation } from "react-router"
 import { useEffect, useState } from "react"
 import { useSignGoogleMutation, useSignOutMutation } from "../store/slices/apiSlice"
 
-export default function Nav({ rootTheme, user, section }) {
+export default function Nav({ rootTheme, user }) {
   const dispatch = useDispatch()
   const lightTheme = useSelector(state => state.theme.light)
   const [themeClicked, setThemeClicked] = useState(false)
   const [signGoogle, resultSignInGoogle] = useSignGoogleMutation()
   const [signOut, resultSignOut] = useSignOutMutation()
-
   const [profileOpts, setProfileOpts] = useState(false)
-
-  /*   const {
-      data,
-      isLoading,
-      isSuccess,
-      isError,
-      error,
-    } = useGetCurrentUserQuery(); */
+  const location = useLocation()
 
   const toggleLight = () => {
     setThemeClicked(true)
@@ -45,7 +37,7 @@ export default function Nav({ rootTheme, user, section }) {
 
   return (
     <header className="mainHeader">
-      <div className="logo" to="/">{section === "home" ? "IT DASHBOARD" : section}</div>
+      <div className="logo" >{location.pathname.slice(1) === "" ? "IT DASHBOARD" : location.pathname.slice(1)}</div>
       <div className="mainHeader__btnContainer">
         <div className="btnWrapper">
           <button aria-label="Dark/Light Mode" onClick={toggleLight} onAnimationEnd={() => setThemeClicked(false)}>

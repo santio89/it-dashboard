@@ -1,17 +1,10 @@
 import { NavLink } from "react-router";
-import PrivateRoute from "./PrivateRoute";
-import Contacts from "./Contacts";
-import Devices from "./Devices";
-import Home from "./Home"
-import Support from "./Support";
-import Admin from "./Admin";
-import TDL from "./TDL"
-import NotFound from "./NotFound"
 import { useSelector, useDispatch } from "react-redux";
 import { setSideExpanded } from "../store/slices/themeSlice";
 import Nav from "./Nav";
+import { Outlet } from "react-router";
 
-export default function Main({ rootTheme, section, user }) {
+export default function MainContainer({ rootTheme, user }) {
   const sideExpanded = useSelector(state => state.theme.sideExpanded)
   const dispatch = useDispatch()
 
@@ -87,16 +80,10 @@ export default function Main({ rootTheme, section, user }) {
         </button>
       </aside>
       <main className={`main-content ${sideExpanded && "expanded"}`}>
-        <Nav rootTheme={rootTheme} user={user} section={section} />
+        <Nav rootTheme={rootTheme} user={user} />
         <div className='site-section'>
-          {section === "home" && <Home />}
-          {user && section === "contacts" && <Contacts user={user} />}
-          {user && section === "devices" && <Devices user={user} />}
-          {user && section === "tasks" && <TDL user={user} />}
-          {user && section === "support" && <Support user={user} />}
-          {user && section === "admin" && <Admin user={user} />}
-          {!user && section !== "home" && section !== "notFound" && <PrivateRoute />}
-          {section === "notFound" && <NotFound />}
+          {/* main content */}
+          <Outlet />
         </div>
       </main>
     </div>
