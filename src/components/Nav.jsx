@@ -37,7 +37,7 @@ export default function Nav({ rootTheme, user }) {
 
   return (
     <header className="mainHeader">
-      <div className="logo" >{location.pathname.slice(1) === "" ? "IT DASHBOARD" : location.pathname.slice(1)}</div>
+      <div className="logo" >{location.pathname.trim().slice(1) === "" ? "IT DASHBOARD" : location.pathname.trim().slice(1)}</div>
       <div className="mainHeader__btnContainer">
         <div className="btnWrapper">
           <button aria-label="Dark/Light Mode" onClick={toggleLight} onAnimationEnd={() => setThemeClicked(false)}>
