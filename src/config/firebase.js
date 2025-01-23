@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, setPersistence, browserLocalPersistence, onAuthStateChanged } from 'firebase/auth'
-import { getFirestore, serverTimestamp } from 'firebase/firestore';
+import { getFirestore, serverTimestamp, onSnapshot, doc } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_DB_API_KEY,
@@ -23,3 +23,5 @@ export const firebaseSignOut = signOut
 export const firebaseSetPersistance = setPersistence
 export const firebaseBrowserLocalPersistence = browserLocalPersistence
 export const firebaseOnAuthStateChanged = onAuthStateChanged
+export const firebaseOnSnapshot = onSnapshot
+export const firebaseDoc = doc

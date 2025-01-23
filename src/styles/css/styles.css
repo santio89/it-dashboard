@@ -1425,6 +1425,7 @@ select:disabled {
 .mainModalWrapper::backdrop {
   background-color: var(--black);
   opacity: 0.5;
+  backdrop-filter: blur(1px);
 }
 @media (max-width: 969px) {
   .mainModalWrapper {

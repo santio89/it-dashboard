@@ -1,10 +1,10 @@
 import './styles/css/styles.css'
 import { useEffect, useRef, useState } from 'react'
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import Main from './components/Main';
 import Nav from './components/Nav';
 import Modal from './components/Modal'
-import { firebaseOnAuthStateChanged, firebaseAuth } from './config/firebase';
+import { firebaseOnAuthStateChanged, firebaseAuth, firebaseDb, firebaseOnSnapshot, firebaseDoc } from './config/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './store/slices/authSlice';
 import { domainCheck, adminCheck } from './utils/domainCheck';
@@ -41,6 +41,11 @@ function App() {
     firebaseOnAuthStateChanged(firebaseAuth, (currentUser) => {
       dispatch(setUser(currentUser))
     })
+
+    firebaseOnSnapshot(firebaseDoc(firebaseDb, "authUsersData", "SF"), (doc) => {
+      console.log("Current data: ", doc.data());
+  });
+  
   }, [])
 
 

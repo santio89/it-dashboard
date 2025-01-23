@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { setLight } from "../store/slices/themeSlice"
 import { setModal } from "../store/slices/modalSlice"
-/* import { Link } from 'react-router-dom' */
+/* import { Link } from 'react-router' */
 import { useEffect, useState } from "react"
 import { useSignGoogleMutation, useSignOutMutation } from "../store/slices/apiSlice"
 
