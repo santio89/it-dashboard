@@ -25,13 +25,6 @@ function App() {
   const dispatch = useDispatch()
   const [checkUser, setCheckUser] = useState(user ?? null)
 
-  const Layout = () => (
-    <>
-      {/* <Nav rootTheme={rootTheme} user={user} /> */}
-      <Outlet />
-    </>
-  );
-
   useEffect(() => {
     if (user) {
       const domainUser = domainCheck(user.email)

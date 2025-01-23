@@ -5,6 +5,8 @@ import { useLocation } from "react-router"
 import { useEffect, useState } from "react"
 import { useSignGoogleMutation, useSignOutMutation } from "../store/slices/apiSlice"
 
+const sections = ["/home", "/about", "/contacts", "/devices", "/tdl", "/support", "/admin"]
+
 export default function Nav({ rootTheme, user }) {
   const dispatch = useDispatch()
   const lightTheme = useSelector(state => state.theme.light)
@@ -37,7 +39,7 @@ export default function Nav({ rootTheme, user }) {
 
   return (
     <header className="mainHeader">
-      <div className="logo" >{location.pathname.trim().slice(1) === "" ? "IT DASHBOARD" : location.pathname.trim().slice(1)}</div>
+      <div className="logo" >{sections.find(section => section === location.pathname.trim()) ? location.pathname.trim().slice(1) : "IT DASHBOARD"}</div>
       <div className="mainHeader__btnContainer">
         <div className="btnWrapper">
           <button aria-label="Dark/Light Mode" onClick={toggleLight} onAnimationEnd={() => setThemeClicked(false)}>
