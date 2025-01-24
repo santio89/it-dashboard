@@ -62,11 +62,11 @@ function App() {
           <Routes>
             <Route element={<MainContainer rootTheme={rootTheme} user={checkUser} />}>
               <Route path="/" element={<Home />} />
-              {<Route path="/contacts" element={checkUser ? <Contacts user={checkUser} /> : <PrivateRoute />} />}
-              {<Route path="/devices" element={checkUser ? <Devices user={checkUser} /> : <PrivateRoute />} />}
-              {<Route path="/tasks" element={checkUser ? <Tasks user={checkUser} /> : <PrivateRoute />} />}
-              {<Route path="/support" element={checkUser ? <Support user={checkUser} /> : <PrivateRoute />} />}
-              {<Route path="/admin" element={checkUser ? <Admin user={checkUser} /> : <PrivateRoute />} />}
+              <Route path="/contacts" element={checkUser ? <Contacts user={checkUser} /> : <PrivateRoute />} />
+              <Route path="/devices" element={checkUser ? <Devices user={checkUser} /> : <PrivateRoute />} />
+              <Route path="/tasks" element={checkUser ? <Tasks user={checkUser} /> : <PrivateRoute />} />
+              <Route path="/support" element={checkUser ? <Support user={checkUser} /> : <PrivateRoute />} />
+              <Route path="/admin" element={checkUser ? <Admin user={checkUser} /> : <PrivateRoute />} />
               <Route path="/*" element={<NotFound />} />
             </Route>
           </Routes>
