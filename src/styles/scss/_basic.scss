@@ -3,6 +3,10 @@
   src: url(../../assets/fonts/GeistVF.woff);
 }
 
+@view-transition {
+  navigation: auto;
+}
+
 $tablet-breakpoint: 969px;
 $home-breakpoint: 719px;
 $home-breakpoint-height: 444px;
@@ -15,10 +19,6 @@ $home-breakpoint-height: 444px;
   box-sizing: border-box;
 }
 
-/* @view-transition {
-  navigation: auto;
-}
- */
 :root {
   interpolate-size: allow-keywords;
 
