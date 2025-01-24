@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import DataChart from './DataChart'
 import autoAnimate from "@formkit/auto-animate";
 
-export default function TDL({ user }) {
+export default function Tasks({ user }) {
   const dispatch = useDispatch()
   const [sortList, setSortList] = useState(false)
   const [taskOptions, setTaskOptions] = useState(null)
@@ -21,9 +21,9 @@ export default function TDL({ user }) {
   const [editTdl, resultEditTdl] = useEditTdlMutation()
 
   const {
-    data: dataTdl,
-    isLoading: isLoadingTdl,
-    isFetching: isFetchingTdl,
+    data: dataTasks,
+    isLoading: isLoadingTasks,
+    isFetching: isFetchingTasks,
     isSuccess: isSuccessTdl,
     isError: isErrorTdl,
     error: errorTdl,
@@ -35,7 +35,7 @@ export default function TDL({ user }) {
   }
 
   const editStatusFn = async (task) => {
-    if (resultEditTdl.isLoading || isFetchingTdl) {
+    if (resultEditTdl.isLoading || isFetchingTasks) {
       return
     }
 
@@ -46,9 +46,9 @@ export default function TDL({ user }) {
 
   /* order */
   useEffect(() => {
-    if (dataTdl) {
+    if (dataTasks) {
       /* filter */
-      const filteredList = dataTdl?.filter(item => {
+      const filteredList = dataTasks?.filter(item => {
         return (listSelected === "all" || item.category === listSelected)
       })
 
@@ -63,46 +63,46 @@ export default function TDL({ user }) {
 
       setTdlList(orderedList)
     }
-  }, [sortList, listSelected, dataTdl])
+  }, [sortList, listSelected, dataTasks])
 
   useEffect(() => {
     taskOptions && setTaskOptions(null)
   }, [listSelected])
 
   useEffect(() => {
-    !isLoadingTdl && tdlList && listContainer.current && autoAnimate(listContainer.current)
-  }, [listContainer, isLoadingTdl, tdlList])
+    !isLoadingTasks && tdlList && listContainer.current && autoAnimate(listContainer.current)
+  }, [listContainer, isLoadingTasks, tdlList])
 
 
   return (
     <>
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
-          <button disabled={isLoadingTdl} onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "TDLDataModal", newTask: true, userId: user?.uid, dataList: dataTdl } }))
+          <button disabled={isLoadingTasks} onClick={() => {
+            dispatch(setModal({ active: true, data: { modalType: "TasksDataModal", newTask: true, userId: user?.uid, dataList: dataTasks } }))
             setListPickerOpen(false)
           }}>+ Add task</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
-                <button disabled={isLoadingTdl} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
+                <button disabled={isLoadingTasks} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
               }
               {
                 listPickerOpen &&
                 <div className="listPickerOptions">
-                  <button disabled={isLoadingTdl} className={`listPicker ${listSelected === "personal" && "selected"}`}
+                  <button disabled={isLoadingTasks} className={`listPicker ${listSelected === "personal" && "selected"}`}
                     onClick={() => {
                       selectList("personal")
                     }}>
                     Personal
                   </button>
-                  <button disabled={isLoadingTdl} className={`listPicker ${listSelected === "company" && "selected"}`}
+                  <button disabled={isLoadingTasks} className={`listPicker ${listSelected === "company" && "selected"}`}
                     onClick={() => {
                       selectList("company")
                     }}>
                     Company
                   </button>
-                  <button disabled={isLoadingTdl} className={`listPicker ${listSelected === "all" && "selected"}`}
+                  <button disabled={isLoadingTasks} className={`listPicker ${listSelected === "all" && "selected"}`}
                     onClick={() => {
                       selectList("all")
                     }}>
@@ -114,7 +114,7 @@ export default function TDL({ user }) {
           </div>
         </div>
         <div className="sortBtn">
-          <button disabled={isLoadingTdl} onClick={() => setSortList(sortList => !sortList)}>
+          <button disabled={isLoadingTasks} onClick={() => setSortList(sortList => !sortList)}>
             {
               sortList ?
                 <svg style={{ transform: "rotate(180deg)" }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-filter" viewBox="0 0 16 16">
@@ -127,7 +127,7 @@ export default function TDL({ user }) {
           </button>
         </div>
         {
-          isLoadingTdl ? <div className="loader">Loading...</div> :
+          isLoadingTasks ? <div className="loader">Loading...</div> :
             <div className="listWrapper">
               <ul className='tdl-list' ref={listContainer}>
                 {
@@ -163,7 +163,7 @@ export default function TDL({ user }) {
                           <div className={`tdl-optionsBtns`}>
                             {
                               /* open */
-                              <button disabled={task.id === "temp-id"} title={"Info"} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "TDLDataModal", tdlData: true, ...task, dataList: dataTdl } })); setListPickerOpen(false) }}>
+                              <button disabled={task.id === "temp-id"} title={"Info"} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "TasksDataModal", tasksData: true, ...task, dataList: dataTasks } })); setListPickerOpen(false) }}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
                                   <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                                 </svg>
@@ -204,15 +204,15 @@ export default function TDL({ user }) {
       </div >
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
-          <button disabled={isLoadingTdl}>Charts</button>
+          <button disabled={isLoadingTasks}>Charts</button>
         </div>
         <div className="chartWrapper">
           {
-            isLoadingTdl ? <div className="loader">Loading...</div> :
+            isLoadingTasks ? <div className="loader">Loading...</div> :
               <>
-                <DataChart type={{ property: "category", items: "tasks" }} data={dataTdl} isLoading={isLoadingTdl} />
-                <DataChart type={{ property: "status", items: "tasks" }} data={dataTdl} isLoading={isLoadingTdl} />
-                <DataChart type={{ property: "priority", items: "tasks" }} data={dataTdl} isLoading={isLoadingTdl} />
+                <DataChart type={{ property: "category", items: "tasks" }} data={dataTasks} isLoading={isLoadingTasks} />
+                <DataChart type={{ property: "status", items: "tasks" }} data={dataTasks} isLoading={isLoadingTasks} />
+                <DataChart type={{ property: "priority", items: "tasks" }} data={dataTasks} isLoading={isLoadingTasks} />
               </>
           }
         </div>

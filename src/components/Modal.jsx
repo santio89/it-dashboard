@@ -4,7 +4,7 @@ import { setModal } from '../store/slices/modalSlice';
 import Draggable from 'react-draggable';
 import ContactsDataModal from './ContactsDataModal';
 import DevicesDataModal from './DevicesDataModal';
-import TDLDataModal from './TDLDataModal';
+import TasksDataModal from './TasksDataModal';
 import ProfileDataModal from './ProfileDataModal';
 import SupportDataModal from './SupportDataModal';
 
@@ -73,7 +73,7 @@ export default function Modal() {
 
             {modalData?.modalType === "DevicesDataModal" && <DevicesDataModal modalData={modalData} />}
 
-            {modalData?.modalType === "TDLDataModal" && <TDLDataModal modalData={modalData} />}
+            {modalData?.modalType === "TasksDataModal" && <TasksDataModal modalData={modalData} />}
 
             {modalData?.modalType === "ProfileDataModal" && <ProfileDataModal modalData={modalData} />}
 

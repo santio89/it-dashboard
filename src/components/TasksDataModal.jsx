@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { setModal } from '../store/slices/modalSlice'
 import { useAddTdlMutation, useDeleteTdlMutation, useEditTdlMutation } from '../store/slices/apiSlice'
 
-export default function TDLDataModal({ modalData }) {
+export default function TasksDataModal({ modalData }) {
   const dispatch = useDispatch()
   const modalActive = useSelector(state => state.modal.active)
   const [addTdl, resultAddTdl] = useAddTdlMutation()
@@ -91,7 +91,7 @@ export default function TDLDataModal({ modalData }) {
       return
     }
 
-    const { modalType, tdlData, ...trimTask } = task
+    const { modalType, tasksData, ...trimTask } = task
 
     const newTask = { ...trimTask, title: title ?? task.title, content: input.trim(), category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
 
@@ -143,7 +143,7 @@ export default function TDLDataModal({ modalData }) {
   return (
     <>
       {
-        modalData?.tdlData && !editMode && !deleteMode &&
+        modalData?.tasksData && !editMode && !deleteMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>TASK</h2>
@@ -187,7 +187,7 @@ export default function TDLDataModal({ modalData }) {
       }
       {/* edit mode */}
       {
-        modalData?.tdlData && editMode &&
+        modalData?.tasksData && editMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>EDIT TASK</h2>
@@ -259,7 +259,7 @@ export default function TDLDataModal({ modalData }) {
       }
       {/* delete mode */}
       {
-        modalData?.tdlData && deleteMode &&
+        modalData?.tasksData && deleteMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>DELETE TASK</h2>

@@ -20,7 +20,7 @@ export default function Home() {
         </Link>
       </SpotlightCard>
       <SpotlightCard className="homeCard" spotlightColor="var(--main-color-op)">
-        <Link className="homeCard__link" to="/tdl" viewTransition>
+        <Link className="homeCard__link" to="/tasks" viewTransition>
           <h2>Tasks</h2>
           <p>Manage tasks</p>
         </Link>

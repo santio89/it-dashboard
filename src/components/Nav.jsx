@@ -5,7 +5,7 @@ import { useLocation } from "react-router"
 import { useEffect, useState } from "react"
 import { useSignGoogleMutation, useSignOutMutation } from "../store/slices/apiSlice"
 
-const sections = ["/home", "/about", "/contacts", "/devices", "/tdl", "/support", "/admin"]
+const sections = ["/home", "/about", "/contacts", "/devices", "/tasks", "/support", "/admin"]
 
 export default function Nav({ rootTheme, user }) {
   const dispatch = useDispatch()
