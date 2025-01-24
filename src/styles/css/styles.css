@@ -1313,6 +1313,7 @@ select:disabled {
 }
 .site-section__notFound__title {
   font-weight: 700;
+  transition: 200ms ease-in-out;
 }
 
 /* spotlight card */
