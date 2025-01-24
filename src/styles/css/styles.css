@@ -1306,6 +1306,14 @@ select:disabled {
 .site-section__private button:hover {
   text-shadow: 0 0 4px var(--main-text);
 }
+.site-section__notFound {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.site-section__notFound__title {
+  font-weight: 700;
+}
 
 /* spotlight card */
 .card-spotlight {

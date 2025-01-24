@@ -5,7 +5,7 @@ import { useLocation } from "react-router"
 import { useEffect, useState } from "react"
 import { useSignGoogleMutation, useSignOutMutation } from "../store/slices/apiSlice"
 
-const sections = ["/home", "/about", "/contacts", "/devices", "/tasks", "/support", "/admin"]
+const sections = ["/", "/home", "/about", "/contacts", "/devices", "/tasks", "/support", "/admin"]
 
 export default function Nav({ rootTheme, user }) {
   const dispatch = useDispatch()
@@ -33,13 +33,23 @@ export default function Nav({ rootTheme, user }) {
     dispatch(setModal({ active: true, data: { modalType: "ProfileDataModal", profileData: true, ...user } }))
   }
 
+  const navTitle = () => {
+    const sectionFound = sections.find(section => section === location.pathname.trim())
+
+    if (!sectionFound) {
+      return "NOT FOUND"
+    } else {
+      return sectionFound === "/" ? "IT DASHBOARD" : location.pathname.trim().slice(1)
+    }
+  }
+
   useEffect(() => {
     rootTheme.current.classList.toggle("light-theme", lightTheme)
   }, [lightTheme])
 
   return (
     <header className="mainHeader">
-      <div className="logo" >{sections.find(section => section === location.pathname.trim()) ? location.pathname.trim().slice(1) : "IT DASHBOARD"}</div>
+      <div className="logo" >{navTitle()}</div>
       <div className="mainHeader__btnContainer">
         <div className="btnWrapper">
           <button aria-label="Dark/Light Mode" onClick={toggleLight} onAnimationEnd={() => setThemeClicked(false)}>
