@@ -172,10 +172,6 @@
     &:only-child {
       min-height: 100% !important;
     }
-
-    &.admin {
-      min-height: 100% !important;
-    }
   }
 
   &__list {
@@ -744,6 +740,14 @@
 
     @media (max-width: $tablet-breakpoint) {
       min-width: 250px;
+    }
+  }
+
+  &__admin {
+    min-height: 100% !important;
+
+    &__title {
+      font-weight: 700;
     }
   }
 
