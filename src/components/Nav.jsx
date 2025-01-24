@@ -34,12 +34,12 @@ export default function Nav({ rootTheme, user }) {
   }
 
   const navTitle = () => {
-    const sectionFound = sections.find(section => section === location.pathname.trim())
+    const sectionFound = sections.find(section => section === location.pathname)
 
     if (!sectionFound) {
       return "NOT FOUND"
     } else {
-      return sectionFound === "/" ? "IT DASHBOARD" : location.pathname.trim().slice(1)
+      return sectionFound === "/" ? "IT DASHBOARD" : location.pathname.slice(1)
     }
   }
 
