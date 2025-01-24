@@ -56,9 +56,7 @@ function App() {
           className: 'toaster',
         }} />
         <Modal />
-        <BrowserRouter future={{
-          v7_startTransition: true,
-        }}>
+        <BrowserRouter>
           <Routes>
             <Route element={<MainContainer rootTheme={rootTheme} user={checkUser} />}>
               <Route path="/" element={<Home />} />
