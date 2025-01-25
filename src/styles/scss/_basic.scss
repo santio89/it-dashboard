@@ -7,6 +7,11 @@
   navigation: auto;
 }
 
+::view-transition-group(*) {
+  animation-duration: 200ms;
+  animation-timing-function: ease-in-out;
+}
+
 $tablet-breakpoint: 969px;
 $home-breakpoint: 719px;
 $home-breakpoint-height: 444px;

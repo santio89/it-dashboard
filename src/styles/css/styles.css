@@ -5,6 +5,11 @@
 @view-transition {
   navigation: auto;
 }
+::view-transition-group(*) {
+  animation-duration: 200ms;
+  animation-timing-function: ease-in-out;
+}
+
 *,
 *::before,
 *::after {
