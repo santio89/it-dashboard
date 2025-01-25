@@ -258,9 +258,9 @@
             width: 100%;
             transition: filter 200ms ease-in-out, opacity 200ms ease-in-out;
 
-            @starting-style {
+            /* @starting-style {
               opacity: 0.1;
-            }
+            } */
 
             &:has(button[disabled]) {
               filter: grayscale(1);
@@ -297,9 +297,9 @@
               opacity 200ms ease-in-out;
             box-shadow: -2px 0 0 0 transparent;
 
-            @starting-style {
+            /* @starting-style {
               opacity: 0.1;
-            }
+            } */
 
             &.selectedLow {
               box-shadow: -2px 0 0 0 var(--main-gray-dark);
@@ -691,9 +691,9 @@
         background: var(--main-color-op-light);
         transition: opacity 200ms ease-in-out;
 
-        @starting-style {
+       /*  @starting-style {
           opacity: 0.1;
-        }
+        } */
 
         /* chart */
         & > div:not(.loader) {

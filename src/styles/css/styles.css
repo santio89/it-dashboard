@@ -843,11 +843,9 @@ select:disabled {
   align-items: stretch;
   width: 100%;
   transition: filter 200ms ease-in-out, opacity 200ms ease-in-out;
-}
-@starting-style {
-  .site-section__list .listWrapper ul.items-list li {
+  /* @starting-style {
     opacity: 0.1;
-  }
+  } */
 }
 .site-section__list .listWrapper ul.items-list li:has(button[disabled]) {
   filter: grayscale(1);
@@ -877,11 +875,9 @@ select:disabled {
   border-radius: var(--main-radius);
   transition: filter 200ms ease-in-out, box-shadow 200ms ease-in-out, opacity 200ms ease-in-out;
   box-shadow: -2px 0 0 0 transparent;
-}
-@starting-style {
-  .site-section__list .listWrapper ul.tdl-list li, .site-section__list .listWrapper ul.support-list li {
+  /* @starting-style {
     opacity: 0.1;
-  }
+  } */
 }
 .site-section__list .listWrapper ul.tdl-list li.selectedLow, .site-section__list .listWrapper ul.support-list li.selectedLow {
   box-shadow: -2px 0 0 0 var(--main-gray-dark);
@@ -1252,12 +1248,10 @@ select:disabled {
   border-radius: var(--main-radius);
   background: var(--main-color-op-light);
   transition: opacity 200ms ease-in-out;
+  /*  @starting-style {
+     opacity: 0.1;
+   } */
   /* chart */
-}
-@starting-style {
-  .site-section__chart .chartWrapper .dataChart {
-    opacity: 0.1;
-  }
 }
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) {
   max-width: 100%;
