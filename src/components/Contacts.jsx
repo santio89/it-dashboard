@@ -135,7 +135,6 @@ export default function Contacts({ user }) {
             isLoadingContacts ? <div className="loader">Loading...</div> :
               <DataChart type={{ property: "category", items: "contacts" }} data={dataContacts} />
           }
-
         </div>
       </div>
     </>

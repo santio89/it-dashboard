@@ -689,6 +689,11 @@
         border: 1px solid var(--main-gray-darker-op);
         border-radius: var(--main-radius);
         background: var(--main-color-op-light);
+        transition: opacity 200ms ease-in-out;
+
+        @starting-style {
+          opacity: 0.1;
+        }
 
         /* chart */
         & > div:not(.loader) {

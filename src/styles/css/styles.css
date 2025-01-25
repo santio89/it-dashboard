@@ -1251,7 +1251,13 @@ select:disabled {
   border: 1px solid var(--main-gray-darker-op);
   border-radius: var(--main-radius);
   background: var(--main-color-op-light);
+  transition: opacity 200ms ease-in-out;
   /* chart */
+}
+@starting-style {
+  .site-section__chart .chartWrapper .dataChart {
+    opacity: 0.1;
+  }
 }
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) {
   max-width: 100%;
