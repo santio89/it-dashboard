@@ -1377,6 +1377,7 @@ select:disabled {
   min-height: 120px;
   aspect-ratio: 16/9;
   border: 1px solid var(--main-gray-dark);
+  user-select: none;
 }
 .homeCard:has(.homeCard__link:is(:hover, :focus-visible)) {
   border: 1px solid var(--main-text);
