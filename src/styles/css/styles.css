@@ -1238,9 +1238,6 @@ select:disabled {
   align-items: center;
   gap: 1rem;
   width: 100%;
-  /* border: 2px solid var(--main-color-mid); */
-  /*  background: var(--main-color-op-light); */
-  /*  border-radius: 0 var(--main-radius) var(--main-radius) var(--main-radius); */
 }
 .site-section__chart .chartWrapper .dataChart {
   display: flex;
