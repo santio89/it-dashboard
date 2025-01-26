@@ -132,7 +132,7 @@ export default function Devices({ user }) {
         <div className="chartWrapper">
           {
             isLoadingDevices ? <div className="loader">Loading...</div> :
-            <DataChart type={{ property: "category", items: "devices" }} data={dataDevices} isLoading={isLoadingDevices} />
+              <DataChart type={{ property: "category", items: "devices" }} data={dataDevices} isLoading={isLoadingDevices} />
           }
         </div>
       </div>
