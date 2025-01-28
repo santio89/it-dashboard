@@ -11,7 +11,8 @@ export default function Tasks({ user }) {
   const [taskOptions, setTaskOptions] = useState(null)
   const listContainer = useRef()
 
-  const [tdlList, setTdlList] = useState(null)
+  const [tasksList, setTasksList] = useState(null)
+  const [firstLoad, setFirstLoad] = useState(null)
 
   /* search */
   const [listPickerOpen, setListPickerOpen] = useState(false)
@@ -24,9 +25,9 @@ export default function Tasks({ user }) {
     data: dataTasks,
     isLoading: isLoadingTasks,
     isFetching: isFetchingTasks,
-    isSuccess: isSuccessTdl,
-    isError: isErrorTdl,
-    error: errorTdl,
+    isSuccess: isSuccessTasks,
+    isError: isErrorTasks,
+    error: errorTasks,
   } = useGetTdlQuery(user.uid);
 
   const selectList = list => {
@@ -61,7 +62,7 @@ export default function Tasks({ user }) {
         orderedList = [...filteredList].sort((a, b) => b.localTime - a.localTime);
       }
 
-      setTdlList(orderedList)
+      setTasksList(orderedList)
     }
   }, [sortList, listSelected, dataTasks])
 
@@ -70,9 +71,22 @@ export default function Tasks({ user }) {
   }, [listSelected])
 
   useEffect(() => {
-    !isLoadingTasks && tdlList && listContainer.current && autoAnimate(listContainer.current)
-  }, [listContainer, isLoadingTasks, tdlList])
+    !isLoadingTasks && tasksList && listContainer.current && autoAnimate(listContainer.current)
+  }, [listContainer, isLoadingTasks, tasksList])
 
+  useEffect(() => {
+    let timeout;
+
+    if (!isLoadingTasks) {
+      timeout = setTimeout(() => {
+        setFirstLoad(false)
+      }, 0)
+    } else {
+      setFirstLoad(true)
+    }
+
+    return () => clearTimeout(timeout)
+  }, [isLoadingTasks])
 
   return (
     <>
@@ -131,8 +145,8 @@ export default function Tasks({ user }) {
             <div className="listWrapper">
               <ul className='tdl-list' ref={listContainer}>
                 {
-                  tdlList?.map((task) =>
-                    <li key={task.localId} className={`${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"}`}>
+                  tasksList?.map((task) =>
+                    <li key={task.localId} className={`${task.priority === "low" && "selectedLow"} ${task.priority === "medium" && "selectedMedium"} ${task.priority === "high" && "selectedHigh"} ${firstLoad && "firstLoad"}`}>
                       {/* task options */}
                       {
                         taskOptions === task.id &&
@@ -196,7 +210,7 @@ export default function Tasks({ user }) {
                     </li>)
                 }
                 {
-                  tdlList?.length === 0 && <li className="no-data">No Data</li>
+                  tasksList?.length === 0 && <li className="no-data">No Data</li>
                 }
               </ul>
             </div>
@@ -210,9 +224,9 @@ export default function Tasks({ user }) {
           {
             isLoadingTasks ? <div className="loader">Loading...</div> :
               <>
-                <DataChart type={{ property: "category", items: "tasks" }} data={dataTasks} isLoading={isLoadingTasks} />
-                <DataChart type={{ property: "status", items: "tasks" }} data={dataTasks} isLoading={isLoadingTasks} />
-                <DataChart type={{ property: "priority", items: "tasks" }} data={dataTasks} isLoading={isLoadingTasks} />
+                <DataChart type={{ property: "category", items: "tasks" }} data={dataTasks} firstLoad={firstLoad} />
+                <DataChart type={{ property: "status", items: "tasks" }} data={dataTasks} firstLoad={firstLoad} />
+                <DataChart type={{ property: "priority", items: "tasks" }} data={dataTasks} firstLoad={firstLoad} />
               </>
           }
         </div>

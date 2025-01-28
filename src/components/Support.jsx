@@ -12,6 +12,7 @@ export default function Support({ user }) {
   const listContainer = useRef()
 
   const [supportList, setSupportList] = useState(null)
+  const [firstLoad, setFirstLoad] = useState(null)
 
   /* search */
   const [listPickerOpen, setListPickerOpen] = useState(false)
@@ -68,6 +69,20 @@ export default function Support({ user }) {
   useEffect(() => {
     !isLoadingSupport && supportList && listContainer.current && autoAnimate(listContainer.current)
   }, [listContainer, isLoadingSupport, supportList])
+
+  useEffect(() => {
+    let timeout;
+
+    if (!isLoadingSupport) {
+      timeout = setTimeout(() => {
+        setFirstLoad(false)
+      }, 0)
+    } else {
+      setFirstLoad(true)
+    }
+
+    return () => clearTimeout(timeout)
+  }, [isLoadingSupport])
 
 
   return (
@@ -127,7 +142,7 @@ export default function Support({ user }) {
               <ul className="support-list" ref={listContainer}>
                 {
                   supportList?.map((ticket) =>
-                    <li key={ticket.localId} className={`${ticket.priority === "low" && "selectedLow"} ${ticket.priority === "medium" && "selectedMedium"} ${ticket.priority === "high" && "selectedHigh"}`}>
+                    <li key={ticket.localId} className={`${ticket.priority === "low" && "selectedLow"} ${ticket.priority === "medium" && "selectedMedium"} ${ticket.priority === "high" && "selectedHigh"} ${firstLoad && "firstLoad"}`}>
                       {/* ticket options */}
                       {
                         ticketOptions === ticket.id &&
@@ -209,9 +224,9 @@ export default function Support({ user }) {
           {
             isLoadingSupport ? <div className="loader">Loading...</div> :
               <>
-                <DataChart type={{ property: "category", items: "tickets" }} data={dataSupport} isLoading={isLoadingSupport} />
-                <DataChart type={{ property: "status", items: "tickets" }} data={dataSupport} isLoading={isLoadingSupport} />
-                <DataChart type={{ property: "priority", items: "tickets" }} data={dataSupport} isLoading={isLoadingSupport} />
+                <DataChart type={{ property: "category", items: "tickets" }} data={dataSupport} firstLoad={firstLoad} />
+                <DataChart type={{ property: "status", items: "tickets" }} data={dataSupport} firstLoad={firstLoad} />
+                <DataChart type={{ property: "priority", items: "tickets" }} data={dataSupport} firstLoad={firstLoad} />
               </>
           }
         </div>

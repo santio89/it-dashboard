@@ -845,7 +845,7 @@ select:disabled {
   transition: filter 200ms ease-in-out, opacity 250ms ease-in-out;
 }
 @starting-style {
-  .site-section__list .listWrapper ul.items-list li {
+  .site-section__list .listWrapper ul.items-list li.firstLoad {
     opacity: 0.1;
   }
 }
@@ -879,7 +879,7 @@ select:disabled {
   box-shadow: -2px 0 0 0 transparent;
 }
 @starting-style {
-  .site-section__list .listWrapper ul.tdl-list li, .site-section__list .listWrapper ul.support-list li {
+  .site-section__list .listWrapper ul.tdl-list li.firstLoad, .site-section__list .listWrapper ul.support-list li.firstLoad {
     opacity: 0.1;
   }
 }
@@ -1252,7 +1252,7 @@ select:disabled {
   /* chart */
 }
 @starting-style {
-  .site-section__chart .chartWrapper .dataChart {
+  .site-section__chart .chartWrapper .dataChart.firstLoad {
     opacity: 0.1;
   }
 }

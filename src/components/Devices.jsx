@@ -13,6 +13,7 @@ export default function Devices({ user }) {
   const listContainer = useRef()
 
   const [devicesList, setDevicesList] = useState(null)
+  const [firstLoad, setFirstLoad] = useState(null)
 
   const {
     data: dataDevices,
@@ -52,6 +53,20 @@ export default function Devices({ user }) {
   useEffect(() => {
     !isLoadingDevices && devicesList && listContainer.current && autoAnimate(listContainer.current)
   }, [listContainer, isLoadingDevices, devicesList])
+
+  useEffect(() => {
+    let timeout;
+
+    if (!isLoadingDevices) {
+      timeout = setTimeout(() => {
+        setFirstLoad(false)
+      }, 0)
+    } else {
+      setFirstLoad(true)
+    }
+
+    return () => clearTimeout(timeout)
+  }, [isLoadingDevices])
 
   return (
     <>
@@ -114,7 +129,7 @@ export default function Devices({ user }) {
               <ul className="items-list" ref={listContainer}>
                 {
                   devicesList?.map(device =>
-                    <li key={device.localId}><button disabled={device.id === "temp-id"} title={device.name} onClick={() => {
+                    <li className={firstLoad && "firstLoad"} key={device.localId}><button disabled={device.id === "temp-id"} title={device.name} onClick={() => {
                       dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device, dataList: dataDevices } })); setListPickerOpen(false)
                     }}>{device.name}</button></li>)
                 }
@@ -132,7 +147,7 @@ export default function Devices({ user }) {
         <div className="chartWrapper">
           {
             isLoadingDevices ? <div className="loader">Loading...</div> :
-              <DataChart type={{ property: "category", items: "devices" }} data={dataDevices} isLoading={isLoadingDevices} />
+              <DataChart type={{ property: "category", items: "devices" }} data={dataDevices} firstLoad={firstLoad} />
           }
         </div>
       </div>

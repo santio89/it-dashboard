@@ -258,8 +258,10 @@
             width: 100%;
             transition: filter 200ms ease-in-out, opacity 250ms ease-in-out;
 
-            @starting-style {
-              opacity: 0.1;
+            &.firstLoad {
+              @starting-style {
+                opacity: 0.1;
+              }
             }
 
             &:has(button[disabled]) {
@@ -297,8 +299,10 @@
               opacity 250ms ease-in-out;
             box-shadow: -2px 0 0 0 transparent;
 
-            @starting-style {
-              opacity: 0.1;
+            &.firstLoad {
+              @starting-style {
+                opacity: 0.1;
+              }
             }
 
             &.selectedLow {
@@ -688,8 +692,10 @@
         background: var(--main-color-op-light);
         transition: opacity 250ms ease-in-out;
 
-        @starting-style {
-          opacity: 0.1;
+        &.firstLoad {
+          @starting-style {
+            opacity: 0.1;
+          }
         }
 
         /* chart */

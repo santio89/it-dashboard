@@ -13,6 +13,7 @@ export default function Contacts({ user }) {
   const listContainer = useRef()
 
   const [contactsList, setContactsList] = useState(null)
+  const [firstLoad, setFirstLoad] = useState(null)
 
   const {
     data: dataContacts,
@@ -53,6 +54,20 @@ export default function Contacts({ user }) {
   useEffect(() => {
     !isLoadingContacts && contactsList && listContainer.current && autoAnimate(listContainer.current)
   }, [listContainer, isLoadingContacts, contactsList])
+
+  useEffect(() => {
+    let timeout;
+
+    if (!isLoadingContacts) {
+      timeout = setTimeout(() => {
+        setFirstLoad(false)
+      }, 0)
+    } else {
+      setFirstLoad(true)
+    }
+
+    return () => clearTimeout(timeout)
+  }, [isLoadingContacts])
 
   return (
     <>
@@ -117,7 +132,7 @@ export default function Contacts({ user }) {
               <ul className="items-list" ref={listContainer}>
                 {
                   contactsList?.map(contact =>
-                    <li key={contact.localId}><button disabled={contact.id === "temp-id"} title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact, dataList: dataContacts } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
+                    <li className={firstLoad && "firstLoad"} key={contact.localId}><button disabled={contact.id === "temp-id"} title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact, dataList: dataContacts } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
                 }
                 {
                   contactsList?.length === 0 && <li className="no-data">No Data</li>
@@ -133,7 +148,7 @@ export default function Contacts({ user }) {
         <div className="chartWrapper">
           {
             isLoadingContacts ? <div className="loader">Loading...</div> :
-              <DataChart type={{ property: "category", items: "contacts" }} data={dataContacts} />
+              <DataChart type={{ property: "category", items: "contacts" }} data={dataContacts} firstLoad={firstLoad} />
           }
         </div>
       </div>

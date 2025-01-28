@@ -3,7 +3,7 @@ import { Chart } from 'react-google-charts';
 import { useSelector } from 'react-redux';
 
 
-export default function DataChart({ data, type, isLoading }) {
+export default function DataChart({ data, type, firstLoad }) {
   const [chartArray, setChartArray] = useState()
   const lightTheme = useSelector(state => state.theme.light)
 
@@ -35,7 +35,7 @@ export default function DataChart({ data, type, isLoading }) {
 
   return (
     <>
-      <div className="dataChart">
+      <div className={`dataChart ${firstLoad && "firstLoad"}`}>
         <Chart
           chartType={"PieChart"}
           options={{
