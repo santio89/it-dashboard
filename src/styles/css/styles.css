@@ -1830,6 +1830,14 @@ label:hover) {
   background-color: var(--white);
   outline-color: var(--white);
 }
+.mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.reply {
+  font-size: 0.8em;
+  text-transform: none;
+  background: none;
+}
+.mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.reply.active {
+  color: var(--main-white);
+}
 .mainModal__data__form.taskContainer .taskOpenData button:hover {
   background-color: var(--main-color-op);
   color: var(--white);
@@ -1866,6 +1874,16 @@ label:hover) {
   height: 100%;
   max-height: 60px;
   field-sizing: content;
+}
+.mainModal__data__form.taskContainer .taskReply {
+  box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
+  width: 100%;
+  gap: 0.25rem;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  color: var(--red);
+  font-weight: 600;
 }
 .mainModal__data__form.profile .form-group {
   flex-direction: column;

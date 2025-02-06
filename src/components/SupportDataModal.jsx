@@ -20,6 +20,8 @@ export default function SupportDataModal({ modalData }) {
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)
 
+  const [showReply, setShowReply] = useState(false)
+
   const [deleteSupport, resultDeleteSupport] = useDeleteSupportMutation()
   const [editSupport, resultEditSupport] = useEditSupportMutation()
 
@@ -136,6 +138,7 @@ export default function SupportDataModal({ modalData }) {
       setNewTicketCategory("personal")
       setEditMode(false)
       setDeleteMode(false)
+      setShowReply(false)
     }
   }, [modalActive])
 
@@ -148,13 +151,13 @@ export default function SupportDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>TICKET</h2>
             <div>ID: <span>{modalData?.id}</span></div>
-            <div className="listPickerWrapper__btnContainer">
+            {/* <div className="listPickerWrapper__btnContainer">
               <button tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
-            </div>
+            </div> */}
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer disabled'>
             <div className="taskOptions">
-              <div className={`taskOpenData`}>
+              {/* <div className={`taskOpenData`}>
                 <div>Priority:&nbsp;</div>
                 <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
@@ -162,13 +165,25 @@ export default function SupportDataModal({ modalData }) {
                   </svg>
                   {modalData?.priority}
                 </button>
-              </div>
+              </div> */}
               <div className={`taskOpenData`}>
                 <div>Status:&nbsp;</div>
                 <button tabIndex={-1} type='button' disabled className={`tdl-priority selected`}>
                   {modalData?.status}
                 </button>
+                {modalData?.status === "completed" && <button tabIndex={-1} type='button' className={`tdl-priority reply ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}>Show reply</button>}
               </div>
+              {
+                showReply &&
+                <div className='taskReply'>
+                  <span>
+                    Admin:&nbsp;
+                  </span>
+                  <span>
+                    {modalData?.reply || "ticket closed"}
+                  </span>
+                </div>
+              }
             </div>
             <fieldset>
               <legend><label htmlFor="title">Title</label></legend>
@@ -178,10 +193,10 @@ export default function SupportDataModal({ modalData }) {
               <legend><label htmlFor="description">Description</label></legend>
               <textarea id="description" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.content || "-"} />
             </fieldset>
-            <div className='mainModal__btnContainer'>
+            {/* <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(true)}>Delete</button>
-            </div>
+            </div> */}
           </form>
         </>
       }
@@ -192,7 +207,7 @@ export default function SupportDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>EDIT TICKET</h2>
             <div>ID: <span>{modalData?.id}</span></div>
-            <div className="listPickerWrapper__btnContainer editMode">
+            {/* <div className="listPickerWrapper__btnContainer editMode">
               <div className="listPickerOptions">
                 <button disabled={resultEditSupport.isLoading} className={`listPicker ${newTicketCategory === "personal" && "selected"} ${resultEditSupport.isLoading && "disabled"}`}
                   onClick={() => {
@@ -207,7 +222,7 @@ export default function SupportDataModal({ modalData }) {
                   Company
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer editMode' disabled={resultEditSupport.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
             <div className="taskOptions">
@@ -265,9 +280,9 @@ export default function SupportDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>DELETE TICKET</h2>
             <div>ID: <span>{modalData?.id}</span></div>
-            <div className="listPickerWrapper__btnContainer deleteMode">
+            {/* <div className="listPickerWrapper__btnContainer deleteMode">
               <button tabIndex={-1} disabled={resultDeleteSupport.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
-            </div>
+            </div> */}
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteSupport.isLoading} onSubmit={(e) => deleteSupportFn(e, modalData)}>
             <div className="taskOptions">
@@ -307,7 +322,7 @@ export default function SupportDataModal({ modalData }) {
         <>
           <div className="mainModal__titleContainer">
             <h2>ADD TICKET</h2>
-            <div className="listPickerWrapper__btnContainer">
+            {/* <div className="listPickerWrapper__btnContainer">
               <div className="listPickerOptions">
                 <button disabled={resultAddSupport.isLoading} className={`listPicker ${newTicketCategory === "personal" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}
                   onClick={() => {
@@ -322,10 +337,10 @@ export default function SupportDataModal({ modalData }) {
                   Company
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
           <form autoCapitalize='off' disabled={resultAddSupport.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addSupportFn(e)}>
-            <div className="taskOptions">
+            {/* <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>Priority:&nbsp;</div>
                 <button type='button' onClick={() => setNewTicketPriority("low")} className={`tdl-priority selectedLow ${newTicketPriority === "low" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
@@ -356,7 +371,7 @@ export default function SupportDataModal({ modalData }) {
                   Completed
                 </button>
               </div>
-            </div>
+            </div> */}
             <fieldset>
               <legend><label htmlFor="addTitle">Title</label></legend>
               <textarea id="addTitle" placeholder='Required' required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />

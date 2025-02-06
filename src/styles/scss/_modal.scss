@@ -474,6 +474,15 @@
                   outline-color: var(--white);
                 }
               }
+              &.reply {
+                font-size: 0.8em;
+                text-transform: none;
+                background: none;
+
+                &.active {
+                  color: var(--main-white);
+                }
+              }
             }
 
             &:hover {
@@ -521,6 +530,17 @@
           height: 100%;
           max-height: 60px;
           field-sizing: content;
+        }
+
+        .taskReply {
+          box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
+          width: 100%;
+          gap: 0.25rem;
+          display: flex;
+          justify-content: start;
+          align-items: start;
+          color: var(--red);
+          font-weight: 600;
         }
       }
 
