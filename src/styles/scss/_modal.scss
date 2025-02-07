@@ -410,6 +410,30 @@
           }
         }
 
+        .replyBtn {
+          font-size: 0.8em;
+          text-transform: none;
+          background: none;
+          align-self: start;
+          color: var(--main-gray);
+          margin-top: -0.5rem;
+          padding: 0 0.25rem;
+
+          &:hover {
+            color: var(--white);
+          }
+
+          span:nth-child(1) {
+            transition: rotate 200ms ease-in-out;
+          }
+
+          &.active {
+            span:nth-child(1) {
+              rotate: 90deg;
+            }
+          }
+        }
+
         .taskOpenData {
           align-self: start;
           display: flex;
@@ -434,7 +458,6 @@
             outline-offset: -1px;
             background: transparent;
             outline: 1px solid transparent;
-            /* border: 1px solid var(--main-color-op); */
 
             &[disabled] {
               cursor: default;
@@ -472,15 +495,6 @@
                 svg {
                   background-color: var(--white);
                   outline-color: var(--white);
-                }
-              }
-              &.reply {
-                font-size: 0.8em;
-                text-transform: none;
-                background: none;
-
-                &.active {
-                  color: var(--main-white);
                 }
               }
             }
@@ -541,6 +555,7 @@
           align-items: start;
           color: var(--red);
           font-weight: 600;
+          padding-inline: 0.5rem;
         }
       }
 

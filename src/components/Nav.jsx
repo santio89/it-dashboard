@@ -47,6 +47,10 @@ export default function Nav({ rootTheme, user }) {
     rootTheme.current.classList.toggle("light-theme", lightTheme)
   }, [lightTheme])
 
+  useEffect(() => {
+    setProfileOpts(false)
+  }, [user])
+
   return (
     <header className="mainHeader">
       <div className="logo" >{navTitle()}</div>

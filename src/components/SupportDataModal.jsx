@@ -171,8 +171,8 @@ export default function SupportDataModal({ modalData }) {
                 <button tabIndex={-1} type='button' disabled className={`tdl-priority selected`}>
                   {modalData?.status}
                 </button>
-                {modalData?.status === "completed" && <button tabIndex={-1} type='button' className={`tdl-priority reply ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}>Show reply</button>}
               </div>
+              {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{showReply ? "Hide reply" : "Show reply"}</span></button>}
               {
                 showReply &&
                 <div className='taskReply'>
