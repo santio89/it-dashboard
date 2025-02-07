@@ -93,7 +93,7 @@ export default function SupportDataModal({ modalData }) {
       return
     }
 
-    const { modalType, supportData, ...trimTicket } = ticket
+    const { modalType, supportData, user, ...trimTicket } = ticket
 
     const newTicket = { ...trimTicket, title: title ?? ticket.title, content: input.trim(), category: category ?? ticket.category, priority: priority ?? ticket.priority, status: status ?? ticket.status }
 
@@ -141,6 +141,10 @@ export default function SupportDataModal({ modalData }) {
       setShowReply(false)
     }
   }, [modalActive])
+
+  useEffect(() => {
+    console.log(modalData?.user)
+  }, [modalData])
 
 
   return (
@@ -193,10 +197,14 @@ export default function SupportDataModal({ modalData }) {
               <legend><label htmlFor="description">Description</label></legend>
               <textarea id="description" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.content || "-"} />
             </fieldset>
-            {/* <div className='mainModal__btnContainer'>
-              <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
-              <button type='button' className='mainModal__send' onClick={() => setDeleteMode(true)}>Delete</button>
-            </div> */}
+
+            {modalData?.user.domainAdmin &&
+              <div className='mainModal__btnContainer'>
+                <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
+                <button type='button' className='mainModal__send' onClick={() => setDeleteMode(true)}>Delete</button>
+              </div>
+            }
+
           </form>
         </>
       }
@@ -226,7 +234,7 @@ export default function SupportDataModal({ modalData }) {
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer editMode' disabled={resultEditSupport.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
             <div className="taskOptions">
-              <div className={`taskOpenData`}>
+              {/* <div className={`taskOpenData`}>
                 <div>Priority:&nbsp;</div>
                 <button type='button' onClick={() => setNewTicketPriority("low")} className={`tdl-priority selectedLow ${newTicketPriority === "low" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
@@ -246,7 +254,7 @@ export default function SupportDataModal({ modalData }) {
                   </svg>
                   High
                 </button>
-              </div>
+              </div> */}
               <div className={`taskOpenData`}>
                 <div>Status:&nbsp;</div>
                 <button type='button' onClick={() => setNewTicketStatus("pending")} className={`tdl-priority ${newTicketStatus === "pending" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
@@ -256,6 +264,18 @@ export default function SupportDataModal({ modalData }) {
                   Completed
                 </button>
               </div>
+              {newTicketStatus === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{showReply ? "Hide reply" : "Show reply"}</span></button>}
+              {
+                showReply &&
+                <div className='taskReply'>
+                  <span>
+                    Admin:&nbsp;
+                  </span>
+                  <span>
+                    {modalData?.reply || "ticket closed"}
+                  </span>
+                </div>
+              }
             </div>
             <fieldset>
               <legend><label htmlFor="editTitle">Title</label></legend>
@@ -286,7 +306,7 @@ export default function SupportDataModal({ modalData }) {
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteSupport.isLoading} onSubmit={(e) => deleteSupportFn(e, modalData)}>
             <div className="taskOptions">
-              <div className={`taskOpenData`}>
+              {/* <div className={`taskOpenData`}>
                 <div>Priority:&nbsp;</div>
                 <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
@@ -294,13 +314,25 @@ export default function SupportDataModal({ modalData }) {
                   </svg>
                   {modalData?.priority}
                 </button>
-              </div>
+              </div> */}
               <div className={`taskOpenData`}>
                 <div>Status:&nbsp;</div>
                 <button tabIndex={-1} type='button' disabled className={`tdl-priority selected`}>
                   {modalData?.status}
                 </button>
               </div>
+              {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{showReply ? "Hide reply" : "Show reply"}</span></button>}
+              {
+                showReply &&
+                <div className='taskReply'>
+                  <span>
+                    Admin:&nbsp;
+                  </span>
+                  <span>
+                    {modalData?.reply || "ticket closed"}
+                  </span>
+                </div>
+              }
             </div>
             <fieldset>
               <legend><label htmlFor="deleteTitle">Title</label></legend>
