@@ -728,7 +728,7 @@ select:disabled {
 @starting-style {
   .site-section .btnWrapper .listPickerWrapper .listPickerOptions {
     scale: 0.9;
-    opacity: 0;
+    opacity: 0.1;
   }
 }
 .site-section .btnWrapper .listPickerWrapper .listPickerOptions button.listPicker {
@@ -1895,6 +1895,12 @@ label:hover) {
   color: var(--red);
   font-weight: 600;
   padding-inline: 0.5rem;
+  transition: opacity 200ms ease-in-out;
+}
+@starting-style {
+  .mainModal__data__form.taskContainer .taskReply {
+    opacity: 0.1;
+  }
 }
 .mainModal__data__form.profile .form-group {
   flex-direction: column;

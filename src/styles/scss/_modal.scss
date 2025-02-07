@@ -556,6 +556,11 @@
           color: var(--red);
           font-weight: 600;
           padding-inline: 0.5rem;
+          transition: opacity 200ms ease-in-out;
+
+          @starting-style {
+            opacity: 0.1;
+          }
         }
       }
 
