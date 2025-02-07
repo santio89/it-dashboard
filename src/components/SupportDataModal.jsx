@@ -143,9 +143,8 @@ export default function SupportDataModal({ modalData }) {
   }, [modalActive])
 
   useEffect(() => {
-    console.log(modalData?.user)
-  }, [modalData])
-
+    setShowReply(false)
+  }, [newTicketStatus])
 
   return (
     <>
@@ -178,7 +177,7 @@ export default function SupportDataModal({ modalData }) {
               </div>
               {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{showReply ? "Hide reply" : "Show reply"}</span></button>}
               {
-                showReply &&
+                modalData?.status === "completed" && showReply &&
                 <div className='taskReply'>
                   <span>
                     Admin:&nbsp;
@@ -266,7 +265,7 @@ export default function SupportDataModal({ modalData }) {
               </div>
               {newTicketStatus === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{showReply ? "Hide reply" : "Show reply"}</span></button>}
               {
-                showReply &&
+                newTicketStatus === "completed" && showReply &&
                 <div className='taskReply'>
                   <span>
                     Admin:&nbsp;
@@ -323,7 +322,7 @@ export default function SupportDataModal({ modalData }) {
               </div>
               {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{showReply ? "Hide reply" : "Show reply"}</span></button>}
               {
-                showReply &&
+                newTicketStatus === "completed" && showReply &&
                 <div className='taskReply'>
                   <span>
                     Admin:&nbsp;
