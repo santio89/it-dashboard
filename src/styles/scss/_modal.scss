@@ -547,16 +547,19 @@
         }
 
         .taskReply {
+          display: inline-block;
+          text-align: start;
           box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
           width: 100%;
           gap: 0.25rem;
-          display: flex;
-          justify-content: start;
-          align-items: start;
           color: var(--red);
           font-weight: 600;
           padding-inline: 0.5rem;
           transition: opacity 200ms ease-in-out;
+
+          &:first-letter {
+            text-transform: uppercase;
+          }
 
           @starting-style {
             opacity: 0.1;

@@ -175,16 +175,11 @@ export default function SupportDataModal({ modalData }) {
                   {modalData?.status}
                 </button>
               </div>
-              {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{showReply ? "Hide reply" : "Show reply"}</span></button>}
+              {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;Admin reply</span></button>}
               {
                 modalData?.status === "completed" && showReply &&
                 <div className='taskReply'>
-                  <span>
-                    Admin:&nbsp;
-                  </span>
-                  <span>
-                    {modalData?.reply || "ticket closed"}
-                  </span>
+                  {modalData?.reply || "ticket closed"}
                 </div>
               }
             </div>
@@ -263,16 +258,11 @@ export default function SupportDataModal({ modalData }) {
                   Completed
                 </button>
               </div>
-              {newTicketStatus === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{showReply ? "Hide reply" : "Show reply"}</span></button>}
+              {newTicketStatus === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;Admin reply</span></button>}
               {
                 newTicketStatus === "completed" && showReply &&
                 <div className='taskReply'>
-                  <span>
-                    Admin:&nbsp;
-                  </span>
-                  <span>
-                    {modalData?.reply || "ticket closed"}
-                  </span>
+                  {modalData?.reply || "ticket closed"}
                 </div>
               }
             </div>
@@ -320,16 +310,11 @@ export default function SupportDataModal({ modalData }) {
                   {modalData?.status}
                 </button>
               </div>
-              {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{showReply ? "Hide reply" : "Show reply"}</span></button>}
+              {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;Admin reply</span></button>}
               {
                 newTicketStatus === "completed" && showReply &&
                 <div className='taskReply'>
-                  <span>
-                    Admin:&nbsp;
-                  </span>
-                  <span>
-                    {modalData?.reply || "ticket closed"}
-                  </span>
+                  {modalData?.reply || "ticket closed"}
                 </div>
               }
             </div>
@@ -403,16 +388,11 @@ export default function SupportDataModal({ modalData }) {
                     Completed
                   </button>
                 </div>
-                {newTicketStatus === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{showReply ? "Hide reply" : "Show reply"}</span></button>}
+                {newTicketStatus === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;Admin reply</span></button>}
                 {
                   newTicketStatus === "completed" && showReply &&
                   <div className='taskReply'>
-                    <span>
-                      Admin:&nbsp;
-                    </span>
-                    <span>
-                      {modalData?.reply || "ticket closed"}
-                    </span>
+                    {modalData?.reply || "ticket closed"}
                   </div>
                 }
               </div>
