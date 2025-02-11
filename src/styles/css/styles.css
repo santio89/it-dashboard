@@ -1705,13 +1705,7 @@ label:hover) {
   } */
 }
 .mainModal__data__form.editMode .tdl-priority {
-  outline: 1px dashed transparent !important;
-}
-.mainModal__data__form.editMode .tdl-priority.selected {
-  outline: 1px dashed var(--main-color-mid) !important;
-}
-.mainModal__data__form.editMode .tdl-priority:hover, .mainModal__data__form.editMode .tdl-priority:focus-visible {
-  outline: 1px dashed var(--white) !important;
+  text-decoration-style: dashed !important;
 }
 .mainModal__data__form.editMode fieldset {
   border: 1px dashed var(--main-color-mid);
@@ -1734,7 +1728,7 @@ label:hover) {
   } */
 }
 .mainModal__data__form.deleteMode .tdl-priority {
-  outline: 1px dashed var(--red) !important;
+  text-decoration: underline dashed var(--red) !important;
 }
 .mainModal__data__form.deleteMode fieldset {
   border: 1px dashed var(--red);
@@ -1760,16 +1754,15 @@ label:hover) {
 .mainModal__data__form.taskContainer .taskOptions {
   width: 100%;
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
-}
-@media (max-width: 969px) {
-  .mainModal__data__form.taskContainer .taskOptions {
+  /* @media (max-width: $tablet-breakpoint) {
     flex-direction: column;
-  }
+    gap: 1rem;
+  } */
 }
 .mainModal__data__form.taskContainer .replyBtn {
   font-size: 0.8em;
@@ -1795,8 +1788,6 @@ label:hover) {
   justify-content: start;
   align-items: center;
   gap: 0.25rem;
-  /* gap: 0.5rem; */
-  /* font-weight: 600; */
 }
 .mainModal__data__form.taskContainer .taskOpenData > div {
   cursor: default;
@@ -1812,9 +1803,11 @@ label:hover) {
   outline-offset: -1px;
   background: transparent;
   outline: 1px solid transparent;
+  font-size: 0.9em;
+  text-underline-offset: 1px;
 }
 .mainModal__data__form.taskContainer .taskOpenData button[disabled] {
-  cursor: default;
+  cursor: text;
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority {
   color: var(--main-gray);
@@ -1840,7 +1833,7 @@ label:hover) {
   color: var(--red);
 }
 .mainModal__data__form.taskContainer .taskOpenData button.tdl-priority.selected {
-  outline: 1px solid var(--main-color-op);
+  text-decoration: underline;
   color: var(--white);
   filter: grayscale(0);
 }
@@ -1849,25 +1842,21 @@ label:hover) {
   outline-color: var(--white);
 }
 .mainModal__data__form.taskContainer .taskOpenData button:hover {
-  background-color: var(--main-color-op);
+  text-decoration: underline;
   color: var(--white);
   filter: grayscale(0);
-}
-.mainModal__data__form.taskContainer .taskOpenData button:hover[disabled] {
-  background-color: var(--main-color-op);
-  outline-color: var(--main-color-op);
 }
 .mainModal__data__form.taskContainer .taskOpenData button:hover svg {
   background-color: var(--white);
   outline-color: var(--white);
 }
 .mainModal__data__form.taskContainer .taskOpenData button:focus-visible {
-  background-color: var(--main-color-op);
+  text-decoration: underline;
   color: var(--white);
   outline: 1px solid var(--white);
 }
 .mainModal__data__form.taskContainer .taskOpenData button.selected {
-  background-color: var(--main-color-op);
+  text-decoration: underline;
 }
 .mainModal__data__form.taskContainer .taskOpenData button.selected:focus-visible {
   outline: 1px solid var(--white);
