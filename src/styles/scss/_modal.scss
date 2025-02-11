@@ -556,13 +556,11 @@
           font-weight: 600;
           padding-inline: 0.5rem;
 
-          &:first-letter {
-            text-transform: uppercase;
-          }
-
-          textarea{
+          textarea {
             padding: 0;
             border-radius: 0;
+            color: inherit;
+            font-weight: inherit;
           }
         }
       }

@@ -55,7 +55,7 @@ export default function SupportDataModal({ modalData }) {
       localTime: Date.now(),
       priority: newTicketPriority,
       status: newTicketStatus,
-      reply: newTicketStatus === "completed" && newTicketReply === "" ? "Ticket closed" : newTicketReply
+      reply: newTicketStatus === "completed" ? (newTicketReply === "" ? "Ticket closed" : newTicketReply) : ""
     }
 
     dispatch(setModal({ active: false, data: {} }))
@@ -95,7 +95,7 @@ export default function SupportDataModal({ modalData }) {
     const category = newTicketCategory
     const priority = newTicketPriority
     const status = newTicketStatus
-    const reply = newTicketStatus === "completed" && newTicketReply === "" ? "Ticket closed" : newTicketReply
+    const reply = newTicketStatus === "completed" ? (newTicketReply === "" ? "Ticket closed" : newTicketReply) : ""
 
     if (input === ticket.content && (ticket.priority === (priority ?? ticket.priority)) && (ticket.category === (category ?? ticket.category)) && (ticket.title === (title ?? ticket.title)) && (ticket.status === (status ?? ticket.status)) && (ticket.reply === (reply ?? ticket.reply))) {
       dispatch(setModal({ active: false, data: {} }))
@@ -268,7 +268,7 @@ export default function SupportDataModal({ modalData }) {
               {
                 newTicketStatus === "completed" && showReply &&
                 <div className='taskReply'>
-                  {modalData?.reply}
+                  <textarea id="addReply" placeholder='Ticket closed' spellCheck={false} rows="1" value={newTicketReply} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} className='taskOpenTitle' />
                 </div>
               }
             </div>
@@ -398,7 +398,6 @@ export default function SupportDataModal({ modalData }) {
                 {
                   newTicketStatus === "completed" && showReply &&
                   <div className='taskReply'>
-                    {/* {modalData?.reply || "ticket closed"} */}
                     <textarea id="addReply" placeholder='Ticket closed' spellCheck={false} rows="1" value={newTicketReply} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} className='taskOpenTitle' />
                   </div>
                 }

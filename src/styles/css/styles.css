@@ -1895,12 +1895,11 @@ label:hover) {
   font-weight: 600;
   padding-inline: 0.5rem;
 }
-.mainModal__data__form.taskContainer .taskReply:first-letter {
-  text-transform: uppercase;
-}
 .mainModal__data__form.taskContainer .taskReply textarea {
   padding: 0;
   border-radius: 0;
+  color: inherit;
+  font-weight: inherit;
 }
 .mainModal__data__form.profile .form-group {
   flex-direction: column;
