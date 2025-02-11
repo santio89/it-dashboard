@@ -1787,7 +1787,7 @@ label:hover) {
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 0.25rem;
+  gap: 2px;
 }
 .mainModal__data__form.taskContainer .taskOpenData > div {
   cursor: default;
