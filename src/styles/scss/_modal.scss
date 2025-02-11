@@ -561,6 +561,10 @@
             border-radius: 0;
             color: inherit;
             font-weight: inherit;
+
+            &::placeholder {
+              font-weight: 300;
+            }
           }
         }
       }

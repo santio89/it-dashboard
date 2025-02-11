@@ -1901,6 +1901,9 @@ label:hover) {
   color: inherit;
   font-weight: inherit;
 }
+.mainModal__data__form.taskContainer .taskReply textarea::placeholder {
+  font-weight: 300;
+}
 .mainModal__data__form.profile .form-group {
   flex-direction: column;
 }
