@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { setModal } from '../store/slices/modalSlice'
 import { useAddSupportMutation, useDeleteSupportMutation, useEditSupportMutation } from '../store/slices/apiSlice'
+import { TRUE } from 'sass'
 
 export default function SupportDataModal({ modalData }) {
   const dispatch = useDispatch()
@@ -16,11 +17,12 @@ export default function SupportDataModal({ modalData }) {
   const [newTicketCategory, setNewTicketCategory] = useState("personal")
   const [newTicketPriority, setNewTicketPriority] = useState("medium")
   const [newTicketStatus, setNewTicketStatus] = useState("pending")
+  const [newTicketReply, setNewTicketReply] = useState("")
 
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)
 
-  const [showReply, setShowReply] = useState(false)
+  const [showReply, setShowReply] = useState(true)
 
   const [deleteSupport, resultDeleteSupport] = useDeleteSupportMutation()
   const [editSupport, resultEditSupport] = useEditSupportMutation()
@@ -32,6 +34,7 @@ export default function SupportDataModal({ modalData }) {
   const trimInputs = () => {
     setNewTicketTitle(newTicketName => newTicketName.trim())
     setNewTicketDescription(newTicketDescription => newTicketDescription.trim())
+    setNewTicketReply(newTicketReply => newTicketReply.trim())
   }
 
   const addSupportFn = async (e) => {
@@ -40,9 +43,10 @@ export default function SupportDataModal({ modalData }) {
     if (resultAddSupport.isLoading) {
       return
     }
-    if (newTicketTitle.trim() === "") {
+    if (newTicketTitle === "") {
       return
     }
+
     const ticket = {
       title: newTicketTitle,
       category: newTicketCategory,
@@ -51,6 +55,7 @@ export default function SupportDataModal({ modalData }) {
       localTime: Date.now(),
       priority: newTicketPriority,
       status: newTicketStatus,
+      reply: newTicketStatus === "completed" && newTicketReply === "" ? "Ticket closed" : newTicketReply
     }
 
     dispatch(setModal({ active: false, data: {} }))
@@ -68,6 +73,7 @@ export default function SupportDataModal({ modalData }) {
     setNewTicketDescription(modalData?.content)
     setNewTicketPriority(modalData?.priority)
     setNewTicketStatus(modalData?.status)
+    setNewTicketReply(modalData?.reply)
     setEditMode(true)
   }
 
@@ -77,25 +83,28 @@ export default function SupportDataModal({ modalData }) {
     if (resultEditSupport.isLoading) {
       return
     }
-
-    const input = newTicketDescription.trim()
-    const title = newTicketTitle.trim()
-    const category = newTicketCategory.trim()
-    const priority = newTicketPriority.trim()
-    const status = newTicketStatus.trim()
-
-    if (title.trim() === "") {
+    if (newTicketTitle === "") {
       return
     }
+    if (newTicketStatus === "completed" && newTicketReply === "") {
+      setNewTicketReply("Ticket closed")
+    }
 
-    if (input.trim() === ticket.content && (ticket.priority === (priority ?? ticket.priority)) && (ticket.category === (category ?? ticket.category)) && (ticket.title === (title ?? ticket.title)) && (ticket.status === (status ?? ticket.status))) {
+    const input = newTicketDescription
+    const title = newTicketTitle
+    const category = newTicketCategory
+    const priority = newTicketPriority
+    const status = newTicketStatus
+    const reply = newTicketStatus === "completed" && newTicketReply === "" ? "Ticket closed" : newTicketReply
+
+    if (input === ticket.content && (ticket.priority === (priority ?? ticket.priority)) && (ticket.category === (category ?? ticket.category)) && (ticket.title === (title ?? ticket.title)) && (ticket.status === (status ?? ticket.status)) && (ticket.reply === (reply ?? ticket.reply))) {
       dispatch(setModal({ active: false, data: {} }))
       return
     }
 
     const { modalType, supportData, user, ...trimTicket } = ticket
 
-    const newTicket = { ...trimTicket, title: title ?? ticket.title, content: input.trim(), category: category ?? ticket.category, priority: priority ?? ticket.priority, status: status ?? ticket.status }
+    const newTicket = { ...trimTicket, title: title ?? ticket.title, content: input, category: category ?? ticket.category, priority: priority ?? ticket.priority, status: status ?? ticket.status, reply: reply ?? ticket.reply }
 
     dispatch(setModal({ active: false, data: {} }))
     await editSupport(newTicket)
@@ -136,15 +145,12 @@ export default function SupportDataModal({ modalData }) {
       setNewTicketTitle("")
       setNewTicketDescription("")
       setNewTicketCategory("personal")
+      setNewTicketReply("")
       setEditMode(false)
       setDeleteMode(false)
-      setShowReply(false)
+      setShowReply(true)
     }
   }, [modalActive])
-
-  useEffect(() => {
-    setShowReply(false)
-  }, [newTicketStatus])
 
   return (
     <>
@@ -179,7 +185,7 @@ export default function SupportDataModal({ modalData }) {
               {
                 modalData?.status === "completed" && showReply &&
                 <div className='taskReply'>
-                  {modalData?.reply || "ticket closed"}
+                  {modalData?.reply}
                 </div>
               }
             </div>
@@ -262,13 +268,13 @@ export default function SupportDataModal({ modalData }) {
               {
                 newTicketStatus === "completed" && showReply &&
                 <div className='taskReply'>
-                  {modalData?.reply || "ticket closed"}
+                  {modalData?.reply}
                 </div>
               }
             </div>
             <fieldset>
               <legend><label htmlFor="editTitle">Title</label></legend>
-              <textarea id="addTitle" placeholder='Required' required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
+              <textarea id="editTitle" placeholder='Required' required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="editDescription">Description</label></legend>
@@ -312,9 +318,9 @@ export default function SupportDataModal({ modalData }) {
               </div>
               {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;Admin reply</span></button>}
               {
-                newTicketStatus === "completed" && showReply &&
+                modalData?.status === "completed" && showReply &&
                 <div className='taskReply'>
-                  {modalData?.reply || "ticket closed"}
+                  {modalData?.reply}
                 </div>
               }
             </div>
@@ -392,7 +398,8 @@ export default function SupportDataModal({ modalData }) {
                 {
                   newTicketStatus === "completed" && showReply &&
                   <div className='taskReply'>
-                    {modalData?.reply || "ticket closed"}
+                    {/* {modalData?.reply || "ticket closed"} */}
+                    <textarea id="addReply" placeholder='Ticket closed' spellCheck={false} rows="1" value={newTicketReply} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} className='taskOpenTitle' />
                   </div>
                 }
               </div>

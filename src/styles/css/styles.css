@@ -1778,7 +1778,7 @@ label:hover) {
   align-self: start;
   color: var(--main-gray);
   margin-top: -0.5rem;
-  padding: 0 0.25rem;
+  padding: 0;
 }
 .mainModal__data__form.taskContainer .replyBtn:hover {
   color: var(--white);
@@ -1894,15 +1894,13 @@ label:hover) {
   color: var(--red);
   font-weight: 600;
   padding-inline: 0.5rem;
-  transition: opacity 200ms ease-in-out;
 }
 .mainModal__data__form.taskContainer .taskReply:first-letter {
   text-transform: uppercase;
 }
-@starting-style {
-  .mainModal__data__form.taskContainer .taskReply {
-    opacity: 0.1;
-  }
+.mainModal__data__form.taskContainer .taskReply textarea {
+  padding: 0;
+  border-radius: 0;
 }
 .mainModal__data__form.profile .form-group {
   flex-direction: column;

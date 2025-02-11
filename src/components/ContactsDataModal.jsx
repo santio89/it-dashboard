@@ -44,22 +44,22 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
-    if (newUserName.trim() === "") {
+    if (newUserName === "") {
       return
     }
 
-    if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.trim().toLowerCase())) {
+    if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.toLowerCase())) {
       setErrorMsg("Contact already exists")
       return
     }
 
     const user = {
-      name: newUserName.trim(),
-      email: newUserEmail.trim(),
-      tel: newUserTel.trim(),
-      role: newUserRole.trim(),
-      comment: newUserComment.trim(),
-      category: newUserCategory.trim(),
+      name: newUserName,
+      email: newUserEmail,
+      tel: newUserTel,
+      role: newUserRole,
+      comment: newUserComment,
+      category: newUserCategory,
       localId: crypto.randomUUID(),
       localTime: Date.now()
     }
@@ -96,22 +96,22 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
-    if (newUserName.trim() === "") {
+    if (newUserName === "") {
       return
     }
 
-    if (contact.name !== newUserName && modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.trim().toLowerCase())) {
+    if (contact.name !== newUserName && modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.toLowerCase())) {
       setErrorMsg("Contact already exists")
       return
     }
 
     const newUser = {
-      name: newUserName.trim(),
-      email: newUserEmail.trim(),
-      tel: newUserTel.trim(),
-      role: newUserRole.trim(),
-      comment: newUserComment.trim(),
-      category: newUserCategory.trim(),
+      name: newUserName,
+      email: newUserEmail,
+      tel: newUserTel,
+      role: newUserRole,
+      comment: newUserComment,
+      category: newUserCategory,
       id: contact.id,
       userId: contact.userId,
       localId: contact.localId,
@@ -251,7 +251,7 @@ export default function ContactsDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form autoComplete='off' className='mainModal__data__form editMode' disabled={resultEditContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => { trimInputs(); editUserFn(e, modalData) }} >
+          <form autoComplete='off' className='mainModal__data__form editMode' disabled={resultEditContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editUserFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="editName">Name</label></legend>

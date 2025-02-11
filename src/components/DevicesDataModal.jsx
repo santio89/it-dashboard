@@ -44,22 +44,22 @@ export default function DevicesDataModal({ modalData }) {
       return
     }
 
-    if (newDeviceName.trim() === "") {
+    if (newDeviceName === "") {
       return
     }
 
-    if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newDeviceName.trim().toLowerCase())) {
+    if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newDeviceName.toLowerCase())) {
       setErrorMsg("Device already exists")
       return
     }
 
     const device = {
-      name: newDeviceName.trim(),
-      type: newDeviceType.trim(),
-      model: newDeviceModel.trim(),
-      sn: newDeviceSn.trim(),
-      comment: newDeviceComment.trim(),
-      category: newDeviceCategory.trim(),
+      name: newDeviceName,
+      type: newDeviceType,
+      model: newDeviceModel,
+      sn: newDeviceSn,
+      comment: newDeviceComment,
+      category: newDeviceCategory,
       localId: crypto.randomUUID(),
       localTime: Date.now()
     }
@@ -96,22 +96,22 @@ export default function DevicesDataModal({ modalData }) {
       return
     }
 
-    if (newDeviceName.trim() === "") {
+    if (newDeviceName === "") {
       return
     }
 
-    if (device.name !== newDeviceName && modalData?.dataList?.find(contact => contact.name.toLowerCase() === newDeviceName.trim().toLowerCase())) {
+    if (device.name !== newDeviceName && modalData?.dataList?.find(contact => contact.name.toLowerCase() === newDeviceName.toLowerCase())) {
       setErrorMsg("Device already exists")
       return
     }
 
     const newDevice = {
-      name: newDeviceName.trim(),
-      type: newDeviceType.trim(),
-      model: newDeviceModel.trim(),
-      sn: newDeviceSn.trim(),
-      comment: newDeviceComment.trim(),
-      category: newDeviceCategory.trim(),
+      name: newDeviceName,
+      type: newDeviceType,
+      model: newDeviceModel,
+      sn: newDeviceSn,
+      comment: newDeviceComment,
+      category: newDeviceCategory,
       id: device.id,
       userId: device.userId,
       localId: device.localId,

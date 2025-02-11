@@ -38,7 +38,7 @@ export default function TasksDataModal({ modalData }) {
     if (resultAddTdl.isLoading) {
       return
     }
-    if (newTaskTitle.trim() === "") {
+    if (newTaskTitle === "") {
       return
     }
     const task = {
@@ -76,24 +76,24 @@ export default function TasksDataModal({ modalData }) {
       return
     }
 
-    const input = newTaskDescription.trim()
-    const title = newTaskTitle.trim()
-    const category = newTaskCategory.trim()
-    const priority = newTaskPriority.trim()
-    const status = newTaskStatus.trim()
+    const input = newTaskDescription
+    const title = newTaskTitle
+    const category = newTaskCategory
+    const priority = newTaskPriority
+    const status = newTaskStatus
 
-    if (title.trim() === "") {
+    if (title === "") {
       return
     }
 
-    if (input.trim() === task.content && (task.title === (title ?? task.title)) && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category)) && (task.status === (status ?? task.status))) {
+    if (input === task.content && (task.title === (title ?? task.title)) && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category)) && (task.status === (status ?? task.status))) {
       dispatch(setModal({ active: false, data: {} }))
       return
     }
 
     const { modalType, tasksData, ...trimTask } = task
 
-    const newTask = { ...trimTask, title: title ?? task.title, content: input.trim(), category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
+    const newTask = { ...trimTask, title: title ?? task.title, content: input, category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
 
     dispatch(setModal({ active: false, data: {} }))
     await editTdl(newTask)
