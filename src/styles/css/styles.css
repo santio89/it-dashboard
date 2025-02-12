@@ -1800,11 +1800,11 @@ label:hover) {
   gap: 6px;
   font-weight: 300;
   text-transform: capitalize;
-  outline-offset: -1px;
   background: transparent;
   outline: 1px solid transparent;
   font-size: 0.9em;
-  text-underline-offset: 1px;
+  text-underline-offset: 2px !important;
+  text-decoration-thickness: 1px !important;
 }
 .mainModal__data__form.taskContainer .taskOpenData button[disabled] {
   cursor: text;
