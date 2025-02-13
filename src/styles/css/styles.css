@@ -1511,6 +1511,9 @@ select:disabled {
   width: 100%;
   position: relative;
 }
+.mainModal__titleContainer div:nth-of-type(1) {
+  font-weight: 300;
+}
 .mainModal__titleContainer .listPickerWrapper__btnContainer {
   position: absolute;
   right: 0;
