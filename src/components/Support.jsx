@@ -40,7 +40,7 @@ export default function Support({ user }) {
       return
     }
 
-    const newTicket = { ...ticket, status: ticket.status === "completed" ? "pending" : "completed" }
+    const newTicket = { ...ticket, status: ticket.status === "completed" ? "pending" : "completed", reply: ticket.status === "completed" ? "" : "Ticket closed" }
 
     await editSupport(newTicket)
   }
