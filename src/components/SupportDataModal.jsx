@@ -216,7 +216,7 @@ export default function SupportDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>EDIT TICKET</h2>
             <div>ID: <span>{modalData?.id}</span></div>
-            <div className="listPickerWrapper__btnContainer">
+            <div className="listPickerWrapper__btnContainer editMode">
               <button title={`Author: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
             </div>
           </div>
@@ -283,7 +283,7 @@ export default function SupportDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>DELETE TICKET</h2>
             <div>ID: <span>{modalData?.id}</span></div>
-            <div className="listPickerWrapper__btnContainer">
+            <div className="listPickerWrapper__btnContainer deleteMode">
               <button title={`Author: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
             </div>
           </div>
