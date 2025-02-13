@@ -109,11 +109,11 @@
         }
 
         button.listPicker {
-          padding: 0.25rem;
+          padding: 0.25rem 0.5rem;
           font-size: 12px;
           background: transparent;
-          height: 25px;
-          width: 68px;
+          /* height: 25px;
+          width: 68px; */
           color: var(--white);
           outline: 1px solid transparent;
           outline-offset: -1px;

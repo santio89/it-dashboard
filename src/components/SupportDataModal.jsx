@@ -10,6 +10,7 @@ export default function SupportDataModal({ modalData }) {
   const modalActive = useSelector(state => state.modal.active)
   const [addSupport, resultAddSupport] = useAddSupportMutation()
 
+
   /*   const textInput = useRef()
     const textInputEdit = useRef() */
   const [newTicketTitle, setNewTicketTitle] = useState("")
@@ -27,9 +28,6 @@ export default function SupportDataModal({ modalData }) {
   const [deleteSupport, resultDeleteSupport] = useDeleteSupportMutation()
   const [editSupport, resultEditSupport] = useEditSupportMutation()
 
-  const selectList = list => {
-    setNewTicketCategory(list)
-  }
 
   const trimInputs = () => {
     setNewTicketTitle(newTicketName => newTicketName.trim())
@@ -55,7 +53,9 @@ export default function SupportDataModal({ modalData }) {
       localTime: Date.now(),
       priority: newTicketPriority,
       status: newTicketStatus,
-      reply: newTicketStatus === "completed" ? (newTicketReply === "" ? "Ticket closed" : newTicketReply) : ""
+      reply: newTicketStatus === "completed" ? (newTicketReply === "" ? "Ticket closed" : newTicketReply) : "",
+      author: modalData?.user.email,
+      authorId: modalData?.user.uid
     }
 
     dispatch(setModal({ active: false, data: {} }))
@@ -152,6 +152,7 @@ export default function SupportDataModal({ modalData }) {
     }
   }, [modalActive])
 
+
   return (
     <>
       {
@@ -160,9 +161,9 @@ export default function SupportDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>TICKET</h2>
             <div>ID: <span>{modalData?.id}</span></div>
-            {/* <div className="listPickerWrapper__btnContainer">
-              <button tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
-            </div> */}
+            <div className="listPickerWrapper__btnContainer">
+              <button title={`Author: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
+            </div>
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer disabled'>
             <div className="taskOptions">
@@ -215,22 +216,9 @@ export default function SupportDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>EDIT TICKET</h2>
             <div>ID: <span>{modalData?.id}</span></div>
-            {/* <div className="listPickerWrapper__btnContainer editMode">
-              <div className="listPickerOptions">
-                <button disabled={resultEditSupport.isLoading} className={`listPicker ${newTicketCategory === "personal" && "selected"} ${resultEditSupport.isLoading && "disabled"}`}
-                  onClick={() => {
-                    selectList("personal")
-                  }}>
-                  Personal
-                </button>
-                <button disabled={resultEditSupport.isLoading} className={`listPicker ${newTicketCategory === "company" && "selected"} ${resultEditSupport.isLoading && "disabled"}`}
-                  onClick={() => {
-                    selectList("company")
-                  }}>
-                  Company
-                </button>
-              </div>
-            </div> */}
+            <div className="listPickerWrapper__btnContainer">
+              <button title={`Author: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
+            </div>
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer editMode' disabled={resultEditSupport.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
             <div className="taskOptions">
@@ -295,9 +283,9 @@ export default function SupportDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>DELETE TICKET</h2>
             <div>ID: <span>{modalData?.id}</span></div>
-            {/* <div className="listPickerWrapper__btnContainer deleteMode">
-              <button tabIndex={-1} disabled={resultDeleteSupport.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
-            </div> */}
+            <div className="listPickerWrapper__btnContainer">
+              <button title={`Author: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
+            </div>
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteSupport.isLoading} onSubmit={(e) => deleteSupportFn(e, modalData)}>
             <div className="taskOptions">
@@ -344,22 +332,9 @@ export default function SupportDataModal({ modalData }) {
         <>
           <div className="mainModal__titleContainer">
             <h2>ADD TICKET</h2>
-            {/* <div className="listPickerWrapper__btnContainer">
-              <div className="listPickerOptions">
-                <button disabled={resultAddSupport.isLoading} className={`listPicker ${newTicketCategory === "personal" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}
-                  onClick={() => {
-                    selectList("personal")
-                  }}>
-                  Personal
-                </button>
-                <button disabled={resultAddSupport.isLoading} className={`listPicker ${newTicketCategory === "company" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}
-                  onClick={() => {
-                    selectList("company")
-                  }}>
-                  Company
-                </button>
-              </div>
-            </div> */}
+            <div className="listPickerWrapper__btnContainer">
+              <button title={`Author: ${modalData?.user.email}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.user.email}</button>
+            </div>
           </div>
           <form autoCapitalize='off' disabled={resultAddSupport.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addSupportFn(e)}>
             {modalData?.user.domainAdmin &&
