@@ -173,7 +173,7 @@ export default function DevicesDataModal({ modalData }) {
             <h2>DEVICE</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
-              <button tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
+              <button title={`Category: ${modalData?.category === "company" ? "Company" : "Personal"}`} tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
             </div>
           </div>
           <form autoComplete='off' className='mainModal__data__form disabled'>
@@ -236,13 +236,13 @@ export default function DevicesDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
               <div className="listPickerOptions">
-                <button disabled={resultEditDevice.isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${resultEditDevice.isLoading && "disabled"}`}
+                <button title="Category: Personal" disabled={resultEditDevice.isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${resultEditDevice.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
                   Personal
                 </button>
-                <button disabled={resultEditDevice.isLoading} className={`listPicker ${newDeviceCategory === "company" && "selected"} ${resultEditDevice.isLoading && "disabled"}`}
+                <button title="Category: Company" disabled={resultEditDevice.isLoading} className={`listPicker ${newDeviceCategory === "company" && "selected"} ${resultEditDevice.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>
@@ -314,7 +314,7 @@ export default function DevicesDataModal({ modalData }) {
             <h2>DELETE DEVICE</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
-              <button tabIndex={-1} disabled={resultDeleteDevice.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
+              <button title={`Category: ${modalData?.category === "personal" ? "Personal" : "Company"}`} tabIndex={-1} disabled={resultDeleteDevice.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
             </div>
           </div>
           <form autoComplete='off' className='mainModal__data__form deleteMode disabled' disabled={resultDeleteDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteDeviceFn(e, modalData)}>
@@ -376,13 +376,13 @@ export default function DevicesDataModal({ modalData }) {
             <h2>ADD DEVICE</h2>
             <div className="listPickerWrapper__btnContainer">
               <div className="listPickerOptions">
-                <button disabled={resultAddDevice.isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${resultAddDevice.isLoading && "disabled"}`}
+                <button title="Category: Personal" disabled={resultAddDevice.isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${resultAddDevice.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
                   Personal
                 </button>
-                <button disabled={resultAddDevice.isLoading} className={`listPicker ${newDeviceCategory === "company" && "selected"} ${resultAddDevice.isLoading && "disabled"}`}
+                <button title="Category: Company" disabled={resultAddDevice.isLoading} className={`listPicker ${newDeviceCategory === "company" && "selected"} ${resultAddDevice.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>

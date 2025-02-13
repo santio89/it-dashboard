@@ -149,7 +149,7 @@ export default function TasksDataModal({ modalData }) {
             <h2>TASK</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
-              <button tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
+              <button title={`Category: ${modalData?.category === "company" ? "Company" : "Personal"}`} tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
             </div>
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer disabled'>
@@ -194,13 +194,13 @@ export default function TasksDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
               <div className="listPickerOptions">
-                <button disabled={resultEditTdl.isLoading} className={`listPicker ${newTaskCategory === "personal" && "selected"} ${resultEditTdl.isLoading && "disabled"}`}
+                <button title="Category: Personal" disabled={resultEditTdl.isLoading} className={`listPicker ${newTaskCategory === "personal" && "selected"} ${resultEditTdl.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
                   Personal
                 </button>
-                <button disabled={resultEditTdl.isLoading} className={`listPicker ${newTaskCategory === "company" && "selected"} ${resultEditTdl.isLoading && "disabled"}`}
+                <button title="Category: Company" disabled={resultEditTdl.isLoading} className={`listPicker ${newTaskCategory === "company" && "selected"} ${resultEditTdl.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>
@@ -265,7 +265,7 @@ export default function TasksDataModal({ modalData }) {
             <h2>DELETE TASK</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
-              <button tabIndex={-1} disabled={resultDeleteTdl.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
+              <button title={`Category: ${modalData?.category === "personal" ? "Personal" : "Company"}`} tabIndex={-1} disabled={resultDeleteTdl.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
             </div>
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteTdl.isLoading} onSubmit={(e) => deleteTdlFn(e, modalData)}>
@@ -308,13 +308,13 @@ export default function TasksDataModal({ modalData }) {
             <h2>ADD TASK</h2>
             <div className="listPickerWrapper__btnContainer">
               <div className="listPickerOptions">
-                <button disabled={resultAddTdl.isLoading} className={`listPicker ${newTaskCategory === "personal" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}
+                <button title="Category: Personal" disabled={resultAddTdl.isLoading} className={`listPicker ${newTaskCategory === "personal" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
                   Personal
                 </button>
-                <button disabled={resultAddTdl.isLoading} className={`listPicker ${newTaskCategory === "company" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}
+                <button title="Category: Company" disabled={resultAddTdl.isLoading} className={`listPicker ${newTaskCategory === "company" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>
