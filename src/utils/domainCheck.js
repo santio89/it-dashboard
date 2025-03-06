@@ -4,5 +4,5 @@ export const domainCheck = (email) => {
 }
 
 export const adminCheck = (email) => {
-  return (email === "santiago.olais@orlosh.com.ar" || email === "santiolais1989@gmail.com");
+  return (email === "santiago.olais@orlosh.com.ar" /* || email === "santiolais1989@gmail.com" */);
 }

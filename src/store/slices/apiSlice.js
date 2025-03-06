@@ -1,5 +1,5 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
-import { collection, doc, getDocs, addDoc, deleteDoc, setDoc, serverTimestamp } from "firebase/firestore";
+import { collection, doc, getDocs, addDoc, deleteDoc, setDoc, query, where, serverTimestamp } from "firebase/firestore";
 import { firebaseDb as db, firebaseAuth, firebaseGoogleProvider, firebaseSetPersistance, firebaseBrowserLocalPersistence, firebaseSignInWithPopup, firebaseSignOut } from '../../config/firebase';
 import { toast } from 'sonner';
 
@@ -491,18 +491,37 @@ export const apiSlice = createApi({
     getSupport: builder.query({
       async queryFn(userId) {
         if (!userId) { return }
-        try {
-          const ref = collection(db, 'authUsersData', userId, "support");
-          const querySnapshot = await getDocs(ref);
-          let tickets = [];
-          querySnapshot?.forEach((doc) => {
-            tickets.push({ id: doc.id, ...doc.data() });
-          });
+        if (userId === "admin") {
+          try {
+            const ref = collection(db, 'supportData');
+            const querySnapshot = await getDocs(ref);
 
-          return { data: tickets };
-        } catch (error) {
-          console.log(error);
-          return { error: error };
+            let tickets = [];
+            querySnapshot?.forEach((doc) => {
+              tickets.push({ id: doc.id, ...doc.data() });
+            });
+
+            return { data: tickets };
+          } catch (error) {
+            console.log(error);
+            return { error: error };
+          }
+        } else {
+          try {
+            const ref = collection(db, 'supportData');
+            const queryRef = query(ref, where('authorId', "==", userId))
+            const querySnapshot = await getDocs(queryRef);
+
+            let tickets = [];
+            querySnapshot?.forEach((doc) => {
+              tickets.push({ id: doc.id, ...doc.data() });
+            });
+
+            return { data: tickets };
+          } catch (error) {
+            console.log(error);
+            return { error: error };
+          }
         }
       },
       providesTags: ['support'],
@@ -510,7 +529,7 @@ export const apiSlice = createApi({
     addSupport: builder.mutation({
       async queryFn(ticket) {
         try {
-          const res = await addDoc(collection(db, "authUsersData", ticket.userId, "support"), {
+          const res = await addDoc(collection(db, "supportData"), {
             ...ticket,
             createdAt: serverTimestamp(),
             updatedAt: serverTimestamp()
@@ -556,7 +575,7 @@ export const apiSlice = createApi({
     deleteSupport: builder.mutation({
       async queryFn(ticket) {
         try {
-          const docRef = doc(collection(db, "authUsersData", ticket.userId, "support"), ticket.id);
+          const docRef = doc(collection(db, "supportData"), ticket.id);
           await deleteDoc(docRef);
 
           toast.message('Ticket deleted', {
@@ -597,7 +616,7 @@ export const apiSlice = createApi({
     editSupport: builder.mutation({
       async queryFn(ticket) {
         try {
-          const docRef = doc(collection(db, "authUsersData", ticket.userId, "support"), ticket.id);
+          const docRef = doc(collection(db, "supportData"), ticket.id);
           await setDoc(docRef, {
             ...ticket,
             updatedAt: serverTimestamp()

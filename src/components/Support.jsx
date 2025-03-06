@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux"
 import { setModal } from "../store/slices/modalSlice"
 import { useGetSupportQuery, useEditSupportMutation } from "../store/slices/apiSlice"
 import autoAnimate from "@formkit/auto-animate"
+import { AuthErrorCodes } from "firebase/auth"
 
 export default function Support({ user }) {
   const dispatch = useDispatch()
@@ -28,7 +29,7 @@ export default function Support({ user }) {
     isSuccess: isSuccessSupport,
     isError: isErrorSupport,
     error: errorSupport,
-  } = useGetSupportQuery(user.uid);
+  } = useGetSupportQuery(user.domainAdmin ? "admin" : user.uid);
 
   const selectList = list => {
     setListSelected(list)
@@ -83,7 +84,6 @@ export default function Support({ user }) {
 
     return () => clearTimeout(timeout)
   }, [isLoadingSupport])
-
 
   return (
     <>
@@ -190,16 +190,18 @@ export default function Support({ user }) {
                           {
                             ticketOptions === ticket.id ?
                               <>
-                                <div title={ticket.title} className='taskContentTitle'>{ticket.title}</div>
+                                <div title={ticket.title} className='taskContentAuthor'>{ticket.author}</div>
                                 <div className={`taskContentBtn ${ticketOptions !== ticket.id && ticket.priority === "low" && "selectedLow"} ${ticketOptions !== ticket.id && ticket.priority === "medium" && "selectedMedium"} ${ticketOptions !== ticket.id && ticket.priority === "high" && "selectedHigh"} ${ticketOptions === ticket.id && "taskOption"}`}>
-                                  {ticket.content || "-"}
+                                  <span className="taskContentBtn__title">{ticket.title || "-"}</span>
+                                  <span className="taskContentBtn__content">{ticket.content}</span>
                                 </div>
                               </> :
                               <>
                                 <button disabled={ticket.id === "temp-id"} title={ticket.title} className={`taskContentBtn ${ticketOptions !== ticket.id && ticket.priority === "low" && "selectedLow"} ${ticketOptions !== ticket.id && ticket.priority === "medium" && "selectedMedium"} ${ticketOptions !== ticket.id && ticket.priority === "high" && "selectedHigh"} ${ticketOptions === ticket.id && "taskOption"} ${ticket.status === "completed" && "taskCompleted"}`} onClick={() => {
                                   setTicketOptions(ticket.id);
                                 }} >
-                                  {ticket.title}
+                                  <span className="taskContentBtn__author">{ticket.author}</span>
+                                  <span className="taskContentBtn__title">{ticket.title}</span>
                                 </button></>
                           }
                         </>

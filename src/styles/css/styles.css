@@ -1082,7 +1082,6 @@ select:disabled {
 .site-section__list .listWrapper ul.support-list li .taskContentBtn {
   width: 100%;
   height: auto;
-  max-height: 120px;
   overflow-x: hidden;
   overflow-y: auto;
   white-space: break-spaces;
@@ -1104,18 +1103,13 @@ select:disabled {
 .site-section__list .listWrapper ul.support-list li textarea.taskContentBtn,
 .site-section__list .listWrapper ul.support-list li .taskContentBtn.taskContentBtn {
   padding: 1rem;
-  text-align: start;
-  text-wrap: pretty;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   transition: 200ms ease-in-out;
   box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
-  /* display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.5rem;
   /* &.selectedLow {
     box-shadow: -2px 0 0 0 var(--main-gray-dark),
       -4px 0 0 0 var(--main-color);
@@ -1129,12 +1123,49 @@ select:disabled {
       -4px 0 0 0 var(--main-color);
   } */
 }
+.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn .taskContentBtn__author,
+.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn .taskContentBtn__author,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn .taskContentBtn__author, .site-section__list .listWrapper ul.support-list li button.taskContentBtn .taskContentBtn__author,
+.site-section__list .listWrapper ul.support-list li textarea.taskContentBtn .taskContentBtn__author,
+.site-section__list .listWrapper ul.support-list li .taskContentBtn.taskContentBtn .taskContentBtn__author {
+  font-size: 0.9rem;
+  color: var(--main-gray-dark);
+  box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
+  font-weight: 400;
+}
+.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn .taskContentBtn__title,
+.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn .taskContentBtn__title,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn .taskContentBtn__title, .site-section__list .listWrapper ul.support-list li button.taskContentBtn .taskContentBtn__title,
+.site-section__list .listWrapper ul.support-list li textarea.taskContentBtn .taskContentBtn__title,
+.site-section__list .listWrapper ul.support-list li .taskContentBtn.taskContentBtn .taskContentBtn__title {
+  font-weight: bold;
+  font-size: 1rem;
+}
+.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn .taskContentBtn__content,
+.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn .taskContentBtn__content,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn .taskContentBtn__content, .site-section__list .listWrapper ul.support-list li button.taskContentBtn .taskContentBtn__content,
+.site-section__list .listWrapper ul.support-list li textarea.taskContentBtn .taskContentBtn__content,
+.site-section__list .listWrapper ul.support-list li .taskContentBtn.taskContentBtn .taskContentBtn__content {
+  flex: 1;
+  text-align: start;
+  text-wrap: pretty;
+  font-size: 0.9rem;
+  font-weight: 300;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /*   display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+}
 .site-section__list .listWrapper ul.tdl-list li button.taskOption,
 .site-section__list .listWrapper ul.tdl-list li textarea.taskOption,
 .site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskOption, .site-section__list .listWrapper ul.support-list li button.taskOption,
 .site-section__list .listWrapper ul.support-list li textarea.taskOption,
 .site-section__list .listWrapper ul.support-list li .taskContentBtn.taskOption {
-  min-height: 120px;
   background-color: var(--main-color-op-light);
   white-space: normal;
   overflow-y: auto;
@@ -1161,12 +1192,12 @@ select:disabled {
   padding: 1rem;
   color: var(--white);
 }
-.site-section__list .listWrapper ul.tdl-list li .taskContentTitle, .site-section__list .listWrapper ul.support-list li .taskContentTitle {
+.site-section__list .listWrapper ul.tdl-list li .taskContentAuthor, .site-section__list .listWrapper ul.support-list li .taskContentAuthor {
   width: 100%;
   background-color: var(--main-color-op-light);
   text-align: start;
-  padding: 1rem;
-  font-weight: 600;
+  padding: 0.5rem 1rem;
+  font-weight: 400;
   box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
   z-index: 1;
   color: var(--main-text);
@@ -1174,8 +1205,9 @@ select:disabled {
   overflow: hidden;
   text-overflow: ellipsis;
   transition: 200ms ease-in-out;
+  font-size: 0.9rem;
 }
-.site-section__list .listWrapper ul.tdl-list li .taskContentTitle input, .site-section__list .listWrapper ul.support-list li .taskContentTitle input {
+.site-section__list .listWrapper ul.tdl-list li .taskContentAuthor input, .site-section__list .listWrapper ul.support-list li .taskContentAuthor input {
   width: 100%;
   background-color: inherit;
   outline: none;
@@ -1183,11 +1215,11 @@ select:disabled {
   padding: 0;
   font-weight: 600;
 }
-.site-section__list .listWrapper ul.tdl-list li .taskContentTitle.editMode, .site-section__list .listWrapper ul.support-list li .taskContentTitle.editMode {
+.site-section__list .listWrapper ul.tdl-list li .taskContentAuthor.editMode, .site-section__list .listWrapper ul.support-list li .taskContentAuthor.editMode {
   outline: 1px dashed var(--main-gray-op);
   box-shadow: none;
 }
-.site-section__list .listWrapper ul.tdl-list li .taskContentTitle.deleteMode, .site-section__list .listWrapper ul.support-list li .taskContentTitle.deleteMode {
+.site-section__list .listWrapper ul.tdl-list li .taskContentAuthor.deleteMode, .site-section__list .listWrapper ul.support-list li .taskContentAuthor.deleteMode {
   outline: 1px dashed var(--red);
   box-shadow: none;
 }

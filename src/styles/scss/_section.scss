@@ -519,7 +519,6 @@
             .taskContentBtn {
               width: 100%;
               height: auto;
-              max-height: 120px;
               overflow-x: hidden;
               overflow-y: auto;
               white-space: break-spaces;
@@ -534,19 +533,43 @@
 
               &.taskContentBtn {
                 padding: 1rem;
-                text-align: start;
-                text-wrap: pretty;
-                display: inline-block;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
                 transition: 200ms ease-in-out;
                 box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: stretch;
+                gap: 0.5rem;
 
-                /* display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                text-overflow: ellipsis; */
+                .taskContentBtn__author {
+                  font-size: 0.9rem;
+                  color: var(--main-gray-dark);
+                  box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
+                  font-weight: 400;
+                }
+
+                .taskContentBtn__title {
+                  font-weight: bold;
+                  font-size: 1rem;
+                }
+
+                .taskContentBtn__content {
+                  flex: 1;
+                  text-align: start;
+                  text-wrap: pretty;
+                  font-size: 0.9rem;
+                  font-weight: 300;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 3;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+
+                  /*   display: inline-block;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis; */
+                }
 
                 /* &.selectedLow {
                   box-shadow: -2px 0 0 0 var(--main-gray-dark),
@@ -563,7 +586,6 @@
               }
 
               &.taskOption {
-                min-height: 120px;
                 background-color: var(--main-color-op-light);
                 white-space: normal;
                 overflow-y: auto;
@@ -592,12 +614,12 @@
               color: var(--white);
             }
 
-            .taskContentTitle {
+            .taskContentAuthor {
               width: 100%;
               background-color: var(--main-color-op-light);
               text-align: start;
-              padding: 1rem;
-              font-weight: 600;
+              padding: 0.5rem 1rem;
+              font-weight: 400;
               box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
               z-index: 1;
               color: var(--main-text);
@@ -605,6 +627,7 @@
               overflow: hidden;
               text-overflow: ellipsis;
               transition: 200ms ease-in-out;
+              font-size: 0.9rem;
 
               input {
                 width: 100%;
