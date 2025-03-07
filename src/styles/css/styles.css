@@ -1172,6 +1172,8 @@ select:disabled {
   color: var(--main-text);
   transition: 200ms ease-in-out;
   font-weight: 300;
+  min-height: 122px;
+  max-height: 122px;
 }
 .site-section__list .listWrapper ul.tdl-list li button.deleteMode,
 .site-section__list .listWrapper ul.tdl-list li textarea.deleteMode,
@@ -1192,6 +1194,21 @@ select:disabled {
   padding: 1rem;
   color: var(--white);
 }
+.site-section__list .listWrapper ul.tdl-list li .taskContentTitle, .site-section__list .listWrapper ul.support-list li .taskContentTitle {
+  width: 100%;
+  background-color: var(--main-color-op-light);
+  text-align: start;
+  padding: 0.5rem 1rem;
+  font-weight: 400;
+  box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
+  z-index: 1;
+  color: var(--main-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: 200ms ease-in-out;
+  font-size: 1rem;
+}
 .site-section__list .listWrapper ul.tdl-list li .taskContentAuthor, .site-section__list .listWrapper ul.support-list li .taskContentAuthor {
   width: 100%;
   background-color: var(--main-color-op-light);
@@ -1206,22 +1223,6 @@ select:disabled {
   text-overflow: ellipsis;
   transition: 200ms ease-in-out;
   font-size: 0.9rem;
-}
-.site-section__list .listWrapper ul.tdl-list li .taskContentAuthor input, .site-section__list .listWrapper ul.support-list li .taskContentAuthor input {
-  width: 100%;
-  background-color: inherit;
-  outline: none;
-  color: var(--white);
-  padding: 0;
-  font-weight: 600;
-}
-.site-section__list .listWrapper ul.tdl-list li .taskContentAuthor.editMode, .site-section__list .listWrapper ul.support-list li .taskContentAuthor.editMode {
-  outline: 1px dashed var(--main-gray-op);
-  box-shadow: none;
-}
-.site-section__list .listWrapper ul.tdl-list li .taskContentAuthor.deleteMode, .site-section__list .listWrapper ul.support-list li .taskContentAuthor.deleteMode {
-  outline: 1px dashed var(--red);
-  box-shadow: none;
 }
 .site-section__list .listWrapper ul.tdl-list li .taskContentAnswer, .site-section__list .listWrapper ul.support-list li .taskContentAnswer {
   width: 100%;
