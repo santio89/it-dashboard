@@ -1222,7 +1222,7 @@ select:disabled {
   text-overflow: ellipsis;
   transition: 200ms ease-in-out;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 .site-section__list .listWrapper ul.tdl-list li .taskContentAuthor, .site-section__list .listWrapper ul.support-list li .taskContentAuthor {
   width: 100%;
