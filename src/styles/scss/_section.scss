@@ -551,6 +551,10 @@
                 .taskContentBtn__title {
                   font-weight: bold;
                   font-size: 1rem;
+                  display: inline-block;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
                 }
 
                 .taskContentBtn__content {
