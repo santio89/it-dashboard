@@ -326,14 +326,9 @@
             }
 
             &:has(.taskCompleted) {
-              text-decoration: line-through;
               filter: grayscale(1);
               color: var(--main-gray-dark);
               box-shadow: -2px 0 0 0 var(--main-gray-darker-op);
-
-              .taskCompleted {
-                color: var(--main-gray-dark);
-              }
             }
 
             &:has(button[title="Status: completed"]) {
@@ -579,6 +574,19 @@
                   white-space: nowrap;
                   overflow: hidden;
                   text-overflow: ellipsis; */
+                }
+
+                &.taskCompleted {
+                  color: var(--main-gray-dark);
+                  text-decoration: line-through;
+
+            /*       &:has(span) {
+                    text-decoration: none;
+
+                    .taskContentBtn__title {
+                      text-decoration: line-through;
+                    }
+                  } */
                 }
 
                 /* &.selectedLow {

@@ -901,13 +901,9 @@ select:disabled {
   pointer-events: none;
 }
 .site-section__list .listWrapper ul.tdl-list li:has(.taskCompleted), .site-section__list .listWrapper ul.support-list li:has(.taskCompleted) {
-  text-decoration: line-through;
   filter: grayscale(1);
   color: var(--main-gray-dark);
   box-shadow: -2px 0 0 0 var(--main-gray-darker-op);
-}
-.site-section__list .listWrapper ul.tdl-list li:has(.taskCompleted) .taskCompleted, .site-section__list .listWrapper ul.support-list li:has(.taskCompleted) .taskCompleted {
-  color: var(--main-gray-dark);
 }
 .site-section__list .listWrapper ul.tdl-list li:has(button[title="Status: completed"]), .site-section__list .listWrapper ul.support-list li:has(button[title="Status: completed"]) {
   filter: grayscale(1);
@@ -1173,6 +1169,21 @@ select:disabled {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; */
+}
+.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn.taskCompleted,
+.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.taskCompleted,
+.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn.taskCompleted, .site-section__list .listWrapper ul.support-list li button.taskContentBtn.taskCompleted,
+.site-section__list .listWrapper ul.support-list li textarea.taskContentBtn.taskCompleted,
+.site-section__list .listWrapper ul.support-list li .taskContentBtn.taskContentBtn.taskCompleted {
+  color: var(--main-gray-dark);
+  text-decoration: line-through;
+  /*       &:has(span) {
+          text-decoration: none;
+
+          .taskContentBtn__title {
+            text-decoration: line-through;
+          }
+        } */
 }
 .site-section__list .listWrapper ul.tdl-list li button.taskOption,
 .site-section__list .listWrapper ul.tdl-list li textarea.taskOption,
