@@ -277,6 +277,7 @@
               overflow: hidden;
               text-overflow: ellipsis;
               box-shadow: -2px 0 0 0 var(--main-color);
+              font-weight: 500;
             }
           }
         }
@@ -540,16 +541,17 @@
                 justify-content: space-between;
                 align-items: stretch;
                 gap: 0.5rem;
+                font-weight: 500;
 
                 .taskContentBtn__author {
-                  font-size: 0.9rem;
                   color: var(--main-gray-dark);
                   box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
-                  font-weight: 400;
+                  font-weight: 300;
+                  font-size: 0.9rem;
                 }
 
                 .taskContentBtn__title {
-                  font-weight: bold;
+                  font-weight: 500;
                   font-size: 1rem;
                   display: inline-block;
                   white-space: nowrap;
@@ -561,7 +563,7 @@
                   flex: 1;
                   text-align: start;
                   text-wrap: pretty;
-                  font-size: 0.9rem;
+                  font-size: 1rem;
                   font-weight: 300;
                   display: -webkit-box;
                   -webkit-line-clamp: 3;
@@ -598,6 +600,7 @@
                 font-weight: 300;
                 min-height: 122px;
                 max-height: 122px;
+                font-size: 1rem;
               }
 
               &.deleteMode {
@@ -634,6 +637,7 @@
               text-overflow: ellipsis;
               transition: 200ms ease-in-out;
               font-size: 1rem;
+              font-weight: 500;
             }
 
             .taskContentAuthor {
@@ -641,7 +645,6 @@
               background-color: var(--main-color-op-light);
               text-align: start;
               padding: 0.5rem 1rem;
-              font-weight: 400;
               box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
               z-index: 1;
               color: var(--main-text);
@@ -650,6 +653,7 @@
               text-overflow: ellipsis;
               transition: 200ms ease-in-out;
               font-size: 0.9rem;
+              font-weight: 300;
             }
 
             .taskContentAnswer {
