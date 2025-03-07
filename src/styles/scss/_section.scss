@@ -546,7 +546,7 @@
                 .taskContentBtn__author {
                   color: var(--main-gray-dark);
                   box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
-                  font-weight: 300;
+                  font-weight: 400;
                   font-size: 0.9rem;
                 }
 
@@ -557,6 +557,10 @@
                   white-space: nowrap;
                   overflow: hidden;
                   text-overflow: ellipsis;
+
+                  &:first-child {
+                    font-weight: 600;
+                  }
                 }
 
                 .taskContentBtn__content {
@@ -652,7 +656,7 @@
               overflow: hidden;
               text-overflow: ellipsis;
               transition: 200ms ease-in-out;
-              font-size: 0.9rem;
+              font-size: 1rem;
               font-weight: 300;
             }
 
