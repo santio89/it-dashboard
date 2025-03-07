@@ -193,7 +193,7 @@ export default function Support({ user }) {
                                 <div title={ticket.title} className='taskContentAuthor'>From: {ticket.author}</div>
                                 <div className={`taskContentBtn ${ticketOptions !== ticket.id && ticket.priority === "low" && "selectedLow"} ${ticketOptions !== ticket.id && ticket.priority === "medium" && "selectedMedium"} ${ticketOptions !== ticket.id && ticket.priority === "high" && "selectedHigh"} ${ticketOptions === ticket.id && "taskOption"}`}>
                                   <span className="taskContentBtn__title">{ticket.title || "-"}</span>
-                                  <span className="taskContentBtn__content">{ticket.content}</span>
+                                  <span className="taskContentBtn__content">{ticket.content || "-"}</span>
                                 </div>
                               </> :
                               <>
