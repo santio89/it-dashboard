@@ -190,7 +190,7 @@ export default function Support({ user }) {
                           {
                             ticketOptions === ticket.id ?
                               <>
-                                <div title={ticket.title} className='taskContentAuthor'>From: {ticket.author}</div>
+                                {user.domainAdmin && <div title={ticket.title} className='taskContentAuthor'>From: {ticket.author}</div>}
                                 <div className={`taskContentBtn ${ticketOptions !== ticket.id && ticket.priority === "low" && "selectedLow"} ${ticketOptions !== ticket.id && ticket.priority === "medium" && "selectedMedium"} ${ticketOptions !== ticket.id && ticket.priority === "high" && "selectedHigh"} ${ticketOptions === ticket.id && "taskOption"}`}>
                                   <span className="taskContentBtn__title">{ticket.title || "-"}</span>
                                   <span className="taskContentBtn__content">{ticket.content || "-"}</span>
@@ -200,7 +200,7 @@ export default function Support({ user }) {
                                 <button disabled={ticket.id === "temp-id"} title={ticket.title} className={`taskContentBtn ${ticketOptions !== ticket.id && ticket.priority === "low" && "selectedLow"} ${ticketOptions !== ticket.id && ticket.priority === "medium" && "selectedMedium"} ${ticketOptions !== ticket.id && ticket.priority === "high" && "selectedHigh"} ${ticketOptions === ticket.id && "taskOption"} ${ticket.status === "completed" && "taskCompleted"}`} onClick={() => {
                                   setTicketOptions(ticket.id);
                                 }} >
-                                  <span className="taskContentBtn__author">From: {ticket.author}</span>
+                                  {user.domainAdmin && <span className="taskContentBtn__author">From: {ticket.author}</span>}
                                   <span className="taskContentBtn__title">{ticket.title}</span>
                                 </button></>
                           }
