@@ -3,8 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { setModal } from '../store/slices/modalSlice';
 import { useAddContactMutation, useDeleteContactMutation, useEditContactMutation } from '../store/slices/apiSlice';
 import { objectEquality } from '../utils/objectEquality';
+import { useTranslation } from '../hooks/useTranslation'
 
 export default function ContactsDataModal({ modalData }) {
+  const lang = useTranslation()
+
   const dispatch = useDispatch()
   const modalActive = useSelector(state => state.modal.active)
 
@@ -49,7 +52,7 @@ export default function ContactsDataModal({ modalData }) {
     }
 
     if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.toLowerCase())) {
-      setErrorMsg("Contact already exists")
+      setErrorMsg(lang.contactExists)
       return
     }
 
@@ -101,7 +104,7 @@ export default function ContactsDataModal({ modalData }) {
     }
 
     if (contact.name !== newUserName && modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.toLowerCase())) {
-      setErrorMsg("Contact already exists")
+      setErrorMsg(lang.contactExists)
       return
     }
 
@@ -139,7 +142,6 @@ export default function ContactsDataModal({ modalData }) {
 
   useEffect(() => {
     let timeout;
-    console.log(errorMsg)
     if (errorMsg) {
       timeout = setTimeout(() => {
         setErrorMsg(null)
@@ -170,30 +172,30 @@ export default function ContactsDataModal({ modalData }) {
       {modalData?.contactData && !editMode && !deleteMode &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>CONTACT</h2>
+            <h2>{lang.contact}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
-              <button title={`Category: ${modalData?.category === "company" ? "Company" : "Personal"}`} tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
+              <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} className={`listPicker disabled selected`} >{lang[modalData?.category]}</button>
             </div>
           </div>
           <form autoComplete='off' className='mainModal__data__form disabled'>
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="name">Name</label></legend>
-                <input id='name' placeholder='Required' readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
+                <legend><label htmlFor="name">{lang.name}</label></legend>
+                <input id='name' placeholder={lang.required} readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="email">E-Mail</label></legend>
+                <legend><label htmlFor="email">{lang.eMail}</label></legend>
                 <input id='email' readOnly disabled spellCheck={false} type="text" value={modalData?.email || "-"} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="tel">Tel</label></legend>
+                <legend><label htmlFor="tel">{lang.telephone}</label></legend>
                 <input id='tel' readOnly disabled spellCheck={false} type="tel" value={modalData?.tel || "-"} />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="role">Role</label></legend>
+                <legend><label htmlFor="role">{lang.role}</label></legend>
                 <input id='role' readOnly disabled spellCheck={false} type="text" value={modalData?.role || "-"} />
               </fieldset>
             </div>
@@ -217,13 +219,13 @@ export default function ContactsDataModal({ modalData }) {
 
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="comment">Comment</label></legend>
+                <legend><label htmlFor="comment">{lang.comments}</label></legend>
                 <textarea id="comment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comment || "-"} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
-              <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
-              <button type='button' className='mainModal__send' onClick={() => setDeleteMode(true)}>Delete</button>
+              <button type='button' className='mainModal__send' onClick={() => editModeFN()}>{lang.edit}</button>
+              <button type='button' className='mainModal__send' onClick={() => setDeleteMode(true)}>{lang.delete}</button>
             </div>
           </form>
         </>
@@ -232,21 +234,21 @@ export default function ContactsDataModal({ modalData }) {
       {modalData?.contactData && editMode &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>EDIT CONTACT</h2>
+            <h2>{lang.editContact}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
               <div className="listPickerOptions">
-                <button title="Category: Personal" disabled={resultEditContact.isLoading} className={`listPicker ${newUserCategory === "personal" && "selected"} ${resultEditContact.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.personal}`} disabled={resultEditContact.isLoading} className={`listPicker ${newUserCategory === "personal" && "selected"} ${resultEditContact.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
-                  Personal
+                  {lang.personal}
                 </button>
-                <button title="Category: Company" disabled={resultEditContact.isLoading} className={`listPicker ${newUserCategory === "company" && "selected"} ${resultEditContact.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.company}`} disabled={resultEditContact.isLoading} className={`listPicker ${newUserCategory === "company" && "selected"} ${resultEditContact.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>
-                  Company
+                  {lang.company}
                 </button>
               </div>
             </div>
@@ -254,24 +256,24 @@ export default function ContactsDataModal({ modalData }) {
           <form autoComplete='off' className='mainModal__data__form editMode' disabled={resultEditContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editUserFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="editName">Name</label></legend>
-                <input id="editName" placeholder='Required' spellCheck={false} type="text" value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} required />
+                <legend><label htmlFor="editName">{lang.name}</label></legend>
+                <input id="editName" placeholder={lang.required} spellCheck={false} type="text" value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} required />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="editEmail">E-Mail</label></legend>
+                <legend><label htmlFor="editEmail">{lang.eMail}</label></legend>
                 <input id="editEmail" spellCheck={false} type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="editTel">Tel</label></legend>
+                <legend><label htmlFor="editTel">{lang.telephone}</label></legend>
                 <input id="editTel" spellCheck={false} type="tel" value={newUserTel} onChange={e => {
                   const value = e.target.value.replace(/\D/g, '');
                   setNewUserTel(value)
                 }} maxLength={20} />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="editRole">Role</label></legend>
+                <legend><label htmlFor="editRole">{lang.role}</label></legend>
                 <input id="editRole" spellCheck={false} type="text" value={newUserRole} onChange={e => setNewUserRole(e.target.value)} maxLength={200} />
               </fieldset>
             </div>
@@ -295,13 +297,13 @@ export default function ContactsDataModal({ modalData }) {
 
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="editComment">Comment</label></legend>
+                <legend><label htmlFor="editComment">{lang.comments}</label></legend>
                 <textarea id="editComment" spellCheck={false} rows="2" value={newUserComment} onChange={e => setNewUserComment(e.target.value)} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
-              <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
-              <button className='mainModal__send' onClick={trimInputs}>Confirm</button>
+              <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>{lang.cancel}</button>
+              <button className='mainModal__send' onClick={trimInputs}>{lang.confirm}</button>
             </div>
             {
               errorMsg &&
@@ -314,30 +316,31 @@ export default function ContactsDataModal({ modalData }) {
       {modalData?.contactData && deleteMode &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>DELETE CONTACT</h2>
+            <h2>{lang.deleteContact}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
+
             <div className="listPickerWrapper__btnContainer deleteMode">
-              <button title={`Category: ${modalData?.category === "personal" ? "Personal" : "Company"}`} tabIndex={-1} disabled={resultDeleteContact.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
+              <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} className={`listPicker disabled selected`} disabled={resultDeleteContact.isLoading}>{lang[modalData?.category]}</button>
             </div>
           </div>
           <form autoComplete='off' className='mainModal__data__form deleteMode disabled' disabled={resultDeleteContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteUserFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="deleteName">Name</label></legend>
-                <input id="deleteName" placeholder='Required' readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
+                <legend><label htmlFor="deleteName">{lang.name}</label></legend>
+                <input id="deleteName" placeholder={lang.required} readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="deleteEmail">E-Mail</label></legend>
+                <legend><label htmlFor="deleteEmail">{lang.eMail}</label></legend>
                 <input id="deleteEmail" readOnly disabled spellCheck={false} type="text" value={modalData?.email || "-"} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="deleteTel">Tel</label></legend>
+                <legend><label htmlFor="deleteTel">{lang.telephone}</label></legend>
                 <input id="deleteTel" readOnly disabled spellCheck={false} type="tel" value={modalData?.tel || "-"} />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="deleteRole">Role</label></legend>
+                <legend><label htmlFor="deleteRole">{lang.role}</label></legend>
                 <input id="deleteRole" readOnly disabled spellCheck={false} type="text" value={modalData?.role || "-"} />
               </fieldset>
             </div>
@@ -361,13 +364,13 @@ export default function ContactsDataModal({ modalData }) {
 
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="deleteComment">Comment</label></legend>
+                <legend><label htmlFor="deleteComment">{lang.comments}</label></legend>
                 <textarea id="deleteComment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comment || "-"} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
-              <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
-              <button className='mainModal__send' onClick={trimInputs}>Confirm</button>
+              <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>{lang.cancel}</button>
+              <button className='mainModal__send' onClick={trimInputs}>{lang.confirm}</button>
             </div>
           </form>
         </>
@@ -376,20 +379,20 @@ export default function ContactsDataModal({ modalData }) {
       {modalData?.newUser &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>ADD CONTACT</h2>
+            <h2>{lang.addContact}</h2>
             <div className="listPickerWrapper__btnContainer">
               <div className="listPickerOptions">
-                <button title="Category: Personal" disabled={resultAddContact.isLoading} className={`listPicker ${newUserCategory === "personal" && "selected"} ${resultAddContact.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.personal}`} disabled={resultAddContact.isLoading} className={`listPicker ${newUserCategory === "personal" && "selected"} ${resultAddContact.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
-                  Personal
+                  {lang.personal}
                 </button>
-                <button title="Category: Company" disabled={resultAddContact.isLoading} className={`listPicker ${newUserCategory === "company" && "selected"} ${resultAddContact.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.company}`} disabled={resultAddContact.isLoading} className={`listPicker ${newUserCategory === "company" && "selected"} ${resultAddContact.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>
-                  Company
+                  {lang.company}
                 </button>
               </div>
             </div>
@@ -397,24 +400,24 @@ export default function ContactsDataModal({ modalData }) {
           <form autoComplete='off' className='mainModal__data__form' disabled={resultAddContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => { addUserFn(e) }}  >
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="addName">Name</label></legend>
-                <input id="addName" placeholder='Required' spellCheck={false} type="text" value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} required />
+                <legend><label htmlFor="addName">{lang.name}</label></legend>
+                <input id="addName" placeholder={lang.required} spellCheck={false} type="text" value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} required />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="addEmail">E-Mail</label></legend>
+                <legend><label htmlFor="addEmail">{lang.eMail}</label></legend>
                 <input id="addEmail" spellCheck={false} type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="addTel">Tel</label></legend>
+                <legend><label htmlFor="addTel">{lang.telephone}</label></legend>
                 <input id="addTel" spellCheck={false} type="tel" value={newUserTel} onChange={e => {
                   const value = e.target.value.replace(/\D/g, '');
                   setNewUserTel(value)
                 }} maxLength={20} />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="addRole">Role</label></legend>
+                <legend><label htmlFor="addRole">{lang.role}</label></legend>
                 <input id="addRole" spellCheck={false} type="text" value={newUserRole} onChange={e => setNewUserRole(e.target.value)} maxLength={200} />
               </fieldset>
             </div>
@@ -438,12 +441,12 @@ export default function ContactsDataModal({ modalData }) {
 
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="addComment">Comment</label></legend>
+                <legend><label htmlFor="addComment">{lang.comments}</label></legend>
                 <textarea id="addComment" spellCheck={false} rows="2" value={newUserComment} onChange={e => setNewUserComment(e.target.value)} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
-              <button className='mainModal__send' onClick={trimInputs}>Send</button>
+              <button className='mainModal__send' onClick={trimInputs}>{lang.send}</button>
             </div>
             {
               errorMsg &&

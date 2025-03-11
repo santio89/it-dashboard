@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   light: false,
-  sideExpanded: false
+  sideExpanded: false,
+  lang: "esp"
 }
 
 const themeSlice = createSlice({
@@ -14,9 +15,12 @@ const themeSlice = createSlice({
     },
     setSideExpanded: (state, action) => {
       state.sideExpanded = action.payload.sideExpanded
+    },
+    setLang: (state, action) => {
+      state.lang = action.payload.lang
     }
   }
 })
 
-export const { setLight, setSideExpanded } = themeSlice.actions
+export const { setLight, setSideExpanded, setLang } = themeSlice.actions
 export default themeSlice.reducer

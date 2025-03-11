@@ -23,7 +23,7 @@
   --font-primary: geist, monospace, "Courier New", Courier;
   --main-container-size: 1200px;
   --aside-small-size: 70px;
-  --aside-big-size: 150px;
+  --aside-big-size: max-content;
   --aside-transition: cubic-bezier(0, 1, 0.5, 1);
   --main-radius: 0.5rem;
   --main-section-spacing: calc(clamp(0.25rem, 0.25rem + 2vw, 1rem));
@@ -407,7 +407,6 @@ select:disabled {
   border-radius: 0;
   padding: 0.5rem 1rem;
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 0.75rem;
   outline: 1px solid transparent;
@@ -419,16 +418,32 @@ select:disabled {
 .mainHeader__btnContainer .btnWrapper .profile-opts button svg {
   border-radius: 0;
 }
-.mainHeader__btnContainer .btnWrapper .profile-opts button svg path {
-  stroke: var(--main-text);
-  stroke-width: 0px;
-  transition: stroke-width 200ms ease-in-out;
-}
 .mainHeader__btnContainer .btnWrapper .profile-opts button:hover, .mainHeader__btnContainer .btnWrapper .profile-opts button:focus-visible {
   background-color: var(--main-color-op-light);
 }
-.mainHeader__btnContainer .btnWrapper .profile-opts button:hover svg path, .mainHeader__btnContainer .btnWrapper .profile-opts button:focus-visible svg path {
-  stroke-width: 0.4px;
+.mainHeader__btnContainer .btnWrapper .profile-opts button:hover svg, .mainHeader__btnContainer .btnWrapper .profile-opts button:focus-visible svg {
+  filter: drop-shadow(0 0 0.4px currentColor);
+}
+.mainHeader__btnContainer .btnWrapper .profile-opts__langWrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 0.25rem;
+}
+.mainHeader__btnContainer .btnWrapper .profile-opts__langWrapper > button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  text-align: center;
+  color: var(--main-gray-dark);
+}
+.mainHeader__btnContainer .btnWrapper .profile-opts__langWrapper > button.selected {
+  font-weight: 600;
+  color: var(--main-text);
 }
 .mainHeader .theme-clicked {
   animation: rotate-icon 400ms ease-in-out;
@@ -459,9 +474,8 @@ select:disabled {
   justify-content: space-between;
   align-items: center;
   background: var(--main-color-bg);
-  transition: background-color 400ms ease-in-out, width 400ms var(--aside-transition);
   z-index: 2;
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
   bottom: 0;
@@ -472,6 +486,14 @@ select:disabled {
   padding: 0.5rem;
   width: var(--aside-small-size);
   background-color: var(--main-section);
+  transition: background-color 400ms ease-in-out, width 400ms var(--aside-transition);
+  will-change: width;
+  /*   @media (max-width: $tablet-breakpoint) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+  } */
   /* &:hover {
     width: var(--aside-big-size);
 
@@ -481,14 +503,6 @@ select:disabled {
       }
     }
   } */
-}
-@media (max-width: 969px) {
-  .mainContainer .side-panel {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-  }
 }
 .mainContainer .side-panel::-webkit-scrollbar {
   width: 4px;
@@ -532,11 +546,6 @@ select:disabled {
   max-width: 20px;
   max-height: 20px;
 }
-.mainContainer .side-panel__opts a svg path {
-  stroke: var(--main-text);
-  stroke-width: 0px;
-  transition: stroke-width 200ms ease-in-out;
-}
 .mainContainer .side-panel__opts a span {
   opacity: 0;
   transition: opacity 200ms var(--aside-transition);
@@ -546,17 +555,18 @@ select:disabled {
 }
 .mainContainer .side-panel__opts a.active {
   background-color: var(--main-color-op-light);
-  font-weight: 600;
+  text-shadow: 0 0 0.4px currentColor;
 }
-.mainContainer .side-panel__opts a.active svg path {
-  stroke-width: 0.4px;
+.mainContainer .side-panel__opts a.active svg {
+  filter: drop-shadow(0 0 0.4px currentColor);
 }
 .mainContainer .side-panel__opts a:hover, .mainContainer .side-panel__opts a:focus-visible {
   background-color: var(--main-color-op-light);
+  text-shadow: 0 0 0.4px currentColor;
   z-index: 1;
 }
-.mainContainer .side-panel__opts a:hover svg path, .mainContainer .side-panel__opts a:focus-visible svg path {
-  stroke-width: 0.4px;
+.mainContainer .side-panel__opts a:hover svg, .mainContainer .side-panel__opts a:focus-visible svg {
+  filter: drop-shadow(0 0 0.4px currentColor);
 }
 .mainContainer .side-panel button.side-toggle,
 .mainContainer .side-panel a.side-toggle {
@@ -580,40 +590,30 @@ select:disabled {
   max-height: 20px;
   transition: transform 200ms var(--aside-transition);
 }
-.mainContainer .side-panel button.side-toggle svg path,
-.mainContainer .side-panel a.side-toggle svg path {
-  stroke: var(--main-text);
-  stroke-width: 0px;
-  transition: stroke-width 200ms ease-in-out;
-}
 .mainContainer .side-panel button.side-toggle:hover, .mainContainer .side-panel button.side-toggle:focus-visible,
 .mainContainer .side-panel a.side-toggle:hover,
 .mainContainer .side-panel a.side-toggle:focus-visible {
   background-color: var(--main-color-op-light);
 }
-.mainContainer .side-panel button.side-toggle:hover svg path, .mainContainer .side-panel button.side-toggle:focus-visible svg path,
-.mainContainer .side-panel a.side-toggle:hover svg path,
-.mainContainer .side-panel a.side-toggle:focus-visible svg path {
-  stroke-width: 0.4px;
+.mainContainer .side-panel button.side-toggle:hover svg, .mainContainer .side-panel button.side-toggle:focus-visible svg,
+.mainContainer .side-panel a.side-toggle:hover svg,
+.mainContainer .side-panel a.side-toggle:focus-visible svg {
+  filter: drop-shadow(0 0 0.4px currentColor);
 }
 .mainContainer .side-panel button.side-toggle.expanded svg,
 .mainContainer .side-panel a.side-toggle.expanded svg {
   transform: rotate(-180deg);
 }
 .mainContainer .main-content {
-  width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
   overflow: hidden;
-  padding-left: var(--main-section-spacing);
-  margin-left: var(--aside-small-size);
-  transition: margin-left 400ms var(--aside-transition);
-  will-change: margin-left;
-}
-.mainContainer .main-content.expanded {
-  margin-left: var(--aside-big-size);
+  margin-left: var(--main-section-spacing);
+  transition: flex-basis 400ms var(--aside-transition);
+  will-change: flex-basis;
 }
 
 .site-section {
@@ -797,19 +797,14 @@ select:disabled {
   min-height: 24px;
   max-height: 24px;
 }
-.site-section__list .sortBtn button svg path {
-  stroke: var(--main-text);
-  stroke-width: 0px;
-  transition: stroke-width 200ms ease-in-out;
-}
-.site-section__list .sortBtn button:hover svg path {
-  stroke-width: 0.2px;
+.site-section__list .sortBtn button:hover svg {
+  filter: drop-shadow(0 0 0.4px currentColor);
 }
 .site-section__list .sortBtn button:focus-visible {
   outline: 1px solid var(--main-text);
 }
-.site-section__list .sortBtn button:focus-visible svg path {
-  stroke-width: 0.2px;
+.site-section__list .sortBtn button:focus-visible svg {
+  filter: drop-shadow(0 0 0.4px currentColor);
 }
 .site-section__list .sortBtn button[disabled] {
   pointer-events: none;
@@ -1178,12 +1173,12 @@ select:disabled {
   color: var(--main-gray-dark);
   text-decoration: line-through;
   /*       &:has(span) {
-          text-decoration: none;
+    text-decoration: none;
 
-          .taskContentBtn__title {
-            text-decoration: line-through;
-          }
-        } */
+    .taskContentBtn__title {
+      text-decoration: line-through;
+    }
+  } */
 }
 .site-section__list .listWrapper ul.tdl-list li button.taskOption,
 .site-section__list .listWrapper ul.tdl-list li textarea.taskOption,
@@ -1540,25 +1535,6 @@ select:disabled {
   color: var(--white);
   padding: clamp(0.5rem, 0.5rem + 2vw, 2rem);
 }
-.mainModal h2 {
-  text-align: start;
-  text-wrap: balance;
-  font-size: 2em;
-  color: var(--white);
-  font-weight: 800;
-  position: relative;
-  cursor: default;
-}
-.mainModal h2::before {
-  content: "";
-  position: absolute;
-  left: -105px;
-  top: 50%;
-  translate: 0 -50%;
-  width: 100px;
-  height: 8px;
-  background-color: var(--main-color-mid);
-}
 .mainModal button:focus-visible {
   outline-color: var(--white);
 }
@@ -1569,6 +1545,26 @@ select:disabled {
   align-items: start;
   width: 100%;
   position: relative;
+}
+.mainModal__titleContainer h2 {
+  text-align: start;
+  text-wrap: balance;
+  font-size: 2em;
+  color: var(--white);
+  font-weight: 800;
+  position: relative;
+  cursor: default;
+  text-transform: uppercase;
+}
+.mainModal__titleContainer h2::before {
+  content: "";
+  position: absolute;
+  left: -105px;
+  top: 50%;
+  translate: 0 -50%;
+  width: 100px;
+  height: 8px;
+  background-color: var(--main-color-mid);
 }
 .mainModal__titleContainer div:nth-of-type(1) {
   font-weight: 300;

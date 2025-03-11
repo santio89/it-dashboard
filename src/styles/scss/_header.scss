@@ -136,7 +136,6 @@
           border-radius: 0;
           padding: 0.5rem 1rem;
           display: flex;
-          justify-content: center;
           align-items: center;
           gap: 0.75rem;
           outline: 1px solid transparent;
@@ -147,12 +146,6 @@
 
           svg {
             border-radius: 0;
-
-            path {
-              stroke: var(--main-text);
-              stroke-width: 0px;
-              transition: stroke-width 200ms ease-in-out;
-            }
           }
 
           &:hover,
@@ -160,9 +153,31 @@
             background-color: var(--main-color-op-light);
 
             svg {
-              path {
-                stroke-width: 0.4px;
-              }
+              filter: drop-shadow(0 0 0.4px currentColor);
+            }
+          }
+        }
+
+        &__langWrapper {
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          gap: 0.25rem;
+
+          > button {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+            text-align: center;
+            color: var(--main-gray-dark);
+
+            &.selected {
+              font-weight: 600;
+              color: var(--main-text);
             }
           }
         }

@@ -196,19 +196,11 @@
           max-width: 24px;
           min-height: 24px;
           max-height: 24px;
-
-          path {
-            stroke: var(--main-text);
-            stroke-width: 0px;
-            transition: stroke-width 200ms ease-in-out;
-          }
         }
 
         &:hover {
           svg {
-            path {
-              stroke-width: 0.2px;
-            }
+            filter: drop-shadow(0 0 0.4px currentColor);
           }
         }
 
@@ -216,9 +208,7 @@
           outline: 1px solid var(--main-text);
 
           svg {
-            path {
-              stroke-width: 0.2px;
-            }
+            filter: drop-shadow(0 0 0.4px currentColor);
           }
         }
 
@@ -580,7 +570,7 @@
                   color: var(--main-gray-dark);
                   text-decoration: line-through;
 
-            /*       &:has(span) {
+                  /*       &:has(span) {
                     text-decoration: none;
 
                     .taskContentBtn__title {

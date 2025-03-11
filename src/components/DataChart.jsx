@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
-import { useSelector } from 'react-redux';
+import { useTranslation } from '../hooks/useTranslation';
 
 
 export default function DataChart({ data, type, firstLoad }) {
+  const lang = useTranslation()
+
   const [chartArray, setChartArray] = useState()
-  const lightTheme = useSelector(state => state.theme.light)
 
   useEffect(() => {
     if (data) {
@@ -25,12 +26,12 @@ export default function DataChart({ data, type, firstLoad }) {
       }, []);
 
       propertyItemsCount.forEach(property => {
-        values.push([property[type.property], property.ammount])
+        values.push([lang[property[type.property]], property.ammount])
       })
 
-      setChartArray(values)
+      setChartArray((values))
     }
-  }, [data])
+  }, [data, lang])
 
 
   return (
@@ -39,7 +40,7 @@ export default function DataChart({ data, type, firstLoad }) {
         <Chart
           chartType={"PieChart"}
           options={{
-            title: type?.property,
+            title: lang[type?.property],
             backgroundColor: {
               'fill': 'transparent',
             },

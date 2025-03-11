@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { setLight } from "../store/slices/themeSlice"
+import { setLight, setLang } from "../store/slices/themeSlice"
 import { setModal } from "../store/slices/modalSlice"
 import { useLocation } from "react-router"
 import { useEffect, useState } from "react"
@@ -10,6 +10,7 @@ const sections = ["/", "/home", "/about", "/contacts", "/devices", "/tasks", "/s
 export default function Nav({ rootTheme, user }) {
   const dispatch = useDispatch()
   const lightTheme = useSelector(state => state.theme.light)
+  const langTheme = useSelector(state => state.theme.lang)
   const [themeClicked, setThemeClicked] = useState(false)
   const [signGoogle, resultSignInGoogle] = useSignGoogleMutation()
   const [signOut, resultSignOut] = useSignOutMutation()
@@ -19,6 +20,10 @@ export default function Nav({ rootTheme, user }) {
   const toggleLight = () => {
     setThemeClicked(true)
     dispatch(setLight({ light: !lightTheme }))
+  }
+
+  const toggleLang = (lang) => {
+    dispatch(setLang({ lang: lang }))
   }
 
   const logInGoogle = async () => {
@@ -50,6 +55,7 @@ export default function Nav({ rootTheme, user }) {
   useEffect(() => {
     setProfileOpts(false)
   }, [user])
+
 
   return (
     <header className="mainHeader">
@@ -83,6 +89,13 @@ export default function Nav({ rootTheme, user }) {
 
           {
             <div className={`profile-opts ${profileOpts && "open"}`}>
+              <div className="profile-opts__langWrapper">
+                <button tabIndex={profileOpts ? 0 : -1} className={langTheme === "esp" && "selected"} onClick={() => toggleLang("esp")}
+                >ESP</button>
+                <button tabIndex={profileOpts ? 0 : -1} className={langTheme === "eng" && "selected"} onClick={() => toggleLang("eng")}>
+                  ENG
+                </button>
+              </div>
               {
                 user ?
                   <>

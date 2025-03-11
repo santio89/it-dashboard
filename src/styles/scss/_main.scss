@@ -15,10 +15,8 @@
     justify-content: space-between;
     align-items: center;
     background: var(--main-color-bg);
-    transition: background-color 400ms ease-in-out,
-      width 400ms var(--aside-transition);
     z-index: 2;
-    position: absolute;
+    position: sticky;
     top: 0;
     left: 0;
     bottom: 0;
@@ -29,13 +27,16 @@
     padding: 0.5rem;
     width: var(--aside-small-size);
     background-color: var(--main-section);
+    transition: background-color 400ms ease-in-out,
+      width 400ms var(--aside-transition);
+    will-change: width;
 
-    @media (max-width: $tablet-breakpoint) {
+    /*   @media (max-width: $tablet-breakpoint) {
       position: absolute;
       top: 0;
       left: 0;
       bottom: 0;
-    }
+    } */
 
     /* &:hover {
       width: var(--aside-big-size);
@@ -92,12 +93,6 @@
           min-height: 20px;
           max-width: 20px;
           max-height: 20px;
-
-          path {
-            stroke: var(--main-text);
-            stroke-width: 0px;
-            transition: stroke-width 200ms ease-in-out;
-          }
         }
 
         span {
@@ -111,24 +106,21 @@
 
         &.active {
           background-color: var(--main-color-op-light);
-          font-weight: 600;
+          text-shadow: 0 0 0.4px currentColor;
 
           svg {
-            path {
-              stroke-width: 0.4px;
-            }
+            filter: drop-shadow(0 0 0.4px currentColor);
           }
         }
 
         &:hover,
         &:focus-visible {
           background-color: var(--main-color-op-light);
+          text-shadow: 0 0 0.4px currentColor;
           z-index: 1;
 
           svg {
-            path {
-              stroke-width: 0.4px;
-            }
+            filter: drop-shadow(0 0 0.4px currentColor);
           }
         }
       }
@@ -154,12 +146,6 @@
         max-width: 20px;
         max-height: 20px;
         transition: transform 200ms var(--aside-transition);
-
-        path {
-          stroke: var(--main-text);
-          stroke-width: 0px;
-          transition: stroke-width 200ms ease-in-out;
-        }
       }
 
       &:hover,
@@ -167,9 +153,7 @@
         background-color: var(--main-color-op-light);
 
         svg {
-          path {
-            stroke-width: 0.4px;
-          }
+          filter: drop-shadow(0 0 0.4px currentColor);
         }
       }
 
@@ -182,19 +166,14 @@
   }
 
   .main-content {
-    width: 100%;
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
     overflow: hidden;
-    padding-left: var(--main-section-spacing);
-    margin-left: var(--aside-small-size);
-    transition: margin-left 400ms var(--aside-transition);
-    will-change: margin-left;
-
-    &.expanded {
-      margin-left: var(--aside-big-size);
-    }
+    margin-left: var(--main-section-spacing);
+    transition: flex-basis 400ms var(--aside-transition);
+    will-change: flex-basis;
   }
 }

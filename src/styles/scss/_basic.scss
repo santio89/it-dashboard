@@ -33,7 +33,7 @@ $home-breakpoint-height: 444px;
 
   --aside-small-size: 70px;
 
-  --aside-big-size: 150px;
+  --aside-big-size: max-content;
 
   --aside-transition: cubic-bezier(0, 1, 0.5, 1);
 

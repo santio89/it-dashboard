@@ -4,8 +4,11 @@ import { useGetDevicesQuery } from '../store/slices/apiSlice';
 import DataChart from "./DataChart";
 import { useState, useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
+import { useTranslation } from "../hooks/useTranslation";
 
 export default function Devices({ user }) {
+  const lang = useTranslation()
+
   const dispatch = useDispatch()
   const [sortList, setSortList] = useState(false)
   const [listPickerOpen, setListPickerOpen] = useState(false)
@@ -75,11 +78,11 @@ export default function Devices({ user }) {
           <button disabled={isLoadingDevices} onClick={() => {
             dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", newDevice: true, userId: user?.uid, dataList: dataDevices } }))
             setListPickerOpen(false)
-          }}>+ Add device</button>
+          }}>+ {lang.addDevice}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
-                <button disabled={isLoadingDevices} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
+                <button disabled={isLoadingDevices} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>{lang.filter}</button>
               }
               {
                 listPickerOpen &&
@@ -88,19 +91,19 @@ export default function Devices({ user }) {
                     onClick={() => {
                       selectList("personal")
                     }}>
-                    Personal
+                    {lang.personal}
                   </button>
                   <button disabled={isLoadingDevices} className={`listPicker ${listSelected === "company" && "selected"}`}
                     onClick={() => {
                       selectList("company")
                     }}>
-                    Company
+                    {lang.company}
                   </button>
                   <button disabled={isLoadingDevices} className={`listPicker ${listSelected === "all" && "selected"}`}
                     onClick={() => {
                       selectList("all")
                     }}>
-                    All
+                    {lang.all}
                   </button>
                 </div>
               }
@@ -124,7 +127,7 @@ export default function Devices({ user }) {
           </button>
         </div>
         {
-          isLoadingDevices ? <div className="loader">Loading...</div> :
+          isLoadingDevices ? <div className="loader">{lang.loading}...</div> :
             <div className="listWrapper">
               <ul className="items-list" ref={listContainer}>
                 {
@@ -134,7 +137,7 @@ export default function Devices({ user }) {
                     }}>{device.name}</button></li>)
                 }
                 {
-                  devicesList?.length === 0 && <li className="no-data">No Data</li>
+                  devicesList?.length === 0 && <li className="no-data">{lang.noData}</li>
                 }
               </ul>
             </div>
@@ -142,11 +145,11 @@ export default function Devices({ user }) {
       </div>
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
-          <button disabled={isLoadingDevices}>Charts</button>
+          <button disabled={isLoadingDevices}>{lang.charts}</button>
         </div>
         <div className="chartWrapper">
           {
-            isLoadingDevices ? <div className="loader">Loading...</div> :
+            isLoadingDevices ? <div className="loader">{lang.loading}...</div> :
               <DataChart type={{ property: "category", items: "devices" }} data={dataDevices} firstLoad={firstLoad} />
           }
         </div>

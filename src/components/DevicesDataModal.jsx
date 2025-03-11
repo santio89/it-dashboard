@@ -3,8 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { setModal } from '../store/slices/modalSlice';
 import { useAddDeviceMutation, useDeleteDeviceMutation, useEditDeviceMutation } from '../store/slices/apiSlice';
 import { objectEquality } from '../utils/objectEquality';
+import { useTranslation } from '../hooks/useTranslation'
 
 export default function DevicesDataModal({ modalData }) {
+  const lang = useTranslation()
+
   const dispatch = useDispatch()
   const modalActive = useSelector(state => state.modal.active)
 
@@ -49,7 +52,7 @@ export default function DevicesDataModal({ modalData }) {
     }
 
     if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newDeviceName.toLowerCase())) {
-      setErrorMsg("Device already exists")
+      setErrorMsg(lang.deviceExists)
       return
     }
 
@@ -101,7 +104,7 @@ export default function DevicesDataModal({ modalData }) {
     }
 
     if (device.name !== newDeviceName && modalData?.dataList?.find(contact => contact.name.toLowerCase() === newDeviceName.toLowerCase())) {
-      setErrorMsg("Device already exists")
+      setErrorMsg(lang.deviceExists)
       return
     }
 
@@ -170,30 +173,30 @@ export default function DevicesDataModal({ modalData }) {
       {modalData?.deviceData && !editMode && !deleteMode &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>DEVICE</h2>
+            <h2>{lang.device}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
-              <button title={`Category: ${modalData?.category === "company" ? "Company" : "Personal"}`} tabIndex={-1} className={`listPicker disabled selected`} >{modalData?.category === "company" ? "Company" : "Personal"}</button>
+              <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} className={`listPicker disabled selected`} >{lang[modalData?.category]}</button>
             </div>
           </div>
           <form autoComplete='off' className='mainModal__data__form disabled'>
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="name">Name</label></legend>
+                <legend><label htmlFor="name">{lang.name}</label></legend>
                 <input id='name' placeholder='Required' readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="type">Type</label></legend>
+                <legend><label htmlFor="type">{lang.type}</label></legend>
                 <input id="type" readOnly disabled spellCheck={false} type="text" value={modalData?.type || "-"} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="Model">Model</label></legend>
+                <legend><label htmlFor="Model">{lang.model}</label></legend>
                 <input id="model" readOnly disabled spellCheck={false} type="text" value={modalData?.model || "-"} />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="sn">Serial Number</label></legend>
+                <legend><label htmlFor="sn">{lang.serialNumber}</label></legend>
                 <input id="sn" readOnly disabled spellCheck={false} type="text" value={modalData?.sn || "-"} />
               </fieldset>
             </div>
@@ -217,13 +220,13 @@ export default function DevicesDataModal({ modalData }) {
 
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="comment">Comment</label> </legend>
+                <legend><label htmlFor="comment">{lang.comments}</label> </legend>
                 <textarea id="comment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comment || "-"} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
-              <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
-              <button type='button' className='mainModal__send' onClick={() => setDeleteMode(true)}>Delete</button>
+              <button type='button' className='mainModal__send' onClick={() => editModeFN()}>{lang.edit}</button>
+              <button type='button' className='mainModal__send' onClick={() => setDeleteMode(true)}>{lang.delete}</button>
             </div>
           </form>
         </>

@@ -4,8 +4,11 @@ import { useGetContactsQuery } from '../store/slices/apiSlice';
 import { useEffect, useState, useRef } from "react";
 import DataChart from "./DataChart";
 import autoAnimate from "@formkit/auto-animate";
+import { useTranslation } from "../hooks/useTranslation";
 
 export default function Contacts({ user }) {
+  const lang = useTranslation()
+
   const dispatch = useDispatch()
   const [sortList, setSortList] = useState(false)
   const [listPickerOpen, setListPickerOpen] = useState(false)
@@ -76,11 +79,11 @@ export default function Contacts({ user }) {
           <button disabled={isLoadingContacts} onClick={() => {
             dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newUser: true, userId: user?.uid, dataList: dataContacts } }));
             setListPickerOpen(false)
-          }}>+ Add contact</button>
+          }}>+ {lang.addContact}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
-                <button disabled={isLoadingContacts} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
+                <button disabled={isLoadingContacts} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>{lang.filter}</button>
               }
               {
                 listPickerOpen &&
@@ -89,19 +92,19 @@ export default function Contacts({ user }) {
                     onClick={() => {
                       selectList("personal")
                     }}>
-                    Personal
+                    {lang.personal}
                   </button>
                   <button disabled={isLoadingContacts} className={`listPicker ${listSelected === "company" && "selected"}`}
                     onClick={() => {
                       selectList("company")
                     }}>
-                    Company
+                    {lang.company}
                   </button>
                   <button disabled={isLoadingContacts} className={`listPicker ${listSelected === "all" && "selected"}`}
                     onClick={() => {
                       selectList("all")
                     }}>
-                    All
+                    {lang.all}
                   </button>
                 </div>
               }
@@ -126,7 +129,7 @@ export default function Contacts({ user }) {
           </button>
         </div>
         {
-          isLoadingContacts ? <div className="loader">Loading...</div> :
+          isLoadingContacts ? <div className="loader">{lang.loading}...</div> :
             <div className="listWrapper">
 
               <ul className="items-list" ref={listContainer}>
@@ -135,7 +138,7 @@ export default function Contacts({ user }) {
                     <li className={firstLoad && "firstLoad"} key={contact.localId}><button disabled={contact.id === "temp-id"} title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact, dataList: dataContacts } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
                 }
                 {
-                  contactsList?.length === 0 && <li className="no-data">No Data</li>
+                  contactsList?.length === 0 && <li className="no-data">{lang.noData}</li>
                 }
               </ul>
             </div>
@@ -143,11 +146,11 @@ export default function Contacts({ user }) {
       </div>
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
-          <button disabled={isLoadingContacts}>Charts</button>
+          <button disabled={isLoadingContacts}>{lang.charts}</button>
         </div>
         <div className="chartWrapper">
           {
-            isLoadingContacts ? <div className="loader">Loading...</div> :
+            isLoadingContacts ? <div className="loader">{lang.loading}...</div> :
               <DataChart type={{ property: "category", items: "contacts" }} data={dataContacts} firstLoad={firstLoad} />
           }
         </div>
