@@ -4,8 +4,11 @@ import { setModal } from '../store/slices/modalSlice'
 import { useDispatch } from 'react-redux'
 import DataChart from './DataChart'
 import autoAnimate from "@formkit/auto-animate";
+import { useTranslation } from '../hooks/useTranslation'
 
 export default function Tasks({ user }) {
+  const lang = useTranslation()
+
   const dispatch = useDispatch()
   const [sortList, setSortList] = useState(false)
   const [taskOptions, setTaskOptions] = useState(null)

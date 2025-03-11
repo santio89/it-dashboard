@@ -802,9 +802,12 @@
   }
 
   &__private {
-    flex-direction: row;
+    display: flex;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
+    align-content: center;
+    text-transform: uppercase;
     transition: 200ms ease-in-out;
 
     button {
@@ -812,7 +815,10 @@
       color: inherit;
       padding: 0;
       text-decoration: underline;
+      text-underline-offset: 2px;
+      text-transform: uppercase;
       transition: all 200ms ease-in-out, color 0ms;
+      font-weight: 700;
 
       &:hover {
         text-shadow: 0 0 4px var(--main-text);
@@ -828,6 +834,10 @@
     &__title {
       font-weight: 700;
       transition: 200ms ease-in-out;
+    }
+
+    a {
+      text-transform: uppercase;
     }
   }
 }

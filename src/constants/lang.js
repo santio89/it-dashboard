@@ -11,7 +11,6 @@ const lang = {
     admin: "Admin",
     requestSupport: "Request support",
     toggleSidebar: "Toggle sidebar",
-
     filter: "Filter",
     personal: "Personal",
     company: "Company",
@@ -21,7 +20,6 @@ const lang = {
     loading: "Loading",
     noData: "No data",
     charts: "Charts",
-
     contact: "Contact",
     category: "Category",
     name: "Name",
@@ -32,7 +30,9 @@ const lang = {
     edit: "Edit",
     delete: "Delete",
     editContact: "Edit contact",
+    editDevice: "Edit device",
     deleteContact: "Delete contact",
+    deleteDevice: "Delete device",
     cancel: "Cancel",
     confirm: "Confirm",
     contactExists: "Contact already exists",
@@ -51,8 +51,16 @@ const lang = {
     ticket: "Ticket",
     type: "Type",
     model: "Model",
-    serialNumber: "Serial number"
-
+    serialNumber: "Serial number",
+    notFound: "Not found",
+    resourceNotFound: "Resource not found",
+    goHome: "Go home",
+    profile: "Profile",
+    signOut: "Sign out",
+    signIn: "Sign in",
+    youMust: "You must",
+    toAccessThisSection: "To access this section",
+    user: "User"
 
   },
   esp: {
@@ -67,7 +75,6 @@ const lang = {
     admin: "Admin",
     requestSupport: "Solicitar soporte",
     toggleSidebar: "Alternar barra lateral",
-
     filter: "Filtrar",
     personal: "Personal",
     company: "Compañía",
@@ -77,7 +84,6 @@ const lang = {
     loading: "Cargando",
     noData: "Sin datos",
     charts: "Gráficos",
-
     contact: "Contacto",
     category: "Categoría",
     name: "Nombre",
@@ -88,7 +94,9 @@ const lang = {
     edit: "Editar",
     delete: "Eliminar",
     editContact: "Editar contacto",
+    editDevice: "Editar dispositivo",
     deleteContact: "Eliminar contacto",
+    deleteDevice: "Eliminar dispositivo",
     cancel: "Cancelar",
     confirm: "Confirmar",
     contactExists: "El contacto ya existe",
@@ -107,7 +115,16 @@ const lang = {
     ticket: "Ticket",
     type: "Tipo",
     model: "Modelo",
-    serialNumber: "Número de serie"
+    serialNumber: "Número de serie",
+    notFound: "No encontrado",
+    resourceNotFound: "Recurso no encontrado",
+    goHome: "Ir al inicio",
+    profile: "Perfil",
+    signOut: "Cerrar sesión",
+    signIn: "Iniciar sesión",
+    youMust: "Debes",
+    toAccessThisSection: "Para acceder a esta sección",
+    user: "Usuario"
 
   }
 }

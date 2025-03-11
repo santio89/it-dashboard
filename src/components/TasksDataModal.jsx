@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { setModal } from '../store/slices/modalSlice'
 import { useAddTdlMutation, useDeleteTdlMutation, useEditTdlMutation } from '../store/slices/apiSlice'
+import { useTranslation } from '../hooks/useTranslation'
 
 export default function TasksDataModal({ modalData }) {
+  const lang = useTranslation()
+
   const dispatch = useDispatch()
   const modalActive = useSelector(state => state.modal.active)
   const [addTdl, resultAddTdl] = useAddTdlMutation()

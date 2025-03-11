@@ -1,6 +1,9 @@
+import { useTranslation } from "../hooks/useTranslation"
 import { useSignGoogleMutation } from "../store/slices/apiSlice"
 
 export default function PrivateRoute() {
+    const lang = useTranslation()
+
     const [signGoogle, resultSignInGoogle] = useSignGoogleMutation()
 
     const logInGoogle = async () => {
@@ -10,7 +13,9 @@ export default function PrivateRoute() {
     return (
         <>
             <div className="site-section__inner site-section__private">
-                You must&nbsp;<button onClick={() => { logInGoogle() }}>sign in</button>&nbsp;to access this section
+                <span> {lang.youMust}&nbsp;</span>
+                <button onClick={() => { logInGoogle() }}>{lang.signIn}</button>
+                <span>&nbsp;{lang.toAccessThisSection}</span>
             </div>
         </>
     )

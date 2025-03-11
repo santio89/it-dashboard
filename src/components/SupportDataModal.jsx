@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { setModal } from '../store/slices/modalSlice'
 import { useAddSupportMutation, useDeleteSupportMutation, useEditSupportMutation } from '../store/slices/apiSlice'
-import { TRUE } from 'sass'
+import { useTranslation } from '../hooks/useTranslation'
 
 export default function SupportDataModal({ modalData }) {
+  const lang = useTranslation()
+
   const dispatch = useDispatch()
   const modalActive = useSelector(state => state.modal.active)
   const [addSupport, resultAddSupport] = useAddSupportMutation()

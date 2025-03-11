@@ -4,9 +4,11 @@ import { useDispatch } from "react-redux"
 import { setModal } from "../store/slices/modalSlice"
 import { useGetSupportQuery, useEditSupportMutation } from "../store/slices/apiSlice"
 import autoAnimate from "@formkit/auto-animate"
-import { AuthErrorCodes } from "firebase/auth"
+import { useTranslation } from "../hooks/useTranslation"
 
 export default function Support({ user }) {
+  const lang = useTranslation()
+
   const dispatch = useDispatch()
   const [sortList, setSortList] = useState(false)
   const [ticketOptions, setTicketOptions] = useState(null)

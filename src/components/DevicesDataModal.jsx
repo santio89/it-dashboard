@@ -183,7 +183,7 @@ export default function DevicesDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="name">{lang.name}</label></legend>
-                <input id='name' placeholder='Required' readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
+                <input id='name' placeholder={lang.required} readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
               </fieldset>
               <fieldset>
                 <legend><label htmlFor="type">{lang.type}</label></legend>
@@ -235,21 +235,21 @@ export default function DevicesDataModal({ modalData }) {
       {modalData?.deviceData && editMode &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>EDIT DEVICE</h2>
+            <h2>{lang.editDevice}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
               <div className="listPickerOptions">
-                <button title="Category: Personal" disabled={resultEditDevice.isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${resultEditDevice.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.personal}`} disabled={resultEditDevice.isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${resultEditDevice.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
-                  Personal
+                  {lang.personal}
                 </button>
-                <button title="Category: Company" disabled={resultEditDevice.isLoading} className={`listPicker ${newDeviceCategory === "company" && "selected"} ${resultEditDevice.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.company}`} disabled={resultEditDevice.isLoading} className={`listPicker ${newDeviceCategory === "company" && "selected"} ${resultEditDevice.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>
-                  Company
+                  {lang.company}
                 </button>
               </div>
             </div>
@@ -257,21 +257,21 @@ export default function DevicesDataModal({ modalData }) {
           <form autoComplete='off' className='mainModal__data__form editMode' disabled={resultEditDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editDeviceFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="editName">Name</label></legend>
-                <input id="editName" placeholder='Required' spellCheck={false} type="text" value={newDeviceName} onChange={e => setNewDeviceName(e.target.value)} maxLength={200} required />
+                <legend><label htmlFor="editName">{lang.name}</label></legend>
+                <input id="editName" placeholder={lang.required} spellCheck={false} type="text" value={newDeviceName} onChange={e => setNewDeviceName(e.target.value)} maxLength={200} required />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="editType">Type</label></legend>
+                <legend><label htmlFor="editType">{lang.type}</label></legend>
                 <input id="editType" spellCheck={false} type="text" value={newDeviceType} onChange={e => setNewDeviceType(e.target.value)} maxLength={200} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="editModel">Model</label></legend>
+                <legend><label htmlFor="editModel">{lang.model}</label></legend>
                 <input id="editModel" spellCheck={false} type="text" value={newDeviceModel} onChange={e => setNewDeviceModel(e.target.value)} maxLength={200} />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="editSn">Serial Number</label></legend>
+                <legend><label htmlFor="editSn">{lang.serialNumber}</label></legend>
                 <input id="editSn" spellCheck={false} type="text" value={newDeviceSn} onChange={e => setNewDeviceSn(e.target.value)} maxLength={200} />
               </fieldset>
             </div>
@@ -295,13 +295,13 @@ export default function DevicesDataModal({ modalData }) {
 
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="editComment">Comment</label></legend>
+                <legend><label htmlFor="editComment">{lang.comments}</label></legend>
                 <textarea id="editComment" spellCheck={false} rows="2" value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value)} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
-              <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
-              <button className='mainModal__send' onClick={trimInputs}>Confirm</button>
+              <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>{lang.cancel}</button>
+              <button className='mainModal__send' onClick={trimInputs}>{lang.confirm}</button>
             </div>
             {
               errorMsg &&
@@ -314,30 +314,30 @@ export default function DevicesDataModal({ modalData }) {
       {modalData?.deviceData && deleteMode &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>DELETE DEVICE</h2>
+            <h2>{lang.deleteDevice}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
-              <button title={`Category: ${modalData?.category === "personal" ? "Personal" : "Company"}`} tabIndex={-1} disabled={resultDeleteDevice.isLoading} className={`listPicker disabled selected`}>{modalData?.category === "personal" ? "Personal" : "Company"}</button>
+              <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} className={`listPicker disabled selected`} disabled={resultDeleteDevice.isLoading}>{lang[modalData?.category]}</button>
             </div>
           </div>
           <form autoComplete='off' className='mainModal__data__form deleteMode disabled' disabled={resultDeleteDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteDeviceFn(e, modalData)}>
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="deleteName">Name</label></legend>
-                <input id="deleteName" placeholder='Required' readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
+                <legend><label htmlFor="deleteName">{lang.name}</label></legend>
+                <input id="deleteName" placeholder={lang.required} readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="deleteType">Type</label></legend>
+                <legend><label htmlFor="deleteType">{lang.type}</label></legend>
                 <input id="deleteType" readOnly disabled spellCheck={false} type="text" value={modalData?.type || "-"} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="deleteModel">Model</label></legend>
+                <legend><label htmlFor="deleteModel">{lang.model}</label></legend>
                 <input id="deleteModel" readOnly disabled spellCheck={false} type="text" value={modalData?.model || "-"} />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="deleteSn">Serial Number</label></legend>
+                <legend><label htmlFor="deleteSn">{lang.serialNumber}</label></legend>
                 <input id="deleteSn" readOnly disabled spellCheck={false} type="text" value={modalData?.sn || "-"} />
               </fieldset>
             </div>
@@ -361,13 +361,13 @@ export default function DevicesDataModal({ modalData }) {
 
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="deleteComment">Comment</label></legend>
+                <legend><label htmlFor="deleteComment">{lang.comments}</label></legend>
                 <textarea id="deleteComment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comment || "-"} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
-              <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
-              <button className='mainModal__send' onClick={trimInputs}>Confirm</button>
+              <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>{lang.cancel}</button>
+              <button className='mainModal__send' onClick={trimInputs}>{lang.confirm}</button>
             </div>
           </form>
         </>
@@ -376,20 +376,20 @@ export default function DevicesDataModal({ modalData }) {
       {modalData?.newDevice &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>ADD DEVICE</h2>
+            <h2>{lang.addDevice}</h2>
             <div className="listPickerWrapper__btnContainer">
-              <div className="listPickerOptions">
-                <button title="Category: Personal" disabled={resultAddDevice.isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${resultAddDevice.isLoading && "disabled"}`}
+            <div className="listPickerOptions">
+                <button title={`${lang.category}: ${lang.personal}`} disabled={resultAddDevice.isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${resultAddDevice.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
-                  Personal
+                  {lang.personal}
                 </button>
-                <button title="Category: Company" disabled={resultAddDevice.isLoading} className={`listPicker ${newDeviceCategory === "company" && "selected"} ${resultAddDevice.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.company}`} disabled={resultAddDevice.isLoading} className={`listPicker ${newDeviceCategory === "company" && "selected"} ${resultAddDevice.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>
-                  Company
+                  {lang.company}
                 </button>
               </div>
             </div>
@@ -397,21 +397,21 @@ export default function DevicesDataModal({ modalData }) {
           <form autoComplete='off' className='mainModal__data__form' disabled={resultAddDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addDeviceFn(e)}>
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="addName">Name</label></legend>
-                <input id="addName" placeholder='Required' spellCheck={false} type="text" value={newDeviceName} onChange={e => setNewDeviceName(e.target.value)} maxLength={200} required />
+                <legend><label htmlFor="addName">{lang.name}</label></legend>
+                <input id="addName" placeholder={lang.required} spellCheck={false} type="text" value={newDeviceName} onChange={e => setNewDeviceName(e.target.value)} maxLength={200} required />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="addType">Type</label></legend>
+                <legend><label htmlFor="addType">{lang.type}</label></legend>
                 <input id="addType" spellCheck={false} type="text" value={newDeviceType} onChange={e => setNewDeviceType(e.target.value)} maxLength={200} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="addModel">Model</label></legend>
+                <legend><label htmlFor="addModel">{lang.model}</label></legend>
                 <input id="addModel" spellCheck={false} type="text" value={newDeviceModel} onChange={e => setNewDeviceModel(e.target.value)} maxLength={200} />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="addSn">Serial Number</label></legend>
+                <legend><label htmlFor="addSn">{lang.serialNumber}</label></legend>
                 <input id="addSn" spellCheck={false} type="text" value={newDeviceSn} onChange={e => setNewDeviceSn(e.target.value)} maxLength={200} />
               </fieldset>
             </div>
@@ -435,12 +435,12 @@ export default function DevicesDataModal({ modalData }) {
 
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="addComment">Comment</label></legend>
+                <legend><label htmlFor="addComment">{lang.comments}</label></legend>
                 <textarea id="addComment" spellCheck={false} rows="2" value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value)} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
-              <button className='mainModal__send' onClick={trimInputs}>Send</button>
+              <button className='mainModal__send' onClick={trimInputs}>{lang.send}</button>
             </div>
             {
               errorMsg &&
