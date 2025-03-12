@@ -2,6 +2,9 @@ import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
 import { collection, doc, getDocs, addDoc, deleteDoc, setDoc, query, where, serverTimestamp } from "firebase/firestore";
 import { firebaseDb as db, firebaseAuth, firebaseGoogleProvider, firebaseSetPersistance, firebaseBrowserLocalPersistence, firebaseSignInWithPopup, firebaseSignOut } from '../../config/firebase';
 import { toast } from 'sonner';
+import { useTranslation } from '../../hooks/useTranslation';
+
+
 
 export const apiSlice = createApi({
   /* reducerPath: 'api', */
@@ -491,7 +494,8 @@ export const apiSlice = createApi({
     getSupport: builder.query({
       async queryFn(userId) {
         if (!userId) { return }
-        if (userId === "admin") {
+        /* admin id */
+        if (userId === "iJ77XT0Cdsa0xti7gpUOC2JgBWH3") {
           try {
             const ref = collection(db, 'supportData');
             const querySnapshot = await getDocs(ref);
