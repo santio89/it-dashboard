@@ -5,6 +5,10 @@ const lang = {
     manageContacts: "Manage contacts",
     devices: "Devices",
     manageDevices: "Manage devices",
+    task: "Task",
+    addTask: "Add task",
+    editTask: "Edit task",
+    deleteTask: "Delete Task",
     tasks: "Tasks",
     manageTasks: "Manage tasks",
     support: "Support",
@@ -60,8 +64,17 @@ const lang = {
     signIn: "Sign in",
     youMust: "You must",
     toAccessThisSection: "To access this section",
-    user: "User"
-
+    user: "User",
+    addTicket: "Add ticket",
+    editTicket: "Edit ticket",
+    deleteTicket: "Delete ticker",
+    from: "From",
+    info: "Info",
+    author: "Author",
+    adminReply: "Admin reply",
+    title: "Title",
+    decription: "description",
+    ticketClosed: "Ticket closed"
   },
   esp: {
     home: "Inicio",
@@ -69,6 +82,10 @@ const lang = {
     manageContacts: "Gestionar contactos",
     devices: "Dispositivos",
     manageDevices: "Gestionar dispositivos",
+    task: "Tarea",
+    addTask: "Añadir tarea",
+    editTask: "Editar tarea",
+    deleteTask: "Eliminar Tarea",
     tasks: "Tareas",
     manageTasks: "Gestionar tareas",
     support: "Soporte",
@@ -124,7 +141,17 @@ const lang = {
     signIn: "Iniciar sesión",
     youMust: "Debes",
     toAccessThisSection: "Para acceder a esta sección",
-    user: "Usuario"
+    user: "Usuario",
+    addTicket: "Añadir ticket",
+    editTicket: "Editar ticket",
+    deleteTicket: "Eliminar ticker",
+    from: "De",
+    info: "Info",
+    author: "Autor",
+    adminReply: "Respuesta del admin",
+    title: "Título",
+    description: "Descripción",
+    ticketClosed: "Ticket cerrado"
 
   }
 }

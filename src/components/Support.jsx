@@ -93,11 +93,11 @@ export default function Support({ user }) {
         <div className="btnWrapper">
           <button disabled={isLoadingSupport} onClick={() => {
             dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", newTicket: true, userId: user?.uid, dataList: dataSupport, user: user } }))
-          }}>+ Add ticket</button>
+          }}>+ {lang.addTicket}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
-                <button disabled={isLoadingSupport} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
+                <button disabled={isLoadingSupport} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>{lang.filter}</button>
               }
               {
                 listPickerOpen &&
@@ -106,19 +106,19 @@ export default function Support({ user }) {
                     onClick={() => {
                       selectList("personal")
                     }}>
-                    Personal
+                    {lang.personal}
                   </button>
                   <button disabled={isLoadingSupport} className={`listPicker ${listSelected === "company" && "selected"}`}
                     onClick={() => {
                       selectList("company")
                     }}>
-                    Company
+                    {lang.company}
                   </button>
                   <button disabled={isLoadingSupport} className={`listPicker ${listSelected === "all" && "selected"}`}
                     onClick={() => {
                       selectList("all")
                     }}>
-                    All
+                    {lang.all}
                   </button>
                 </div>
               }
@@ -139,7 +139,7 @@ export default function Support({ user }) {
           </button>
         </div>
         {
-          isLoadingSupport ? <div className="loader">Loading...</div> :
+          isLoadingSupport ? <div className="loader">{lang.loading}...</div> :
             <div className="listWrapper">
               <ul className="support-list" ref={listContainer}>
                 {
@@ -159,7 +159,7 @@ export default function Support({ user }) {
                             editStatusFn(ticket)
                           }}>
                             {<>
-                              <span>Completed:</span>
+                              <span>{lang.completed}:</span>
                               <button>
                                 {ticket.status === "completed" ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-square" viewBox="0 0 16 16">
                                   <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
@@ -176,7 +176,7 @@ export default function Support({ user }) {
                           <div className={`tdl-optionsBtns`}>
                             {
                               /* open */
-                              <button disabled={ticket.id === "temp-id"} title={"Info"} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, user: user, ...ticket } })); setListPickerOpen(false) }}>
+                              <button disabled={ticket.id === "temp-id"} title={lang.info} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, user: user, ...ticket } })); setListPickerOpen(false) }}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
                                   <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                                 </svg>
@@ -192,7 +192,7 @@ export default function Support({ user }) {
                           {
                             ticketOptions === ticket.id ?
                               <>
-                                {user.domainAdmin && <div title={ticket.title} className='taskContentAuthor'>From: {ticket.author}</div>}
+                                {user.domainAdmin && <div title={ticket.title} className='taskContentAuthor'>{lang.from}: {ticket.author}</div>}
                                 <div className={`taskContentBtn ${ticketOptions !== ticket.id && ticket.priority === "low" && "selectedLow"} ${ticketOptions !== ticket.id && ticket.priority === "medium" && "selectedMedium"} ${ticketOptions !== ticket.id && ticket.priority === "high" && "selectedHigh"} ${ticketOptions === ticket.id && "taskOption"}`}>
                                   <span className="taskContentBtn__title">{ticket.title || "-"}</span>
                                   <span className="taskContentBtn__content">{ticket.content || "-"}</span>
@@ -202,7 +202,7 @@ export default function Support({ user }) {
                                 <button disabled={ticket.id === "temp-id"} title={ticket.title} className={`taskContentBtn ${ticketOptions !== ticket.id && ticket.priority === "low" && "selectedLow"} ${ticketOptions !== ticket.id && ticket.priority === "medium" && "selectedMedium"} ${ticketOptions !== ticket.id && ticket.priority === "high" && "selectedHigh"} ${ticketOptions === ticket.id && "taskOption"} ${ticket.status === "completed" && "taskCompleted"}`} onClick={() => {
                                   setTicketOptions(ticket.id);
                                 }} >
-                                  {user.domainAdmin && <span className="taskContentBtn__author">From: {ticket.author}</span>}
+                                  {user.domainAdmin && <span className="taskContentBtn__author">{lang.from}: {ticket.author}</span>}
                                   <span className="taskContentBtn__title">{ticket.title}</span>
                                 </button></>
                           }
@@ -212,7 +212,7 @@ export default function Support({ user }) {
                   )
                 }
                 {
-                  supportList?.length === 0 && <li className="no-data">No Data</li>
+                  supportList?.length === 0 && <li className="no-data">{lang.noData}</li>
                 }
               </ul>
             </div>
@@ -220,11 +220,11 @@ export default function Support({ user }) {
       </div>
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
-          <button disabled={isLoadingSupport}>Charts</button>
+          <button disabled={isLoadingSupport}>{lang.charts}</button>
         </div>
         <div className="chartWrapper">
           {
-            isLoadingSupport ? <div className="loader">Loading...</div> :
+            isLoadingSupport ? <div className="loader">{lang.loading}...</div> :
               <>
                 {/* <DataChart type={{ property: "category", items: "tickets" }} data={dataSupport} firstLoad={firstLoad} /> */}
                 {/* <DataChart type={{ property: "priority", items: "tickets" }} data={dataSupport} firstLoad={firstLoad} /> */}

@@ -55,7 +55,7 @@ export default function SupportDataModal({ modalData }) {
       localTime: Date.now(),
       priority: newTicketPriority,
       status: newTicketStatus,
-      reply: newTicketStatus === "completed" ? (newTicketReply === "" ? "Ticket closed" : newTicketReply) : "",
+      reply: newTicketStatus === "completed" ? (newTicketReply === "" ? lang.ticketClosed : newTicketReply) : "",
       author: modalData?.user.email,
       authorId: modalData?.user.uid
     }
@@ -89,7 +89,7 @@ export default function SupportDataModal({ modalData }) {
       return
     }
     if (newTicketStatus === "completed" && newTicketReply === "") {
-      setNewTicketReply("Ticket closed")
+      setNewTicketReply(lang.ticketClosed)
     }
 
     const input = newTicketDescription
@@ -97,7 +97,7 @@ export default function SupportDataModal({ modalData }) {
     const category = newTicketCategory
     const priority = newTicketPriority
     const status = newTicketStatus
-    const reply = newTicketStatus === "completed" ? (newTicketReply === "" ? "Ticket closed" : newTicketReply) : ""
+    const reply = newTicketStatus === "completed" ? (newTicketReply === "" ? lang.ticketClosed : newTicketReply) : ""
 
     if (input === ticket.content && (ticket.priority === (priority ?? ticket.priority)) && (ticket.category === (category ?? ticket.category)) && (ticket.title === (title ?? ticket.title)) && (ticket.status === (status ?? ticket.status)) && (ticket.reply === (reply ?? ticket.reply))) {
       dispatch(setModal({ active: false, data: {} }))
@@ -161,10 +161,10 @@ export default function SupportDataModal({ modalData }) {
         modalData?.supportData && !editMode && !deleteMode &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>TICKET</h2>
+            <h2>{lang.ticket}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
-              <button title={`Author: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
+              <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
             </div>
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer disabled'>
@@ -179,12 +179,12 @@ export default function SupportDataModal({ modalData }) {
                 </button>
               </div> */}
               <div className={`taskOpenData`}>
-                <div>Status:&nbsp;</div>
+                <div>{lang.status}:&nbsp;</div>
                 <button tabIndex={-1} type='button' disabled className={`tdl-priority selected`}>
-                  {modalData?.status}
+                  {lang[modalData?.status]}
                 </button>
               </div>
-              {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;Admin reply</span></button>}
+              {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{lang.adminReply}</span></button>}
               {
                 modalData?.status === "completed" && showReply &&
                 <div className='taskReply'>
@@ -193,18 +193,18 @@ export default function SupportDataModal({ modalData }) {
               }
             </div>
             <fieldset>
-              <legend><label htmlFor="title">Title</label></legend>
+              <legend><label htmlFor="title">{lang.title}</label></legend>
               <textarea id="deleteTitle" placeholder='Required' required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
             </fieldset>
             <fieldset>
-              <legend><label htmlFor="description">Description</label></legend>
+              <legend><label htmlFor="description">{lang.description}</label></legend>
               <textarea id="description" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.content || "-"} />
             </fieldset>
 
             {modalData?.user.domainAdmin &&
               <div className='mainModal__btnContainer'>
-                <button type='button' className='mainModal__send' onClick={() => editModeFN()}>Edit</button>
-                <button type='button' className='mainModal__send' onClick={() => setDeleteMode(true)}>Delete</button>
+                <button type='button' className='mainModal__send' onClick={() => editModeFN()}>{lang.edit}</button>
+                <button type='button' className='mainModal__send' onClick={() => setDeleteMode(true)}>{lang.delete}</button>
               </div>
             }
 
@@ -216,10 +216,10 @@ export default function SupportDataModal({ modalData }) {
         modalData?.supportData && editMode &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>EDIT TICKET</h2>
+            <h2>{lang.editTicket}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
-              <button title={`Author: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
+              <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
             </div>
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer editMode' disabled={resultEditSupport.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
@@ -246,34 +246,34 @@ export default function SupportDataModal({ modalData }) {
                 </button>
               </div> */}
               <div className={`taskOpenData`}>
-                <div>Status:&nbsp;</div>
+                <div>{lang.status}:&nbsp;</div>
                 <button type='button' onClick={() => setNewTicketStatus("pending")} className={`tdl-priority ${newTicketStatus === "pending" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
-                  Pending
+                  {lang.pending}
                 </button>
                 <button type='button' onClick={() => setNewTicketStatus("completed")} className={`tdl-priority ${newTicketStatus === "completed" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
-                  Completed
+                  {lang.completed}
                 </button>
               </div>
-              {newTicketStatus === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;Admin reply</span></button>}
+              {newTicketStatus === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{lang.adminReply}</span></button>}
               {
                 newTicketStatus === "completed" && showReply &&
                 <div className='taskReply'>
-                  <textarea id="addReply" placeholder='Ticket closed' spellCheck={false} rows="1" value={newTicketReply} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} className='taskOpenTitle' />
+                  <textarea id="addReply" placeholder={lang.ticketClosed} spellCheck={false} rows="1" value={newTicketReply} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} className='taskOpenTitle' />
                 </div>
               }
             </div>
             <fieldset>
-              <legend><label htmlFor="editTitle">Title</label></legend>
+              <legend><label htmlFor="editTitle">{lang.title}</label></legend>
               <textarea id="editTitle" placeholder='Required' required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
-              <legend><label htmlFor="editDescription">Description</label></legend>
+              <legend><label htmlFor="editDescription">{lang.description}</label></legend>
               <textarea id="editDescription" spellCheck={false} rows="4" value={newTicketDescription} onChange={e => setNewTicketDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
 
             </fieldset>
             <div className='mainModal__btnContainer'>
-              <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>Cancel</button>
-              <button className='mainModal__send' onClick={trimInputs}>Confirm</button>
+              <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>{lang.cancel}</button>
+              <button className='mainModal__send' onClick={trimInputs}>{lang.confirm}</button>
             </div>
           </form>
         </>
@@ -283,10 +283,10 @@ export default function SupportDataModal({ modalData }) {
         modalData?.supportData && deleteMode &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>DELETE TICKET</h2>
+            <h2>{lang.deleteTicket}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
-              <button title={`Author: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
+              <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
             </div>
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteSupport.isLoading} onSubmit={(e) => deleteSupportFn(e, modalData)}>
@@ -301,12 +301,12 @@ export default function SupportDataModal({ modalData }) {
                 </button>
               </div> */}
               <div className={`taskOpenData`}>
-                <div>Status:&nbsp;</div>
+                <div>{lang.status}:&nbsp;</div>
                 <button tabIndex={-1} type='button' disabled className={`tdl-priority selected`}>
-                  {modalData?.status}
+                  {lang[modalData?.status]}
                 </button>
               </div>
-              {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;Admin reply</span></button>}
+              {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{lang.adminReply}</span></button>}
               {
                 modalData?.status === "completed" && showReply &&
                 <div className='taskReply'>
@@ -315,16 +315,16 @@ export default function SupportDataModal({ modalData }) {
               }
             </div>
             <fieldset>
-              <legend><label htmlFor="deleteTitle">Title</label></legend>
+              <legend><label htmlFor="deleteTitle">{lang.title}</label></legend>
               <textarea id="deleteTitle" placeholder='Required' required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
             </fieldset>
             <fieldset>
-              <legend><label htmlFor="deleteDescription">Description</label></legend>
+              <legend><label htmlFor="deleteDescription">{lang.description}</label></legend>
               <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="4" className='taskOpenContent' value={modalData?.content || "-"} />
             </fieldset>
             <div className='mainModal__btnContainer'>
-              <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>Cancel</button>
-              <button className='mainModal__send' onClick={trimInputs}>Confirm</button>
+              <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>{lang.cancel}</button>
+              <button className='mainModal__send' onClick={trimInputs}>{lang.confirm}</button>
             </div>
           </form>
         </>
@@ -333,9 +333,9 @@ export default function SupportDataModal({ modalData }) {
         modalData?.newTicket &&
         <>
           <div className="mainModal__titleContainer">
-            <h2>ADD TICKET</h2>
+            <h2>{lang.addTicket}</h2>
             <div className="listPickerWrapper__btnContainer">
-              <button title={`Author: ${modalData?.user.email}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.user.email}</button>
+              <button title={`${lang.author}: ${modalData?.user.email}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.user.email}</button>
             </div>
           </div>
           <form autoCapitalize='off' disabled={resultAddSupport.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addSupportFn(e)}>
@@ -363,33 +363,33 @@ export default function SupportDataModal({ modalData }) {
                   </button>
                 </div> */}
                 <div className={`taskOpenData`}>
-                  <div>Status:&nbsp;</div>
+                  <div>{lang.status}:&nbsp;</div>
                   <button type='button' onClick={() => setNewTicketStatus("pending")} className={`tdl-priority ${newTicketStatus === "pending" && "selected"} ${resultAddSupport.isLoading && "disabled"}`}>
-                    Pending
+                    {lang.pending}
                   </button>
                   <button type='button' onClick={() => setNewTicketStatus("completed")} className={`tdl-priority ${newTicketStatus === "completed" && "selected"}  ${resultAddSupport.isLoading && "disabled"}`}>
-                    Completed
+                    {lang.completed}
                   </button>
                 </div>
-                {newTicketStatus === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;Admin reply</span></button>}
+                {newTicketStatus === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{lang.adminReply}</span></button>}
                 {
                   newTicketStatus === "completed" && showReply &&
                   <div className='taskReply'>
-                    <textarea id="addReply" placeholder='Ticket closed' spellCheck={false} rows="1" value={newTicketReply} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} className='taskOpenTitle' />
+                    <textarea id="addReply" placeholder={lang.ticketClosed} spellCheck={false} rows="1" value={newTicketReply} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} className='taskOpenTitle' />
                   </div>
                 }
               </div>
             }
             <fieldset>
-              <legend><label htmlFor="addTitle">Title</label></legend>
+              <legend><label htmlFor="addTitle">{lang.title}</label></legend>
               <textarea id="addTitle" placeholder='Required' required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
-              <legend><label htmlFor="addDescription">Description</label></legend>
+              <legend><label htmlFor="addDescription">{lang.description}</label></legend>
               <textarea id="addDescription" spellCheck={false} rows="4" value={newTicketDescription} onChange={e => setNewTicketDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
             </fieldset>
             <div className='mainModal__btnContainer'>
-              <button className='mainModal__send' onClick={trimInputs}>Send</button>
+              <button className='mainModal__send' onClick={trimInputs}>{lang.send}</button>
             </div>
           </form>
         </>

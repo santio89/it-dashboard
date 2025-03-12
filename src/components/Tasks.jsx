@@ -98,11 +98,11 @@ export default function Tasks({ user }) {
           <button disabled={isLoadingTasks} onClick={() => {
             dispatch(setModal({ active: true, data: { modalType: "TasksDataModal", newTask: true, userId: user?.uid } }))
             setListPickerOpen(false)
-          }}>+ Add task</button>
+          }}>+ {lang.addTask}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
-                <button disabled={isLoadingTasks} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>Filter</button>
+                <button disabled={isLoadingTasks} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>{lang.filter}</button>
               }
               {
                 listPickerOpen &&
@@ -111,19 +111,19 @@ export default function Tasks({ user }) {
                     onClick={() => {
                       selectList("personal")
                     }}>
-                    Personal
+                    {lang.personal}
                   </button>
                   <button disabled={isLoadingTasks} className={`listPicker ${listSelected === "company" && "selected"}`}
                     onClick={() => {
                       selectList("company")
                     }}>
-                    Company
+                    {lang.company}
                   </button>
                   <button disabled={isLoadingTasks} className={`listPicker ${listSelected === "all" && "selected"}`}
                     onClick={() => {
                       selectList("all")
                     }}>
-                    All
+                    {lang.all}
                   </button>
                 </div>
               }
@@ -144,7 +144,7 @@ export default function Tasks({ user }) {
           </button>
         </div>
         {
-          isLoadingTasks ? <div className="loader">Loading...</div> :
+          isLoadingTasks ? <div className="loader">{lang.loading}...</div> :
             <div className="listWrapper">
               <ul className='tdl-list' ref={listContainer}>
                 {
@@ -157,13 +157,13 @@ export default function Tasks({ user }) {
                           setTaskOptions(null)
                         }}>
                           {/* task status */}
-                          <div className={`tdl-itemData`} title={`Status: ${task.status ?? "pending"}`} onClick={(e) => {
+                          <div className={`tdl-itemData`} title={`${lang.status}: ${lang[task.status] ?? lang.pending}`} onClick={(e) => {
                             e.stopPropagation();
                             if (task.id === "temp-id") return
                             editStatusFn(task)
                           }}>
                             {<>
-                              <span>Completed:</span>
+                              <span>{lang.completed}:</span>
                               <button>
                                 {task.status === "completed" ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-square" viewBox="0 0 16 16">
                                   <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
@@ -180,7 +180,7 @@ export default function Tasks({ user }) {
                           <div className={`tdl-optionsBtns`}>
                             {
                               /* open */
-                              <button disabled={task.id === "temp-id"} title={"Info"} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "TasksDataModal", tasksData: true, ...task } })); setListPickerOpen(false) }}>
+                              <button disabled={task.id === "temp-id"} title={lang.info} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "TasksDataModal", tasksData: true, ...task } })); setListPickerOpen(false) }}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
                                   <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                                 </svg>
@@ -213,7 +213,7 @@ export default function Tasks({ user }) {
                     </li>)
                 }
                 {
-                  tasksList?.length === 0 && <li className="no-data">No Data</li>
+                  tasksList?.length === 0 && <li className="no-data">{lang.noData}</li>
                 }
               </ul>
             </div>
@@ -221,11 +221,11 @@ export default function Tasks({ user }) {
       </div >
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
-          <button disabled={isLoadingTasks}>Charts</button>
+          <button disabled={isLoadingTasks}>{lang.charts}</button>
         </div>
         <div className="chartWrapper">
           {
-            isLoadingTasks ? <div className="loader">Loading...</div> :
+            isLoadingTasks ? <div className="loader">{lang.loading}...</div> :
               <>
                 <DataChart type={{ property: "category", items: "tasks" }} data={dataTasks} firstLoad={firstLoad} />
                 <DataChart type={{ property: "status", items: "tasks" }} data={dataTasks} firstLoad={firstLoad} />
