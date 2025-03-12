@@ -31,7 +31,7 @@ export default function Support({ user }) {
     isSuccess: isSuccessSupport,
     isError: isErrorSupport,
     error: errorSupport,
-  } = useGetSupportQuery(/*user.domainAdmin ? "admin" :*/user.uid);
+  } = useGetSupportQuery(user.domainAdmin ? "admin" : user.uid);
 
   const selectList = list => {
     setListSelected(list)

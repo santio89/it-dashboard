@@ -495,7 +495,7 @@ export const apiSlice = createApi({
       async queryFn(userId) {
         if (!userId) { return }
         /* admin id */
-        if (userId === "iJ77XT0Cdsa0xti7gpUOC2JgBWH3") {
+        if (userId === "admin") {
           try {
             const ref = collection(db, 'supportData');
             const querySnapshot = await getDocs(ref);
@@ -600,7 +600,7 @@ export const apiSlice = createApi({
       invalidatesTags: ['support'],
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
-          apiSlice.util.updateQueryData('getSupport', ticket.userId, draft => {
+          apiSlice.util.updateQueryData('getSupport', /* ticket.userId */"admin", draft => {
             return draft.filter(t => t.id !== ticket.id);
           })
         );
@@ -644,7 +644,7 @@ export const apiSlice = createApi({
       invalidatesTags: ['support'],
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
-          apiSlice.util.updateQueryData('getSupport', ticket.userId, draft => {
+          apiSlice.util.updateQueryData('getSupport', /* ticket.userId */"admin", draft => {
             const index = draft.findIndex(t => t.id === ticket.id);
             if (index !== -1) {
               draft[index] = { ...ticket, updatedAt: new Date().toISOString() };
