@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   light: false,
   sideExpanded: false,
-  lang: "esp"
+  lang: "eng"
 }
 
 const themeSlice = createSlice({
