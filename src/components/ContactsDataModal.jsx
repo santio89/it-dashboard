@@ -175,7 +175,7 @@ export default function ContactsDataModal({ modalData }) {
             <h2>{lang.contact}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
-              <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} className={`listPicker disabled selected`} >{lang[modalData?.category]}</button>
+              <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} className={`listPicker disabled selected`}>{lang[modalData?.category]}</button>
             </div>
           </div>
           <form autoComplete='off' className='mainModal__data__form disabled'>
@@ -318,7 +318,6 @@ export default function ContactsDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>{lang.deleteContact}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
-
             <div className="listPickerWrapper__btnContainer deleteMode">
               <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} className={`listPicker disabled selected`} disabled={resultDeleteContact.isLoading}>{lang[modalData?.category]}</button>
             </div>
