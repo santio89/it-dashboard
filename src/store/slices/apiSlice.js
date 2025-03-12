@@ -39,23 +39,6 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          /*  toast.promise(
-             addDoc(collection(db, "authUsersData", contact.userId, "contacts"), {
-               ...contact,
-               createdAt: serverTimestamp(),
-               updatedAt: serverTimestamp()
-             }),
-             {
-               loading: 'Adding contact...',
-               success: (data) => {
-                 res = data;
-                 console.log(res)
-                 return `Contact added`;
-               },
-               error: 'Connection error: rolling back changes',
-             }
-           ); */
-
           toast.message('Contact added', {
             description: `ID: ${res.id}`,
           });
@@ -495,7 +478,7 @@ export const apiSlice = createApi({
       async queryFn(userId) {
         if (!userId) { return }
         /* admin id */
-        if (userId === "admin") {
+        if (userId === "iJ77XT0Cdsa0xti7gpUOC2JgBWH3" /* admin */) {
           try {
             const ref = collection(db, 'supportData');
             const querySnapshot = await getDocs(ref);
@@ -557,6 +540,7 @@ export const apiSlice = createApi({
         }
       },
       invalidatesTags: ['support'],
+      /* optimistic updates for ticket.userId */
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getSupport', ticket.userId, draft => {
@@ -598,9 +582,10 @@ export const apiSlice = createApi({
         }
       },
       invalidatesTags: ['support'],
+      /* optimistic updates for admin id */
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
-          apiSlice.util.updateQueryData('getSupport', /* ticket.userId */"admin", draft => {
+          apiSlice.util.updateQueryData('getSupport', /* ticket.userId */"iJ77XT0Cdsa0xti7gpUOC2JgBWH3", draft => {
             return draft.filter(t => t.id !== ticket.id);
           })
         );
@@ -642,9 +627,10 @@ export const apiSlice = createApi({
         }
       },
       invalidatesTags: ['support'],
+      /* optimistic updates for admin id */
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
-          apiSlice.util.updateQueryData('getSupport', /* ticket.userId */"admin", draft => {
+          apiSlice.util.updateQueryData('getSupport', /* ticket.userId */"iJ77XT0Cdsa0xti7gpUOC2JgBWH3", draft => {
             const index = draft.findIndex(t => t.id === ticket.id);
             if (index !== -1) {
               draft[index] = { ...ticket, updatedAt: new Date().toISOString() };
