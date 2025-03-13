@@ -152,8 +152,6 @@ export default function SupportDataModal({ modalData }) {
       toast.message(lang.ticketEdited, {
         description: `ID: ${res.data.id}`,
       });
-
-
     } catch {
       toast(lang.errorPerformingRequest)
     }

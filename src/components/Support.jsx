@@ -46,7 +46,15 @@ export default function Support({ user }) {
 
     const newTicket = { ...ticket, status: ticket.status === "completed" ? "pending" : "completed", reply: ticket.status === "completed" ? "" : "Ticket closed" }
 
-    await editSupport(newTicket)
+    try {
+      toast(`${lang.editingTicket}...`)
+      const res = await editSupport(newTicket)
+      toast.message(lang.ticketEdited, {
+        description: `ID: ${res.data.id}`,
+      });
+    } catch {
+      toast(lang.errorPerformingRequest)
+    }
   }
 
   /* order */
