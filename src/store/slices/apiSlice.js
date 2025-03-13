@@ -2,8 +2,6 @@ import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
 import { collection, doc, getDocs, addDoc, deleteDoc, setDoc, query, where, serverTimestamp } from "firebase/firestore";
 import { firebaseDb as db, firebaseAuth, firebaseGoogleProvider, firebaseSetPersistance, firebaseBrowserLocalPersistence, firebaseSignInWithPopup, firebaseSignOut } from '../../config/firebase';
 import { toast } from 'sonner';
-import { useTranslation } from '../../hooks/useTranslation';
-
 
 
 export const apiSlice = createApi({
@@ -39,9 +37,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          toast.message('Contact added', {
+          /* toast.message('Contact added', {
             description: `ID: ${res.id}`,
-          });
+          }); */
 
           return {
             data: {
@@ -65,7 +63,7 @@ export const apiSlice = createApi({
         );
 
 
-        toast('Adding contact...')
+        /* toast('Adding contact...') */
 
         try {
           await queryFulfilled;

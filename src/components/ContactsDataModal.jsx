@@ -4,6 +4,7 @@ import { setModal } from '../store/slices/modalSlice';
 import { useAddContactMutation, useDeleteContactMutation, useEditContactMutation } from '../store/slices/apiSlice';
 import { objectEquality } from '../utils/objectEquality';
 import { useTranslation } from '../hooks/useTranslation'
+import { toast } from "sonner";
 
 export default function ContactsDataModal({ modalData }) {
   const lang = useTranslation()
@@ -56,7 +57,7 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
-    const user = {
+    const contact = {
       name: newUserName,
       email: newUserEmail,
       tel: newUserTel,
@@ -64,11 +65,25 @@ export default function ContactsDataModal({ modalData }) {
       comment: newUserComment,
       category: newUserCategory,
       localId: crypto.randomUUID(),
-      localTime: Date.now()
+      localTime: Date.now(),
+      userId: modalData.userId
     }
 
     dispatch(setModal({ active: false, data: {} }))
-    await addContact({ ...user, userId: modalData.userId })
+
+    try {
+      toast(`${lang.addingContact}...`)
+
+      const res = await addContact(contact)
+   
+      toast.message(lang.contactAdded, {
+        description: `ID: ${res.data.id}`,
+      });
+
+    } catch {
+      toast(lang.errorPerformingRequest)
+    }
+
   }
 
   const deleteUserFn = async (e, contact) => {
