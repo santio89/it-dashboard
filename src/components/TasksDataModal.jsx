@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { setModal } from '../store/slices/modalSlice'
 import { useAddTdlMutation, useDeleteTdlMutation, useEditTdlMutation } from '../store/slices/apiSlice'
 import { useTranslation } from '../hooks/useTranslation'
+import { toast } from 'sonner'
 
 export default function TasksDataModal({ modalData }) {
   const lang = useTranslation()
@@ -55,12 +56,46 @@ export default function TasksDataModal({ modalData }) {
     }
 
     dispatch(setModal({ active: false, data: {} }))
-    await addTdl({ ...task, userId: modalData.userId, })
+
+    try {
+      toast(`${lang.addingTask}...`)
+      const res = await addTdl({ ...task, userId: modalData.userId, })
+      toast.message(lang.taskAdded, {
+        description: `ID: ${res.data.id}`,
+      });
+    } catch {
+      toast(lang.errorPerformingRequest)
+    }
+
 
     /* timeout-refetch */
     /* setTimeout(() => {
       dispatch(setModal({ active: false, data: {} }))
     }, 400) */
+  }
+
+  const deleteTdlFn = async (e, task) => {
+    e.preventDefault()
+
+    if (resultDeleteTdl.isLoading) {
+      return
+    }
+
+    dispatch(setModal({ active: false, data: {} }))
+
+    try {
+      toast(`${lang.deletingTask}...`)
+      await deleteTdl(task)
+      toast.message(lang.taskDeleted, {
+        description: `ID: ${task.id}`,
+      });
+    } catch {
+      toast(lang.errorPerformingRequest)
+    }
+    /* timeout-refetch */
+    /*  setTimeout(() => {
+       dispatch(setModal({ active: false, data: {} }))
+     }, 400) */
   }
 
   const editModeFN = () => {
@@ -99,24 +134,17 @@ export default function TasksDataModal({ modalData }) {
     const newTask = { ...trimTask, title: title ?? task.title, content: input, category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
 
     dispatch(setModal({ active: false, data: {} }))
-    await editTdl(newTask)
 
-    /* timeout-refetch */
-    /*  setTimeout(() => {
-       dispatch(setModal({ active: false, data: {} }))
-     }, 400) */
-  }
-
-
-  const deleteTdlFn = async (e, task) => {
-    e.preventDefault()
-
-    if (resultDeleteTdl.isLoading) {
-      return
+    try {
+      toast(`${lang.editingTask}...`)
+      const res = await editTdl(newTask)
+      toast.message(lang.taskEdited, {
+        description: `ID: ${res.data.id}`,
+      });
+    } catch {
+      toast(lang.errorPerformingRequest)
     }
 
-    dispatch(setModal({ active: false, data: {} }))
-    await deleteTdl(task)
 
     /* timeout-refetch */
     /*  setTimeout(() => {

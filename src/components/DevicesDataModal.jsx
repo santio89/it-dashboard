@@ -4,6 +4,7 @@ import { setModal } from '../store/slices/modalSlice';
 import { useAddDeviceMutation, useDeleteDeviceMutation, useEditDeviceMutation } from '../store/slices/apiSlice';
 import { objectEquality } from '../utils/objectEquality';
 import { useTranslation } from '../hooks/useTranslation'
+import { toast } from 'sonner';
 
 export default function DevicesDataModal({ modalData }) {
   const lang = useTranslation()
@@ -68,7 +69,17 @@ export default function DevicesDataModal({ modalData }) {
     }
 
     dispatch(setModal({ active: false, data: {} }))
-    await addDevice({ ...device, userId: modalData.userId })
+
+    try {
+      toast(`${lang.addingDevice}...`)
+      const res = await addDevice({ ...device, userId: modalData.userId })
+      toast.message(lang.deviceAdded, {
+        description: `ID: ${res.data.id}`,
+      });
+    } catch {
+      toast(lang.errorPerformingRequest)
+    }
+
   }
 
   const deleteDeviceFn = async (e, device) => {
@@ -79,7 +90,16 @@ export default function DevicesDataModal({ modalData }) {
     }
 
     dispatch(setModal({ active: false, data: {} }))
-    await deleteDevice(device)
+
+    try {
+      toast(`${lang.deletingDevice}...`)
+      const res = await deleteDevice(device)
+      toast.message(lang.deviceDeleted, {
+        description: `ID: ${res.data.id}`,
+      });
+    } catch {
+      toast(lang.errorPerformingRequest)
+    }
   }
 
   const editModeFN = () => {
@@ -129,7 +149,16 @@ export default function DevicesDataModal({ modalData }) {
       return
     } else {
       dispatch(setModal({ active: false, data: {} }))
-      await editDevice({ ...newDevice, userId: modalData.userId })
+
+      try {
+        toast(`${lang.editingDevice}...`)
+        const res = await editDevice({ ...newDevice, userId: modalData.userId })
+        toast.message(lang.deviceEdited, {
+          description: `ID: ${res.data.id}`,
+        });
+      } catch {
+        toast(lang.errorPerformingRequest)
+      }
     }
   }
 
@@ -378,7 +407,7 @@ export default function DevicesDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>{lang.addDevice}</h2>
             <div className="listPickerWrapper__btnContainer">
-            <div className="listPickerOptions">
+              <div className="listPickerOptions">
                 <button title={`${lang.category}: ${lang.personal}`} disabled={resultAddDevice.isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${resultAddDevice.isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")

@@ -80,7 +80,7 @@ const lang = {
     deletingContact: "Deleting contact",
     contactDeleted: "Contact deleted",
     editingContact: "Editing contact",
-    ContactEdited: "Contact edited",
+    contactEdited: "Contact edited",
     addingDevice: "Adding device",
     deviceAdded: "Device added",
     deletingDevice: "Deleting device",
@@ -98,7 +98,9 @@ const lang = {
     deletingTicket: "Deleting ticket",
     ticketDeleted: "Ticket deleted",
     editingTicket: "Editing ticket",
-    ticketEdited: "Ticket edited"
+    ticketEdited: "Ticket edited",
+    connectionError: "Connection error",
+    rollingBackChanges: "Rolling back changes"
 
   },
   esp: {
@@ -177,13 +179,12 @@ const lang = {
     description: "Descripción",
     ticketClosed: "Ticket cerrado",
     errorPerformingRequest: "Error realizando solicitud",
-
     addingContact: "Añadiendo contacto",
     contactAdded: "Contacto añadido",
     deletingContact: "Eliminando contacto",
     contactDeleted: "Contacto eliminado",
     editingContact: "Editando contacto",
-    ContactEdited: "Contacto editado",
+    contactEdited: "Contacto editado",
     addingDevice: "Añadiendo dispostivo",
     deviceAdded: "Dispostivo añadido",
     deletingDevice: "Eliminando dispositivo",
@@ -201,7 +202,9 @@ const lang = {
     deletingTicket: "Eliminando ticket",
     ticketDeleted: "Ticket eliminado",
     editingTicket: "Editando ticket",
-    ticketEdited: "Ticket editado"
+    ticketEdited: "Ticket editado",
+    connectionError: "Error de conexión",
+    rollingBackChanges: "Revirtiendo cambios"
 
   }
 }

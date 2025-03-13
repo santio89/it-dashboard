@@ -73,9 +73,7 @@ export default function ContactsDataModal({ modalData }) {
 
     try {
       toast(`${lang.addingContact}...`)
-
       const res = await addContact(contact)
-   
       toast.message(lang.contactAdded, {
         description: `ID: ${res.data.id}`,
       });
@@ -94,7 +92,16 @@ export default function ContactsDataModal({ modalData }) {
     }
 
     dispatch(setModal({ active: false, data: {} }))
-    await deleteContact(contact)
+
+    try {
+      toast(`${lang.deletingContact}...`)
+      const res = await deleteContact(contact)
+      toast.message(lang.contactDeleted, {
+        description: `ID: ${res.data.id}`,
+      });
+    } catch {
+      toast(lang.errorPerformingRequest)
+    }
   }
 
   const editModeFN = () => {
@@ -145,7 +152,17 @@ export default function ContactsDataModal({ modalData }) {
       return
     } else {
       dispatch(setModal({ active: false, data: {} }))
-      await editContact({ ...newUser, userId: modalData.userId })
+
+      try {
+        toast(`${lang.editingContact}...`)
+        await editContact({ ...newUser, userId: modalData.userId })
+        toast.message(lang.contactEdited, {
+          description: `ID: ${contact.id}`,
+        });
+      } catch {
+        toast(lang.errorPerformingRequest)
+      }
+
     }
   }
 

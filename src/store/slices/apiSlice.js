@@ -78,9 +78,9 @@ export const apiSlice = createApi({
           const docRef = doc(collection(db, "authUsersData", contact.userId, "contacts"), contact.id);
           await deleteDoc(docRef);
 
-          toast.message('Contact deleted', {
+          /* toast.message('Contact deleted', {
             description: `ID: ${contact.id}`,
-          });
+          }); */
 
           return {
             data: {
@@ -101,14 +101,14 @@ export const apiSlice = createApi({
           })
         );
 
-        toast('Deleting contact...')
+        /* toast('Deleting contact...') */
 
         try {
           await queryFulfilled;
         } catch {
-          toast.message('Connection error', {
+          /* toast.message('Connection error', {
             description: `Rolling back changes`,
-          });
+          }); */
           patchResult.undo();
         }
       }
@@ -122,9 +122,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          toast.message('Contact edited', {
+          /* toast.message('Contact edited', {
             description: `ID: ${contact.id}`,
-          });
+          }); */
 
           return {
             data: {
@@ -148,14 +148,14 @@ export const apiSlice = createApi({
           })
         );
 
-        toast('Editing contact...')
+        /* toast('Editing contact...') */
 
         try {
           await queryFulfilled;
         } catch {
-          toast.message('Connection error', {
+          /* toast.message('Connection error', {
             description: `Rolling back changes`,
-          });
+          }); */
           patchResult.undo();
         }
       }
@@ -190,9 +190,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          toast.message('Device added', {
+          /* toast.message('Device added', {
             description: `ID: ${res.id}`,
-          });
+          }); */
 
           return {
             data: {
@@ -215,14 +215,14 @@ export const apiSlice = createApi({
           })
         );
 
-        toast('Adding device...')
+        /* toast('Adding device...') */
 
         try {
           await queryFulfilled;
         } catch {
-          toast.message('Connection error', {
+          /* toast.message('Connection error', {
             description: `Rolling back changes`,
-          });
+          }); */
           patchResult.undo();
         }
       }
@@ -233,9 +233,9 @@ export const apiSlice = createApi({
           const docRef = doc(collection(db, "authUsersData", device.userId, "devices"), device.id);
           await deleteDoc(docRef);
 
-          toast.message('Device deleted', {
-            description: `ID: ${device.id}`,
-          });
+          /*           toast.message('Device deleted', {
+                      description: `ID: ${device.id}`,
+                    }); */
 
           return {
             data: {
@@ -256,14 +256,14 @@ export const apiSlice = createApi({
           })
         );
 
-        toast('Deleting device...')
+        /* toast('Deleting device...') */
 
         try {
           await queryFulfilled;
         } catch {
-          toast.message('Connection error', {
+          /* toast.message('Connection error', {
             description: `Rolling back changes`,
-          });
+          }); */
           patchResult.undo();
         }
       }
@@ -277,9 +277,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          toast.message('Device edited', {
-            description: `ID: ${device.id}`,
-          });
+          /*       toast.message('Device edited', {
+                  description: `ID: ${device.id}`,
+                }); */
 
           return {
             data: {
@@ -303,14 +303,14 @@ export const apiSlice = createApi({
           })
         );
 
-        toast('Editing device...')
+        /* toast('Editing device...') */
 
         try {
           await queryFulfilled;
         } catch {
-          toast.message('Connection error', {
+          /* toast.message('Connection error', {
             description: `Rolling back changes`,
-          });
+          }); */
           patchResult.undo();
         }
       }
@@ -345,9 +345,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          toast.message('Task added', {
+          /* toast.message('Task added', {
             description: `ID: ${res.id}`,
-          });
+          }); */
 
           return {
             data: {
@@ -370,14 +370,14 @@ export const apiSlice = createApi({
           })
         );
 
-        toast('Adding task...')
+        /* toast('Adding task...') */
 
         try {
           await queryFulfilled;
         } catch {
-          toast.message('Connection error', {
+          /* toast.message('Connection error', {
             description: `Rolling back changes`,
-          });
+          }); */
           patchResult.undo();
         }
       }
@@ -388,9 +388,9 @@ export const apiSlice = createApi({
           const docRef = doc(collection(db, "authUsersData", task.userId, "tdl"), task.id);
           await deleteDoc(docRef);
 
-          toast.message('Task deleted', {
+          /* toast.message('Task deleted', {
             description: `ID: ${task.id}`,
-          });
+          }); */
 
           return {
             data: {
@@ -411,14 +411,14 @@ export const apiSlice = createApi({
           })
         );
 
-        toast('Deleting task...')
+        /* toast('Deleting task...')*/
 
         try {
           await queryFulfilled;
         } catch {
-          toast.message('Connection error', {
+          /* toast.message('Connection error', {
             description: `Rolling back changes`,
-          });
+          }); */
           patchResult.undo();
         }
       }
@@ -432,9 +432,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          toast.message('Task edited', {
+          /* toast.message('Task edited', {
             description: `ID: ${task.id}`,
-          });
+          }); */
 
           return {
             data: {
@@ -458,14 +458,14 @@ export const apiSlice = createApi({
           })
         );
 
-        toast('Editing task...')
+        /* toast('Editing task...') */
 
         try {
           await queryFulfilled;
         } catch {
-          toast.message('Connection error', {
+          /* toast.message('Connection error', {
             description: `Rolling back changes`,
-          });
+          }); */
           patchResult.undo();
         }
       }
@@ -520,9 +520,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          toast.message('Ticket added', {
+          /* toast.message('Ticket added', {
             description: `ID: ${res.id}`,
-          });
+          }); */
 
           return {
             data: {
@@ -546,14 +546,14 @@ export const apiSlice = createApi({
           })
         );
 
-        toast('Adding ticket...')
+        /* toast('Adding ticket...') */
 
         try {
           await queryFulfilled;
         } catch {
-          toast.message('Connection error', {
+          /* toast.message('Connection error', {
             description: `Rolling back changes`,
-          });
+          }); */
           patchResult.undo();
         }
       }
@@ -564,9 +564,9 @@ export const apiSlice = createApi({
           const docRef = doc(collection(db, "supportData"), ticket.id);
           await deleteDoc(docRef);
 
-          toast.message('Ticket deleted', {
+          /* toast.message('Ticket deleted', {
             description: `ID: ${ticket.id}`,
-          });
+          }); */
 
           return {
             data: {
@@ -588,14 +588,14 @@ export const apiSlice = createApi({
           })
         );
 
-        toast('Deleting ticket...')
+        /* toast('Deleting ticket...') */
 
         try {
           await queryFulfilled;
         } catch {
-          toast.message('Connection error', {
+          /* toast.message('Connection error', {
             description: `Rolling back changes`,
-          });
+          }); */
           patchResult.undo();
         }
       }
@@ -609,9 +609,9 @@ export const apiSlice = createApi({
             updatedAt: serverTimestamp()
           });
 
-          toast.message('Ticket edited', {
+          /* toast.message('Ticket edited', {
             description: `ID: ${ticket.id}`,
-          });
+          }); */
 
           return {
             data: {
@@ -636,14 +636,14 @@ export const apiSlice = createApi({
           })
         );
 
-        toast('Editing ticket...')
+        /* toast('Editing ticket...') */
 
         try {
           await queryFulfilled;
         } catch {
-          toast.message('Connection error', {
+          /* toast.message('Connection error', {
             description: `Rolling back changes`,
-          });
+          }); */
           patchResult.undo();
         }
       }

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { setModal } from '../store/slices/modalSlice'
 import { useAddSupportMutation, useDeleteSupportMutation, useEditSupportMutation } from '../store/slices/apiSlice'
 import { useTranslation } from '../hooks/useTranslation'
+import { toast } from 'sonner'
 
 export default function SupportDataModal({ modalData }) {
   const lang = useTranslation()
@@ -61,12 +62,47 @@ export default function SupportDataModal({ modalData }) {
     }
 
     dispatch(setModal({ active: false, data: {} }))
-    await addSupport({ ...ticket, userId: modalData.userId, })
+
+    try {
+      toast(`${lang.addingTicket}...`)
+      const res = await addSupport({ ...ticket, userId: modalData.userId, })
+      toast.message(lang.ticketAdded, {
+        description: `ID: ${res.data.id}`,
+      });
+    } catch {
+      toast(lang.errorPerformingRequest)
+    }
+
 
     /* timeout-refetch */
     /* setTimeout(() => {
       dispatch(setModal({ active: false, data: {} }))
     }, 400) */
+  }
+
+  const deleteSupportFn = async (e, ticket) => {
+    e.preventDefault()
+
+    if (resultDeleteSupport.isLoading) {
+      return
+    }
+
+    dispatch(setModal({ active: false, data: {} }))
+
+    try {
+      toast(`${lang.deletingTicket}...`)
+      const res = await deleteSupport(ticket)
+      toast.message(lang.ticketDeleted, {
+        description: `ID: ${res.data.id}`,
+      });
+    } catch {
+      toast(lang.errorPerformingRequest)
+    }
+
+    /* timeout-refetch */
+    /*  setTimeout(() => {
+       dispatch(setModal({ active: false, data: {} }))
+     }, 400) */
   }
 
   const editModeFN = () => {
@@ -109,30 +145,25 @@ export default function SupportDataModal({ modalData }) {
     const newTicket = { ...trimTicket, title: title ?? ticket.title, content: input, category: category ?? ticket.category, priority: priority ?? ticket.priority, status: status ?? ticket.status, reply: reply ?? ticket.reply }
 
     dispatch(setModal({ active: false, data: {} }))
-    await editSupport(newTicket)
 
-    /* timeout-refetch */
-    /*  setTimeout(() => {
-       dispatch(setModal({ active: false, data: {} }))
-     }, 400) */
-  }
+    try {
+      toast(`${lang.editingTicket}...`)
+      const res = await editSupport(newTicket)
+      toast.message(lang.ticketEdited, {
+        description: `ID: ${res.data.id}`,
+      });
 
 
-  const deleteSupportFn = async (e, ticket) => {
-    e.preventDefault()
-
-    if (resultDeleteSupport.isLoading) {
-      return
+    } catch {
+      toast(lang.errorPerformingRequest)
     }
 
-    dispatch(setModal({ active: false, data: {} }))
-    await deleteSupport(ticket)
-
     /* timeout-refetch */
     /*  setTimeout(() => {
        dispatch(setModal({ active: false, data: {} }))
      }, 400) */
   }
+
 
   const preventEnterSubmit = (e) => {
     if (e.key === "Enter" && e.target.className !== "mainModal__send" && e.target.tagName !== "TEXTAREA" && e.target.ariaLabel !== "textarea") {

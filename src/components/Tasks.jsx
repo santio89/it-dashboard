@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import DataChart from './DataChart'
 import autoAnimate from "@formkit/auto-animate";
 import { useTranslation } from '../hooks/useTranslation'
+import { toast } from 'sonner'
 
 export default function Tasks({ user }) {
   const lang = useTranslation()
@@ -45,7 +46,16 @@ export default function Tasks({ user }) {
 
     const newTask = { ...task, status: task.status === "completed" ? "pending" : "completed" }
 
-    await editTdl(newTask)
+    try {
+      toast(`${lang.editingTask}...`)
+      const res = await editTdl(newTask)
+      toast.message(lang.taskEdited, {
+        description: `ID: ${res.data.id}`,
+      });
+    } catch {
+      toast(lang.errorPerformingRequest)
+    }
+
   }
 
   /* order */

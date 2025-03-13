@@ -5,6 +5,7 @@ import { setModal } from "../store/slices/modalSlice"
 import { useGetSupportQuery, useEditSupportMutation } from "../store/slices/apiSlice"
 import autoAnimate from "@formkit/auto-animate"
 import { useTranslation } from "../hooks/useTranslation"
+import { toast } from "sonner"
 
 export default function Support({ user }) {
   const lang = useTranslation()
