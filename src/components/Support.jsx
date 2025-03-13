@@ -44,7 +44,7 @@ export default function Support({ user }) {
       return
     }
 
-    const newTicket = { ...ticket, status: ticket.status === "completed" ? "pending" : "completed", reply: ticket.status === "completed" ? "" : "Ticket closed" }
+    const newTicket = { ...ticket, status: ticket.status === "completed" ? "pending" : "completed", reply: ticket.status === "completed" ? "" : lang.ticketClosed }
 
     try {
       toast(`${lang.editingTicket}...`)
