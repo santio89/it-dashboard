@@ -129,7 +129,7 @@ const lang = {
     contactEdited: "Contacto editado",
     contactExists: "El contacto ya existe",
     contacts: "Contactos",
-    decription: "Descripción",
+    description: "Descripción",
     delete: "Eliminar",
     deleteContact: "Eliminar contacto",
     deleteDevice: "Eliminar dispositivo",
