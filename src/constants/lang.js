@@ -26,7 +26,7 @@ const lang = {
     contactEdited: "Contact edited",
     contactExists: "Contact already exists",
     contacts: "Contacts",
-    decription: "description",
+    description: "Description",
     delete: "Delete",
     deleteContact: "Delete contact",
     deleteDevice: "Delete device",
