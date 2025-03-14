@@ -72,7 +72,7 @@ const lang = {
     author: "Author",
     adminReply: "Admin reply",
     title: "Title",
-    decription: "description",
+    description: "description",
     ticketClosed: "Ticket closed",
     errorPerformingRequest: "Error performing request",
     addingContact: "Adding contact",
