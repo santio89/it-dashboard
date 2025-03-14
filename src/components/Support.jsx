@@ -49,7 +49,7 @@ export default function Support({ user }) {
     try {
       toast(`${lang.editingTicket}...`)
       const res = await editSupport(newTicket)
-      toast.message(lang.ticketEdited, {
+      toast.message(`${lang.status}: ${lang[res.data.status]}`, {
         description: `ID: ${res.data.id}`,
       });
     } catch {
@@ -164,8 +164,16 @@ export default function Support({ user }) {
                           <div className={`tdl-itemData`} title={`Status: ${ticket.status ?? "pending"}`} onClick={(e) => {
                             e.stopPropagation();
                             if (ticket.id === "temp-id") return
-                            if (!user.domainAdmin) return
-                            editStatusFn(ticket)
+                            if (user.domainAdmin) {
+                              editStatusFn(ticket)
+                              return
+                            } else {
+                              toast.message(`${lang.status}: ${lang[ticket.status]}`, {
+                                description: `ID: ${ticket.id}`,
+                              });
+                              return
+                            }
+
                           }}>
                             {<>
                               <span>{lang.completed}:</span>

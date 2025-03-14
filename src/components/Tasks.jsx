@@ -49,7 +49,7 @@ export default function Tasks({ user }) {
     try {
       toast(`${lang.editingTask}...`)
       const res = await editTdl(newTask)
-      toast.message(lang.taskEdited, {
+      toast.message(`${lang.status}: ${lang[res.data.status]}`, {
         description: `ID: ${res.data.id}`,
       });
     } catch {
