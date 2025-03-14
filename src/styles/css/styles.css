@@ -1784,6 +1784,9 @@ option:hover,
 label:hover) {
   border: 1px dashed var(--white);
 }
+.mainModal__data__form.editMode .taskReply {
+  border-bottom-style: dashed !important;
+}
 .mainModal__data__form.deleteMode {
   /* input,
   textarea,
@@ -1803,6 +1806,10 @@ label:hover) {
 .mainModal__data__form.deleteMode fieldset:hover, .mainModal__data__form.deleteMode fieldset:focus-visible, .mainModal__data__form.deleteMode fieldset:focus-within, .mainModal__data__form.deleteMode fieldset:has(input:hover, textarea:hover, select:hover, option:hover) {
   border-style: dashed;
   border-color: var(--red);
+}
+.mainModal__data__form.deleteMode .taskReply {
+  border-bottom-style: dashed !important;
+  border-bottom-color: var(--red) !important;
 }
 .mainModal__data__form.taskContainer {
   flex: 1;
@@ -1870,7 +1877,7 @@ label:hover) {
   background: transparent;
   outline: 1px solid transparent;
   font-size: 0.9em;
-  text-underline-offset: 2px !important;
+  text-underline-offset: 3px !important;
   text-decoration-thickness: 1px !important;
 }
 .mainModal__data__form.taskContainer .taskOpenData button[disabled] {
@@ -1944,7 +1951,8 @@ label:hover) {
 .mainModal__data__form.taskContainer .taskReply {
   display: inline-block;
   text-align: start;
-  box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
+  /* box-shadow: 0 1px 0 0 var(--main-gray-darker-op); */
+  border-bottom: 1px solid var(--main-gray-darker-op);
   width: 100%;
   gap: 0.25rem;
   color: var(--red);
