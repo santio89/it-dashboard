@@ -98,49 +98,49 @@ export default function Support({ user }) {
     return () => clearTimeout(timeout)
   }, [isLoadingSupport])
 
-/*   useEffect(() => {
-    let firstSnapshot = true;
-    const collectionRef = collection(db, "supportData")
-    const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
-      if (firstSnapshot) {
-        firstSnapshot = false;
-        return
-      }
-
-      let handleArray = []
-      snapshot.docs.forEach(doc => {
-        handleArray.push(doc.data())
-      })
-
-      console.log(handleArray)
-
-      const filteredList = handleArray?.filter(item => {
-        return (listSelected === "all" || item.category === listSelected)
-      })
-      let orderedList = []
-
-      if (sortList) {
-        orderedList = [...filteredList].sort((a, b) => a.localTime - b.localTime);
-      } else {
-        orderedList = [...filteredList].sort((a, b) => b.localTime - a.localTime);
-      }
-      setSupportList(orderedList)
-
-      snapshot.docChanges().forEach((change) => {
-        if (change.type === "added") {
-          console.log("New document: ", change.doc.data());
+  /*   useEffect(() => {
+      let firstSnapshot = true;
+      const collectionRef = collection(db, "supportData")
+      const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
+        if (firstSnapshot) {
+          firstSnapshot = false;
+          return
         }
-        if (change.type === "modified") {
-          console.log("Modified document: ", change.doc.data());
+  
+        let handleArray = []
+        snapshot.docs.forEach(doc => {
+          handleArray.push(doc.data())
+        })
+  
+        console.log(handleArray)
+  
+        const filteredList = handleArray?.filter(item => {
+          return (listSelected === "all" || item.category === listSelected)
+        })
+        let orderedList = []
+  
+        if (sortList) {
+          orderedList = [...filteredList].sort((a, b) => a.localTime - b.localTime);
+        } else {
+          orderedList = [...filteredList].sort((a, b) => b.localTime - a.localTime);
         }
-        if (change.type === "removed") {
-          console.log("Removed document: ", change.doc.data());
-        }
+        setSupportList(orderedList)
+  
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === "added") {
+            console.log("New document: ", change.doc.data());
+          }
+          if (change.type === "modified") {
+            console.log("Modified document: ", change.doc.data());
+          }
+          if (change.type === "removed") {
+            console.log("Removed document: ", change.doc.data());
+          }
+        });
       });
-    });
-
-    return () => unsubscribe()
-  }, []) */
+  
+      return () => unsubscribe()
+    }, []) */
 
   return (
     <>
