@@ -60,7 +60,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (contact, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getContacts', contact.userId, draft => {
-            draft.push({ ...contact, id: contact.localId, createdAt: Date.now(), updatedAt: Date.now() });
+            draft.push({ ...contact, id: contact.localId, createdAt: Date.now(), updatedAt: null });
           })
         );
 
@@ -214,7 +214,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (device, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getDevices', device.userId, draft => {
-            draft.push({ ...device, id: device.localId, createdAt: Date.now(), updatedAt: Date.now() });
+            draft.push({ ...device, id: device.localId, createdAt: Date.now(), updatedAt: null });
           })
         );
 
@@ -369,7 +369,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (task, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getTdl', task.userId, draft => {
-            draft.push({ ...task, id: task.localId, createdAt: Date.now(), updatedAt: Date.now() });
+            draft.push({ ...task, id: task.localId, createdAt: Date.now(), updatedAt: null });
           })
         );
 
@@ -546,7 +546,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getSupport', ticket.userId, draft => {
-            draft.push({ ...ticket, id: ticket.localId, createdAt: Date.now(), updatedAt: Date.now() });
+            draft.push({ ...ticket, id: ticket.localId, createdAt: Date.now(), updatedAt: null });
           })
         );
 
