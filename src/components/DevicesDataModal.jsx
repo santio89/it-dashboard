@@ -64,7 +64,7 @@ export default function DevicesDataModal({ modalData }) {
       sn: newDeviceSn,
       comment: newDeviceComment,
       category: newDeviceCategory,
-      localId: crypto.randomUUID(),
+      localId: crypto.randomUUID().replace(/-/g, ''),
       localTime: Date.now()
     }
 

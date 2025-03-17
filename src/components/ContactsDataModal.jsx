@@ -64,7 +64,7 @@ export default function ContactsDataModal({ modalData }) {
       role: newUserRole,
       comment: newUserComment,
       category: newUserCategory,
-      localId: crypto.randomUUID(),
+      localId: crypto.randomUUID().replace(/-/g, ''),
       localTime: Date.now(),
       userId: modalData.userId
     }

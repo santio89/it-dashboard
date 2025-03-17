@@ -42,16 +42,18 @@ export default function TasksDataModal({ modalData }) {
     if (resultAddTdl.isLoading) {
       return
     }
+    
     if (newTaskTitle === "") {
       return
     }
+
     const task = {
       title: newTaskTitle,
       content: newTaskDescription,
       priority: newTaskPriority,
       status: newTaskStatus,
       category: newTaskCategory,
-      localId: crypto.randomUUID(),
+      localId: crypto.randomUUID().replace(/-/g, ''),
       localTime: Date.now()
     }
 

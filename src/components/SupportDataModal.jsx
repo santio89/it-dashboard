@@ -44,6 +44,7 @@ export default function SupportDataModal({ modalData }) {
     if (resultAddSupport.isLoading) {
       return
     }
+    
     if (newTicketTitle === "") {
       return
     }
@@ -52,7 +53,7 @@ export default function SupportDataModal({ modalData }) {
       title: newTicketTitle,
       category: newTicketCategory,
       content: newTicketDescription,
-      localId: crypto.randomUUID(),
+      localId: crypto.randomUUID().replace(/-/g, ''),
       localTime: Date.now(),
       priority: newTicketPriority,
       status: newTicketStatus,
