@@ -5,6 +5,8 @@ import { toast } from 'sonner';
 
 
 export const apiSlice = createApi({
+  /* invalidates tags: force refetch -> using optimistic updates instead (with rollbacks) */
+
   /* reducerPath: 'api', */
   baseQuery: fakeBaseQuery(),
   endpoints: builder => ({
@@ -31,34 +33,34 @@ export const apiSlice = createApi({
     addContact: builder.mutation({
       async queryFn(contact) {
         try {
-          const res = await addDoc(collection(db, "authUsersData", contact.userId, "contacts"), {
+          const newDocRef = doc(collection(db, "authUsersData", contact.userId, "contacts"), contact.localId);
+
+          const newContact = {
             ...contact,
+            id: contact.localId,
             createdAt: serverTimestamp(),
             updatedAt: serverTimestamp()
-          });
+          }
+
+          await setDoc(newDocRef, newContact);
 
           /* toast.message('Contact added', {
             description: `ID: ${res.id}`,
           }); */
 
           return {
-            data: {
-              ...contact,
-              id: res.id,
-              createdAt: serverTimestamp(),
-              updatedAt: serverTimestamp()
-            }
+            data: newContact
           };
         } catch (error) {
           console.log(error);
           return { error: error };
         }
       },
-      invalidatesTags: ['contacts'],
+      /* invalidatesTags: ['contacts'], */
       onQueryStarted: async (contact, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getContacts', contact.userId, draft => {
-            draft.push({ ...contact, id: 'temp-id', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+            draft.push({ ...contact, id: contact.localId, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
           })
         );
 
@@ -93,7 +95,7 @@ export const apiSlice = createApi({
           return { error: error };
         }
       },
-      invalidatesTags: ['contacts'],
+      /* invalidatesTags: ['contacts'], */
       onQueryStarted: async (contact, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getContacts', contact.userId, draft => {
@@ -137,7 +139,7 @@ export const apiSlice = createApi({
           return { error: error };
         }
       },
-      invalidatesTags: ['contacts'],
+      /* invalidatesTags: ['contacts'], */
       onQueryStarted: async (contact, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getContacts', contact.userId, draft => {
@@ -184,34 +186,35 @@ export const apiSlice = createApi({
     addDevice: builder.mutation({
       async queryFn(device) {
         try {
-          const res = await addDoc(collection(db, "authUsersData", device.userId, "devices"), {
+          const newDocRef = doc(collection(db, "authUsersData", device.userId, "devices"), device.localId);
+
+          const newDevice = {
             ...device,
+            id: device.localId,
             createdAt: serverTimestamp(),
             updatedAt: serverTimestamp()
-          });
+          }
+
+
+          await setDoc(newDocRef, newDevice);
 
           /* toast.message('Device added', {
             description: `ID: ${res.id}`,
           }); */
 
           return {
-            data: {
-              ...device,
-              id: res.id,
-              createdAt: serverTimestamp(),
-              updatedAt: serverTimestamp()
-            }
+            data: newDevice
           };
         } catch (error) {
           console.log(error);
           return { error: error };
         }
       },
-      invalidatesTags: ['devices'],
+      /* invalidatesTags: ['devices'], */
       onQueryStarted: async (device, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getDevices', device.userId, draft => {
-            draft.push({ ...device, id: 'temp-id', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+            draft.push({ ...device, id: device.localId, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
           })
         );
 
@@ -248,7 +251,7 @@ export const apiSlice = createApi({
           return { error: error };
         }
       },
-      invalidatesTags: ['devices'],
+      /* invalidatesTags: ['devices'], */
       onQueryStarted: async (device, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getDevices', device.userId, draft => {
@@ -292,7 +295,7 @@ export const apiSlice = createApi({
           return { error: error };
         }
       },
-      invalidatesTags: ['devices'],
+      /* invalidatesTags: ['devices'], */
       onQueryStarted: async (device, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getDevices', device.userId, draft => {
@@ -339,34 +342,34 @@ export const apiSlice = createApi({
     addTdl: builder.mutation({
       async queryFn(task) {
         try {
-          const res = await addDoc(collection(db, "authUsersData", task.userId, "tdl"), {
+          const newDocRef = doc(collection(db, "authUsersData", task.userId, "tdl"), task.localId);
+
+          const newTask = {
             ...task,
+            id: task.localId,
             createdAt: serverTimestamp(),
             updatedAt: serverTimestamp()
-          });
+          }
+
+          await setDoc(newDocRef, newTask);
 
           /* toast.message('Task added', {
             description: `ID: ${res.id}`,
           }); */
 
           return {
-            data: {
-              ...task,
-              id: res.id,
-              createdAt: serverTimestamp(),
-              updatedAt: serverTimestamp()
-            }
+            data: newTask
           };
         } catch (error) {
           console.log(error);
           return { error: error };
         }
       },
-      invalidatesTags: ['tdl'],
+      /* invalidatesTags: ['tdl'], */
       onQueryStarted: async (task, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getTdl', task.userId, draft => {
-            draft.push({ ...task, id: 'temp-id', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+            draft.push({ ...task, id: task.localId, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
           })
         );
 
@@ -403,7 +406,7 @@ export const apiSlice = createApi({
           return { error: error };
         }
       },
-      invalidatesTags: ['tdl'],
+      /* invalidatesTags: ['tdl'], */
       onQueryStarted: async (task, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getTdl', task.userId, draft => {
@@ -447,7 +450,7 @@ export const apiSlice = createApi({
           return { error: error };
         }
       },
-      invalidatesTags: ['tdl'],
+      /* invalidatesTags: ['tdl'], */
       onQueryStarted: async (task, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getTdl', task.userId, draft => {
@@ -514,35 +517,36 @@ export const apiSlice = createApi({
     addSupport: builder.mutation({
       async queryFn(ticket) {
         try {
-          const res = await addDoc(collection(db, "supportData"), {
+          /* const newDocId = doc(collection(db, "supportData")).id; */
+          const newDocRef = doc(collection(db, "supportData"), ticket.localId);
+
+          const newTicket = {
             ...ticket,
+            id: ticket.localId,
             createdAt: serverTimestamp(),
-            updatedAt: serverTimestamp()
-          });
+            updatedAt: serverTimestamp(),
+          }
+
+          await setDoc(newDocRef, newTicket);
 
           /* toast.message('Ticket added', {
             description: `ID: ${res.id}`,
           }); */
 
           return {
-            data: {
-              ...ticket,
-              id: res.id,
-              createdAt: serverTimestamp(),
-              updatedAt: serverTimestamp()
-            }
+            data: newTicket
           };
         } catch (error) {
           console.log(error);
           return { error: error };
         }
       },
-      invalidatesTags: ['support'],
+      /* invalidatesTags: ['support'], */
       /* optimistic updates for ticket.userId */
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getSupport', ticket.userId, draft => {
-            draft.push({ ...ticket, id: 'temp-id', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+            draft.push({ ...ticket, id: ticket.localId, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
           })
         );
 
@@ -579,7 +583,7 @@ export const apiSlice = createApi({
           return { error: error };
         }
       },
-      invalidatesTags: ['support'],
+      /* invalidatesTags: ['support'], */
       /* optimistic updates for admin id */
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
@@ -624,7 +628,7 @@ export const apiSlice = createApi({
           return { error: error };
         }
       },
-      invalidatesTags: ['support'],
+      /* invalidatesTags: ['support'], */
       /* optimistic updates for admin id */
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
