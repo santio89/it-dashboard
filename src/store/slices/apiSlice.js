@@ -39,7 +39,7 @@ export const apiSlice = createApi({
             ...contact,
             id: contact.localId,
             createdAt: serverTimestamp(),
-            updatedAt: serverTimestamp()
+            updatedAt: null
           }
 
           await setDoc(newDocRef, newContact);
@@ -192,7 +192,7 @@ export const apiSlice = createApi({
             ...device,
             id: device.localId,
             createdAt: serverTimestamp(),
-            updatedAt: serverTimestamp()
+            updatedAt: null
           }
 
 
@@ -348,7 +348,7 @@ export const apiSlice = createApi({
             ...task,
             id: task.localId,
             createdAt: serverTimestamp(),
-            updatedAt: serverTimestamp()
+            updatedAt: null
           }
 
           await setDoc(newDocRef, newTask);
@@ -524,7 +524,7 @@ export const apiSlice = createApi({
             ...ticket,
             id: ticket.localId,
             createdAt: serverTimestamp(),
-            updatedAt: serverTimestamp(),
+            updatedAt: null
           }
 
           await setDoc(newDocRef, newTicket);
