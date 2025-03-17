@@ -60,7 +60,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (contact, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getContacts', contact.userId, draft => {
-            draft.push({ ...contact, id: contact.localId, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+            draft.push({ ...contact, id: contact.localId, createdAt: Date.now(), updatedAt: Date.now() });
           })
         );
 
@@ -145,7 +145,7 @@ export const apiSlice = createApi({
           apiSlice.util.updateQueryData('getContacts', contact.userId, draft => {
             const index = draft.findIndex(c => c.id === contact.id);
             if (index !== -1) {
-              draft[index] = { ...contact, updatedAt: new Date().toISOString() };
+              draft[index] = { ...contact, updatedAt: Date.now() };
             }
           })
         );
@@ -214,7 +214,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (device, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getDevices', device.userId, draft => {
-            draft.push({ ...device, id: device.localId, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+            draft.push({ ...device, id: device.localId, createdAt: Date.now(), updatedAt: Date.now() });
           })
         );
 
@@ -301,7 +301,7 @@ export const apiSlice = createApi({
           apiSlice.util.updateQueryData('getDevices', device.userId, draft => {
             const index = draft.findIndex(d => d.id === device.id);
             if (index !== -1) {
-              draft[index] = { ...device, updatedAt: new Date().toISOString() };
+              draft[index] = { ...device, updatedAt: Date.now() };
             }
           })
         );
@@ -369,7 +369,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (task, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getTdl', task.userId, draft => {
-            draft.push({ ...task, id: task.localId, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+            draft.push({ ...task, id: task.localId, createdAt: Date.now(), updatedAt: Date.now() });
           })
         );
 
@@ -456,7 +456,7 @@ export const apiSlice = createApi({
           apiSlice.util.updateQueryData('getTdl', task.userId, draft => {
             const index = draft.findIndex(t => t.id === task.id);
             if (index !== -1) {
-              draft[index] = { ...task, updatedAt: new Date().toISOString() };
+              draft[index] = { ...task, updatedAt: Date.now() };
             }
           })
         );
@@ -546,7 +546,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getSupport', ticket.userId, draft => {
-            draft.push({ ...ticket, id: ticket.localId, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+            draft.push({ ...ticket, id: ticket.localId, createdAt: Date.now(), updatedAt: Date.now() });
           })
         );
 
@@ -635,7 +635,7 @@ export const apiSlice = createApi({
           apiSlice.util.updateQueryData('getSupport', /* ticket.userId */"iJ77XT0Cdsa0xti7gpUOC2JgBWH3", draft => {
             const index = draft.findIndex(t => t.id === ticket.id);
             if (index !== -1) {
-              draft[index] = { ...ticket, updatedAt: new Date().toISOString() };
+              draft[index] = { ...ticket, updatedAt: Date.now() };
             }
           })
         );

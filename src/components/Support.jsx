@@ -112,6 +112,8 @@ export default function Support({ user }) {
         handleArray.push(doc.data())
       })
 
+      console.log(handleArray)
+
       const filteredList = handleArray?.filter(item => {
         return (listSelected === "all" || item.category === listSelected)
       })
