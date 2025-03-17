@@ -6,8 +6,7 @@ import { useGetSupportQuery, useEditSupportMutation } from "../store/slices/apiS
 import autoAnimate from "@formkit/auto-animate"
 import { useTranslation } from "../hooks/useTranslation"
 import { toast } from "sonner"
-import { collection, onSnapshot } from "firebase/firestore"
-import { firebaseDb as db } from "../config/firebase"
+
 
 export default function Support({ user }) {
   const lang = useTranslation()
