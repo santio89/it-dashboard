@@ -63,7 +63,7 @@ export default function Tasks({ user }) {
     if (dataTasks) {
       /* filter */
       const filteredList = dataTasks?.filter(item => {
-        return (listSelected === "all" || item.category === listSelected)
+        return (listSelected === "all" || item.status === listSelected)
       })
 
       /* sort */
@@ -117,17 +117,17 @@ export default function Tasks({ user }) {
               {
                 listPickerOpen &&
                 <div className="listPickerOptions">
-                  <button disabled={isLoadingTasks} className={`listPicker ${listSelected === "personal" && "selected"}`}
+                  <button disabled={isLoadingTasks} className={`listPicker ${listSelected === "completed" && "selected"}`}
                     onClick={() => {
-                      selectList("personal")
+                      selectList("completed")
                     }}>
-                    {lang.personal}
+                    {lang.completed}
                   </button>
-                  <button disabled={isLoadingTasks} className={`listPicker ${listSelected === "company" && "selected"}`}
+                  <button disabled={isLoadingTasks} className={`listPicker ${listSelected === "pending" && "selected"}`}
                     onClick={() => {
-                      selectList("company")
+                      selectList("pending")
                     }}>
-                    {lang.company}
+                    {lang.pending}
                   </button>
                   <button disabled={isLoadingTasks} className={`listPicker ${listSelected === "all" && "selected"}`}
                     onClick={() => {
