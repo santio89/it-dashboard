@@ -652,6 +652,27 @@ export const apiSlice = createApi({
         }
       }
     }),
+    /* endpoint to set the support list */
+    setSupport: builder.mutation({
+      /* this mutation sets the support list directly */
+      queryFn: () => ({
+        url: '',
+        method: 'PUT',
+      }),
+      async onQueryStarted(supportData, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          apiSlice.util.updateQueryData('getSupport', supportData.userId, (draft) => {
+            return supportData; // replace current data with supportData
+          })
+        );
+
+        try {
+          await queryFulfilled;
+        } catch {
+          patchResult.undo();
+        }
+      },
+    }),
 
     /* AUTH */
     signGoogle: builder.mutation({
@@ -729,6 +750,7 @@ export const {
   useAddSupportMutation,
   useDeleteSupportMutation,
   useEditSupportMutation,
+  useSetSupportMutation,
 
   useSignGoogleMutation,
   useSignOutMutation,
