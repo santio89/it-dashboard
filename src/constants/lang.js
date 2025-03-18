@@ -115,7 +115,7 @@ const lang = {
     admin: "Admin",
     adminManagesTickets: "Sólo admins pueden gestionar solicitudes",
     adminReply: "Respuesta del admin",
-    all: "Todos",
+    all: "Todo",
     author: "Autor",
     cancel: "Cancelar",
     category: "Categoría",
