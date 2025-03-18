@@ -221,6 +221,7 @@ export default function Support({ user }) {
                               editStatusFn(ticket)
                               return
                             } else {
+                              toast(`${lang.adminManagesTickets}`)
                               toast.message(`${lang.status}: ${lang[ticket.status]}`, {
                                 description: `ID: ${ticket.id}`,
                               });
