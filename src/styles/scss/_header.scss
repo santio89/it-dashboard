@@ -196,8 +196,4 @@
     }
     animation: rotate-icon 400ms ease-in-out;
   }
-
-  @media (max-width: $mobile-breakpoint) {
-    position: static;
-  }
 }

@@ -456,11 +456,6 @@ select:disabled {
     rotate: 360deg;
   }
 }
-@media (max-width: 649px) {
-  .mainHeader {
-    position: static;
-  }
-}
 
 .mainContainer {
   display: flex;
