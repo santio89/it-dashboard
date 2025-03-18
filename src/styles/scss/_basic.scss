@@ -12,8 +12,10 @@
   animation-timing-function: ease-in-out;
 }
 
+$mobile-breakpoint: 649px;
 $tablet-breakpoint: 969px;
-$home-breakpoint: 719px;
+$home-breakpoint: 749px;
+$home-breakpoint-mobile: 579px;
 $home-breakpoint-height: 444px;
 
 *,
@@ -39,7 +41,7 @@ $home-breakpoint-height: 444px;
 
   --main-radius: 0.5rem;
 
-  --main-section-spacing: calc(clamp(0.25rem, 0.25rem + 2vw, 1rem));
+  --main-section-spacing: clamp(0.25rem, 0.25rem + 2vw, 1rem);
 
   --red: rgb(226, 47, 89);
   --black: rgb(10, 10, 10);

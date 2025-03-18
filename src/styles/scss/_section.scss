@@ -16,6 +16,10 @@
     justify-content: start;
   }
 
+  @media (max-width: $mobile-breakpoint) {
+    padding-bottom: calc(var(--main-section-spacing) + 52px) !important;
+  }
+
   &::-webkit-scrollbar {
     width: 12px;
     height: 12px;
@@ -39,6 +43,18 @@
     }
 
     @media (max-height: $home-breakpoint-height) {
+      align-content: start;
+      align-items: start;
+    }
+
+    @media (max-width: $mobile-breakpoint) {
+      grid-template-columns: 250px 250px;
+      place-content: center;
+      place-items: center;
+    }
+
+    @media (max-width: $home-breakpoint-mobile) {
+      grid-template-columns: 250px;
       align-content: start;
       align-items: start;
     }
@@ -879,14 +895,23 @@
 
 .homeCard {
   box-shadow: 0 0 0.5rem transparent, 0 0 0.25rem transparent inset;
-  background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%);
+  background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%),
+    linear-gradient(360deg, var(--main-color-op) 8%, transparent 8%);
   min-width: auto;
   min-height: auto;
   width: 100%;
+  max-width: 250px;
   min-height: 120px;
   aspect-ratio: 16/9;
   border: 1px solid var(--main-gray-dark);
   user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: $home-breakpoint) {
+    aspect-ratio: auto;
+  }
 
   &:has(.homeCard__link:is(:hover, :focus-visible)) {
     border: 1px solid var(--main-text);
@@ -894,6 +919,7 @@
   }
 
   &__link {
+    flex: 1;
     width: 100%;
     height: 100%;
     display: flex;
