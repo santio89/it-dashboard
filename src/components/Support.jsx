@@ -89,8 +89,7 @@ export default function Support({ user }) {
   useEffect(() => {
     let unsubscribe;
 
-
-    if (user && user.domainAdmin) {
+    if (user.domainAdmin) {
       let firstSnapshot = true;
       const collectionRef = collection(db, "supportData")
       unsubscribe = onSnapshot(collectionRef, (snapshot) => {
@@ -106,35 +105,8 @@ export default function Support({ user }) {
         handleArray.userId = user.uid
 
         setSupportFn(handleArray)
-
-        /*  const filteredList = handleArray?.filter(item => {
-           return (listSelected === "all" || item.category === listSelected)
-         })
-         let orderedList = []
- 
-         if (sortList) {
-           orderedList = [...filteredList].sort((a, b) => a.localTime - b.localTime);
-         } else {
-           orderedList = [...filteredList].sort((a, b) => b.localTime - a.localTime);
-         }
- 
-         setSupportList(orderedList) */
-
-        /* snapshot.docChanges().forEach((change) => {
-
-          if (change.type === "added") {
-            console.log("New document: ", change.doc.data());
-          }
-          if (change.type === "modified") {
-            console.log("Modified document: ", change.doc.data());
-          }
-          if (change.type === "removed") {
-            console.log("Removed document: ", change.doc.data());
-          }
-
-        }) */
       });
-    } else if (user && !user.domainAdmin) {
+    } else {
       let firstSnapshot = true;
       const collectionRef = collection(db, "supportData")
       const queryRef = query(collectionRef, where('authorId', "==", user.uid))
@@ -152,19 +124,6 @@ export default function Support({ user }) {
         handleArray.userId = user.uid
 
         setSupportFn(handleArray)
-
-        /* const filteredList = handleArray?.filter(item => {
-          return (listSelected === "all" || item.category === listSelected)
-        })
-        let orderedList = []
-
-        if (sortList) {
-          orderedList = [...filteredList].sort((a, b) => a.localTime - b.localTime);
-        } else {
-          orderedList = [...filteredList].sort((a, b) => b.localTime - a.localTime);
-        }
-
-        setSupportList(orderedList) */
       })
     }
 
