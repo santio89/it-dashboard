@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 
 export const apiSlice = createApi({
   /* invalidates tags: force refetch -> using optimistic updates instead (with rollbacks) */
+  /* serverTimestamp: placeholder -> gets overwritten on db */
 
   /* reducerPath: 'api', */
   baseQuery: fakeBaseQuery(),
@@ -49,7 +50,7 @@ export const apiSlice = createApi({
           }); */
 
           return {
-            data: newContact
+            data: { ...newContact, createdAt: Date.now() }
           };
         } catch (error) {
           console.log(error);
@@ -131,7 +132,7 @@ export const apiSlice = createApi({
           return {
             data: {
               ...contact,
-              updatedAt: serverTimestamp()
+              updatedAt: Date.now()
             }
           };
         } catch (error) {
@@ -203,7 +204,7 @@ export const apiSlice = createApi({
           }); */
 
           return {
-            data: newDevice
+            data: { ...newDevice, createdAt: Date.now() }
           };
         } catch (error) {
           console.log(error);
@@ -287,7 +288,7 @@ export const apiSlice = createApi({
           return {
             data: {
               ...device,
-              updatedAt: serverTimestamp()
+              updatedAt: Date.now()
             }
           };
         } catch (error) {
@@ -358,7 +359,7 @@ export const apiSlice = createApi({
           }); */
 
           return {
-            data: newTask
+            data: { ...newTask, createdAt: Date.now() }
           };
         } catch (error) {
           console.log(error);
@@ -442,7 +443,7 @@ export const apiSlice = createApi({
           return {
             data: {
               ...task,
-              updatedAt: serverTimestamp()
+              updatedAt: Date.now()
             }
           };
         } catch (error) {
@@ -534,7 +535,7 @@ export const apiSlice = createApi({
           }); */
 
           return {
-            data: newTicket
+            data: { ...newTicket, createdAt: Date.now() }
           };
         } catch (error) {
           console.log(error);
@@ -620,7 +621,7 @@ export const apiSlice = createApi({
           return {
             data: {
               ...ticket,
-              updatedAt: serverTimestamp()
+              updatedAt: Date.now()
             }
           };
         } catch (error) {
