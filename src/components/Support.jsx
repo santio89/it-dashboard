@@ -2,11 +2,12 @@ import { useRef, useState, useEffect } from "react"
 import DataChart from "./DataChart"
 import { useDispatch } from "react-redux"
 import { setModal } from "../store/slices/modalSlice"
-import { useGetSupportQuery, useEditSupportMutation } from "../store/slices/apiSlice"
+import { useGetSupportQuery, useEditSupportMutation, useSetSupportMutation } from "../store/slices/apiSlice"
 import autoAnimate from "@formkit/auto-animate"
 import { useTranslation } from "../hooks/useTranslation"
 import { toast } from "sonner"
-
+import { collection, onSnapshot, query, where } from "firebase/firestore"
+import { firebaseDb as db } from "../config/firebase"
 
 export default function Support({ user }) {
   const lang = useTranslation()
@@ -25,8 +26,9 @@ export default function Support({ user }) {
 
   /* edit support mutation */
   const [editSupport, resultEditSupport] = useEditSupportMutation()
+  const [setSupport, resultSetSupport] = useSetSupportMutation()
 
-  const {
+  let {
     data: dataSupport,
     isLoading: isLoadingSupport,
     isFetching: isFetchingSupport,
@@ -58,7 +60,11 @@ export default function Support({ user }) {
     }
   }
 
-  /* order */
+  const setSupportFn = async (data) => {
+    await setSupport(data)
+  }
+
+
   useEffect(() => {
     if (dataSupport) {
       /* filter */
@@ -77,7 +83,93 @@ export default function Support({ user }) {
 
       setSupportList(orderedList)
     }
-  }, [sortList, listSelected, dataSupport])
+  }, [dataSupport, sortList, listSelected])
+
+
+  useEffect(() => {
+    let unsubscribe;
+
+
+    if (user && user.domainAdmin) {
+      let firstSnapshot = true;
+      const collectionRef = collection(db, "supportData")
+      unsubscribe = onSnapshot(collectionRef, (snapshot) => {
+        if (firstSnapshot) {
+          firstSnapshot = false;
+          return
+        }
+
+        let handleArray = []
+        snapshot.docs.forEach(doc => {
+          handleArray.push(doc.data())
+        })
+        handleArray.userId = user.uid
+
+        setSupportFn(handleArray)
+
+        /*  const filteredList = handleArray?.filter(item => {
+           return (listSelected === "all" || item.category === listSelected)
+         })
+         let orderedList = []
+ 
+         if (sortList) {
+           orderedList = [...filteredList].sort((a, b) => a.localTime - b.localTime);
+         } else {
+           orderedList = [...filteredList].sort((a, b) => b.localTime - a.localTime);
+         }
+ 
+         setSupportList(orderedList) */
+
+        /* snapshot.docChanges().forEach((change) => {
+
+          if (change.type === "added") {
+            console.log("New document: ", change.doc.data());
+          }
+          if (change.type === "modified") {
+            console.log("Modified document: ", change.doc.data());
+          }
+          if (change.type === "removed") {
+            console.log("Removed document: ", change.doc.data());
+          }
+
+        }) */
+      });
+    } else if (user && !user.domainAdmin) {
+      let firstSnapshot = true;
+      const collectionRef = collection(db, "supportData")
+      const queryRef = query(collectionRef, where('authorId', "==", user.uid))
+
+      unsubscribe = onSnapshot(queryRef, (snapshot) => {
+        if (firstSnapshot) {
+          firstSnapshot = false;
+          return
+        }
+
+        let handleArray = []
+        snapshot.docs.forEach(doc => {
+          handleArray.push(doc.data())
+        })
+        handleArray.userId = user.uid
+
+        setSupportFn(handleArray)
+
+        /* const filteredList = handleArray?.filter(item => {
+          return (listSelected === "all" || item.category === listSelected)
+        })
+        let orderedList = []
+
+        if (sortList) {
+          orderedList = [...filteredList].sort((a, b) => a.localTime - b.localTime);
+        } else {
+          orderedList = [...filteredList].sort((a, b) => b.localTime - a.localTime);
+        }
+
+        setSupportList(orderedList) */
+      })
+    }
+
+    return () => unsubscribe && unsubscribe()
+  }, [user])
 
   useEffect(() => {
     !isLoadingSupport && supportList && listContainer.current && autoAnimate(listContainer.current)
@@ -97,49 +189,6 @@ export default function Support({ user }) {
     return () => clearTimeout(timeout)
   }, [isLoadingSupport])
 
-  /*   useEffect(() => {
-      let firstSnapshot = true;
-      const collectionRef = collection(db, "supportData")
-      const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
-        if (firstSnapshot) {
-          firstSnapshot = false;
-          return
-        }
-  
-        let handleArray = []
-        snapshot.docs.forEach(doc => {
-          handleArray.push(doc.data())
-        })
-  
-        console.log(handleArray)
-  
-        const filteredList = handleArray?.filter(item => {
-          return (listSelected === "all" || item.category === listSelected)
-        })
-        let orderedList = []
-  
-        if (sortList) {
-          orderedList = [...filteredList].sort((a, b) => a.localTime - b.localTime);
-        } else {
-          orderedList = [...filteredList].sort((a, b) => b.localTime - a.localTime);
-        }
-        setSupportList(orderedList)
-  
-        snapshot.docChanges().forEach((change) => {
-          if (change.type === "added") {
-            console.log("New document: ", change.doc.data());
-          }
-          if (change.type === "modified") {
-            console.log("Modified document: ", change.doc.data());
-          }
-          if (change.type === "removed") {
-            console.log("Removed document: ", change.doc.data());
-          }
-        });
-      });
-  
-      return () => unsubscribe()
-    }, []) */
 
   return (
     <>
