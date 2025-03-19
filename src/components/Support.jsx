@@ -158,7 +158,7 @@ export default function Support({ user }) {
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button disabled={isLoadingSupport} onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", newTicket: true, userId: user?.uid, dataList: dataSupport, user: user } }))
+            dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", newTicket: true, userId: user?.uid, user: user } }))
           }}>+ {lang.addTicket}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">

@@ -13,7 +13,6 @@ export default function SupportDataModal({ modalData }) {
   const modalActive = useSelector(state => state.modal.active)
   const [addSupport, resultAddSupport] = useAddSupportMutation()
 
-
   /*   const textInput = useRef()
     const textInputEdit = useRef() */
   const [newTicketTitle, setNewTicketTitle] = useState("")
@@ -26,10 +25,10 @@ export default function SupportDataModal({ modalData }) {
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)
 
-  const [showReply, setShowReply] = useState(true)
-
   const [deleteSupport, resultDeleteSupport] = useDeleteSupportMutation()
   const [editSupport, resultEditSupport] = useEditSupportMutation()
+
+  const [showReply, setShowReply] = useState(true)
 
 
   const trimInputs = () => {
@@ -44,7 +43,7 @@ export default function SupportDataModal({ modalData }) {
     if (resultAddSupport.isLoading) {
       return
     }
-    
+
     if (newTicketTitle === "") {
       return
     }
@@ -53,13 +52,13 @@ export default function SupportDataModal({ modalData }) {
       title: newTicketTitle,
       category: newTicketCategory,
       content: newTicketDescription,
-      localId: crypto.randomUUID().replace(/-/g, ''),
-      localTime: Date.now(),
       priority: newTicketPriority,
       status: newTicketStatus,
       reply: newTicketStatus === "completed" ? (newTicketReply === "" ? lang.ticketClosed : newTicketReply) : "",
       author: modalData?.user.email,
-      authorId: modalData?.user.uid
+      authorId: modalData?.user.uid,
+      localId: crypto.randomUUID().replace(/-/g, ''),
+      localTime: Date.now(),
     }
 
     dispatch(setModal({ active: false, data: {} }))
@@ -162,7 +161,6 @@ export default function SupportDataModal({ modalData }) {
        dispatch(setModal({ active: false, data: {} }))
      }, 400) */
   }
-
 
   const preventEnterSubmit = (e) => {
     if (e.key === "Enter" && e.target.className !== "mainModal__send" && e.target.tagName !== "TEXTAREA" && e.target.ariaLabel !== "textarea") {

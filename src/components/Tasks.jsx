@@ -135,7 +135,7 @@ export default function Tasks({ user }) {
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button disabled={isLoadingTasks} onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "TasksDataModal", newTask: true, userId: user?.uid } }))
+            dispatch(setModal({ active: true, data: { modalType: "TasksDataModal", newTask: true, userId: user?.uid, user: user } }))
             setListPickerOpen(false)
           }}>+ {lang.addTask}</button>
           <div className="listPickerWrapper">
@@ -219,7 +219,7 @@ export default function Tasks({ user }) {
                           <div className={`tdl-optionsBtns`}>
                             {
                               /* open */
-                              <button disabled={task.id === "temp-id"} title={lang.info} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "TasksDataModal", tasksData: true, ...task } })); setListPickerOpen(false) }}>
+                              <button disabled={task.id === "temp-id"} title={lang.info} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "TasksDataModal", tasksData: true, user: user, ...task } })); setListPickerOpen(false) }}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
                                   <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                                 </svg>

@@ -27,10 +27,6 @@ export default function TasksDataModal({ modalData }) {
   const [deleteTdl, resultDeleteTdl] = useDeleteTdlMutation()
   const [editTdl, resultEditTdl] = useEditTdlMutation()
 
-  const selectList = list => {
-    setNewTaskCategory(list)
-  }
-
   const trimInputs = () => {
     setNewTaskTitle(newTaskTitle => newTaskTitle.trim())
     setNewTaskDescription(newTaskDescription => newTaskDescription.trim())
@@ -42,7 +38,7 @@ export default function TasksDataModal({ modalData }) {
     if (resultAddTdl.isLoading) {
       return
     }
-    
+
     if (newTaskTitle === "") {
       return
     }
@@ -53,8 +49,10 @@ export default function TasksDataModal({ modalData }) {
       priority: newTaskPriority,
       status: newTaskStatus,
       category: newTaskCategory,
+      author: modalData?.user.email,
+      authorId: modalData?.user.uid,
       localId: crypto.randomUUID().replace(/-/g, ''),
-      localTime: Date.now()
+      localTime: Date.now(),
     }
 
     dispatch(setModal({ active: false, data: {} }))
@@ -182,7 +180,7 @@ export default function TasksDataModal({ modalData }) {
             <h2>{lang.task}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
-              <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} className={`listPicker disabled selected`}>{lang[modalData?.category]}</button>
+              <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
             </div>
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer disabled'>
@@ -226,20 +224,7 @@ export default function TasksDataModal({ modalData }) {
             <h2>{lang.editTask}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
-              <div className="listPickerOptions">
-                <button title={`${lang.category}: ${lang.personal}`} disabled={resultEditTdl.isLoading} className={`listPicker ${newTaskCategory === "personal" && "selected"} ${resultEditTdl.isLoading && "disabled"}`}
-                  onClick={() => {
-                    selectList("personal")
-                  }}>
-                  {lang.personal}
-                </button>
-                <button title={`${lang.category}: ${lang.company}`} disabled={resultEditTdl.isLoading} className={`listPicker ${newTaskCategory === "company" && "selected"} ${resultEditTdl.isLoading && "disabled"}`}
-                  onClick={() => {
-                    selectList("company")
-                  }}>
-                  {lang.company}
-                </button>
-              </div>
+              <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
             </div>
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer editMode' disabled={resultEditTdl.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTaskFn(e, modalData)}>
@@ -298,7 +283,7 @@ export default function TasksDataModal({ modalData }) {
             <h2>{lang.deleteTask}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
-              <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} disabled={resultDeleteTdl.isLoading} className={`listPicker disabled selected`}>{lang[modalData?.category]}</button>
+              <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
             </div>
           </div>
           <form autoCapitalize='off' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={resultDeleteTdl.isLoading} onSubmit={(e) => deleteTdlFn(e, modalData)}>
@@ -340,20 +325,7 @@ export default function TasksDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>{lang.addTask}</h2>
             <div className="listPickerWrapper__btnContainer">
-              <div className="listPickerOptions">
-                <button title={`${lang.category}: ${lang.personal}`} disabled={resultAddTdl.isLoading} className={`listPicker ${newTaskCategory === "personal" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}
-                  onClick={() => {
-                    selectList("personal")
-                  }}>
-                  {lang.personal}
-                </button>
-                <button title={`${lang.category}: ${lang.company}`} disabled={resultAddTdl.isLoading} className={`listPicker ${newTaskCategory === "company" && "selected"} ${resultAddTdl.isLoading && "disabled"}`}
-                  onClick={() => {
-                    selectList("company")
-                  }}>
-                  {lang.company}
-                </button>
-              </div>
+              <button title={`${lang.author}: ${modalData?.user.email}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.user.email}</button>
             </div>
           </div>
           <form autoCapitalize='off' disabled={resultAddTdl.isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addTdlFn(e)}>
