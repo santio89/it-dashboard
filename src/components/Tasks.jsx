@@ -265,7 +265,7 @@ export default function Tasks({ user }) {
           {
             isLoadingTasks ? <div className="loader">{lang.loading}...</div> :
               <>
-                <DataChart type={{ property: "category", items: "tasks" }} data={dataTasks} firstLoad={firstLoad} />
+                {/* <DataChart type={{ property: "category", items: "tasks" }} data={dataTasks} firstLoad={firstLoad} /> */}
                 <DataChart type={{ property: "status", items: "tasks" }} data={dataTasks} firstLoad={firstLoad} />
                 <DataChart type={{ property: "priority", items: "tasks" }} data={dataTasks} firstLoad={firstLoad} />
               </>
