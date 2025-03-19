@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
-import { useGetTdlQuery, useEditTdlMutation } from '../store/slices/apiSlice'
+import { useGetTdlQuery, useEditTdlMutation, useSetTdlMutation, useSetSupportMutation } from '../store/slices/apiSlice'
 import { setModal } from '../store/slices/modalSlice'
 import { useDispatch } from 'react-redux'
 import DataChart from './DataChart'
 import autoAnimate from "@formkit/auto-animate";
 import { useTranslation } from '../hooks/useTranslation'
 import { toast } from 'sonner'
+import { collection, onSnapshot, query, where } from "firebase/firestore"
+import { firebaseDb as db } from "../config/firebase"
 
 export default function Tasks({ user }) {
   const lang = useTranslation()
@@ -24,6 +26,7 @@ export default function Tasks({ user }) {
 
   /* edit tdl mutation */
   const [editTdl, resultEditTdl] = useEditTdlMutation()
+  const [setTdl, resultSetTdl] = useSetTdlMutation()
 
   const {
     data: dataTasks,
@@ -55,7 +58,9 @@ export default function Tasks({ user }) {
     } catch {
       toast(lang.errorPerformingRequest)
     }
-
+  }
+  const setTdlFn = async (data) => {
+    await setTdl(data)
   }
 
   /* order */
@@ -77,7 +82,31 @@ export default function Tasks({ user }) {
 
       setTasksList(orderedList)
     }
-  }, [sortList, listSelected, dataTasks])
+  }, [dataTasks, sortList, listSelected])
+
+  useEffect(() => {
+    let unsubscribe;
+    let firstSnapshot = true;
+    const collectionRef = collection(db, "authUsersData", user.uid, "tdl")
+
+    unsubscribe = onSnapshot(collectionRef, (snapshot) => {
+      if (firstSnapshot) {
+        firstSnapshot = false;
+        return
+      }
+
+      let handleArray = []
+      snapshot.docs.forEach(doc => {
+        handleArray.push(doc.data())
+      })
+      handleArray.userId = user.uid
+      console.log(handleArray)
+
+      setTdlFn(handleArray)
+    })
+
+    return () => unsubscribe && unsubscribe()
+  }, [user])
 
   useEffect(() => {
     taskOptions && setTaskOptions(null)

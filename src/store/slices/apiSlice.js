@@ -474,6 +474,26 @@ export const apiSlice = createApi({
         }
       }
     }),
+    setTdl: builder.mutation({
+      /* this mutation sets the tickets list directly */
+      queryFn: () => ({
+        url: '',
+        method: 'PUT',
+      }),
+      async onQueryStarted(tdlData, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          apiSlice.util.updateQueryData('getTdl', tdlData.userId, (draft) => {
+            return tdlData; // replace current data with tdlData
+          })
+        );
+
+        try {
+          await queryFulfilled;
+        } catch {
+          patchResult.undo();
+        }
+      },
+    }),
 
     /* SUPPORT */
     getSupport: builder.query({
@@ -653,7 +673,6 @@ export const apiSlice = createApi({
         }
       }
     }),
-    /* endpoint to set the support list */
     setSupport: builder.mutation({
       /* this mutation sets the support list directly */
       queryFn: () => ({
@@ -746,6 +765,7 @@ export const {
   useAddTdlMutation,
   useDeleteTdlMutation,
   useEditTdlMutation,
+  useSetTdlMutation,
 
   useGetSupportQuery,
   useAddSupportMutation,
