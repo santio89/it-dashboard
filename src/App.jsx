@@ -42,10 +42,6 @@ function App() {
       dispatch(setUser(currentUser))
     })
 
-    /* firebaseOnSnapshot(firebaseDoc(firebaseDb, "authUsersData", "SF"), (doc) => {
-      console.log("Current data: ", doc.data());
-  }); */
-
   }, [])
 
 

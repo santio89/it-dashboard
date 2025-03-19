@@ -709,7 +709,7 @@ export const apiSlice = createApi({
 
           return { data: user };
         } catch (error) {
-          console.error(error);
+          console.log(error);
           return { error: error };
         }
       },
@@ -725,7 +725,7 @@ export const apiSlice = createApi({
 
           return { data: { message: 'Signed out successfully' } };
         } catch (error) {
-          console.error(error);
+          console.log(error);
           return { error: error };
         }
       },

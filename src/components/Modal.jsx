@@ -60,11 +60,7 @@ export default function Modal() {
       document.removeEventListener("keydown", closeModalEsc);
     }
   }, [modalActive])
-
-  useEffect(()=>{
-    console.log(modalData)
-  }, [modalData])
-
+  
 
   return (
     <Draggable /*bounds={"parent"}*/ position={{ x: 0, y: 0 }} handle='h2' /*cancel={"button, input, textarea, select, option, .taskOpenContent"}*/

@@ -100,7 +100,6 @@ export default function Tasks({ user }) {
         handleArray.push(doc.data())
       })
       handleArray.userId = user.uid
-      console.log(handleArray)
 
       setTdlFn(handleArray)
     })
