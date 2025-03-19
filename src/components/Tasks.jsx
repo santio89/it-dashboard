@@ -85,11 +85,10 @@ export default function Tasks({ user }) {
   }, [dataTasks, sortList, listSelected])
 
   useEffect(() => {
-    let unsubscribe;
     let firstSnapshot = true;
     const collectionRef = collection(db, "authUsersData", user.uid, "tdl")
 
-    unsubscribe = onSnapshot(collectionRef, (snapshot) => {
+    onSnapshot(collectionRef, (snapshot) => {
       if (firstSnapshot) {
         firstSnapshot = false;
         return
@@ -103,8 +102,6 @@ export default function Tasks({ user }) {
 
       setTdlFn(handleArray)
     })
-
-    return () => unsubscribe && unsubscribe()
   }, [user])
 
   useEffect(() => {

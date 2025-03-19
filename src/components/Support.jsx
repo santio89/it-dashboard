@@ -87,12 +87,10 @@ export default function Support({ user }) {
 
 
   useEffect(() => {
-    let unsubscribe;
-
     if (user.domainAdmin) {
       let firstSnapshot = true;
       const collectionRef = collection(db, "supportData")
-      unsubscribe = onSnapshot(collectionRef, (snapshot) => {
+      onSnapshot(collectionRef, (snapshot) => {
         if (firstSnapshot) {
           firstSnapshot = false;
           return
@@ -111,7 +109,7 @@ export default function Support({ user }) {
       const collectionRef = collection(db, "supportData")
       const queryRef = query(collectionRef, where('authorId', "==", user.uid))
 
-      unsubscribe = onSnapshot(queryRef, (snapshot) => {
+      onSnapshot(queryRef, (snapshot) => {
         if (firstSnapshot) {
           firstSnapshot = false;
           return
@@ -126,8 +124,6 @@ export default function Support({ user }) {
         setSupportFn(handleArray)
       })
     }
-
-    return () => unsubscribe && unsubscribe()
   }, [user])
 
   useEffect(() => {
