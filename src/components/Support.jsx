@@ -302,8 +302,8 @@ export default function Support({ user }) {
             isLoadingSupport ? <div className="loader">{lang.loading}...</div> :
               <>
                 {/* <DataChart type={{ property: "category", items: "tickets" }} data={dataSupport} firstLoad={firstLoad} /> */}
-                <DataChart type={{ property: "priority", items: "tickets" }} data={dataSupport} firstLoad={firstLoad} />
                 <DataChart type={{ property: "status", items: "tickets" }} data={dataSupport} firstLoad={firstLoad} />
+                <DataChart type={{ property: "priority", items: "tickets" }} data={dataSupport} firstLoad={firstLoad} />
               </>
           }
         </div>
