@@ -1295,32 +1295,49 @@ select:disabled {
   flex: 1;
   min-width: max(300px, 30%);
   gap: 3rem;
-  /* .btnWrapper {
-    button {
-      border-radius: var(--main-radius) var(--main-radius) 0 0;
-      position: relative;
-
-      &::after {
-        content: "";
-        width: 8px;
-        height: 8px;
-        position: absolute;
-        right: -8px;
-        bottom: 0;
-        background-color: var(--main-color-op);
-        mask-image: url(../../assets/img/round-border-fix.svg);
-        mask-size: cover;
-        mask-repeat: no-repeat;
-        transition: background-color 200ms ease-in-out;
-      }
-
-      &:is(:hover, :focus-visible) {
-        &::after {
-          background-color: var(--main-color-op-light);
-        }
-      }
-    }
-  } */
+}
+.site-section__chart .btnWrapper > button {
+  position: relative;
+}
+.site-section__chart .btnWrapper .listPickerOptions {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  background-color: var(--main-color-bg);
+  border: 1px solid var(--main-gray-dark);
+  border-radius: var(--main-radius);
+  padding: 0.25rem;
+  gap: 0.25rem;
+  transition: background-color 400ms ease-in-out, scale 100ms ease-in-out, opacity 100ms ease-in-out;
+  z-index: 1;
+  transform-origin: top left;
+}
+@starting-style {
+  .site-section__chart .btnWrapper .listPickerOptions {
+    scale: 0.9;
+    opacity: 0.1;
+  }
+}
+.site-section__chart .btnWrapper .listPickerOptions button.listPicker {
+  background-color: transparent;
+  color: var(--main-gray-dark);
+  width: 100%;
+  text-align: start;
+  justify-content: start;
+  padding: 0.25rem 0.5rem;
+  font-size: 12px;
+}
+.site-section__chart .btnWrapper .listPickerOptions button.listPicker:hover, .site-section__chart .btnWrapper .listPickerOptions button.listPicker:focus-visible, .site-section__chart .btnWrapper .listPickerOptions button.listPicker.selected {
+  background-color: var(--main-color-op-light);
+  color: var(--main-text);
+}
+.site-section__chart .btnWrapper .listPickerOptions button.listPicker:focus-visible {
+  z-index: 1;
+  outline: 1px solid var(--main-text);
 }
 .site-section__chart .chartWrapper {
   flex: 1;

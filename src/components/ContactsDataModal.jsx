@@ -217,7 +217,7 @@ export default function ContactsDataModal({ modalData }) {
                 <input id='name' placeholder={lang.required} readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="email">{lang.eMail}</label></legend>
+                <legend><label htmlFor="email">{lang.email}</label></legend>
                 <input id='email' readOnly disabled spellCheck={false} type="text" value={modalData?.email || "-"} />
               </fieldset>
             </div>
@@ -292,7 +292,7 @@ export default function ContactsDataModal({ modalData }) {
                 <input id="editName" placeholder={lang.required} spellCheck={false} type="text" value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} required />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="editEmail">{lang.eMail}</label></legend>
+                <legend><label htmlFor="editEmail">{lang.email}</label></legend>
                 <input id="editEmail" spellCheck={false} type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
               </fieldset>
             </div>
@@ -361,7 +361,7 @@ export default function ContactsDataModal({ modalData }) {
                 <input id="deleteName" placeholder={lang.required} readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="deleteEmail">{lang.eMail}</label></legend>
+                <legend><label htmlFor="deleteEmail">{lang.email}</label></legend>
                 <input id="deleteEmail" readOnly disabled spellCheck={false} type="text" value={modalData?.email || "-"} />
               </fieldset>
             </div>
@@ -435,7 +435,7 @@ export default function ContactsDataModal({ modalData }) {
                 <input id="addName" placeholder={lang.required} spellCheck={false} type="text" value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} required />
               </fieldset>
               <fieldset>
-                <legend><label htmlFor="addEmail">{lang.eMail}</label></legend>
+                <legend><label htmlFor="addEmail">{lang.email}</label></legend>
                 <input id="addEmail" spellCheck={false} type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
               </fieldset>
             </div>

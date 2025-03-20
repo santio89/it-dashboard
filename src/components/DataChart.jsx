@@ -26,7 +26,7 @@ export default function DataChart({ data, type, firstLoad }) {
       }, []);
 
       propertyItemsCount.forEach(property => {
-        values.push([lang[property[type.property]], property.ammount])
+        values.push([type.property === "category" ? lang[property[type.property]] : property[type.property], property.ammount])
       })
 
       setChartArray((values))

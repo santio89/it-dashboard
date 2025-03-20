@@ -6,6 +6,8 @@ import DataChart from "./DataChart";
 import autoAnimate from "@formkit/auto-animate";
 import { useTranslation } from "../hooks/useTranslation";
 
+const contactFields = ["name", "email", "role", "telephone", "category", "all"]
+
 export default function Contacts({ user }) {
   const lang = useTranslation()
 
@@ -13,6 +15,10 @@ export default function Contacts({ user }) {
   const [sortList, setSortList] = useState(false)
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
+
+  const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
+  const [graphicSelected, setGraphicSelected] = useState("all")
+
   const listContainer = useRef()
 
   const [contactsList, setContactsList] = useState(null)
@@ -30,6 +36,11 @@ export default function Contacts({ user }) {
   const selectList = list => {
     setListSelected(list)
     setListPickerOpen(false)
+  }
+
+  const selectGraphic = graphic => {
+    setGraphicSelected(graphic)
+    setGraphicPickerOpen(false)
   }
 
 
@@ -78,7 +89,8 @@ export default function Contacts({ user }) {
         <div className="btnWrapper">
           <button disabled={isLoadingContacts} onClick={() => {
             dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newUser: true, userId: user?.uid, dataList: dataContacts } }));
-            setListPickerOpen(false)
+            setListPickerOpen(false);
+            setGraphicPickerOpen(false);
           }}>+ {lang.addContact}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
@@ -135,7 +147,7 @@ export default function Contacts({ user }) {
               <ul className="items-list" ref={listContainer}>
                 {
                   contactsList?.map(contact =>
-                    <li className={firstLoad && "firstLoad"} key={contact.localId}><button disabled={contact.id === "temp-id"} title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact, dataList: dataContacts } })); setListPickerOpen(false) }}>{contact.name}</button></li>)
+                    <li className={firstLoad && "firstLoad"} key={contact.localId}><button disabled={contact.id === "temp-id"} title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact, dataList: dataContacts } })); setListPickerOpen(false); setGraphicPickerOpen(false) }}>{contact.name}</button></li>)
                 }
                 {
                   contactsList?.length === 0 && <li className="no-data">{lang.noData}</li>
@@ -146,7 +158,23 @@ export default function Contacts({ user }) {
       </div>
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
-          <button disabled={isLoadingContacts}>{lang.charts}</button>
+          <button disabled={isLoadingContacts} onClick={() => { setGraphicPickerOpen(graphicPickerOpen => !graphicPickerOpen) }}>{lang.charts}</button>
+
+          {
+            graphicPickerOpen &&
+            <div className="listPickerOptions">
+              {contactFields.map((field, i) => {
+                return <button key={i} disabled={isLoadingContacts} className={`listPicker ${graphicSelected === contactFields[i] && "selected"}`}
+                  onClick={() => {
+                    selectGraphic(contactFields[i])
+                  }}>
+                  {
+                    lang[contactFields[i]]
+                  }
+                </button>
+              })}
+            </div>
+          }
         </div>
         <div className="chartWrapper">
           {
