@@ -60,7 +60,7 @@ export default function ContactsDataModal({ modalData }) {
     const contact = {
       name: newUserName,
       email: newUserEmail,
-      tel: newUserTel,
+      telephone: newUserTel,
       role: newUserRole,
       comment: newUserComment,
       category: newUserCategory,
@@ -133,7 +133,7 @@ export default function ContactsDataModal({ modalData }) {
     const newUser = {
       name: newUserName,
       email: newUserEmail,
-      tel: newUserTel,
+      telephone: newUserTel,
       role: newUserRole,
       comment: newUserComment,
       category: newUserCategory,

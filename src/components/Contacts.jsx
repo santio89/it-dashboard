@@ -6,7 +6,7 @@ import DataChart from "./DataChart";
 import autoAnimate from "@formkit/auto-animate";
 import { useTranslation } from "../hooks/useTranslation";
 
-const contactFields = ["name", "email", "role", "telephone", "category", "none", "all"]
+const contactFields = ["category", "name", "email", "role", "tel"]
 
 export default function Contacts({ user }) {
   const lang = useTranslation()
@@ -17,7 +17,7 @@ export default function Contacts({ user }) {
   const [listSelected, setListSelected] = useState("all")
 
   const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
-  const [graphicSelected, setGraphicSelected] = useState(["all"])
+  const [graphicSelected, setGraphicSelected] = useState([...contactFields])
 
   const listContainer = useRef()
 
@@ -46,7 +46,7 @@ export default function Contacts({ user }) {
       return
     }
     if (graphic === "all") {
-      setGraphicSelected(contactFields)
+      setGraphicSelected([...contactFields])
       return
     }
     if (graphicSelected.includes(graphic)) {
@@ -95,6 +95,10 @@ export default function Contacts({ user }) {
 
     return () => clearTimeout(timeout)
   }, [isLoadingContacts])
+
+  useEffect(() => {
+
+  }, [])
 
   return (
     <>
@@ -177,7 +181,7 @@ export default function Contacts({ user }) {
             graphicPickerOpen &&
             <div className="listPickerOptions">
               {contactFields.map((field, i) => {
-                return <button key={i} disabled={isLoadingContacts} className={`listPicker ${graphicSelected.includes(field) && "selected"} ${field === "none" && graphicSelected.length === 0 && "selected"}`}
+                return <button key={i} disabled={isLoadingContacts} className={`listPicker ${graphicSelected.includes(field) && "selected"}`}
                   onClick={() => {
                     selectGraphic(field)
                   }}>
@@ -186,13 +190,35 @@ export default function Contacts({ user }) {
                   }
                 </button>
               })}
+              <button key={"graphPickerBtn-none"} disabled={isLoadingContacts} className={`listPicker ${graphicSelected.length === 0 && "selected"}`}
+                onClick={() => {
+                  selectGraphic("none")
+                }}>
+                {
+                  lang["none"]
+                }
+              </button>
+              <button key={"graphPickerBtn-all"} disabled={isLoadingContacts} className={`listPicker ${graphicSelected.length === contactFields.length && "selected"}`}
+                onClick={() => {
+                  selectGraphic("all")
+                }}>
+                {
+                  lang["all"]
+                }
+              </button>
             </div>
           }
         </div>
         <div className="chartWrapper">
           {
             isLoadingContacts ? <div className="loader">{lang.loading}...</div> :
-              <DataChart type={{ property: "category", items: "contacts" }} data={dataContacts} firstLoad={firstLoad} />
+              <>
+                {
+                  graphicSelected.map((graphic, i) => {
+                    return <DataChart key={i} type={{ property: graphic, items: "contacts" }} data={dataContacts} firstLoad={firstLoad} />
+                  })
+                }
+              </>
           }
         </div>
       </div>
