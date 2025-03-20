@@ -103,7 +103,7 @@ export default function Support({ user }) {
         handleArray.userId = user.uid
 
         setSupportFn(handleArray)
-      });
+      })
     } else {
       let firstSnapshot = true;
       const collectionRef = collection(db, "supportData")
