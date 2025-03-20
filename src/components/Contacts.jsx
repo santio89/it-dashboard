@@ -6,7 +6,7 @@ import DataChart from "./DataChart";
 import autoAnimate from "@formkit/auto-animate";
 import { useTranslation } from "../hooks/useTranslation";
 
-const contactFields = ["name", "email", "role", "telephone", "category", "all"]
+const contactFields = ["name", "email", "role", "telephone", "category", "none", "all"]
 
 export default function Contacts({ user }) {
   const lang = useTranslation()
@@ -17,7 +17,7 @@ export default function Contacts({ user }) {
   const [listSelected, setListSelected] = useState("all")
 
   const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
-  const [graphicSelected, setGraphicSelected] = useState("all")
+  const [graphicSelected, setGraphicSelected] = useState(["all"])
 
   const listContainer = useRef()
 
@@ -39,8 +39,21 @@ export default function Contacts({ user }) {
   }
 
   const selectGraphic = graphic => {
-    setGraphicSelected(graphic)
     setGraphicPickerOpen(false)
+
+    if (graphic === "none") {
+      setGraphicSelected([])
+      return
+    }
+    if (graphic === "all") {
+      setGraphicSelected(contactFields)
+      return
+    }
+    if (graphicSelected.includes(graphic)) {
+      setGraphicSelected(graphicSelected => graphicSelected.filter(graph => graph != graphic))
+      return
+    }
+    setGraphicSelected(graphicSelected => [...graphicSelected, graphic])
   }
 
 
@@ -164,12 +177,12 @@ export default function Contacts({ user }) {
             graphicPickerOpen &&
             <div className="listPickerOptions">
               {contactFields.map((field, i) => {
-                return <button key={i} disabled={isLoadingContacts} className={`listPicker ${graphicSelected === contactFields[i] && "selected"}`}
+                return <button key={i} disabled={isLoadingContacts} className={`listPicker ${graphicSelected.includes(field) && "selected"} ${field === "none" && graphicSelected.length === 0 && "selected"}`}
                   onClick={() => {
-                    selectGraphic(contactFields[i])
+                    selectGraphic(field)
                   }}>
                   {
-                    lang[contactFields[i]]
+                    lang[field]
                   }
                 </button>
               })}
