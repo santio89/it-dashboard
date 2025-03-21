@@ -51,10 +51,10 @@ export default function SupportDataModal({ modalData }) {
     const ticket = {
       title: newTicketTitle,
       category: newTicketCategory,
-      content: newTicketDescription,
+      description: newTicketDescription,
       priority: newTicketPriority,
       status: newTicketStatus,
-      reply: newTicketStatus === "completed" ? (newTicketReply === "" ? lang.ticketClosed : newTicketReply) : "",
+      adminReply: newTicketStatus === "completed" ? (newTicketReply === "" ? lang.ticketClosed : newTicketReply) : "",
       author: modalData?.user.email,
       authorId: modalData?.user.uid,
       localId: crypto.randomUUID().replace(/-/g, ''),
@@ -108,10 +108,10 @@ export default function SupportDataModal({ modalData }) {
   const editModeFN = () => {
     setNewTicketCategory(modalData?.category)
     setNewTicketTitle(modalData?.title)
-    setNewTicketDescription(modalData?.content)
+    setNewTicketDescription(modalData?.description)
     setNewTicketPriority(modalData?.priority)
     setNewTicketStatus(modalData?.status)
-    setNewTicketReply(modalData?.reply)
+    setNewTicketReply(modalData?.adminReply)
     setEditMode(true)
   }
 
@@ -133,16 +133,16 @@ export default function SupportDataModal({ modalData }) {
     const category = newTicketCategory
     const priority = newTicketPriority
     const status = newTicketStatus
-    const reply = newTicketStatus === "completed" ? (newTicketReply === "" ? lang.ticketClosed : newTicketReply) : ""
+    const adminReply = newTicketStatus === "completed" ? (newTicketReply === "" ? lang.ticketClosed : newTicketReply) : ""
 
-    if (input === ticket.content && (ticket.priority === (priority ?? ticket.priority)) && (ticket.category === (category ?? ticket.category)) && (ticket.title === (title ?? ticket.title)) && (ticket.status === (status ?? ticket.status)) && (ticket.reply === (reply ?? ticket.reply))) {
+    if (input === ticket.description && (ticket.priority === (priority ?? ticket.priority)) && (ticket.category === (category ?? ticket.category)) && (ticket.title === (title ?? ticket.title)) && (ticket.status === (status ?? ticket.status)) && (ticket.adminReply === (adminReply ?? ticket.adminReply))) {
       dispatch(setModal({ active: false, data: {} }))
       return
     }
 
     const { modalType, supportData, user, ...trimTicket } = ticket
 
-    const newTicket = { ...trimTicket, title: title ?? ticket.title, content: input, category: category ?? ticket.category, priority: priority ?? ticket.priority, status: status ?? ticket.status, reply: reply ?? ticket.reply }
+    const newTicket = { ...trimTicket, title: title ?? ticket.title, description: input, category: category ?? ticket.category, priority: priority ?? ticket.priority, status: status ?? ticket.status, adminReply: adminReply ?? ticket.adminReply }
 
     dispatch(setModal({ active: false, data: {} }))
 
@@ -216,7 +216,7 @@ export default function SupportDataModal({ modalData }) {
               {
                 modalData?.status === "completed" && showReply &&
                 <div className='taskReply'>
-                  {modalData?.reply}
+                  {modalData?.adminReply}
                 </div>
               }
             </div>
@@ -226,7 +226,7 @@ export default function SupportDataModal({ modalData }) {
             </fieldset>
             <fieldset>
               <legend><label htmlFor="description">{lang.description}</label></legend>
-              <textarea id="description" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.content || "-"} />
+              <textarea id="description" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.description || "-"} />
             </fieldset>
 
             {modalData?.user.domainAdmin &&
@@ -338,7 +338,7 @@ export default function SupportDataModal({ modalData }) {
               {
                 modalData?.status === "completed" && showReply &&
                 <div className='taskReply'>
-                  {modalData?.reply}
+                  {modalData?.adminReply}
                 </div>
               }
             </div>
@@ -348,7 +348,7 @@ export default function SupportDataModal({ modalData }) {
             </fieldset>
             <fieldset>
               <legend><label htmlFor="deleteDescription">{lang.description}</label></legend>
-              <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="4" className='taskOpenContent' value={modalData?.content || "-"} />
+              <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="4" className='taskOpenContent' value={modalData?.description || "-"} />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>{lang.cancel}</button>

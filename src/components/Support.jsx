@@ -9,22 +9,28 @@ import { toast } from "sonner"
 import { collection, onSnapshot, query, where } from "firebase/firestore"
 import { firebaseDb as db } from "../config/firebase"
 
+const formFields = ["author", "title", "description", "priority", "status"]
+
 export default function Support({ user }) {
   const lang = useTranslation()
 
   const dispatch = useDispatch()
+
   const [sortList, setSortList] = useState(false)
+
   const [ticketOptions, setTicketOptions] = useState(null)
+
   const listContainer = useRef()
 
   const [supportList, setSupportList] = useState(null)
   const [firstLoad, setFirstLoad] = useState(null)
 
-  /* search */
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
 
-  /* edit support mutation */
+  const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
+  const [graphicSelected, setGraphicSelected] = useState([])
+
   const [editSupport, resultEditSupport] = useEditSupportMutation()
   const [setSupport, resultSetSupport] = useSetSupportMutation()
 
@@ -42,12 +48,30 @@ export default function Support({ user }) {
     setListPickerOpen(false)
   }
 
+  const selectGraphic = graphic => {
+    setGraphicPickerOpen(false)
+
+    if (graphic === "none") {
+      setGraphicSelected([])
+      return
+    }
+    if (graphic === "all") {
+      setGraphicSelected([...formFields])
+      return
+    }
+    if (graphicSelected.includes(graphic)) {
+      setGraphicSelected(graphicSelected => graphicSelected.filter(graph => graph != graphic))
+      return
+    }
+    setGraphicSelected(graphicSelected => [...graphicSelected, graphic])
+  }
+
   const editStatusFn = async (ticket) => {
     if (resultEditSupport.isLoading || isFetchingSupport) {
       return
     }
 
-    const newTicket = { ...ticket, status: ticket.status === "completed" ? "pending" : "completed", reply: ticket.status === "completed" ? "" : lang.ticketClosed }
+    const newTicket = { ...ticket, status: ticket.status === "completed" ? "pending" : "completed", adminReply: ticket.status === "completed" ? "" : lang.ticketClosed }
 
     try {
       toast(`${lang.editingTicket}...`)

@@ -45,7 +45,7 @@ export default function TasksDataModal({ modalData }) {
 
     const task = {
       title: newTaskTitle,
-      content: newTaskDescription,
+      description: newTaskDescription,
       priority: newTaskPriority,
       status: newTaskStatus,
       category: newTaskCategory,
@@ -101,7 +101,7 @@ export default function TasksDataModal({ modalData }) {
   const editModeFN = () => {
     setNewTaskCategory(modalData?.category)
     setNewTaskTitle(modalData?.title)
-    setNewTaskDescription(modalData?.content)
+    setNewTaskDescription(modalData?.description)
     setNewTaskPriority(modalData?.priority)
     setNewTaskStatus(modalData?.status)
     setEditMode(true)
@@ -124,14 +124,14 @@ export default function TasksDataModal({ modalData }) {
       return
     }
 
-    if (input === task.content && (task.title === (title ?? task.title)) && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category)) && (task.status === (status ?? task.status))) {
+    if (input === task.description && (task.title === (title ?? task.title)) && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category)) && (task.status === (status ?? task.status))) {
       dispatch(setModal({ active: false, data: {} }))
       return
     }
 
     const { modalType, tasksData, ...trimTask } = task
 
-    const newTask = { ...trimTask, title: title ?? task.title, content: input, category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
+    const newTask = { ...trimTask, title: title ?? task.title, description: input, category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
 
     dispatch(setModal({ active: false, data: {} }))
 
@@ -207,7 +207,7 @@ export default function TasksDataModal({ modalData }) {
             </fieldset>
             <fieldset>
               <legend><label htmlFor="description">{lang.description}</label></legend>
-              <textarea id="description" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.content || "-"} />
+              <textarea id="description" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.description || "-"} />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => editModeFN()}>{lang.edit}</button>
@@ -310,7 +310,7 @@ export default function TasksDataModal({ modalData }) {
             </fieldset>
             <fieldset>
               <legend><label htmlFor="deleteDescription">{lang.description}</label></legend>
-              <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="4" className='taskOpenContent' value={modalData?.content || "-"} />
+              <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="4" className='taskOpenContent' value={modalData?.description || "-"} />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>{lang.cancel}</button>
