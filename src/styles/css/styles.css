@@ -1383,7 +1383,6 @@ select:disabled {
   transition: 200ms ease-in-out;
 }
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) svg text {
-  text-transform: lowercase;
   font-size: 1rem;
   font-weight: 300;
   font-family: var(--font-primary);
