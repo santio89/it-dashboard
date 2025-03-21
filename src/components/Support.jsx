@@ -359,7 +359,7 @@ export default function Support({ user }) {
               <>
                 {
                   graphicSelected.length === 0 ?
-                    <p>{lang.noGraphicsSelected}</p> :
+                    <p>{lang.noChartsSelected}</p> :
                     graphicSelected.map((graphic) => {
                       return <DataChart key={graphic} type={{ property: graphic, items: "tickets" }} data={dataSupport} firstLoad={firstLoad} />
                     })
