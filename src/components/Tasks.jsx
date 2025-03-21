@@ -9,22 +9,28 @@ import { toast } from 'sonner'
 import { collection, onSnapshot, query, where } from "firebase/firestore"
 import { firebaseDb as db } from "../config/firebase"
 
+const formFields = ["author", "title", "description", "priority", "status"]
+
 export default function Tasks({ user }) {
   const lang = useTranslation()
 
   const dispatch = useDispatch()
+
   const [sortList, setSortList] = useState(false)
+
   const [taskOptions, setTaskOptions] = useState(null)
+
   const listContainer = useRef()
 
   const [tasksList, setTasksList] = useState(null)
   const [firstLoad, setFirstLoad] = useState(null)
 
-  /* search */
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
 
-  /* edit tdl mutation */
+  const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
+  const [graphicSelected, setGraphicSelected] = useState([])
+
   const [editTdl, resultEditTdl] = useEditTdlMutation()
   const [setTdl, resultSetTdl] = useSetTdlMutation()
 
@@ -40,6 +46,24 @@ export default function Tasks({ user }) {
   const selectList = list => {
     setListSelected(list)
     setListPickerOpen(false)
+  }
+
+  const selectGraphic = graphic => {
+    setGraphicPickerOpen(false)
+
+    if (graphic === "none") {
+      setGraphicSelected([])
+      return
+    }
+    if (graphic === "all") {
+      setGraphicSelected([...formFields])
+      return
+    }
+    if (graphicSelected.includes(graphic)) {
+      setGraphicSelected(graphicSelected => graphicSelected.filter(graph => graph != graphic))
+      return
+    }
+    setGraphicSelected(graphicSelected => [...graphicSelected, graphic])
   }
 
   const editStatusFn = async (task) => {
@@ -59,6 +83,7 @@ export default function Tasks({ user }) {
       toast(lang.errorPerformingRequest)
     }
   }
+
   const setTdlFn = async (data) => {
     await setTdl(data)
   }
@@ -132,7 +157,8 @@ export default function Tasks({ user }) {
         <div className="btnWrapper">
           <button disabled={isLoadingTasks} onClick={() => {
             dispatch(setModal({ active: true, data: { modalType: "TasksDataModal", newTask: true, userId: user?.uid, user: user } }))
-            setListPickerOpen(false)
+            setListPickerOpen(false);
+            setGraphicPickerOpen(false);
           }}>+ {lang.addTask}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
@@ -218,7 +244,7 @@ export default function Tasks({ user }) {
                                 <div className={`tdl-optionsBtns`}>
                                   {
                                     /* open */
-                                    <button disabled={task.id === "temp-id"} title={lang.info} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "TasksDataModal", tasksData: true, user: user, ...task } })); setListPickerOpen(false) }}>
+                                    <button disabled={task.id === "temp-id"} title={lang.info} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "TasksDataModal", tasksData: true, user: user, ...task } })); setListPickerOpen(false); setGraphicPickerOpen(false) }}>
                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
                                         <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                                       </svg>
@@ -258,15 +284,51 @@ export default function Tasks({ user }) {
       </div >
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
-          <button disabled={isLoadingTasks}>{lang.charts}</button>
+          <button className={`${graphicPickerOpen && "selected"}`} disabled={isLoadingTasks} onClick={() => { setGraphicPickerOpen(graphicPickerOpen => !graphicPickerOpen) }}>{lang.charts}</button>
+
+          {
+            graphicPickerOpen &&
+            <div className="listPickerOptions">
+              {formFields.map((field) => {
+                return <button key={field} disabled={isLoadingTasks} className={`listPicker ${graphicSelected.includes(field) && "selected"}`}
+                  onClick={() => {
+                    selectGraphic(field)
+                  }}>
+                  {
+                    lang[field]
+                  }
+                </button>
+              })}
+              <button key={"graphPickerBtn-none"} disabled={isLoadingTasks} className={`listPicker ${graphicSelected.length === 0 && "selected"}`}
+                onClick={() => {
+                  selectGraphic("none")
+                }}>
+                {
+                  lang["none"]
+                }
+              </button>
+              <button key={"graphPickerBtn-all"} disabled={isLoadingTasks} className={`listPicker ${graphicSelected.length === formFields.length && "selected"}`}
+                onClick={() => {
+                  selectGraphic("all")
+                }}>
+                {
+                  lang["all"]
+                }
+              </button>
+            </div>
+          }
         </div>
         <div className="chartWrapper">
           {
             isLoadingTasks ? <div className="loader">{lang.loading}...</div> :
               <>
-                {/* <DataChart type={{ property: "category", items: "tasks" }} data={dataTasks} firstLoad={firstLoad} /> */}
-                <DataChart type={{ property: "status", items: "tasks" }} data={dataTasks} firstLoad={firstLoad} />
-                <DataChart type={{ property: "priority", items: "tasks" }} data={dataTasks} firstLoad={firstLoad} />
+                {
+                  graphicSelected.length === 0 ?
+                    <p>{lang.noGraphicsSelected}</p> :
+                    graphicSelected.map((graphic) => {
+                      return <DataChart key={graphic} type={{ property: graphic, items: "tasks" }} data={dataTasks} firstLoad={firstLoad} />
+                    })
+                }
               </>
           }
         </div>

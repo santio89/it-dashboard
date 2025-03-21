@@ -9,7 +9,7 @@ import { toast } from "sonner"
 import { collection, onSnapshot, query, where } from "firebase/firestore"
 import { firebaseDb as db } from "../config/firebase"
 
-const formFields = ["author", "title", "description", "priority", "status", "reply"]
+const formFields = ["author", "title", "description", "priority", "status"]
 
 export default function Support({ user }) {
   const lang = useTranslation()
@@ -276,7 +276,7 @@ export default function Support({ user }) {
                                 <div className={`tdl-optionsBtns`}>
                                   {
                                     /* open */
-                                    <button disabled={ticket.id === "temp-id"} title={lang.info} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, user: user, ...ticket } })); setListPickerOpen(false) }}>
+                                    <button disabled={ticket.id === "temp-id"} title={lang.info} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, user: user, ...ticket } })); setListPickerOpen(false); setGraphicPickerOpen(false) }}>
                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
                                         <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                                       </svg>
@@ -361,7 +361,7 @@ export default function Support({ user }) {
                   graphicSelected.length === 0 ?
                     <p>{lang.noGraphicsSelected}</p> :
                     graphicSelected.map((graphic) => {
-                      return <DataChart key={graphic} type={{ property: graphic, items: "contacts" }} data={dataSupport} firstLoad={firstLoad} />
+                      return <DataChart key={graphic} type={{ property: graphic, items: "tickets" }} data={dataSupport} firstLoad={firstLoad} />
                     })
                 }
               </>
