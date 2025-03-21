@@ -158,6 +158,8 @@ button {
 p {
   overflow-wrap: break-word;
   text-wrap: pretty;
+  font-size: 1rem;
+  transition: color 200ms ease-in-out;
 }
 
 h1,
@@ -711,8 +713,9 @@ select:disabled {
   color: var(--main-text);
   background: var(--main-color-op);
 }
-.site-section .btnWrapper button:hover, .site-section .btnWrapper button:focus-visible {
-  background: var(--main-color-op-light);
+.site-section .btnWrapper button:hover, .site-section .btnWrapper button:focus-visible, .site-section .btnWrapper button.selected {
+  background-color: var(--main-color-op-light);
+  color: var(--main-text);
 }
 .site-section .btnWrapper button[disabled] {
   pointer-events: none;
@@ -1298,6 +1301,10 @@ select:disabled {
 }
 .site-section__chart .btnWrapper > button {
   position: relative;
+}
+.site-section__chart .btnWrapper > button:hover, .site-section__chart .btnWrapper > button:focus-visible, .site-section__chart .btnWrapper > button.selected {
+  background-color: var(--main-color-op-light);
+  color: var(--main-text);
 }
 .site-section__chart .btnWrapper .listPickerOptions {
   position: absolute;

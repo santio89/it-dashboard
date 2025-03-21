@@ -22,7 +22,7 @@ export default function DevicesDataModal({ modalData }) {
   const [newDeviceType, setNewDeviceType] = useState("")
   const [newDeviceModel, setNewDeviceModel] = useState("")
   const [newDeviceSn, setNewDeviceSn] = useState("")
-  const [newDeviceComment, setNewDeviceComment] = useState("")
+  const [newDeviceComments, setNewDeviceComments] = useState("")
   const [newDeviceCategory, setNewDeviceCategory] = useState("personal")
 
   const [editMode, setEditMode] = useState(false)
@@ -37,7 +37,7 @@ export default function DevicesDataModal({ modalData }) {
     setNewDeviceType(newDeviceType => newDeviceType.trim())
     setNewDeviceModel(newDeviceModel => newDeviceModel.trim())
     setNewDeviceSn(newDeviceSn => newDeviceSn.trim())
-    setNewDeviceComment(newDeviceComment => newDeviceComment.trim())
+    setNewDeviceComments(newDeviceComments => newDeviceComments.trim())
     setNewDeviceCategory(newDeviceCategory => newDeviceCategory.trim())
   }
 
@@ -62,7 +62,7 @@ export default function DevicesDataModal({ modalData }) {
       type: newDeviceType,
       model: newDeviceModel,
       sn: newDeviceSn,
-      comment: newDeviceComment,
+      comments: newDeviceComments,
       category: newDeviceCategory,
       localId: crypto.randomUUID().replace(/-/g, ''),
       localTime: Date.now()
@@ -107,7 +107,7 @@ export default function DevicesDataModal({ modalData }) {
     setNewDeviceType(modalData?.type)
     setNewDeviceModel(modalData?.model)
     setNewDeviceSn(modalData?.sn)
-    setNewDeviceComment(modalData?.comment)
+    setNewDeviceComments(modalData?.comments)
     setNewDeviceCategory(modalData?.category)
     setEditMode(true)
   }
@@ -133,7 +133,7 @@ export default function DevicesDataModal({ modalData }) {
       type: newDeviceType,
       model: newDeviceModel,
       sn: newDeviceSn,
-      comment: newDeviceComment,
+      comments: newDeviceComments,
       category: newDeviceCategory,
       id: device.id,
       userId: device.userId,
@@ -189,7 +189,7 @@ export default function DevicesDataModal({ modalData }) {
       setNewDeviceType("")
       setNewDeviceModel("")
       setNewDeviceSn("")
-      setNewDeviceComment("")
+      setNewDeviceComments("")
       setNewDeviceCategory("personal")
       setEditMode(false)
       setDeleteMode(false)
@@ -250,7 +250,7 @@ export default function DevicesDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="comment">{lang.comments}</label> </legend>
-                <textarea id="comment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comment || "-"} />
+                <textarea id="comment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comments || "-"} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -325,7 +325,7 @@ export default function DevicesDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="editComment">{lang.comments}</label></legend>
-                <textarea id="editComment" spellCheck={false} rows="2" value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value)} maxLength={500} />
+                <textarea id="editComment" spellCheck={false} rows="2" value={newDeviceComments} onChange={e => setNewDeviceComments(e.target.value)} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -391,7 +391,7 @@ export default function DevicesDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="deleteComment">{lang.comments}</label></legend>
-                <textarea id="deleteComment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comment || "-"} />
+                <textarea id="deleteComment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comments || "-"} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -465,7 +465,7 @@ export default function DevicesDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="addComment">{lang.comments}</label></legend>
-                <textarea id="addComment" spellCheck={false} rows="2" value={newDeviceComment} onChange={e => setNewDeviceComment(e.target.value)} maxLength={500} />
+                <textarea id="addComment" spellCheck={false} rows="2" value={newDeviceComments} onChange={e => setNewDeviceComments(e.target.value)} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>

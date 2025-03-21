@@ -22,7 +22,7 @@ export default function ContactsDataModal({ modalData }) {
   const [newUserEmail, setNewUserEmail] = useState("")
   const [newUserTel, setNewUserTel] = useState("")
   const [newUserRole, setNewUserRole] = useState("")
-  const [newUserComment, setNewUserComment] = useState("")
+  const [newUserComments, setNewUserComments] = useState("")
   const [newUserCategory, setNewUserCategory] = useState("personal")
 
   const [editMode, setEditMode] = useState(false)
@@ -37,7 +37,7 @@ export default function ContactsDataModal({ modalData }) {
     setNewUserEmail(newUserEmail => newUserEmail.trim())
     setNewUserTel(newUserTel => newUserTel.trim())
     setNewUserRole(newUserRole => newUserRole.trim())
-    setNewUserComment(newUserComment => newUserComment.trim())
+    setNewUserComments(newUserComments => newUserComments.trim())
     setNewUserCategory(newUserCategory => newUserCategory.trim())
   }
 
@@ -62,7 +62,7 @@ export default function ContactsDataModal({ modalData }) {
       email: newUserEmail,
       telephone: newUserTel,
       role: newUserRole,
-      comment: newUserComment,
+      comments: newUserComments,
       category: newUserCategory,
       localId: crypto.randomUUID().replace(/-/g, ''),
       localTime: Date.now(),
@@ -107,9 +107,9 @@ export default function ContactsDataModal({ modalData }) {
   const editModeFN = () => {
     setNewUserName(modalData?.name)
     setNewUserEmail(modalData?.email)
-    setNewUserTel(modalData?.tel)
+    setNewUserTel(modalData?.telephone)
     setNewUserRole(modalData?.role)
-    setNewUserComment(modalData?.comment)
+    setNewUserComments(modalData?.comments)
     setNewUserCategory(modalData?.category)
     setEditMode(true)
   }
@@ -135,7 +135,7 @@ export default function ContactsDataModal({ modalData }) {
       email: newUserEmail,
       telephone: newUserTel,
       role: newUserRole,
-      comment: newUserComment,
+      comments: newUserComments,
       category: newUserCategory,
       id: contact.id,
       userId: contact.userId,
@@ -192,7 +192,7 @@ export default function ContactsDataModal({ modalData }) {
       setNewUserEmail("")
       setNewUserTel("")
       setNewUserRole("")
-      setNewUserComment("")
+      setNewUserComments("")
       setNewUserCategory("personal")
       setEditMode(false)
       setDeleteMode(false)
@@ -223,12 +223,12 @@ export default function ContactsDataModal({ modalData }) {
             </div>
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="tel">{lang.telephone}</label></legend>
-                <input id='tel' readOnly disabled spellCheck={false} type="tel" value={modalData?.tel || "-"} />
-              </fieldset>
-              <fieldset>
                 <legend><label htmlFor="role">{lang.role}</label></legend>
                 <input id='role' readOnly disabled spellCheck={false} type="text" value={modalData?.role || "-"} />
+              </fieldset>
+              <fieldset>
+                <legend><label htmlFor="tel">{lang.telephone}</label></legend>
+                <input id='tel' readOnly disabled spellCheck={false} type="tel" value={modalData?.telephone || "-"} />
               </fieldset>
             </div>
 
@@ -252,7 +252,7 @@ export default function ContactsDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="comment">{lang.comments}</label></legend>
-                <textarea id="comment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comment || "-"} />
+                <textarea id="comment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comments || "-"} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -298,15 +298,15 @@ export default function ContactsDataModal({ modalData }) {
             </div>
             <div className="form-group">
               <fieldset>
+                <legend><label htmlFor="editRole">{lang.role}</label></legend>
+                <input id="editRole" spellCheck={false} type="text" value={newUserRole} onChange={e => setNewUserRole(e.target.value)} maxLength={200} />
+              </fieldset>
+              <fieldset>
                 <legend><label htmlFor="editTel">{lang.telephone}</label></legend>
                 <input id="editTel" spellCheck={false} type="tel" value={newUserTel} onChange={e => {
                   const value = e.target.value.replace(/\D/g, '');
                   setNewUserTel(value)
                 }} maxLength={20} />
-              </fieldset>
-              <fieldset>
-                <legend><label htmlFor="editRole">{lang.role}</label></legend>
-                <input id="editRole" spellCheck={false} type="text" value={newUserRole} onChange={e => setNewUserRole(e.target.value)} maxLength={200} />
               </fieldset>
             </div>
 
@@ -330,7 +330,7 @@ export default function ContactsDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="editComment">{lang.comments}</label></legend>
-                <textarea id="editComment" spellCheck={false} rows="2" value={newUserComment} onChange={e => setNewUserComment(e.target.value)} maxLength={500} />
+                <textarea id="editComment" spellCheck={false} rows="2" value={newUserComments} onChange={e => setNewUserComments(e.target.value)} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -367,12 +367,12 @@ export default function ContactsDataModal({ modalData }) {
             </div>
             <div className="form-group">
               <fieldset>
-                <legend><label htmlFor="deleteTel">{lang.telephone}</label></legend>
-                <input id="deleteTel" readOnly disabled spellCheck={false} type="tel" value={modalData?.tel || "-"} />
-              </fieldset>
-              <fieldset>
                 <legend><label htmlFor="deleteRole">{lang.role}</label></legend>
                 <input id="deleteRole" readOnly disabled spellCheck={false} type="text" value={modalData?.role || "-"} />
+              </fieldset>
+              <fieldset>
+                <legend><label htmlFor="deleteTel">{lang.telephone}</label></legend>
+                <input id="deleteTel" readOnly disabled spellCheck={false} type="tel" value={modalData?.telephone || "-"} />
               </fieldset>
             </div>
 
@@ -396,7 +396,7 @@ export default function ContactsDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="deleteComment">{lang.comments}</label></legend>
-                <textarea id="deleteComment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comment || "-"} />
+                <textarea id="deleteComment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comments || "-"} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -441,15 +441,15 @@ export default function ContactsDataModal({ modalData }) {
             </div>
             <div className="form-group">
               <fieldset>
+                <legend><label htmlFor="addRole">{lang.role}</label></legend>
+                <input id="addRole" spellCheck={false} type="text" value={newUserRole} onChange={e => setNewUserRole(e.target.value)} maxLength={200} />
+              </fieldset>
+              <fieldset>
                 <legend><label htmlFor="addTel">{lang.telephone}</label></legend>
                 <input id="addTel" spellCheck={false} type="tel" value={newUserTel} onChange={e => {
                   const value = e.target.value.replace(/\D/g, '');
                   setNewUserTel(value)
                 }} maxLength={20} />
-              </fieldset>
-              <fieldset>
-                <legend><label htmlFor="addRole">{lang.role}</label></legend>
-                <input id="addRole" spellCheck={false} type="text" value={newUserRole} onChange={e => setNewUserRole(e.target.value)} maxLength={200} />
               </fieldset>
             </div>
 
@@ -473,7 +473,7 @@ export default function ContactsDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="addComment">{lang.comments}</label></legend>
-                <textarea id="addComment" spellCheck={false} rows="2" value={newUserComment} onChange={e => setNewUserComment(e.target.value)} maxLength={500} />
+                <textarea id="addComment" spellCheck={false} rows="2" value={newUserComments} onChange={e => setNewUserComments(e.target.value)} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>

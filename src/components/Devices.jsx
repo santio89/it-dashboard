@@ -6,13 +6,21 @@ import { useState, useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import { useTranslation } from "../hooks/useTranslation";
 
+const formFields = ["category", "name", "type", "model", "sn", "comments"]
+
 export default function Devices({ user }) {
   const lang = useTranslation()
 
   const dispatch = useDispatch()
+
   const [sortList, setSortList] = useState(false)
+
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const [listSelected, setListSelected] = useState("all")
+
+  const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
+  const [graphicSelected, setGraphicSelected] = useState([])
+
   const listContainer = useRef()
 
   const [devicesList, setDevicesList] = useState(null)
@@ -30,6 +38,24 @@ export default function Devices({ user }) {
   const selectList = list => {
     setListSelected(list)
     setListPickerOpen(false)
+  }
+
+  const selectGraphic = graphic => {
+    setGraphicPickerOpen(false)
+
+    if (graphic === "none") {
+      setGraphicSelected([])
+      return
+    }
+    if (graphic === "all") {
+      setGraphicSelected([...formFields])
+      return
+    }
+    if (graphicSelected.includes(graphic)) {
+      setGraphicSelected(graphicSelected => graphicSelected.filter(graph => graph != graphic))
+      return
+    }
+    setGraphicSelected(graphicSelected => [...graphicSelected, graphic])
   }
 
 
@@ -77,7 +103,8 @@ export default function Devices({ user }) {
         <div className="btnWrapper">
           <button disabled={isLoadingDevices} onClick={() => {
             dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", newDevice: true, userId: user?.uid, dataList: dataDevices } }))
-            setListPickerOpen(false)
+            setListPickerOpen(false);
+            setGraphicPickerOpen(false);
           }}>+ {lang.addDevice}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
@@ -131,13 +158,15 @@ export default function Devices({ user }) {
             <div className="listWrapper">
               <ul className="items-list" ref={listContainer}>
                 {
-                  devicesList?.map(device =>
-                    <li className={firstLoad && "firstLoad"} key={device.localId}><button disabled={device.id === "temp-id"} title={device.name} onClick={() => {
-                      dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device, dataList: dataDevices } })); setListPickerOpen(false)
-                    }}>{device.name}</button></li>)
-                }
-                {
-                  devicesList?.length === 0 && <li className="no-data">{lang.noData}</li>
+                  devicesList?.length === 0 ? <li className="no-data">{lang.noData}</li> :
+                    <>
+                      {
+                        devicesList?.map(device =>
+                          <li className={firstLoad && "firstLoad"} key={device.localId}><button disabled={device.id === "temp-id"} title={device.name} onClick={() => {
+                            dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device, dataList: dataDevices } })); setListPickerOpen(false); setGraphicPickerOpen(false)
+                          }}>{device.name}</button></li>)
+                      }
+                    </>
                 }
               </ul>
             </div>
@@ -145,12 +174,52 @@ export default function Devices({ user }) {
       </div>
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
-          <button disabled={isLoadingDevices}>{lang.charts}</button>
+          <button className={`${graphicPickerOpen && "selected"}`} disabled={isLoadingDevices} onClick={() => { setGraphicPickerOpen(graphicPickerOpen => !graphicPickerOpen) }}>{lang.charts}</button>
+
+          {
+            graphicPickerOpen &&
+            <div className="listPickerOptions">
+              {formFields.map((field) => {
+                return <button key={field} disabled={isLoadingDevices} className={`listPicker ${graphicSelected.includes(field) && "selected"}`}
+                  onClick={() => {
+                    selectGraphic(field)
+                  }}>
+                  {
+                    lang[field]
+                  }
+                </button>
+              })}
+              <button key={"graphPickerBtn-none"} disabled={isLoadingDevices} className={`listPicker ${graphicSelected.length === 0 && "selected"}`}
+                onClick={() => {
+                  selectGraphic("none")
+                }}>
+                {
+                  lang["none"]
+                }
+              </button>
+              <button key={"graphPickerBtn-all"} disabled={isLoadingDevices} className={`listPicker ${graphicSelected.length === formFields.length && "selected"}`}
+                onClick={() => {
+                  selectGraphic("all")
+                }}>
+                {
+                  lang["all"]
+                }
+              </button>
+            </div>
+          }
         </div>
         <div className="chartWrapper">
           {
             isLoadingDevices ? <div className="loader">{lang.loading}...</div> :
-              <DataChart type={{ property: "category", items: "devices" }} data={dataDevices} firstLoad={firstLoad} />
+              <>
+                {
+                  graphicSelected.length === 0 ?
+                    <p>{lang.noGraphicsSelected}</p> :
+                    graphicSelected.map((graphic) => {
+                      return <DataChart key={graphic} type={{ property: graphic, items: "contacts" }} data={dataDevices} firstLoad={firstLoad} />
+                    })
+                }
+              </>
           }
         </div>
       </div>
