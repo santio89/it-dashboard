@@ -54,7 +54,7 @@ export default function SupportDataModal({ modalData }) {
       description: newTicketDescription,
       priority: newTicketPriority,
       status: newTicketStatus,
-      adminReply: newTicketStatus === "completed" ? (newTicketReply === "" ? lang.ticketClosed : newTicketReply) : "",
+      reply: newTicketStatus === "completed" ? (newTicketReply === "" ? lang.ticketClosed : newTicketReply) : "",
       author: modalData?.user.email,
       authorId: modalData?.user.uid,
       localId: crypto.randomUUID().replace(/-/g, ''),
@@ -111,7 +111,7 @@ export default function SupportDataModal({ modalData }) {
     setNewTicketDescription(modalData?.description)
     setNewTicketPriority(modalData?.priority)
     setNewTicketStatus(modalData?.status)
-    setNewTicketReply(modalData?.adminReply)
+    setNewTicketReply(modalData?.reply)
     setEditMode(true)
   }
 
@@ -133,16 +133,16 @@ export default function SupportDataModal({ modalData }) {
     const category = newTicketCategory
     const priority = newTicketPriority
     const status = newTicketStatus
-    const adminReply = newTicketStatus === "completed" ? (newTicketReply === "" ? lang.ticketClosed : newTicketReply) : ""
+    const reply = newTicketStatus === "completed" ? (newTicketReply === "" ? lang.ticketClosed : newTicketReply) : ""
 
-    if (input === ticket.description && (ticket.priority === (priority ?? ticket.priority)) && (ticket.category === (category ?? ticket.category)) && (ticket.title === (title ?? ticket.title)) && (ticket.status === (status ?? ticket.status)) && (ticket.adminReply === (adminReply ?? ticket.adminReply))) {
+    if (input === ticket.description && (ticket.priority === (priority ?? ticket.priority)) && (ticket.category === (category ?? ticket.category)) && (ticket.title === (title ?? ticket.title)) && (ticket.status === (status ?? ticket.status)) && (ticket.reply === (reply ?? ticket.reply))) {
       dispatch(setModal({ active: false, data: {} }))
       return
     }
 
     const { modalType, supportData, user, ...trimTicket } = ticket
 
-    const newTicket = { ...trimTicket, title: title ?? ticket.title, description: input, category: category ?? ticket.category, priority: priority ?? ticket.priority, status: status ?? ticket.status, adminReply: adminReply ?? ticket.adminReply }
+    const newTicket = { ...trimTicket, title: title ?? ticket.title, description: input, category: category ?? ticket.category, priority: priority ?? ticket.priority, status: status ?? ticket.status, reply: reply ?? ticket.reply }
 
     dispatch(setModal({ active: false, data: {} }))
 
@@ -216,7 +216,7 @@ export default function SupportDataModal({ modalData }) {
               {
                 modalData?.status === "completed" && showReply &&
                 <div className='taskReply'>
-                  {modalData?.adminReply}
+                  {modalData?.reply}
                 </div>
               }
             </div>
@@ -338,7 +338,7 @@ export default function SupportDataModal({ modalData }) {
               {
                 modalData?.status === "completed" && showReply &&
                 <div className='taskReply'>
-                  {modalData?.adminReply}
+                  {modalData?.reply}
                 </div>
               }
             </div>

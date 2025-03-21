@@ -1383,10 +1383,10 @@ select:disabled {
   transition: 200ms ease-in-out;
 }
 .site-section__chart .chartWrapper .dataChart > div:not(.loader) svg text {
-  text-transform: capitalize;
+  text-transform: lowercase;
+  font-size: 1rem;
   font-weight: 300;
   font-family: var(--font-primary);
-  font-size: 1rem;
   fill: var(--black);
   transition: 200ms ease-in-out;
   /* no data */
@@ -1947,7 +1947,7 @@ label:hover) {
   background: transparent;
   outline: 1px solid transparent;
   font-size: 0.9em;
-  text-underline-offset: 3px !important;
+  text-underline-offset: 4px !important;
   text-decoration-thickness: 1px !important;
 }
 .mainModal__data__form.taskContainer .taskOpenData button[disabled] {

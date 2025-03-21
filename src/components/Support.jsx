@@ -9,7 +9,7 @@ import { toast } from "sonner"
 import { collection, onSnapshot, query, where } from "firebase/firestore"
 import { firebaseDb as db } from "../config/firebase"
 
-const formFields = ["author", "title", "description", "priority", "status"]
+const formFields = ["author", "title", "description", "priority", "status", "reply"]
 
 export default function Support({ user }) {
   const lang = useTranslation()
@@ -71,7 +71,7 @@ export default function Support({ user }) {
       return
     }
 
-    const newTicket = { ...ticket, status: ticket.status === "completed" ? "pending" : "completed", adminReply: ticket.status === "completed" ? "" : lang.ticketClosed }
+    const newTicket = { ...ticket, status: ticket.status === "completed" ? "pending" : "completed", reply: ticket.status === "completed" ? "" : lang.ticketClosed }
 
     try {
       toast(`${lang.editingTicket}...`)
@@ -178,7 +178,9 @@ export default function Support({ user }) {
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button disabled={isLoadingSupport} onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", newTicket: true, userId: user?.uid, user: user } }))
+            dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", newTicket: true, userId: user?.uid, user: user } }));
+            setListPickerOpen(false);
+            setGraphicPickerOpen(false);
           }}>+ {lang.addTicket}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
@@ -317,15 +319,51 @@ export default function Support({ user }) {
       </div>
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
-          <button disabled={isLoadingSupport}>{lang.charts}</button>
+          <button className={`${graphicPickerOpen && "selected"}`} disabled={isLoadingSupport} onClick={() => { setGraphicPickerOpen(graphicPickerOpen => !graphicPickerOpen) }}>{lang.charts}</button>
+
+          {
+            graphicPickerOpen &&
+            <div className="listPickerOptions">
+              {formFields.map((field) => {
+                return <button key={field} disabled={isLoadingSupport} className={`listPicker ${graphicSelected.includes(field) && "selected"}`}
+                  onClick={() => {
+                    selectGraphic(field)
+                  }}>
+                  {
+                    lang[field]
+                  }
+                </button>
+              })}
+              <button key={"graphPickerBtn-none"} disabled={isLoadingSupport} className={`listPicker ${graphicSelected.length === 0 && "selected"}`}
+                onClick={() => {
+                  selectGraphic("none")
+                }}>
+                {
+                  lang["none"]
+                }
+              </button>
+              <button key={"graphPickerBtn-all"} disabled={isLoadingSupport} className={`listPicker ${graphicSelected.length === formFields.length && "selected"}`}
+                onClick={() => {
+                  selectGraphic("all")
+                }}>
+                {
+                  lang["all"]
+                }
+              </button>
+            </div>
+          }
         </div>
         <div className="chartWrapper">
           {
             isLoadingSupport ? <div className="loader">{lang.loading}...</div> :
               <>
-                {/* <DataChart type={{ property: "category", items: "tickets" }} data={dataSupport} firstLoad={firstLoad} /> */}
-                <DataChart type={{ property: "status", items: "tickets" }} data={dataSupport} firstLoad={firstLoad} />
-                <DataChart type={{ property: "priority", items: "tickets" }} data={dataSupport} firstLoad={firstLoad} />
+                {
+                  graphicSelected.length === 0 ?
+                    <p>{lang.noGraphicsSelected}</p> :
+                    graphicSelected.map((graphic) => {
+                      return <DataChart key={graphic} type={{ property: graphic, items: "contacts" }} data={dataSupport} firstLoad={firstLoad} />
+                    })
+                }
               </>
           }
         </div>
