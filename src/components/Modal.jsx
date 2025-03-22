@@ -32,6 +32,10 @@ export default function Modal() {
     }
 
     if (modalActive) {
+      /* close popovers */
+      modal.current.click()
+
+      /* close modal */
       document.addEventListener("mousedown", closeModalClick)
       document.addEventListener("keydown", closeModalEsc)
 
@@ -60,7 +64,7 @@ export default function Modal() {
       document.removeEventListener("keydown", closeModalEsc);
     }
   }, [modalActive])
-  
+
 
   return (
     <Draggable /*bounds={"parent"}*/ position={{ x: 0, y: 0 }} handle='h2' /*cancel={"button, input, textarea, select, option, .taskOpenContent"}*/
