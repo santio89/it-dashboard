@@ -51,8 +51,6 @@ export default function Tasks({ user }) {
   }
 
   const selectGraphic = graphic => {
-    setGraphicPickerOpen(false)
-
     if (graphic === "none") {
       setGraphicSelected([])
       return
@@ -150,14 +148,14 @@ export default function Tasks({ user }) {
 
     if (listPickerOpen) {
       setTimeout(() => {
-        window.addEventListener("click", handlePickerCloseClick)
-        window.addEventListener("keydown", handlePickerCloseEsc)
+        window.addEventListener("click", handlePickerCloseClick, { capture: true })
+        window.addEventListener("keydown", handlePickerCloseEsc, { capture: true })
       }, [0])
     }
 
     return () => {
-      window.removeEventListener("click", handlePickerCloseClick);
-      window.removeEventListener("keydown", handlePickerCloseEsc)
+      window.removeEventListener("click", handlePickerCloseClick, { capture: true });
+      window.removeEventListener("keydown", handlePickerCloseEsc, { capture: true })
     }
 
   }, [listPickerOpen])
@@ -170,7 +168,6 @@ export default function Tasks({ user }) {
     }
 
     const handlePickerCloseEsc = (e) => {
-
       if (e.key === "Escape") {
         setGraphicPickerOpen(false)
       }
@@ -178,13 +175,16 @@ export default function Tasks({ user }) {
 
     if (graphicPickerOpen) {
       setTimeout(() => {
-        window.addEventListener("click", handlePickerCloseClick)
-        window.addEventListener("keydown", handlePickerCloseEsc)
+        window.addEventListener("click", handlePickerCloseClick, { capture: true })
+        window.addEventListener("keydown", handlePickerCloseEsc, { capture: true })
       }, [0])
 
     }
 
-    return () => { window.removeEventListener("click", handlePickerCloseClick); window.removeEventListener("keydown", handlePickerCloseEsc) }
+    return () => {
+      window.removeEventListener("click", handlePickerCloseClick, { capture: true });
+      window.removeEventListener("keydown", handlePickerCloseEsc, { capture: true })
+    }
 
   }, [graphicPickerOpen])
 
