@@ -21,6 +21,9 @@ export default function Devices({ user }) {
   const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
   const [graphicSelected, setGraphicSelected] = useState([])
 
+  const listPickerRef = useRef()
+  const graphicPickerRef = useRef()
+
   const listContainer = useRef()
 
   const [devicesList, setDevicesList] = useState(null)
@@ -37,7 +40,6 @@ export default function Devices({ user }) {
 
   const selectList = list => {
     setListSelected(list)
-    setListPickerOpen(false)
   }
 
   const selectGraphic = graphic => {
@@ -80,6 +82,59 @@ export default function Devices({ user }) {
   }, [listSelected, sortList, dataDevices])
 
   useEffect(() => {
+    const handlePickerCloseClick = (e) => {
+      if (e.target != listPickerRef.current && !Array.from(listPickerRef.current.childNodes).some((node) => node == e.target)) {
+        setListPickerOpen(false)
+      }
+    }
+
+    const handlePickerCloseEsc = (e) => {
+      if (e.key === "Escape") {
+        setListPickerOpen(false)
+      }
+    }
+
+    if (listPickerOpen) {
+      setTimeout(() => {
+        window.addEventListener("click", handlePickerCloseClick)
+        window.addEventListener("keydown", handlePickerCloseEsc)
+      }, [0])
+    }
+
+    return () => {
+      window.removeEventListener("click", handlePickerCloseClick);
+      window.removeEventListener("keydown", handlePickerCloseEsc)
+    }
+
+  }, [listPickerOpen])
+
+  useEffect(() => {
+    const handlePickerCloseClick = (e) => {
+      if (e.target != graphicPickerRef.current && !Array.from(graphicPickerRef.current.childNodes).some((node) => node == e.target)) {
+        setGraphicPickerOpen(false)
+      }
+    }
+
+    const handlePickerCloseEsc = (e) => {
+
+      if (e.key === "Escape") {
+        setGraphicPickerOpen(false)
+      }
+    }
+
+    if (graphicPickerOpen) {
+      setTimeout(() => {
+        window.addEventListener("click", handlePickerCloseClick)
+        window.addEventListener("keydown", handlePickerCloseEsc)
+      }, [0])
+
+    }
+
+    return () => { window.removeEventListener("click", handlePickerCloseClick); window.removeEventListener("keydown", handlePickerCloseEsc) }
+
+  }, [graphicPickerOpen])
+
+  useEffect(() => {
     !isLoadingDevices && devicesList && listContainer.current && autoAnimate(listContainer.current)
   }, [listContainer, isLoadingDevices, devicesList])
 
@@ -103,17 +158,15 @@ export default function Devices({ user }) {
         <div className="btnWrapper">
           <button disabled={isLoadingDevices} onClick={() => {
             dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", newDevice: true, userId: user?.uid, dataList: dataDevices } }))
-            setListPickerOpen(false);
-            setGraphicPickerOpen(false);
           }}>+ {lang.addDevice}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
-                <button disabled={isLoadingDevices} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>{lang.filter}</button>
+                <button disabled={isLoadingDevices} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => setListPickerOpen(listPickerOpen => !listPickerOpen)}>{lang.filter}</button>
               }
               {
                 listPickerOpen &&
-                <div className="listPickerOptions">
+                <div className="listPickerOptions" ref={listPickerRef}>
                   <button disabled={isLoadingDevices} className={`listPicker ${listSelected === "personal" && "selected"}`}
                     onClick={() => {
                       selectList("personal")
@@ -163,7 +216,7 @@ export default function Devices({ user }) {
                       {
                         devicesList?.map(device =>
                           <li className={firstLoad && "firstLoad"} key={device.localId}><button disabled={device.id === "temp-id"} title={device.name} onClick={() => {
-                            dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device, dataList: dataDevices } })); setListPickerOpen(false); setGraphicPickerOpen(false)
+                            dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device, dataList: dataDevices } }));
                           }}>{device.name}</button></li>)
                       }
                     </>
@@ -178,7 +231,7 @@ export default function Devices({ user }) {
 
           {
             graphicPickerOpen &&
-            <div className="listPickerOptions">
+            <div ref={graphicPickerRef} className="listPickerOptions">
               {formFields.map((field) => {
                 return <button key={field} disabled={isLoadingDevices} className={`listPicker ${graphicSelected.includes(field) && "selected"}`}
                   onClick={() => {

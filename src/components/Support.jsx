@@ -20,8 +20,6 @@ export default function Support({ user }) {
 
   const [ticketOptions, setTicketOptions] = useState(null)
 
-  const listContainer = useRef()
-
   const [supportList, setSupportList] = useState(null)
   const [firstLoad, setFirstLoad] = useState(null)
 
@@ -30,6 +28,11 @@ export default function Support({ user }) {
 
   const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
   const [graphicSelected, setGraphicSelected] = useState([])
+
+  const listPickerRef = useRef()
+  const graphicPickerRef = useRef()
+
+  const listContainer = useRef()
 
   const [editSupport, resultEditSupport] = useEditSupportMutation()
   const [setSupport, resultSetSupport] = useSetSupportMutation()
@@ -45,7 +48,6 @@ export default function Support({ user }) {
 
   const selectList = list => {
     setListSelected(list)
-    setListPickerOpen(false)
   }
 
   const selectGraphic = graphic => {
@@ -155,6 +157,59 @@ export default function Support({ user }) {
   }, [listSelected])
 
   useEffect(() => {
+    const handlePickerCloseClick = (e) => {
+      if (e.target != listPickerRef.current && !Array.from(listPickerRef.current.childNodes).some((node) => node == e.target)) {
+        setListPickerOpen(false)
+      }
+    }
+
+    const handlePickerCloseEsc = (e) => {
+      if (e.key === "Escape") {
+        setListPickerOpen(false)
+      }
+    }
+
+    if (listPickerOpen) {
+      setTimeout(() => {
+        window.addEventListener("click", handlePickerCloseClick)
+        window.addEventListener("keydown", handlePickerCloseEsc)
+      }, [0])
+    }
+
+    return () => {
+      window.removeEventListener("click", handlePickerCloseClick);
+      window.removeEventListener("keydown", handlePickerCloseEsc)
+    }
+
+  }, [listPickerOpen])
+
+  useEffect(() => {
+    const handlePickerCloseClick = (e) => {
+      if (e.target != graphicPickerRef.current && !Array.from(graphicPickerRef.current.childNodes).some((node) => node == e.target)) {
+        setGraphicPickerOpen(false)
+      }
+    }
+
+    const handlePickerCloseEsc = (e) => {
+
+      if (e.key === "Escape") {
+        setGraphicPickerOpen(false)
+      }
+    }
+
+    if (graphicPickerOpen) {
+      setTimeout(() => {
+        window.addEventListener("click", handlePickerCloseClick)
+        window.addEventListener("keydown", handlePickerCloseEsc)
+      }, [0])
+
+    }
+
+    return () => { window.removeEventListener("click", handlePickerCloseClick); window.removeEventListener("keydown", handlePickerCloseEsc) }
+
+  }, [graphicPickerOpen])
+
+  useEffect(() => {
     !isLoadingSupport && supportList && listContainer.current && autoAnimate(listContainer.current)
   }, [listContainer, isLoadingSupport, supportList])
 
@@ -178,18 +233,16 @@ export default function Support({ user }) {
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button disabled={isLoadingSupport} onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", newTicket: true, userId: user?.uid, user: user } }));
-            setListPickerOpen(false);
-            setGraphicPickerOpen(false);
+            dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", newTicket: true, userId: user?.uid, user: user } }))
           }}>+ {lang.addTicket}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
-                <button disabled={isLoadingSupport} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>{lang.filter}</button>
+                <button disabled={isLoadingSupport} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => setListPickerOpen(listPickerOpen => !listPickerOpen)}>{lang.filter}</button>
               }
               {
                 listPickerOpen &&
-                <div className="listPickerOptions">
+                <div ref={listPickerRef} className="listPickerOptions">
                   <button disabled={isLoadingSupport} className={`listPicker ${listSelected === "completed" && "selected"}`}
                     onClick={() => {
                       selectList("completed")
@@ -276,7 +329,7 @@ export default function Support({ user }) {
                                 <div className={`tdl-optionsBtns`}>
                                   {
                                     /* open */
-                                    <button disabled={ticket.id === "temp-id"} title={lang.info} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, user: user, ...ticket } })); setListPickerOpen(false); setGraphicPickerOpen(false) }}>
+                                    <button disabled={ticket.id === "temp-id"} title={lang.info} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ active: true, data: { modalType: "SupportDataModal", supportData: true, user: user, ...ticket } })) }}>
                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
                                         <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                                       </svg>
@@ -323,7 +376,7 @@ export default function Support({ user }) {
 
           {
             graphicPickerOpen &&
-            <div className="listPickerOptions">
+            <div ref={graphicPickerRef} className="listPickerOptions">
               {formFields.map((field) => {
                 return <button key={field} disabled={isLoadingSupport} className={`listPicker ${graphicSelected.includes(field) && "selected"}`}
                   onClick={() => {

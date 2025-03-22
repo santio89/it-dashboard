@@ -21,10 +21,10 @@ export default function Contacts({ user }) {
   const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
   const [graphicSelected, setGraphicSelected] = useState([])
 
-  const listContainer = useRef()
-
   const listPickerRef = useRef()
   const graphicPickerRef = useRef()
+
+  const listContainer = useRef()
 
   const [contactsList, setContactsList] = useState(null)
   const [firstLoad, setFirstLoad] = useState(null)
@@ -81,24 +81,6 @@ export default function Contacts({ user }) {
   }, [listSelected, sortList, dataContacts])
 
   useEffect(() => {
-    !isLoadingContacts && contactsList && listContainer.current && autoAnimate(listContainer.current)
-  }, [listContainer, isLoadingContacts, contactsList])
-
-  useEffect(() => {
-    let timeout;
-
-    if (!isLoadingContacts) {
-      timeout = setTimeout(() => {
-        setFirstLoad(false)
-      }, 0)
-    } else {
-      setFirstLoad(true)
-    }
-
-    return () => clearTimeout(timeout)
-  }, [isLoadingContacts])
-
-  useEffect(() => {
     const handlePickerCloseClick = (e) => {
       if (e.target != listPickerRef.current && !Array.from(listPickerRef.current.childNodes).some((node) => node == e.target)) {
         setListPickerOpen(false)
@@ -151,12 +133,31 @@ export default function Contacts({ user }) {
 
   }, [graphicPickerOpen])
 
+  useEffect(() => {
+    !isLoadingContacts && contactsList && listContainer.current && autoAnimate(listContainer.current)
+  }, [listContainer, isLoadingContacts, contactsList])
+
+  useEffect(() => {
+    let timeout;
+
+    if (!isLoadingContacts) {
+      timeout = setTimeout(() => {
+        setFirstLoad(false)
+      }, 0)
+    } else {
+      setFirstLoad(true)
+    }
+
+    return () => clearTimeout(timeout)
+  }, [isLoadingContacts])
+
+
   return (
     <>
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button disabled={isLoadingContacts} onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newUser: true, userId: user?.uid, dataList: dataContacts } }));
+            dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newUser: true, userId: user?.uid, dataList: dataContacts } }))
           }}>+ {lang.addContact}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
