@@ -276,6 +276,8 @@ export default function Tasks({ user }) {
                                 {/* task status */}
                                 <div className={`tdl-itemData`} title={`${lang.status}: ${lang[task.status] ?? lang.pending}`} onClick={(e) => {
                                   e.stopPropagation();
+                                  setListPickerOpen(false);
+                                  setGraphicPickerOpen(false);
                                   if (task.id === "temp-id") return
                                   editStatusFn(task)
                                 }}>

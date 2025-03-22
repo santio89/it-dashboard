@@ -298,6 +298,8 @@ export default function Support({ user }) {
                                 {/* ticket status */}
                                 <div className={`tdl-itemData`} title={`Status: ${ticket.status ?? "pending"}`} onClick={(e) => {
                                   e.stopPropagation();
+                                  setListPickerOpen(false);
+                                  setGraphicPickerOpen(false);
                                   if (ticket.id === "temp-id") return
                                   if (user.domainAdmin) {
                                     editStatusFn(ticket)
