@@ -76,14 +76,14 @@ export default function Nav({ rootTheme, user }) {
 
     if (profileOpts) {
       setTimeout(() => {
-        window.addEventListener("click", handleOptsCloseClick, { capture: true })
-        window.addEventListener("keydown", handleOptsCloseEsc, { capture: true })
+        window.addEventListener("click", handleOptsCloseClick)
+        window.addEventListener("keydown", handleOptsCloseEsc)
       }, [0])
     }
 
     return () => {
-      window.removeEventListener("click", handleOptsCloseClick, { capture: true });
-      window.removeEventListener("keydown", handleOptsCloseEsc, { capture: true })
+      window.removeEventListener("click", handleOptsCloseClick);
+      window.removeEventListener("keydown", handleOptsCloseEsc)
     }
 
   }, [profileOpts])

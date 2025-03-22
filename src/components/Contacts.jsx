@@ -95,14 +95,14 @@ export default function Contacts({ user }) {
 
     if (listPickerOpen) {
       setTimeout(() => {
-        window.addEventListener("click", handlePickerCloseClick, { capture: true })
-        window.addEventListener("keydown", handlePickerCloseEsc, { capture: true })
+        window.addEventListener("click", handlePickerCloseClick)
+        window.addEventListener("keydown", handlePickerCloseEsc)
       }, [0])
     }
 
     return () => {
-      window.removeEventListener("click", handlePickerCloseClick, { capture: true });
-      window.removeEventListener("keydown", handlePickerCloseEsc, { capture: true })
+      window.removeEventListener("click", handlePickerCloseClick);
+      window.removeEventListener("keydown", handlePickerCloseEsc)
     }
 
   }, [listPickerOpen])
@@ -123,15 +123,15 @@ export default function Contacts({ user }) {
 
     if (graphicPickerOpen) {
       setTimeout(() => {
-        window.addEventListener("click", handlePickerCloseClick, { capture: true })
-        window.addEventListener("keydown", handlePickerCloseEsc, { capture: true })
+        window.addEventListener("click", handlePickerCloseClick)
+        window.addEventListener("keydown", handlePickerCloseEsc)
       }, [0])
 
     }
 
     return () => {
-      window.removeEventListener("click", handlePickerCloseClick, { capture: true });
-      window.removeEventListener("keydown", handlePickerCloseEsc, { capture: true })
+      window.removeEventListener("click", handlePickerCloseClick);
+      window.removeEventListener("keydown", handlePickerCloseEsc)
     }
 
   }, [graphicPickerOpen])
