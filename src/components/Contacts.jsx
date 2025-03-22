@@ -23,6 +23,9 @@ export default function Contacts({ user }) {
 
   const listContainer = useRef()
 
+  const listPickerRef = useRef()
+  const graphicPickerRef = useRef()
+
   const [contactsList, setContactsList] = useState(null)
   const [firstLoad, setFirstLoad] = useState(null)
 
@@ -37,12 +40,9 @@ export default function Contacts({ user }) {
 
   const selectList = list => {
     setListSelected(list)
-    setListPickerOpen(false)
   }
 
   const selectGraphic = graphic => {
-    setGraphicPickerOpen(false)
-
     if (graphic === "none") {
       setGraphicSelected([])
       return
@@ -99,8 +99,56 @@ export default function Contacts({ user }) {
   }, [isLoadingContacts])
 
   useEffect(() => {
+    const handlePickerCloseClick = (e) => {
+      if (e.target != listPickerRef.current && !Array.from(listPickerRef.current.childNodes).some((node) => node == e.target)) {
+        setListPickerOpen(false)
+      }
+    }
 
-  }, [])
+    const handlePickerCloseEsc = (e) => {
+
+      if (e.key === "Escape") {
+        setListPickerOpen(false)
+      }
+    }
+
+    if (listPickerOpen) {
+      setTimeout(() => {
+        window.addEventListener("click", handlePickerCloseClick)
+        window.addEventListener("keydown", handlePickerCloseEsc)
+      }, [0])
+
+    }
+
+    return () => { window.removeEventListener("click", handlePickerCloseClick); window.removeEventListener("keydown", handlePickerCloseEsc) }
+
+  }, [listPickerOpen])
+
+  useEffect(() => {
+    const handlePickerCloseClick = (e) => {
+      if (e.target != graphicPickerRef.current && !Array.from(graphicPickerRef.current.childNodes).some((node) => node == e.target)) {
+        setGraphicPickerOpen(false)
+      }
+    }
+
+    const handlePickerCloseEsc = (e) => {
+
+      if (e.key === "Escape") {
+        setGraphicPickerOpen(false)
+      }
+    }
+
+    if (graphicPickerOpen) {
+      setTimeout(() => {
+        window.addEventListener("click", handlePickerCloseClick)
+        window.addEventListener("keydown", handlePickerCloseEsc)
+      }, [0])
+
+    }
+
+    return () => { window.removeEventListener("click", handlePickerCloseClick); window.removeEventListener("keydown", handlePickerCloseEsc) }
+
+  }, [graphicPickerOpen])
 
   return (
     <>
@@ -108,8 +156,6 @@ export default function Contacts({ user }) {
         <div className="btnWrapper">
           <button disabled={isLoadingContacts} onClick={() => {
             dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newUser: true, userId: user?.uid, dataList: dataContacts } }));
-            setListPickerOpen(false);
-            setGraphicPickerOpen(false);
           }}>+ {lang.addContact}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
@@ -118,7 +164,7 @@ export default function Contacts({ user }) {
               }
               {
                 listPickerOpen &&
-                <div className="listPickerOptions">
+                <div className="listPickerOptions" ref={listPickerRef}>
                   <button disabled={isLoadingContacts} className={`listPicker ${listSelected === "personal" && "selected"}`}
                     onClick={() => {
                       selectList("personal")
@@ -168,7 +214,7 @@ export default function Contacts({ user }) {
                     <>
                       {
                         contactsList?.map(contact =>
-                          <li className={firstLoad && "firstLoad"} key={contact.localId}><button disabled={contact.id === "temp-id"} title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact, dataList: dataContacts } })); setListPickerOpen(false); setGraphicPickerOpen(false) }}>{contact.name}</button></li>)
+                          <li className={firstLoad && "firstLoad"} key={contact.localId}><button disabled={contact.id === "temp-id"} title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact, dataList: dataContacts } })); }}>{contact.name}</button></li>)
                       }
                     </>
                 }
@@ -182,7 +228,7 @@ export default function Contacts({ user }) {
 
           {
             graphicPickerOpen &&
-            <div className="listPickerOptions">
+            <div ref={graphicPickerRef} className="listPickerOptions">
               {formFields.map((field) => {
                 return <button key={field} disabled={isLoadingContacts} className={`listPicker ${graphicSelected.includes(field) && "selected"}`}
                   onClick={() => {
