@@ -106,7 +106,6 @@ export default function Contacts({ user }) {
     }
 
     const handlePickerCloseEsc = (e) => {
-
       if (e.key === "Escape") {
         setListPickerOpen(false)
       }
@@ -117,10 +116,12 @@ export default function Contacts({ user }) {
         window.addEventListener("click", handlePickerCloseClick)
         window.addEventListener("keydown", handlePickerCloseEsc)
       }, [0])
-
     }
 
-    return () => { window.removeEventListener("click", handlePickerCloseClick); window.removeEventListener("keydown", handlePickerCloseEsc) }
+    return () => {
+      window.removeEventListener("click", handlePickerCloseClick);
+      window.removeEventListener("keydown", handlePickerCloseEsc)
+    }
 
   }, [listPickerOpen])
 
@@ -160,7 +161,7 @@ export default function Contacts({ user }) {
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
               {
-                <button disabled={isLoadingContacts} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => listPickerOpen ? selectList(listSelected) : setListPickerOpen(true)}>{lang.filter}</button>
+                <button disabled={isLoadingContacts} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => setListPickerOpen(listPickerOpen => !listPickerOpen)}>{lang.filter}</button>
               }
               {
                 listPickerOpen &&

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { setLight, setLang } from "../store/slices/themeSlice"
 import { setModal } from "../store/slices/modalSlice"
 import { useLocation } from "react-router"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useSignGoogleMutation, useSignOutMutation } from "../store/slices/apiSlice"
 import { useTranslation } from '../hooks/useTranslation'
 
@@ -19,6 +19,7 @@ export default function Nav({ rootTheme, user }) {
   const [signOut, resultSignOut] = useSignOutMutation()
   const [profileOpts, setProfileOpts] = useState(false)
   const location = useLocation()
+  const profileOptsRef = useRef()
 
   const toggleLight = () => {
     setThemeClicked(true)
@@ -33,12 +34,9 @@ export default function Nav({ rootTheme, user }) {
     await signGoogle()
   }
 
-  const setOpts = () => {
-    setProfileOpts(!profileOpts)
-  }
-
   const openProfile = () => {
     dispatch(setModal({ active: true, data: { modalType: "ProfileDataModal", profileData: true, ...user } }))
+    setProfileOpts(false)
   }
 
   const navTitle = () => {
@@ -63,6 +61,33 @@ export default function Nav({ rootTheme, user }) {
     setProfileOpts(false)
   }, [user])
 
+  useEffect(() => {
+    const handleOptsCloseClick = (e) => {
+      if (e.target != profileOptsRef.current && !profileOptsRef.current.contains(e.target)) {
+        setProfileOpts(false)
+      }
+    }
+
+    const handleOptsCloseEsc = (e) => {
+      if (e.key === "Escape") {
+        setProfileOpts(false)
+      }
+    }
+
+    if (profileOpts) {
+      setTimeout(() => {
+        window.addEventListener("click", handleOptsCloseClick)
+        window.addEventListener("keydown", handleOptsCloseEsc)
+      }, [0])
+    }
+
+    return () => {
+      window.removeEventListener("click", handleOptsCloseClick);
+      window.removeEventListener("keydown", handleOptsCloseEsc)
+    }
+
+  }, [profileOpts])
+
 
   return (
     <header className="mainHeader">
@@ -83,11 +108,11 @@ export default function Nav({ rootTheme, user }) {
         </div>
         <div className="btnWrapper">
           {user ?
-            <button aria-label="Profile" className={`profileBtn ${profileOpts && "profileOn"}`} onClick={() => setProfileOpts(!profileOpts)}>
+            <button aria-label="Profile" className={`profileBtn ${profileOpts && "profileOn"}`} onClick={() => setProfileOpts(profileOpts => !profileOpts)}>
               <img alt="profile-pic" src={user.photoURL} />
             </button>
             :
-            <button aria-label="Profile" className={`profileBtn ${profileOpts && "profileOn"}`} onClick={() => setOpts()}>
+            <button aria-label="Profile" className={`profileBtn ${profileOpts && "profileOn"}`} onClick={() => setProfileOpts(profileOpts => !profileOpts)}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
               </svg>
@@ -95,7 +120,7 @@ export default function Nav({ rootTheme, user }) {
           }
 
           {
-            <div className={`profile-opts ${profileOpts && "open"}`}>
+            <div ref={profileOptsRef} className={`profile-opts ${profileOpts && "open"}`}>
               <div className="profile-opts__langWrapper">
                 <button tabIndex={profileOpts ? 0 : -1} className={langTheme === "esp" && "selected"} onClick={() => toggleLang("esp")}
                 >ESP</button>
