@@ -1,10 +1,12 @@
 import { useDispatch } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
-import { useGetContactsQuery } from '../store/slices/apiSlice';
+import { useGetContactsQuery, useSetContactsMutation } from '../store/slices/apiSlice';
 import { useEffect, useState, useRef } from "react";
 import DataChart from "./DataChart";
 import autoAnimate from "@formkit/auto-animate";
 import { useTranslation } from "../hooks/useTranslation";
+import { collection, onSnapshot } from "firebase/firestore"
+import { firebaseDb as db } from "../config/firebase"
 
 const formFields = ["category", "name", "email", "role", "tel", "comments"]
 
@@ -25,6 +27,8 @@ export default function Contacts({ user }) {
   const graphicPickerRef = useRef()
 
   const listContainer = useRef()
+
+  const [setContacts, resultSetContacts] = useSetContactsMutation()
 
   const [contactsList, setContactsList] = useState(null)
   const [firstLoad, setFirstLoad] = useState(null)
@@ -58,6 +62,10 @@ export default function Contacts({ user }) {
     setGraphicSelected(graphicSelected => [...graphicSelected, graphic])
   }
 
+  const setContactsFn = async (data) => {
+    await setContacts(data)
+  }
+
 
   /* order */
   useEffect(() => {
@@ -79,6 +87,26 @@ export default function Contacts({ user }) {
       setContactsList(orderedList)
     }
   }, [listSelected, sortList, dataContacts])
+
+  useEffect(() => {
+    let firstSnapshot = true;
+    const collectionRef = collection(db, "authUsersData", user.uid, "contacts")
+
+    onSnapshot(collectionRef, (snapshot) => {
+      if (firstSnapshot) {
+        firstSnapshot = false;
+        return
+      }
+
+      let handleArray = []
+      snapshot.docs.forEach(doc => {
+        handleArray.push(doc.data())
+      })
+      handleArray.userId = user.uid
+
+      setContactsFn(handleArray)
+    })
+  }, [user])
 
   useEffect(() => {
     const handlePickerCloseClick = (e) => {

@@ -163,6 +163,25 @@ export const apiSlice = createApi({
         }
       }
     }),
+    setContacts: builder.mutation({
+      queryFn: () => ({
+        url: '',
+        method: 'PUT',
+      }),
+      async onQueryStarted(contactsData, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          apiSlice.util.updateQueryData('getContacts', contactsData.userId, (draft) => {
+            return contactsData;
+          })
+        );
+
+        try {
+          await queryFulfilled;
+        } catch {
+          patchResult.undo();
+        }
+      },
+    }),
 
     /* DEVICES */
     getDevices: builder.query({
@@ -318,6 +337,25 @@ export const apiSlice = createApi({
           patchResult.undo();
         }
       }
+    }),
+    setDevices: builder.mutation({
+      queryFn: () => ({
+        url: '',
+        method: 'PUT',
+      }),
+      async onQueryStarted(devicesData, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          apiSlice.util.updateQueryData('getDevices', devicesData.userId, (draft) => {
+            return devicesData;
+          })
+        );
+
+        try {
+          await queryFulfilled;
+        } catch {
+          patchResult.undo();
+        }
+      },
     }),
 
     /* TDL */
@@ -750,16 +788,13 @@ export const {
   useAddContactMutation,
   useDeleteContactMutation,
   useEditContactMutation,
-
-  useGetDevicesCompanyQuery,
-  useAddDeviceCompanyMutation,
-  useDeleteDeviceCompanyMutation,
-  useEditDeviceCompanyMutation,
+  useSetContactsMutation,
 
   useGetDevicesQuery,
   useAddDeviceMutation,
   useDeleteDeviceMutation,
   useEditDeviceMutation,
+  useSetDevicesMutation,
 
   useGetTdlQuery,
   useAddTdlMutation,

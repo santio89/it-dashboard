@@ -1,10 +1,12 @@
 import { useDispatch } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
-import { useGetDevicesQuery } from '../store/slices/apiSlice';
+import { useGetDevicesQuery, useSetDevicesMutation } from '../store/slices/apiSlice';
 import DataChart from "./DataChart";
 import { useState, useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import { useTranslation } from "../hooks/useTranslation";
+import { collection, onSnapshot } from "firebase/firestore"
+import { firebaseDb as db } from "../config/firebase"
 
 const formFields = ["category", "name", "type", "model", "sn", "comments"]
 
@@ -25,6 +27,8 @@ export default function Devices({ user }) {
   const graphicPickerRef = useRef()
 
   const listContainer = useRef()
+
+  const [setDevices, resultSetDevices] = useSetDevicesMutation()
 
   const [devicesList, setDevicesList] = useState(null)
   const [firstLoad, setFirstLoad] = useState(null)
@@ -58,6 +62,9 @@ export default function Devices({ user }) {
     setGraphicSelected(graphicSelected => [...graphicSelected, graphic])
   }
 
+  const setDevicesFn = async (data) => {
+    await setDevices(data)
+  }
 
   /* order*/
   useEffect(() => {
@@ -78,6 +85,26 @@ export default function Devices({ user }) {
       setDevicesList(orderedList)
     }
   }, [listSelected, sortList, dataDevices])
+
+  useEffect(() => {
+    let firstSnapshot = true;
+    const collectionRef = collection(db, "authUsersData", user.uid, "devices")
+
+    onSnapshot(collectionRef, (snapshot) => {
+      if (firstSnapshot) {
+        firstSnapshot = false;
+        return
+      }
+
+      let handleArray = []
+      snapshot.docs.forEach(doc => {
+        handleArray.push(doc.data())
+      })
+      handleArray.userId = user.uid
+
+      setDevicesFn(handleArray)
+    })
+  }, [user])
 
   useEffect(() => {
     const handlePickerCloseClick = (e) => {
