@@ -757,13 +757,28 @@
 
     .chartWrapper {
       flex: 1;
+      gap: 0.5rem;
+      width: 100%;
+      max-width: 800px;
       display: flex;
       flex-direction: column;
       justify-content: start;
       align-items: center;
-      gap: 1rem;
-      width: 100%;
-      max-width: 800px;
+
+      .charts-list {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+
+        li {
+          width: 100%;
+          max-width: 420px;
+        }
+      }
 
       .dataChart {
         display: flex;

@@ -33,6 +33,7 @@ export default function Support({ user }) {
   const graphicPickerRef = useRef()
 
   const listContainer = useRef()
+  const chartContainer = useRef()
 
   const [editSupport, resultEditSupport] = useEditSupportMutation()
   const [setSupport, resultSetSupport] = useSetSupportMutation()
@@ -211,7 +212,8 @@ export default function Support({ user }) {
 
   useEffect(() => {
     !isLoadingSupport && supportList && listContainer.current && autoAnimate(listContainer.current)
-  }, [listContainer, isLoadingSupport, supportList])
+    !isLoadingSupport && supportList && chartContainer.current && autoAnimate(chartContainer.current)
+  }, [listContainer, chartContainer, isLoadingSupport, supportList])
 
   useEffect(() => {
     let timeout;
@@ -408,20 +410,20 @@ export default function Support({ user }) {
             </div>
           }
         </div>
-        <div className="chartWrapper">
-          {
-            isLoadingSupport ? <div className="loader">{lang.loading}...</div> :
-              <>
+        {
+          isLoadingSupport ? <div className="loader">{lang.loading}...</div> :
+            <div className="chartWrapper">
+              <ul className="charts-list" ref={chartContainer}>
                 {
                   graphicSelected.length === 0 ?
-                    <p>{lang.noChartsSelected}</p> :
+                    <li>{lang.noChartsSelected}</li> :
                     graphicSelected.map((graphic) => {
                       return <DataChart key={graphic} type={{ property: graphic, items: "tickets" }} data={dataSupport} firstLoad={firstLoad} />
                     })
                 }
-              </>
-          }
-        </div>
+              </ul>
+            </div>
+        }
       </div>
     </>
   )

@@ -33,6 +33,7 @@ export default function Tasks({ user }) {
   const graphicPickerRef = useRef()
 
   const listContainer = useRef()
+  const chartContainer = useRef()
 
   const [editTdl, resultEditTdl] = useEditTdlMutation()
   const [setTdl, resultSetTdl] = useSetTdlMutation()
@@ -190,7 +191,8 @@ export default function Tasks({ user }) {
 
   useEffect(() => {
     !isLoadingTasks && tasksList && listContainer.current && autoAnimate(listContainer.current)
-  }, [listContainer, isLoadingTasks, tasksList])
+    !isLoadingTasks && tasksList && chartContainer.current && autoAnimate(chartContainer.current)
+  }, [listContainer, chartContainer, isLoadingTasks, tasksList])
 
   useEffect(() => {
     let timeout;
@@ -373,20 +375,20 @@ export default function Tasks({ user }) {
             </div>
           }
         </div>
-        <div className="chartWrapper">
-          {
-            isLoadingTasks ? <div className="loader">{lang.loading}...</div> :
-              <>
+        {
+          isLoadingTasks ? <div className="loader">{lang.loading}...</div> :
+            <div className="chartWrapper">
+              <ul className="charts-list" ref={chartContainer}>
                 {
                   graphicSelected.length === 0 ?
-                    <p>{lang.noChartsSelected}</p> :
+                    <li>{lang.noChartsSelected}</li> :
                     graphicSelected.map((graphic) => {
                       return <DataChart key={graphic} type={{ property: graphic, items: "tasks" }} data={dataTasks} firstLoad={firstLoad} />
                     })
                 }
-              </>
-          }
-        </div>
+              </ul>
+            </div>
+        }
       </div>
     </>
   )

@@ -27,6 +27,7 @@ export default function Devices({ user }) {
   const graphicPickerRef = useRef()
 
   const listContainer = useRef()
+  const chartContainer = useRef()
 
   const [setDevices, resultSetDevices] = useSetDevicesMutation()
 
@@ -163,7 +164,8 @@ export default function Devices({ user }) {
 
   useEffect(() => {
     !isLoadingDevices && devicesList && listContainer.current && autoAnimate(listContainer.current)
-  }, [listContainer, isLoadingDevices, devicesList])
+    !isLoadingDevices && devicesList && listContainer.current && autoAnimate(chartContainer.current)
+  }, [listContainer, chartContainer, isLoadingDevices, devicesList])
 
   useEffect(() => {
     let timeout;
@@ -288,20 +290,20 @@ export default function Devices({ user }) {
             </div>
           }
         </div>
-        <div className="chartWrapper">
-          {
-            isLoadingDevices ? <div className="loader">{lang.loading}...</div> :
-              <>
+        {
+          isLoadingDevices ? <div className="loader">{lang.loading}...</div> :
+            <div className="chartWrapper">
+              <ul className="charts-list" ref={chartContainer}>
                 {
                   graphicSelected.length === 0 ?
-                    <p>{lang.noChartsSelected}</p> :
+                    <li>{lang.noChartsSelected}</li> :
                     graphicSelected.map((graphic) => {
                       return <DataChart key={graphic} type={{ property: graphic, items: "devices" }} data={dataDevices} firstLoad={firstLoad} />
                     })
                 }
-              </>
-          }
-        </div>
+              </ul>
+            </div>
+        }
       </div>
     </>
   )

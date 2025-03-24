@@ -37,7 +37,7 @@ export default function DataChart({ data, type, firstLoad }) {
 
   return (
     <>
-      <div className={`dataChart ${firstLoad && "firstLoad"}`}>
+      <li className={`dataChart ${firstLoad && "firstLoad"}`}>
         <Chart
           chartType={"PieChart"}
           options={{
@@ -80,7 +80,7 @@ export default function DataChart({ data, type, firstLoad }) {
           width={window.innerWidth < 513 ? "240px" : "100%"}
           height={window.innerWidth < 513 ? "240px" : "100%"}
         />
-      </div>
+      </li>
     </>
   )
 }
