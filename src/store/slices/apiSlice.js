@@ -41,13 +41,9 @@ export const apiSlice = createApi({
             id: contact.localId,
             createdAt: serverTimestamp(),
             updatedAt: null
-          }
+          };
 
           await setDoc(newDocRef, newContact);
-
-          /* toast.message('Contact added', {
-            description: `ID: ${res.id}`,
-          }); */
 
           return {
             data: { ...newContact, createdAt: Date.now() }
@@ -65,13 +61,10 @@ export const apiSlice = createApi({
           })
         );
 
-
-        /* toast('Adding contact...') */
-
         try {
-          await queryFulfilled;
+          await queryFulfilled; // Wait for the original query to fulfill
         } catch {
-          patchResult.undo();
+          patchResult.undo(); // Undo the patch if the query fails
         }
       }
     }),

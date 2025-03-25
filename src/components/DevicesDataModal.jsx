@@ -193,6 +193,7 @@ export default function DevicesDataModal({ modalData }) {
       setNewDeviceCategory("personal")
       setEditMode(false)
       setDeleteMode(false)
+      setErrorMsg(null)
     }
   }, [modalActive])
 

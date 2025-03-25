@@ -89,7 +89,8 @@ export default function Contacts({ user }) {
     }
   }, [listSelected, sortList, dataContacts])
 
-  useEffect(() => {
+  /* realtime updates -> disabled (too much read quota) */
+  /* useEffect(() => {
     let firstSnapshot = true;
     const collectionRef = collection(db, "authUsersData", user.uid, "contacts")
 
@@ -98,7 +99,6 @@ export default function Contacts({ user }) {
         firstSnapshot = false;
         return
       }
-
       let handleArray = []
       snapshot.docs.forEach(doc => {
         handleArray.push(doc.data())
@@ -107,7 +107,7 @@ export default function Contacts({ user }) {
 
       setContactsFn(handleArray)
     })
-  }, [user])
+  }, [user]) */
 
   useEffect(() => {
     const handlePickerCloseClick = (e) => {

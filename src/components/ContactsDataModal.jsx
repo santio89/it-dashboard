@@ -5,6 +5,8 @@ import { useAddContactMutation, useDeleteContactMutation, useEditContactMutation
 import { objectEquality } from '../utils/objectEquality';
 import { useTranslation } from '../hooks/useTranslation'
 import { toast } from "sonner";
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { firebaseDb as db } from '../config/firebase';
 
 export default function ContactsDataModal({ modalData }) {
   const lang = useTranslation()
@@ -41,6 +43,16 @@ export default function ContactsDataModal({ modalData }) {
     setNewUserCategory(newUserCategory => newUserCategory.trim())
   }
 
+
+  // Check for duplicates by querying the collection
+  const checkDuplicates = async (contact) => {
+    const colRef = collection(db, "authUsersData", contact.userId, "contacts");
+    const q = query(colRef, where("name", "==", contact.name));
+    const querySnapshot = await getDocs(q);
+
+    return !querySnapshot.empty
+  }
+
   const addUserFn = async (e) => {
     e.preventDefault()
 
@@ -52,10 +64,10 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
-    if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.toLowerCase())) {
+    /* if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.toLowerCase())) {
       setErrorMsg(lang.contactExists)
       return
-    }
+    } */
 
     const contact = {
       name: newUserName,
@@ -69,19 +81,25 @@ export default function ContactsDataModal({ modalData }) {
       userId: modalData.userId
     }
 
-    dispatch(setModal({ active: false, data: {} }))
-
+    /* primero revisar duplicados aquí (setear errorMsj), luego enviar addContact */
     try {
+      setErrorMsg(`${lang.checkingDuplicates}...`)
+      const dups = await checkDuplicates(contact)
+      if (dups) {
+        setErrorMsg(lang.contactExists)
+        return
+      }
+      dispatch(setModal({ active: false, data: {} }))
       toast(`${lang.addingContact}...`)
       const res = await addContact(contact)
+
       toast.message(lang.contactAdded, {
         description: `ID: ${res.data.id}`,
       });
-
-    } catch {
+    } catch (e) {
+      console.log(e)
       toast(lang.errorPerformingRequest)
     }
-
   }
 
   const deleteUserFn = async (e, contact) => {
@@ -196,6 +214,7 @@ export default function ContactsDataModal({ modalData }) {
       setNewUserCategory("personal")
       setEditMode(false)
       setDeleteMode(false)
+      setErrorMsg(null)
     }
   }, [modalActive])
 
