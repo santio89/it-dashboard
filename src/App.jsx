@@ -41,7 +41,6 @@ function App() {
     firebaseOnAuthStateChanged(firebaseAuth, (currentUser) => {
       dispatch(setUser(currentUser))
     })
-
   }, [])
 
 
