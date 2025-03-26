@@ -876,7 +876,7 @@ select:disabled {
   justify-content: center;
   align-items: stretch;
   width: 100%;
-  transition: filter 200ms ease-in-out, opacity 250ms ease-in-out;
+  transition: filter 200ms ease-in-out, opacity 250ms ease-in-out, color 200ms ease-in-out;
 }
 @starting-style {
   .site-section__list .listWrapper ul.items-list li.firstLoad {
@@ -910,7 +910,7 @@ select:disabled {
   justify-content: start;
   align-items: center;
   border-radius: var(--main-radius);
-  transition: filter 200ms ease-in-out, box-shadow 200ms ease-in-out, opacity 250ms ease-in-out;
+  transition: filter 200ms ease-in-out, box-shadow 200ms ease-in-out, opacity 250ms ease-in-out, color 200ms ease-in-out;
   box-shadow: -2px 0 0 0 transparent;
 }
 @starting-style {
@@ -1368,6 +1368,7 @@ select:disabled {
 .site-section__chart .chartWrapper .charts-list li {
   width: 100%;
   max-width: 420px;
+  transition: color 200ms ease-in-out;
 }
 .site-section__chart .chartWrapper .dataChart {
   display: flex;
