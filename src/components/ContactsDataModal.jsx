@@ -5,6 +5,8 @@ import { useAddContactMutation, useDeleteContactMutation, useEditContactMutation
 import { objectEquality } from '../utils/objectEquality';
 import { useTranslation } from '../hooks/useTranslation'
 import { toast } from "sonner";
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { firebaseDb as db } from '../config/firebase';
 
 export default function ContactsDataModal({ modalData }) {
   const lang = useTranslation()
@@ -41,6 +43,14 @@ export default function ContactsDataModal({ modalData }) {
     setNewUserCategory(newUserCategory => newUserCategory.trim())
   }
 
+  const checkDuplicates = async (contact) => {
+    const colRef = collection(db, "authUsersData", contact.userId, "contacts");
+    const q = query(colRef, where("name", "==", contact.name));
+    const querySnapshot = await getDocs(q);
+
+    return !querySnapshot.empty
+  }
+
   const addUserFn = async (e) => {
     e.preventDefault()
 
@@ -52,12 +62,12 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
-    if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.toLowerCase())) {
+    /* if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.toLowerCase())) {
       setErrorMsg(lang.contactExists)
       return
-    }
+    } */
 
-    const contact = {
+    const newContact = {
       name: newUserName,
       email: newUserEmail,
       telephone: newUserTel,
@@ -69,19 +79,27 @@ export default function ContactsDataModal({ modalData }) {
       userId: modalData.userId
     }
 
-    dispatch(setModal({ active: false, data: {} }))
-
     try {
+      /* check for duplicates first */
+      setErrorMsg(`${lang.checkingDuplicates}...`)
+      const dups = await checkDuplicates(newContact)
+      if (dups) {
+        setErrorMsg(lang.contactExists)
+        return
+      }
+
+      dispatch(setModal({ active: false, data: {} }))
       toast(`${lang.addingContact}...`)
-      const res = await addContact(contact)
+
+      const res = await addContact(newContact)
+
       toast.message(lang.contactAdded, {
         description: `ID: ${res.data.id}`,
       });
-
-    } catch {
+    } catch (e) {
+      console.log(e)
       toast(lang.errorPerformingRequest)
     }
-
   }
 
   const deleteUserFn = async (e, contact) => {
@@ -114,7 +132,7 @@ export default function ContactsDataModal({ modalData }) {
     setEditMode(true)
   }
 
-  const editUserFn = async (e, contact) => {
+  const editContactFn = async (e, contact) => {
     e.preventDefault()
 
     if (resultEditContact.isLoading) {
@@ -125,12 +143,12 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
-    if (contact.name !== newUserName && modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.toLowerCase())) {
+    /* if (contact.name !== newUserName && modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.toLowerCase())) {
       setErrorMsg(lang.contactExists)
       return
-    }
+    } */
 
-    const newUser = {
+    const newContact = {
       name: newUserName,
       email: newUserEmail,
       telephone: newUserTel,
@@ -143,21 +161,33 @@ export default function ContactsDataModal({ modalData }) {
       localTime: contact.localTime
     }
 
-    const { modalType, contactData, createdAt, updatedAt, dataList, ...oldUser } = contact
+    const { modalType, contactData, createdAt, updatedAt, dataList, ...oldContact } = contact
 
-    const contactEquality = objectEquality(oldUser, newUser)
+    const contactEquality = objectEquality(oldContact, newContact)
 
     if (contactEquality) {
+      /* return if equal */
       dispatch(setModal({ active: false, data: {} }))
       return
     } else {
-      dispatch(setModal({ active: false, data: {} }))
-
       try {
+        if (newContact.name !== oldContact.name) {
+          /* check for duplicates */
+          setErrorMsg(`${lang.checkingDuplicates}...`)
+          const dups = await checkDuplicates(newContact)
+          if (dups) {
+            setErrorMsg(lang.contactExists)
+            return
+          }
+        }
+
+        dispatch(setModal({ active: false, data: {} }))
         toast(`${lang.editingContact}...`)
-        await editContact({ ...newUser, userId: modalData.userId })
+
+        const res = await editContact({ ...newContact, userId: modalData.userId })
+
         toast.message(lang.contactEdited, {
-          description: `ID: ${contact.id}`,
+          description: `ID: ${res.data.id}`,
         });
       } catch {
         toast(lang.errorPerformingRequest)
@@ -196,6 +226,7 @@ export default function ContactsDataModal({ modalData }) {
       setNewUserCategory("personal")
       setEditMode(false)
       setDeleteMode(false)
+      setErrorMsg(null)
     }
   }, [modalActive])
 
@@ -285,7 +316,7 @@ export default function ContactsDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form autoComplete='off' className='mainModal__data__form editMode' disabled={resultEditContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editUserFn(e, modalData)} >
+          <form autoComplete='off' className='mainModal__data__form editMode' disabled={resultEditContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editContactFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="editName">{lang.name}</label></legend>
@@ -407,7 +438,7 @@ export default function ContactsDataModal({ modalData }) {
         </>
       }
 
-      {modalData?.newUser &&
+      {modalData?.newContact &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.addContact}</h2>

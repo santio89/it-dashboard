@@ -38,7 +38,7 @@ export default function Support({ user }) {
   const [editSupport, resultEditSupport] = useEditSupportMutation()
   const [setSupport, resultSetSupport] = useSetSupportMutation()
 
-  let {
+  const {
     data: dataSupport,
     isLoading: isLoadingSupport,
     isFetching: isFetchingSupport,
@@ -110,8 +110,8 @@ export default function Support({ user }) {
     }
   }, [dataSupport, sortList, listSelected])
 
-
-  useEffect(() => {
+  /* realtime updates -> disabled (too much read quota) */
+  /* useEffect(() => {
     if (user.domainAdmin) {
       let firstSnapshot = true;
       const collectionRef = collection(db, "supportData")
@@ -149,7 +149,7 @@ export default function Support({ user }) {
         setSupportFn(handleArray)
       })
     }
-  }, [user])
+  }, [user]) */
 
   useEffect(() => {
     ticketOptions && setTicketOptions(null)
@@ -352,7 +352,7 @@ export default function Support({ user }) {
                                       {user.domainAdmin && <div title={ticket.title} className='taskContentAuthor'>{lang.from}: {ticket.author}</div>}
                                       <div className={`taskContentBtn ${ticketOptions !== ticket.id && ticket.priority === "low" && "selectedLow"} ${ticketOptions !== ticket.id && ticket.priority === "medium" && "selectedMedium"} ${ticketOptions !== ticket.id && ticket.priority === "high" && "selectedHigh"} ${ticketOptions === ticket.id && "taskOption"}`}>
                                         <span className="taskContentBtn__title">{ticket.title || "-"}</span>
-                                        <span className="taskContentBtn__content">{ticket.content || "-"}</span>
+                                        <span className="taskContentBtn__content">{ticket.description || "-"}</span>
                                       </div>
                                     </> :
                                     <>

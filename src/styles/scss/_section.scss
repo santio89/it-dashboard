@@ -263,8 +263,7 @@
             justify-content: center;
             align-items: stretch;
             width: 100%;
-            transition: filter 200ms ease-in-out, opacity 250ms ease-in-out,
-              color 200ms ease-in-out;
+            transition: filter 200ms ease-in-out, opacity 250ms ease-in-out, color 200ms ease-in-out;
 
             &.firstLoad {
               @starting-style {
