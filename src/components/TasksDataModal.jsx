@@ -59,7 +59,7 @@ export default function TasksDataModal({ modalData }) {
 
     try {
       toast(`${lang.addingTask}...`)
-      const res = await addTdl({ ...newTask, userId: modalData.userId, })
+      const res = await addTdl({ ...newTask, userId: modalData.userId })
       toast.message(lang.taskAdded, {
         description: `ID: ${res.data.id}`,
       });
@@ -129,10 +129,10 @@ export default function TasksDataModal({ modalData }) {
       return
     }
 
-    const { modalType, tasksData, ...trimTask } = task
+    const { modalType, tasksData, user, ...trimTask } = task
 
-    const newTask = { ...trimTask, title: title ?? task.title, description: input, category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
-
+    const newTask = { ...trimTask }
+  
     dispatch(setModal({ active: false, data: {} }))
 
     try {

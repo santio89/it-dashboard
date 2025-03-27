@@ -97,7 +97,6 @@ export default function ContactsDataModal({ modalData }) {
         description: `ID: ${res.data.id}`,
       });
     } catch (e) {
-      console.log(e)
       toast(lang.errorPerformingRequest)
     }
   }
