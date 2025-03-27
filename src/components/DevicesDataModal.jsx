@@ -5,6 +5,8 @@ import { useAddDeviceMutation, useDeleteDeviceMutation, useEditDeviceMutation } 
 import { objectEquality } from '../utils/objectEquality';
 import { useTranslation } from '../hooks/useTranslation'
 import { toast } from 'sonner';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { firebaseDb as db } from '../config/firebase';
 
 export default function DevicesDataModal({ modalData }) {
   const lang = useTranslation()
@@ -41,6 +43,14 @@ export default function DevicesDataModal({ modalData }) {
     setNewDeviceCategory(newDeviceCategory => newDeviceCategory.trim())
   }
 
+  const checkDuplicates = async (device) => {
+    const colRef = collection(db, "authUsersData", device.userId, "devices");
+    const q = query(colRef, where("name", "==", device.name));
+    const querySnapshot = await getDocs(q);
+
+    return !querySnapshot.empty
+  }
+
   const addDeviceFn = async (e) => {
     e.preventDefault()
 
@@ -52,12 +62,12 @@ export default function DevicesDataModal({ modalData }) {
       return
     }
 
-    if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newDeviceName.toLowerCase())) {
+    /* if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newDeviceName.toLowerCase())) {
       setErrorMsg(lang.deviceExists)
       return
-    }
+    } */
 
-    const device = {
+    const newDevice = {
       name: newDeviceName,
       type: newDeviceType,
       model: newDeviceModel,
@@ -65,21 +75,32 @@ export default function DevicesDataModal({ modalData }) {
       comments: newDeviceComments,
       category: newDeviceCategory,
       localId: crypto.randomUUID().replace(/-/g, ''),
-      localTime: Date.now()
+      localTime: Date.now(),
+      userId: modalData.userId
     }
 
-    dispatch(setModal({ active: false, data: {} }))
 
     try {
+      /* check for duplicates first */
+      setErrorMsg(`${lang.checkingDuplicates}...`)
+      const dups = await checkDuplicates(newDevice)
+      if (dups) {
+        setErrorMsg(lang.contactExists)
+        return
+      }
+
+
+      dispatch(setModal({ active: false, data: {} }))
       toast(`${lang.addingDevice}...`)
-      const res = await addDevice({ ...device, userId: modalData.userId })
+
+      const res = await addDevice({ ...newDevice, userId: modalData.userId })
+
       toast.message(lang.deviceAdded, {
         description: `ID: ${res.data.id}`,
       });
     } catch {
       toast(lang.errorPerformingRequest)
     }
-
   }
 
   const deleteDeviceFn = async (e, device) => {
@@ -145,14 +166,26 @@ export default function DevicesDataModal({ modalData }) {
     const deviceEquality = objectEquality(oldDevice, newDevice)
 
     if (deviceEquality) {
+      /* return if equal */
       dispatch(setModal({ active: false, data: {} }))
       return
     } else {
-      dispatch(setModal({ active: false, data: {} }))
-
       try {
+        if (newDevice.name !== oldDevice.name) {
+          /* check for duplicates */
+          setErrorMsg(`${lang.checkingDuplicates}...`)
+          const dups = await checkDuplicates(newDevice)
+          if (dups) {
+            setErrorMsg(lang.contactExists)
+            return
+          }
+        }
+
+        dispatch(setModal({ active: false, data: {} }))
         toast(`${lang.editingDevice}...`)
+
         const res = await editDevice({ ...newDevice, userId: modalData.userId })
+
         toast.message(lang.deviceEdited, {
           description: `ID: ${res.data.id}`,
         });

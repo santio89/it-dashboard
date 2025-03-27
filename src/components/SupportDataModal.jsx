@@ -48,7 +48,7 @@ export default function SupportDataModal({ modalData }) {
       return
     }
 
-    const ticket = {
+    const newTicket = {
       title: newTicketTitle,
       category: newTicketCategory,
       description: newTicketDescription,
@@ -65,7 +65,7 @@ export default function SupportDataModal({ modalData }) {
 
     try {
       toast(`${lang.addingTicket}...`)
-      const res = await addSupport({ ...ticket, userId: modalData.userId, })
+      const res = await addSupport({ ...newTicket, userId: modalData.userId, })
       toast.message(lang.ticketAdded, {
         description: `ID: ${res.data.id}`,
       });

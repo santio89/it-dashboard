@@ -87,7 +87,8 @@ export default function Devices({ user }) {
     }
   }, [listSelected, sortList, dataDevices])
 
-  useEffect(() => {
+  /* realtime updates -> disabled (too much read quota) */
+  /* useEffect(() => {
     let firstSnapshot = true;
     const collectionRef = collection(db, "authUsersData", user.uid, "devices")
 
@@ -105,7 +106,7 @@ export default function Devices({ user }) {
 
       setDevicesFn(handleArray)
     })
-  }, [user])
+  }, [user]) */
 
   useEffect(() => {
     const handlePickerCloseClick = (e) => {

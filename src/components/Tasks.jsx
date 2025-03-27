@@ -110,7 +110,8 @@ export default function Tasks({ user }) {
     }
   }, [dataTasks, sortList, listSelected])
 
-  useEffect(() => {
+  /* realtime updates -> disabled (too much read quota) */
+  /* useEffect(() => {
     let firstSnapshot = true;
     const collectionRef = collection(db, "authUsersData", user.uid, "tdl")
 
@@ -128,7 +129,7 @@ export default function Tasks({ user }) {
 
       setTdlFn(handleArray)
     })
-  }, [user])
+  }, [user]) */
 
   useEffect(() => {
     taskOptions && setTaskOptions(null)
@@ -319,7 +320,7 @@ export default function Tasks({ user }) {
                                     <>
                                       <div title={task.title} className='taskContentTitle'>{task.title}</div>
                                       <div className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"}`}>
-                                        {task.content || "-"}
+                                        {task.description || "-"}
                                       </div>
                                     </> :
                                     <>

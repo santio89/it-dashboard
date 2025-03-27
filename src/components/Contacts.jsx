@@ -190,7 +190,7 @@ export default function Contacts({ user }) {
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button disabled={isLoadingContacts} onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newUser: true, userId: user?.uid, dataList: dataContacts } }))
+            dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newContact: true, userId: user?.uid, dataList: dataContacts } }))
           }}>+ {lang.addContact}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
