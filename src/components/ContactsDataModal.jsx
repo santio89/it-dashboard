@@ -145,11 +145,6 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
-    /* if (contact.name !== newUserName && modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.toLowerCase())) {
-      setErrorMsg(lang.contactExists)
-      return
-    } */
-
     const newContact = {
       name: newUserName,
       email: newUserEmail,

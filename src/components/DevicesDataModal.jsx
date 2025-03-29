@@ -64,11 +64,6 @@ export default function DevicesDataModal({ modalData }) {
       return
     }
 
-    /* if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newDeviceName.toLowerCase())) {
-      setErrorMsg(lang.deviceExists)
-      return
-    } */
-
     const newDevice = {
       name: newDeviceName,
       type: newDeviceType,
@@ -211,6 +206,16 @@ export default function DevicesDataModal({ modalData }) {
       e.preventDefault()
     }
   }
+
+  useEffect(() => {
+    resultAddDevice.isLoading ? setIsLoading(true) : setIsLoading(false)
+  }, [resultAddDevice])
+  useEffect(() => {
+    resultEditDevice.isLoading ? setIsLoading(true) : setIsLoading(false)
+  }, [resultEditDevice])
+  useEffect(() => {
+    resultDeleteDevice.isLoading ? setIsLoading(true) : setIsLoading(false)
+  }, [resultDeleteDevice])
 
   useEffect(() => {
     let timeout;
