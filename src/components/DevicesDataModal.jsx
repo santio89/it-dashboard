@@ -30,6 +30,8 @@ export default function DevicesDataModal({ modalData }) {
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const selectList = list => {
     setNewDeviceCategory(list)
   }
@@ -81,6 +83,7 @@ export default function DevicesDataModal({ modalData }) {
 
 
     try {
+      setIsLoading(true)
       /* check for duplicates first */
       setErrorMsg(`${lang.checkingDuplicates}...`)
       const dups = await checkDuplicates(newDevice)
@@ -100,6 +103,8 @@ export default function DevicesDataModal({ modalData }) {
       });
     } catch {
       toast(lang.errorPerformingRequest)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -113,6 +118,7 @@ export default function DevicesDataModal({ modalData }) {
     dispatch(setModal({ active: false, data: {} }))
 
     try {
+      setIsLoading(true)
       toast(`${lang.deletingDevice}...`)
       const res = await deleteDevice(device)
       toast.message(lang.deviceDeleted, {
@@ -120,6 +126,8 @@ export default function DevicesDataModal({ modalData }) {
       });
     } catch {
       toast(lang.errorPerformingRequest)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -171,6 +179,7 @@ export default function DevicesDataModal({ modalData }) {
       return
     } else {
       try {
+        setIsLoading(true)
         if (newDevice.name !== oldDevice.name) {
           /* check for duplicates */
           setErrorMsg(`${lang.checkingDuplicates}...`)
@@ -191,6 +200,8 @@ export default function DevicesDataModal({ modalData }) {
         });
       } catch {
         toast(lang.errorPerformingRequest)
+      } finally {
+        setIsLoading(false)
       }
     }
   }
@@ -302,13 +313,13 @@ export default function DevicesDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
               <div className="listPickerOptions">
-                <button title={`${lang.category}: ${lang.personal}`} disabled={resultEditDevice.isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${resultEditDevice.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.personal}`} disabled={isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
                   {lang.personal}
                 </button>
-                <button title={`${lang.category}: ${lang.company}`} disabled={resultEditDevice.isLoading} className={`listPicker ${newDeviceCategory === "company" && "selected"} ${resultEditDevice.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.company}`} disabled={isLoading} className={`listPicker ${newDeviceCategory === "company" && "selected"} ${isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>
@@ -317,7 +328,7 @@ export default function DevicesDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form autoComplete='off' className='mainModal__data__form editMode' disabled={resultEditDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editDeviceFn(e, modalData)} >
+          <form autoComplete='off' className='mainModal__data__form editMode' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editDeviceFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="editName">{lang.name}</label></legend>
@@ -380,10 +391,10 @@ export default function DevicesDataModal({ modalData }) {
             <h2>{lang.deleteDevice}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
-              <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} className={`listPicker disabled selected`} disabled={resultDeleteDevice.isLoading}>{lang[modalData?.category]}</button>
+              <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} className={`listPicker disabled selected`} disabled={isLoading}>{lang[modalData?.category]}</button>
             </div>
           </div>
-          <form autoComplete='off' className='mainModal__data__form deleteMode disabled' disabled={resultDeleteDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteDeviceFn(e, modalData)}>
+          <form autoComplete='off' className='mainModal__data__form deleteMode disabled' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteDeviceFn(e, modalData)}>
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="deleteName">{lang.name}</label></legend>
@@ -442,13 +453,13 @@ export default function DevicesDataModal({ modalData }) {
             <h2>{lang.addDevice}</h2>
             <div className="listPickerWrapper__btnContainer">
               <div className="listPickerOptions">
-                <button title={`${lang.category}: ${lang.personal}`} disabled={resultAddDevice.isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${resultAddDevice.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.personal}`} disabled={isLoading} className={`listPicker ${newDeviceCategory === "personal" && "selected"} ${isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
                   {lang.personal}
                 </button>
-                <button title={`${lang.category}: ${lang.company}`} disabled={resultAddDevice.isLoading} className={`listPicker ${newDeviceCategory === "company" && "selected"} ${resultAddDevice.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.company}`} disabled={isLoading} className={`listPicker ${newDeviceCategory === "company" && "selected"} ${isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>
@@ -457,7 +468,7 @@ export default function DevicesDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form autoComplete='off' className='mainModal__data__form' disabled={resultAddDevice.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addDeviceFn(e)}>
+          <form autoComplete='off' className='mainModal__data__form' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addDeviceFn(e)}>
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="addName">{lang.name}</label></legend>

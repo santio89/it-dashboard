@@ -30,6 +30,8 @@ export default function ContactsDataModal({ modalData }) {
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const selectList = list => {
     setNewUserCategory(list)
   }
@@ -62,11 +64,6 @@ export default function ContactsDataModal({ modalData }) {
       return
     }
 
-    /* if (modalData?.dataList?.find(contact => contact.name.toLowerCase() === newUserName.toLowerCase())) {
-      setErrorMsg(lang.contactExists)
-      return
-    } */
-
     const newContact = {
       name: newUserName,
       email: newUserEmail,
@@ -80,6 +77,7 @@ export default function ContactsDataModal({ modalData }) {
     }
 
     try {
+      setIsLoading(true)
       /* check for duplicates first */
       setErrorMsg(`${lang.checkingDuplicates}...`)
       const dups = await checkDuplicates(newContact)
@@ -98,6 +96,8 @@ export default function ContactsDataModal({ modalData }) {
       });
     } catch (e) {
       toast(lang.errorPerformingRequest)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -111,6 +111,7 @@ export default function ContactsDataModal({ modalData }) {
     dispatch(setModal({ active: false, data: {} }))
 
     try {
+      setIsLoading(true)
       toast(`${lang.deletingContact}...`)
       const res = await deleteContact(contact)
       toast.message(lang.contactDeleted, {
@@ -118,6 +119,8 @@ export default function ContactsDataModal({ modalData }) {
       });
     } catch {
       toast(lang.errorPerformingRequest)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -170,6 +173,7 @@ export default function ContactsDataModal({ modalData }) {
       return
     } else {
       try {
+        setIsLoading(true)
         if (newContact.name !== oldContact.name) {
           /* check for duplicates */
           setErrorMsg(`${lang.checkingDuplicates}...`)
@@ -190,6 +194,8 @@ export default function ContactsDataModal({ modalData }) {
         });
       } catch {
         toast(lang.errorPerformingRequest)
+      } finally {
+        setIsLoading(false)
       }
 
     }
@@ -200,6 +206,16 @@ export default function ContactsDataModal({ modalData }) {
       e.preventDefault()
     }
   }
+
+  useEffect(() => {
+    resultAddContact.isLoading ? setIsLoading(true) : setIsLoading(false)
+  }, [resultAddContact])
+  useEffect(() => {
+    resultEditContact.isLoading ? setIsLoading(true) : setIsLoading(false)
+  }, [resultEditContact])
+  useEffect(() => {
+    resultDeleteContact.isLoading ? setIsLoading(true) : setIsLoading(false)
+  }, [resultDeleteContact])
 
   useEffect(() => {
     let timeout;
@@ -300,13 +316,13 @@ export default function ContactsDataModal({ modalData }) {
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
               <div className="listPickerOptions">
-                <button title={`${lang.category}: ${lang.personal}`} disabled={resultEditContact.isLoading} className={`listPicker ${newUserCategory === "personal" && "selected"} ${resultEditContact.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.personal}`} disabled={isLoading} className={`listPicker ${newUserCategory === "personal" && "selected"} ${isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
                   {lang.personal}
                 </button>
-                <button title={`${lang.category}: ${lang.company}`} disabled={resultEditContact.isLoading} className={`listPicker ${newUserCategory === "company" && "selected"} ${resultEditContact.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.company}`} disabled={isLoading} className={`listPicker ${newUserCategory === "company" && "selected"} ${isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>
@@ -315,7 +331,7 @@ export default function ContactsDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form autoComplete='off' className='mainModal__data__form editMode' disabled={resultEditContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editContactFn(e, modalData)} >
+          <form autoComplete='off' className='mainModal__data__form editMode' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editContactFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="editName">{lang.name}</label></legend>
@@ -381,10 +397,10 @@ export default function ContactsDataModal({ modalData }) {
             <h2>{lang.deleteContact}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
-              <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} className={`listPicker disabled selected`} disabled={resultDeleteContact.isLoading}>{lang[modalData?.category]}</button>
+              <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} className={`listPicker disabled selected`} disabled={isLoading}>{lang[modalData?.category]}</button>
             </div>
           </div>
-          <form autoComplete='off' className='mainModal__data__form deleteMode disabled' disabled={resultDeleteContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteUserFn(e, modalData)} >
+          <form autoComplete='off' className='mainModal__data__form deleteMode disabled' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteUserFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="deleteName">{lang.name}</label></legend>
@@ -443,13 +459,13 @@ export default function ContactsDataModal({ modalData }) {
             <h2>{lang.addContact}</h2>
             <div className="listPickerWrapper__btnContainer">
               <div className="listPickerOptions">
-                <button title={`${lang.category}: ${lang.personal}`} disabled={resultAddContact.isLoading} className={`listPicker ${newUserCategory === "personal" && "selected"} ${resultAddContact.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.personal}`} disabled={isLoading} className={`listPicker ${newUserCategory === "personal" && "selected"} ${isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("personal")
                   }}>
                   {lang.personal}
                 </button>
-                <button title={`${lang.category}: ${lang.company}`} disabled={resultAddContact.isLoading} className={`listPicker ${newUserCategory === "company" && "selected"} ${resultAddContact.isLoading && "disabled"}`}
+                <button title={`${lang.category}: ${lang.company}`} disabled={isLoading} className={`listPicker ${newUserCategory === "company" && "selected"} ${isLoading && "disabled"}`}
                   onClick={() => {
                     selectList("company")
                   }}>
@@ -458,7 +474,7 @@ export default function ContactsDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form autoComplete='off' className='mainModal__data__form' disabled={resultAddContact.isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => { addUserFn(e) }}  >
+          <form autoComplete='off' className='mainModal__data__form' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => { addUserFn(e) }}  >
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="addName">{lang.name}</label></legend>
