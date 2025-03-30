@@ -78,83 +78,30 @@
         color: var(--main-text);
       }
 
+      &.listPicker {
+        padding: 0.25rem 0.5rem;
+        font-size: 12px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+
+        &:hover,
+        &:focus-visible,
+        &.selected {
+          background-color: var(--main-color-op-light);
+          color: var(--main-text);
+        }
+
+        &:focus-visible {
+          z-index: 1;
+          outline: 1px solid var(--main-text);
+        }
+      }
+
       &[disabled] {
         pointer-events: none;
         filter: grayscale(1);
         color: var(--main-gray-dark);
-      }
-    }
-
-    .listPickerWrapper {
-      height: 25px;
-
-      &__btnContainer {
-        position: absolute;
-        top: 0;
-        right: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-        align-items: end;
-        gap: 0.25rem;
-
-        button.listPicker {
-          padding: 0.25rem 0.5rem;
-          font-size: 12px;
-          background-color: var(--main-color-op);
-          height: 25px;
-          text-transform: capitalize;
-          outline: 1px solid transparent;
-
-          &:hover,
-          &:focus-visible,
-          &.selected {
-            background-color: var(--main-color-op-light);
-            color: var(--main-text);
-          }
-
-          &:focus-visible {
-            z-index: 1;
-            outline: 1px solid var(--main-text);
-          }
-        }
-      }
-
-      .listPickerOptions {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: var(--main-color-bg);
-        border: 1px solid var(--main-gray-dark);
-        border-radius: var(--main-radius);
-        padding: 0.25rem;
-        gap: 0.25rem;
-        transition: background-color 400ms ease-in-out, scale 100ms ease-in-out,
-          opacity 100ms ease-in-out;
-        z-index: 1;
-        transform-origin: top right;
-
-        @starting-style {
-          scale: 0.9;
-          opacity: 0.1;
-        }
-
-        button.listPicker {
-          background-color: transparent;
-          color: var(--main-gray-dark);
-
-          &:hover,
-          &:focus-visible,
-          &.selected {
-            background-color: var(--main-color-op-light);
-            color: var(--main-text);
-          }
-
-          &:focus-visible {
-            z-index: 1;
-            outline: 1px solid var(--main-text);
-          }
-        }
       }
     }
   }
@@ -263,7 +210,8 @@
             justify-content: center;
             align-items: stretch;
             width: 100%;
-            transition: filter 200ms ease-in-out, opacity 250ms ease-in-out, color 200ms ease-in-out;
+            transition: filter 200ms ease-in-out, opacity 250ms ease-in-out,
+              color 200ms ease-in-out;
 
             &.firstLoad {
               @starting-style {
@@ -705,52 +653,6 @@
         &.selected {
           background-color: var(--main-color-op-light);
           color: var(--main-text);
-        }
-      }
-
-      .listPickerOptions {
-        position: absolute;
-        top: calc(100% + 0.25rem);
-        left: 0;
-        display: flex;
-        justify-content: center;
-        align-items: start;
-        flex-direction: column;
-        background-color: var(--main-color-bg);
-        border: 1px solid var(--main-gray-dark);
-        border-radius: var(--main-radius);
-        padding: 0.25rem;
-        gap: 0.25rem;
-        transition: background-color 400ms ease-in-out, scale 100ms ease-in-out,
-          opacity 100ms ease-in-out;
-        z-index: 1;
-        transform-origin: top left;
-
-        @starting-style {
-          scale: 0.9;
-          opacity: 0.1;
-        }
-
-        button.listPicker {
-          background-color: transparent;
-          color: var(--main-gray-dark);
-          width: 100%;
-          text-align: start;
-          justify-content: start;
-          padding: 0.25rem 0.5rem;
-          font-size: 12px;
-
-          &:hover,
-          &:focus-visible,
-          &.selected {
-            background-color: var(--main-color-op-light);
-            color: var(--main-text);
-          }
-
-          &:focus-visible {
-            z-index: 1;
-            outline: 1px solid var(--main-text);
-          }
         }
       }
     }

@@ -7,6 +7,7 @@ import autoAnimate from "@formkit/auto-animate";
 import { useTranslation } from "../hooks/useTranslation";
 import { collection, onSnapshot } from "firebase/firestore"
 import { firebaseDb as db } from "../config/firebase"
+import Dropdown from "./Dropdown";
 
 const formFields = ["category", "name", "email", "role", "tel", "comments"]
 
@@ -109,34 +110,34 @@ export default function Contacts({ user }) {
     })
   }, [user]) */
 
-  useEffect(() => {
-    const handlePickerCloseClick = (e) => {
-      if (e.target != listPickerRef.current && !Array.from(listPickerRef.current.childNodes).some((node) => node == e.target)) {
-        setListPickerOpen(false)
-      }
-    }
+  /*  useEffect(() => {
+     const handlePickerCloseClick = (e) => {
+       if (e.target != listPickerRef.current && !Array.from(listPickerRef.current.childNodes).some((node) => node == e.target)) {
+         setListPickerOpen(false)
+       }
+     }
+ 
+     const handlePickerCloseEsc = (e) => {
+       if (e.key === "Escape") {
+         setListPickerOpen(false)
+       }
+     }
+ 
+     if (listPickerOpen) {
+       setTimeout(() => {
+         window.addEventListener("click", handlePickerCloseClick)
+         window.addEventListener("keydown", handlePickerCloseEsc)
+       }, [0])
+     }
+ 
+     return () => {
+       window.removeEventListener("click", handlePickerCloseClick);
+       window.removeEventListener("keydown", handlePickerCloseEsc)
+     }
+ 
+   }, [listPickerOpen]) */
 
-    const handlePickerCloseEsc = (e) => {
-      if (e.key === "Escape") {
-        setListPickerOpen(false)
-      }
-    }
-
-    if (listPickerOpen) {
-      setTimeout(() => {
-        window.addEventListener("click", handlePickerCloseClick)
-        window.addEventListener("keydown", handlePickerCloseEsc)
-      }, [0])
-    }
-
-    return () => {
-      window.removeEventListener("click", handlePickerCloseClick);
-      window.removeEventListener("keydown", handlePickerCloseEsc)
-    }
-
-  }, [listPickerOpen])
-
-  useEffect(() => {
+  /* useEffect(() => {
     const handlePickerCloseClick = (e) => {
       if (e.target != graphicPickerRef.current && !Array.from(graphicPickerRef.current.childNodes).some((node) => node == e.target)) {
         setGraphicPickerOpen(false)
@@ -163,7 +164,7 @@ export default function Contacts({ user }) {
       window.removeEventListener("keydown", handlePickerCloseEsc)
     }
 
-  }, [graphicPickerOpen])
+  }, [graphicPickerOpen]) */
 
   useEffect(() => {
     !isLoadingContacts && contactsList && listContainer.current && autoAnimate(listContainer.current)
@@ -192,36 +193,32 @@ export default function Contacts({ user }) {
           <button disabled={isLoadingContacts} onClick={() => {
             dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newContact: true, userId: user?.uid, dataList: dataContacts } }))
           }}>+ {lang.addContact}</button>
-          <div className="listPickerWrapper">
-            <div className="listPickerWrapper__btnContainer">
-              {
-                <button disabled={isLoadingContacts} className={`listPicker filter ${listPickerOpen && "selected"}`} onClick={() => setListPickerOpen(listPickerOpen => !listPickerOpen)}>{lang.filter}</button>
-              }
-              {
-                listPickerOpen &&
-                <div className="listPickerOptions" ref={listPickerRef}>
-                  <button disabled={isLoadingContacts} className={`listPicker ${listSelected === "personal" && "selected"}`}
-                    onClick={() => {
-                      selectList("personal")
-                    }}>
-                    {lang.personal}
-                  </button>
-                  <button disabled={isLoadingContacts} className={`listPicker ${listSelected === "company" && "selected"}`}
-                    onClick={() => {
-                      selectList("company")
-                    }}>
-                    {lang.company}
-                  </button>
-                  <button disabled={isLoadingContacts} className={`listPicker ${listSelected === "all" && "selected"}`}
-                    onClick={() => {
-                      selectList("all")
-                    }}>
-                    {lang.all}
-                  </button>
-                </div>
-              }
-            </div>
-          </div>
+
+          <button disabled={isLoadingContacts} className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => setListPickerOpen(listPickerOpen => !listPickerOpen)}>{lang.filter}</button>
+
+          {
+            listPickerOpen &&
+            <Dropdown dropdownOpen={listPickerOpen} setDropdownOpen={setListPickerOpen} direction="row" anchor="right">
+              <button disabled={isLoadingContacts} className={`dropdownBtn ${listSelected === "personal" && "selected"}`}
+                onClick={() => {
+                  selectList("personal")
+                }}>
+                {lang.personal}
+              </button>
+              <button disabled={isLoadingContacts} className={`dropdownBtn ${listSelected === "company" && "selected"}`}
+                onClick={() => {
+                  selectList("company")
+                }}>
+                {lang.company}
+              </button>
+              <button disabled={isLoadingContacts} className={`dropdownBtn ${listSelected === "all" && "selected"}`}
+                onClick={() => {
+                  selectList("all")
+                }}>
+                {lang.all}
+              </button>
+            </Dropdown>
+          }
         </div>
 
         <div className="sortBtn">
@@ -263,9 +260,9 @@ export default function Contacts({ user }) {
 
           {
             graphicPickerOpen &&
-            <div ref={graphicPickerRef} className="listPickerOptions">
+            <Dropdown dropdownOpen={graphicPickerOpen} setDropdownOpen={setGraphicPickerOpen} direction="column" anchor="left">
               {formFields.map((field) => {
-                return <button key={field} disabled={isLoadingContacts} className={`listPicker ${graphicSelected.includes(field) && "selected"}`}
+                return <button key={field} disabled={isLoadingContacts} className={`dropdownBtn ${graphicSelected.includes(field) && "selected"}`}
                   onClick={() => {
                     selectGraphic(field)
                   }}>
@@ -274,7 +271,7 @@ export default function Contacts({ user }) {
                   }
                 </button>
               })}
-              <button key={"graphPickerBtn-none"} disabled={isLoadingContacts} className={`listPicker ${graphicSelected.length === 0 && "selected"}`}
+              <button key={"graphPickerBtn-none"} disabled={isLoadingContacts} className={`dropdownBtn ${graphicSelected.length === 0 && "selected"}`}
                 onClick={() => {
                   selectGraphic("none")
                 }}>
@@ -282,7 +279,7 @@ export default function Contacts({ user }) {
                   lang["none"]
                 }
               </button>
-              <button key={"graphPickerBtn-all"} disabled={isLoadingContacts} className={`listPicker ${graphicSelected.length === formFields.length && "selected"}`}
+              <button key={"graphPickerBtn-all"} disabled={isLoadingContacts} className={`dropdownBtn ${graphicSelected.length === formFields.length && "selected"}`}
                 onClick={() => {
                   selectGraphic("all")
                 }}>
@@ -290,7 +287,7 @@ export default function Contacts({ user }) {
                   lang["all"]
                 }
               </button>
-            </div>
+            </Dropdown>
           }
         </div>
         {
