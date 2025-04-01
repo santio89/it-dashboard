@@ -6,8 +6,7 @@ import DataChart from './DataChart'
 import autoAnimate from "@formkit/auto-animate";
 import { useTranslation } from '../hooks/useTranslation'
 import { toast } from 'sonner'
-import { collection, onSnapshot } from "firebase/firestore"
-import { firebaseDb as db } from "../config/firebase"
+import Dropdown from './Dropdown'
 
 const formFields = ["author", "title", "description", "priority", "status"]
 
@@ -28,9 +27,6 @@ export default function Tasks({ user }) {
 
   const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
   const [graphicSelected, setGraphicSelected] = useState([])
-
-  const listPickerRef = useRef()
-  const graphicPickerRef = useRef()
 
   const listContainer = useRef()
   const chartContainer = useRef()
@@ -131,64 +127,9 @@ export default function Tasks({ user }) {
     })
   }, [user]) */
 
-  useEffect(() => {
+  /* useEffect(() => {
     taskOptions && setTaskOptions(null)
-  }, [listSelected])
-
-  useEffect(() => {
-    const handlePickerCloseClick = (e) => {
-      if (e.target != listPickerRef.current && !Array.from(listPickerRef.current.childNodes).some((node) => node == e.target)) {
-        setListPickerOpen(false)
-      }
-    }
-
-    const handlePickerCloseEsc = (e) => {
-      if (e.key === "Escape") {
-        setListPickerOpen(false)
-      }
-    }
-
-    if (listPickerOpen) {
-      setTimeout(() => {
-        window.addEventListener("click", handlePickerCloseClick)
-        window.addEventListener("keydown", handlePickerCloseEsc)
-      }, [0])
-    }
-
-    return () => {
-      window.removeEventListener("click", handlePickerCloseClick);
-      window.removeEventListener("keydown", handlePickerCloseEsc)
-    }
-
-  }, [listPickerOpen])
-
-  useEffect(() => {
-    const handlePickerCloseClick = (e) => {
-      if (e.target != graphicPickerRef.current && !Array.from(graphicPickerRef.current.childNodes).some((node) => node == e.target)) {
-        setGraphicPickerOpen(false)
-      }
-    }
-
-    const handlePickerCloseEsc = (e) => {
-      if (e.key === "Escape") {
-        setGraphicPickerOpen(false)
-      }
-    }
-
-    if (graphicPickerOpen) {
-      setTimeout(() => {
-        window.addEventListener("click", handlePickerCloseClick)
-        window.addEventListener("keydown", handlePickerCloseEsc)
-      }, [0])
-
-    }
-
-    return () => {
-      window.removeEventListener("click", handlePickerCloseClick);
-      window.removeEventListener("keydown", handlePickerCloseEsc)
-    }
-
-  }, [graphicPickerOpen])
+  }, [listSelected]) */
 
   useEffect(() => {
     !isLoadingTasks && tasksList && listContainer.current && autoAnimate(listContainer.current)
@@ -223,26 +164,26 @@ export default function Tasks({ user }) {
               }
               {
                 listPickerOpen &&
-                <div ref={listPickerRef} className="listPickerOptions">
-                  <button disabled={isLoadingTasks} className={`listPicker ${listSelected === "completed" && "selected"}`}
+                <Dropdown dropdownOpen={listPickerOpen} setDropdownOpen={setListPickerOpen} direction="row" anchor="right">
+                  <button disabled={isLoadingTasks} className={`dropdownBtn ${listSelected === "completed" && "selected"}`}
                     onClick={() => {
                       selectList("completed")
                     }}>
                     {lang.completed}
                   </button>
-                  <button disabled={isLoadingTasks} className={`listPicker ${listSelected === "pending" && "selected"}`}
+                  <button disabled={isLoadingTasks} className={`dropdownBtn ${listSelected === "pending" && "selected"}`}
                     onClick={() => {
                       selectList("pending")
                     }}>
                     {lang.pending}
                   </button>
-                  <button disabled={isLoadingTasks} className={`listPicker ${listSelected === "all" && "selected"}`}
+                  <button disabled={isLoadingTasks} className={`dropdownBtn ${listSelected === "all" && "selected"}`}
                     onClick={() => {
                       selectList("all")
                     }}>
                     {lang.all}
                   </button>
-                </div>
+                </Dropdown>
               }
             </div>
           </div>
@@ -346,9 +287,9 @@ export default function Tasks({ user }) {
 
           {
             graphicPickerOpen &&
-            <div ref={graphicPickerRef} className="listPickerOptions">
+            <Dropdown dropdownOpen={graphicPickerOpen} setDropdownOpen={setGraphicPickerOpen} direction="column" anchor="left">
               {formFields.map((field) => {
-                return <button key={field} disabled={isLoadingTasks} className={`listPicker ${graphicSelected.includes(field) && "selected"}`}
+                return <button key={field} disabled={isLoadingTasks} className={`dropdownBtn ${graphicSelected.includes(field) && "selected"}`}
                   onClick={() => {
                     selectGraphic(field)
                   }}>
@@ -357,7 +298,7 @@ export default function Tasks({ user }) {
                   }
                 </button>
               })}
-              <button key={"graphPickerBtn-none"} disabled={isLoadingTasks} className={`listPicker ${graphicSelected.length === 0 && "selected"}`}
+              <button key={"graphPickerBtn-none"} disabled={isLoadingTasks} className={`dropdownBtn ${graphicSelected.length === 0 && "selected"}`}
                 onClick={() => {
                   selectGraphic("none")
                 }}>
@@ -365,7 +306,7 @@ export default function Tasks({ user }) {
                   lang["none"]
                 }
               </button>
-              <button key={"graphPickerBtn-all"} disabled={isLoadingTasks} className={`listPicker ${graphicSelected.length === formFields.length && "selected"}`}
+              <button key={"graphPickerBtn-all"} disabled={isLoadingTasks} className={`dropdownBtn ${graphicSelected.length === formFields.length && "selected"}`}
                 onClick={() => {
                   selectGraphic("all")
                 }}>
@@ -373,7 +314,7 @@ export default function Tasks({ user }) {
                   lang["all"]
                 }
               </button>
-            </div>
+            </Dropdown>
           }
         </div>
         {

@@ -147,6 +147,10 @@ export default function Support({ user }) {
     }
   }, [user]) */
 
+  /* useEffect(() => {
+    ticketOptions && setTicketOptions(null)
+  }, [listSelected]) */
+
   useEffect(() => {
     !isLoadingSupport && supportList && listContainer.current && autoAnimate(listContainer.current)
     !isLoadingSupport && supportList && chartContainer.current && autoAnimate(chartContainer.current)
