@@ -105,62 +105,6 @@ export default function Contacts({ user }) {
     })
   }, [user]) */
 
-  /*  useEffect(() => {
-     const handlePickerCloseClick = (e) => {
-       if (e.target != listPickerRef.current && !Array.from(listPickerRef.current.childNodes).some((node) => node == e.target)) {
-         setListPickerOpen(false)
-       }
-     }
- 
-     const handlePickerCloseEsc = (e) => {
-       if (e.key === "Escape") {
-         setListPickerOpen(false)
-       }
-     }
- 
-     if (listPickerOpen) {
-       setTimeout(() => {
-         window.addEventListener("click", handlePickerCloseClick)
-         window.addEventListener("keydown", handlePickerCloseEsc)
-       }, [0])
-     }
- 
-     return () => {
-       window.removeEventListener("click", handlePickerCloseClick);
-       window.removeEventListener("keydown", handlePickerCloseEsc)
-     }
- 
-   }, [listPickerOpen]) */
-
-  /* useEffect(() => {
-    const handlePickerCloseClick = (e) => {
-      if (e.target != graphicPickerRef.current && !Array.from(graphicPickerRef.current.childNodes).some((node) => node == e.target)) {
-        setGraphicPickerOpen(false)
-      }
-    }
-
-    const handlePickerCloseEsc = (e) => {
-
-      if (e.key === "Escape") {
-        setGraphicPickerOpen(false)
-      }
-    }
-
-    if (graphicPickerOpen) {
-      setTimeout(() => {
-        window.addEventListener("click", handlePickerCloseClick)
-        window.addEventListener("keydown", handlePickerCloseEsc)
-      }, [0])
-
-    }
-
-    return () => {
-      window.removeEventListener("click", handlePickerCloseClick);
-      window.removeEventListener("keydown", handlePickerCloseEsc)
-    }
-
-  }, [graphicPickerOpen]) */
-
   useEffect(() => {
     !isLoadingContacts && contactsList && listContainer.current && autoAnimate(listContainer.current)
     !isLoadingContacts && contactsList && chartContainer.current && autoAnimate(chartContainer.current)
