@@ -5,8 +5,6 @@ import { useEffect, useState, useRef } from "react";
 import DataChart from "./DataChart";
 import autoAnimate from "@formkit/auto-animate";
 import { useTranslation } from "../hooks/useTranslation";
-import { collection, onSnapshot } from "firebase/firestore"
-import { firebaseDb as db } from "../config/firebase"
 import Dropdown from "./Dropdown";
 
 const formFields = ["category", "name", "email", "role", "tel", "comments"]
@@ -23,9 +21,6 @@ export default function Contacts({ user }) {
 
   const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
   const [graphicSelected, setGraphicSelected] = useState([])
-
-  const listPickerRef = useRef()
-  const graphicPickerRef = useRef()
 
   const listContainer = useRef()
   const chartContainer = useRef()
@@ -257,7 +252,6 @@ export default function Contacts({ user }) {
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
           <button className={`${graphicPickerOpen && "selected"}`} disabled={isLoadingContacts} onClick={() => { setGraphicPickerOpen(graphicPickerOpen => !graphicPickerOpen) }}>{lang.charts}</button>
-
           {
             graphicPickerOpen &&
             <Dropdown dropdownOpen={graphicPickerOpen} setDropdownOpen={setGraphicPickerOpen} direction="column" anchor="left">

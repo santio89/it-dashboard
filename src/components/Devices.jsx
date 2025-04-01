@@ -5,8 +5,7 @@ import DataChart from "./DataChart";
 import { useState, useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import { useTranslation } from "../hooks/useTranslation";
-import { collection, onSnapshot } from "firebase/firestore"
-import { firebaseDb as db } from "../config/firebase"
+import Dropdown from "./Dropdown";
 
 const formFields = ["category", "name", "type", "model", "sn", "comments"]
 
@@ -22,9 +21,6 @@ export default function Devices({ user }) {
 
   const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
   const [graphicSelected, setGraphicSelected] = useState([])
-
-  const listPickerRef = useRef()
-  const graphicPickerRef = useRef()
 
   const listContainer = useRef()
   const chartContainer = useRef()
@@ -108,7 +104,7 @@ export default function Devices({ user }) {
     })
   }, [user]) */
 
-  useEffect(() => {
+  /* useEffect(() => {
     const handlePickerCloseClick = (e) => {
       if (e.target != listPickerRef.current && !Array.from(listPickerRef.current.childNodes).some((node) => node == e.target)) {
         setListPickerOpen(false)
@@ -133,7 +129,7 @@ export default function Devices({ user }) {
       window.removeEventListener("keydown", handlePickerCloseEsc)
     }
 
-  }, [listPickerOpen])
+  }, [listPickerOpen]) */
 
   useEffect(() => {
     const handlePickerCloseClick = (e) => {
@@ -196,26 +192,26 @@ export default function Devices({ user }) {
               }
               {
                 listPickerOpen &&
-                <div className="listPickerOptions" ref={listPickerRef}>
-                  <button disabled={isLoadingDevices} className={`listPicker ${listSelected === "personal" && "selected"}`}
+                <Dropdown dropdownOpen={listPickerOpen} setDropdownOpen={setListPickerOpen} direction="row" anchor="right">
+                  <button disabled={isLoadingDevices} className={`dropdownBtn ${listSelected === "personal" && "selected"}`}
                     onClick={() => {
                       selectList("personal")
                     }}>
                     {lang.personal}
                   </button>
-                  <button disabled={isLoadingDevices} className={`listPicker ${listSelected === "company" && "selected"}`}
+                  <button disabled={isLoadingDevices} className={`dropdownBtn ${listSelected === "company" && "selected"}`}
                     onClick={() => {
                       selectList("company")
                     }}>
                     {lang.company}
                   </button>
-                  <button disabled={isLoadingDevices} className={`listPicker ${listSelected === "all" && "selected"}`}
+                  <button disabled={isLoadingDevices} className={`dropdownBtn ${listSelected === "all" && "selected"}`}
                     onClick={() => {
                       selectList("all")
                     }}>
                     {lang.all}
                   </button>
-                </div>
+                </Dropdown>
               }
             </div>
           </div>
@@ -258,12 +254,11 @@ export default function Devices({ user }) {
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
           <button className={`${graphicPickerOpen && "selected"}`} disabled={isLoadingDevices} onClick={() => { setGraphicPickerOpen(graphicPickerOpen => !graphicPickerOpen) }}>{lang.charts}</button>
-
           {
             graphicPickerOpen &&
-            <div ref={graphicPickerRef} className="listPickerOptions">
+            <Dropdown dropdownOpen={graphicPickerOpen} setDropdownOpen={setGraphicPickerOpen} direction="column" anchor="left">
               {formFields.map((field) => {
-                return <button key={field} disabled={isLoadingDevices} className={`listPicker ${graphicSelected.includes(field) && "selected"}`}
+                return <button key={field} disabled={isLoadingDevices} className={`dropdownBtn ${graphicSelected.includes(field) && "selected"}`}
                   onClick={() => {
                     selectGraphic(field)
                   }}>
@@ -272,7 +267,7 @@ export default function Devices({ user }) {
                   }
                 </button>
               })}
-              <button key={"graphPickerBtn-none"} disabled={isLoadingDevices} className={`listPicker ${graphicSelected.length === 0 && "selected"}`}
+              <button key={"graphPickerBtn-none"} disabled={isLoadingDevices} className={`dropdownBtn ${graphicSelected.length === 0 && "selected"}`}
                 onClick={() => {
                   selectGraphic("none")
                 }}>
@@ -280,7 +275,7 @@ export default function Devices({ user }) {
                   lang["none"]
                 }
               </button>
-              <button key={"graphPickerBtn-all"} disabled={isLoadingDevices} className={`listPicker ${graphicSelected.length === formFields.length && "selected"}`}
+              <button key={"graphPickerBtn-all"} disabled={isLoadingDevices} className={`dropdownBtn ${graphicSelected.length === formFields.length && "selected"}`}
                 onClick={() => {
                   selectGraphic("all")
                 }}>
@@ -288,7 +283,8 @@ export default function Devices({ user }) {
                   lang["all"]
                 }
               </button>
-            </div>
+
+            </Dropdown>
           }
         </div>
         {
