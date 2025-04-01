@@ -284,7 +284,6 @@ export default function Tasks({ user }) {
       <div className="site-section__inner site-section__chart">
         <div className="btnWrapper">
           <button className={`${graphicPickerOpen && "selected"}`} disabled={isLoadingTasks} onClick={() => { setGraphicPickerOpen(graphicPickerOpen => !graphicPickerOpen) }}>{lang.charts}</button>
-
           {
             graphicPickerOpen &&
             <Dropdown dropdownOpen={graphicPickerOpen} setDropdownOpen={setGraphicPickerOpen} direction="column" anchor="left">
