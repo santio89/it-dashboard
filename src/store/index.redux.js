@@ -7,6 +7,7 @@ import apiReducer from "./slices/apiSlice";
 import { apiSlice } from "./slices/apiSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
+import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 
 const rootReducer = combineReducers({
   modal: modalReducer,
@@ -19,6 +20,7 @@ const persistConfig = {
   key: 'root',
   storage,
   whitelist: ["theme", "auth"],
+  stateReconciler: autoMergeLevel2,
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
