@@ -158,10 +158,6 @@ export default function Contacts({ user }) {
     return () => clearTimeout(timeout)
   }, [isLoadingContacts])
 
-  useEffect(() => {
-    console.log(graphicSelected)
-  }, [graphicSelected])
-
   return (
     <>
       <div className="site-section__inner site-section__list">
