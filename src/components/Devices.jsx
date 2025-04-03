@@ -1,5 +1,6 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
+import { setFilters } from "../store/slices/themeSlice";
 import { useGetDevicesQuery, useSetDevicesMutation } from '../store/slices/apiSlice';
 import DataChart from "./DataChart";
 import { useState, useEffect, useRef } from "react";
@@ -17,10 +18,10 @@ export default function Devices({ user }) {
   const [sortList, setSortList] = useState(false)
 
   const [listPickerOpen, setListPickerOpen] = useState(false)
-  const [listSelected, setListSelected] = useState("all")
+  const listSelected = useSelector(state => state.theme.filters.devices.list)
 
   const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
-  const [graphicSelected, setGraphicSelected] = useState([])
+  const graphicSelected = useSelector(state => state.theme.filters.devices.charts)
 
   const listContainer = useRef()
   const chartContainer = useRef()
@@ -40,23 +41,56 @@ export default function Devices({ user }) {
   } = useGetDevicesQuery(user?.uid);
 
   const selectList = list => {
-    setListSelected(list)
+    dispatch(setFilters({
+      filters: {
+        devices: {
+          list: list
+        }
+      }
+    }))
   }
 
   const selectGraphic = graphic => {
     if (graphic === "none") {
-      setGraphicSelected([])
+      dispatch(setFilters({
+        filters: {
+          devices: {
+            charts: []
+          }
+        }
+      }))
       return
     }
+
     if (graphic === "all") {
-      setGraphicSelected([...formFields])
+      dispatch(setFilters({
+        filters: {
+          devices: {
+            charts: [...formFields]
+          }
+        }
+      }))
       return
     }
+
     if (graphicSelected.includes(graphic)) {
-      setGraphicSelected(graphicSelected => graphicSelected.filter(graph => graph != graphic))
+      dispatch(setFilters({
+        filters: {
+          devices: {
+            charts: graphicSelected.filter(graph => graph != graphic)
+          }
+        }
+      }))
       return
     }
-    setGraphicSelected(graphicSelected => [...graphicSelected, graphic])
+
+    dispatch(setFilters({
+      filters: {
+        devices: {
+          charts: [...graphicSelected, graphic]
+        }
+      }
+    }))
   }
 
   const setDevicesFn = async (data) => {
@@ -103,34 +137,6 @@ export default function Devices({ user }) {
       setDevicesFn(handleArray)
     })
   }, [user]) */
-
-  useEffect(() => {
-    const handlePickerCloseClick = (e) => {
-      if (e.target != graphicPickerRef.current && !Array.from(graphicPickerRef.current.childNodes).some((node) => node == e.target)) {
-        setGraphicPickerOpen(false)
-      }
-    }
-
-    const handlePickerCloseEsc = (e) => {
-      if (e.key === "Escape") {
-        setGraphicPickerOpen(false)
-      }
-    }
-
-    if (graphicPickerOpen) {
-      setTimeout(() => {
-        window.addEventListener("click", handlePickerCloseClick)
-        window.addEventListener("keydown", handlePickerCloseEsc)
-      }, [0])
-
-    }
-
-    return () => {
-      window.removeEventListener("click", handlePickerCloseClick);
-      window.removeEventListener("keydown", handlePickerCloseEsc)
-    }
-
-  }, [graphicPickerOpen])
 
   useEffect(() => {
     !isLoadingDevices && devicesList && listContainer.current && autoAnimate(listContainer.current)
@@ -265,9 +271,9 @@ export default function Devices({ user }) {
             <div className="chartWrapper">
               <ul className="charts-list" ref={chartContainer}>
                 {
-                  graphicSelected.length === 0 ?
+                  graphicSelected?.length === 0 ?
                     <li>{lang.noChartsSelected}</li> :
-                    graphicSelected.map((graphic) => {
+                    graphicSelected?.map((graphic) => {
                       return <DataChart key={graphic} type={{ property: graphic, items: "devices" }} data={dataDevices} firstLoad={firstLoad} />
                     })
                 }

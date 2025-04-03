@@ -1,6 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
 import { useGetContactsQuery, useSetContactsMutation } from '../store/slices/apiSlice';
+import { setFilters } from "../store/slices/themeSlice";
 import { useEffect, useState, useRef } from "react";
 import DataChart from "./DataChart";
 import autoAnimate from "@formkit/auto-animate";
@@ -17,10 +18,10 @@ export default function Contacts({ user }) {
   const [sortList, setSortList] = useState(false)
 
   const [listPickerOpen, setListPickerOpen] = useState(false)
-  const [listSelected, setListSelected] = useState("all")
+  const listSelected = useSelector(state => state.theme.filters.contacts.list)
 
   const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
-  const [graphicSelected, setGraphicSelected] = useState([])
+  const graphicSelected = useSelector(state => state.theme.filters.contacts.charts)
 
   const listContainer = useRef()
   const chartContainer = useRef()
@@ -40,23 +41,56 @@ export default function Contacts({ user }) {
   } = useGetContactsQuery(user?.uid);
 
   const selectList = list => {
-    setListSelected(list)
+    dispatch(setFilters({
+      filters: {
+        contacts: {
+          list: list
+        }
+      }
+    }))
   }
 
   const selectGraphic = graphic => {
     if (graphic === "none") {
-      setGraphicSelected([])
+      dispatch(setFilters({
+        filters: {
+          contacts: {
+            charts: []
+          }
+        }
+      }))
       return
     }
+
     if (graphic === "all") {
-      setGraphicSelected([...formFields])
+      dispatch(setFilters({
+        filters: {
+          contacts: {
+            charts: [...formFields]
+          }
+        }
+      }))
       return
     }
+
     if (graphicSelected.includes(graphic)) {
-      setGraphicSelected(graphicSelected => graphicSelected.filter(graph => graph != graphic))
+      dispatch(setFilters({
+        filters: {
+          contacts: {
+            charts: graphicSelected.filter(graph => graph != graphic)
+          }
+        }
+      }))
       return
     }
-    setGraphicSelected(graphicSelected => [...graphicSelected, graphic])
+
+    dispatch(setFilters({
+      filters: {
+        contacts: {
+          charts: [...graphicSelected, graphic]
+        }
+      }
+    }))
   }
 
   const setContactsFn = async (data) => {
@@ -124,6 +158,9 @@ export default function Contacts({ user }) {
     return () => clearTimeout(timeout)
   }, [isLoadingContacts])
 
+  useEffect(() => {
+    console.log(graphicSelected)
+  }, [graphicSelected])
 
   return (
     <>
@@ -233,9 +270,9 @@ export default function Contacts({ user }) {
             <div className="chartWrapper">
               <ul className="charts-list" ref={chartContainer}>
                 {
-                  graphicSelected.length === 0 ?
+                  graphicSelected?.length === 0 ?
                     <li>{lang.noChartsSelected}</li> :
-                    graphicSelected.map((graphic) => {
+                    graphicSelected?.map((graphic) => {
                       return <DataChart key={graphic} type={{ property: graphic, items: "contacts" }} data={dataContacts} firstLoad={firstLoad} />
                     })
                 }

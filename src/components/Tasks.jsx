@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { useGetTdlQuery, useEditTdlMutation, useSetTdlMutation, useSetSupportMutation } from '../store/slices/apiSlice'
+import { setFilters } from '../store/slices/themeSlice'
 import { setModal } from '../store/slices/modalSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import DataChart from './DataChart'
 import autoAnimate from "@formkit/auto-animate";
 import { useTranslation } from '../hooks/useTranslation'
@@ -23,10 +24,10 @@ export default function Tasks({ user }) {
   const [firstLoad, setFirstLoad] = useState(null)
 
   const [listPickerOpen, setListPickerOpen] = useState(false)
-  const [listSelected, setListSelected] = useState("all")
+  const listSelected = useSelector(state => state.theme.filters.tasks.list)
 
   const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
-  const [graphicSelected, setGraphicSelected] = useState([])
+  const graphicSelected = useSelector(state => state.theme.filters.tasks.charts)
 
   const listContainer = useRef()
   const chartContainer = useRef()
@@ -44,23 +45,56 @@ export default function Tasks({ user }) {
   } = useGetTdlQuery(user.uid);
 
   const selectList = list => {
-    setListSelected(list)
+    dispatch(setFilters({
+      filters: {
+        tasks: {
+          list: list
+        }
+      }
+    }))
   }
 
   const selectGraphic = graphic => {
     if (graphic === "none") {
-      setGraphicSelected([])
+      dispatch(setFilters({
+        filters: {
+          tasks: {
+            charts: []
+          }
+        }
+      }))
       return
     }
+
     if (graphic === "all") {
-      setGraphicSelected([...formFields])
+      dispatch(setFilters({
+        filters: {
+          tasks: {
+            charts: [...formFields]
+          }
+        }
+      }))
       return
     }
+
     if (graphicSelected.includes(graphic)) {
-      setGraphicSelected(graphicSelected => graphicSelected.filter(graph => graph != graphic))
+      dispatch(setFilters({
+        filters: {
+          tasks: {
+            charts: graphicSelected.filter(graph => graph != graphic)
+          }
+        }
+      }))
       return
     }
-    setGraphicSelected(graphicSelected => [...graphicSelected, graphic])
+
+    dispatch(setFilters({
+      filters: {
+        tasks: {
+          charts: [...graphicSelected, graphic]
+        }
+      }
+    }))
   }
 
   const editStatusFn = async (task) => {
@@ -321,9 +355,9 @@ export default function Tasks({ user }) {
             <div className="chartWrapper">
               <ul className="charts-list" ref={chartContainer}>
                 {
-                  graphicSelected.length === 0 ?
+                  graphicSelected?.length === 0 ?
                     <li>{lang.noChartsSelected}</li> :
-                    graphicSelected.map((graphic) => {
+                    graphicSelected?.map((graphic) => {
                       return <DataChart key={graphic} type={{ property: graphic, items: "tasks" }} data={dataTasks} firstLoad={firstLoad} />
                     })
                 }
