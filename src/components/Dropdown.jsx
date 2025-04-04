@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 
 function Dropdown({ children, dropdownOpen, setDropdownOpen, direction, anchor }) {
   const dropdownRef = useRef()

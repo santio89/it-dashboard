@@ -32,11 +32,9 @@ export default function Nav({ rootTheme, user }) {
 
   const logInGoogle = async () => {
     await signGoogle()
-    setProfileOpts(false)
   }
   const logOutGoogle = async () => {
     await signOut()
-    setProfileOpts(false)
   }
 
   const openProfile = () => {
@@ -61,6 +59,10 @@ export default function Nav({ rootTheme, user }) {
   useEffect(() => {
     rootTheme.current.classList.toggle("light-theme", lightTheme)
   }, [lightTheme])
+
+  useEffect(() => {
+    setProfileOpts(false)
+  }, [user])
 
   return (
     <header className="mainHeader">
