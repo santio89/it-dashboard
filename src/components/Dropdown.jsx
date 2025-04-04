@@ -6,8 +6,8 @@ function Dropdown({ children, dropdownOpen, setDropdownOpen, direction, anchor }
 
   useEffect(() => {
     const handlePickerCloseClick = (e) => {
-      if (e.target != dropdownRef.current && !Array.from(dropdownRef.current.childNodes).some((node) => node == e.target)) {
-        setDropdownOpen(false)
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
       }
     }
 
