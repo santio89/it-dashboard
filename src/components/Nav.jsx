@@ -5,6 +5,7 @@ import { useLocation } from "react-router"
 import { useEffect, useRef, useState } from "react"
 import { useSignGoogleMutation, useSignOutMutation } from "../store/slices/apiSlice"
 import { useTranslation } from '../hooks/useTranslation'
+import Dropdown from "./Dropdown"
 
 const sections = ["/", "/home", "/about", "/contacts", "/devices", "/tasks", "/support", "/admin"]
 
@@ -36,7 +37,6 @@ export default function Nav({ rootTheme, user }) {
 
   const openProfile = () => {
     dispatch(setModal({ active: true, data: { modalType: "ProfileDataModal", profileData: true, ...user } }))
-    setProfileOpts(false)
   }
 
   const navTitle = () => {
@@ -56,38 +56,6 @@ export default function Nav({ rootTheme, user }) {
   useEffect(() => {
     rootTheme.current.classList.toggle("light-theme", lightTheme)
   }, [lightTheme])
-
-  useEffect(() => {
-    setProfileOpts(false)
-  }, [user])
-
-  useEffect(() => {
-    const handleOptsCloseClick = (e) => {
-      if (e.target != profileOptsRef.current && !profileOptsRef.current.contains(e.target)) {
-        setProfileOpts(false)
-      }
-    }
-
-    const handleOptsCloseEsc = (e) => {
-      if (e.key === "Escape") {
-        setProfileOpts(false)
-      }
-    }
-
-    if (profileOpts) {
-      setTimeout(() => {
-        window.addEventListener("click", handleOptsCloseClick)
-        window.addEventListener("keydown", handleOptsCloseEsc)
-      }, [0])
-    }
-
-    return () => {
-      window.removeEventListener("click", handleOptsCloseClick);
-      window.removeEventListener("keydown", handleOptsCloseEsc)
-    }
-
-  }, [profileOpts])
-
 
   return (
     <header className="mainHeader">
@@ -119,9 +87,9 @@ export default function Nav({ rootTheme, user }) {
             </button>
           }
 
-          {
-            <div ref={profileOptsRef} className={`profile-opts ${profileOpts && "open"}`}>
-              <div className="profile-opts__langWrapper">
+          {profileOpts &&
+            <Dropdown dropdownOpen={profileOpts} setDropdownOpen={setProfileOpts} direction={"column"} anchor="right">
+              <div className="langWrapper">
                 <button tabIndex={profileOpts ? 0 : -1} className={langTheme === "esp" && "selected"} onClick={() => toggleLang("esp")}
                 >ESP</button>
                 <button tabIndex={profileOpts ? 0 : -1} className={langTheme === "eng" && "selected"} onClick={() => toggleLang("eng")}>
@@ -158,7 +126,7 @@ export default function Nav({ rootTheme, user }) {
                     </button>
                   </>
               }
-            </div>
+            </Dropdown>
           }
         </div>
       </div>

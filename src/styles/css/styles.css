@@ -377,31 +377,18 @@ select:disabled {
 .mainHeader__btnContainer .btnWrapper button:hover, .mainHeader__btnContainer .btnWrapper button:focus-visible {
   background: var(--main-color-op);
 }
-.mainHeader__btnContainer .btnWrapper .profile-opts {
-  position: absolute;
-  top: calc(100% + var(--main-section-spacing) / 2 + 1px);
-  right: -1px;
-  background: var(--main-section);
-  border: 1px solid var(--main-gray-dark);
-  transition: 200ms ease-in-out, scale 100ms ease-in-out, opacity 100ms ease-in-out, background-color 400ms ease-in-out;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  gap: 0.5rem;
+.mainHeader__btnContainer .dropdownWrapper {
   padding: 0.5rem;
-  border-radius: var(--main-radius);
-  transform-origin: top right;
-  scale: 0.9;
-  opacity: 0;
-  pointer-events: none;
+  gap: 0.5rem;
+  top: calc(100% + var(--main-section-spacing) / 2 + 1px);
 }
-.mainHeader__btnContainer .btnWrapper .profile-opts.open {
-  scale: 1;
-  opacity: 1;
-  pointer-events: auto;
+.mainHeader__btnContainer .dropdownWrapper[data-anchor=right] {
+  right: -1px;
 }
-.mainHeader__btnContainer .btnWrapper .profile-opts button {
+.mainHeader__btnContainer .dropdownWrapper[data-anchor=left] {
+  left: -1px;
+}
+.mainHeader__btnContainer .dropdownWrapper button {
   width: 100%;
   height: 40px;
   aspect-ratio: auto;
@@ -417,16 +404,16 @@ select:disabled {
   align-items: center;
   border-radius: var(--main-radius);
 }
-.mainHeader__btnContainer .btnWrapper .profile-opts button svg {
+.mainHeader__btnContainer .dropdownWrapper button svg {
   border-radius: 0;
 }
-.mainHeader__btnContainer .btnWrapper .profile-opts button:hover, .mainHeader__btnContainer .btnWrapper .profile-opts button:focus-visible {
+.mainHeader__btnContainer .dropdownWrapper button:hover, .mainHeader__btnContainer .dropdownWrapper button:focus-visible {
   background-color: var(--main-color-op-light);
 }
-.mainHeader__btnContainer .btnWrapper .profile-opts button:hover svg, .mainHeader__btnContainer .btnWrapper .profile-opts button:focus-visible svg {
+.mainHeader__btnContainer .dropdownWrapper button:hover svg, .mainHeader__btnContainer .dropdownWrapper button:focus-visible svg {
   filter: drop-shadow(0 0 0.4px currentColor);
 }
-.mainHeader__btnContainer .btnWrapper .profile-opts__langWrapper {
+.mainHeader__btnContainer .dropdownWrapper .langWrapper {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -434,7 +421,7 @@ select:disabled {
   width: 100%;
   gap: 0.25rem;
 }
-.mainHeader__btnContainer .btnWrapper .profile-opts__langWrapper > button {
+.mainHeader__btnContainer .dropdownWrapper .langWrapper > button {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -443,7 +430,7 @@ select:disabled {
   text-align: center;
   color: var(--main-gray-dark);
 }
-.mainHeader__btnContainer .btnWrapper .profile-opts__langWrapper > button.selected {
+.mainHeader__btnContainer .dropdownWrapper .langWrapper > button.selected {
   font-weight: 600;
   color: var(--main-text);
 }
