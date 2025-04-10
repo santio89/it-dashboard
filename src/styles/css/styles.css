@@ -1936,7 +1936,7 @@ label:hover) {
   border-bottom: 1px solid var(--main-gray-darker-op);
   width: 100%;
   gap: 0.25rem;
-  color: var(--main-text);
+  color: var(--white);
   font-weight: 600;
   padding-inline: 0.5rem;
 }
