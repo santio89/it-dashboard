@@ -1828,12 +1828,9 @@ label:hover) {
   text-transform: none;
   background: none;
   align-self: start;
-  color: var(--main-gray);
+  color: var(--red);
   margin-top: -0.5rem;
   padding: 0;
-}
-.mainModal__data__form.taskContainer .replyBtn:hover {
-  color: var(--white);
 }
 .mainModal__data__form.taskContainer .replyBtn span:nth-child(1) {
   transition: rotate 200ms ease-in-out;
@@ -1936,11 +1933,10 @@ label:hover) {
 .mainModal__data__form.taskContainer .taskReply {
   display: inline-block;
   text-align: start;
-  /* box-shadow: 0 1px 0 0 var(--main-gray-darker-op); */
   border-bottom: 1px solid var(--main-gray-darker-op);
   width: 100%;
   gap: 0.25rem;
-  color: var(--red);
+  color: var(--main-text);
   font-weight: 600;
   padding-inline: 0.5rem;
 }
