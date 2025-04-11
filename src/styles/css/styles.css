@@ -1684,6 +1684,10 @@ select:disabled {
   transition: 200ms ease-in-out;
   font-weight: 600;
 }
+.mainModal__data__form fieldset legend:has(+ .reply) {
+  margin-left: auto;
+  color: var(--red);
+}
 .mainModal__data__form fieldset:has(input:hover,
 textarea:hover,
 select:hover,
@@ -1693,9 +1697,6 @@ label:hover) {
 }
 .mainModal__data__form fieldset:focus-within {
   border-color: var(--white) !important;
-}
-.mainModal__data__form fieldset:focus-within legend {
-  color: var(--white);
 }
 .mainModal__data__form fieldset:has(textarea) {
   width: 100%;
@@ -1803,6 +1804,25 @@ label:hover) {
   align-items: center;
   flex-direction: column;
   width: 100%;
+  /* .replyBtn {
+    font-size: 0.8em;
+    text-transform: none;
+    background: none;
+    align-self: start;
+    color: var(--red);
+    margin-top: -0.5rem;
+    padding: 0;
+
+    span:nth-child(1) {
+      transition: rotate 200ms ease-in-out;
+    }
+
+    &.active {
+      span:nth-child(1) {
+        rotate: 90deg;
+      }
+    }
+  } */
 }
 .mainModal__data__form.taskContainer fieldset,
 .mainModal__data__form.taskContainer input,
@@ -1822,21 +1842,6 @@ label:hover) {
     flex-direction: column;
     gap: 1rem;
   } */
-}
-.mainModal__data__form.taskContainer .replyBtn {
-  font-size: 0.8em;
-  text-transform: none;
-  background: none;
-  align-self: start;
-  color: var(--red);
-  margin-top: -0.5rem;
-  padding: 0;
-}
-.mainModal__data__form.taskContainer .replyBtn span:nth-child(1) {
-  transition: rotate 200ms ease-in-out;
-}
-.mainModal__data__form.taskContainer .replyBtn.active span:nth-child(1) {
-  rotate: 90deg;
 }
 .mainModal__data__form.taskContainer .taskOpenData {
   align-self: start;
@@ -1917,18 +1922,24 @@ label:hover) {
 .mainModal__data__form.taskContainer .taskOpenData button.selected:focus-visible {
   outline: 1px solid var(--white);
 }
-.mainModal__data__form.taskContainer .taskOpenContent {
-  width: 100%;
-  height: 100%;
-  min-height: 120px;
-  max-height: 240px;
-  field-sizing: content;
-}
 .mainModal__data__form.taskContainer .taskOpenTitle {
   width: 100%;
   height: 100%;
-  max-height: 60px;
+  min-height: 40px;
+  max-height: 62px;
   field-sizing: content;
+  text-align: left;
+}
+.mainModal__data__form.taskContainer .taskOpenContent {
+  width: 100%;
+  height: 100%;
+  min-height: 80px;
+  max-height: 106px;
+  field-sizing: content;
+  text-align: left;
+}
+.mainModal__data__form.taskContainer .taskOpenContent.reply {
+  text-align: right;
 }
 .mainModal__data__form.taskContainer .taskReply {
   display: inline-block;

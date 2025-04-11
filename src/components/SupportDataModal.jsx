@@ -207,13 +207,6 @@ export default function SupportDataModal({ modalData }) {
                   {lang[modalData?.status]}
                 </button>
               </div>
-              {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{lang.adminReply}</span></button>}
-              {
-                modalData?.status === "completed" && showReply &&
-                <div className='taskReply'>
-                  {modalData?.reply}
-                </div>
-              }
             </div>
             <fieldset>
               <legend><label htmlFor="title">{lang.title}</label></legend>
@@ -223,14 +216,19 @@ export default function SupportDataModal({ modalData }) {
               <legend><label htmlFor="description">{lang.description}</label></legend>
               <textarea id="description" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.description || "-"} />
             </fieldset>
-
+            {
+              modalData?.status === "completed" &&
+              <fieldset>
+                <legend><label htmlFor="reply">{lang.adminReply}</label></legend>
+                <textarea id="reply" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent reply' value={modalData?.reply || "-"} />
+              </fieldset>
+            }
             {modalData?.user.domainAdmin &&
               <div className='mainModal__btnContainer'>
                 <button type='button' className='mainModal__send' onClick={() => editModeFN()}>{lang.edit}</button>
                 <button type='button' className='mainModal__send' onClick={() => setDeleteMode(true)}>{lang.delete}</button>
               </div>
             }
-
           </form>
         </>
       }
@@ -277,13 +275,6 @@ export default function SupportDataModal({ modalData }) {
                   {lang.completed}
                 </button>
               </div>
-              {newTicketStatus === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{lang.adminReply}</span></button>}
-              {
-                newTicketStatus === "completed" && showReply &&
-                <div className='taskReply'>
-                  <textarea id="addReply" placeholder={lang.ticketClosed} spellCheck={false} rows="1" value={newTicketReply} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} className='taskOpenTitle' />
-                </div>
-              }
             </div>
             <fieldset>
               <legend><label htmlFor="editTitle">{lang.title}</label></legend>
@@ -291,9 +282,15 @@ export default function SupportDataModal({ modalData }) {
             </fieldset>
             <fieldset>
               <legend><label htmlFor="editDescription">{lang.description}</label></legend>
-              <textarea id="editDescription" spellCheck={false} rows="4" value={newTicketDescription} onChange={e => setNewTicketDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
-
+              <textarea id="editDescription" spellCheck={false} rows="2" value={newTicketDescription} onChange={e => setNewTicketDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
             </fieldset>
+            {
+              newTicketStatus === "completed" &&
+              <fieldset>
+                <legend><label htmlFor="reply">{lang.adminReply}</label></legend>
+                <textarea id="reply" placeholder={lang.ticketClosed} spellCheck={false} rows="2" className='taskOpenContent reply' value={newTicketReply} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} />
+              </fieldset>
+            }
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>{lang.cancel}</button>
               <button className='mainModal__send' onClick={trimInputs}>{lang.confirm}</button>
@@ -329,13 +326,6 @@ export default function SupportDataModal({ modalData }) {
                   {lang[modalData?.status]}
                 </button>
               </div>
-              {modalData?.status === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{lang.adminReply}</span></button>}
-              {
-                modalData?.status === "completed" && showReply &&
-                <div className='taskReply'>
-                  {modalData?.reply}
-                </div>
-              }
             </div>
             <fieldset>
               <legend><label htmlFor="deleteTitle">{lang.title}</label></legend>
@@ -343,8 +333,15 @@ export default function SupportDataModal({ modalData }) {
             </fieldset>
             <fieldset>
               <legend><label htmlFor="deleteDescription">{lang.description}</label></legend>
-              <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="4" className='taskOpenContent' value={modalData?.description || "-"} />
+              <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.description || "-"} />
             </fieldset>
+            {
+              modalData?.status === "completed" &&
+              <fieldset>
+                <legend><label htmlFor="reply">{lang.adminReply}</label></legend>
+                <textarea id="reply" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent reply' value={modalData?.reply} />
+              </fieldset>
+            }
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>{lang.cancel}</button>
               <button className='mainModal__send' onClick={trimInputs}>{lang.confirm}</button>
@@ -394,13 +391,6 @@ export default function SupportDataModal({ modalData }) {
                     {lang.completed}
                   </button>
                 </div>
-                {newTicketStatus === "completed" && <button type='button' className={`replyBtn ${showReply && "active"}`} onClick={() => { setShowReply(showReply => !showReply) }}><span>▶</span><span>&nbsp;{lang.adminReply}</span></button>}
-                {
-                  newTicketStatus === "completed" && showReply &&
-                  <div className='taskReply'>
-                    <textarea id="addReply" placeholder={lang.ticketClosed} spellCheck={false} rows="1" value={newTicketReply} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} className='taskOpenTitle' />
-                  </div>
-                }
               </div>
             }
             <fieldset>
@@ -409,8 +399,15 @@ export default function SupportDataModal({ modalData }) {
             </fieldset>
             <fieldset>
               <legend><label htmlFor="addDescription">{lang.description}</label></legend>
-              <textarea id="addDescription" spellCheck={false} rows="4" value={newTicketDescription} onChange={e => setNewTicketDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
+              <textarea id="addDescription" spellCheck={false} rows="2" value={newTicketDescription} onChange={e => setNewTicketDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
             </fieldset>
+            {
+              newTicketStatus === "completed" &&
+              <fieldset>
+                <legend><label htmlFor="reply">{lang.adminReply}</label></legend>
+                <textarea id="reply" placeholder={lang.ticketClosed} spellCheck={false} rows="2" className='taskOpenContent reply' value={newTicketReply} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} />
+              </fieldset>
+            }
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send' onClick={trimInputs}>{lang.send}</button>
             </div>
