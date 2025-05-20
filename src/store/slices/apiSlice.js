@@ -219,7 +219,7 @@ export const apiSlice = createApi({
         if (!userId) { return }
         try {
           const ref = collection(db, 'authUsersData', userId, "devices");
-          const q = query(ref, orderBy('normalizedName'), limit(5));
+          const q = query(ref, orderBy('normalizedName'), limit(50));
           const querySnapshot = await getDocs(q);
           let devices = [];
 
@@ -242,7 +242,7 @@ export const apiSlice = createApi({
         if (!userId || !lastVisible) { return { data: { devices: null, lastVisible: null } } }
         try {
           const ref = collection(db, 'authUsersData', userId, 'devices');
-          const q = query(ref, orderBy('normalizedName'), startAfter(lastVisible), limit(5));
+          const q = query(ref, orderBy('normalizedName'), startAfter(lastVisible), limit(50));
           const querySnapshot = await getDocs(q);
 
           let devices = [];
