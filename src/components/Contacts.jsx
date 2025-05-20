@@ -230,7 +230,7 @@ export default function Contacts({ user }) {
                 }
               </ul>
               <div className="listWrapper__loadMore">
-                <div>{lang.showing} {contactsList?.length}</div>
+                <div>{lang.showing}: {contactsList?.length} - {lang.total}: {dataContacts?.length}</div>
                 {<button onClick={handleRefetch} disabled={!dataLastVisible}>{dataLastVisible ? `${lang.loadMore}...` : lang.allLoaded}</button>}
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useGetTdlQuery, useEditTdlMutation, useSetTdlMutation, useSetSupportMutation } from '../store/slices/apiSlice'
+import { useGetTdlQuery, useEditTdlMutation, useGetTdlNextQuery, useSetTdlMutation, useSetSupportMutation } from '../store/slices/apiSlice'
 import { setFilters } from '../store/slices/themeSlice'
 import { setModal } from '../store/slices/modalSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,15 +16,17 @@ export default function Tasks({ user }) {
 
   const dispatch = useDispatch()
 
+  const [listPickerOpen, setListPickerOpen] = useState(false)
+  const listSelected = useSelector(state => state.theme.filters.tasks.list)
   const [sortList, setSortList] = useState(false)
+
 
   const [taskOptions, setTaskOptions] = useState(null)
 
   const [tasksList, setTasksList] = useState(null)
   const [firstLoad, setFirstLoad] = useState(null)
 
-  const [listPickerOpen, setListPickerOpen] = useState(false)
-  const listSelected = useSelector(state => state.theme.filters.tasks.list)
+  const [lastVisible, setLastVisible] = useState(null)
 
   const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
   const graphicSelected = useSelector(state => state.theme.filters.tasks.charts)
@@ -36,13 +38,20 @@ export default function Tasks({ user }) {
   const [setTdl, resultSetTdl] = useSetTdlMutation()
 
   const {
-    data: dataTasks,
+    data: { tasks: dataTasks, lastVisible: dataLastVisible } = {},
     isLoading: isLoadingTasks,
     isFetching: isFetchingTasks,
     isSuccess: isSuccessTasks,
     isError: isErrorTasks,
     error: errorTasks,
   } = useGetTdlQuery(user.uid);
+
+
+  useGetTdlNextQuery({ userId: user?.uid, lastVisible });
+
+  const handleRefetch = () => {
+    setLastVisible(dataLastVisible)
+  }
 
   const selectList = list => {
     dispatch(setFilters({
@@ -312,6 +321,10 @@ export default function Tasks({ user }) {
                     </>
                 }
               </ul>
+              <div className="listWrapper__loadMore">
+                <div>{lang.showing}: {tasksList?.length} - {lang.total}: {dataTasks?.length}</div>
+                {<button onClick={handleRefetch} disabled={!dataLastVisible}>{dataLastVisible ? `${lang.loadMore}...` : lang.allLoaded}</button>}
+              </div>
             </div>
         }
       </div >

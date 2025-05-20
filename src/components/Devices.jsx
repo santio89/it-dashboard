@@ -235,7 +235,7 @@ export default function Devices({ user }) {
                 }
               </ul>
               <div className="listWrapper__loadMore">
-                <div>{lang.showing} {devicesList?.length}</div>
+                <div>{lang.showing}: {devicesList?.length} - {lang.total}: {dataDevices?.length}</div>
                 {<button onClick={handleRefetch} disabled={!dataLastVisible}>{dataLastVisible ? `${lang.loadMore}...` : lang.allLoaded}</button>}
               </div>
             </div>

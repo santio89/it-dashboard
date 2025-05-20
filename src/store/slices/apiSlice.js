@@ -19,8 +19,8 @@ export const apiSlice = createApi({
           const ref = collection(db, 'authUsersData', userId, "contacts");
           const q = query(ref, orderBy('normalizedName'), limit(50));
           const querySnapshot = await getDocs(q);
-          let contacts = [];
 
+          let contacts = [];
           querySnapshot?.forEach((doc) => {
             contacts.push({ id: doc.id, ...doc.data() });
           });
@@ -422,19 +422,74 @@ export const apiSlice = createApi({
         if (!userId) { return }
         try {
           const ref = collection(db, 'authUsersData', userId, "tdl");
-          const querySnapshot = await getDocs(ref);
+          const q = query(ref, orderBy('localTime', 'desc'), limit(5));
+          const querySnapshot = await getDocs(q);
+
           let tasks = [];
           querySnapshot?.forEach((doc) => {
             tasks.push({ id: doc.id, ...doc.data() });
           });
 
-          return { data: tasks };
+          const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+          console.log(tasks)
+          return { data: { tasks, lastVisible: newLastVisible } };
         } catch (error) {
           console.log(error);
           return { error: error };
         }
       },
       providesTags: ['tdl'],
+    }),
+    getTdlNext: builder.query({
+      async queryFn({ userId, lastVisible }) {
+        if (!userId || !lastVisible) { return { data: { tasks: null, lastVisible: null } } }
+        try {
+          const ref = collection(db, 'authUsersData', userId, 'tdl');
+          const q = query(ref, orderBy('localTime', 'desc'), startAfter(lastVisible), limit(5));
+          const querySnapshot = await getDocs(q);
+
+          let tasks = [];
+          querySnapshot.forEach((doc) => {
+            tasks.push({ id: doc.id, ...doc.data() });
+          });
+
+          const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+
+          return { data: { tasks, lastVisible: newLastVisible } };
+        } catch (error) {
+          console.log(error);
+          return { error: error };
+        }
+      },
+      async onQueryStarted({ userId, lastVisible }, { dispatch, queryFulfilled }) {
+        const result = await queryFulfilled;
+
+        if (result.data) {
+          const { tasks } = result.data;
+
+          // Update the cache by merging new tasks
+          dispatch(
+            apiSlice.util.updateQueryData('getTdl', userId, (draft) => {
+              if (!draft.tasks) {
+                draft.tasks = [];
+              }
+
+              /* draft.tasks.push(...tasks); */
+
+              tasks.forEach((task) => {
+                // Check if the task ID already exists in the draft
+                const exists = draft.tasks.some(existingTask => existingTask.id === task.id);
+
+                // If it doesn't exist, push the new task
+                if (!exists) {
+                  draft.tasks.push(task);
+                }
+              });
+              draft.lastVisible = result.data.lastVisible
+            })
+          );
+        }
+      }
     }),
     addTdl: builder.mutation({
       async queryFn(task) {
@@ -462,7 +517,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (task, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getTdl', task.userId, draft => {
-            draft.push({ ...task, id: task.localId, createdAt: Date.now(), updatedAt: null });
+            draft.tasks.push({ ...task, id: task.localId, createdAt: Date.now(), updatedAt: null });
           })
         );
 
@@ -494,7 +549,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (task, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getTdl', task.userId, draft => {
-            return draft.filter(t => t.id !== task.id);
+            draft.tasks = draft.tasks.filter(t => t.id !== task.id);
           })
         );
 
@@ -529,7 +584,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (task, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getTdl', task.userId, draft => {
-            const index = draft.findIndex(t => t.id === task.id);
+            const index = draft.tasks.findIndex(t => t.id === task.id);
             if (index !== -1) {
               draft[index] = { ...task, updatedAt: Date.now() };
             }
@@ -797,6 +852,7 @@ export const {
   useSetDevicesMutation,
 
   useGetTdlQuery,
+  useGetTdlNextQuery,
   useAddTdlMutation,
   useDeleteTdlMutation,
   useEditTdlMutation,
