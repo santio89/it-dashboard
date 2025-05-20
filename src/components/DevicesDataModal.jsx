@@ -47,7 +47,7 @@ export default function DevicesDataModal({ modalData }) {
 
   const checkDuplicates = async (device) => {
     const colRef = collection(db, "authUsersData", device.userId, "devices");
-    const q = query(colRef, where("name", "==", device.name));
+    const q = query(colRef, where("normalizedName", "==", device.name.toLowerCase()));
     const querySnapshot = await getDocs(q);
 
     return !querySnapshot.empty
@@ -66,6 +66,7 @@ export default function DevicesDataModal({ modalData }) {
 
     const newDevice = {
       name: newDeviceName,
+      normalizedName: newDeviceName.toLowerCase(),
       type: newDeviceType,
       model: newDeviceModel,
       sn: newDeviceSn,
@@ -154,6 +155,7 @@ export default function DevicesDataModal({ modalData }) {
 
     const newDevice = {
       name: newDeviceName,
+      normalizedName: newDeviceName.toLowerCase(),
       type: newDeviceType,
       model: newDeviceModel,
       sn: newDeviceSn,

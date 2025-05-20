@@ -17,7 +17,7 @@ export const apiSlice = createApi({
         if (!userId) { return }
         try {
           const ref = collection(db, 'authUsersData', userId, "contacts");
-          const q = query(ref, orderBy('normalizedName'), limit(5));
+          const q = query(ref, orderBy('normalizedName'), limit(50));
           const querySnapshot = await getDocs(q);
           let contacts = [];
 
@@ -40,17 +40,10 @@ export const apiSlice = createApi({
         if (!userId || !lastVisible) { return { data: { contacts: null, lastVisible: null } } }
         try {
           const ref = collection(db, 'authUsersData', userId, 'contacts');
-          let q = null;
-
-          if (lastVisible) {
-            q = query(ref, orderBy('normalizedName'), startAfter(lastVisible), limit(5));
-          } else {
-            q = query(ref, orderBy('normalizedName'), limit(5)); // Fetch first 10 documents
-          }
-
+          const q = query(ref, orderBy('normalizedName'), startAfter(lastVisible), limit(50));
           const querySnapshot = await getDocs(q);
-          let contacts = [];
 
+          let contacts = [];
           querySnapshot.forEach((doc) => {
             contacts.push({ id: doc.id, ...doc.data() });
           });
@@ -76,7 +69,7 @@ export const apiSlice = createApi({
                 draft.contacts = [];
               }
 
-              /* draft.contacts.push(...contacts); */ 
+              /* draft.contacts.push(...contacts); */
 
               contacts.forEach((contact) => {
                 // Check if the contact ID already exists in the draft
@@ -87,7 +80,6 @@ export const apiSlice = createApi({
                   draft.contacts.push(contact);
                 }
               });
-              console.log(result.data.lastVisible)
               draft.lastVisible = result.data.lastVisible
             })
           );
@@ -227,19 +219,74 @@ export const apiSlice = createApi({
         if (!userId) { return }
         try {
           const ref = collection(db, 'authUsersData', userId, "devices");
-          const querySnapshot = await getDocs(ref);
+          const q = query(ref, orderBy('normalizedName'), limit(5));
+          const querySnapshot = await getDocs(q);
           let devices = [];
+
           querySnapshot?.forEach((doc) => {
             devices.push({ id: doc.id, ...doc.data() });
           });
 
-          return { data: devices };
+          const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+
+          return { data: { devices, lastVisible: newLastVisible } };
         } catch (error) {
           console.log(error);
           return { error: error };
         }
       },
       providesTags: ['devices'],
+    }),
+    getDevicesNext: builder.query({
+      async queryFn({ userId, lastVisible }) {
+        if (!userId || !lastVisible) { return { data: { devices: null, lastVisible: null } } }
+        try {
+          const ref = collection(db, 'authUsersData', userId, 'devices');
+          const q = query(ref, orderBy('normalizedName'), startAfter(lastVisible), limit(5));
+          const querySnapshot = await getDocs(q);
+
+          let devices = [];
+          querySnapshot.forEach((doc) => {
+            devices.push({ id: doc.id, ...doc.data() });
+          });
+
+          const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+
+          return { data: { devices, lastVisible: newLastVisible } };
+        } catch (error) {
+          console.log(error);
+          return { error: error };
+        }
+      },
+      async onQueryStarted({ userId, lastVisible }, { dispatch, queryFulfilled }) {
+        const result = await queryFulfilled;
+
+        if (result.data) {
+          const { devices } = result.data;
+
+          // Update the cache by merging new devices
+          dispatch(
+            apiSlice.util.updateQueryData('getDevices', userId, (draft) => {
+              if (!draft.devices) {
+                draft.devices = [];
+              }
+
+              /* draft.devices.push(...devices); */
+
+              devices.forEach((device) => {
+                // Check if the device ID already exists in the draft
+                const exists = draft.devices.some(existingDevice => existingDevice.id === device.id);
+
+                // If it doesn't exist, push the new device
+                if (!exists) {
+                  draft.devices.push(device);
+                }
+              });
+              draft.lastVisible = result.data.lastVisible
+            })
+          );
+        }
+      }
     }),
     addDevice: builder.mutation({
       async queryFn(device) {
@@ -268,7 +315,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (device, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getDevices', device.userId, draft => {
-            draft.push({ ...device, id: device.localId, createdAt: Date.now(), updatedAt: null });
+            draft.devices.push({ ...device, id: device.localId, createdAt: Date.now(), updatedAt: null });
           })
         );
 
@@ -300,7 +347,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (device, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getDevices', device.userId, draft => {
-            return draft.filter(d => d.id !== device.id);
+            draft.devices = draft.devices.filter(d => d.id !== device.id);
           })
         );
 
@@ -335,7 +382,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (device, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getDevices', device.userId, draft => {
-            const index = draft.findIndex(d => d.id === device.id);
+            const index = draft.devices.findIndex(d => d.id === device.id);
             if (index !== -1) {
               draft[index] = { ...device, updatedAt: Date.now() };
             }
@@ -743,6 +790,7 @@ export const {
   useGetDuplicateContactsQuery,
 
   useGetDevicesQuery,
+  useGetDevicesNextQuery,
   useAddDeviceMutation,
   useDeleteDeviceMutation,
   useEditDeviceMutation,

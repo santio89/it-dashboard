@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
 import { setFilters } from "../store/slices/themeSlice";
-import { useGetDevicesQuery, useSetDevicesMutation } from '../store/slices/apiSlice';
+import { useGetDevicesQuery, useGetDevicesNextQuery, useSetDevicesMutation } from '../store/slices/apiSlice';
 import DataChart from "./DataChart";
 import { useState, useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
@@ -15,10 +15,9 @@ export default function Devices({ user }) {
 
   const dispatch = useDispatch()
 
-  const [sortList, setSortList] = useState(false)
-
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const listSelected = useSelector(state => state.theme.filters.devices.list)
+  const [sortList, setSortList] = useState(false)
 
   const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
   const graphicSelected = useSelector(state => state.theme.filters.devices.charts)
@@ -31,14 +30,22 @@ export default function Devices({ user }) {
   const [devicesList, setDevicesList] = useState(null)
   const [firstLoad, setFirstLoad] = useState(null)
 
+  const [lastVisible, setLastVisible] = useState(null)
+
   const {
-    data: dataDevices,
+    data: { devices: dataDevices, lastVisible: dataLastVisible } = {},
     isLoading: isLoadingDevices,
     isFetching: isFetchingDevices,
     isSuccess: isSucessDevices,
     isError: isErrorDevices,
     error: errorDevices,
   } = useGetDevicesQuery(user?.uid);
+
+  useGetDevicesNextQuery({ userId: user?.uid, lastVisible });
+
+  const handleRefetch = () => {
+    setLastVisible(dataLastVisible)
+  }
 
   const selectList = list => {
     dispatch(setFilters({
@@ -227,6 +234,10 @@ export default function Devices({ user }) {
                     </>
                 }
               </ul>
+              <div className="listWrapper__loadMore">
+                <div>Showing {devicesList?.length}</div>
+                {<button onClick={handleRefetch} disabled={!dataLastVisible}>{dataLastVisible ? `${lang.loadMore}...` : lang.allLoaded}</button>}
+              </div>
             </div>
         }
       </div>
