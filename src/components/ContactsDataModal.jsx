@@ -47,7 +47,7 @@ export default function ContactsDataModal({ modalData }) {
 
   const checkDuplicates = async (contact) => {
     const colRef = collection(db, "authUsersData", contact.userId, "contacts");
-    const q = query(colRef, where("name", "==", contact.name));
+    const q = query(colRef, where("normalizedName", "==", contact.name.toLowerCase()));
     const querySnapshot = await getDocs(q);
 
     return !querySnapshot.empty
@@ -66,6 +66,7 @@ export default function ContactsDataModal({ modalData }) {
 
     const newContact = {
       name: newUserName,
+      normalizedName: newUserName.toLowerCase(),
       email: newUserEmail,
       telephone: newUserTel,
       role: newUserRole,
@@ -147,6 +148,7 @@ export default function ContactsDataModal({ modalData }) {
 
     const newContact = {
       name: newUserName,
+      normalizedName: newUserName.toLowerCase(),
       email: newUserEmail,
       telephone: newUserTel,
       role: newUserRole,

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setModal } from "../store/slices/modalSlice";
-import { useGetContactsQuery, useSetContactsMutation } from '../store/slices/apiSlice';
+import { useGetContactsQuery, useGetContactsNextQuery, useSetContactsMutation } from '../store/slices/apiSlice';
 import { setFilters } from "../store/slices/themeSlice";
 import { useEffect, useState, useRef } from "react";
 import DataChart from "./DataChart";
@@ -15,10 +15,9 @@ export default function Contacts({ user }) {
 
   const dispatch = useDispatch()
 
-  const [sortList, setSortList] = useState(false)
-
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const listSelected = useSelector(state => state.theme.filters.contacts.list)
+  const [sortList, setSortList] = useState(false)
 
   const [graphicPickerOpen, setGraphicPickerOpen] = useState(false)
   const graphicSelected = useSelector(state => state.theme.filters.contacts.charts)
@@ -31,14 +30,24 @@ export default function Contacts({ user }) {
   const [contactsList, setContactsList] = useState(null)
   const [firstLoad, setFirstLoad] = useState(null)
 
+  const [lastVisible, setLastVisible] = useState(null)
+
+  /* load first batch- then load more */
+  /* add filter-sort to query */
   const {
-    data: dataContacts,
+    data: { contacts: dataContacts, lastVisible: dataLastVisible } = {},
     isLoading: isLoadingContacts,
     isFetching: isFetchingContacts,
     isSuccess: isSuccessContacts,
     isError: isErrorContacts,
     error: errorContacts,
   } = useGetContactsQuery(user?.uid);
+
+  useGetContactsNextQuery({ userId: user?.uid, lastVisible });
+
+  const handleRefetch = () => {
+    setLastVisible(dataLastVisible)
+  }
 
   const selectList = list => {
     dispatch(setFilters({
@@ -97,16 +106,13 @@ export default function Contacts({ user }) {
     await setContacts(data)
   }
 
-
-  /* order */
   useEffect(() => {
     if (dataContacts) {
-      /* filter */
+      /* filter-order locally */
       const filteredList = dataContacts?.filter(item => {
         return (listSelected === "all" || item.category === listSelected)
       })
 
-      /* sort */
       let orderedList = []
 
       if (sortList) {
@@ -223,6 +229,10 @@ export default function Contacts({ user }) {
                     </>
                 }
               </ul>
+              <div className="listWrapper__loadMore">
+                <div>Showing {contactsList?.length}</div>
+                {<button onClick={handleRefetch} disabled={!dataLastVisible}>{dataLastVisible ? `${lang.loadMore}...` : lang.allLoaded}</button>}
+              </div>
             </div>
         }
       </div>

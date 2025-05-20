@@ -194,6 +194,25 @@
       align-items: center;
       gap: 0.5rem;
 
+      &__loadMore {
+        align-self: end;
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: end;
+        gap: 4px;
+
+        button {
+          padding: 0.25rem 0.5rem;
+
+          &[disabled] {
+            filter: grayscale(1);
+            pointer-events: none;
+          }
+        }
+      }
+
       ul {
         flex: 1;
         width: 100%;

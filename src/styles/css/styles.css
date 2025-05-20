@@ -116,7 +116,7 @@ option {
   background: var(--main-color-op-light);
   letter-spacing: inherit;
   word-spacing: inherit;
-  padding: 0.5rem 1rem;
+  padding: 0.5em 1em;
   text-decoration: none;
   display: flex;
   justify-content: center;
@@ -801,6 +801,22 @@ select:disabled {
   justify-content: start;
   align-items: center;
   gap: 0.5rem;
+}
+.site-section__list .listWrapper__loadMore {
+  align-self: end;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  gap: 4px;
+}
+.site-section__list .listWrapper__loadMore button {
+  padding: 0.25rem 0.5rem;
+}
+.site-section__list .listWrapper__loadMore button[disabled] {
+  filter: grayscale(1);
+  pointer-events: none;
 }
 .site-section__list .listWrapper ul {
   flex: 1;

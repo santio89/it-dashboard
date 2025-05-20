@@ -1,5 +1,5 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
-import { collection, doc, getDocs, addDoc, deleteDoc, setDoc, query, where, serverTimestamp } from "firebase/firestore";
+import { collection, doc, getDocs, addDoc, deleteDoc, setDoc, query, where, serverTimestamp, orderBy, limit, startAfter } from "firebase/firestore";
 import { firebaseDb as db, firebaseAuth, firebaseGoogleProvider, firebaseSetPersistance, firebaseBrowserLocalPersistence, firebaseSignInWithPopup, firebaseSignOut } from '../../config/firebase';
 import { toast } from 'sonner';
 
@@ -17,19 +17,82 @@ export const apiSlice = createApi({
         if (!userId) { return }
         try {
           const ref = collection(db, 'authUsersData', userId, "contacts");
-          const querySnapshot = await getDocs(ref);
+          const q = query(ref, orderBy('normalizedName'), limit(5));
+          const querySnapshot = await getDocs(q);
           let contacts = [];
+
           querySnapshot?.forEach((doc) => {
             contacts.push({ id: doc.id, ...doc.data() });
           });
 
-          return { data: contacts };
+          const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+
+          return { data: { contacts, lastVisible: newLastVisible } };
         } catch (error) {
           console.log(error);
           return { error: error };
         }
       },
       providesTags: ['contacts'],
+    }),
+    getContactsNext: builder.query({
+      async queryFn({ userId, lastVisible }) {
+        if (!userId || !lastVisible) { return { data: { contacts: null, lastVisible: null } } }
+        try {
+          const ref = collection(db, 'authUsersData', userId, 'contacts');
+          let q = null;
+
+          if (lastVisible) {
+            q = query(ref, orderBy('normalizedName'), startAfter(lastVisible), limit(5));
+          } else {
+            q = query(ref, orderBy('normalizedName'), limit(5)); // Fetch first 10 documents
+          }
+
+          const querySnapshot = await getDocs(q);
+          let contacts = [];
+
+          querySnapshot.forEach((doc) => {
+            contacts.push({ id: doc.id, ...doc.data() });
+          });
+
+          const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+
+          return { data: { contacts, lastVisible: newLastVisible } };
+        } catch (error) {
+          console.log(error);
+          return { error: error };
+        }
+      },
+      async onQueryStarted({ userId, lastVisible }, { dispatch, queryFulfilled }) {
+        const result = await queryFulfilled;
+
+        if (result.data) {
+          const { contacts } = result.data;
+
+          // Update the cache by merging new contacts
+          dispatch(
+            apiSlice.util.updateQueryData('getContacts', userId, (draft) => {
+              if (!draft.contacts) {
+                draft.contacts = [];
+              }
+
+              /* draft.contacts.push(...contacts); */ 
+
+              contacts.forEach((contact) => {
+                // Check if the contact ID already exists in the draft
+                const exists = draft.contacts.some(existingContact => existingContact.id === contact.id);
+
+                // If it doesn't exist, push the new contact
+                if (!exists) {
+                  draft.contacts.push(contact);
+                }
+              });
+              console.log(result.data.lastVisible)
+              draft.lastVisible = result.data.lastVisible
+            })
+          );
+        }
+      }
     }),
     addContact: builder.mutation({
       async queryFn(contact) {
@@ -57,7 +120,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (contact, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getContacts', contact.userId, draft => {
-            draft.push({ ...contact, id: contact.localId, createdAt: Date.now(), updatedAt: null });
+            draft.contacts.push({ ...contact, id: contact.localId, createdAt: Date.now(), updatedAt: null });
           })
         );
 
@@ -89,7 +152,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (contact, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getContacts', contact.userId, draft => {
-            return draft.filter(c => c.id !== contact.id);
+            draft.contacts = draft.contacts.filter(c => c.id !== contact.id);
           })
         );
 
@@ -124,7 +187,7 @@ export const apiSlice = createApi({
       onQueryStarted: async (contact, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getContacts', contact.userId, draft => {
-            const index = draft.findIndex(c => c.id === contact.id);
+            const index = draft.contacts.findIndex(c => c.id === contact.id);
             if (index !== -1) {
               draft[index] = { ...contact, updatedAt: Date.now() };
             }
@@ -672,6 +735,7 @@ export const apiSlice = createApi({
 export default apiSlice.reducer
 export const {
   useGetContactsQuery,
+  useGetContactsNextQuery,
   useAddContactMutation,
   useDeleteContactMutation,
   useEditContactMutation,
