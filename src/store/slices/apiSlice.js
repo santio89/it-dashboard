@@ -209,7 +209,7 @@ export const apiSlice = createApi({
       async onQueryStarted(contactsData, { dispatch, queryFulfilled }) {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getContacts', contactsData.userId, (draft) => {
-            return contactsData;
+            draft.contacts = contactsData;
           })
         );
 
@@ -420,7 +420,7 @@ export const apiSlice = createApi({
       async onQueryStarted(devicesData, { dispatch, queryFulfilled }) {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getDevices', devicesData.userId, (draft) => {
-            return devicesData;
+            draft.devices = devicesData;
           })
         );
 
@@ -630,7 +630,7 @@ export const apiSlice = createApi({
       async onQueryStarted(tdlData, { dispatch, queryFulfilled }) {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getTdl', tdlData.userId, (draft) => {
-            return tdlData;
+            draft.tasks = tdlData;
           })
         );
 
@@ -889,7 +889,7 @@ export const apiSlice = createApi({
       async onQueryStarted(supportData, { dispatch, queryFulfilled }) {
         const patchResult = dispatch(
           apiSlice.util.updateQueryData('getSupport', supportData.userId, (draft) => {
-            return supportData;
+            draft.tickets = supportData;
           })
         );
 
