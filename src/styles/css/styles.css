@@ -1426,7 +1426,8 @@ select:disabled {
 
 .homeCard {
   box-shadow: 0 0 0.5rem transparent, 0 0 0.25rem transparent inset;
-  background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%), linear-gradient(360deg, var(--main-color-op) 8%, transparent 8%);
+  /*  background-image: linear-gradient(var(--main-color-op) 8%, transparent 8%),
+    linear-gradient(360deg, var(--main-color-op) 8%, transparent 8%); */
   min-width: auto;
   min-height: auto;
   width: 100%;
@@ -1465,6 +1466,17 @@ select:disabled {
   border-radius: 0;
   outline: none;
   border: none;
+  position: relative;
+}
+.homeCard__link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  translate: 0 -50%;
+  width: 20px;
+  height: 8px;
+  background-color: var(--main-color-op);
 }
 .homeCard__link:hover, .homeCard__link:focus-visible {
   background: transparent;
