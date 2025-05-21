@@ -809,7 +809,7 @@ select:disabled {
   flex-direction: column;
   justify-content: center;
   align-items: end;
-  gap: 4px;
+  gap: 0.5rem;
   margin-top: 1rem;
 }
 .site-section__list .listWrapper__loadMore button {

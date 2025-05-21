@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react"
 import DataChart from "./DataChart"
 import { useDispatch, useSelector } from "react-redux"
 import { setModal } from "../store/slices/modalSlice"
-import { useGetSupportQuery, useEditSupportMutation, useSetSupportMutation } from "../store/slices/apiSlice"
+import { useGetSupportQuery, useGetSupportNextQuery, useEditSupportMutation, useSetSupportMutation } from "../store/slices/apiSlice"
 import { setFilters } from "../store/slices/themeSlice"
 import autoAnimate from "@formkit/auto-animate"
 import { useTranslation } from "../hooks/useTranslation"
@@ -23,6 +23,8 @@ export default function Support({ user }) {
   const [supportList, setSupportList] = useState(null)
   const [firstLoad, setFirstLoad] = useState(null)
 
+  const [lastVisible, setLastVisible] = useState(null)
+
   const [listPickerOpen, setListPickerOpen] = useState(false)
   const listSelected = useSelector(state => state.theme.filters.support.list)
 
@@ -36,13 +38,19 @@ export default function Support({ user }) {
   const [setSupport, resultSetSupport] = useSetSupportMutation()
 
   const {
-    data: dataSupport,
+    data: { tickets: dataSupport, lastVisible: dataLastVisible } = {},
     isLoading: isLoadingSupport,
     isFetching: isFetchingSupport,
     isSuccess: isSuccessSupport,
     isError: isErrorSupport,
     error: errorSupport,
   } = useGetSupportQuery(/* user.domainAdmin ? "admin" : */ user.uid);
+
+  useGetSupportNextQuery({ userId: user?.uid, lastVisible });
+
+  const handleRefetch = () => {
+    setLastVisible(dataLastVisible)
+  }
 
   const selectList = list => {
     dispatch(setFilters({
@@ -346,6 +354,10 @@ export default function Support({ user }) {
                     </>
                 }
               </ul>
+              <div className="listWrapper__loadMore">
+                <div>{lang.showing}: {supportList?.length} - {lang.total}: {dataSupport?.length}</div>
+                {<button onClick={handleRefetch} disabled={!dataLastVisible}>{dataLastVisible ? `${lang.loadMore}...` : lang.allLoaded}</button>}
+              </div>
             </div>
         }
       </div>
