@@ -906,8 +906,7 @@
     outline: none;
     border: none;
 
-    position: relative;
-
+    /* position: relative;
     &::before {
       content: "";
       position: absolute;
@@ -917,7 +916,7 @@
       width: 20px;
       height: 8px;
       background-color: var(--main-color-op);
-    }
+    } */
 
     &:hover,
     &:focus-visible {

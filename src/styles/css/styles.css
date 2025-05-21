@@ -1466,17 +1466,17 @@ select:disabled {
   border-radius: 0;
   outline: none;
   border: none;
-  position: relative;
-}
-.homeCard__link::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  translate: 0 -50%;
-  width: 20px;
-  height: 8px;
-  background-color: var(--main-color-op);
+  /* position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    translate: 0 -50%;
+    width: 20px;
+    height: 8px;
+    background-color: var(--main-color-op);
+  } */
 }
 .homeCard__link:hover, .homeCard__link:focus-visible {
   background: transparent;
