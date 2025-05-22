@@ -169,7 +169,7 @@ export default function Devices({ user }) {
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button disabled={isLoadingDevices} onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", newDevice: true, userId: user?.uid, dataList: dataDevices } }))
+            dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", newDevice: true, userId: user?.uid } }))
           }}>+ {lang.addDevice}</button>
           <div className="listPickerWrapper">
             <div className="listPickerWrapper__btnContainer">
@@ -228,7 +228,7 @@ export default function Devices({ user }) {
                       {
                         devicesList?.map(device =>
                           <li className={firstLoad && "firstLoad"} key={device.localId}><button disabled={device.id === "temp-id"} title={device.name} onClick={() => {
-                            dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device, dataList: dataDevices } }));
+                            dispatch(setModal({ active: true, data: { modalType: "DevicesDataModal", deviceData: true, userId: user?.uid, ...device } }));
                           }}>{device.name}</button></li>)
                       }
                     </>

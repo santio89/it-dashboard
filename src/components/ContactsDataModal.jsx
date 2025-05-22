@@ -45,12 +45,16 @@ export default function ContactsDataModal({ modalData }) {
     setNewUserCategory(newUserCategory => newUserCategory.trim())
   }
 
-  const checkDuplicates = async (contact) => {
+  const checkDuplicates = async (contact, edit = false) => {
     const colRef = collection(db, "authUsersData", contact.userId, "contacts");
     const q = query(colRef, where("normalizedName", "==", contact.name.toLowerCase()));
     const querySnapshot = await getDocs(q);
 
-    return !querySnapshot.empty
+    const isDup = querySnapshot.empty ? false :
+      (edit ? (querySnapshot.docs[0].data().id === contact.id ? false : true) :
+        true)
+
+    return isDup
   }
 
   const addUserFn = async (e) => {
@@ -160,7 +164,7 @@ export default function ContactsDataModal({ modalData }) {
       localTime: contact.localTime
     }
 
-    const { modalType, contactData, createdAt, updatedAt, dataList, ...oldContact } = contact
+    const { modalType, contactData, createdAt, updatedAt, ...oldContact } = contact
 
     const contactEquality = objectEquality(oldContact, newContact)
 
@@ -174,7 +178,7 @@ export default function ContactsDataModal({ modalData }) {
         if (newContact.name !== oldContact.name) {
           /* check for duplicates */
           setErrorMsg(`${lang.checkingDuplicates}...`)
-          const dups = await checkDuplicates(newContact)
+          const dups = await checkDuplicates(newContact, true)
           if (dups) {
             setErrorMsg(lang.contactExists)
             return

@@ -169,7 +169,7 @@ export default function Contacts({ user }) {
       <div className="site-section__inner site-section__list">
         <div className="btnWrapper">
           <button disabled={isLoadingContacts} onClick={() => {
-            dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newContact: true, userId: user?.uid, dataList: dataContacts } }))
+            dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", newContact: true, userId: user?.uid } }))
           }}>+ {lang.addContact}</button>
 
           <button disabled={isLoadingContacts} className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => setListPickerOpen(listPickerOpen => !listPickerOpen)}>{lang.filter}</button>
@@ -224,7 +224,7 @@ export default function Contacts({ user }) {
                     <>
                       {
                         contactsList?.map(contact =>
-                          <li className={firstLoad && "firstLoad"} key={contact.localId}><button disabled={contact.id === "temp-id"} title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact, dataList: dataContacts } })); }}>{contact.name}</button></li>)
+                          <li className={firstLoad && "firstLoad"} key={contact.localId}><button disabled={contact.id === "temp-id"} title={contact.name} onClick={() => { dispatch(setModal({ active: true, data: { modalType: "ContactsDataModal", contactData: true, userId: user?.uid, ...contact } })); }}>{contact.name}</button></li>)
                       }
                     </>
                 }

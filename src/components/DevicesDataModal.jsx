@@ -45,12 +45,16 @@ export default function DevicesDataModal({ modalData }) {
     setNewDeviceCategory(newDeviceCategory => newDeviceCategory.trim())
   }
 
-  const checkDuplicates = async (device) => {
+  const checkDuplicates = async (device, edit = false) => {
     const colRef = collection(db, "authUsersData", device.userId, "devices");
     const q = query(colRef, where("normalizedName", "==", device.name.toLowerCase()));
     const querySnapshot = await getDocs(q);
 
-    return !querySnapshot.empty
+    const isDup = querySnapshot.empty ? false :
+      (edit ? (querySnapshot.docs[0].data().id === device.id ? false : true) :
+        true)
+
+    return isDup
   }
 
   const addDeviceFn = async (e) => {
@@ -148,11 +152,6 @@ export default function DevicesDataModal({ modalData }) {
       return
     }
 
-    if (device.name !== newDeviceName && modalData?.dataList?.find(contact => contact.name.toLowerCase() === newDeviceName.toLowerCase())) {
-      setErrorMsg(lang.deviceExists)
-      return
-    }
-
     const newDevice = {
       name: newDeviceName,
       normalizedName: newDeviceName.toLowerCase(),
@@ -180,7 +179,7 @@ export default function DevicesDataModal({ modalData }) {
         if (newDevice.name !== oldDevice.name) {
           /* check for duplicates */
           setErrorMsg(`${lang.checkingDuplicates}...`)
-          const dups = await checkDuplicates(newDevice)
+          const dups = await checkDuplicates(newDevice, true)
           if (dups) {
             setErrorMsg(lang.contactExists)
             return
