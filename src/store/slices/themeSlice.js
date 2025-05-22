@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  light: false,
-  sideExpanded: false,
+  light: true,
+  sideExpanded: true,
   lang: "eng",
   filters: {
     contacts: {
