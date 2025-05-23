@@ -72,7 +72,7 @@ $home-breakpoint-height: 444px;
 @property --spotlight-size {
   syntax: "<percentage>";
   inherits: false;
-  initial-value: 20%;
+  initial-value: 0%;
 }
 
 .light-theme {
