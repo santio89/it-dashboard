@@ -1395,7 +1395,7 @@ select:disabled {
   background-color: var(--main-color-bg);
   overflow: hidden;
   color: var(--main-text);
-  transition: 200ms ease-in-out, background-color 400ms ease-in-out;
+  transition: 200ms ease, background-color 400ms ease;
 }
 
 .card-spotlight::before {
@@ -1408,7 +1408,7 @@ select:disabled {
   /* spotlight cords set on move */
   background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color) var(--spotlight-size), transparent calc(var(--spotlight-size) + 1px));
   opacity: 0;
-  transition: opacity 0.5s ease, --spotlight-size 0.25s;
+  transition: opacity 500ms ease, --spotlight-size 200ms ease;
   pointer-events: none;
 }
 

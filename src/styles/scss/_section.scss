@@ -827,7 +827,7 @@
   background-color: var(--main-color-bg);
   overflow: hidden;
   color: var(--main-text);
-  transition: 200ms ease-in-out, background-color 400ms ease-in-out;
+  transition: 200ms ease, background-color 400ms ease;
 }
 
 .card-spotlight::before {
@@ -844,7 +844,7 @@
     transparent calc(var(--spotlight-size) + 1px) /* fix jagged edges */
   );
   opacity: 0;
-  transition: opacity 0.5s ease, --spotlight-size 0.25s;
+  transition: opacity 500ms ease, --spotlight-size 200ms ease;
   pointer-events: none;
 }
 
