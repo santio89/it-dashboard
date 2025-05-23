@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { useSignGoogleMutation, useSignOutMutation } from "../store/slices/apiSlice"
 import { useTranslation } from '../hooks/useTranslation'
 import Dropdown from "./Dropdown"
+import { toast } from "sonner"
 
 const sections = ["/", "/home", "/about", "/contacts", "/devices", "/tasks", "/support", "/admin"]
 
@@ -31,10 +32,31 @@ export default function Nav({ rootTheme, user }) {
   }
 
   const logInGoogle = async () => {
-    await signGoogle()
+    try {
+      const res = await signGoogle()
+
+      toast.message('Auth', {
+        description: `${lang.signedIn}: ${res.data.displayName}`,
+      });
+
+    } catch {
+      toast.message('Auth', {
+        description: `${lang.errorSigningIn}`,
+      });
+    }
   }
+
   const logOutGoogle = async () => {
-    await signOut()
+    try {
+      await signOut()
+      toast.message('Auth', {
+        description: `${lang.signedOut}`,
+      });
+    } catch {
+      toast.message('Auth', {
+        description: `${lang.errorSigningOut}`,
+      });
+    }
   }
 
   const openProfile = () => {

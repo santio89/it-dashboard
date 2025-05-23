@@ -910,9 +910,9 @@ export const apiSlice = createApi({
           const result = await firebaseSignInWithPopup(firebaseAuth, firebaseGoogleProvider);
           const user = result.user;
 
-          toast.message('Auth', {
+          /* toast.message('Auth', {
             description: `Signed in: ${user.displayName}`,
-          });
+          }); */
 
           return { data: user };
         } catch (error) {
@@ -926,9 +926,9 @@ export const apiSlice = createApi({
         try {
           await firebaseSignOut(firebaseAuth);
 
-          toast.message('Auth', {
+          /* toast.message('Auth', {
             description: `Signed out`,
-          });
+          }); */
 
           return { data: { message: 'Signed out successfully' } };
         } catch (error) {
