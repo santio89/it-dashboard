@@ -827,7 +827,7 @@
   background-color: var(--main-color-bg);
   overflow: hidden;
   color: var(--main-text);
-  transition: 200ms ease, background-color 400ms ease;
+  transition: 200ms ease-in-out, background-color 400ms ease-in-out;
 }
 
 .card-spotlight::before {
