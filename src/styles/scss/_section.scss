@@ -41,7 +41,7 @@
     }
 
     @media (max-width: $home-breakpoint-width) {
-      grid-template-columns: 250px;
+      grid-template-columns: 100%;
       gap: var(--main-section-spacing);
     }
 
@@ -925,14 +925,14 @@
     }
 
     h2 {
-      font-size: 2em;
+      font-size: clamp(1.5rem, 1.5rem + 2vw, 2rem);
       font-weight: 700;
       text-transform: uppercase;
       transition: 200ms text-shadow ease-in-out;
     }
 
     p {
-      font-size: 1em;
+      font-size: 1rem;
       font-weight: 400;
       transition: 200ms text-shadow ease-in-out;
     }
