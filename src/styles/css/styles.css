@@ -1404,7 +1404,7 @@ select:disabled {
   right: 0;
   bottom: 0;
   /* spotlight cords set on move */
-  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color) var(--spotlight-size), transparent var(--spotlight-size));
+  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color) var(--spotlight-size), transparent calc(var(--spotlight-size) + 1px));
   opacity: 0;
   transition: opacity 0.5s ease, --spotlight-size 0.25s;
   pointer-events: none;
