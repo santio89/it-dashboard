@@ -53,7 +53,7 @@
 @property --spotlight-size {
   syntax: "<percentage>";
   inherits: false;
-  initial-value: 40%;
+  initial-value: 20%;
 }
 .light-theme {
   --main-color-bg: rgb(245, 245, 245);
