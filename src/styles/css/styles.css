@@ -1398,8 +1398,6 @@ select:disabled {
   border-radius: var(--main-radius);
   background-color: var(--main-color-bg);
   overflow: hidden;
-  --mouse-x: 50%;
-  --mouse-y: 50%;
   color: var(--main-text);
   transition: 200ms ease-in-out, background-color 400ms ease-in-out;
 }
@@ -1411,6 +1409,7 @@ select:disabled {
   left: 0;
   right: 0;
   bottom: 0;
+  /* spotlight cords set on move */
   background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color) var(--spotlight-size), transparent var(--spotlight-size));
   opacity: 0;
   transition: opacity 0.5s ease, --spotlight-size 0.25s;
