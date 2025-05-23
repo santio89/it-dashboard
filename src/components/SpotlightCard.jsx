@@ -13,7 +13,6 @@ const SpotlightCard = ({ children, className = "" }) => {
   };
 
   const handleMouseLeave = () => {
-    divRef.current.style.setProperty("--spotlight-size", `0%`);
     divRef.current.style.setProperty("--mouse-x", ``);
     divRef.current.style.setProperty("--mouse-y", ``);
   }
