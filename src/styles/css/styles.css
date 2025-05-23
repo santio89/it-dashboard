@@ -671,22 +671,24 @@ select:disabled {
 @media (max-width: 749px) {
   .site-section:has(.card-spotlight) {
     grid-template-columns: 250px 250px;
-    place-content: center;
-    place-items: center;
   }
 }
 @media (max-width: 579px) {
   .site-section:has(.card-spotlight) {
     grid-template-columns: 250px;
-    align-content: start;
-    align-items: start;
     gap: var(--main-section-spacing);
   }
 }
-@media (max-height: 444px) {
+@media (max-height: 679px) {
   .site-section:has(.card-spotlight) {
     align-content: start;
     align-items: start;
+  }
+}
+@media (min-width: 579px) and (min-height: 449px) {
+  .site-section:has(.card-spotlight) {
+    align-content: center !important;
+    align-items: center !important;
   }
 }
 .site-section .btnWrapper {

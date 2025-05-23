@@ -38,20 +38,21 @@
 
     @media (max-width: $mobile-breakpoint) {
       grid-template-columns: 250px 250px;
-      place-content: center;
-      place-items: center;
     }
 
     @media (max-width: $home-breakpoint-width) {
       grid-template-columns: 250px;
-      align-content: start;
-      align-items: start;
       gap: var(--main-section-spacing);
     }
 
-    @media (max-height: $home-breakpoint-height) {
+    @media (max-height: $home-breakpoint-height-1c) {
       align-content: start;
       align-items: start;
+    }
+
+    @media (min-width: $home-breakpoint-width) and (min-height: $home-breakpoint-height-2c) {
+      align-content: center !important;
+      align-items: center !important;
     }
   }
 
