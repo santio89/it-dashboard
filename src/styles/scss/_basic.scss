@@ -12,10 +12,9 @@
   animation-timing-function: ease-in-out;
 }
 
-$mobile-breakpoint: 649px;
 $tablet-breakpoint: 969px;
-$home-breakpoint: 749px;
-$home-breakpoint-mobile: 579px;
+$mobile-breakpoint: 749px;
+$home-breakpoint-width: 579px;
 $home-breakpoint-height: 444px;
 
 *,

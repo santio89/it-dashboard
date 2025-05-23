@@ -586,13 +586,13 @@ select:disabled {
 .mainContainer .side-panel a.side-toggle.expanded svg {
   transform: rotate(-180deg);
 }
-@media (max-width: 649px) {
+@media (max-width: 749px) {
   .mainContainer .side-panel button.side-toggle,
   .mainContainer .side-panel a.side-toggle {
     display: none;
   }
 }
-@media (max-width: 649px) {
+@media (max-width: 749px) {
   .mainContainer .side-panel {
     position: fixed;
     border-radius: 0;
@@ -648,7 +648,7 @@ select:disabled {
     justify-content: start;
   }
 }
-@media (max-width: 649px) {
+@media (max-width: 749px) {
   .site-section {
     padding-bottom: calc(var(--main-section-spacing) + 52px) !important;
   }
@@ -664,24 +664,11 @@ select:disabled {
   grid-template-columns: 250px 250px;
   place-content: center;
   place-items: center;
-  gap: clamp(1rem, 1rem + 4vw, 4rem);
   overflow-y: visible;
   padding-block: var(--main-section-spacing);
+  gap: clamp(1rem, 1rem + 4vw, 4rem);
 }
 @media (max-width: 749px) {
-  .site-section:has(.card-spotlight) {
-    grid-template-columns: 250px;
-    align-content: start;
-    align-items: start;
-  }
-}
-@media (max-height: 444px) {
-  .site-section:has(.card-spotlight) {
-    align-content: start;
-    align-items: start;
-  }
-}
-@media (max-width: 649px) {
   .site-section:has(.card-spotlight) {
     grid-template-columns: 250px 250px;
     place-content: center;
@@ -691,6 +678,13 @@ select:disabled {
 @media (max-width: 579px) {
   .site-section:has(.card-spotlight) {
     grid-template-columns: 250px;
+    align-content: start;
+    align-items: start;
+    gap: var(--main-section-spacing);
+  }
+}
+@media (max-height: 444px) {
+  .site-section:has(.card-spotlight) {
     align-content: start;
     align-items: start;
   }

@@ -32,20 +32,9 @@
     grid-template-columns: 250px 250px;
     place-content: center;
     place-items: center;
-    gap: clamp(1rem, 1rem + 4vw, 4rem);
     overflow-y: visible;
     padding-block: var(--main-section-spacing);
-
-    @media (max-width: $home-breakpoint) {
-      grid-template-columns: 250px;
-      align-content: start;
-      align-items: start;
-    }
-
-    @media (max-height: $home-breakpoint-height) {
-      align-content: start;
-      align-items: start;
-    }
+    gap: clamp(1rem, 1rem + 4vw, 4rem);
 
     @media (max-width: $mobile-breakpoint) {
       grid-template-columns: 250px 250px;
@@ -53,8 +42,14 @@
       place-items: center;
     }
 
-    @media (max-width: $home-breakpoint-mobile) {
+    @media (max-width: $home-breakpoint-width) {
       grid-template-columns: 250px;
+      align-content: start;
+      align-items: start;
+      gap: var(--main-section-spacing);
+    }
+
+    @media (max-height: $home-breakpoint-height) {
       align-content: start;
       align-items: start;
     }
@@ -877,7 +872,7 @@
   justify-content: center;
   align-items: center;
 
-  @media (max-width: $home-breakpoint) {
+  @media (max-width: $mobile-breakpoint) {
     aspect-ratio: auto;
   }
 
