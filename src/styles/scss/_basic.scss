@@ -68,6 +68,12 @@ $home-breakpoint-height: 444px;
   --main-color-mid: color-mix(in srgb, var(--main-color), white 25%);
 }
 
+@property --spotlight-size {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 40%;
+}
+
 .light-theme {
   --main-color-bg: rgb(245, 245, 245);
   --main-section: rgb(245, 245, 245);
