@@ -1136,13 +1136,6 @@ select:disabled {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn .taskContentBtn__title:first-child,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn .taskContentBtn__title:first-child,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn .taskContentBtn__title:first-child, .site-section__list .listWrapper ul.support-list li button.taskContentBtn .taskContentBtn__title:first-child,
-.site-section__list .listWrapper ul.support-list li textarea.taskContentBtn .taskContentBtn__title:first-child,
-.site-section__list .listWrapper ul.support-list li .taskContentBtn.taskContentBtn .taskContentBtn__title:first-child {
-  font-weight: 600;
-}
 .site-section__list .listWrapper ul.tdl-list li button.taskContentBtn .taskContentBtn__content,
 .site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn .taskContentBtn__content,
 .site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn .taskContentBtn__content, .site-section__list .listWrapper ul.support-list li button.taskContentBtn .taskContentBtn__content,

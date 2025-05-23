@@ -333,9 +333,9 @@ export default function Support({ user }) {
                                   ticketOptions === ticket.id ?
                                     <>
                                       {user.domainAdmin && <div title={ticket.title} className='taskContentAuthor'>{lang.from}: {ticket.author}</div>}
+                                      <div title={ticket.title} className='taskContentTitle'>{ticket.title}</div>
                                       <div className={`taskContentBtn ${ticketOptions !== ticket.id && ticket.priority === "low" && "selectedLow"} ${ticketOptions !== ticket.id && ticket.priority === "medium" && "selectedMedium"} ${ticketOptions !== ticket.id && ticket.priority === "high" && "selectedHigh"} ${ticketOptions === ticket.id && "taskOption"}`}>
-                                        <span className="taskContentBtn__title">{ticket.title || "-"}</span>
-                                        <span className="taskContentBtn__content">{ticket.description || "-"}</span>
+                                        {ticket.description || "-"}
                                       </div>
                                     </> :
                                     <>

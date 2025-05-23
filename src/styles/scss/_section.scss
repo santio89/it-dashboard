@@ -527,10 +527,6 @@
                   white-space: nowrap;
                   overflow: hidden;
                   text-overflow: ellipsis;
-
-                  &:first-child {
-                    font-weight: 600;
-                  }
                 }
 
                 .taskContentBtn__content {

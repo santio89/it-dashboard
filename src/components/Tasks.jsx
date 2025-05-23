@@ -311,7 +311,7 @@ export default function Tasks({ user }) {
                                       <button disabled={task.id === "temp-id"} title={task.title} className={`taskContentBtn ${taskOptions !== task.id && task.priority === "low" && "selectedLow"} ${taskOptions !== task.id && task.priority === "medium" && "selectedMedium"} ${taskOptions !== task.id && task.priority === "high" && "selectedHigh"} ${taskOptions === task.id && "taskOption"} ${task.status === "completed" && "taskCompleted"}`} onClick={() => {
                                         setTaskOptions(task.id);
                                       }} >
-                                        {task.title}
+                                        <span className="taskContentBtn__title">{task.title}</span>
                                       </button></>
                                 }
                               </>
