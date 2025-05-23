@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 255, 255, 0.25)" }) => {
+const SpotlightCard = ({ children, className = "" }) => {
   const divRef = useRef(null);
 
   const handleMouseMove = (e) => {
@@ -10,13 +10,18 @@ const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 2
 
     divRef.current.style.setProperty("--mouse-x", `${x}px`);
     divRef.current.style.setProperty("--mouse-y", `${y}px`);
-    divRef.current.style.setProperty("--spotlight-color", spotlightColor);
   };
+
+  const handleMouseLeave = () => {
+    divRef.current.style.setProperty("--mouse-x", `null`);
+    divRef.current.style.setProperty("--mouse-y", `null`);
+  }
 
   return (
     <div
       ref={divRef}
       onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       className={`card-spotlight ${className}`}
     >
       {children}
