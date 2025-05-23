@@ -1,7 +1,6 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
 import { collection, doc, getDocs, deleteDoc, setDoc, query, where, serverTimestamp, orderBy, limit, startAfter } from "firebase/firestore";
 import { firebaseDb as db, firebaseAuth, firebaseGoogleProvider, firebaseSetPersistance, firebaseBrowserLocalPersistence, firebaseSignInWithPopup, firebaseSignOut } from '../../config/firebase';
-import { toast } from 'sonner';
 
 
 export const apiSlice = createApi({
@@ -910,10 +909,6 @@ export const apiSlice = createApi({
           const result = await firebaseSignInWithPopup(firebaseAuth, firebaseGoogleProvider);
           const user = result.user;
 
-          /* toast.message('Auth', {
-            description: `Signed in: ${user.displayName}`,
-          }); */
-
           return { data: user };
         } catch (error) {
           console.log(error);
@@ -925,10 +920,6 @@ export const apiSlice = createApi({
       async queryFn() {
         try {
           await firebaseSignOut(firebaseAuth);
-
-          /* toast.message('Auth', {
-            description: `Signed out`,
-          }); */
 
           return { data: { message: 'Signed out successfully' } };
         } catch (error) {

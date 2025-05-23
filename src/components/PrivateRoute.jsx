@@ -1,5 +1,6 @@
 import { useTranslation } from "../hooks/useTranslation"
 import { useSignGoogleMutation } from "../store/slices/apiSlice"
+import { toast } from "sonner"
 
 export default function PrivateRoute() {
     const lang = useTranslation()
@@ -7,7 +8,18 @@ export default function PrivateRoute() {
     const [signGoogle, resultSignInGoogle] = useSignGoogleMutation()
 
     const logInGoogle = async () => {
-        await signGoogle()
+        try {
+            const res = await signGoogle()
+
+            toast.message('Auth', {
+                description: `${lang.signedIn}: ${res.data.displayName}`,
+            });
+
+        } catch {
+            toast.message('Auth', {
+                description: `${lang.errorSigningIn}`,
+            });
+        }
     }
 
     return (
