@@ -51,8 +51,8 @@
     }
 
     @media (min-width: $home-breakpoint-width) and (min-height: $home-breakpoint-height-2c) {
-      align-content: center !important;
-      align-items: center !important;
+      align-content: center;
+      align-items: center;
     }
   }
 

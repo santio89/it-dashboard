@@ -687,8 +687,8 @@ select:disabled {
 }
 @media (min-width: 579px) and (min-height: 449px) {
   .site-section:has(.card-spotlight) {
-    align-content: center !important;
-    align-items: center !important;
+    align-content: center;
+    align-items: center;
   }
 }
 .site-section .btnWrapper {
