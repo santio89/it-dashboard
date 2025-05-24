@@ -105,16 +105,15 @@ export default function TasksDataModal({ modalData }) {
     if (resultEditTdl.isLoading) {
       return
     }
+    if (newTaskTitle === "") {
+      return
+    }
 
     const input = newTaskDescription
     const title = newTaskTitle
     const category = newTaskCategory
     const priority = newTaskPriority
     const status = newTaskStatus
-
-    if (title === "") {
-      return
-    }
 
     if (input === task.description && (task.title === (title ?? task.title)) && (task.priority === (priority ?? task.priority)) && (task.category === (category ?? task.category)) && (task.status === (status ?? task.status))) {
       dispatch(setModal({ active: false, data: {} }))
@@ -123,7 +122,7 @@ export default function TasksDataModal({ modalData }) {
 
     const { modalType, tasksData, user, ...trimTask } = task
 
-    const newTask = { ...trimTask }
+    const newTask = { ...trimTask, title: title ?? task.title, description: input ?? task.description, category: category ?? task.category, priority: priority ?? task.priority, status: status ?? task.status }
 
     dispatch(setModal({ active: false, data: {} }))
 

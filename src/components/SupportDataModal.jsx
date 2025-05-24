@@ -132,7 +132,7 @@ export default function SupportDataModal({ modalData }) {
 
     const { modalType, supportData, user, ...trimTicket } = ticket
 
-    const newTicket = { ...trimTicket, title: title ?? ticket.title, description: input, category: category ?? ticket.category, priority: priority ?? ticket.priority, status: status ?? ticket.status, reply: reply ?? ticket.reply }
+    const newTicket = { ...trimTicket, title: title ?? ticket.title, description: input ?? ticket.description, category: category ?? ticket.category, priority: priority ?? ticket.priority, status: status ?? ticket.status, reply: reply ?? ticket.reply }
 
     dispatch(setModal({ active: false, data: {} }))
 
