@@ -1,5 +1,5 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
-import { collection, doc, getDocs, deleteDoc, setDoc, query, where, serverTimestamp, orderBy, limit, startAfter } from "firebase/firestore";
+import { collection, doc, getDocs, deleteDoc, addDoc, setDoc, query, where, serverTimestamp, orderBy, limit, startAfter } from "firebase/firestore";
 import { firebaseDb as db, firebaseAuth, firebaseGoogleProvider, firebaseSetPersistance, firebaseBrowserLocalPersistence, firebaseSignInWithPopup, firebaseSignOut } from '../../config/firebase';
 
 
@@ -908,6 +908,22 @@ export const apiSlice = createApi({
 
           const result = await firebaseSignInWithPopup(firebaseAuth, firebaseGoogleProvider);
           const user = result.user;
+
+          const isNewUser = result._tokenResponse.isNewUser;
+          if (isNewUser) {
+            const collectionRef = collection(db, "authUsersData", user.uid, "profileData");
+
+            const newUser = {
+              uid: user.uid,
+              email: user.email,
+              displayName: user.displayName,
+              photoURL: user.photoURL,
+              role: "user"
+            }
+
+            await addDoc(collectionRef, newUser);
+          }
+
 
           return { data: user };
         } catch (error) {
