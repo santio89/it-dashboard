@@ -924,7 +924,6 @@ export const apiSlice = createApi({
             await addDoc(collectionRef, newUser);
           }
 
-
           return { data: user };
         } catch (error) {
           console.log(error);
