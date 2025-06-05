@@ -1235,7 +1235,7 @@ select:disabled {
   overflow: hidden;
   text-overflow: ellipsis;
   transition: 200ms ease-in-out;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 300;
 }
 .site-section__list .listWrapper ul.tdl-list li .taskContentAnswer, .site-section__list .listWrapper ul.support-list li .taskContentAnswer {
