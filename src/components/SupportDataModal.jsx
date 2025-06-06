@@ -215,7 +215,7 @@ export default function SupportDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="title">{lang.title}</label></legend>
-              <textarea id="deleteTitle" placeholder='Required' required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
+              <textarea id="deleteTitle" placeholder={lang.required} required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="description">{lang.description}</label></legend>
@@ -289,7 +289,7 @@ export default function SupportDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="editTitle">{lang.title}</label></legend>
-              <textarea id="editTitle" placeholder='Required' required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
+              <textarea id="editTitle" placeholder={lang.required} required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="editDescription">{lang.description}</label></legend>
@@ -345,7 +345,7 @@ export default function SupportDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="deleteTitle">{lang.title}</label></legend>
-              <textarea id="deleteTitle" placeholder='Required' required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
+              <textarea id="deleteTitle" placeholder={lang.required} required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="deleteDescription">{lang.description}</label></legend>
@@ -417,7 +417,7 @@ export default function SupportDataModal({ modalData }) {
             }
             <fieldset>
               <legend><label htmlFor="addTitle">{lang.title}</label></legend>
-              <textarea id="addTitle" placeholder='Required' required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
+              <textarea id="addTitle" placeholder={lang.required} required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="addDescription">{lang.description}</label></legend>
