@@ -190,7 +190,7 @@ export default function SupportDataModal({ modalData }) {
               <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
             </div>
           </div>
-          <form autoCapitalize='off' className='mainModal__data__form taskContainer disabled'>
+          <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer disabled'>
             <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>{lang.priority}:&nbsp;</div>
@@ -215,17 +215,17 @@ export default function SupportDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="title">{lang.title}</label></legend>
-              <textarea id="deleteTitle" placeholder={lang.required} required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
+              <textarea id="deleteTitle" placeholder={lang.required} required readOnly disabled rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="description">{lang.description}</label></legend>
-              <textarea id="description" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.description || "-"} />
+              <textarea id="description" readOnly disabled rows="2" className='taskOpenContent' value={modalData?.description || "-"} />
             </fieldset>
             {
               modalData?.status === "completed" &&
               <fieldset>
                 <legend><label htmlFor="reply">{lang.adminReply}</label></legend>
-                <textarea id="reply" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent reply' value={modalData?.reply || "-"} />
+                <textarea id="reply" readOnly disabled rows="2" className='taskOpenContent reply' value={modalData?.reply || "-"} />
               </fieldset>
             }
             {modalData?.user.domainAdmin &&
@@ -248,7 +248,7 @@ export default function SupportDataModal({ modalData }) {
               <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
             </div>
           </div>
-          <form autoCapitalize='off' className='mainModal__data__form taskContainer editMode' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
+          <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer editMode' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
             <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>{lang.priority}:&nbsp;</div>
@@ -289,17 +289,17 @@ export default function SupportDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="editTitle">{lang.title}</label></legend>
-              <textarea id="editTitle" placeholder={lang.required} required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
+              <textarea id="editTitle" placeholder={lang.required} required rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="editDescription">{lang.description}</label></legend>
-              <textarea id="editDescription" spellCheck={false} rows="2" value={newTicketDescription} onChange={e => setNewTicketDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
+              <textarea id="editDescription" rows="2" value={newTicketDescription} onChange={e => setNewTicketDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
             </fieldset>
             {
               newTicketStatus === "completed" &&
               <fieldset>
                 <legend><label htmlFor="reply">{lang.adminReply}</label></legend>
-                <textarea id="reply" placeholder={lang.ticketClosed} spellCheck={false} rows="2" className='taskOpenContent reply' value={newTicketReply} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} />
+                <textarea id="reply" placeholder={lang.ticketClosed} rows="2" className='taskOpenContent reply' value={newTicketReply} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} />
               </fieldset>
             }
             <div className='mainModal__btnContainer'>
@@ -320,7 +320,7 @@ export default function SupportDataModal({ modalData }) {
               <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
             </div>
           </div>
-          <form autoCapitalize='off' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={isLoading} onSubmit={(e) => deleteSupportFn(e, modalData)}>
+          <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={isLoading} onSubmit={(e) => deleteSupportFn(e, modalData)}>
             <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>{lang.priority}:&nbsp;</div>
@@ -345,17 +345,17 @@ export default function SupportDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="deleteTitle">{lang.title}</label></legend>
-              <textarea id="deleteTitle" placeholder={lang.required} required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
+              <textarea id="deleteTitle" placeholder={lang.required} required readOnly disabled rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="deleteDescription">{lang.description}</label></legend>
-              <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.description || "-"} />
+              <textarea id="deleteDescription" readOnly disabled rows="2" className='taskOpenContent' value={modalData?.description || "-"} />
             </fieldset>
             {
               modalData?.status === "completed" &&
               <fieldset>
                 <legend><label htmlFor="reply">{lang.adminReply}</label></legend>
-                <textarea id="reply" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent reply' value={modalData?.reply} />
+                <textarea id="reply" readOnly disabled rows="2" className='taskOpenContent reply' value={modalData?.reply} />
               </fieldset>
             }
             <div className='mainModal__btnContainer'>
@@ -374,7 +374,7 @@ export default function SupportDataModal({ modalData }) {
               <button title={`${lang.author}: ${modalData?.user.email}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.user.email}</button>
             </div>
           </div>
-          <form autoCapitalize='off' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addSupportFn(e)}>
+          <form autoCapitalize='off' autoComplete='off' spellCheck='false' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addSupportFn(e)}>
             {modalData?.user.domainAdmin &&
               <div className="taskOptions">
                 <div className={`taskOpenData`}>
@@ -417,17 +417,17 @@ export default function SupportDataModal({ modalData }) {
             }
             <fieldset>
               <legend><label htmlFor="addTitle">{lang.title}</label></legend>
-              <textarea id="addTitle" placeholder={lang.required} required spellCheck={false} rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
+              <textarea id="addTitle" placeholder={lang.required} required rows="1" value={newTicketTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTicketTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="addDescription">{lang.description}</label></legend>
-              <textarea id="addDescription" spellCheck={false} rows="2" value={newTicketDescription} onChange={e => setNewTicketDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
+              <textarea id="addDescription" rows="2" value={newTicketDescription} onChange={e => setNewTicketDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
             </fieldset>
             {
               newTicketStatus === "completed" &&
               <fieldset>
                 <legend><label htmlFor="reply">{lang.adminReply}</label></legend>
-                <textarea id="reply" placeholder={lang.ticketClosed} spellCheck={false} rows="2" className='taskOpenContent reply' value={newTicketReply} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} />
+                <textarea id="reply" placeholder={lang.ticketClosed} rows="2" className='taskOpenContent reply' value={newTicketReply} onChange={e => { setNewTicketReply(e.target.value) }} maxLength={200} />
               </fieldset>
             }
             <div className='mainModal__btnContainer'>

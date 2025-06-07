@@ -257,32 +257,32 @@ export default function ContactsDataModal({ modalData }) {
               <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} className={`listPicker disabled selected`}>{lang[modalData?.category]}</button>
             </div>
           </div>
-          <form autoComplete='off' className='mainModal__data__form disabled'>
+          <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form disabled'>
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="name">{lang.name}</label></legend>
-                <input id='name' placeholder={lang.required} readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
+                <input id='name' placeholder={lang.required} readOnly disabled type="text" value={modalData?.name || "-"} />
               </fieldset>
               <fieldset>
                 <legend><label htmlFor="email">{lang.email}</label></legend>
-                <input id='email' readOnly disabled spellCheck={false} type="text" value={modalData?.email || "-"} />
+                <input id='email' readOnly disabled type="text" value={modalData?.email || "-"} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="role">{lang.role}</label></legend>
-                <input id='role' readOnly disabled spellCheck={false} type="text" value={modalData?.role || "-"} />
+                <input id='role' readOnly disabled type="text" value={modalData?.role || "-"} />
               </fieldset>
               <fieldset>
                 <legend><label htmlFor="tel">{lang.telephone}</label></legend>
-                <input id='tel' readOnly disabled spellCheck={false} type="tel" value={modalData?.telephone || "-"} />
+                <input id='tel' readOnly disabled type="tel" value={modalData?.telephone || "-"} />
               </fieldset>
             </div>
 
             {/* <div className="form-group">
               <fieldset>
                 <legend>Area</legend>
-                <input readOnly disabled spellCheck={false} type="text" value={modalData?.area || "-"} />
+                <input readOnly disabled  type="text" value={modalData?.area || "-"} />
               </fieldset>
               <fieldset>
                 <legend>Location</legend>
@@ -299,7 +299,7 @@ export default function ContactsDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="comment">{lang.comments}</label></legend>
-                <textarea id="comment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comments || "-"} />
+                <textarea id="comment" readOnly disabled rows="2" value={modalData?.comments || "-"} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -332,25 +332,25 @@ export default function ContactsDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form autoComplete='off' className='mainModal__data__form editMode' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editContactFn(e, modalData)} >
+          <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form editMode' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editContactFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="editName">{lang.name}</label></legend>
-                <input id="editName" placeholder={lang.required} spellCheck={false} type="text" value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} required />
+                <input id="editName" placeholder={lang.required} type="text" value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} required />
               </fieldset>
               <fieldset>
                 <legend><label htmlFor="editEmail">{lang.email}</label></legend>
-                <input id="editEmail" spellCheck={false} type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
+                <input id="editEmail" type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="editRole">{lang.role}</label></legend>
-                <input id="editRole" spellCheck={false} type="text" value={newUserRole} onChange={e => setNewUserRole(e.target.value)} maxLength={200} />
+                <input id="editRole" type="text" value={newUserRole} onChange={e => setNewUserRole(e.target.value)} maxLength={200} />
               </fieldset>
               <fieldset>
                 <legend><label htmlFor="editTel">{lang.telephone}</label></legend>
-                <input id="editTel" spellCheck={false} type="tel" value={newUserTel} onChange={e => {
+                <input id="editTel" type="tel" value={newUserTel} onChange={e => {
                   const value = e.target.value.replace(/\D/g, '');
                   setNewUserTel(value)
                 }} maxLength={20} />
@@ -360,7 +360,7 @@ export default function ContactsDataModal({ modalData }) {
             {/*     <div className="form-group">
               <fieldset>
                 <legend>Area</legend>
-                <input spellCheck={false} type="text" value={newUserArea} onChange={e => setNewUserArea(e.target.value)} maxLength={200} />
+                <input  type="text" value={newUserArea} onChange={e => setNewUserArea(e.target.value)} maxLength={200} />
               </fieldset>
               <fieldset>
                 <legend>Location</legend>
@@ -377,7 +377,7 @@ export default function ContactsDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="editComment">{lang.comments}</label></legend>
-                <textarea id="editComment" spellCheck={false} rows="2" value={newUserComments} onChange={e => setNewUserComments(e.target.value)} maxLength={500} />
+                <textarea id="editComment" rows="2" value={newUserComments} onChange={e => setNewUserComments(e.target.value)} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -401,32 +401,32 @@ export default function ContactsDataModal({ modalData }) {
               <button title={`${lang.category}: ${lang[modalData?.category]}`} tabIndex={-1} className={`listPicker disabled selected`} disabled={isLoading}>{lang[modalData?.category]}</button>
             </div>
           </div>
-          <form autoComplete='off' className='mainModal__data__form deleteMode disabled' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteUserFn(e, modalData)} >
+          <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form deleteMode disabled' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => deleteUserFn(e, modalData)} >
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="deleteName">{lang.name}</label></legend>
-                <input id="deleteName" placeholder={lang.required} readOnly disabled spellCheck={false} type="text" value={modalData?.name || "-"} />
+                <input id="deleteName" placeholder={lang.required} readOnly disabled type="text" value={modalData?.name || "-"} />
               </fieldset>
               <fieldset>
                 <legend><label htmlFor="deleteEmail">{lang.email}</label></legend>
-                <input id="deleteEmail" readOnly disabled spellCheck={false} type="text" value={modalData?.email || "-"} />
+                <input id="deleteEmail" readOnly disabled type="text" value={modalData?.email || "-"} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="deleteRole">{lang.role}</label></legend>
-                <input id="deleteRole" readOnly disabled spellCheck={false} type="text" value={modalData?.role || "-"} />
+                <input id="deleteRole" readOnly disabled type="text" value={modalData?.role || "-"} />
               </fieldset>
               <fieldset>
                 <legend><label htmlFor="deleteTel">{lang.telephone}</label></legend>
-                <input id="deleteTel" readOnly disabled spellCheck={false} type="tel" value={modalData?.telephone || "-"} />
+                <input id="deleteTel" readOnly disabled type="tel" value={modalData?.telephone || "-"} />
               </fieldset>
             </div>
 
             {/*  <div className="form-group">
               <fieldset>
                 <legend>Area</legend>
-                <input readOnly disabled spellCheck={false} type="text" value={modalData?.area || "-"} />
+                <input readOnly disabled  type="text" value={modalData?.area || "-"} />
               </fieldset>
               <fieldset>
                 <legend>Location</legend>
@@ -443,7 +443,7 @@ export default function ContactsDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="deleteComment">{lang.comments}</label></legend>
-                <textarea id="deleteComment" readOnly disabled spellCheck={false} rows="2" value={modalData?.comments || "-"} />
+                <textarea id="deleteComment" readOnly disabled rows="2" value={modalData?.comments || "-"} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
@@ -475,25 +475,25 @@ export default function ContactsDataModal({ modalData }) {
               </div>
             </div>
           </div>
-          <form autoComplete='off' className='mainModal__data__form' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => { addUserFn(e) }}  >
+          <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => { addUserFn(e) }}  >
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="addName">{lang.name}</label></legend>
-                <input id="addName" placeholder={lang.required} spellCheck={false} type="text" value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} required />
+                <input id="addName" placeholder={lang.required} type="text" value={newUserName} onChange={e => setNewUserName(e.target.value)} maxLength={200} required />
               </fieldset>
               <fieldset>
                 <legend><label htmlFor="addEmail">{lang.email}</label></legend>
-                <input id="addEmail" spellCheck={false} type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
+                <input id="addEmail" type="text" value={newUserEmail} onChange={e => setNewUserEmail(e.target.value)} pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" maxLength={320} />
               </fieldset>
             </div>
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="addRole">{lang.role}</label></legend>
-                <input id="addRole" spellCheck={false} type="text" value={newUserRole} onChange={e => setNewUserRole(e.target.value)} maxLength={200} />
+                <input id="addRole" type="text" value={newUserRole} onChange={e => setNewUserRole(e.target.value)} maxLength={200} />
               </fieldset>
               <fieldset>
                 <legend><label htmlFor="addTel">{lang.telephone}</label></legend>
-                <input id="addTel" spellCheck={false} type="tel" value={newUserTel} onChange={e => {
+                <input id="addTel" type="tel" value={newUserTel} onChange={e => {
                   const value = e.target.value.replace(/\D/g, '');
                   setNewUserTel(value)
                 }} maxLength={20} />
@@ -503,7 +503,7 @@ export default function ContactsDataModal({ modalData }) {
             {/* <div className="form-group">
               <fieldset>
                 <legend>Area</legend>
-                <input spellCheck={false} type="text" value={newUserArea} onChange={e => setNewUserArea(e.target.value)} maxLength={200} />
+                <input  type="text" value={newUserArea} onChange={e => setNewUserArea(e.target.value)} maxLength={200} />
               </fieldset>
               <fieldset>
                 <legend>Location</legend>
@@ -520,7 +520,7 @@ export default function ContactsDataModal({ modalData }) {
             <div className="form-group">
               <fieldset>
                 <legend><label htmlFor="addComment">{lang.comments}</label></legend>
-                <textarea id="addComment" spellCheck={false} rows="2" value={newUserComments} onChange={e => setNewUserComments(e.target.value)} maxLength={500} />
+                <textarea id="addComment" rows="2" value={newUserComments} onChange={e => setNewUserComments(e.target.value)} maxLength={500} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>

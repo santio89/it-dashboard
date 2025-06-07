@@ -178,7 +178,7 @@ export default function TasksDataModal({ modalData }) {
               <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
             </div>
           </div>
-          <form autoCapitalize='off' className='mainModal__data__form taskContainer disabled'>
+          <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer disabled'>
             <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>{lang.priority}:&nbsp;</div>
@@ -203,11 +203,11 @@ export default function TasksDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="title">{lang.title}</label></legend>
-              <textarea id="title" placeholder={lang.required} required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
+              <textarea id="title" placeholder={lang.required} required readOnly disabled rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="description">{lang.description}</label></legend>
-              <textarea id="description" readOnly disabled spellCheck={false} rows="2" className='taskOpenContent' value={modalData?.description || "-"} />
+              <textarea id="description" readOnly disabled rows="2" className='taskOpenContent' value={modalData?.description || "-"} />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => editModeFN()}>{lang.edit}</button>
@@ -227,7 +227,7 @@ export default function TasksDataModal({ modalData }) {
               <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
             </div>
           </div>
-          <form autoCapitalize='off' className='mainModal__data__form taskContainer editMode' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTaskFn(e, modalData)}>
+          <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer editMode' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTaskFn(e, modalData)}>
             <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>{lang.priority}:&nbsp;</div>
@@ -268,11 +268,11 @@ export default function TasksDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="editTitle">{lang.title}</label></legend>
-              <textarea id="editTitle" placeholder={lang.required} required spellCheck={false} rows="1" value={newTaskTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTaskTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
+              <textarea id="editTitle" placeholder={lang.required} required rows="1" value={newTaskTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTaskTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="editDescription">{lang.description}</label></legend>
-              <textarea id="editDescription" spellCheck={false} rows="4" value={newTaskDescription} onChange={e => setNewTaskDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
+              <textarea id="editDescription" rows="4" value={newTaskDescription} onChange={e => setNewTaskDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setEditMode(false)}>{lang.cancel}</button>
@@ -292,7 +292,7 @@ export default function TasksDataModal({ modalData }) {
               <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
             </div>
           </div>
-          <form autoCapitalize='off' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={isLoading} onSubmit={(e) => deleteTdlFn(e, modalData)}>
+          <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={isLoading} onSubmit={(e) => deleteTdlFn(e, modalData)}>
             <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>{lang.priority}:&nbsp;</div>
@@ -317,11 +317,11 @@ export default function TasksDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="deleteTitle">{lang.title}</label></legend>
-              <textarea id="deleteTitle" placeholder={lang.required} required readOnly disabled spellCheck={false} rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
+              <textarea id="deleteTitle" placeholder={lang.required} required readOnly disabled rows="1" className='taskOpenTitle' value={modalData?.title || "-"} />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="deleteDescription">{lang.description}</label></legend>
-              <textarea id="deleteDescription" readOnly disabled spellCheck={false} rows="4" className='taskOpenContent' value={modalData?.description || "-"} />
+              <textarea id="deleteDescription" readOnly disabled rows="4" className='taskOpenContent' value={modalData?.description || "-"} />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button type='button' className='mainModal__send' onClick={() => setDeleteMode(false)}>{lang.cancel}</button>
@@ -339,7 +339,7 @@ export default function TasksDataModal({ modalData }) {
               <button title={`${lang.author}: ${modalData?.user.email}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.user.email}</button>
             </div>
           </div>
-          <form autoCapitalize='off' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addTdlFn(e)}>
+          <form autoCapitalize='off' autoComplete='off' spellCheck='false' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addTdlFn(e)}>
             <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>{lang.priority}:&nbsp;</div>
@@ -380,11 +380,11 @@ export default function TasksDataModal({ modalData }) {
             </div>
             <fieldset>
               <legend><label htmlFor="addTitle">{lang.title}</label></legend>
-              <textarea id="addTitle" placeholder={lang.required} required spellCheck={false} rows="1" value={newTaskTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTaskTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
+              <textarea id="addTitle" placeholder={lang.required} required rows="1" value={newTaskTitle} onKeyDown={(e) => { if (e.key.toUpperCase() === "ENTER") { e.preventDefault() } }} onChange={e => { setNewTaskTitle(e.target.value) }} maxLength={200} className='taskOpenTitle' />
             </fieldset>
             <fieldset>
               <legend><label htmlFor="addDescription">{lang.description}</label></legend>
-              <textarea id="addDescription" spellCheck={false} rows="4" value={newTaskDescription} onChange={e => setNewTaskDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
+              <textarea id="addDescription" rows="4" value={newTaskDescription} onChange={e => setNewTaskDescription(e.target.value)} maxLength={2000} className='taskOpenContent' />
             </fieldset>
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send' onClick={trimInputs}>{lang.send}</button>
