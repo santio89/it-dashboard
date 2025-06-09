@@ -658,7 +658,7 @@ export const apiSlice = createApi({
               querySnapshot.docs.pop()
               newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
             }
-
+            
             let tickets = [];
             querySnapshot?.forEach((doc) => {
               tickets.push({ id: doc.id, ...doc.data() });
