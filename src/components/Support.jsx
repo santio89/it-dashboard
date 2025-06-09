@@ -44,9 +44,9 @@ export default function Support({ user }) {
     isSuccess: isSuccessSupport,
     isError: isErrorSupport,
     error: errorSupport,
-  } = useGetSupportQuery(/* user.domainAdmin ? "admin" : */ user.uid);
+  } = useGetSupportQuery(/* user.domainAdmin ? "admin" : */ user.email);
 
-  useGetSupportNextQuery({ userId: user?.uid, lastVisible });
+  useGetSupportNextQuery({ userEmail: user?.email, lastVisible });
 
   const handleRefetch = () => {
     setLastVisible(dataLastVisible)
