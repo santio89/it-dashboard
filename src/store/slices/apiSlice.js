@@ -18,16 +18,17 @@ export const apiSlice = createApi({
           const ref = collection(db, 'authUsersData', userId, "contacts");
           const q = query(ref, orderBy('normalizedName'), limit(51));
           const querySnapshot = await getDocs(q);
+          const querySnapshotDocs = [...querySnapshot.docs];
 
           let newLastVisible = null
-          if (querySnapshot.docs.length === 51) {
-            querySnapshot.docs.pop()
-            newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+          if (querySnapshotDocs.length === 51) {
+            querySnapshotDocs.pop()
+            newLastVisible = querySnapshotDocs[querySnapshotDocs.length - 1]
           }
 
           let contacts = [];
-          querySnapshot?.forEach((doc) => {
-            contacts.push({ id: doc.id, ...doc.data() });
+          querySnapshotDocs.forEach((doc) => {
+            contacts.push({ ...doc.data() });
           });
 
           return { data: { contacts, lastVisible: newLastVisible } };
@@ -45,16 +46,17 @@ export const apiSlice = createApi({
           const ref = collection(db, 'authUsersData', userId, 'contacts');
           const q = query(ref, orderBy('normalizedName'), startAfter(lastVisible), limit(51));
           const querySnapshot = await getDocs(q);
+          const querySnapshotDocs = [...querySnapshot.docs];
 
           let newLastVisible = null
-          if (querySnapshot.docs.length === 51) {
-            querySnapshot.docs.pop()
-            newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+          if (querySnapshotDocs.length === 51) {
+            querySnapshotDocs.pop()
+            newLastVisible = querySnapshotDocs[querySnapshotDocs.length - 1]
           }
 
           let contacts = [];
-          querySnapshot.forEach((doc) => {
-            contacts.push({ id: doc.id, ...doc.data() });
+          querySnapshotDocs.forEach((doc) => {
+            contacts.push({ ...doc.data() });
           });
 
           return { data: { contacts, lastVisible: newLastVisible } };
@@ -228,16 +230,17 @@ export const apiSlice = createApi({
           const ref = collection(db, 'authUsersData', userId, "devices");
           const q = query(ref, orderBy('normalizedName'), limit(51));
           const querySnapshot = await getDocs(q);
+          const querySnapshotDocs = [...querySnapshot.docs];
 
           let newLastVisible = null
-          if (querySnapshot.docs.length === 51) {
-            querySnapshot.docs.pop()
-            newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+          if (querySnapshotDocs.length === 51) {
+            querySnapshotDocs.pop()
+            newLastVisible = querySnapshotDocs[querySnapshotDocs.length - 1]
           }
 
           let devices = [];
-          querySnapshot?.forEach((doc) => {
-            devices.push({ id: doc.id, ...doc.data() });
+          querySnapshotDocs?.forEach((doc) => {
+            devices.push({ ...doc.data() });
           });
 
           return { data: { devices, lastVisible: newLastVisible } };
@@ -255,16 +258,17 @@ export const apiSlice = createApi({
           const ref = collection(db, 'authUsersData', userId, 'devices');
           const q = query(ref, orderBy('normalizedName'), startAfter(lastVisible), limit(51));
           const querySnapshot = await getDocs(q);
+          const querySnapshotDocs = [...querySnapshot.docs];
 
           let newLastVisible = null
-          if (querySnapshot.docs.length === 51) {
-            querySnapshot.docs.pop()
-            newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+          if (querySnapshotDocs.length === 51) {
+            querySnapshotDocs.pop()
+            newLastVisible = querySnapshotDocs[querySnapshotDocs.length - 1]
           }
 
           let devices = [];
-          querySnapshot.forEach((doc) => {
-            devices.push({ id: doc.id, ...doc.data() });
+          querySnapshotDocs.forEach((doc) => {
+            devices.push({ ...doc.data() });
           });
 
           return { data: { devices, lastVisible: newLastVisible } };
@@ -439,16 +443,17 @@ export const apiSlice = createApi({
           const ref = collection(db, 'authUsersData', userId, "tdl");
           const q = query(ref, orderBy('localTime', 'desc'), limit(51));
           const querySnapshot = await getDocs(q);
+          const querySnapshotDocs = [...querySnapshot.docs];
 
           let newLastVisible = null
-          if (querySnapshot.docs.length === 51) {
-            querySnapshot.docs.pop()
-            newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+          if (querySnapshotDocs.length === 51) {
+            querySnapshotDocs.pop()
+            newLastVisible = querySnapshotDocs[querySnapshotDocs.length - 1]
           }
 
           let tasks = [];
-          querySnapshot?.forEach((doc) => {
-            tasks.push({ id: doc.id, ...doc.data() });
+          querySnapshotDocs?.forEach((doc) => {
+            tasks.push({ ...doc.data() });
           });
 
           return { data: { tasks, lastVisible: newLastVisible } };
@@ -466,16 +471,17 @@ export const apiSlice = createApi({
           const ref = collection(db, 'authUsersData', userId, 'tdl');
           const q = query(ref, orderBy('localTime', 'desc'), startAfter(lastVisible), limit(51));
           const querySnapshot = await getDocs(q);
+          const querySnapshotDocs = [...querySnapshot.docs];
 
           let newLastVisible = null
-          if (querySnapshot.docs.length === 51) {
-            querySnapshot.docs.pop()
-            newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+          if (querySnapshotDocs.length === 51) {
+            querySnapshotDocs.pop()
+            newLastVisible = querySnapshotDocs[querySnapshotDocs.length - 1]
           }
 
           let tasks = [];
-          querySnapshot.forEach((doc) => {
-            tasks.push({ id: doc.id, ...doc.data() });
+          querySnapshotDocs.forEach((doc) => {
+            tasks.push({ ...doc.data() });
           });
 
           return { data: { tasks, lastVisible: newLastVisible } };
@@ -652,16 +658,17 @@ export const apiSlice = createApi({
             const ref = collection(db, 'supportData');
             const q = query(ref, orderBy('localTime', 'desc'), limit(51));
             const querySnapshot = await getDocs(q);
+            const querySnapshotDocs = [...querySnapshot.docs];
 
             let newLastVisible = null
-            if (querySnapshot.docs.length === 51) {
-              querySnapshot.docs.pop()
-              newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+            if (querySnapshotDocs.length === 51) {
+              querySnapshotDocs.pop()
+              newLastVisible = querySnapshotDocs[querySnapshotDocs.length - 1]
             }
 
             let tickets = [];
-            querySnapshot?.forEach((doc) => {
-              tickets.push({ id: doc.id, ...doc.data() });
+            querySnapshotDocs?.forEach((doc) => {
+              tickets.push({ ...doc.data() });
             });
 
             return { data: { tickets, lastVisible: newLastVisible } };
@@ -674,16 +681,17 @@ export const apiSlice = createApi({
             const ref = collection(db, 'supportData');
             const q = query(ref, where('author', "==", userEmail), orderBy('localTime', 'desc'), limit(51))
             const querySnapshot = await getDocs(q);
+            const querySnapshotDocs = [...querySnapshot.docs];
 
             let newLastVisible = null
-            if (querySnapshot.docs.length === 51) {
-              querySnapshot.docs.pop()
-              newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+            if (querySnapshotDocs.length === 51) {
+              querySnapshotDocs.pop()
+              newLastVisible = querySnapshotDocs[querySnapshotDocs.length - 1]
             }
 
             let tickets = [];
-            querySnapshot?.forEach((doc) => {
-              tickets.push({ id: doc.id, ...doc.data() });
+            querySnapshotDocs?.forEach((doc) => {
+              tickets.push({ ...doc.data() });
             });
 
             return { data: { tickets, lastVisible: newLastVisible } };
@@ -703,16 +711,17 @@ export const apiSlice = createApi({
             const ref = collection(db, 'supportData');
             const q = query(ref, orderBy('localTime', 'desc'), startAfter(lastVisible), limit(51));
             const querySnapshot = await getDocs(q);
+            const querySnapshotDocs = [...querySnapshot.docs];
 
             let newLastVisible = null
-            if (querySnapshot.docs.length === 51) {
-              querySnapshot.docs.pop()
-              newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+            if (querySnapshotDocs.length === 51) {
+              querySnapshotDocs.pop()
+              newLastVisible = querySnapshotDocs[querySnapshotDocs.length - 1]
             }
 
             let tickets = [];
-            querySnapshot.forEach((doc) => {
-              tickets.push({ id: doc.id, ...doc.data() });
+            querySnapshotDocs.forEach((doc) => {
+              tickets.push({ ...doc.data() });
             });
 
             return { data: { tickets, lastVisible: newLastVisible } };
@@ -725,16 +734,17 @@ export const apiSlice = createApi({
             const ref = collection(db, 'supportData');
             const q = query(ref, where('author', "==", userEmail), orderBy('localTime', 'desc'), startAfter(lastVisible), limit(51));
             const querySnapshot = await getDocs(q);
+            const querySnapshotDocs = [...querySnapshot.docs];
 
             let newLastVisible = null
-            if (querySnapshot.docs.length === 51) {
-              querySnapshot.docs.pop()
-              newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]
+            if (querySnapshotDocs.length === 51) {
+              querySnapshotDocs.pop()
+              newLastVisible = querySnapshotDocs[querySnapshotDocs.length - 1]
             }
 
             let tickets = [];
-            querySnapshot.forEach((doc) => {
-              tickets.push({ id: doc.id, ...doc.data() });
+            querySnapshotDocs.forEach((doc) => {
+              tickets.push({ ...doc.data() });
             });
 
             return { data: { tickets, lastVisible: newLastVisible } };
