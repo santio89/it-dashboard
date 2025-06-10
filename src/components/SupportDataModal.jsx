@@ -5,6 +5,7 @@ import { setModal } from '../store/slices/modalSlice'
 import { useAddSupportMutation, useDeleteSupportMutation, useEditSupportMutation } from '../store/slices/apiSlice'
 import { useTranslation } from '../hooks/useTranslation'
 import { toast } from 'sonner'
+import Dropdown from './Dropdown'
 
 export default function SupportDataModal({ modalData }) {
   const lang = useTranslation()
@@ -21,9 +22,12 @@ export default function SupportDataModal({ modalData }) {
   const [newTicketPriority, setNewTicketPriority] = useState("medium")
   const [newTicketStatus, setNewTicketStatus] = useState("pending")
   const [newTicketReply, setNewTicketReply] = useState("")
+  const [newTicketAuthor, setNewTicketAuthor] = useState(modalData?.user.email || "")
 
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)
+
+  const [listPickerOpen, setListPickerOpen] = useState(false)
 
   const [deleteSupport, resultDeleteSupport] = useDeleteSupportMutation()
   const [editSupport, resultEditSupport] = useEditSupportMutation()
@@ -50,13 +54,13 @@ export default function SupportDataModal({ modalData }) {
     }
 
     const newTicket = {
+      author: newTicketAuthor,
       title: newTicketTitle,
       category: newTicketCategory,
       description: newTicketDescription,
       priority: newTicketPriority,
       status: newTicketStatus,
       reply: newTicketStatus === "completed" ? (newTicketReply === "" ? lang.ticketClosed : newTicketReply) : "",
-      author: modalData?.user.email,
       authorId: modalData?.user.uid,
       localId: crypto.randomUUID().replace(/-/g, ''),
       localTime: Date.now(),
@@ -66,7 +70,7 @@ export default function SupportDataModal({ modalData }) {
 
     try {
       toast(`${lang.addingTicket}...`)
-      const res = await addSupport({ ...newTicket, userId: modalData.userId, })
+      const res = await addSupport({ ...newTicket, userEmail: modalData.user.email, })
       toast.message(lang.ticketAdded, {
         description: `ID: ${res.data.id}`,
       });
@@ -96,6 +100,7 @@ export default function SupportDataModal({ modalData }) {
   }
 
   const editModeFN = () => {
+    setNewTicketAuthor(modalData?.author)
     setNewTicketCategory(modalData?.category)
     setNewTicketTitle(modalData?.title)
     setNewTicketDescription(modalData?.description)
@@ -118,6 +123,7 @@ export default function SupportDataModal({ modalData }) {
       setNewTicketReply(lang.ticketClosed)
     }
 
+    const author = newTicketAuthor
     const input = newTicketDescription
     const title = newTicketTitle
     const category = newTicketCategory
@@ -125,14 +131,14 @@ export default function SupportDataModal({ modalData }) {
     const status = newTicketStatus
     const reply = newTicketStatus === "completed" ? (newTicketReply === "" ? lang.ticketClosed : newTicketReply) : ""
 
-    if (input === ticket.description && (ticket.priority === (priority ?? ticket.priority)) && (ticket.category === (category ?? ticket.category)) && (ticket.title === (title ?? ticket.title)) && (ticket.status === (status ?? ticket.status)) && (ticket.reply === (reply ?? ticket.reply))) {
+    if (input === ticket.description && (ticket.priority === (priority ?? ticket.priority)) && (ticket.category === (category ?? ticket.category)) && (ticket.title === (title ?? ticket.title)) && (ticket.status === (status ?? ticket.status)) && (ticket.reply === (reply ?? ticket.reply)) && (ticket.author === (author ?? ticket.author))) {
       dispatch(setModal({ active: false, data: {} }))
       return
     }
 
     const { modalType, supportData, user, ...trimTicket } = ticket
 
-    const newTicket = { ...trimTicket, title: title ?? ticket.title, description: input ?? ticket.description, category: category ?? ticket.category, priority: priority ?? ticket.priority, status: status ?? ticket.status, reply: reply ?? ticket.reply }
+    const newTicket = { ...trimTicket, title: title ?? ticket.title, description: input ?? ticket.description, category: category ?? ticket.category, priority: priority ?? ticket.priority, status: status ?? ticket.status, reply: reply ?? ticket.reply, author: author ?? ticket.author }
 
     dispatch(setModal({ active: false, data: {} }))
 
@@ -165,6 +171,7 @@ export default function SupportDataModal({ modalData }) {
 
   useEffect(() => {
     if (!modalActive) {
+      setNewTicketAuthor("")
       setNewTicketPriority("medium")
       setNewTicketStatus("pending")
       setNewTicketTitle("")
@@ -245,10 +252,14 @@ export default function SupportDataModal({ modalData }) {
             <h2>{lang.editTicket}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
-              <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
+              {/* <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button> */}
+
+              {
+                <input form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${newTicketAuthor}`} disabled={!modalData?.user.domainAdmin} className={`listPicker selected editMode`} type="text" value={newTicketAuthor} onChange={e => setNewTicketAuthor(e.target.value)} />
+              }
             </div>
           </div>
-          <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer editMode' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
+          <form id="supportForm" autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer editMode' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
             <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>{lang.priority}:&nbsp;</div>
@@ -371,10 +382,14 @@ export default function SupportDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>{lang.addTicket}</h2>
             <div className="listPickerWrapper__btnContainer">
-              <button title={`${lang.author}: ${modalData?.user.email}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.user.email}</button>
+              {/* <button title={`${lang.author}: ${modalData?.user.email}`} tabIndex={-1} className={`listPicker selected`} onClick={() => setListPickerOpen(listPickerOpen => !listPickerOpen)}>{modalData?.user.email}</button> */}
+
+              {
+                <input form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${newTicketAuthor}`} disabled={!modalData?.user.domainAdmin} className={`listPicker selected`} type="text" value={newTicketAuthor} onChange={e => setNewTicketAuthor(e.target.value)} />
+              }
             </div>
           </div>
-          <form autoCapitalize='off' autoComplete='off' spellCheck='false' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addSupportFn(e)}>
+          <form id="supportForm" autoCapitalize='off' autoComplete='off' spellCheck='false' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addSupportFn(e)}>
             {modalData?.user.domainAdmin &&
               <div className="taskOptions">
                 <div className={`taskOpenData`}>

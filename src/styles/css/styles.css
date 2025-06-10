@@ -1599,6 +1599,22 @@ select:disabled {
   align-items: end;
   gap: 0.25rem;
 }
+.mainModal__titleContainer .listPickerWrapper__btnContainer input {
+  font-size: 12px;
+  color: var(--main-text);
+  padding: 0.25rem 0.5rem;
+  width: fit-content;
+  max-width: 25ch;
+  text-align: center;
+  outline: none;
+  border: 1px solid var(--main-color-op);
+}
+.mainModal__titleContainer .listPickerWrapper__btnContainer input:hover {
+  border: 1px solid var(--main-color-mid);
+}
+.mainModal__titleContainer .listPickerWrapper__btnContainer input:focus {
+  border: 1px solid var(--white);
+}
 .mainModal__titleContainer .listPickerWrapper__btnContainer .listPickerOptions {
   display: flex;
   justify-content: center;
@@ -1609,8 +1625,8 @@ select:disabled {
   padding: 0.25rem 0.5rem;
   font-size: 12px;
   background: transparent;
-  /* height: 25px;
-  width: 68px; */
+  /* width: fit-content;
+  max-width: 25ch; */
   color: var(--white);
   outline: 1px solid transparent;
   outline-offset: -1px;

@@ -809,7 +809,7 @@ export const apiSlice = createApi({
       /* invalidatesTags: ['support'], */
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
-          apiSlice.util.updateQueryData('getSupport', ticket.author, draft => {
+          apiSlice.util.updateQueryData('getSupport', ticket.userEmail, draft => {
             draft.tickets.push({ ...ticket, id: ticket.localId, createdAt: Date.now(), updatedAt: null });
           })
         );
@@ -841,7 +841,7 @@ export const apiSlice = createApi({
       /* invalidatesTags: ['support'], */
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
-          apiSlice.util.updateQueryData('getSupport', "santiago.olais@orlosh.com.ar", draft => {
+          apiSlice.util.updateQueryData('getSupport', ticket.userEmail, draft => {
             draft.tickets = draft.tickets.filter(t => t.id !== ticket.id);
           })
         );
@@ -876,7 +876,7 @@ export const apiSlice = createApi({
       /* invalidatesTags: ['support'], */
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
-          apiSlice.util.updateQueryData('getSupport', "santiago.olais@orlosh.com.ar", draft => {
+          apiSlice.util.updateQueryData('getSupport', ticket.userEmail, draft => {
             const index = draft.tickets.findIndex(t => t.id === ticket.id);
             if (index !== -1) {
               draft.tickets[index] = { ...ticket, updatedAt: Date.now() };
@@ -898,7 +898,7 @@ export const apiSlice = createApi({
       }),
       async onQueryStarted(supportData, { dispatch, queryFulfilled }) {
         const patchResult = dispatch(
-          apiSlice.util.updateQueryData('getSupport', "santiago.olais@orlosh.com.ar", (draft) => {
+          apiSlice.util.updateQueryData('getSupport', supportData.userEmail, (draft) => {
             draft.tickets = supportData;
           })
         );
