@@ -194,14 +194,14 @@ export default function SupportDataModal({ modalData }) {
             <h2>{lang.ticket}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
-              <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
+              <input disabled form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${modalData?.author}`} className={`listPicker disabled selected`} type="text" value={modalData?.author} />
             </div>
           </div>
-          <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer disabled'>
+          <form id="supportForm" autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer disabled'>
             <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>{lang.priority}:&nbsp;</div>
-                <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
+                <button type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                   </svg>
@@ -210,7 +210,7 @@ export default function SupportDataModal({ modalData }) {
               </div>
               <div className={`taskOpenData`}>
                 <div>{lang.status}:&nbsp;</div>
-                <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.status === "pending" && "selectedLow"} ${modalData?.status === "completed" && "selectedMedium"}`}>
+                <button type='button' disabled className={`tdl-priority selected ${modalData?.status === "pending" && "selectedLow"} ${modalData?.status === "completed" && "selectedMedium"}`}>
                   {modalData?.status === "pending" ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-dash-circle-fill" viewBox="0 0 16 16">
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z" />
                   </svg> : <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-circle-fill" viewBox="0 0 16 16">
@@ -252,11 +252,7 @@ export default function SupportDataModal({ modalData }) {
             <h2>{lang.editTicket}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
-              {/* <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button> */}
-
-              {
-                <input form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${newTicketAuthor}`} disabled={!modalData?.user.domainAdmin} className={`listPicker selected editMode`} type="text" value={newTicketAuthor} onChange={e => setNewTicketAuthor(e.target.value)} />
-              }
+              <input form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${newTicketAuthor}`} disabled={!modalData?.user.domainAdmin} className={`listPicker selected editMode`} type="text" value={newTicketAuthor} onChange={e => setNewTicketAuthor(e.target.value)} />
             </div>
           </div>
           <form id="supportForm" autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer editMode' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
@@ -328,14 +324,14 @@ export default function SupportDataModal({ modalData }) {
             <h2>{lang.deleteTicket}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
-              <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
+              <input disabled form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${modalData?.author}`} className={`listPicker disabled selected deleteMode`} type="text" value={modalData?.author} />
             </div>
           </div>
           <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={isLoading} onSubmit={(e) => deleteSupportFn(e, modalData)}>
             <div className="taskOptions">
               <div className={`taskOpenData`}>
                 <div>{lang.priority}:&nbsp;</div>
-                <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
+                <button type='button' disabled className={`tdl-priority selected ${modalData?.priority === "low" && "selectedLow"} ${modalData?.priority === "medium" && "selectedMedium"} ${modalData?.priority === "high" && "selectedHigh"}`}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                   </svg>
@@ -344,7 +340,7 @@ export default function SupportDataModal({ modalData }) {
               </div>
               <div className={`taskOpenData`}>
                 <div>{lang.status}:&nbsp;</div>
-                <button tabIndex={-1} type='button' disabled className={`tdl-priority selected ${modalData?.status === "pending" && "selectedLow"} ${modalData?.status === "completed" && "selectedMedium"}`}>
+                <button type='button' disabled className={`tdl-priority selected ${modalData?.status === "pending" && "selectedLow"} ${modalData?.status === "completed" && "selectedMedium"}`}>
                   {modalData?.status === "pending" ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-dash-circle-fill" viewBox="0 0 16 16">
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z" />
                   </svg> : <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-circle-fill" viewBox="0 0 16 16">
@@ -382,11 +378,7 @@ export default function SupportDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>{lang.addTicket}</h2>
             <div className="listPickerWrapper__btnContainer">
-              {/* <button title={`${lang.author}: ${modalData?.user.email}`} tabIndex={-1} className={`listPicker selected`} onClick={() => setListPickerOpen(listPickerOpen => !listPickerOpen)}>{modalData?.user.email}</button> */}
-
-              {
-                <input form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${newTicketAuthor}`} disabled={!modalData?.user.domainAdmin} className={`listPicker selected`} type="text" value={newTicketAuthor} onChange={e => setNewTicketAuthor(e.target.value)} />
-              }
+              <input form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${newTicketAuthor}`} disabled={!modalData?.user.domainAdmin} className={`listPicker selected ${!modalData?.user.domainAdmin && "disabled"}`} type="text" value={newTicketAuthor} onChange={e => setNewTicketAuthor(e.target.value)} />
             </div>
           </div>
           <form id="supportForm" autoCapitalize='off' autoComplete='off' spellCheck='false' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addSupportFn(e)}>

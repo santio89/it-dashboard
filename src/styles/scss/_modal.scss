@@ -116,11 +116,28 @@
           outline: none;
           border: 1px solid var(--main-color-op);
 
+          &.editMode {
+            border: 1px dashed var(--main-color-mid);
+
+            &:hover,
+            &:focus {
+              border-color: var(--white);
+            }
+          }
+
+          &.deleteMode {
+            border: 1px dashed var(--red);
+          }
+
           &:hover {
-            border: 1px solid var(--main-color-mid);
+            border-color: var(--main-color-mid);
           }
           &:focus {
-            border: 1px solid var(--white);
+            border-color: var(--white);
+          }
+
+          &.disabled {
+            pointer-events: none;
           }
         }
 
@@ -148,7 +165,7 @@
           }
 
           &.disabled {
-            cursor: default;
+            pointer-events: none;
 
             &:hover,
             &:focus,
@@ -352,6 +369,7 @@
 
         .tdl-priority {
           text-decoration-style: dashed !important;
+          outline-style: dashed !important;
         }
 
         fieldset {
@@ -386,6 +404,7 @@
 
         .tdl-priority {
           text-decoration: underline dashed var(--red) !important;
+          outline-style: dashed !important;
         }
 
         fieldset {

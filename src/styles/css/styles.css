@@ -1609,11 +1609,23 @@ select:disabled {
   outline: none;
   border: 1px solid var(--main-color-op);
 }
+.mainModal__titleContainer .listPickerWrapper__btnContainer input.editMode {
+  border: 1px dashed var(--main-color-mid);
+}
+.mainModal__titleContainer .listPickerWrapper__btnContainer input.editMode:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer input.editMode:focus {
+  border-color: var(--white);
+}
+.mainModal__titleContainer .listPickerWrapper__btnContainer input.deleteMode {
+  border: 1px dashed var(--red);
+}
 .mainModal__titleContainer .listPickerWrapper__btnContainer input:hover {
-  border: 1px solid var(--main-color-mid);
+  border-color: var(--main-color-mid);
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer input:focus {
-  border: 1px solid var(--white);
+  border-color: var(--white);
+}
+.mainModal__titleContainer .listPickerWrapper__btnContainer input.disabled {
+  pointer-events: none;
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer .listPickerOptions {
   display: flex;
@@ -1637,7 +1649,7 @@ select:disabled {
   filter: grayscale(1);
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled {
-  cursor: default;
+  pointer-events: none;
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:focus, .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker.disabled:focus-visible {
   background-color: var(--main-color-op);
@@ -1801,6 +1813,7 @@ label:hover) {
 }
 .mainModal__data__form.editMode .tdl-priority {
   text-decoration-style: dashed !important;
+  outline-style: dashed !important;
 }
 .mainModal__data__form.editMode fieldset {
   border: 1px dashed var(--main-color-mid);
@@ -1827,6 +1840,7 @@ label:hover) {
 }
 .mainModal__data__form.deleteMode .tdl-priority {
   text-decoration: underline dashed var(--red) !important;
+  outline-style: dashed !important;
 }
 .mainModal__data__form.deleteMode fieldset {
   border: 1px dashed var(--red);
