@@ -110,8 +110,10 @@
           font-size: 12px;
           color: var(--white);
           padding: 0.25rem 0.5rem;
+          min-width: 8ch;
           width: fit-content;
           max-width: 25ch;
+          field-sizing: content;
           text-align: center;
           outline: none;
           border: 1px solid var(--main-color-op);
