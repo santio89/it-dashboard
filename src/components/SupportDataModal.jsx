@@ -194,7 +194,7 @@ export default function SupportDataModal({ modalData }) {
             <h2>{lang.ticket}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
-              <input disabled form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${modalData?.author}`} className={`listPicker disabled selected`} type="text" value={modalData?.author} />
+              <input disabled form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${modalData?.author}`} className={`listPicker disabled selected`} type="text" value={modalData?.author} autoCapitalize='off' autoComplete='off' spellCheck='false'/>
             </div>
           </div>
           <form id="supportForm" autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer disabled'>
@@ -252,7 +252,7 @@ export default function SupportDataModal({ modalData }) {
             <h2>{lang.editTicket}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
-              <input form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${newTicketAuthor}`} disabled={!modalData?.user.domainAdmin} className={`listPicker selected editMode`} type="text" value={newTicketAuthor} onChange={e => setNewTicketAuthor(e.target.value)} />
+              <input form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${newTicketAuthor}`} disabled={!modalData?.user.domainAdmin} className={`listPicker selected editMode`} type="text" value={newTicketAuthor} onChange={e => setNewTicketAuthor(e.target.value)} autoCapitalize='off' autoComplete='off' spellCheck='false'/>
             </div>
           </div>
           <form id="supportForm" autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer editMode' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTicketFn(e, modalData)}>
@@ -324,7 +324,7 @@ export default function SupportDataModal({ modalData }) {
             <h2>{lang.deleteTicket}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
-              <input disabled form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${modalData?.author}`} className={`listPicker disabled selected deleteMode`} type="text" value={modalData?.author} />
+              <input disabled form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${modalData?.author}`} className={`listPicker disabled selected deleteMode`} type="text" value={modalData?.author} autoCapitalize='off' autoComplete='off' spellCheck='false'/>
             </div>
           </div>
           <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={isLoading} onSubmit={(e) => deleteSupportFn(e, modalData)}>
@@ -378,7 +378,7 @@ export default function SupportDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>{lang.addTicket}</h2>
             <div className="listPickerWrapper__btnContainer">
-              <input form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${newTicketAuthor}`} disabled={!modalData?.user.domainAdmin} className={`listPicker selected ${!modalData?.user.domainAdmin && "disabled"}`} type="text" value={newTicketAuthor} onChange={e => setNewTicketAuthor(e.target.value)} />
+              <input form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${newTicketAuthor}`} disabled={!modalData?.user.domainAdmin} className={`listPicker selected ${!modalData?.user.domainAdmin && "disabled"}`} type="text" value={newTicketAuthor} onChange={e => setNewTicketAuthor(e.target.value)} autoCapitalize='off' autoComplete='off' spellCheck='false' />
             </div>
           </div>
           <form id="supportForm" autoCapitalize='off' autoComplete='off' spellCheck='false' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addSupportFn(e)}>
