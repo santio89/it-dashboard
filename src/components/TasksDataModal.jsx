@@ -175,7 +175,7 @@ export default function TasksDataModal({ modalData }) {
             <h2>{lang.task}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer">
-              <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
+              <input disabled form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${modalData?.author}`} className={`listPicker disabled selected`} type="text" value={modalData?.author} />
             </div>
           </div>
           <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer disabled'>
@@ -224,7 +224,7 @@ export default function TasksDataModal({ modalData }) {
             <h2>{lang.editTask}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer editMode">
-              <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
+              <input disabled form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${modalData?.author}`} className={`listPicker disabled selected`} type="text" value={modalData?.author} />
             </div>
           </div>
           <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer editMode' disabled={isLoading} onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => editTaskFn(e, modalData)}>
@@ -289,7 +289,7 @@ export default function TasksDataModal({ modalData }) {
             <h2>{lang.deleteTask}</h2>
             <div>ID: <span>{modalData?.id}</span></div>
             <div className="listPickerWrapper__btnContainer deleteMode">
-              <button title={`${lang.author}: ${modalData?.author}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.author}</button>
+              <input disabled form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${modalData?.author}`} className={`listPicker disabled selected`} type="text" value={modalData?.author} />
             </div>
           </div>
           <form autoCapitalize='off' autoComplete='off' spellCheck='false' className='mainModal__data__form taskContainer deleteMode disabled' onKeyDown={(e) => { preventEnterSubmit(e) }} disabled={isLoading} onSubmit={(e) => deleteTdlFn(e, modalData)}>
@@ -336,7 +336,7 @@ export default function TasksDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>{lang.addTask}</h2>
             <div className="listPickerWrapper__btnContainer">
-              <button title={`${lang.author}: ${modalData?.user.email}`} tabIndex={-1} className={`listPicker disabled selected`}>{modalData?.user.email}</button>
+              <input disabled form="supportForm" required placeholder={lang.author} title={`${lang.author}: ${modalData?.author}`} className={`listPicker disabled selected`} type="text" value={modalData?.author} />
             </div>
           </div>
           <form autoCapitalize='off' autoComplete='off' spellCheck='false' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addTdlFn(e)}>
