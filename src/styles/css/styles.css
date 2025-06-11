@@ -1599,7 +1599,7 @@ select:disabled {
   align-items: end;
   gap: 0.25rem;
 }
-.mainModal__titleContainer .listPickerWrapper__btnContainer input {
+.mainModal__titleContainer .listPickerWrapper__btnContainer input.listPicker {
   font-size: 12px;
   color: var(--white);
   padding: 0.25rem 0.5rem;
@@ -1611,22 +1611,22 @@ select:disabled {
   outline: none;
   border: 1px solid var(--main-color-op);
 }
-.mainModal__titleContainer .listPickerWrapper__btnContainer input.editMode {
+.mainModal__titleContainer .listPickerWrapper__btnContainer input.listPicker.editMode {
   border: 1px dashed var(--main-color-mid);
 }
-.mainModal__titleContainer .listPickerWrapper__btnContainer input.editMode:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer input.editMode:focus {
+.mainModal__titleContainer .listPickerWrapper__btnContainer input.listPicker.editMode:hover, .mainModal__titleContainer .listPickerWrapper__btnContainer input.listPicker.editMode:focus {
   border-color: var(--white);
 }
-.mainModal__titleContainer .listPickerWrapper__btnContainer input.deleteMode {
+.mainModal__titleContainer .listPickerWrapper__btnContainer input.listPicker.deleteMode {
   border: 1px dashed var(--red);
 }
-.mainModal__titleContainer .listPickerWrapper__btnContainer input:hover {
+.mainModal__titleContainer .listPickerWrapper__btnContainer input.listPicker:hover {
   border-color: var(--main-color-mid);
 }
-.mainModal__titleContainer .listPickerWrapper__btnContainer input:focus {
+.mainModal__titleContainer .listPickerWrapper__btnContainer input.listPicker:focus {
   border-color: var(--white);
 }
-.mainModal__titleContainer .listPickerWrapper__btnContainer input.disabled {
+.mainModal__titleContainer .listPickerWrapper__btnContainer input.listPicker.disabled {
   pointer-events: none;
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer .listPickerOptions {
