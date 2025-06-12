@@ -1391,10 +1391,7 @@ select:disabled {
 /* spotlight card */
 .card-spotlight {
   position: relative;
-  border-radius: var(--main-radius);
-  background-color: var(--main-color-bg);
   overflow: hidden;
-  color: var(--main-text);
   transition: 200ms ease-in-out, background-color 400ms ease-in-out;
 }
 
@@ -1432,6 +1429,9 @@ select:disabled {
   min-height: 120px;
   aspect-ratio: 16/9;
   border: 1px solid var(--main-gray-dark);
+  border-radius: var(--main-radius);
+  background-color: var(--main-color-bg);
+  color: var(--main-text);
   user-select: none;
   display: flex;
   justify-content: center;
