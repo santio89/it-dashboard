@@ -16,12 +16,14 @@ import Support from "./components/Support";
 import Admin from "./components/Admin";
 import Tasks from "./components/Tasks"
 import NotFound from "./components/NotFound"
+import Cursor from './components/Cursor';
 
 function App() {
   const rootTheme = useRef()
   const user = useSelector(state => state.auth.user)
   const dispatch = useDispatch()
   const [checkUser, setCheckUser] = useState(user ?? null)
+
 
   useEffect(() => {
     if (user) {
@@ -47,6 +49,7 @@ function App() {
   return (
     <>
       <div ref={rootTheme} className={`root-theme`}>
+        <Cursor />
         <Toaster visibleToasts={2} toastOptions={{
           className: 'toaster',
         }} />

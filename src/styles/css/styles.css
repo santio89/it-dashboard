@@ -1497,6 +1497,23 @@ select:disabled {
 }
 
 /* fin spotlight card */
+.cursor {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--spotlight-color);
+  transition: scale 200ms ease;
+  scale: 2;
+  pointer-events: none;
+}
+.cursor.clicked {
+  scale: 1;
+}
+
 /* start modal */
 .mainModalWrapper {
   z-index: 9;
