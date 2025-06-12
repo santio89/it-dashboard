@@ -9,8 +9,8 @@ function Cursor() {
   const [isMouseClicked, setIsMouseClicked] = useState(false)
 
   useEffect(() => {
-    cursor.current.style.left = mousePosition.x - 16 + "px";
-    cursor.current.style.top = mousePosition.y - 16 + "px";
+    cursor.current.style.left = mousePosition.x - 8 + "px";
+    cursor.current.style.top = mousePosition.y - 8 + "px";
   }, [mousePosition])
 
   useEffect(() => {
