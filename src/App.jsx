@@ -19,11 +19,12 @@ import NotFound from "./components/NotFound"
 import Cursor from './components/Cursor';
 
 function App() {
-  const rootTheme = useRef()
   const user = useSelector(state => state.auth.user)
   const dispatch = useDispatch()
   const [checkUser, setCheckUser] = useState(user ?? null)
 
+  const lightTheme = useSelector(state => state.theme.light)
+  const customCursor = useSelector(state => state.theme.cursor)
 
   useEffect(() => {
     if (user) {
@@ -48,15 +49,15 @@ function App() {
 
   return (
     <>
-      <div ref={rootTheme} className={`root-theme`}>
-        <Cursor />
+      <div className={`root-theme ${lightTheme ? "light-theme" : ""} ${customCursor ? "custom-cursor" : ""}`}>
+        {customCursor && <Cursor />}
         <Toaster visibleToasts={2} toastOptions={{
           className: 'toaster',
         }} />
         <Modal />
         <BrowserRouter>
           <Routes>
-            <Route element={<MainContainer rootTheme={rootTheme} user={checkUser} />}>
+            <Route element={<MainContainer user={checkUser} />}>
               <Route path="/" element={<Home />} />
               <Route path="/contacts" element={checkUser ? <Contacts user={checkUser} /> : <PrivateRoute />} />
               <Route path="/devices" element={checkUser ? <Devices user={checkUser} /> : <PrivateRoute />} />

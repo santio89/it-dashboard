@@ -26,10 +26,6 @@ $home-breakpoint-height-2c: 449px;
   box-sizing: border-box;
 }
 
-body:has(dialog:not([open])) * {
-  cursor: none;
-}
-
 :root {
   interpolate-size: allow-keywords;
 
@@ -85,6 +81,32 @@ body:has(dialog:not([open])) * {
   --main-section: rgb(245, 245, 245);
   --main-text: rgb(10, 10, 10);
 }
+
+.custom-cursor {
+  &:has(dialog:not([open])) * {
+    cursor: none;
+  }
+}
+
+/* cursor */
+.cursor {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: var(--spotlight-color);
+  transition: scale 200ms ease;
+  scale: 2;
+  pointer-events: none;
+
+  &.clicked {
+    scale: 1;
+  }
+}
+/* end cursor */
 
 html {
   font-size: 100%;

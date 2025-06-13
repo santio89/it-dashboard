@@ -5,7 +5,7 @@ import Nav from "./Nav";
 import { Outlet } from "react-router";
 import { useTranslation } from "../hooks/useTranslation";
 
-export default function MainContainer({ rootTheme, user }) {
+export default function MainContainer({ user }) {
   const lang = useTranslation()
 
   const sideExpanded = useSelector(state => state.theme.sideExpanded)
@@ -83,7 +83,7 @@ export default function MainContainer({ rootTheme, user }) {
         </button>
       </aside>
       <main className={`main-content ${sideExpanded && "expanded"}`}>
-        <Nav rootTheme={rootTheme} user={user} />
+        <Nav user={user} />
         <div className='site-section'>
           {/* main content */}
           <Outlet />

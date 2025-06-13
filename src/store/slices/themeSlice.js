@@ -4,6 +4,7 @@ const initialState = {
   light: true,
   sideExpanded: true,
   lang: "eng",
+  cursor: false,
   filters: {
     contacts: {
       list: "all",
@@ -37,6 +38,9 @@ const themeSlice = createSlice({
     setLang: (state, action) => {
       state.lang = action.payload.lang
     },
+    setCursor: (state, action) => {
+      state.cursor = action.payload.cursor
+    },
     setFilters: (state, action) => {
       state.filters = {
         ...state.filters,
@@ -52,5 +56,5 @@ const themeSlice = createSlice({
   }
 })
 
-export const { setLight, setSideExpanded, setLang, setFilters } = themeSlice.actions
+export const { setLight, setSideExpanded, setLang, setCursor, setFilters } = themeSlice.actions
 export default themeSlice.reducer
