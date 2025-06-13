@@ -117,6 +117,7 @@
           text-align: center;
           outline: none;
           border: 1px solid var(--main-color-op);
+          cursor: text;
 
           &.editMode {
             border: 1px dashed var(--main-color-mid);
@@ -154,12 +155,11 @@
           padding: 0.25rem 0.5rem;
           font-size: 12px;
           background: transparent;
-          /* width: fit-content;
-          max-width: 25ch; */
           color: var(--white);
           outline: 1px solid transparent;
           outline-offset: -1px;
           color: var(--main-gray);
+          cursor: pointer;
 
           &[disabled] {
             pointer-events: none;

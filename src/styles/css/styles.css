@@ -18,6 +18,10 @@
   box-sizing: border-box;
 }
 
+body:has(dialog:not([open])) * {
+  cursor: none;
+}
+
 :root {
   interpolate-size: allow-keywords;
   --font-primary: geist, monospace, "Courier New", Courier;
@@ -1627,6 +1631,7 @@ select:disabled {
   text-align: center;
   outline: none;
   border: 1px solid var(--main-color-op);
+  cursor: text;
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer input.listPicker.editMode {
   border: 1px dashed var(--main-color-mid);
@@ -1656,12 +1661,11 @@ select:disabled {
   padding: 0.25rem 0.5rem;
   font-size: 12px;
   background: transparent;
-  /* width: fit-content;
-  max-width: 25ch; */
   color: var(--white);
   outline: 1px solid transparent;
   outline-offset: -1px;
   color: var(--main-gray);
+  cursor: pointer;
 }
 .mainModal__titleContainer .listPickerWrapper__btnContainer button.listPicker[disabled] {
   pointer-events: none;

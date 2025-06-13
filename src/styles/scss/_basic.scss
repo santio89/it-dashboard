@@ -26,6 +26,10 @@ $home-breakpoint-height-2c: 449px;
   box-sizing: border-box;
 }
 
+body:has(dialog:not([open])) * {
+  cursor: none;
+}
+
 :root {
   interpolate-size: allow-keywords;
 
