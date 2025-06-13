@@ -62,7 +62,7 @@
 }
 
 .custom-cursor:has(dialog:not([open])) * {
-  cursor: none;
+  cursor: none !important;
 }
 
 /* cursor */
