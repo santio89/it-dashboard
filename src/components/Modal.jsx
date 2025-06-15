@@ -11,6 +11,7 @@ import SupportDataModal from './SupportDataModal';
 export default function Modal() {
   const dispatch = useDispatch()
   const modal = useRef()
+  const innerModal = useRef()
   const modalActive = useSelector(state => state.modal.active)
   const modalData = useSelector(state => state.modal.data)
   const [isDragged, setIsDragged] = useState(false)
@@ -19,7 +20,8 @@ export default function Modal() {
 
   useEffect(() => {
     const closeModalClick = (e) => {
-      if (e.target === modal.current) {
+      console.log(e.target)
+      if (!innerModal.current.contains(e.target)) {
         dispatch(setModal({ active: false, data: {} }))
       }
     }
@@ -32,9 +34,6 @@ export default function Modal() {
     }
 
     if (modalActive) {
-      /* close popovers */
-      modal.current.click()
-
       /* close modal */
       document.addEventListener("mousedown", closeModalClick)
       document.addEventListener("keydown", closeModalEsc)
@@ -71,7 +70,7 @@ export default function Modal() {
       onStart={() => { setIsDragged(true) }}
       onStop={() => { setIsDragged(false) }} >
       <dialog className={`mainModalWrapper ${isDragged && "is-dragged"}`} ref={modal} tabIndex={0}>
-        <div className="mainModal">
+        <div ref={innerModal} className="mainModal">
           <div className="mainModal__data">
             {modalData?.modalType === "ContactsDataModal" && <ContactsDataModal modalData={modalData} />}
 

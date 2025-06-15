@@ -2,6 +2,7 @@
 .mainModalWrapper {
   z-index: 9;
   position: fixed;
+  inset: 0;
   margin: auto;
   min-width: 600px;
   width: 600px;
@@ -16,6 +17,7 @@
   height: fit-content;
   max-height: 90%;
   border-radius: var(--main-radius);
+  overflow: hidden;
 
   &:has(form.editMode) {
     border: 1px dashed var(--main-color-mid);
