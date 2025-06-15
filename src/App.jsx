@@ -50,7 +50,6 @@ function App() {
   return (
     <>
       <div className={`root-theme ${lightTheme ? "light-theme" : ""} ${customCursor ? "custom-cursor" : ""}`}>
-        {customCursor && <Cursor />}
         <Toaster visibleToasts={2} toastOptions={{
           className: 'toaster',
         }} />
@@ -68,6 +67,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        {customCursor && <Cursor />}
       </div>
     </>
   )
