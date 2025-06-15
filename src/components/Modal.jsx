@@ -20,7 +20,6 @@ export default function Modal() {
 
   useEffect(() => {
     const closeModalClick = (e) => {
-      console.log(e.target)
       if (!innerModal.current.contains(e.target)) {
         dispatch(setModal({ active: false, data: {} }))
       }
