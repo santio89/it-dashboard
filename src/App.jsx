@@ -1,9 +1,9 @@
 import './styles/css/styles.css'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router";
 import MainContainer from './components/MainContainer';
 import Modal from './components/Modal'
-import { firebaseOnAuthStateChanged, firebaseAuth, firebaseDb, firebaseOnSnapshot, firebaseDoc } from './config/firebase';
+import { firebaseOnAuthStateChanged, firebaseAuth } from './config/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './store/slices/authSlice';
 import { domainCheck, adminCheck } from './utils/domainCheck';
