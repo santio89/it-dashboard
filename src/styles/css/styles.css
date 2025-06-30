@@ -1,25 +1,9 @@
-@font-face {
-  font-family: geist;
-  src: url(../../assets/fonts/GeistVF.woff);
+@property --spotlight-size {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 20%;
 }
-@view-transition {
-  navigation: auto;
-}
-::view-transition-group(*) {
-  animation-duration: 250ms;
-  animation-timing-function: ease-in-out;
-}
-
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 :root {
-  interpolate-size: allow-keywords;
   --font-primary: geist, monospace, "Courier New", Courier;
   --main-container-size: 1200px;
   --aside-small-size: 70px;
@@ -50,40 +34,36 @@
   --spotlight-color: var(--main-color-op);
 }
 
-@property --spotlight-size {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 20%;
-}
 .light-theme {
   --main-color-bg: rgb(245, 245, 245);
   --main-section: rgb(245, 245, 245);
   --main-text: rgb(10, 10, 10);
 }
 
-.custom-cursor:has(dialog:not([open])) * {
-  cursor: none !important;
+@font-face {
+  font-family: geist;
+  src: url(../../assets/fonts/GeistVF.woff);
+}
+@view-transition {
+  navigation: auto;
+}
+::view-transition-group(*) {
+  animation-duration: 250ms;
+  animation-timing-function: ease-in-out;
 }
 
-/* cursor */
-.cursor {
-  position: fixed;
-  z-index: 99;
-  top: 0;
-  left: 0;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  background-color: var(--spotlight-color);
-  transition: scale 200ms ease;
-  scale: 2;
-  pointer-events: none;
-}
-.cursor.clicked {
-  scale: 1;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* end cursor */
+:root {
+  interpolate-size: allow-keywords;
+}
+
 html {
   font-size: 100%;
   scroll-behavior: smooth;
@@ -106,16 +86,51 @@ html ::selection {
   background: var(--main-color-light);
 }
 
-#root {
-  isolation: isolate;
-}
-
 body {
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
   font-family: var(--font-primary);
   line-height: 1.4;
   color: var(--white);
+}
+
+#root {
+  isolation: isolate;
+}
+
+/*layout */
+.root-theme {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+  font-weight: 400;
+  overflow: hidden;
+  transition: background-color 400ms ease-in-out, color 200ms ease-in-out;
+  padding: calc(var(--main-section-spacing) / 2) calc(var(--main-section-spacing) / 2);
+  background-color: var(--main-color-bg);
+  background-image: radial-gradient(var(--main-gray-darker-op) 1px, transparent 1px);
+  background-size: 8px 8px;
+  background-position: 0% 0%;
+  transition: background-color 400ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  /* css-pattern */
+  /* --s: 48px;
+  --c1: var(--main-color);
+  --c2: var(--main-color-light);
+
+  --c:var(--c1) 0 25%,#0000 0;
+  --p:0 0/calc(3*var(--s)) calc(2*var(--s));
+  background:
+    conic-gradient(from -45deg at 75% 62.5%,var(--c)) var(--p),
+    conic-gradient(from 135deg at 25% 37.5%,var(--c)) var(--p),
+    repeating-conic-gradient(from 90deg,var(--c),var(--c2) 0 50%)
+     0 0/var(--s) var(--s); */
+  /* fin css-pattern */
 }
 
 img,
@@ -243,49 +258,26 @@ select:disabled {
   font-style: italic;
 }
 
-/*layout */
-.root-theme {
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  max-height: 100vh;
-  max-height: 100dvh;
-  font-weight: 400;
-  overflow: hidden;
-  transition: background-color 400ms ease-in-out, color 200ms ease-in-out;
-  padding: calc(var(--main-section-spacing) / 2) calc(var(--main-section-spacing) / 2);
-  background-color: var(--main-color-bg);
-  background-image: radial-gradient(var(--main-gray-darker-op) 1px, transparent 1px);
-  background-size: 8px 8px;
-  background-position: 0% 0%;
-  transition: background-color 400ms ease-in-out;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  /* css-pattern */
-  /* --s: 48px;
-  --c1: var(--main-color);
-  --c2: var(--main-color-light);
-
-  --c:var(--c1) 0 25%,#0000 0;
-  --p:0 0/calc(3*var(--s)) calc(2*var(--s));
-  background:
-    conic-gradient(from -45deg at 75% 62.5%,var(--c)) var(--p),
-    conic-gradient(from 135deg at 25% 37.5%,var(--c)) var(--p),
-    repeating-conic-gradient(from 90deg,var(--c),var(--c2) 0 50%)
-     0 0/var(--s) var(--s); */
-  /* fin css-pattern */
+/* cursor */
+.custom-cursor:has(dialog:not([open])) * {
+  cursor: none !important;
 }
 
-/* main container */
-.mainContainer {
-  width: 100%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
+.cursor {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: var(--spotlight-color);
+  transition: scale 200ms ease;
+  scale: 2;
+  pointer-events: none;
+}
+.cursor.clicked {
+  scale: 1;
 }
 
 /* loader */
