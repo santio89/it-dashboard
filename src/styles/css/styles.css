@@ -432,7 +432,7 @@ select:disabled {
   background-color: var(--main-color-op-light);
 }
 .mainHeader__btnContainer .dropdownWrapper button:hover svg, .mainHeader__btnContainer .dropdownWrapper button:focus-visible svg {
-  filter: drop-shadow(0 0 0.4px currentColor);
+  filter: drop-shadow(0 0 0.5px currentColor);
 }
 .mainHeader__btnContainer .dropdownWrapper .langWrapper {
   display: flex;
@@ -553,18 +553,18 @@ select:disabled {
 }
 .mainContainer .side-panel__opts a.active {
   background-color: var(--main-color-op-light);
-  text-shadow: 0 0 0.4px currentColor;
+  text-shadow: 0 0 0.5px currentColor;
 }
 .mainContainer .side-panel__opts a.active svg {
-  filter: drop-shadow(0 0 0.4px currentColor);
+  filter: drop-shadow(0 0 0.5px currentColor);
 }
 .mainContainer .side-panel__opts a:hover, .mainContainer .side-panel__opts a:focus-visible {
   background-color: var(--main-color-op-light);
-  text-shadow: 0 0 0.4px currentColor;
+  text-shadow: 0 0 0.5px currentColor;
   z-index: 1;
 }
 .mainContainer .side-panel__opts a:hover svg, .mainContainer .side-panel__opts a:focus-visible svg {
-  filter: drop-shadow(0 0 0.4px currentColor);
+  filter: drop-shadow(0 0 0.5px currentColor);
 }
 .mainContainer .side-panel button.side-toggle,
 .mainContainer .side-panel a.side-toggle {
@@ -596,7 +596,7 @@ select:disabled {
 .mainContainer .side-panel button.side-toggle:hover svg, .mainContainer .side-panel button.side-toggle:focus-visible svg,
 .mainContainer .side-panel a.side-toggle:hover svg,
 .mainContainer .side-panel a.side-toggle:focus-visible svg {
-  filter: drop-shadow(0 0 0.4px currentColor);
+  filter: drop-shadow(0 0 0.5px currentColor);
 }
 .mainContainer .side-panel button.side-toggle.expanded svg,
 .mainContainer .side-panel a.side-toggle.expanded svg {
@@ -797,13 +797,13 @@ select:disabled {
   max-height: 24px;
 }
 .site-section__list .sortBtn button:hover svg {
-  filter: drop-shadow(0 0 0.4px currentColor);
+  filter: drop-shadow(0 0 0.5px currentColor);
 }
 .site-section__list .sortBtn button:focus-visible {
   outline: 1px solid var(--main-text);
 }
 .site-section__list .sortBtn button:focus-visible svg {
-  filter: drop-shadow(0 0 0.4px currentColor);
+  filter: drop-shadow(0 0 0.5px currentColor);
 }
 .site-section__list .sortBtn button[disabled] {
   pointer-events: none;

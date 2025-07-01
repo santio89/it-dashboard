@@ -91,21 +91,21 @@
 
         &.active {
           background-color: var(--main-color-op-light);
-          text-shadow: 0 0 0.4px currentColor;
+          text-shadow: 0 0 0.5px currentColor;
 
           svg {
-            filter: drop-shadow(0 0 0.4px currentColor);
+            filter: drop-shadow(0 0 0.5px currentColor);
           }
         }
 
         &:hover,
         &:focus-visible {
           background-color: var(--main-color-op-light);
-          text-shadow: 0 0 0.4px currentColor;
+          text-shadow: 0 0 0.5px currentColor;
           z-index: 1;
 
           svg {
-            filter: drop-shadow(0 0 0.4px currentColor);
+            filter: drop-shadow(0 0 0.5px currentColor);
           }
         }
       }
@@ -138,7 +138,7 @@
         background-color: var(--main-color-op-light);
 
         svg {
-          filter: drop-shadow(0 0 0.4px currentColor);
+          filter: drop-shadow(0 0 0.5px currentColor);
         }
       }
 
