@@ -118,19 +118,6 @@ body {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  /* css-pattern */
-  /* --s: 48px;
-  --c1: var(--main-color);
-  --c2: var(--main-color-light);
-
-  --c:var(--c1) 0 25%,#0000 0;
-  --p:0 0/calc(3*var(--s)) calc(2*var(--s));
-  background:
-    conic-gradient(from -45deg at 75% 62.5%,var(--c)) var(--p),
-    conic-gradient(from 135deg at 25% 37.5%,var(--c)) var(--p),
-    repeating-conic-gradient(from 90deg,var(--c),var(--c2) 0 50%)
-     0 0/var(--s) var(--s); */
-  /* fin css-pattern */
 }
 
 img,
@@ -169,8 +156,11 @@ option {
   text-wrap: balance;
   color: var(--main-text);
   outline-offset: 0;
-  transition: color 200ms ease-in-out, background-color 200ms ease-in-out, outline-color 200ms ease-in-out, border-color 200ms ease-in-out, filter 200ms ease-in-out;
   border-radius: var(--main-radius);
+  transition: 200ms ease-in-out;
+  /* transition: color 200ms ease-in-out, background-color 200ms ease-in-out,
+    outline-color 200ms ease-in-out, border-color 200ms ease-in-out,
+    text-shadow 200ms ease-in-out, filter 200ms ease-in-out; */
 }
 button:hover, button:focus-visible,
 a:hover,
@@ -200,10 +190,9 @@ button {
 
 /* text */
 p {
-  overflow-wrap: break-word;
   text-wrap: pretty;
-  font-size: 1rem;
-  transition: color 200ms ease-in-out;
+  overflow-wrap: break-word;
+  transition: 200ms ease-in-out;
 }
 
 h1,
@@ -212,8 +201,9 @@ h3,
 h4,
 h5,
 h6 {
-  overflow-wrap: break-word;
   text-wrap: balance;
+  overflow-wrap: break-word;
+  transition: 200ms ease-in-out;
 }
 
 /* inputs */
@@ -1504,12 +1494,10 @@ select:disabled {
   font-size: clamp(1.5rem, 1.5rem + 2vw, 2rem);
   font-weight: 700;
   text-transform: uppercase;
-  transition: 200ms text-shadow ease-in-out;
 }
 .homeCard__link p {
   font-size: 1rem;
   font-weight: 400;
-  transition: 200ms text-shadow ease-in-out;
 }
 
 /* fin spotlight card */

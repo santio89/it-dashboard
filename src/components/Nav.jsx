@@ -89,7 +89,7 @@ export default function Nav({ user }) {
 
   return (
     <header className="mainHeader">
-      <div className="logo" >{navTitle()}</div>
+      <h1 className="logo" >{navTitle()}</h1>
       <div className="mainHeader__btnContainer">
         <div className="btnWrapper">
           <button aria-label="Dark/Light Mode" onClick={toggleLight} onAnimationEnd={() => setThemeClicked(false)}>
