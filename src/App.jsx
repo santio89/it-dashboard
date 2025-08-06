@@ -16,7 +16,6 @@ import Support from "./components/Support";
 import Admin from "./components/Admin";
 import Tasks from "./components/Tasks"
 import NotFound from "./components/NotFound"
-import Cursor from './components/Cursor';
 
 function App() {
   const user = useSelector(state => state.auth.user)
@@ -24,7 +23,6 @@ function App() {
   const [checkUser, setCheckUser] = useState(user ?? null)
 
   const lightTheme = useSelector(state => state.theme.light)
-  const customCursor = useSelector(state => state.theme.cursor)
 
   useEffect(() => {
     if (user) {
@@ -49,7 +47,7 @@ function App() {
 
   return (
     <>
-      <div className={`root-theme ${lightTheme ? "light-theme" : ""} ${customCursor ? "custom-cursor" : ""}`}>
+      <div className={`root-theme ${lightTheme ? "light-theme" : ""}`}>
         <BrowserRouter>
           <Routes>
             <Route element={<MainContainer user={checkUser} />}>
@@ -67,7 +65,6 @@ function App() {
         <Toaster visibleToasts={2} toastOptions={{
           className: 'toaster',
         }} />
-        {customCursor && <Cursor />}
       </div>
     </>
   )

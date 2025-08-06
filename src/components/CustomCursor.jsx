@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 
-function Cursor() {
+function CustomCursor() {
   const cursor = useRef()
   const [mousePosition, setMousePosition] = useState({
     x: 0,
@@ -35,4 +35,24 @@ function Cursor() {
   )
 }
 
-export default Cursor
+export default CustomCursor
+
+
+/* .cursor {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: var(--spotlight-color);
+  transition: scale 200ms ease;
+  scale: 2;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+
+  &.clicked {
+    scale: 1;
+  }
+} */

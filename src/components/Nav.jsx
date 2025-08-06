@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { setLight, setLang, setCursor } from "../store/slices/themeSlice"
+import { setLight, setLang } from "../store/slices/themeSlice"
 import { setModal } from "../store/slices/modalSlice"
 import { useLocation } from "react-router"
 import { useEffect, useState } from "react"
@@ -16,7 +16,6 @@ export default function Nav({ user }) {
   const dispatch = useDispatch()
   const lightTheme = useSelector(state => state.theme.light)
   const langTheme = useSelector(state => state.theme.lang)
-  const customCursor = useSelector(state => state.theme.cursor)
   const [themeClicked, setThemeClicked] = useState(false)
   const [signGoogle, resultSignInGoogle] = useSignGoogleMutation()
   const [signOut, resultSignOut] = useSignOutMutation()
@@ -30,10 +29,6 @@ export default function Nav({ user }) {
 
   const toggleLang = (lang) => {
     dispatch(setLang({ lang: lang }))
-  }
-
-  const toggleCursor = () => {
-    dispatch(setCursor({ cursor: !customCursor }))
   }
 
   const logInGoogle = async () => {
@@ -124,11 +119,6 @@ export default function Nav({ user }) {
                 >ESP</button>
                 <button tabIndex={profileOpts ? 0 : -1} className={langTheme === "eng" && "selected"} onClick={() => toggleLang("eng")}>
                   ENG
-                </button>
-              </div>
-              <div className="langWrapper">
-                <button tabIndex={profileOpts ? 0 : -1} className={customCursor && "selected"} onClick={() => toggleCursor()}>
-                  {lang.customCursor.toUpperCase()}
                 </button>
               </div>
               {
