@@ -51,7 +51,7 @@ export default function Modal() {
     }
 
     return () => {
-      document.removeEventListener("click", closeModalClick);
+      document.removeEventListener("mousedown", closeModalClick);
       document.removeEventListener("keydown", closeModalEsc);
     }
   }, [modalActive])
