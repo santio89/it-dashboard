@@ -33,28 +33,21 @@ export default function Modal() {
     }
 
     if (modalActive) {
-      /* close modal */
+      /* close modal listener */
       document.addEventListener("mousedown", closeModalClick)
       document.addEventListener("keydown", closeModalEsc)
 
       try {
         document.startViewTransition(() => {
           modal.current.showModal()
-          modal.current.scrollTop = 0;
         });
       } catch {
         modal.current.showModal()
-        modal.current.scrollTop = 0;
       }
     } else {
+      /* scroll modal top */
+      innerModal.current.scrollTop = 0;
       modal.current.close()
-      /* try {
-        document.startViewTransition(() => {
-          modal.current.close()
-        });
-      } catch {
-        modal.current.close()
-      } */
     }
 
     return () => {
