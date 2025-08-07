@@ -8,7 +8,7 @@ import { useTranslation } from '../hooks/useTranslation'
 import Dropdown from "./Dropdown"
 import { toast } from "sonner"
 
-const sections = ["/", "/home", "/about", "/contacts", "/devices", "/tasks", "/support", "/admin"]
+const sections = ["/", "/home", "/about", "/contacts", "/devices", "/tasks", "/support", "/ai", "/admin"]
 
 export default function Nav({ user }) {
   const lang = useTranslation()
