@@ -1,5 +1,6 @@
 const lang = {
   eng: {
+    add: "Add",
     addContact: "Add contact",
     addDevice: "Add device",
     addTask: "Add task",
@@ -121,6 +122,7 @@ const lang = {
     youMust: "You must"
   },
   esp: {
+    add: "Añadir",
     addContact: "Añadir contacto",
     addDevice: "Añadir dispositivo",
     addTask: "Añadir tarea",

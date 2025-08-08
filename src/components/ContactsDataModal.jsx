@@ -164,7 +164,7 @@ export default function ContactsDataModal({ modalData }) {
       localTime: contact.localTime
     }
 
-    const { modalType, contactData, createdAt, updatedAt, ...oldContact } = contact
+    const { modalType, createdAt, updatedAt, ...oldContact } = contact
 
     const contactEquality = objectEquality(oldContact, newContact)
 
@@ -248,7 +248,7 @@ export default function ContactsDataModal({ modalData }) {
 
   return (
     <>
-      {modalData?.contactData && !editMode && !deleteMode &&
+      {!editMode && !deleteMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.contact}</h2>
@@ -310,7 +310,7 @@ export default function ContactsDataModal({ modalData }) {
         </>
       }
 
-      {modalData?.contactData && editMode &&
+      {editMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.editContact}</h2>
@@ -392,7 +392,7 @@ export default function ContactsDataModal({ modalData }) {
         </>
       }
 
-      {modalData?.contactData && deleteMode &&
+      {deleteMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.deleteContact}</h2>
@@ -454,7 +454,7 @@ export default function ContactsDataModal({ modalData }) {
         </>
       }
 
-      {modalData?.newContact &&
+      {modalData?.new &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.addContact}</h2>

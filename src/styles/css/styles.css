@@ -681,7 +681,7 @@ select:disabled {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: end;
   position: relative;
 }
 .site-section .btnWrapper button {
@@ -695,9 +695,9 @@ select:disabled {
 .site-section .btnWrapper button.listPicker {
   padding: 0.25rem 0.5rem;
   font-size: 12px;
-  position: absolute;
+  /* position: absolute;
   bottom: 0;
-  right: 0;
+  right: 0; */
 }
 .site-section .btnWrapper button.listPicker:hover, .site-section .btnWrapper button.listPicker:focus-visible, .site-section .btnWrapper button.listPicker.selected {
   background-color: var(--main-color-op-light);

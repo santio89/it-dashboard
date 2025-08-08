@@ -373,7 +373,7 @@ export default function SupportDataModal({ modalData }) {
         </>
       }
       {
-        modalData?.newTicket &&
+        modalData?.new &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.addTicket}</h2>

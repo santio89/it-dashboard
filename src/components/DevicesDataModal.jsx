@@ -453,7 +453,7 @@ export default function DevicesDataModal({ modalData }) {
         </>
       }
 
-      {modalData?.newDevice &&
+      {modalData?.new &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.addDevice}</h2>

@@ -331,7 +331,7 @@ export default function TasksDataModal({ modalData }) {
         </>
       }
       {
-        modalData?.newTask &&
+        modalData?.new &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.addTask}</h2>

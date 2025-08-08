@@ -17,6 +17,7 @@ import AIBot from './components/AIBot';
 import Admin from "./components/Admin";
 import Tasks from "./components/Tasks"
 import NotFound from "./components/NotFound"
+import MainSection from './components/MainSection';
 
 function App() {
   const user = useSelector(state => state.auth.user)
@@ -53,10 +54,10 @@ function App() {
           <Routes>
             <Route element={<MainContainer user={checkUser} />}>
               <Route path="/" element={<Home />} />
-              <Route path="/contacts" element={checkUser ? <Contacts user={checkUser} /> : <PrivateRoute />} />
-              <Route path="/devices" element={checkUser ? <Devices user={checkUser} /> : <PrivateRoute />} />
-              <Route path="/tasks" element={checkUser ? <Tasks user={checkUser} /> : <PrivateRoute />} />
-              <Route path="/support" element={checkUser ? <Support user={checkUser} /> : <PrivateRoute />} />
+              <Route path="/contacts" element={checkUser ? <MainSection user={checkUser} section={"contacts"} /> : <PrivateRoute />} />
+              <Route path="/devices" element={checkUser ? <MainSection user={checkUser} section={"devices"} /> : <PrivateRoute />} />
+              <Route path="/tasks" element={checkUser ? <MainSection user={checkUser} section={"tasks"} /> : <PrivateRoute />} />
+              <Route path="/support" element={checkUser ? <MainSection user={checkUser} section={"support"} /> : <PrivateRoute />} />
               <Route path="/ai" element={checkUser ? <AIBot user={checkUser} /> : <PrivateRoute />} />
               <Route path="/admin" element={checkUser ? <Admin user={checkUser} /> : <PrivateRoute />} />
               <Route path="/*" element={<NotFound />} />
