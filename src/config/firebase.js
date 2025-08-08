@@ -27,4 +27,4 @@ export const firebaseBrowserLocalPersistence = browserLocalPersistence
 export const firebaseOnAuthStateChanged = onAuthStateChanged
 export const firebaseOnSnapshot = onSnapshot
 export const firebaseDoc = doc
-export const firebaseAI = getGenerativeModel(getAI(firebaseApp, { backend: new GoogleAIBackend() }), { model: "gemini-2.5-flash" });
+export const firebaseAI = getGenerativeModel(getAI(firebaseApp, { backend: new GoogleAIBackend() }), { model: "gemini-1.5-flash" });
