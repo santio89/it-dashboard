@@ -78,7 +78,7 @@ export default function DevicesDataModal({ modalData }) {
       category: newDeviceCategory,
       localId: crypto.randomUUID().replace(/-/g, ''),
       localTime: Date.now(),
-      userId: modalData.userId
+      userId: modalData.user.uid
     }
 
 
@@ -96,7 +96,7 @@ export default function DevicesDataModal({ modalData }) {
       dispatch(setModal({ active: false, data: {} }))
       toast(`${lang.addingDevice}...`)
 
-      const res = await addDevice({ ...newDevice, userId: modalData.userId })
+      const res = await addDevice({ ...newDevice, userId: modalData.user.uid })
 
       toast.message(lang.deviceAdded, {
         description: `ID: ${res.data.id}`,
@@ -189,7 +189,7 @@ export default function DevicesDataModal({ modalData }) {
         dispatch(setModal({ active: false, data: {} }))
         toast(`${lang.editingDevice}...`)
 
-        const res = await editDevice({ ...newDevice, userId: modalData.userId })
+        const res = await editDevice({ ...newDevice, userId: modalData.user.uid })
 
         toast.message(lang.deviceEdited, {
           description: `ID: ${res.data.id}`,
@@ -250,7 +250,7 @@ export default function DevicesDataModal({ modalData }) {
 
   return (
     <>
-      {modalData?.deviceData && !editMode && !deleteMode &&
+      {!editMode && !deleteMode && !modalData?.new &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.device}</h2>
@@ -312,7 +312,7 @@ export default function DevicesDataModal({ modalData }) {
         </>
       }
 
-      {modalData?.deviceData && editMode &&
+      {editMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.editDevice}</h2>
@@ -391,7 +391,7 @@ export default function DevicesDataModal({ modalData }) {
         </>
       }
 
-      {modalData?.deviceData && deleteMode &&
+      {deleteMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.deleteDevice}</h2>

@@ -64,6 +64,8 @@ export default function SupportDataModal({ modalData }) {
       authorId: modalData?.user.uid,
       localId: crypto.randomUUID().replace(/-/g, ''),
       localTime: Date.now(),
+      userId: modalData.user.uid,
+      userEmail: modalData.user.email
     }
 
     dispatch(setModal({ active: false, data: {} }))
@@ -188,7 +190,7 @@ export default function SupportDataModal({ modalData }) {
   return (
     <>
       {
-        modalData?.supportData && !editMode && !deleteMode &&
+        !editMode && !deleteMode && !modalData?.new &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.ticket}</h2>
@@ -246,7 +248,7 @@ export default function SupportDataModal({ modalData }) {
       }
       {/* edit mode */}
       {
-        modalData?.supportData && editMode &&
+        editMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.editTicket}</h2>
@@ -318,7 +320,7 @@ export default function SupportDataModal({ modalData }) {
       }
       {/* delete mode */}
       {
-        modalData?.supportData && deleteMode &&
+        deleteMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.deleteTicket}</h2>

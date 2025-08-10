@@ -24,7 +24,6 @@ export default function MainSection({ user, section }) {
     tasks: useGetTdlNextQuery,
     support: useGetSupportNextQuery
   }
-
   const {
     data: { [section === "support" ? "tickets" : section]: data, lastVisible: dataLastVisible } = {},
     isLoading: isLoadingData,
@@ -58,14 +57,14 @@ export default function MainSection({ user, section }) {
   return (
     <>
       <div className="site-section__inner site-section__list">
-        <SectionBtnWrapper section={section} user={user} data={data} isLoadingData={isLoadingData} setDataList={setDataList} />
+        <SectionBtnWrapper section={section} user={user} data={data} isLoadingData={isLoadingData} isFetchingData={isFetchingData} setDataList={setDataList} />
 
-        <SectionDataList section={section} user={user} data={data} dataList={dataList} isLoadingData={isLoadingData} handleRefetch={handleRefetch} dataLastVisible={dataLastVisible} firstLoad={firstLoad} />
+        <SectionDataList section={section} user={user} data={data} dataList={dataList} isLoadingData={isLoadingData} isFetchingData={isFetchingData} handleRefetch={handleRefetch} dataLastVisible={dataLastVisible} firstLoad={firstLoad} />
       </div>
       <div className="site-section__inner site-section__chart">
         <SectionChartBtnWrapper section={section} isLoadingData={isLoadingData} />
 
-        <SectionChartList section={section} data={data} dataList={dataList} isLoadingData={isLoadingData} firstLoad={firstLoad} />
+        <SectionChartList section={section} data={data} dataList={dataList} isLoadingData={isLoadingData} isFetchingData={isFetchingData} firstLoad={firstLoad} />
       </div>
     </>
   )

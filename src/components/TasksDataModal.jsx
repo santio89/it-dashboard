@@ -55,13 +55,14 @@ export default function TasksDataModal({ modalData }) {
       authorId: modalData?.user.uid,
       localId: crypto.randomUUID().replace(/-/g, ''),
       localTime: Date.now(),
+      userId: modalData.user.uid
     }
 
     dispatch(setModal({ active: false, data: {} }))
 
     try {
       toast(`${lang.addingTask}...`)
-      const res = await addTdl({ ...newTask, userId: modalData.userId })
+      const res = await addTdl({ ...newTask, userId: modalData.user.uid })
       toast.message(lang.taskAdded, {
         description: `ID: ${res.data.id}`,
       });
@@ -169,7 +170,7 @@ export default function TasksDataModal({ modalData }) {
   return (
     <>
       {
-        modalData?.tasksData && !editMode && !deleteMode &&
+        !editMode && !deleteMode && !modalData?.new &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.task}</h2>
@@ -218,7 +219,7 @@ export default function TasksDataModal({ modalData }) {
       }
       {/* edit mode */}
       {
-        modalData?.tasksData && editMode &&
+        editMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.editTask}</h2>
@@ -283,7 +284,7 @@ export default function TasksDataModal({ modalData }) {
       }
       {/* delete mode */}
       {
-        modalData?.tasksData && deleteMode &&
+        deleteMode &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.deleteTask}</h2>

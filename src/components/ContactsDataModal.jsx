@@ -78,7 +78,7 @@ export default function ContactsDataModal({ modalData }) {
       category: newUserCategory,
       localId: crypto.randomUUID().replace(/-/g, ''),
       localTime: Date.now(),
-      userId: modalData.userId
+      userId: modalData.user.uid
     }
 
     try {
@@ -188,7 +188,7 @@ export default function ContactsDataModal({ modalData }) {
         dispatch(setModal({ active: false, data: {} }))
         toast(`${lang.editingContact}...`)
 
-        const res = await editContact({ ...newContact, userId: modalData.userId })
+        const res = await editContact({ ...newContact, userId: modalData.user.uid })
 
         toast.message(lang.contactEdited, {
           description: `ID: ${res.data.id}`,
@@ -248,7 +248,7 @@ export default function ContactsDataModal({ modalData }) {
 
   return (
     <>
-      {!editMode && !deleteMode &&
+      {!editMode && !deleteMode && !modalData?.new &&
         <>
           <div className="mainModal__titleContainer">
             <h2>{lang.contact}</h2>

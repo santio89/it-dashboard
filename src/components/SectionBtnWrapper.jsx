@@ -65,7 +65,7 @@ function SectionBtnWrapper({ section, user, data, isLoadingData, setDataList }) 
     <>
       <div className="btnWrapper">
         <button disabled={isLoadingData} onClick={() => {
-          dispatch(setModal({ active: true, data: { modalType: `${section.charAt(0).toUpperCase() + section.slice(1)}DataModal`, new: true, userId: user?.uid } }))
+          dispatch(setModal({ active: true, data: { modalType: `${section === "support" ? "Support" : section.charAt(0).toUpperCase() + section.slice(1)}DataModal`, new: true, user: user } }))
         }}>+ {lang.add} {section === "support" ? "ticket" : lang[section].slice(0, -1).toLowerCase()}</button>
 
         <button disabled={isLoadingData} className={`listPicker ${listPickerOpen && "selected"}`} onClick={() => setListPickerOpen(listPickerOpen => !listPickerOpen)}>{lang.filter}</button>
