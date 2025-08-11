@@ -31,9 +31,9 @@ export default function MainSection({ user, section }) {
     isSuccess: isSuccessData,
     isError: isErrorData,
     error: errorData,
-  } = queries[section](user?.uid);
+  } = queries[section](section === "support" ? user?.email : user?.uid);
 
-  queriesNext[section]({ userId: user?.uid, lastVisible });
+  queriesNext[section]({ userId: user?.uid, userEmail: user?.email, lastVisible });
 
   const handleRefetch = () => {
     setLastVisible(dataLastVisible)

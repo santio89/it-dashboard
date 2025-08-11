@@ -27,8 +27,6 @@ export default function SupportDataModal({ modalData }) {
   const [editMode, setEditMode] = useState(false)
   const [deleteMode, setDeleteMode] = useState(false)
 
-  const [listPickerOpen, setListPickerOpen] = useState(false)
-
   const [deleteSupport, resultDeleteSupport] = useDeleteSupportMutation()
   const [editSupport, resultEditSupport] = useEditSupportMutation()
 

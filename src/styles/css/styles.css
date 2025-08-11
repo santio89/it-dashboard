@@ -844,14 +844,14 @@ select:disabled {
   box-shadow: -2px 0 0 0 var(--main-color);
   font-weight: 500;
 }
-.site-section__list .listWrapper ul.tdl-list, .site-section__list .listWrapper ul.support-list {
+.site-section__list .listWrapper ul.tasks-list {
   display: flex;
   justify-content: start;
   align-items: stretch;
   flex-direction: column;
   gap: 1rem;
 }
-.site-section__list .listWrapper ul.tdl-list li, .site-section__list .listWrapper ul.support-list li {
+.site-section__list .listWrapper ul.tasks-list li {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -861,36 +861,36 @@ select:disabled {
   box-shadow: -2px 0 0 0 transparent;
 }
 @starting-style {
-  .site-section__list .listWrapper ul.tdl-list li.firstLoad, .site-section__list .listWrapper ul.support-list li.firstLoad {
+  .site-section__list .listWrapper ul.tasks-list li.firstLoad {
     opacity: 0.1;
   }
 }
-.site-section__list .listWrapper ul.tdl-list li.selectedLow, .site-section__list .listWrapper ul.support-list li.selectedLow {
+.site-section__list .listWrapper ul.tasks-list li.selectedLow {
   box-shadow: -2px 0 0 0 var(--main-gray-dark);
 }
-.site-section__list .listWrapper ul.tdl-list li.selectedMedium, .site-section__list .listWrapper ul.support-list li.selectedMedium {
+.site-section__list .listWrapper ul.tasks-list li.selectedMedium {
   box-shadow: -2px 0 0 0 var(--main-color);
 }
-.site-section__list .listWrapper ul.tdl-list li.selectedHigh, .site-section__list .listWrapper ul.support-list li.selectedHigh {
+.site-section__list .listWrapper ul.tasks-list li.selectedHigh {
   box-shadow: -2px 0 0 0 var(--red);
 }
-.site-section__list .listWrapper ul.tdl-list li:has(.tdl-btnContainer), .site-section__list .listWrapper ul.support-list li:has(.tdl-btnContainer) {
+.site-section__list .listWrapper ul.tasks-list li:has(.tdl-btnContainer) {
   overflow: hidden;
 }
-.site-section__list .listWrapper ul.tdl-list li:has(button[disabled]), .site-section__list .listWrapper ul.support-list li:has(button[disabled]) {
+.site-section__list .listWrapper ul.tasks-list li:has(button[disabled]) {
   filter: grayscale(0.5);
   pointer-events: none;
 }
-.site-section__list .listWrapper ul.tdl-list li:has(.taskCompleted), .site-section__list .listWrapper ul.support-list li:has(.taskCompleted) {
+.site-section__list .listWrapper ul.tasks-list li:has(.taskCompleted) {
   filter: grayscale(1);
   color: var(--main-gray-dark);
   box-shadow: -2px 0 0 0 var(--main-gray-darker-op);
 }
-.site-section__list .listWrapper ul.tdl-list li:has(button[title="Status: completed"]), .site-section__list .listWrapper ul.support-list li:has(button[title="Status: completed"]) {
+.site-section__list .listWrapper ul.tasks-list li:has(button[title="Status: completed"]) {
   filter: grayscale(1);
   box-shadow: -2px 0 0 0 var(--main-gray-darker-op);
 }
-.site-section__list .listWrapper ul.tdl-list li .taskPriority, .site-section__list .listWrapper ul.support-list li .taskPriority {
+.site-section__list .listWrapper ul.tasks-list li .taskPriority {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -908,7 +908,7 @@ select:disabled {
     background: var(--main-color-op);
   } */
 }
-.site-section__list .listWrapper ul.tdl-list li .taskPriority svg, .site-section__list .listWrapper ul.support-list li .taskPriority svg {
+.site-section__list .listWrapper ul.tasks-list li .taskPriority svg {
   width: 20px;
   height: 20px;
   min-width: 20px;
@@ -919,20 +919,20 @@ select:disabled {
   border-radius: 50%;
   padding: 1px;
 }
-.site-section__list .listWrapper ul.tdl-list li .taskPriority.selectedLow, .site-section__list .listWrapper ul.support-list li .taskPriority.selectedLow {
+.site-section__list .listWrapper ul.tasks-list li .taskPriority.selectedLow {
   color: var(--main-gray-dark);
 }
-.site-section__list .listWrapper ul.tdl-list li .taskPriority.selectedMedium, .site-section__list .listWrapper ul.support-list li .taskPriority.selectedMedium {
+.site-section__list .listWrapper ul.tasks-list li .taskPriority.selectedMedium {
   color: var(--main-color-light);
 }
-.site-section__list .listWrapper ul.tdl-list li .taskPriority.selectedHigh, .site-section__list .listWrapper ul.support-list li .taskPriority.selectedHigh {
+.site-section__list .listWrapper ul.tasks-list li .taskPriority.selectedHigh {
   color: var(--red);
 }
-.site-section__list .listWrapper ul.tdl-list li[disabled], .site-section__list .listWrapper ul.support-list li[disabled] {
+.site-section__list .listWrapper ul.tasks-list li[disabled] {
   pointer-events: none;
   filter: grayscale(1);
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -940,7 +940,7 @@ select:disabled {
   padding: 0.5rem;
   cursor: pointer;
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer svg, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer svg {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer svg {
   width: 20px;
   height: 20px;
   min-width: 20px;
@@ -948,25 +948,23 @@ select:disabled {
   min-height: 20px;
   max-height: 20px;
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .btnContainer-separator, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .btnContainer-separator {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .btnContainer-separator {
   height: 100%;
   width: 1px;
   background: var(--main-gray-op);
   flex-shrink: 0;
   margin-inline: 4px;
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns,
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-optionsBtns,
-.site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-optionsBtns,
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData {
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   height: 30px;
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns button,
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-optionsBtns button,
-.site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData button {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-optionsBtns button,
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData button {
   padding: 0.25rem;
   background: transparent;
   width: 30px;
@@ -979,37 +977,31 @@ select:disabled {
   align-items: center;
   color: var(--main-text);
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns button:hover, .site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns button:focus-visible,
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button:hover,
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button:focus-visible, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-optionsBtns button:hover, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-optionsBtns button:focus-visible,
-.site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData button:hover,
-.site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData button:focus-visible {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-optionsBtns button:hover, .site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-optionsBtns button:focus-visible,
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData button:hover,
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData button:focus-visible {
   background: var(--main-color-mid);
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns button:focus-visible,
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button:focus-visible, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-optionsBtns button:focus-visible,
-.site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData button:focus-visible {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-optionsBtns button:focus-visible,
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData button:focus-visible {
   outline: none;
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns:hover button,
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData:hover button, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-optionsBtns:hover button,
-.site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData:hover button {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-optionsBtns:hover button,
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData:hover button {
   background: var(--main-color-mid);
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns.deleteMode,
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData.deleteMode, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-optionsBtns.deleteMode,
-.site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData.deleteMode {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-optionsBtns.deleteMode,
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData.deleteMode {
   outline: 1px dashed var(--red);
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns.editMode,
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData.editMode, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-optionsBtns.editMode,
-.site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData.editMode {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-optionsBtns.editMode,
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData.editMode {
   outline: 1px dashed var(--main-color-op);
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-optionsBtns, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-optionsBtns {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-optionsBtns {
   justify-content: end;
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData {
   position: relative;
   justify-content: start;
   overflow-x: auto;
@@ -1019,33 +1011,33 @@ select:disabled {
   align-items: center;
   gap: 2px;
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData::-webkit-scrollbar, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData::-webkit-scrollbar {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData::-webkit-scrollbar {
   width: 4px;
   height: 4px;
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData .editBtnWrapper, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData .editBtnWrapper {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData .editBtnWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData span, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData span {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData span {
   color: var(--main-text);
   transition: 200ms ease-in-out;
   font-weight: 300;
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData button {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData button {
   color: var(--main-text);
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button.tdl-priority.selectedLow, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData button.tdl-priority.selectedLow {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData button.tdl-priority.selectedLow {
   color: var(--main-gray-dark);
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button.tdl-priority.selectedMedium, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData button.tdl-priority.selectedMedium {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData button.tdl-priority.selectedMedium {
   color: var(--main-color-light);
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button.tdl-priority.selectedHigh, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData button.tdl-priority.selectedHigh {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData button.tdl-priority.selectedHigh {
   color: var(--red);
 }
-.site-section__list .listWrapper ul.tdl-list li .tdl-btnContainer .tdl-itemData button.tdl-priority svg, .site-section__list .listWrapper ul.support-list li .tdl-btnContainer .tdl-itemData button.tdl-priority svg {
+.site-section__list .listWrapper ul.tasks-list li .tdl-btnContainer .tdl-itemData button.tdl-priority svg {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -1053,11 +1045,9 @@ select:disabled {
   outline: 2px solid var(--main-gray);
   outline-offset: -1px;
 }
-.site-section__list .listWrapper ul.tdl-list li button,
-.site-section__list .listWrapper ul.tdl-list li textarea,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn, .site-section__list .listWrapper ul.support-list li button,
-.site-section__list .listWrapper ul.support-list li textarea,
-.site-section__list .listWrapper ul.support-list li .taskContentBtn {
+.site-section__list .listWrapper ul.tasks-list li button,
+.site-section__list .listWrapper ul.tasks-list li textarea,
+.site-section__list .listWrapper ul.tasks-list li .taskContentBtn {
   width: 100%;
   height: auto;
   overflow-x: hidden;
@@ -1075,11 +1065,9 @@ select:disabled {
     -webkit-box-orient: vertical;
     text-overflow: ellipsis; */
 }
-.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn, .site-section__list .listWrapper ul.support-list li button.taskContentBtn,
-.site-section__list .listWrapper ul.support-list li textarea.taskContentBtn,
-.site-section__list .listWrapper ul.support-list li .taskContentBtn.taskContentBtn {
+.site-section__list .listWrapper ul.tasks-list li button.taskContentBtn,
+.site-section__list .listWrapper ul.tasks-list li textarea.taskContentBtn,
+.site-section__list .listWrapper ul.tasks-list li .taskContentBtn.taskContentBtn {
   padding: 1rem;
   transition: 200ms ease-in-out;
   box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
@@ -1102,21 +1090,17 @@ select:disabled {
       -4px 0 0 0 var(--main-color);
   } */
 }
-.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn .taskContentBtn__author,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn .taskContentBtn__author,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn .taskContentBtn__author, .site-section__list .listWrapper ul.support-list li button.taskContentBtn .taskContentBtn__author,
-.site-section__list .listWrapper ul.support-list li textarea.taskContentBtn .taskContentBtn__author,
-.site-section__list .listWrapper ul.support-list li .taskContentBtn.taskContentBtn .taskContentBtn__author {
+.site-section__list .listWrapper ul.tasks-list li button.taskContentBtn .taskContentBtn__author,
+.site-section__list .listWrapper ul.tasks-list li textarea.taskContentBtn .taskContentBtn__author,
+.site-section__list .listWrapper ul.tasks-list li .taskContentBtn.taskContentBtn .taskContentBtn__author {
   color: var(--main-gray-dark);
   box-shadow: 0 1px 0 0 var(--main-gray-darker-op);
   font-weight: 400;
   font-size: 0.9rem;
 }
-.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn .taskContentBtn__title,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn .taskContentBtn__title,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn .taskContentBtn__title, .site-section__list .listWrapper ul.support-list li button.taskContentBtn .taskContentBtn__title,
-.site-section__list .listWrapper ul.support-list li textarea.taskContentBtn .taskContentBtn__title,
-.site-section__list .listWrapper ul.support-list li .taskContentBtn.taskContentBtn .taskContentBtn__title {
+.site-section__list .listWrapper ul.tasks-list li button.taskContentBtn .taskContentBtn__title,
+.site-section__list .listWrapper ul.tasks-list li textarea.taskContentBtn .taskContentBtn__title,
+.site-section__list .listWrapper ul.tasks-list li .taskContentBtn.taskContentBtn .taskContentBtn__title {
   font-weight: 500;
   font-size: 1rem;
   display: inline-block;
@@ -1124,11 +1108,9 @@ select:disabled {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn .taskContentBtn__content,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn .taskContentBtn__content,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn .taskContentBtn__content, .site-section__list .listWrapper ul.support-list li button.taskContentBtn .taskContentBtn__content,
-.site-section__list .listWrapper ul.support-list li textarea.taskContentBtn .taskContentBtn__content,
-.site-section__list .listWrapper ul.support-list li .taskContentBtn.taskContentBtn .taskContentBtn__content {
+.site-section__list .listWrapper ul.tasks-list li button.taskContentBtn .taskContentBtn__content,
+.site-section__list .listWrapper ul.tasks-list li textarea.taskContentBtn .taskContentBtn__content,
+.site-section__list .listWrapper ul.tasks-list li .taskContentBtn.taskContentBtn .taskContentBtn__content {
   flex: 1;
   text-align: start;
   text-wrap: pretty;
@@ -1144,11 +1126,9 @@ select:disabled {
   overflow: hidden;
   text-overflow: ellipsis; */
 }
-.site-section__list .listWrapper ul.tdl-list li button.taskContentBtn.taskCompleted,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskContentBtn.taskCompleted,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskContentBtn.taskCompleted, .site-section__list .listWrapper ul.support-list li button.taskContentBtn.taskCompleted,
-.site-section__list .listWrapper ul.support-list li textarea.taskContentBtn.taskCompleted,
-.site-section__list .listWrapper ul.support-list li .taskContentBtn.taskContentBtn.taskCompleted {
+.site-section__list .listWrapper ul.tasks-list li button.taskContentBtn.taskCompleted,
+.site-section__list .listWrapper ul.tasks-list li textarea.taskContentBtn.taskCompleted,
+.site-section__list .listWrapper ul.tasks-list li .taskContentBtn.taskContentBtn.taskCompleted {
   color: var(--main-gray-dark);
   text-decoration: line-through;
   /*       &:has(span) {
@@ -1159,11 +1139,9 @@ select:disabled {
     }
   } */
 }
-.site-section__list .listWrapper ul.tdl-list li button.taskOption,
-.site-section__list .listWrapper ul.tdl-list li textarea.taskOption,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.taskOption, .site-section__list .listWrapper ul.support-list li button.taskOption,
-.site-section__list .listWrapper ul.support-list li textarea.taskOption,
-.site-section__list .listWrapper ul.support-list li .taskContentBtn.taskOption {
+.site-section__list .listWrapper ul.tasks-list li button.taskOption,
+.site-section__list .listWrapper ul.tasks-list li textarea.taskOption,
+.site-section__list .listWrapper ul.tasks-list li .taskContentBtn.taskOption {
   background-color: var(--main-color-op-light);
   white-space: normal;
   overflow-y: auto;
@@ -1174,26 +1152,22 @@ select:disabled {
   max-height: 122px;
   font-size: 1rem;
 }
-.site-section__list .listWrapper ul.tdl-list li button.deleteMode,
-.site-section__list .listWrapper ul.tdl-list li textarea.deleteMode,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.deleteMode, .site-section__list .listWrapper ul.support-list li button.deleteMode,
-.site-section__list .listWrapper ul.support-list li textarea.deleteMode,
-.site-section__list .listWrapper ul.support-list li .taskContentBtn.deleteMode {
+.site-section__list .listWrapper ul.tasks-list li button.deleteMode,
+.site-section__list .listWrapper ul.tasks-list li textarea.deleteMode,
+.site-section__list .listWrapper ul.tasks-list li .taskContentBtn.deleteMode {
   outline: 1px dashed var(--red);
 }
-.site-section__list .listWrapper ul.tdl-list li button.editMode,
-.site-section__list .listWrapper ul.tdl-list li textarea.editMode,
-.site-section__list .listWrapper ul.tdl-list li .taskContentBtn.editMode, .site-section__list .listWrapper ul.support-list li button.editMode,
-.site-section__list .listWrapper ul.support-list li textarea.editMode,
-.site-section__list .listWrapper ul.support-list li .taskContentBtn.editMode {
+.site-section__list .listWrapper ul.tasks-list li button.editMode,
+.site-section__list .listWrapper ul.tasks-list li textarea.editMode,
+.site-section__list .listWrapper ul.tasks-list li .taskContentBtn.editMode {
   outline: 1px dashed var(--main-gray-op);
 }
-.site-section__list .listWrapper ul.tdl-list li textarea, .site-section__list .listWrapper ul.support-list li textarea {
+.site-section__list .listWrapper ul.tasks-list li textarea {
   height: 120px;
   padding: 1rem;
   color: var(--white);
 }
-.site-section__list .listWrapper ul.tdl-list li .taskContentTitle, .site-section__list .listWrapper ul.support-list li .taskContentTitle {
+.site-section__list .listWrapper ul.tasks-list li .taskContentTitle {
   width: 100%;
   background-color: var(--main-color-op-light);
   text-align: start;
@@ -1209,7 +1183,7 @@ select:disabled {
   font-size: 1rem;
   font-weight: 600;
 }
-.site-section__list .listWrapper ul.tdl-list li .taskContentAuthor, .site-section__list .listWrapper ul.support-list li .taskContentAuthor {
+.site-section__list .listWrapper ul.tasks-list li .taskContentAuthor {
   width: 100%;
   background-color: var(--main-color-op-light);
   text-align: start;
@@ -1224,7 +1198,7 @@ select:disabled {
   font-size: 0.9rem;
   font-weight: 300;
 }
-.site-section__list .listWrapper ul.tdl-list li .taskContentAnswer, .site-section__list .listWrapper ul.support-list li .taskContentAnswer {
+.site-section__list .listWrapper ul.tasks-list li .taskContentAnswer {
   width: 100%;
   background: var(--main-color-op-light);
   color: var(--main-gray-dark);
