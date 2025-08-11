@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { setModal } from '../store/slices/modalSlice'
@@ -13,8 +12,6 @@ export default function TasksDataModal({ modalData }) {
   const modalActive = useSelector(state => state.modal.active)
   const [addTdl, resultAddTdl] = useAddTdlMutation()
 
-  /* const textInput = useRef()
-  const textInputEdit = useRef() */
   const [newTaskTitle, setNewTaskTitle] = useState("")
   const [newTaskDescription, setNewTaskDescription] = useState("")
   const [newTaskCategory, setNewTaskCategory] = useState("personal")

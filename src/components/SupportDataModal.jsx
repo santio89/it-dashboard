@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { setModal } from '../store/slices/modalSlice'
@@ -14,8 +13,6 @@ export default function SupportDataModal({ modalData }) {
   const modalActive = useSelector(state => state.modal.active)
   const [addSupport, resultAddSupport] = useAddSupportMutation()
 
-  /*   const textInput = useRef()
-    const textInputEdit = useRef() */
   const [newTicketTitle, setNewTicketTitle] = useState("")
   const [newTicketDescription, setNewTicketDescription] = useState("")
   const [newTicketCategory, setNewTicketCategory] = useState("personal")

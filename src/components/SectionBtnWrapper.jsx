@@ -23,6 +23,7 @@ function SectionBtnWrapper({ section, user, data, isLoadingData, setDataList }) 
     }))
   }
 
+  /* reorder list when order/filter changes */
   useEffect(() => {
     if (data) {
       if (section === "contacts" || section === "devices") {

@@ -6,38 +6,9 @@ import SectionChartBtnWrapper from "./SectionChartBtnWrapper";
 import SectionChartList from "./SectionChartList";
 
 
-export default function MainSection({ user, section }) {
+export default function MainSection({ section, user, data, isLoadingData, isFetchingData, dataLastVisible, handleRefetch }) {
   const [dataList, setDataList] = useState(null)
   const [firstLoad, setFirstLoad] = useState(null)
-  const [lastVisible, setLastVisible] = useState(null)
-
-  const queries = {
-    contacts: useGetContactsQuery,
-    devices: useGetDevicesQuery,
-    tasks: useGetTdlQuery,
-    support: useGetSupportQuery
-  }
-
-  const queriesNext = {
-    contacts: useGetContactsNextQuery,
-    devices: useGetDevicesNextQuery,
-    tasks: useGetTdlNextQuery,
-    support: useGetSupportNextQuery
-  }
-  const {
-    data: { [section === "support" ? "tickets" : section]: data, lastVisible: dataLastVisible } = {},
-    isLoading: isLoadingData,
-    isFetching: isFetchingData,
-    isSuccess: isSuccessData,
-    isError: isErrorData,
-    error: errorData,
-  } = queries[section](section === "support" ? user?.email : user?.uid);
-
-  queriesNext[section]({ userId: user?.uid, userEmail: user?.email, lastVisible });
-
-  const handleRefetch = () => {
-    setLastVisible(dataLastVisible)
-  }
 
   useEffect(() => {
     let timeout;
@@ -53,18 +24,28 @@ export default function MainSection({ user, section }) {
     return () => clearTimeout(timeout)
   }, [isLoadingData])
 
-
   return (
     <>
       <div className="site-section__inner site-section__list">
-        <SectionBtnWrapper section={section} user={user} data={data} isLoadingData={isLoadingData} isFetchingData={isFetchingData} setDataList={setDataList} />
+        {
+          (data || isLoadingData || isFetchingData) &&
+          <>
+            <SectionBtnWrapper section={section} user={user} data={data} isLoadingData={isLoadingData} isFetchingData={isFetchingData} setDataList={setDataList} />
 
-        <SectionDataList section={section} user={user} data={data} dataList={dataList} isLoadingData={isLoadingData} isFetchingData={isFetchingData} handleRefetch={handleRefetch} dataLastVisible={dataLastVisible} firstLoad={firstLoad} />
+            <SectionDataList section={section} user={user} data={data} dataList={dataList} isLoadingData={isLoadingData} isFetchingData={isFetchingData} handleRefetch={handleRefetch} dataLastVisible={dataLastVisible} firstLoad={firstLoad} />
+          </>
+        }
+
       </div>
       <div className="site-section__inner site-section__chart">
-        <SectionChartBtnWrapper section={section} isLoadingData={isLoadingData} />
+        {
+          (data || isLoadingData || isFetchingData) &&
+          <>
+            <SectionChartBtnWrapper section={section} isLoadingData={isLoadingData} />
 
-        <SectionChartList section={section} data={data} dataList={dataList} isLoadingData={isLoadingData} isFetchingData={isFetchingData} firstLoad={firstLoad} />
+            <SectionChartList section={section} data={data} dataList={dataList} isLoadingData={isLoadingData} isFetchingData={isFetchingData} firstLoad={firstLoad} />
+          </>
+        }
       </div>
     </>
   )

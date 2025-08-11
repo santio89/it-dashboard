@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { firebaseAI } from "../config/firebase"
 import { useSelector } from "react-redux";
+import MainSection from "./MainSection";
 
 
 export default function AIBot({ user }) {
+  const [lastVisible, setLastVisible] = useState(null)
   const langSelected = useSelector(state => state.theme.lang);
 
   const askBot = async () => {
@@ -16,6 +18,10 @@ export default function AIBot({ user }) {
     console.log(text);
   }
 
+  /* const handleRefetch = () => {
+    setLastVisible(dataLastVisible)
+  } */
+
 
   useEffect(() => {
     askBot()
@@ -23,13 +29,6 @@ export default function AIBot({ user }) {
 
 
   return (
-    <>
-      <div className="site-section__inner site-section__list">
-
-      </div >
-      <div className="site-section__inner site-section__chart">
-
-      </div>
-    </>
+    <MainSection section="ai" user={user} /* data={data} isLoadingData={isLoadingData} isFetchingData={isFetchingData} dataLastVisible={dataLastVisible} handleRefetch={handleRefetch} */ />
   )
 }
