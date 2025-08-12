@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { setModal } from '../store/slices/modalSlice'
 import { useAddTdlMutation, useDeleteTdlMutation, useEditTdlMutation } from '../store/slices/apiSlice'
@@ -9,7 +9,7 @@ export default function TasksDataModal({ modalData }) {
   const lang = useTranslation()
 
   const dispatch = useDispatch()
-  const modalActive = useSelector(state => state.modal.active)
+  /* const modalActive = useSelector(state => state.modal.active) */
   const [addTdl, resultAddTdl] = useAddTdlMutation()
 
   const [newTaskTitle, setNewTaskTitle] = useState("")
@@ -151,7 +151,7 @@ export default function TasksDataModal({ modalData }) {
     resultDeleteTdl.isLoading ? setIsLoading(true) : setIsLoading(false)
   }, [resultDeleteTdl])
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!modalActive) {
       setNewTaskTitle("")
       setNewTaskDescription("")
@@ -161,7 +161,7 @@ export default function TasksDataModal({ modalData }) {
       setEditMode(false)
       setDeleteMode(false)
     }
-  }, [modalActive])
+  }, [modalActive]) */
 
 
   return (

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setModal } from '../store/slices/modalSlice';
 import { useAddContactMutation, useDeleteContactMutation, useEditContactMutation } from '../store/slices/apiSlice';
 import { objectEquality } from '../utils/objectEquality';
@@ -12,7 +12,7 @@ export default function ContactsDataModal({ modalData }) {
   const lang = useTranslation()
 
   const dispatch = useDispatch()
-  const modalActive = useSelector(state => state.modal.active)
+  /* const modalActive = useSelector(state => state.modal.active) */
 
   const [addContact, resultAddContact] = useAddContactMutation()
   const [deleteContact, resultDeleteContact] = useDeleteContactMutation()
@@ -232,7 +232,7 @@ export default function ContactsDataModal({ modalData }) {
 
   }, [errorMsg])
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!modalActive) {
       setNewUserName("")
       setNewUserEmail("")
@@ -244,7 +244,7 @@ export default function ContactsDataModal({ modalData }) {
       setDeleteMode(false)
       setErrorMsg(null)
     }
-  }, [modalActive])
+  }, [modalActive]) */
 
   return (
     <>

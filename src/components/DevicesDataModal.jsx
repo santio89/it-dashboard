@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setModal } from '../store/slices/modalSlice';
 import { useAddDeviceMutation, useDeleteDeviceMutation, useEditDeviceMutation } from '../store/slices/apiSlice';
 import { objectEquality } from '../utils/objectEquality';
@@ -12,7 +12,7 @@ export default function DevicesDataModal({ modalData }) {
   const lang = useTranslation()
 
   const dispatch = useDispatch()
-  const modalActive = useSelector(state => state.modal.active)
+  /* const modalActive = useSelector(state => state.modal.active) */
 
   const [addDevice, resultAddDevice] = useAddDeviceMutation()
   const [deleteDevice, resultDeleteDevice] = useDeleteDeviceMutation()
@@ -233,7 +233,7 @@ export default function DevicesDataModal({ modalData }) {
 
   }, [errorMsg])
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!modalActive) {
       setNewDeviceName("")
       setNewDeviceType("")
@@ -245,7 +245,7 @@ export default function DevicesDataModal({ modalData }) {
       setDeleteMode(false)
       setErrorMsg(null)
     }
-  }, [modalActive])
+  }, [modalActive]) */
 
 
   return (

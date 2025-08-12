@@ -1,16 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { setModal } from '../store/slices/modalSlice'
 import { useAddSupportMutation, useDeleteSupportMutation, useEditSupportMutation } from '../store/slices/apiSlice'
 import { useTranslation } from '../hooks/useTranslation'
 import { toast } from 'sonner'
-import Dropdown from './Dropdown'
 
 export default function SupportDataModal({ modalData }) {
   const lang = useTranslation()
 
   const dispatch = useDispatch()
-  const modalActive = useSelector(state => state.modal.active)
+  /* const modalActive = useSelector(state => state.modal.active) */
   const [addSupport, resultAddSupport] = useAddSupportMutation()
 
   const [newTicketTitle, setNewTicketTitle] = useState("")
@@ -26,8 +25,6 @@ export default function SupportDataModal({ modalData }) {
 
   const [deleteSupport, resultDeleteSupport] = useDeleteSupportMutation()
   const [editSupport, resultEditSupport] = useEditSupportMutation()
-
-  const [showReply, setShowReply] = useState(true)
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -166,7 +163,7 @@ export default function SupportDataModal({ modalData }) {
     resultDeleteSupport.isLoading ? setIsLoading(true) : setIsLoading(false)
   }, [resultDeleteSupport])
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!modalActive) {
       setNewTicketAuthor("")
       setNewTicketPriority("medium")
@@ -177,9 +174,8 @@ export default function SupportDataModal({ modalData }) {
       setNewTicketReply("")
       setEditMode(false)
       setDeleteMode(false)
-      setShowReply(true)
     }
-  }, [modalActive])
+  }, [modalActive]) */
 
 
   return (
