@@ -9,7 +9,6 @@ export default function SupportDataModal({ modalData }) {
   const lang = useTranslation()
 
   const dispatch = useDispatch()
-  /* const modalActive = useSelector(state => state.modal.active) */
   const [addSupport, resultAddSupport] = useAddSupportMutation()
 
   const [newTicketTitle, setNewTicketTitle] = useState("")
@@ -162,20 +161,6 @@ export default function SupportDataModal({ modalData }) {
   useEffect(() => {
     resultDeleteSupport.isLoading ? setIsLoading(true) : setIsLoading(false)
   }, [resultDeleteSupport])
-
-  /* useEffect(() => {
-    if (!modalActive) {
-      setNewTicketAuthor("")
-      setNewTicketPriority("medium")
-      setNewTicketStatus("pending")
-      setNewTicketTitle("")
-      setNewTicketDescription("")
-      setNewTicketCategory("personal")
-      setNewTicketReply("")
-      setEditMode(false)
-      setDeleteMode(false)
-    }
-  }, [modalActive]) */
 
 
   return (

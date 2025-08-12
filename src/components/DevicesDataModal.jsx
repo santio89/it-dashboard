@@ -12,7 +12,6 @@ export default function DevicesDataModal({ modalData }) {
   const lang = useTranslation()
 
   const dispatch = useDispatch()
-  /* const modalActive = useSelector(state => state.modal.active) */
 
   const [addDevice, resultAddDevice] = useAddDeviceMutation()
   const [deleteDevice, resultDeleteDevice] = useDeleteDeviceMutation()
@@ -232,20 +231,6 @@ export default function DevicesDataModal({ modalData }) {
     }
 
   }, [errorMsg])
-
-  /* useEffect(() => {
-    if (!modalActive) {
-      setNewDeviceName("")
-      setNewDeviceType("")
-      setNewDeviceModel("")
-      setNewDeviceSn("")
-      setNewDeviceComments("")
-      setNewDeviceCategory("personal")
-      setEditMode(false)
-      setDeleteMode(false)
-      setErrorMsg(null)
-    }
-  }, [modalActive]) */
 
 
   return (

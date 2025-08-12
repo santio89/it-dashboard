@@ -12,7 +12,6 @@ export default function ContactsDataModal({ modalData }) {
   const lang = useTranslation()
 
   const dispatch = useDispatch()
-  /* const modalActive = useSelector(state => state.modal.active) */
 
   const [addContact, resultAddContact] = useAddContactMutation()
   const [deleteContact, resultDeleteContact] = useDeleteContactMutation()
@@ -231,20 +230,6 @@ export default function ContactsDataModal({ modalData }) {
     }
 
   }, [errorMsg])
-
-  /* useEffect(() => {
-    if (!modalActive) {
-      setNewUserName("")
-      setNewUserEmail("")
-      setNewUserTel("")
-      setNewUserRole("")
-      setNewUserComments("")
-      setNewUserCategory("personal")
-      setEditMode(false)
-      setDeleteMode(false)
-      setErrorMsg(null)
-    }
-  }, [modalActive]) */
 
   return (
     <>

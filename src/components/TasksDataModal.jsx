@@ -9,7 +9,6 @@ export default function TasksDataModal({ modalData }) {
   const lang = useTranslation()
 
   const dispatch = useDispatch()
-  /* const modalActive = useSelector(state => state.modal.active) */
   const [addTdl, resultAddTdl] = useAddTdlMutation()
 
   const [newTaskTitle, setNewTaskTitle] = useState("")
@@ -150,18 +149,6 @@ export default function TasksDataModal({ modalData }) {
   useEffect(() => {
     resultDeleteTdl.isLoading ? setIsLoading(true) : setIsLoading(false)
   }, [resultDeleteTdl])
-
-  /* useEffect(() => {
-    if (!modalActive) {
-      setNewTaskTitle("")
-      setNewTaskDescription("")
-      setNewTaskPriority("medium")
-      setNewTaskStatus("pending")
-      setNewTaskCategory("personal")
-      setEditMode(false)
-      setDeleteMode(false)
-    }
-  }, [modalActive]) */
 
 
   return (

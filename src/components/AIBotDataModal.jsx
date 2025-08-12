@@ -7,9 +7,8 @@ export default function AIBotDataModal({ modalData }) {
 
   const aiBotQuestion = useRef();
 
-  /* const modalActive = useSelector(state => state.modal.active) */
-
   const [newQuestion, setNewQuestion] = useState("")
+  const [prevQuestion, setPrevQuestion] = useState("")
   const [newReply, setNewReply] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
@@ -21,8 +20,11 @@ export default function AIBotDataModal({ modalData }) {
     const result = await firebaseAI.generateContent(prompt);
     const response = result.response;
     const responseText = response.text();
+    setPrevQuestion(prompt)
+    setNewQuestion("")
     setNewReply(responseText)
     setIsLoading(false)
+    aiBotQuestion.current.focus()
   }
 
   const enterSubmit = (e) => {
@@ -37,13 +39,6 @@ export default function AIBotDataModal({ modalData }) {
     setNewQuestion(newQuestion => newQuestion.trim())
   }
 
-  /* useEffect(() => {
-    if (!modalActive) {
-      setNewQuestion("")
-      setNewReply("")
-    }
-  }, [modalActive]) */
-
 
   return (
     <>
@@ -57,18 +52,23 @@ export default function AIBotDataModal({ modalData }) {
             </div>
           </div>
           <form id="modalForm" autoCapitalize='off' autoComplete='off' spellCheck='false' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { enterSubmit(e) }} onSubmit={(e) => addQuestionFn(e)}>
-            <fieldset>
-              <legend><label htmlFor="addDescription">{lang.question}</label></legend>
-              <textarea ref={aiBotQuestion} id="addDescription" rows="2" value={newQuestion} onChange={e => setNewQuestion(e.target.value)} maxLength={2000} className='taskOpenContent' />
-            </fieldset>
             {
               newReply &&
-              <fieldset>
-                <legend><label htmlFor="addDescription">{lang.reply}</label></legend>
-                <textarea id="addDescription" readOnly disabled rows="2" value={newReply} className='taskOpenContent reply ai' />
-              </fieldset>
-
+              <>
+                <fieldset>
+                  <legend><label htmlFor="question">{lang.question}</label></legend>
+                  <textarea id="question" readOnly disabled rows="2" value={prevQuestion} onChange={e => setNewQuestion(e.target.value)} maxLength={2000} className='taskOpenContent' />
+                </fieldset>
+                <fieldset>
+                  <legend><label htmlFor="reply">{lang.reply}</label></legend>
+                  <textarea id="reply" readOnly disabled rows="2" value={newReply} className='taskOpenContent reply ai' />
+                </fieldset>
+              </>
             }
+            <fieldset>
+              <legend><label htmlFor="addQuestion">{lang.question}</label></legend>
+              <textarea ref={aiBotQuestion} id="addQuestion" rows="2" value={newQuestion} onChange={e => setNewQuestion(e.target.value)} maxLength={2000} className='taskOpenContent' />
+            </fieldset>
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send' onClick={trimInputs}>{lang.send}</button>
             </div>
