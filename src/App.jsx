@@ -13,7 +13,6 @@ import Contacts from "./components/Contacts";
 import Devices from "./components/Devices";
 import Home from "./components/Home"
 import Support from "./components/Support";
-import AIBot from './components/AIBot';
 import Admin from "./components/Admin";
 import Tasks from "./components/Tasks"
 import NotFound from "./components/NotFound"
@@ -57,7 +56,6 @@ function App() {
               <Route path="/devices" element={checkUser ? <Devices user={checkUser} /> : <PrivateRoute />} />
               <Route path="/tasks" element={checkUser ? <Tasks user={checkUser} /> : <PrivateRoute />} />
               <Route path="/support" element={checkUser ? <Support user={checkUser} /> : <PrivateRoute />} />
-              <Route path="/aibot" element={checkUser ? <AIBot user={checkUser} /> : <PrivateRoute />} />
               <Route path="/admin" element={checkUser ? <Admin user={checkUser} /> : <PrivateRoute />} />
               <Route path="/*" element={<NotFound />} />
             </Route>

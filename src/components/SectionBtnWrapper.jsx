@@ -31,10 +31,6 @@ function SectionBtnWrapper({ section, user, data, isLoadingData, setDataList }) 
       addBtn = lang.addTicket;
       modalType = "SupportDataModal";
       break;
-    case 'aibot':
-      addBtn = lang.askBot;
-      modalType = "AIBotDataModal";
-      break;
   }
 
 
