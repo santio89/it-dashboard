@@ -1,9 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setModal } from '../store/slices/modalSlice'
-import { useAddTdlMutation, useDeleteTdlMutation, useEditTdlMutation } from '../store/slices/apiSlice'
+import { useSelector } from 'react-redux'
 import { useTranslation } from '../hooks/useTranslation'
-import { toast } from 'sonner'
 import { firebaseAI } from '../config/firebase'
 
 export default function AIBotDataModal({ modalData }) {
@@ -11,7 +8,6 @@ export default function AIBotDataModal({ modalData }) {
 
   const aiBotQuestion = useRef();
 
-  const dispatch = useDispatch()
   const modalActive = useSelector(state => state.modal.active)
 
   const [newQuestion, setNewQuestion] = useState("")
@@ -48,64 +44,6 @@ export default function AIBotDataModal({ modalData }) {
     setNewQuestion(newQuestion => newQuestion.trim())
   }
 
-
-  /*   const addTdlFn = async (e) => {
-      e.preventDefault()
-  
-      if (resultAddTdl.isLoading) {
-        return
-      }
-  
-      if (newTaskTitle === "") {
-        return
-      }
-  
-      const newTask = {
-        title: newTaskTitle,
-        description: newTaskDescription,
-        priority: newTaskPriority,
-        status: newTaskStatus,
-        category: newTaskCategory,
-        author: modalData?.user.email,
-        authorId: modalData?.user.uid,
-        localId: crypto.randomUUID().replace(/-/g, ''),
-        localTime: Date.now(),
-        userId: modalData.user.uid
-      }
-  
-      dispatch(setModal({ active: false, data: {} }))
-  
-      try {
-        toast(`${lang.addingTask}...`)
-        const res = await addTdl({ ...newTask, userId: modalData.user.uid })
-        toast.message(lang.taskAdded, {
-          description: `ID: ${res.data.id}`,
-        });
-      } catch {
-        toast(lang.errorPerformingRequest)
-      }
-    }
-  
-    const deleteTdlFn = async (e, task) => {
-      e.preventDefault()
-  
-      if (resultDeleteTdl.isLoading) {
-        return
-      }
-  
-      dispatch(setModal({ active: false, data: {} }))
-  
-      try {
-        toast(`${lang.deletingTask}...`)
-        await deleteTdl(task)
-        toast.message(lang.taskDeleted, {
-          description: `ID: ${task.id}`,
-        });
-      } catch {
-        toast(lang.errorPerformingRequest)
-      }
-    }
-   */
   useEffect(() => {
     if (!modalActive) {
       setNewQuestion("")
@@ -181,7 +119,7 @@ export default function AIBotDataModal({ modalData }) {
           <div className="mainModal__titleContainer">
             <h2>{lang.aiBot}</h2>
             <div className="listPickerWrapper__btnContainer">
-              <input disabled form="modalForm" required placeholder={lang.author} title={`${lang.author}: ${modalData?.author}`} className={`listPicker disabled selected`} type="text" value={modalData?.user.email} autoCapitalize='off' autoComplete='off' spellCheck='false' />
+              <input disabled form="modalForm" required placeholder={lang.author} title={`${lang.author}: ${modalData?.author}`} className={`listPicker disabled selected`} type="text" value={modalData?.user?.email || lang.guest} autoCapitalize='off' autoComplete='off' spellCheck='false' />
             </div>
           </div>
           <form id="modalForm" autoCapitalize='off' autoComplete='off' spellCheck='false' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addQuestionFn(e)}>
