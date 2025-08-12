@@ -345,7 +345,7 @@ select:disabled {
   border-radius: 50%;
   padding: 0;
 }
-.mainHeader__btnContainer .btnWrapper button.profileOn {
+.mainHeader__btnContainer .btnWrapper button.btnActive {
   background: var(--main-color-op);
 }
 .mainHeader__btnContainer .btnWrapper button img {

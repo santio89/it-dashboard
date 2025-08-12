@@ -9,7 +9,7 @@ import { firebaseAI } from '../config/firebase'
 export default function AIBotDataModal({ modalData }) {
   const lang = useTranslation()
 
-  const aiBotForm = useRef();
+  const aiBotQuestion = useRef();
 
   const dispatch = useDispatch()
   const modalActive = useSelector(state => state.modal.active)
@@ -36,7 +36,7 @@ export default function AIBotDataModal({ modalData }) {
     /* submit on shift+enter */
     if (e.key === "Enter" && e.shiftKey) {
       trimInputs()
-      aiBotForm.current.blur()
+      aiBotQuestion.current.blur()
       addQuestionFn(e)
       return
     } else if (e.key === "Enter" && e.target.className !== "mainModal__send" && e.target.tagName !== "TEXTAREA" && e.target.ariaLabel !== "textarea") {
@@ -184,10 +184,10 @@ export default function AIBotDataModal({ modalData }) {
               <input disabled form="modalForm" required placeholder={lang.author} title={`${lang.author}: ${modalData?.author}`} className={`listPicker disabled selected`} type="text" value={modalData?.user.email} autoCapitalize='off' autoComplete='off' spellCheck='false' />
             </div>
           </div>
-          <form ref={aiBotForm} id="modalForm" autoCapitalize='off' autoComplete='off' spellCheck='false' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addQuestionFn(e)}>
+          <form id="modalForm" autoCapitalize='off' autoComplete='off' spellCheck='false' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { preventEnterSubmit(e) }} onSubmit={(e) => addQuestionFn(e)}>
             <fieldset>
               <legend><label htmlFor="addDescription">{lang.question}</label></legend>
-              <textarea id="addDescription" rows="2" value={newQuestion} onChange={e => setNewQuestion(e.target.value)} maxLength={2000} className='taskOpenContent' />
+              <textarea ref={aiBotQuestion} id="addDescription" rows="2" value={newQuestion} onChange={e => setNewQuestion(e.target.value)} maxLength={2000} className='taskOpenContent' />
             </fieldset>
             {
               newReply &&
