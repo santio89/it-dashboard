@@ -1471,10 +1471,9 @@ select:disabled {
   border: 1px solid var(--main-color-mid);
   box-shadow: 0 0 2rem -1rem var(--main-color-dark);
   transition: 200ms ease-in-out, outline 0ms, border 0ms;
-  height: 520px;
   max-height: 90%;
   border-radius: var(--main-radius);
-  overflow: hidden;
+  overflow: hidden auto;
 }
 .mainModalWrapper:has(form.editMode) {
   border: 1px dashed var(--main-color-mid);
@@ -1960,6 +1959,9 @@ label:hover) {
 }
 .mainModal__data__form.taskContainer .taskOpenContent.reply {
   text-align: right;
+}
+.mainModal__data__form.taskContainer .taskOpenContent.ai {
+  max-height: 100%;
 }
 .mainModal__data__form.taskContainer .taskReply {
   display: inline-block;

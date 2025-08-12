@@ -14,10 +14,9 @@
   border: 1px solid var(--main-color-mid);
   box-shadow: 0 0 2rem -1rem var(--main-color-dark);
   transition: 200ms ease-in-out, outline 0ms, border 0ms;
-  height: 520px;
   max-height: 90%;
   border-radius: var(--main-radius);
-  overflow: hidden;
+  overflow: hidden auto;
 
   &:has(form.editMode) {
     border: 1px dashed var(--main-color-mid);
@@ -592,6 +591,10 @@
 
           &.reply {
             text-align: right;
+          }
+
+          &.ai {
+            max-height: 100%;
           }
         }
 

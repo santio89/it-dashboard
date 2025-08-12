@@ -57,7 +57,7 @@ function App() {
               <Route path="/devices" element={checkUser ? <Devices user={checkUser} /> : <PrivateRoute />} />
               <Route path="/tasks" element={checkUser ? <Tasks user={checkUser} /> : <PrivateRoute />} />
               <Route path="/support" element={checkUser ? <Support user={checkUser} /> : <PrivateRoute />} />
-              <Route path="/ai" element={checkUser ? <AIBot user={checkUser} /> : <PrivateRoute />} />
+              <Route path="/aibot" element={checkUser ? <AIBot user={checkUser} /> : <PrivateRoute />} />
               <Route path="/admin" element={checkUser ? <Admin user={checkUser} /> : <PrivateRoute />} />
               <Route path="/*" element={<NotFound />} />
             </Route>

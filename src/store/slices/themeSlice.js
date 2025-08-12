@@ -21,6 +21,10 @@ const initialState = {
       list: "all",
       charts: [],
     },
+    aibot: {
+      list: "all",
+      charts: []
+    }
   }
 }
 
