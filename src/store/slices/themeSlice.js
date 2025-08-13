@@ -21,11 +21,8 @@ const initialState = {
       list: "all",
       charts: [],
     },
-    aibot: {
-      list: "all",
-      charts: []
-    }
-  }
+  },
+  botChat: [],
 }
 
 const themeSlice = createSlice({
@@ -52,9 +49,12 @@ const themeSlice = createSlice({
           return acc;
         }, {}),
       };
+    },
+    setBotChat: (state, action) => {
+      state.botChat = action.payload.botChat
     }
   }
 })
 
-export const { setLight, setSideExpanded, setLang, setFilters } = themeSlice.actions
+export const { setLight, setSideExpanded, setLang, setFilters, setBotChat } = themeSlice.actions
 export default themeSlice.reducer

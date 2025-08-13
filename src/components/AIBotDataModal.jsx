@@ -1,15 +1,20 @@
 import { useState, useRef, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from '../hooks/useTranslation'
 import { firebaseAI } from '../config/firebase'
+import { setBotChat } from '../store/slices/themeSlice'
 
 export default function AIBotDataModal({ modalData }) {
   const lang = useTranslation()
+
+  const dispatch = useDispatch()
+  const chatHistory = useSelector(state => state.theme.botChat)
 
   const aiBotQuestion = useRef();
   const lastQA = useRef()
 
   const [newQuestion, setNewQuestion] = useState("")
-  const [chatHistory, setChatHistory] = useState([]);
+  /* const [chatHistory, setChatHistory] = useState([]); */
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -24,11 +29,16 @@ export default function AIBotDataModal({ modalData }) {
     const responseText = response.text();
     const cleanedResponseText = responseText.replace(/Q:|A:|P:|R:/g, '').trim();
 
-    setChatHistory([...chatHistory, { question: newQuestion, answer: cleanedResponseText }]);
+    dispatch(setBotChat({ botChat: [...chatHistory, { question: newQuestion, answer: cleanedResponseText }] }))
 
     setNewQuestion("")
     setIsLoading(false)
     aiBotQuestion.current.focus()
+  }
+
+  const clearHistory = () => {
+    dispatch(setBotChat({ botChat: [] }))
+    setNewQuestion("")
   }
 
   const enterSubmit = (e) => {
@@ -41,11 +51,6 @@ export default function AIBotDataModal({ modalData }) {
 
   const trimInputs = () => {
     setNewQuestion(newQuestion => newQuestion.trim())
-  }
-
-  const clearHistory = () => {
-    setChatHistory([])
-    setNewQuestion("")
   }
 
   useEffect(() => {
