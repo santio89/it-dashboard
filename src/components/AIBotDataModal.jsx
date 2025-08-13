@@ -9,14 +9,14 @@ export default function AIBotDataModal({ modalData }) {
   const lastQA = useRef()
 
   const [newQuestion, setNewQuestion] = useState("")
-  const [conversationHistory, setConversationHistory] = useState([]);
+  const [chatHistory, setChatHistory] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false)
 
   const addQuestionFn = async (e) => {
     e.preventDefault()
 
-    const prompt = `${conversationHistory.map(({ question, answer }) => `\nQ: ${question}\nA: ${answer}`).join('\n')}\nQ: ${newQuestion}\nA:`;
+    const prompt = `${chatHistory.map(({ question, answer }) => `\nQ: ${question}\nA: ${answer}`).join('\n')}\nQ: ${newQuestion}\nA:`;
 
     setIsLoading(true)
     const result = await firebaseAI.generateContent(prompt);
@@ -24,7 +24,7 @@ export default function AIBotDataModal({ modalData }) {
     const responseText = response.text();
     const cleanedResponseText = responseText.replace(/Q:|A:|P:|R:/g, '').trim();
 
-    setConversationHistory([...conversationHistory, { question: newQuestion, answer: cleanedResponseText }]);
+    setChatHistory([...chatHistory, { question: newQuestion, answer: cleanedResponseText }]);
 
     setNewQuestion("")
     setIsLoading(false)
@@ -47,7 +47,7 @@ export default function AIBotDataModal({ modalData }) {
     if (lastQA.current) {
       lastQA.current.scrollIntoView();
     }
-  }, [conversationHistory]);
+  }, [chatHistory]);
 
   return (
     <>
@@ -63,8 +63,8 @@ export default function AIBotDataModal({ modalData }) {
           </div>
           <form id="modalForm" autoCapitalize='off' autoComplete='off' spellCheck='false' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { enterSubmit(e) }} onSubmit={(e) => addQuestionFn(e)}>
             {
-              conversationHistory.map(({ question, answer }, index) => (
-                <div key={`q/a-${index}`} ref={index === conversationHistory.length - 1 ? lastQA : null}>
+              chatHistory.map(({ question, answer }, index) => (
+                <div key={`q/a-${index}`} ref={index === chatHistory.length - 1 ? lastQA : null}>
                   <fieldset>
                     <legend><label htmlFor={`question-${index}`}>{lang.question}</label></legend>
                     <textarea id={`question-${index}`} readOnly disabled rows="2" value={question} onChange={e => setNewQuestion(e.target.value)} maxLength={2000} className='taskOpenContent aiQuestion' />

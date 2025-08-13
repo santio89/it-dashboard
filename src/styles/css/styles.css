@@ -1464,8 +1464,8 @@ select:disabled {
   min-width: 600px;
   width: 600px;
   max-width: 600px;
-  height: 100%;
-  max-height: min-content;
+  height: 90%;
+  max-height: fit-content;
   outline: none;
   color: rgb(240, 240, 240);
   font-size: 1rem;
