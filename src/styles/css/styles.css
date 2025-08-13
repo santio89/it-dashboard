@@ -1995,6 +1995,7 @@ label:hover) {
 }
 .mainModal__data__form.taskContainer .taskOpenContent.aiPrompt, .mainModal__data__form.taskContainer .taskOpenContent.aiQuestion, .mainModal__data__form.taskContainer .taskOpenContent.aiAnswer {
   padding: 0.5rem 1.5rem;
+  text-align: left;
 }
 .mainModal__data__form.taskContainer .taskReply {
   display: inline-block;
