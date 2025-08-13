@@ -43,6 +43,11 @@ export default function AIBotDataModal({ modalData }) {
     setNewQuestion(newQuestion => newQuestion.trim())
   }
 
+  const clearHistory = () => {
+    setChatHistory([])
+    setNewQuestion("")
+  }
+
   useEffect(() => {
     if (lastQA.current) {
       lastQA.current.scrollIntoView();
@@ -84,6 +89,7 @@ export default function AIBotDataModal({ modalData }) {
             </div>
             <div className='mainModal__btnContainer'>
               <button className='mainModal__send' onClick={trimInputs}>{lang.send}</button>
+              <button className='mainModal__send' type='button' onClick={clearHistory}>{lang.clearHistory}</button>
             </div>
           </form>
         </>
