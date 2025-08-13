@@ -1962,7 +1962,11 @@ label:hover) {
 .mainModal__data__form.taskContainer .taskOpenContent.reply {
   text-align: right;
 }
-.mainModal__data__form.taskContainer .taskOpenContent.ai {
+.mainModal__data__form.taskContainer .taskOpenContent.aiQuestion {
+  min-height: 48px;
+}
+.mainModal__data__form.taskContainer .taskOpenContent.aiAnswer {
+  min-height: 48px;
   max-height: 100%;
 }
 .mainModal__data__form.taskContainer .taskReply {

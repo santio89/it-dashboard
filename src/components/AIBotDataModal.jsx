@@ -67,11 +67,11 @@ export default function AIBotDataModal({ modalData }) {
                 <div key={`q/a-${index}`} ref={index === conversationHistory.length - 1 ? lastQA : null}>
                   <fieldset>
                     <legend><label htmlFor={`question-${index}`}>{lang.question}</label></legend>
-                    <textarea id={`question-${index}`} readOnly disabled rows="2" value={question} onChange={e => setNewQuestion(e.target.value)} maxLength={2000} className='taskOpenContent' />
+                    <textarea id={`question-${index}`} readOnly disabled rows="2" value={question} onChange={e => setNewQuestion(e.target.value)} maxLength={2000} className='taskOpenContent aiQuestion' />
                   </fieldset>
                   <fieldset>
                     <legend><label htmlFor={`answer-${index}`}>{lang.answer}</label></legend>
-                    <textarea id={`answer-${index}`} readOnly disabled rows="2" value={answer} className='taskOpenContent reply ai' />
+                    <textarea id={`answer-${index}`} readOnly disabled rows="2" value={answer} className='taskOpenContent reply aiAnswer' />
                   </fieldset>
                 </div>
               ))
@@ -79,7 +79,7 @@ export default function AIBotDataModal({ modalData }) {
             <div>
               <fieldset>
                 <legend><label htmlFor="addQuestion">{lang.question}</label></legend>
-                <textarea ref={aiBotQuestion} id="addQuestion" rows="2" value={newQuestion} onChange={e => setNewQuestion(e.target.value)} maxLength={2000} className='taskOpenContent' />
+                <textarea ref={aiBotQuestion} id="addQuestion" rows="2" value={newQuestion} onChange={e => setNewQuestion(e.target.value)} maxLength={2000} className='taskOpenContent aiQuestion' />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>

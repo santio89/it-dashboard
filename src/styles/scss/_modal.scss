@@ -595,7 +595,12 @@
             text-align: right;
           }
 
-          &.ai {
+          &.aiQuestion {
+            min-height: 48px;
+          }
+
+          &.aiAnswer {
+            min-height: 48px;
             max-height: 100%;
           }
         }
