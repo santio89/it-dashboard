@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from '../hooks/useTranslation'
 import { firebaseAI } from '../config/firebase'
 import { setBotChat } from '../store/slices/themeSlice'
+import ReactMarkdown from 'react-markdown'
 
 export default function AIBotDataModal({ modalData }) {
   const lang = useTranslation()
@@ -77,11 +78,23 @@ export default function AIBotDataModal({ modalData }) {
                 <div key={`q/a-${index}`} ref={index === chatHistory.length - 1 ? lastQA : null}>
                   <fieldset>
                     <legend><label htmlFor={`question-${index}`}>{lang.question}</label></legend>
-                    <textarea id={`question-${index}`} readOnly disabled rows="2" value={question} onChange={e => setNewQuestion(e.target.value)} maxLength={2000} className='taskOpenContent aiQuestion' />
+                    {/* <textarea id={`question-${index}`} readOnly disabled rows="2" value={question} className='taskOpenContent aiQuestion' /> */}
+
+                    <div tabIndex={-1} className='taskOpenContent aiQuestion'>
+                      <ReactMarkdown>
+                        {question}
+                      </ReactMarkdown>
+                    </div>
                   </fieldset>
                   <fieldset>
                     <legend><label htmlFor={`answer-${index}`}>{lang.answer}</label></legend>
-                    <textarea id={`answer-${index}`} readOnly disabled rows="2" value={answer} className='taskOpenContent reply aiAnswer' />
+                    {/* <textarea id={`answer-${index}`} readOnly disabled rows="2" value={answer} className='taskOpenContent reply aiAnswer' /> */}
+                    <div tabIndex={-1} className='taskOpenContent reply aiAnswer'>
+
+                      <ReactMarkdown>
+                        {answer}
+                      </ReactMarkdown>
+                    </div>
                   </fieldset>
                 </div>
               ))
@@ -89,7 +102,7 @@ export default function AIBotDataModal({ modalData }) {
             <div>
               <fieldset>
                 <legend><label htmlFor="addQuestion">{lang.question}</label></legend>
-                <textarea ref={aiBotQuestion} id="addQuestion" rows="2" value={newQuestion} onChange={e => setNewQuestion(e.target.value)} maxLength={2000} className='taskOpenContent aiQuestion' />
+                <textarea ref={aiBotQuestion} id="addQuestion" rows="2" value={newQuestion} onChange={e => setNewQuestion(e.target.value)} maxLength={10000} className='taskOpenContent aiPrompt' />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>

@@ -275,6 +275,7 @@
         transition: 200ms ease-in-out;
         background: var(--main-color-op);
         text-align: start;
+        overflow: hidden;
 
         legend {
           margin: 0 8px;
@@ -294,12 +295,13 @@
             textarea:hover,
             select:hover,
             option:hover,
-            label:hover
+            label:hover,
+            .taskOpenContent:hover
           ) {
           border-color: var(--main-color-mid);
         }
 
-        &:focus-within {
+        &:focus-within:not(:has(.aiQuestion, .aiAnswer)) {
           border-color: var(--white) !important;
         }
 
@@ -438,12 +440,26 @@
         align-items: stretch;
         flex-direction: column;
         width: 100%;
+        max-width: 100%;
 
         fieldset,
         input,
         select,
         textarea {
           width: 100%;
+        }
+
+        fieldset:has(.aiQuestion, .aiAnswer) {
+          width: fit-content;
+          max-width: 100%;
+        }
+
+        fieldset:has(.aiQuestion) {
+          margin-right: auto;
+        }
+
+        fieldset:has(.aiAnswer) {
+          margin-left: auto;
         }
 
         .taskOptions {
@@ -587,14 +603,28 @@
           width: 100%;
           height: 100%;
           min-height: 80px;
-          max-height: 106px;
-          field-sizing: content;
+          max-height: 120px;
           text-align: left;
+          padding: 0.5rem 1rem;
+          overflow-y: auto;
+          field-sizing: content;
+
+          pre,
+          code {
+            white-space: pre-wrap;
+            overflow: hidden auto;
+            overflow-wrap: break-word;
+          }
+
+          ul {
+            list-style-type: disc;
+          }
 
           &.reply {
             text-align: right;
           }
 
+          &.aiPrompt,
           &.aiQuestion {
             min-height: 48px;
           }
@@ -602,6 +632,12 @@
           &.aiAnswer {
             min-height: 48px;
             max-height: 100%;
+          }
+
+          &.aiPrompt,
+          &.aiQuestion,
+          &.aiAnswer {
+            padding: 0.5rem 1.5rem;
           }
         }
 

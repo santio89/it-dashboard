@@ -156,7 +156,7 @@ option {
   align-items: center;
   text-align: center;
   text-wrap: balance;
-  color: var(--main-text);
+  color: inherit;
   outline-offset: 0;
   border-radius: var(--main-radius);
   transition: 200ms ease-in-out;
@@ -183,7 +183,7 @@ input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
 option:focus-visible {
-  outline: 1px solid var(--main-text);
+  outline: 1px solid currentColor;
 }
 
 button {
@@ -1694,6 +1694,7 @@ select:disabled {
   transition: 200ms ease-in-out;
   background: var(--main-color-op);
   text-align: start;
+  overflow: hidden;
 }
 .mainModal__data__form fieldset legend {
   margin: 0 8px;
@@ -1710,10 +1711,11 @@ select:disabled {
 textarea:hover,
 select:hover,
 option:hover,
-label:hover) {
+label:hover,
+.taskOpenContent:hover) {
   border-color: var(--main-color-mid);
 }
-.mainModal__data__form fieldset:focus-within {
+.mainModal__data__form fieldset:focus-within:not(:has(.aiQuestion, .aiAnswer)) {
   border-color: var(--white) !important;
 }
 .mainModal__data__form fieldset:has(textarea) {
@@ -1824,6 +1826,7 @@ label:hover) {
   align-items: stretch;
   flex-direction: column;
   width: 100%;
+  max-width: 100%;
   /* .replyBtn {
     font-size: 0.8em;
     text-transform: none;
@@ -1849,6 +1852,16 @@ label:hover) {
 .mainModal__data__form.taskContainer select,
 .mainModal__data__form.taskContainer textarea {
   width: 100%;
+}
+.mainModal__data__form.taskContainer fieldset:has(.aiQuestion, .aiAnswer) {
+  width: fit-content;
+  max-width: 100%;
+}
+.mainModal__data__form.taskContainer fieldset:has(.aiQuestion) {
+  margin-right: auto;
+}
+.mainModal__data__form.taskContainer fieldset:has(.aiAnswer) {
+  margin-left: auto;
 }
 .mainModal__data__form.taskContainer .taskOptions {
   width: 100%;
@@ -1955,19 +1968,33 @@ label:hover) {
   width: 100%;
   height: 100%;
   min-height: 80px;
-  max-height: 106px;
-  field-sizing: content;
+  max-height: 120px;
   text-align: left;
+  padding: 0.5rem 1rem;
+  overflow-y: auto;
+  field-sizing: content;
+}
+.mainModal__data__form.taskContainer .taskOpenContent pre,
+.mainModal__data__form.taskContainer .taskOpenContent code {
+  white-space: pre-wrap;
+  overflow: hidden auto;
+  overflow-wrap: break-word;
+}
+.mainModal__data__form.taskContainer .taskOpenContent ul {
+  list-style-type: disc;
 }
 .mainModal__data__form.taskContainer .taskOpenContent.reply {
   text-align: right;
 }
-.mainModal__data__form.taskContainer .taskOpenContent.aiQuestion {
+.mainModal__data__form.taskContainer .taskOpenContent.aiPrompt, .mainModal__data__form.taskContainer .taskOpenContent.aiQuestion {
   min-height: 48px;
 }
 .mainModal__data__form.taskContainer .taskOpenContent.aiAnswer {
   min-height: 48px;
   max-height: 100%;
+}
+.mainModal__data__form.taskContainer .taskOpenContent.aiPrompt, .mainModal__data__form.taskContainer .taskOpenContent.aiQuestion, .mainModal__data__form.taskContainer .taskOpenContent.aiAnswer {
+  padding: 0.5rem 1.5rem;
 }
 .mainModal__data__form.taskContainer .taskReply {
   display: inline-block;
