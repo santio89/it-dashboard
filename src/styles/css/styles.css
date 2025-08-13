@@ -1974,11 +1974,34 @@ label:hover) {
   overflow-y: auto;
   field-sizing: content;
 }
-.mainModal__data__form.taskContainer .taskOpenContent pre,
-.mainModal__data__form.taskContainer .taskOpenContent code {
+.mainModal__data__form.taskContainer .taskOpenContent pre {
   white-space: pre-wrap;
   overflow: hidden auto;
   overflow-wrap: break-word;
+  background: var(--main-color-op-dark);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+.mainModal__data__form.taskContainer .taskOpenContent ul,
+.mainModal__data__form.taskContainer .taskOpenContent ol,
+.mainModal__data__form.taskContainer .taskOpenContent hr,
+.mainModal__data__form.taskContainer .taskOpenContent p,
+.mainModal__data__form.taskContainer .taskOpenContent pre {
+  margin-block: 0.5rem;
+}
+.mainModal__data__form.taskContainer .taskOpenContent ul:first-child,
+.mainModal__data__form.taskContainer .taskOpenContent ol:first-child,
+.mainModal__data__form.taskContainer .taskOpenContent hr:first-child,
+.mainModal__data__form.taskContainer .taskOpenContent p:first-child,
+.mainModal__data__form.taskContainer .taskOpenContent pre:first-child {
+  margin-top: 0;
+}
+.mainModal__data__form.taskContainer .taskOpenContent ul:last-child,
+.mainModal__data__form.taskContainer .taskOpenContent ol:last-child,
+.mainModal__data__form.taskContainer .taskOpenContent hr:last-child,
+.mainModal__data__form.taskContainer .taskOpenContent p:last-child,
+.mainModal__data__form.taskContainer .taskOpenContent pre:last-child {
+  margin-bottom: 0;
 }
 .mainModal__data__form.taskContainer .taskOpenContent ul {
   list-style-type: disc;

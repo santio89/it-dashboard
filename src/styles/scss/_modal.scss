@@ -609,11 +609,37 @@
           overflow-y: auto;
           field-sizing: content;
 
-          pre,
-          code {
+          pre {
             white-space: pre-wrap;
             overflow: hidden auto;
             overflow-wrap: break-word;
+            background: var(--main-color-op-dark);
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+          }
+
+          ul,
+          ol,
+          hr,
+          p,
+          pre {
+            margin-block: 0.5rem;
+          }
+
+          ul:first-child,
+          ol:first-child,
+          hr:first-child,
+          p:first-child,
+          pre:first-child {
+            margin-top: 0;
+          }
+
+          ul:last-child,
+          ol:last-child,
+          hr:last-child,
+          p:last-child,
+          pre:last-child {
+            margin-bottom: 0;
           }
 
           ul {
