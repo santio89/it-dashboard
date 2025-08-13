@@ -15,7 +15,6 @@ export default function AIBotDataModal({ modalData }) {
   const lastQA = useRef()
 
   const [newQuestion, setNewQuestion] = useState("")
-  /* const [chatHistory, setChatHistory] = useState([]); */
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -78,8 +77,6 @@ export default function AIBotDataModal({ modalData }) {
                 <div key={`q/a-${index}`} ref={index === chatHistory.length - 1 ? lastQA : null}>
                   <fieldset>
                     <legend><label htmlFor={`question-${index}`}>{lang.question}</label></legend>
-                    {/* <textarea id={`question-${index}`} readOnly disabled rows="2" value={question} className='taskOpenContent aiQuestion' /> */}
-
                     <div tabIndex={-1} className='taskOpenContent aiQuestion'>
                       <ReactMarkdown>
                         {question}
@@ -88,7 +85,6 @@ export default function AIBotDataModal({ modalData }) {
                   </fieldset>
                   <fieldset>
                     <legend><label htmlFor={`answer-${index}`}>{lang.answer}</label></legend>
-                    {/* <textarea id={`answer-${index}`} readOnly disabled rows="2" value={answer} className='taskOpenContent reply aiAnswer' /> */}
                     <div tabIndex={-1} className='taskOpenContent reply aiAnswer'>
 
                       <ReactMarkdown>
