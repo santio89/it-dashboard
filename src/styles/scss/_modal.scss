@@ -593,8 +593,8 @@
         .taskOpenTitle {
           width: 100%;
           height: 100%;
-          min-height: 40px;
-          max-height: 62px;
+          min-height: auto;
+          max-height: calc(2lh + 1rem); /* 2 lines + padding */
           field-sizing: content;
           text-align: left;
         }
@@ -602,10 +602,10 @@
         .taskOpenContent {
           width: 100%;
           height: 100%;
-          min-height: 80px;
-          max-height: 120px;
-          text-align: left;
+          min-height: calc(2lh + 1rem); /* 2 lines + padding */
+          max-height: calc(4lh + 1rem); /* 4 lines + padding */
           padding: 0.5rem 1rem;
+          text-align: left;
           overflow-y: auto;
           field-sizing: content;
 
@@ -652,11 +652,11 @@
 
           &.aiPrompt,
           &.aiQuestion {
-            min-height: 48px;
+            min-height: auto;
           }
 
           &.aiAnswer {
-            min-height: 48px;
+            min-height: auto;
             max-height: 100%;
           }
 
