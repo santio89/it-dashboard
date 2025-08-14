@@ -1667,6 +1667,15 @@ select:disabled {
   pointer-events: none;
   filter: grayscale(1);
 }
+.mainModal__data__form[disabled]:has(.aiQuestion, .aiAnswer) {
+  pointer-events: auto;
+  filter: grayscale(0);
+}
+.mainModal__data__form[disabled]:has(.aiQuestion, .aiAnswer) fieldset:has(.aiPrompt),
+.mainModal__data__form[disabled]:has(.aiQuestion, .aiAnswer) .mainModal__btnContainer {
+  pointer-events: none;
+  filter: grayscale(1);
+}
 .mainModal__data__form button {
   background: var(--main-color-mid);
   color: var(--white);

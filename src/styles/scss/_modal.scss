@@ -244,6 +244,17 @@
         filter: grayscale(1);
       }
 
+      &[disabled]:has(.aiQuestion, .aiAnswer) {
+        pointer-events: auto;
+        filter: grayscale(0);
+
+        fieldset:has(.aiPrompt),
+        .mainModal__btnContainer {
+          pointer-events: none;
+          filter: grayscale(1);
+        }
+      }
+
       button {
         background: var(--main-color-mid);
         color: var(--white);
