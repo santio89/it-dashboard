@@ -107,7 +107,7 @@ export default function AIBotDataModal({ modalData }) {
             <div>
               <fieldset>
                 <legend><label htmlFor="addQuestion">{lang.question}</label></legend>
-                <textarea ref={promptRef} id="addQuestion" rows="2" value={newQuestion} onChange={e => setNewQuestion(e.target.value)} maxLength={10000} className='taskOpenContent aiPrompt' />
+                <textarea ref={promptRef} id="addQuestion" rows="2" value={newQuestion} onChange={e => setNewQuestion(e.target.value)} maxLength={10000} className='taskOpenContent aiPrompt' placeholder={lang.askBot} />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
