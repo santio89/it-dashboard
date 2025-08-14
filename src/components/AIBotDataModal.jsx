@@ -11,8 +11,8 @@ export default function AIBotDataModal({ modalData }) {
   const dispatch = useDispatch()
   const chatHistory = useSelector(state => state.theme.botChat)
 
-  const aiBotQuestion = useRef();
   const lastQA = useRef()
+  const promptRef = useRef()
 
   const [newQuestion, setNewQuestion] = useState("")
 
@@ -33,7 +33,7 @@ export default function AIBotDataModal({ modalData }) {
 
     setNewQuestion("")
     setIsLoading(false)
-    aiBotQuestion.current.focus()
+    promptRef.current.focus()
   }
 
   const clearHistory = () => {
@@ -44,7 +44,7 @@ export default function AIBotDataModal({ modalData }) {
   const enterSubmit = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       trimInputs()
-      aiBotQuestion.current.blur()
+      promptRef.current.blur()
       addQuestionFn(e)
     }
   }
@@ -58,6 +58,15 @@ export default function AIBotDataModal({ modalData }) {
       lastQA.current.scrollIntoView();
     }
   }, [chatHistory]);
+
+  useEffect(() => {
+    if (promptRef.current) {
+      setTimeout(() => {
+        promptRef.current.scrollIntoView();
+        promptRef.current.focus();
+      }, 100);
+    }
+  }, []);
 
   return (
     <>
@@ -98,7 +107,7 @@ export default function AIBotDataModal({ modalData }) {
             <div>
               <fieldset>
                 <legend><label htmlFor="addQuestion">{lang.question}</label></legend>
-                <textarea ref={aiBotQuestion} id="addQuestion" rows="2" value={newQuestion} onChange={e => setNewQuestion(e.target.value)} maxLength={10000} className='taskOpenContent aiPrompt' />
+                <textarea ref={promptRef} id="addQuestion" rows="2" value={newQuestion} onChange={e => setNewQuestion(e.target.value)} maxLength={10000} className='taskOpenContent aiPrompt' />
               </fieldset>
             </div>
             <div className='mainModal__btnContainer'>
