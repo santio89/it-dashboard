@@ -24,7 +24,7 @@ export default function AIBotDataModal({ modalData }) {
       return
     }
 
-    const aiInstruction = " - INSTRUCTION: Please, respond only with the answer, without labels like 'A:', 'R:', or similar."
+    const aiInstruction = "\nINSTRUCTION: Please, respond only with the answer, without labels like 'Q:', 'A:', 'P:', 'R:', or similar."
     const prompt = `${chatHistory.map(({ question, answer }) => `\nQ: ${question}${aiInstruction}\nA: ${answer}`).join('\n')}\nQ: ${newQuestion}\nA:`;
 
     setIsLoading(true)
