@@ -33,7 +33,6 @@ export default function AIBotDataModal({ modalData }) {
       const result = await firebaseAI.generateContent(prompt);
       const response = result.response;
       const responseText = response.text();
-      console.log(responseText)
       /* const cleanedResponseText = responseText.replace(/Q:|A:|P:|R:/g, '').trim(); */
       const cleanedResponseText = responseText.replace(new RegExp(aiInstruction, 'g'), '').trim();
 
