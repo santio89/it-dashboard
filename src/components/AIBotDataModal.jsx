@@ -20,20 +20,32 @@ export default function AIBotDataModal({ modalData }) {
 
   const addQuestionFn = async (e) => {
     e.preventDefault()
+    if (newQuestion.trim() === "") {
+      return
+    }
 
-    const prompt = `${chatHistory.map(({ question, answer }) => `\nQ: ${question}\nA: ${answer}`).join('\n')}\nQ: ${newQuestion}\nA:`;
+    const aiInstruction = " - INSTRUCTION: Please, respond only with the answer, without labels like 'A:', 'R:', or similar."
+    const prompt = `${chatHistory.map(({ question, answer }) => `\nQ: ${question}${aiInstruction}\nA: ${answer}`).join('\n')}\nQ: ${newQuestion}\nA:`;
 
     setIsLoading(true)
-    const result = await firebaseAI.generateContent(prompt);
-    const response = result.response;
-    const responseText = response.text();
-    const cleanedResponseText = responseText.replace(/Q:|A:|P:|R:/g, '').trim();
 
-    dispatch(setBotChat({ botChat: [...chatHistory, { question: newQuestion, answer: cleanedResponseText }] }))
+    try {
+      const result = await firebaseAI.generateContent(prompt);
+      const response = result.response;
+      const responseText = response.text();
 
-    setNewQuestion("")
-    setIsLoading(false)
-    promptRef.current.focus()
+      /* const cleanedResponseText = responseText.replace(/Q:|A:|P:|R:/g, '').trim(); */
+      const cleanedResponseText = responseText.replace(new RegExp(aiInstruction, 'g'), '').trim();
+
+      dispatch(setBotChat({ botChat: [...chatHistory, { question: newQuestion, answer: cleanedResponseText }] }))
+    } catch (e) {
+      console.log("Error fetching AI response:", e);
+      dispatch(setBotChat({ botChat: [...chatHistory, { question: newQuestion, answer: "Sorry, I encountered an error. Please try again." }] }));
+    } finally {
+      setNewQuestion("")
+      setIsLoading(false)
+      promptRef.current.focus()
+    }
   }
 
   const clearHistory = () => {
