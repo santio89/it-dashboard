@@ -620,12 +620,67 @@
           field-sizing: content;
 
           pre {
-            white-space: pre-wrap;
+            /*  white-space: pre-wrap;
             overflow: hidden auto;
             overflow-wrap: break-word;
             background: var(--main-color-op-dark);
             border-radius: 0.5rem;
-            padding: 0.5rem;
+            padding: 0.5rem; */
+
+            /* code {
+              white-space: pre-wrap !important;
+              overflow: hidden auto !important;
+              overflow-wrap: break-word !important;
+            } */
+
+            div {
+              border: 1px solid var(--main-color-op-dark);
+              border-radius: 0.5rem;
+              padding: 0.5rem !important;
+              background: var(--main-color) !important;
+
+              * {
+                background: var(--main-color) !important;
+              }
+            }
+          }
+
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 0.5rem;
+            overflow: hidden;
+
+            th,
+            td {
+              padding: 0.5rem 1rem;
+              text-align: left;
+              vertical-align: middle;
+            }
+
+            th {
+              color: var(--white);
+              font-weight: 700;
+              border-bottom: 1px solid var(--main-color-mid);
+            }
+
+            td {
+              color: var(--white);
+              border-bottom: 1px solid var(--main-color-mid);
+            }
+
+            tr:last-child td {
+              border-bottom: none;
+            }
+
+            th:first-child,
+            td:first-child {
+              border-top-left-radius: 0.5rem;
+            }
+            th:last-child,
+            td:last-child {
+              border-top-right-radius: 0.5rem;
+            }
           }
 
           ul,
@@ -647,7 +702,8 @@
           ol,
           hr,
           p,
-          pre {
+          pre,
+          table {
             margin-block: 0.5rem;
           }
 
@@ -655,7 +711,8 @@
           ol:first-child,
           hr:first-child,
           p:first-child,
-          pre:first-child {
+          pre:first-child,
+          table:first-child {
             margin-top: 0;
           }
 
@@ -663,7 +720,8 @@
           ol:last-child,
           hr:last-child,
           p:last-child,
-          pre:last-child {
+          pre:last-child,
+          table:last-child {
             margin-bottom: 0;
           }
 

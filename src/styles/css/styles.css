@@ -1983,12 +1983,58 @@ label:hover) {
   field-sizing: content;
 }
 .mainModal__data__form.taskContainer .taskOpenContent pre {
-  white-space: pre-wrap;
+  /*  white-space: pre-wrap;
   overflow: hidden auto;
   overflow-wrap: break-word;
   background: var(--main-color-op-dark);
   border-radius: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.5rem; */
+  /* code {
+    white-space: pre-wrap !important;
+    overflow: hidden auto !important;
+    overflow-wrap: break-word !important;
+  } */
+}
+.mainModal__data__form.taskContainer .taskOpenContent pre div {
+  border: 1px solid var(--main-color-op-dark);
+  border-radius: 0.5rem;
+  padding: 0.5rem !important;
+  background: var(--main-color) !important;
+}
+.mainModal__data__form.taskContainer .taskOpenContent pre div * {
+  background: var(--main-color) !important;
+}
+.mainModal__data__form.taskContainer .taskOpenContent table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.mainModal__data__form.taskContainer .taskOpenContent table th,
+.mainModal__data__form.taskContainer .taskOpenContent table td {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  vertical-align: middle;
+}
+.mainModal__data__form.taskContainer .taskOpenContent table th {
+  color: var(--white);
+  font-weight: 700;
+  border-bottom: 1px solid var(--main-color-mid);
+}
+.mainModal__data__form.taskContainer .taskOpenContent table td {
+  color: var(--white);
+  border-bottom: 1px solid var(--main-color-mid);
+}
+.mainModal__data__form.taskContainer .taskOpenContent table tr:last-child td {
+  border-bottom: none;
+}
+.mainModal__data__form.taskContainer .taskOpenContent table th:first-child,
+.mainModal__data__form.taskContainer .taskOpenContent table td:first-child {
+  border-top-left-radius: 0.5rem;
+}
+.mainModal__data__form.taskContainer .taskOpenContent table th:last-child,
+.mainModal__data__form.taskContainer .taskOpenContent table td:last-child {
+  border-top-right-radius: 0.5rem;
 }
 .mainModal__data__form.taskContainer .taskOpenContent ul,
 .mainModal__data__form.taskContainer .taskOpenContent ol {
@@ -2007,21 +2053,24 @@ label:hover) {
 .mainModal__data__form.taskContainer .taskOpenContent ol,
 .mainModal__data__form.taskContainer .taskOpenContent hr,
 .mainModal__data__form.taskContainer .taskOpenContent p,
-.mainModal__data__form.taskContainer .taskOpenContent pre {
+.mainModal__data__form.taskContainer .taskOpenContent pre,
+.mainModal__data__form.taskContainer .taskOpenContent table {
   margin-block: 0.5rem;
 }
 .mainModal__data__form.taskContainer .taskOpenContent ul:first-child,
 .mainModal__data__form.taskContainer .taskOpenContent ol:first-child,
 .mainModal__data__form.taskContainer .taskOpenContent hr:first-child,
 .mainModal__data__form.taskContainer .taskOpenContent p:first-child,
-.mainModal__data__form.taskContainer .taskOpenContent pre:first-child {
+.mainModal__data__form.taskContainer .taskOpenContent pre:first-child,
+.mainModal__data__form.taskContainer .taskOpenContent table:first-child {
   margin-top: 0;
 }
 .mainModal__data__form.taskContainer .taskOpenContent ul:last-child,
 .mainModal__data__form.taskContainer .taskOpenContent ol:last-child,
 .mainModal__data__form.taskContainer .taskOpenContent hr:last-child,
 .mainModal__data__form.taskContainer .taskOpenContent p:last-child,
-.mainModal__data__form.taskContainer .taskOpenContent pre:last-child {
+.mainModal__data__form.taskContainer .taskOpenContent pre:last-child,
+.mainModal__data__form.taskContainer .taskOpenContent table:last-child {
   margin-bottom: 0;
 }
 .mainModal__data__form.taskContainer .taskOpenContent.reply {

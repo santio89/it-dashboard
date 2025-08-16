@@ -1,9 +1,68 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, memo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from '../hooks/useTranslation'
 import { firebaseAI } from '../config/firebase'
 import { setBotChat } from '../store/slices/themeSlice'
 import ReactMarkdown from 'react-markdown'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
+import 'katex/dist/katex.min.css'
+
+// Custom renderer and plugins for code and syntax highlighting
+const components = {
+  code(props) {
+    const { children, className, node, ...rest } = props
+    const match = /language-(\w+)/.exec(className || '')
+
+    return match ? (
+      <SyntaxHighlighter
+        {...rest}
+        PreTag="div"
+        children={String(children).replace(/\n$/, '')}
+        language={match[1]}
+        style={oneDark}
+      />
+    ) : (
+      <code {...rest} className={className}>
+        {children}
+      </code>
+    )
+  }
+}
+
+const ChatQA = memo(function ChatQA({ question, answer, index, lastQA, lang }) {
+  return (
+    <div key={`q/a-${index}`} ref={lastQA}>
+      <fieldset>
+        <legend><label htmlFor={`question-${index}`}>{lang.question}</label></legend>
+        <div tabIndex={-1} className='taskOpenContent aiQuestion'>
+          <ReactMarkdown
+            remarkPlugins={[remarkMath, remarkGfm]}
+            rehypePlugins={[rehypeKatex]}
+            components={components}
+          >
+            {question}
+          </ReactMarkdown>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><label htmlFor={`answer-${index}`}>{lang.answer}</label></legend>
+        <div tabIndex={-1} className='taskOpenContent reply aiAnswer'>
+          <ReactMarkdown
+            remarkPlugins={[remarkMath, remarkGfm]}
+            rehypePlugins={[rehypeKatex]}
+            components={components}
+          >
+            {answer}
+          </ReactMarkdown>
+        </div>
+      </fieldset>
+    </div>
+  )
+})
 
 export default function AIBotDataModal({ modalData }) {
   const lang = useTranslation()
@@ -94,25 +153,14 @@ export default function AIBotDataModal({ modalData }) {
           <form id="modalForm" autoCapitalize='off' autoComplete='off' spellCheck='false' disabled={isLoading} className='mainModal__data__form taskContainer' onKeyDown={(e) => { enterSubmit(e) }} onSubmit={(e) => addQuestionFn(e)}>
             {
               chatHistory.map(({ question, answer }, index) => (
-                <div key={`q/a-${index}`} ref={index === chatHistory.length - 1 ? lastQA : null}>
-                  <fieldset>
-                    <legend><label htmlFor={`question-${index}`}>{lang.question}</label></legend>
-                    <div tabIndex={-1} className='taskOpenContent aiQuestion'>
-                      <ReactMarkdown>
-                        {question}
-                      </ReactMarkdown>
-                    </div>
-                  </fieldset>
-                  <fieldset>
-                    <legend><label htmlFor={`answer-${index}`}>{lang.answer}</label></legend>
-                    <div tabIndex={-1} className='taskOpenContent reply aiAnswer'>
-
-                      <ReactMarkdown>
-                        {answer}
-                      </ReactMarkdown>
-                    </div>
-                  </fieldset>
-                </div>
+                <ChatQA
+                  key={`q/a-${index}`}
+                  question={question}
+                  answer={answer}
+                  index={index}
+                  lastQA={index === chatHistory.length - 1 ? lastQA : null}
+                  lang={lang}
+                />
               ))
             }
             <div>
