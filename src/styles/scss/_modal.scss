@@ -620,20 +620,8 @@
           field-sizing: content;
 
           pre {
-            /*  white-space: pre-wrap;
-            overflow: hidden auto;
-            overflow-wrap: break-word;
-            background: var(--main-color-op-dark);
-            border-radius: 0.5rem;
-            padding: 0.5rem; */
-
-            /* code {
-              white-space: pre-wrap !important;
-              overflow: hidden auto !important;
-              overflow-wrap: break-word !important;
-            } */
-
-            div {
+            /* SyntaxHighlighter */
+            & > div {
               border: 1px solid var(--main-color-op-dark);
               border-radius: 0.5rem;
               padding: 0.5rem !important;
@@ -642,6 +630,17 @@
               * {
                 background: var(--main-color) !important;
               }
+            }
+
+            /* if SyntaxHighlighter is not used */
+            &:not(&:has(> div)) {
+              /* white-space: pre-wrap;
+              overflow: hidden auto;
+              overflow-wrap: break-word; */
+              background: var(--main-color-op-dark);
+              border-radius: 0.5rem;
+              padding: 0.5rem;
+              width: fit-content;
             }
           }
 

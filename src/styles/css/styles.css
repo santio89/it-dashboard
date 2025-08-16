@@ -1983,26 +1983,26 @@ label:hover) {
   field-sizing: content;
 }
 .mainModal__data__form.taskContainer .taskOpenContent pre {
-  /*  white-space: pre-wrap;
-  overflow: hidden auto;
-  overflow-wrap: break-word;
-  background: var(--main-color-op-dark);
-  border-radius: 0.5rem;
-  padding: 0.5rem; */
-  /* code {
-    white-space: pre-wrap !important;
-    overflow: hidden auto !important;
-    overflow-wrap: break-word !important;
-  } */
+  /* SyntaxHighlighter */
+  /* if SyntaxHighlighter is not used */
 }
-.mainModal__data__form.taskContainer .taskOpenContent pre div {
+.mainModal__data__form.taskContainer .taskOpenContent pre > div {
   border: 1px solid var(--main-color-op-dark);
   border-radius: 0.5rem;
   padding: 0.5rem !important;
   background: var(--main-color) !important;
 }
-.mainModal__data__form.taskContainer .taskOpenContent pre div * {
+.mainModal__data__form.taskContainer .taskOpenContent pre > div * {
   background: var(--main-color) !important;
+}
+.mainModal__data__form.taskContainer .taskOpenContent pre:not(.mainModal__data__form.taskContainer .taskOpenContent pre:has(> div)) {
+  /* white-space: pre-wrap;
+  overflow: hidden auto;
+  overflow-wrap: break-word; */
+  background: var(--main-color-op-dark);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  width: fit-content;
 }
 .mainModal__data__form.taskContainer .taskOpenContent table {
   width: 100%;
