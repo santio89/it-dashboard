@@ -620,6 +620,8 @@
           field-sizing: content;
 
           pre {
+            position: relative;
+
             /* SyntaxHighlighter */
             & > div {
               border: 1px solid var(--main-color-op-dark);
@@ -642,6 +644,31 @@
               padding: 0.5rem;
               width: fit-content;
             }
+
+            /* copy to clipboard */
+            .copyClipboardBtn {
+              opacity: 0;
+              position: absolute;
+              top: 0.5rem;
+              right: 0.5rem;
+              background: none;
+
+              &:active {
+                scale: 0.9;
+              }
+            }
+
+            &:hover,
+            &:focus,
+            &:focus-visible {
+              .copyClipboardBtn {
+                opacity: 1;
+              }
+            }
+          }
+
+          code {
+            color: rgb(171, 178, 191);
           }
 
           table {

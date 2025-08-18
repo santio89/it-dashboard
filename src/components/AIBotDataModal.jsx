@@ -11,13 +11,23 @@ import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import 'katex/dist/katex.min.css'
 
+
+const copyToClipboard = async (e) => {
+  const text = e.currentTarget.parentNode.querySelector("code").textContent
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (e) {
+    console.log('Failed to copy code: ', e);
+  }
+};
+
 // Custom renderer and plugins for code and syntax highlighting
 const components = {
   code(props) {
     const { children, className, node, ...rest } = props
     const match = /language-(\w+)/.exec(className || '')
 
-    return match ? (
+    return match ? <>
       <SyntaxHighlighter
         {...rest}
         PreTag="div"
@@ -25,11 +35,18 @@ const components = {
         language={match[1]}
         style={oneDark}
       />
-    ) : (
+      <button title="Copy to clipboard" className='copyClipboardBtn' onClick={(e) => copyToClipboard(e)}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+          <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z" />
+          <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1" />
+        </svg>
+      </button>
+    </> : <>
       <code {...rest} className={className}>
         {children}
       </code>
-    )
+    </>
+
   }
 }
 
