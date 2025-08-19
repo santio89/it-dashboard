@@ -649,10 +649,11 @@
             .copyClipboardBtn {
               opacity: 0;
               position: absolute;
-              top: 0.5rem;
-              right: 0.5rem;
+              top: 0.25rem;
+              right: 0.25rem;
               background: none;
               padding: 0.5rem;
+              border-radius: 0.5rem;
 
               &:hover,
               &:focus-visible {

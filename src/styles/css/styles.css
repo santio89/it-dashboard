@@ -2009,10 +2009,11 @@ label:hover) {
 .mainModal__data__form.taskContainer .taskOpenContent pre .copyClipboardBtn {
   opacity: 0;
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 0.25rem;
+  right: 0.25rem;
   background: none;
   padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 .mainModal__data__form.taskContainer .taskOpenContent pre .copyClipboardBtn:hover, .mainModal__data__form.taskContainer .taskOpenContent pre .copyClipboardBtn:focus-visible {
   color: var(--white);
