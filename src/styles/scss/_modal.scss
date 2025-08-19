@@ -647,13 +647,15 @@
 
             /* copy to clipboard */
             .copyClipboardBtn {
-              opacity: 0;
               position: absolute;
               top: 0.25rem;
               right: 0.25rem;
               background: none;
-              padding: 0.5rem;
+              padding: 0;
               border-radius: 0.5rem;
+              aspect-ratio: 1;
+              width: 34px;
+              opacity: 0;
 
               &:hover,
               &:focus-visible {
