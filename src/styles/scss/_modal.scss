@@ -652,6 +652,13 @@
               top: 0.5rem;
               right: 0.5rem;
               background: none;
+              padding: 0.5rem;
+
+              &:hover,
+              &:focus-visible {
+                color: var(--white);
+                background: var(--main-color-op);
+              }
 
               &:active {
                 scale: 0.9;
