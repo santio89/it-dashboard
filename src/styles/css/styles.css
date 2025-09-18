@@ -1981,6 +1981,8 @@ label:hover) {
   text-align: left;
   overflow-y: auto;
   field-sizing: content;
+  border: none;
+  outline: none;
 }
 .mainModal__data__form.taskContainer .taskOpenContent pre {
   position: relative;
