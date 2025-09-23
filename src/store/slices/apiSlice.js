@@ -976,7 +976,6 @@ export const {
   useDeleteContactMutation,
   useEditContactMutation,
   useSetContactsMutation,
-  useGetDuplicateContactsQuery,
 
   useGetDevicesQuery,
   useGetDevicesNextQuery,
