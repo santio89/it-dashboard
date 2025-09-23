@@ -19,6 +19,9 @@ function SectionChartBtnWrapper({ section, isLoadingData }) {
     case "support":
       formFields = ["author", "title", "description", "priority", "status"]
       break;
+    case "admin":
+      formFields = ["contacts", "tickets"]
+      break;
     default:
       console.log("Section not found")
       break;

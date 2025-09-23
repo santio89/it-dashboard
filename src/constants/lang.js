@@ -123,6 +123,7 @@ const lang = {
     toggleSidebar: "Toggle sidebar",
     toAccessThisSection: "To access this section",
     ticket: "Ticket",
+    tickets: "Tickets",
     ticketAdded: "Ticket added",
     ticketClosed: "Ticket closed",
     ticketDeleted: "Ticket deleted",
@@ -131,6 +132,7 @@ const lang = {
     total: "Total",
     type: "Type",
     user: "User",
+    youDont: "You don't have permission to access this section",
     youMust: "You must"
   },
   esp: {
@@ -258,6 +260,7 @@ const lang = {
     toAccessThisSection: "Para acceder a esta sección",
     total: "Total",
     ticket: "Ticket",
+    tickets: "Tickets",
     ticketAdded: "Ticket añadido",
     ticketClosed: "Ticket cerrado",
     ticketDeleted: "Ticket eliminado",
@@ -265,6 +268,7 @@ const lang = {
     toggleTheme: "Alternar tema",
     type: "Tipo",
     user: "Usuario",
+    youDont: "No tienes permiso para acceder a esta sección",
     youMust: "Debes"
   }
 }

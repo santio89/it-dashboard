@@ -21,6 +21,10 @@ const initialState = {
       list: "all",
       charts: [],
     },
+    admin: {
+      list: "all",
+      charts: []
+    }
   },
   botChat: [],
 }
