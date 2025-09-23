@@ -4,8 +4,8 @@ import { useTranslation } from "../hooks/useTranslation"
 
 export default function Admin({ user }) {
   const lang = useTranslation()
-  const data = {}
-  const dataList = {}
+  const data = []
+  const dataList = []
 
   return (
     <>
