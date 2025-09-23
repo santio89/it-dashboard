@@ -1,8 +1,9 @@
-import MainSection from "./MainSection"
 import SectionChartBtnWrapper from "./SectionChartBtnWrapper"
 import SectionChartList from "./SectionChartList"
+import { useTranslation } from "../hooks/useTranslation"
 
 export default function Admin({ user }) {
+  const lang = useTranslation()
   const data = {}
   const dataList = {}
 
@@ -10,7 +11,7 @@ export default function Admin({ user }) {
     <>
       <div className="site-section__inner site-section__list">
         <div className="site-section__admin__title">
-          ADMIN
+          {lang.admin}
         </div>
       </div>
       <div className="site-section__inner site-section__chart">
