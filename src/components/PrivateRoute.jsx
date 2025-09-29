@@ -2,7 +2,7 @@ import { useTranslation } from "../hooks/useTranslation"
 import { useSignGoogleMutation } from "../store/slices/apiSlice"
 import { toast } from "sonner"
 
-export default function PrivateRoute({ admin = false }) {
+export default function PrivateRoute({ permission = true }) {
     const lang = useTranslation()
 
     const [signGoogle, resultSignInGoogle] = useSignGoogleMutation()
@@ -26,15 +26,15 @@ export default function PrivateRoute({ admin = false }) {
         <>
             <div className="site-section__inner site-section__private">
                 {
-                    admin ?
-                        <>
-                            <span> {lang.youDont}</span>
-                        </>
-                        :
+                    permission ?
                         <>
                             <span> {lang.youMust}&nbsp;</span>
                             <button onClick={() => { logInGoogle() }}>{lang.signIn}</button>
                             <span>&nbsp;{lang.toAccessThisSection}</span>
+                        </>
+                        :
+                        <>
+                            <span> {lang.youDont}</span>
                         </>
                 }
             </div>

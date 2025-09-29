@@ -55,8 +55,8 @@ function App() {
               <Route path="/contacts" element={checkUser ? <Contacts user={checkUser} /> : <PrivateRoute />} />
               <Route path="/devices" element={checkUser ? <Devices user={checkUser} /> : <PrivateRoute />} />
               <Route path="/tasks" element={checkUser ? <Tasks user={checkUser} /> : <PrivateRoute />} />
-              <Route path="/support" element={checkUser ? <Support user={checkUser} /> : <PrivateRoute />} />
-              <Route path="/admin" element={checkUser ? (checkUser.domainAdmin ? <Admin user={checkUser} /> : <PrivateRoute admin={true} />) : <PrivateRoute />} />
+              <Route path="/support" element={checkUser ? (checkUser.domainUser ? <Support user={checkUser} /> : <PrivateRoute permission={false} />) : <PrivateRoute />} />
+              <Route path="/admin" element={checkUser ? (checkUser.domainAdmin ? <Admin user={checkUser} /> : <PrivateRoute permission={false} />) : <PrivateRoute />} />
               <Route path="/*" element={<NotFound />} />
             </Route>
           </Routes>
