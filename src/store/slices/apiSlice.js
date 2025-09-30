@@ -653,7 +653,7 @@ export const apiSlice = createApi({
     getSupport: builder.query({
       async queryFn(userEmail) {
         if (!userEmail) { return }
-        if (userEmail === "santiago.olais@orlosh.com.ar" /* iJ77XT0Cdsa0xti7gpUOC2JgBWH3 admin */) {
+        if (userEmail === import.meta.env.VITE_ADMIN_EMAIL) {
           try {
             const ref = collection(db, 'supportData');
             const q = query(ref, orderBy('localTime', 'desc'), limit(51));
@@ -706,7 +706,7 @@ export const apiSlice = createApi({
     getSupportNext: builder.query({
       async queryFn({ userEmail, lastVisible }) {
         if (!userEmail || !lastVisible) { return { data: { tickets: null, lastVisible: null } } }
-        if (userEmail === "santiago.olais@orlosh.com.ar" /* iJ77XT0Cdsa0xti7gpUOC2JgBWH3 admin */) {
+        if (userEmail === import.meta.env.VITE_ADMIN_EMAIL) {
           try {
             const ref = collection(db, 'supportData');
             const q = query(ref, orderBy('localTime', 'desc'), startAfter(lastVisible), limit(51));
@@ -841,7 +841,7 @@ export const apiSlice = createApi({
       /* invalidatesTags: ['support'], */
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
-          apiSlice.util.updateQueryData('getSupport', "santiago.olais@orlosh.com.ar", draft => {
+          apiSlice.util.updateQueryData('getSupport', import.meta.env.VITE_ADMIN_EMAIL, draft => {
             draft.tickets = draft.tickets.filter(t => t.id !== ticket.id);
           })
         );
@@ -876,7 +876,7 @@ export const apiSlice = createApi({
       /* invalidatesTags: ['support'], */
       onQueryStarted: async (ticket, { dispatch, queryFulfilled }) => {
         const patchResult = dispatch(
-          apiSlice.util.updateQueryData('getSupport', "santiago.olais@orlosh.com.ar", draft => {
+          apiSlice.util.updateQueryData('getSupport', import.meta.env.VITE_ADMIN_EMAIL, draft => {
             const index = draft.tickets.findIndex(t => t.id === ticket.id);
             if (index !== -1) {
               draft.tickets[index] = { ...ticket, updatedAt: Date.now() };
@@ -898,7 +898,7 @@ export const apiSlice = createApi({
       }),
       async onQueryStarted(supportData, { dispatch, queryFulfilled }) {
         const patchResult = dispatch(
-          apiSlice.util.updateQueryData('getSupport', "santiago.olais@orlosh.com.ar", (draft) => {
+          apiSlice.util.updateQueryData('getSupport', import.meta.env.VITE_ADMIN_EMAIL, (draft) => {
             draft.tickets = supportData;
           })
         );
